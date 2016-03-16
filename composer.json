@@ -1,0 +1,18 @@
+{
+  "name": "metaways/zendframework1",
+  "description": "Metaways Infosystems GmbH - Patched Zendframework1",
+  "type": "project",
+  "license" : ["New BSD License"],
+  "require": {
+    "php": ">=5.3.0",
+    "zendframework/zendframework1": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Zend": ["zendframework/zendframework1/library/"]
+    }
+  },
+  "config": {
+    "vendor-dir": "."
+  }
+}
