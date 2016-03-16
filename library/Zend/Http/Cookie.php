@@ -266,7 +266,11 @@ class Zend_Http_Cookie
     public function __toString()
     {
         if ($this->encodeValue) {
-            return $this->name . '=' . urlencode($this->value) . ';';
+            // bugfix to make Asterisk happy
+            // we receive a cookie like this: "sdfsdfs" and sent back a cookie like this %22sdfsdfs%22 otherwise
+            $value = urlencode($this->value);
+            $value = str_replace('%22', '"', $value);
+            return $this->name . '=' . urlencode($value) . ';';
         }
         return $this->name . '=' . $this->value . ';';
     }

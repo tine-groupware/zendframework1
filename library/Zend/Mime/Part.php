@@ -117,6 +117,9 @@ class Zend_Mime_Part
      */
     protected $_isStream = false;
 
+    protected $_decodeFilters = array();
+    protected $_decodeFilterResources = array();
+
     /**
      * create a new Mime Part.
      * The (unencoded) content of the Part as passed
@@ -152,79 +155,179 @@ class Zend_Mime_Part
     }
 
     /**
-     * if this was created with a stream, return a filtered stream for
+     * if this was created with a stream, return a stream for
      * reading the content. very useful for large file attachments.
      *
-     * @return mixed Stream
+     * @return stream
      * @throws Zend_Mime_Exception if not a stream or unable to append filter
      */
-    public function getEncodedStream()
+    public function getRawStream()
     {
         if (!$this->_isStream) {
             require_once 'Zend/Mime/Exception.php';
-            throw new Zend_Mime_Exception(
-                'Attempt to get a stream from a string part'
-            );
-        }
-
-        //stream_filter_remove(); // ??? is that right?
-        switch ($this->encoding) {
-            case Zend_Mime::ENCODING_QUOTEDPRINTABLE:
-                $filter = stream_filter_append(
-                    $this->_content,
-                    'convert.quoted-printable-encode',
-                    STREAM_FILTER_READ,
-                    [
-                        'line-length'      => 76,
-                        'line-break-chars' => Zend_Mime::LINEEND
-                    ]
-                );
-                if (!is_resource($filter)) {
-                    require_once 'Zend/Mime/Exception.php';
-                    throw new Zend_Mime_Exception(
-                        'Failed to append quoted-printable filter'
-                    );
-                }
-                break;
-
-            case Zend_Mime::ENCODING_BASE64:
-                $filter = stream_filter_append(
-                    $this->_content,
-                    'convert.base64-encode',
-                    STREAM_FILTER_READ,
-                    [
-                        'line-length'      => 76,
-                        'line-break-chars' => Zend_Mime::LINEEND
-                    ]
-                );
-                if (!is_resource($filter)) {
-                    require_once 'Zend/Mime/Exception.php';
-                    throw new Zend_Mime_Exception(
-                        'Failed to append base64 filter'
-                    );
-                }
-                break;
-
-            default:
+            throw new Zend_Mime_Exception('Attempt to get a stream from a string part');
         }
 
         return $this->_content;
     }
 
     /**
+     * if this was created with a stream, return a filtered stream for
+     * reading the content. very useful for large file attachments.
+     *
+     * @return mixed Stream
+     * @throws Zend_Mime_Exception if not a stream or unable to append filter
+     */
+    public function getEncodedStream($EOL = Zend_Mime::LINEEND)
+    {
+        if (!$this->_isStream) {
+            require_once 'Zend/Mime/Exception.php';
+            throw new Zend_Mime_Exception('Attempt to get a stream from a string part');
+        }
+
+        switch ($this->encoding) {
+            case Zend_Mime::ENCODING_QUOTEDPRINTABLE:
+                $this->_appendFilterToStream('convert.quoted-printable-encode', array(
+                    'line-length'      => 76,
+                    'line-break-chars' => $EOL
+                ));
+                break;
+            case Zend_Mime::ENCODING_BASE64:
+                $this->_appendFilterToStream('convert.base64-encode', array(
+                    'line-length'      => 76,
+                    'line-break-chars' => $EOL
+                ));
+                break;
+            default:
+                require_once 'StreamFilter/StringReplace.php';
+                $this->_appendFilterToStream('str.replace', array(
+                    'search'    => "\x0d\x0a",
+                    'replace'   => $EOL
+                ));
+        }
+        return $this->_content;
+    }
+
+    /**
+     * if this was created with a stream, return a filtered stream for
+     * reading the content. very useful for large file attachments.
+     *
+     * @return stream
+     * @throws Zend_Mime_Exception if not a stream or unable to append filter
+     */
+    public function getDecodedStream()
+    {
+        if (! $this->_isStream) {
+            require_once 'Zend/Mime/Exception.php';
+            throw new Zend_Mime_Exception('Attempt to get a stream from a string part');
+        }
+
+        switch ($this->encoding) {
+            case Zend_Mime::ENCODING_QUOTEDPRINTABLE:
+                $this->_appendFilterToStream('convert.quoted-printable-decode');
+                break;
+            case Zend_Mime::ENCODING_BASE64:
+                $this->_appendFilterToStream('convert.base64-decode');
+                break;
+            default:
+        }
+
+        foreach ($this->_decodeFilters as $filter) {
+            $this->_appendFilterToStream($filter);
+        }
+
+        return $this->_content;
+    }
+
+    /**
+     * append filter to stream
+     *
+     * @param string $_filterString
+     * @param array $_params
+     * @throws Zend_Mime_Exception
+     */
+    protected function _appendFilterToStream($_filterString, $_params = array())
+    {
+        $filter = stream_filter_append(
+            $this->_content,
+            $_filterString,
+            STREAM_FILTER_READ,
+            $_params
+        );
+        if (! is_resource($filter)) {
+            require_once 'Zend/Mime/Exception.php';
+            throw new Zend_Mime_Exception('Failed to append ' . $_filterString . ' filter');
+        }
+
+        $this->_decodeFilterResources[] = $filter;
+    }
+
+    /**
+     * append another filter
+     *
+     * @param  string  $filter
+     */
+    public function appendDecodeFilter($filter)
+    {
+        $this->_decodeFilters[] = $filter;
+    }
+
+    /**
+     * reset filters and rewinds the stream
+     */
+    public function resetStream()
+    {
+        if (!$this->_isStream) {
+            require_once 'Zend/Mime/Exception.php';
+            throw new Zend_Mime_Exception('Attempt to reset the stream of a string part');
+        }
+
+        foreach ($this->_decodeFilterResources as $filter) {
+            stream_filter_remove($filter);
+        }
+        $this->_decodeFilters = array();
+        $this->_decodeFilterResources = array();
+
+        rewind($this->_content);
+    }
+
+    /**
      * Get the Content of the current Mime Part in the given encoding.
      *
-     * @param  string $EOL Line end; defaults to {@link Zend_Mime::LINEEND}
-     * @throws Zend_Mime_Exception
+     * @param string $EOL
      * @return string
      */
     public function getContent($EOL = Zend_Mime::LINEEND)
     {
         if ($this->_isStream) {
-            return stream_get_contents($this->getEncodedStream());
+            $result = stream_get_contents($this->getEncodedStream($EOL));
         } else {
-            return Zend_Mime::encode($this->_content, $this->encoding, $EOL);
+            $result = Zend_Mime::encode($this->_content, $this->encoding, $EOL);
+
+            if ($this->encoding !== Zend_Mime::ENCODING_QUOTEDPRINTABLE && $this->encoding !== Zend_Mime::ENCODING_BASE64) {
+                // need to replace those \r\n with $EOL and we don't want to overwrite Zend_Mime
+                $result = str_replace("\x0d\x0a", $EOL, $result);
+            }
         }
+
+        return $result;
+    }
+
+    /**
+     * Get the Content of the current Mime Part in the given decoding.
+     *
+     * @return String
+     */
+    public function getDecodedContent()
+    {
+        if ($this->_isStream) {
+            $result = stream_get_contents($this->getDecodedStream());
+        } else {
+            // Zend_Mime::decode not yet implemented
+            $result = Zend_Mime::decode($this->_content, $this->encoding);
+        }
+
+        return $result;
     }
 
     /**
@@ -329,5 +432,33 @@ class Zend_Mime_Part
         }
 
         return $res;
+    }
+
+    /**
+     * decode mime part content
+     *
+     * @return void
+     */
+    public function decodeContent()
+    {
+        $this->_content = $this->getDecodedStream();
+    }
+
+    /**
+     * set part type and disposition (with name if available)
+     *
+     * @param string $type
+     * @param string $name
+     */
+    public function setTypeAndDispositionForAttachment($type, $name = NULL)
+    {
+        $this->disposition = Zend_Mime::DISPOSITION_ATTACHMENT;
+        $partTypeString = $type;
+        if ($name) {
+            $name = Zend_Mime::encodeQuotedPrintableHeader($name, 'utf-8');
+            $partTypeString .= '; name="' . $name . '"';
+            $this->disposition .= '; filename="' . $name . '"';
+        }
+        $this->type = $partTypeString;
     }
 }

@@ -539,7 +539,7 @@ abstract class Zend_Db_Table_Abstract
     public function setDefaultValues(Array $defaultValues)
     {
         foreach ($defaultValues as $defaultName => $defaultValue) {
-            if (array_key_exists($defaultName, $this->_metadata)) {
+            if ((isset($this->_metadata[$defaultName]) || array_key_exists($defaultName, $this->_metadata))) {
                 $this->_defaultValues[$defaultName] = $defaultValue;
             }
         }
@@ -874,19 +874,24 @@ abstract class Zend_Db_Table_Abstract
         if (!$this->_primary) {
             $this->_setupMetadata();
             $this->_primary = [];
-            foreach ($this->_metadata as $col) {
-                if ($col['PRIMARY']) {
-                    $this->_primary[ $col['PRIMARY_POSITION'] ] = $col['COLUMN_NAME'];
-                    if ($col['IDENTITY']) {
-                        $this->_identity = $col['PRIMARY_POSITION'];
+            if(! empty($this->_metadata)) {
+                foreach ($this->_metadata as $col) {
+                    if ($col['PRIMARY']) {
+                        $this->_primary[$col['PRIMARY_POSITION']] = $col['COLUMN_NAME'];
+                        if ($col['IDENTITY']) {
+                            $this->_identity = $col['PRIMARY_POSITION'];
+                        }
                     }
                 }
-            }
-            // if no primary key was specified and none was found in the metadata
-            // then throw an exception.
-            if (empty($this->_primary)) {
-                require_once 'Zend/Db/Table/Exception.php';
-                throw new Zend_Db_Table_Exception("A table must have a primary key, but none was found for table '{$this->_name}'");
+                // if no primary key was specified and none was found in the metadata
+                // then throw an exception.
+                if (empty($this->_primary)) {
+                    require_once 'Zend/Db/Table/Exception.php';
+                    throw new Zend_Db_Table_Exception("A table must have a primary key, but none was found for table '{$this->_name}'");
+                }
+            } else  {
+                Tinebase_Core::getLogger()->warn(__METHOD__.'::'.__LINE__." No table found");
+                return;
             }
         } else if (!is_array($this->_primary)) {
             $this->_primary = [1 => $this->_primary];
@@ -999,7 +1004,7 @@ abstract class Zend_Db_Table_Abstract
             return $info;
         }
 
-        if (!array_key_exists($key, $info)) {
+        if (!(isset($info[$key]) || array_key_exists($key, $info))) {
             require_once 'Zend/Db/Table/Exception.php';
             throw new Zend_Db_Table_Exception('There is no table information for the key "' . $key . '"');
         }
@@ -1155,7 +1160,7 @@ abstract class Zend_Db_Table_Abstract
                         for ($i = 0; $i < count($map[self::COLUMNS]); ++$i) {
                             $col = $this->_db->foldCase($map[self::COLUMNS][$i]);
                             $refCol = $this->_db->foldCase($map[self::REF_COLUMNS][$i]);
-                            if (array_key_exists($refCol, $newPrimaryKey)) {
+                            if ((isset($newPrimaryKey[$refCol]) || array_key_exists($refCol, $newPrimaryKey))) {
                                 $newRefs[$col] = $newPrimaryKey[$refCol];
                             }
                             $type = $this->_metadata[$col]['DATA_TYPE'];
@@ -1512,7 +1517,7 @@ abstract class Zend_Db_Table_Abstract
             }
         } elseif ($defaultSource == self::DEFAULT_CLASS && $this->_defaultValues) {
             foreach ($this->_defaultValues as $defaultName => $defaultValue) {
-                if (array_key_exists($defaultName, $defaults)) {
+                if ((isset($defaults[$defaultName]) || array_key_exists($defaultName, $defaults))) {
                     $defaults[$defaultName] = $defaultValue;
                 }
             }

@@ -137,6 +137,13 @@ abstract class Zend_Mail_Protocol_Abstract
      */
     private $_log = [];
 
+    /**
+     * is logging enabled?
+     *
+     * @var boolean
+     */
+    public static $loggingEnabled = false;
+
 
     /**
      * Constructor.
@@ -239,6 +246,10 @@ abstract class Zend_Mail_Protocol_Abstract
      * Retrieve the transaction log
      *
      * @return string
+     *
+     * NOTE: Logging is currently disabled by default due to high memory usage
+     *
+     * @see 0004169: try to reduce memory consumption when sending message with big attachement(s)
      */
     public function getLog()
     {
@@ -362,7 +373,9 @@ abstract class Zend_Mail_Protocol_Abstract
         $result = fwrite($this->_socket, $request . self::EOL);
 
         // Save request to internal log
-        $this->_addLog($request . self::EOL);
+        if (self::$loggingEnabled) {
+            $this->_addLog($request);
+        }
 
         if ($result === false) {
             /**
@@ -402,7 +415,9 @@ abstract class Zend_Mail_Protocol_Abstract
         $response = fgets($this->_socket, 1024);
 
         // Save request to internal log
-        $this->_addLog($response);
+        if (self::$loggingEnabled) {
+            $this->_addLog($reponse);
+        }
 
         // Check meta data to ensure connection is still valid
         $info = stream_get_meta_data($this->_socket);

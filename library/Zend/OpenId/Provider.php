@@ -48,42 +48,42 @@ class Zend_OpenId_Provider
      *
      * @var Zend_OpenId_Provider_Storage $_storage
      */
-    private $_storage;
+    protected $_storage;
 
     /**
      * Reference to an implementation of user object
      *
      * @var Zend_OpenId_Provider_User $_user
      */
-    private $_user;
+    protected $_user;
 
     /**
      * Time to live of association session in secconds
      *
      * @var integer $_sessionTtl
      */
-    private $_sessionTtl;
+    protected $_sessionTtl;
 
     /**
      * URL to peform interactive user login
      *
      * @var string $_loginUrl
      */
-    private $_loginUrl;
+    protected $_loginUrl;
 
     /**
      * URL to peform interactive validation of consumer by user
      *
      * @var string $_trustUrl
      */
-    private $_trustUrl;
+    protected $_trustUrl;
 
     /**
      * The OP Endpoint URL
      *
      * @var string $_opEndpoint
      */
-    private $_opEndpoint;
+    protected $_opEndpoint;
 
     /**
      * Constructs a Zend_OpenId_Provider object with given parameters.
