@@ -15,51 +15,37 @@
  * @category   Zend
  * @package    Zend_Cache
  * @subpackage Zend_Cache_Backend
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- *
- * NOTE: overwritten to always clear the cache even if a CLEANING_MODE_TAG_* mode is used (-> @see clean())
- * @todo check if still needed / clearing by tag should not be used any more
  */
-
-
-/**
- * @see Zend_Cache_Backend_Interface
- */
-require_once 'Zend/Cache/Backend/ExtendedInterface.php';
-
-/**
- * @see Zend_Cache_Backend
- */
-require_once 'Zend/Cache/Backend.php';
 
 
 /**
  * @package    Zend_Cache
  * @subpackage Zend_Cache_Backend
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Cache_Backend_ExtendedInterface
+class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_Backend_ExtendedInterface
 {
     /**
      * Default Values
      */
-    const DEFAULT_HOST = '127.0.0.1';
-    const DEFAULT_PORT =  11211;
-    const DEFAULT_PERSISTENT = true;
-    const DEFAULT_WEIGHT  = 1;
+    const DEFAULT_HOST    = '127.0.0.1';
+    const DEFAULT_PORT    =  6379;
+    const DEFAULT_PERSISTENT = false;
+    #const DEFAULT_WEIGHT  = 1;
     const DEFAULT_TIMEOUT = 1;
-    const DEFAULT_RETRY_INTERVAL = 15;
-    const DEFAULT_STATUS = true;
+    const DEFAULT_PREFIX  = 'ZEND_CACHE_';
+    const DEFAULT_STATUS  = true;
     const DEFAULT_FAILURE_CALLBACK = null;
+    const TAG_PREFIX      = 'TAGS_';
 
     /**
      * Log message
      */
-    const TAGS_UNSUPPORTED_BY_CLEAN_OF_MEMCACHED_BACKEND = 'Zend_Cache_Backend_Memcached::clean() : tags are unsupported by the Memcached backend';
-    const TAGS_UNSUPPORTED_BY_SAVE_OF_MEMCACHED_BACKEND =  'Zend_Cache_Backend_Memcached::save() : tags are unsupported by the Memcached backend';
+    const TAGS_UNSUPPORTED_BY_CLEAN_OF_REDIS_BACKEND = 'Zend_Cache_Backend_Redis::clean() : tags are unsupported by the Redis backend';
+    const TAGS_UNSUPPORTED_BY_SAVE_OF_REDIS_BACKEND =  'Zend_Cache_Backend_Redis::save() : tags are unsupported by the Redis backend';
 
     /**
      * Available options
@@ -77,17 +63,6 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      *                      advantages of caching if your connection is too slow.
      * 'retry_interval' => (int) : controls how often a failed server will be retried, the default value
      *                             is 15 seconds. Setting this parameter to -1 disables automatic retry.
-     * 'status' => (bool) : controls if the server should be flagged as online.
-     * 'failure_callback' => (callback) : Allows the user to specify a callback function to run upon
-     *                                    encountering an error. The callback is run before failover
-     *                                    is attempted. The function takes two parameters, the hostname
-     *                                    and port of the failed server.
-     *
-     * =====> (boolean) compression :
-     * true if you want to use on-the-fly compression
-     *
-     * =====> (boolean) compatibility :
-     * true if you use old memcache server or extension
      *
      * @var array available options
      */
@@ -96,22 +71,18 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
             'host' => self::DEFAULT_HOST,
             'port' => self::DEFAULT_PORT,
             'persistent' => self::DEFAULT_PERSISTENT,
-            'weight'  => self::DEFAULT_WEIGHT,
+            #'weight'  => self::DEFAULT_WEIGHT,
             'timeout' => self::DEFAULT_TIMEOUT,
-            'retry_interval' => self::DEFAULT_RETRY_INTERVAL,
-            'status' => self::DEFAULT_STATUS,
-            'failure_callback' => self::DEFAULT_FAILURE_CALLBACK
-        )),
-        'compression' => false,
-        'compatibility' => false,
+            'prefix' => self::DEFAULT_PREFIX,
+        ))
     );
 
     /**
-     * Memcache object
+     * Redis object
      *
-     * @var mixed memcache object
+     * @var Redis redis object
      */
-    protected $_memcache = null;
+    protected $_redis = null;
 
     /**
      * Constructor
@@ -122,10 +93,12 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function __construct(array $options = array())
     {
-        if (!extension_loaded('memcache')) {
-            Zend_Cache::throwException('The memcache extension must be loaded for using this backend !');
+        if (!extension_loaded('redis')) {
+            Zend_Cache::throwException('The redis extension must be loaded for using this backend !');
         }
+        
         parent::__construct($options);
+        
         if (isset($this->_options['servers'])) {
             $value= $this->_options['servers'];
             if (isset($value['host'])) {
@@ -134,41 +107,31 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
             }
             $this->setOption('servers', $value);
         }
-        $this->_memcache = new Memcache;
+        
+        $this->_redis = new Redis;
+        
         foreach ($this->_options['servers'] as $server) {
-            if (!array_key_exists('port', $server)) {
+            if (!(isset($server['port']) || array_key_exists('port', $server))) {
                 $server['port'] = self::DEFAULT_PORT;
             }
-            if (!array_key_exists('persistent', $server)) {
+            if (!(isset($server['persistent']) || array_key_exists('persistent', $server))) {
                 $server['persistent'] = self::DEFAULT_PERSISTENT;
             }
-            if (!array_key_exists('weight', $server)) {
-                $server['weight'] = self::DEFAULT_WEIGHT;
-            }
-            if (!array_key_exists('timeout', $server)) {
+            #if (!(isset($server['weight']) || array_key_exists('weight', $server))) {
+            #    $server['weight'] = self::DEFAULT_WEIGHT;
+            #}
+            if (!(isset($server['timeout']) || array_key_exists('timeout', $server))) {
                 $server['timeout'] = self::DEFAULT_TIMEOUT;
             }
-            if (!array_key_exists('retry_interval', $server)) {
-                $server['retry_interval'] = self::DEFAULT_RETRY_INTERVAL;
+            if (!(isset($server['prefix']) || array_key_exists('prefix', $server))) {
+                $server['prefix'] = self::DEFAULT_PREFIX;
             }
-            if (!array_key_exists('status', $server)) {
-                $server['status'] = self::DEFAULT_STATUS;
-            }
-            if (!array_key_exists('failure_callback', $server)) {
-                $server['failure_callback'] = self::DEFAULT_FAILURE_CALLBACK;
-            }
-            if ($this->_options['compatibility']) {
-                // No status for compatibility mode (#ZF-5887)
-                $this->_memcache->addServer($server['host'], $server['port'], $server['persistent'],
-                                        $server['weight'], $server['timeout'],
-                                        $server['retry_interval']);
-            } else {
-                $this->_memcache->addServer($server['host'], $server['port'], $server['persistent'],
-                                        $server['weight'], $server['timeout'],
-                                        $server['retry_interval'],
-                                        $server['status'], $server['failure_callback']);
-            }
+            
+            $this->_redis->connect($server['host'], $server['port'], $server['timeout']);
         }
+        
+        $this->_redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);
+        $this->_redis->setOption(Redis::OPT_PREFIX, $server['prefix']);
     }
 
     /**
@@ -180,8 +143,8 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function load($id, $doNotTestCacheValidity = false)
     {
-        $tmp = $this->_memcache->get($id);
-        if (is_array($tmp) && isset($tmp[0])) {
+        $tmp = $this->_redis->get($id);
+        if (is_array($tmp)) {
             return $tmp[0];
         }
         return false;
@@ -195,7 +158,12 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function test($id)
     {
-        $tmp = $this->_memcache->get($id);
+        try {
+            $tmp = $this->_redis->get($id);
+        } catch (Exception $e) {
+            $this->_log("Zend_Cache_Backend_Redis::test() : Got an exception trying to access redis cache: " . $e);
+            return false;
+        }
         if (is_array($tmp)) {
             return $tmp[1];
         }
@@ -217,19 +185,27 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
     public function save($data, $id, $tags = array(), $specificLifetime = false)
     {
         $lifetime = $this->getLifetime($specificLifetime);
-        if ($this->_options['compression']) {
-            $flag = MEMCACHE_COMPRESSED;
+        
+        $transaction = $this->_redis->multi();
+
+        if (! $transaction) {
+            $this->_log("Zend_Cache_Backend_Redis::save() : problem with Redis multi-transaction during save");
+            return false;
+        }
+        
+        if ($lifetime) {
+            $transaction->setex($id, $lifetime, array($data, time(), $lifetime, (array)$tags));
         } else {
-            $flag = 0;
+            $transaction->set($id, array($data, time(), $lifetime, (array)$tags));
         }
 
-        // ZF-8856: using set because add needs a second request if item already exists
-        $result = @$this->_memcache->set($id, array($data, time(), $lifetime), $flag, $lifetime);
-
-        if (count($tags) > 0) {
-            $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_MEMCACHED_BACKEND);
+        // add to tag sets
+        foreach ((array) $tags as $tag) {
+            $transaction->sAdd(self::TAG_PREFIX . $tag, $id);
         }
 
+        $result = $transaction->exec();
+        
         return $result;
     }
 
@@ -241,7 +217,18 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function remove($id)
     {
-        return $this->_memcache->delete($id, 0);
+        $tmp = $this->_redis->get($id);
+        $tags = $tmp[3];
+        
+        $transaction = $this->_redis->multi();
+        
+        // remove from tag sets
+        foreach ((array) $tags as $tag) {
+            $transaction->sRem(self::TAG_PREFIX . $tag, $id);
+        }
+        $transaction->delete($id);
+        
+        return $transaction->exec();
     }
 
     /**
@@ -250,9 +237,11 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      * Available modes are :
      * 'all' (default)  => remove all cache entries ($tags is not used)
      * 'old'            => unsupported
-     * 'matchingTag'    => unsupported
+     * 'matchingTag'    => remove cache entries matching all given tags
+     *                     ($tags can be an array of strings or a single string)
      * 'notMatchingTag' => unsupported
-     * 'matchingAnyTag' => unsupported
+     * 'matchingAnyTag' => remove cache entries matching any given tags
+     *                     ($tags can be an array of strings or a single string)
      *
      * @param  string $mode Clean mode
      * @param  array  $tags Array of tags
@@ -262,18 +251,77 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
         switch ($mode) {
-            case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                $this->_log(self::TAGS_UNSUPPORTED_BY_CLEAN_OF_MEMCACHED_BACKEND);
-            // fall through / clear all entries
             case Zend_Cache::CLEANING_MODE_ALL:
-                return $this->_memcache->flush();
+                return $this->_redis->flushDB();
                 break;
+                
             case Zend_Cache::CLEANING_MODE_OLD:
-                $this->_log("Zend_Cache_Backend_Memcached::clean() : CLEANING_MODE_OLD is unsupported by the Memcached backend");
+                $this->_log("Zend_Cache_Backend_Redis::clean() : CLEANING_MODE_OLD is not required for Redis backend");
                 break;
-               default:
+                
+            case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
+                $ids = $this->getIdsMatchingTags($tags);
+                
+                if (!empty($ids)) {
+                    $values = $this->_redis->getMultiple($ids);
+                    
+                    $transaction = $this->_redis->multi();
+                    
+                    $i = 0;
+                    foreach ($ids as $id) {
+                        $transaction->delete($id);
+                        
+                        // if the record also has some other tags attached, remove record from these tag lists too
+                        // $values[$i] can be null if id was not found by getMultiple
+                        if (is_array($values[$i]) && is_array($values[$i][3])) {
+                            $allTags = array_unique(array_merge((array) $tags, $values[$i][3]));
+                        // otherwise just remove from the tag lists provided
+                        } else {
+                            $allTags = (array) $tags;
+                        }
+                        
+                        foreach($allTags as $tag) {
+                            $transaction->sRem(self::TAG_PREFIX . $tag, $id);
+                        }
+                        
+                        $i++;
+                    }
+                    
+                    $transaction->exec();
+                }
+                
+                break;
+                
+            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+                $ids = $this->getIdsMatchingAnyTags($tags);
+                
+                if (!empty($ids)) {
+                    $values = $this->_redis->getMultiple($ids);
+                    
+                    $transaction = $this->_redis->multi();
+                    
+                    $i = 0;
+                    foreach ($ids as $id) {
+                        $transaction->delete($id);
+
+                        $allTags = array_unique(array_merge($tags, $values[$i][3]));
+                        foreach($allTags as $tag) {
+                            $transaction->sRem(self::TAG_PREFIX . $tag, $id);
+                        }
+                        
+                        $i++;
+                    }
+                    
+                    $transaction->exec();
+                }
+                
+                break;
+            
+            case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
+                $this->_log(self::TAGS_UNSUPPORTED_BY_CLEAN_OF_REDIS_BACKEND);
+                break;
+                
+            default:
                 Zend_Cache::throwException('Invalid mode for clean() method');
                    break;
         }
@@ -299,11 +347,8 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
     public function setDirectives($directives)
     {
         parent::setDirectives($directives);
+        
         $lifetime = $this->getLifetime(false);
-        if ($lifetime > 2592000) {
-            // #ZF-3490 : For the memcached backend, there is a lifetime limit of 30 days (2592000 seconds)
-            $this->_log('memcached backend has a limit of 30 days (2592000 seconds) for the lifetime');
-        }
         if ($lifetime === null) {
             // #ZF-4614 : we tranform null to zero to get the maximal lifetime
             parent::setDirectives(array('lifetime' => 0));
@@ -317,7 +362,7 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getIds()
     {
-        $this->_log("Zend_Cache_Backend_Memcached::save() : getting the list of cache ids is unsupported by the Memcache backend");
+        $this->_log("Zend_Cache_Backend_Redis::getIds() : getting the list of cache ids is unsupported by Redis backend");
         return array();
     }
 
@@ -328,8 +373,9 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getTags()
     {
-        $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_MEMCACHED_BACKEND);
-        return array();
+        $keysWithCachePrefix = $this->_redis->keys(self::TAG_PREFIX . '*');
+        
+        return $this->_removeTagPrefix($keysWithCachePrefix);
     }
 
     /**
@@ -342,8 +388,14 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getIdsMatchingTags($tags = array())
     {
-        $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_MEMCACHED_BACKEND);
-        return array();
+        $cacheTags = array();
+        
+        foreach ((array) $tags as $tag) {
+            $cacheTags[] = self::TAG_PREFIX . $tag;
+        }
+        $ids = $this->_redis->sInter($cacheTags);
+        
+        return $ids;
     }
 
     /**
@@ -356,7 +408,7 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getIdsNotMatchingTags($tags = array())
     {
-        $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_MEMCACHED_BACKEND);
+        $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_REDIS_BACKEND);
         return array();
     }
 
@@ -370,8 +422,14 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getIdsMatchingAnyTags($tags = array())
     {
-        $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_MEMCACHED_BACKEND);
-        return array();
+        $cacheTags = array();
+        
+        foreach ((array) $tags as $tag) {
+            $cacheTags[] = self::TAG_PREFIX . $tag;
+        }
+        $ids = $this->_redis->sUnion($cacheTags);
+        
+        return $ids;
     }
 
     /**
@@ -382,36 +440,9 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getFillingPercentage()
     {
-        $mems = $this->_memcache->getExtendedStats();
-
-        $memSize = null;
-        $memUsed = null;
-        foreach ($mems as $key => $mem) {
-            if ($mem === false) {
-                $this->_log('can\'t get stat from ' . $key);
-                continue;
-            }
-
-            $eachSize = $mem['limit_maxbytes'];
-
-            /**
-             * Couchbase 1.x uses 'mem_used' instead of 'bytes'
-             * @see https://www.couchbase.com/issues/browse/MB-3466
-             */
-            $eachUsed = isset($mem['bytes']) ? $mem['bytes'] : $mem['mem_used'];
-            if ($eachUsed > $eachSize) {
-                $eachUsed = $eachSize;
-            }
-
-            $memSize += $eachSize;
-            $memUsed += $eachUsed;
-        }
-
-        if ($memSize === null || $memUsed === null) {
-            Zend_Cache::throwException('Can\'t get filling percentage');
-        }
-
-        return ((int) (100. * ($memUsed / $memSize)));
+        $this->_log("Filling percentage not supported by the Redis backend");
+        
+        return 0;
     }
 
     /**
@@ -427,22 +458,19 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getMetadatas($id)
     {
-        $tmp = $this->_memcache->get($id);
+        $tmp = $this->_redis->get($id);
+        
         if (is_array($tmp)) {
-            $data = $tmp[0];
             $mtime = $tmp[1];
-            if (!isset($tmp[2])) {
-                // because this record is only with 1.7 release
-                // if old cache records are still there...
-                return false;
-            }
             $lifetime = $tmp[2];
+            
             return array(
                 'expire' => $mtime + $lifetime,
-                'tags' => array(),
-                'mtime' => $mtime
+                'tags'   => $tmp[3],
+                'mtime'  => $mtime
             );
         }
+        
         return false;
     }
 
@@ -455,31 +483,24 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      */
     public function touch($id, $extraLifetime)
     {
-        if ($this->_options['compression']) {
-            $flag = MEMCACHE_COMPRESSED;
-        } else {
-            $flag = 0;
-        }
-        $tmp = $this->_memcache->get($id);
+        $tmp = $this->_redis->get($id);
+        
         if (is_array($tmp)) {
             $data = $tmp[0];
             $mtime = $tmp[1];
-            if (!isset($tmp[2])) {
-                // because this record is only with 1.7 release
-                // if old cache records are still there...
-                return false;
-            }
             $lifetime = $tmp[2];
+            $tags = $tmp[3];
+            
             $newLifetime = $lifetime - (time() - $mtime) + $extraLifetime;
             if ($newLifetime <=0) {
                 return false;
             }
-            // #ZF-5702 : we try replace() first becase set() seems to be slower
-            if (!($result = $this->_memcache->replace($id, array($data, time(), $newLifetime), $flag, $newLifetime))) {
-                $result = $this->_memcache->set($id, array($data, time(), $newLifetime), $flag, $newLifetime);
-            }
+            
+            $result = $this->_redis->setex($id, $newLifetime, array($data, time(), $newLifetime, $tags));
+            
             return $result;
         }
+        
         return false;
     }
 
@@ -501,12 +522,32 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
     {
         return array(
             'automatic_cleaning' => false,
-            'tags' => false,
-            'expired_read' => false,
-            'priority' => false,
-            'infinite_lifetime' => false,
-            'get_list' => false
+            'tags'               => true,
+            'expired_read'       => false,
+            'priority'           => false,
+            'infinite_lifetime'  => true,
+            'get_list'           => false
         );
     }
 
+    /**
+     * strip key prefix and tag prefix from key name
+     * 
+     * @param array $keys
+     * @return array
+     */
+    protected function _removeTagPrefix(array $keys)
+    {
+        $keyPrefix = $this->_redis->getOption(Redis::OPT_PREFIX);
+        
+        $pos = strlen($keyPrefix) + strlen(self::TAG_PREFIX);
+        
+        $result = array();
+        
+        foreach ($keys as $key) {
+            $result[] = substr($key, $pos);
+        }
+        
+        return $result;
+    }    
 }

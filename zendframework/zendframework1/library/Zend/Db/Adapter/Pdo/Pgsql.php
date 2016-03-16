@@ -86,10 +86,13 @@ class Zend_Db_Adapter_Pdo_Pgsql extends Zend_Db_Adapter_Pdo_Abstract
 
         parent::_connect();
 
+        /**
+         * Mantis #0009452 - This feature was disable for making possible to enable transaction pooling
         if (!empty($this->_config['charset'])) {
             $sql = "SET NAMES '" . $this->_config['charset'] . "'";
             $this->_connection->exec($sql);
         }
+        **/
     }
 
     /**

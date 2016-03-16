@@ -155,6 +155,9 @@ abstract class Zend_Translate_Adapter {
             $id = 'Zend_Translate_' . $this->toString() . '_Options';
             $result = self::$_cache->load($id);
             if ($result) {
+                if (!is_array($result)) {
+                    $result = unserialize($result);
+                }
                 $this->_options = $result;
             }
         }
@@ -756,7 +759,7 @@ abstract class Zend_Translate_Adapter {
             // return original translation
             if ($plural === null) {
                 $this->_routed = array();
-                return $this->_translate[$locale][$messageId];
+                return $this->getSingularTranslation($locale, $messageId);
             }
 
             $rule = Zend_Translate_Plural::getPlural($number, $locale);
@@ -772,7 +775,7 @@ abstract class Zend_Translate_Adapter {
                 // return regionless translation (en_US -> en)
                 if ($plural === null) {
                     $this->_routed = array();
-                    return $this->_translate[$locale][$messageId];
+                    return $this->getSingularTranslation($locale, $messageId);
                 }
 
                 $rule = Zend_Translate_Plural::getPlural($number, $locale);
@@ -804,6 +807,23 @@ abstract class Zend_Translate_Adapter {
         }
 
         return $plural[$rule];
+    }
+
+    /**
+     * Chose right singular translation
+     * returns the translation
+     *
+     * @param  string|array       $messageId Translation string, or Array for plural translations
+     * @param  string|Zend_Locale $locale    (optional) Locale/Language to use, identical with
+     *                                       locale identifier, @see Zend_Locale for more information
+     * @return string
+     */
+    protected function getSingularTranslation($locale, $messageId)
+    {
+        if (is_array($this->_translate[$locale][$messageId])) {
+            return $this->_translate[$locale][$messageId][0];
+        }
+        return $this->_translate[$locale][$messageId];
     }
 
     /**

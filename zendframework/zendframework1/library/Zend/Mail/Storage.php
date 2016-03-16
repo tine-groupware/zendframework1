@@ -37,4 +37,5 @@ class Zend_Mail_Storage
     const FLAG_DELETED  = '\Deleted';
     const FLAG_DRAFT    = '\Draft';
     const FLAG_RECENT   = '\Recent';
+    const FLAG_READ     = 'Read';
 }
