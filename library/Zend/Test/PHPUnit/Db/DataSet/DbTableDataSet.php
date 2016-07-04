@@ -40,7 +40,7 @@ class Zend_Test_PHPUnit_Db_DataSet_DbTableDataSet extends PHPUnit_Extensions_Dat
     /**
      * @var array
      */
-    protected $tables = [];
+    protected $tables = array();
 
     /**
      * Add a Table dataset representation by specifiying an arbitrary select query.

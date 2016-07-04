@@ -39,7 +39,7 @@ class Zend_Tool_Framework_Client_Storage
      */
     protected $_adapter = null;
 
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if (isset($options['adapter'])) {
             $this->setAdapter($options['adapter']);

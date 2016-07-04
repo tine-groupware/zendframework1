@@ -50,7 +50,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      *
      * @var array
      */
-    protected $_eventsToMail = [];
+    protected $_eventsToMail = array();
 
     /**
      * Array of formatted lines for use in an HTML email body; these events
@@ -59,7 +59,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      *
      * @var array
      */
-    protected $_layoutEventsToMail = [];
+    protected $_layoutEventsToMail = array();
 
     /**
      * Zend_Mail instance to use
@@ -87,7 +87,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      *
      * @var array
      */
-    protected $_numEntriesPerPriority = [];
+    protected $_numEntriesPerPriority = array();
 
     /**
      * Subject prepend text.
@@ -105,12 +105,12 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      *
      * @var array
      */
-    protected static $_methodMapHeaders = [
+    protected static $_methodMapHeaders = array(
         'from' => 'setFrom',
         'to' => 'addTo',
         'cc' => 'addCc',
         'bcc' => 'addBcc',
-    ];
+    );
 
     /**
      * Class constructor.
@@ -213,16 +213,16 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                 if (is_array($address) && isset($address['name'])
                     && !is_numeric($address['name'])
                 ) {
-                    $params = [
+                    $params = array(
                         $address['email'],
                         $address['name']
-                    ];
+                    );
                 } else if (is_array($address) && isset($address['email'])) {
-                    $params = [$address['email']];
+                    $params = array($address['email']);
                 } else {
-                    $params = [$address];
+                    $params = array($address);
                 }
-                call_user_func_array([$mail, $method], $params);
+                call_user_func_array(array($mail, $method), $params);
             }
         }
 
@@ -238,10 +238,10 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      */
     protected function _constructLayoutFromConfig(array $config)
     {
-        $config = array_merge([
+        $config = array_merge(array(
             'layout' => 'Zend_Layout',
             'layoutOptions' => null
-        ], $config);
+        ), $config);
 
         $layoutClass = $config['layout'];
         $layout = new $layoutClass($config['layoutOptions']);
@@ -419,7 +419,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      */
     protected function _getFormattedNumEntriesPerPriority()
     {
-        $strings = [];
+        $strings = array();
 
         foreach ($this->_numEntriesPerPriority as $priority => $numEntries) {
             $strings[] = "{$priority}={$numEntries}";

@@ -43,10 +43,10 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
     /**
      * @var array
      */
-    protected $_messageTemplates = [
+    protected $_messageTemplates = array(
         self::INVALID => "Invalid type given. String or integer expected",
         self::NOT_INT => "'%value%' does not appear to be an integer",
-    ];
+    );
 
     protected $_locale;
 
@@ -124,19 +124,17 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
         $this->_setValue($value);
         if ($this->_locale === null) {
             $locale        = localeconv();
-            $valueFiltered = str_replace(
-                [$locale['decimal_point'], $locale['thousands_sep']],
-                ['.', ''],
-                $value);
+            $valueFiltered = str_replace($locale['decimal_point'], '.', $value);
+            $valueFiltered = str_replace($locale['thousands_sep'], '', $valueFiltered);
 
-            if ((string)(int)$valueFiltered != $valueFiltered) {
+            if (strval(intval($valueFiltered)) != $valueFiltered) {
                 $this->_error(self::NOT_INT);
                 return false;
             }
 
         } else {
             try {
-                if (!Zend_Locale_Format::isInteger(strval($value), ['locale' => $this->_locale])) {
+                if (!Zend_Locale_Format::isInteger($value, array('locale' => $this->_locale))) {
                     $this->_error(self::NOT_INT);
                     return false;
                 }

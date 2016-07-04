@@ -97,7 +97,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      */
     public function __construct()
     {
-        parent::__construct([], parent::ARRAY_AS_PROPS);
+        parent::__construct(array(), parent::ARRAY_AS_PROPS);
     }
 
     /**
@@ -108,7 +108,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      */
     public function set($value)
     {
-        $this->exchangeArray([$value]);
+        $this->exchangeArray(array($value));
     }
 
     /**
@@ -292,12 +292,12 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
                 if (null !== $key) {
                     $this[$key] = $data;
                 } else {
-                    $this->exchangeArray([$data]);
+                    $this->exchangeArray(array($data));
                 }
                 break;
             case self::PREPEND:
                 if (null !== $key) {
-                    $array  = [$key => $data];
+                    $array  = array($key => $data);
                     $values = $this->getArrayCopy();
                     $final  = $array + $values;
                     $this->exchangeArray($final);

@@ -38,7 +38,7 @@ class Zend_Feed_Pubsubhubbub_Publisher
      *
      * @var array
      */
-    protected $_hubUrls = [];
+    protected $_hubUrls = array();
 
     /**
      * An array of topic (Atom or RSS feed) URLs which have been updated and
@@ -46,7 +46,7 @@ class Zend_Feed_Pubsubhubbub_Publisher
      *
      * @var array
      */
-    protected $_updatedTopicUrls = [];
+    protected $_updatedTopicUrls = array();
 
     /**
      * An array of any errors including keys for 'response', 'hubUrl'.
@@ -54,7 +54,7 @@ class Zend_Feed_Pubsubhubbub_Publisher
      *
      * @var array
      */
-    protected $_errors = [];
+    protected $_errors = array();
 
     /**
      * An array of topic (Atom or RSS feed) URLs which have been updated and
@@ -62,7 +62,7 @@ class Zend_Feed_Pubsubhubbub_Publisher
      *
      * @var array
      */
-    protected $_parameters = [];
+    protected $_parameters = array();
 
     /**
      * Constructor; accepts an array or Zend_Config instance to preset
@@ -242,11 +242,9 @@ class Zend_Feed_Pubsubhubbub_Publisher
                 .' of "' . $url . '" must be a non-empty string and a valid'
                 .'URL');
         }
-
         $client = $this->_getHttpClient();
         $client->setUri($url);
         $response = $client->request();
-
         if ($response->getStatus() !== 204) {
             require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
             throw new Zend_Feed_Pubsubhubbub_Exception('Notification to Hub Server '
@@ -276,18 +274,15 @@ class Zend_Feed_Pubsubhubbub_Publisher
             throw new Zend_Feed_Pubsubhubbub_Exception('No Hub Server URLs'
                 . ' have been set so no notifcations can be sent');
         }
-
-        $this->_errors = [];
-
+        $this->_errors = array();
         foreach ($hubs as $url) {
             $client->setUri($url);
             $response = $client->request();
-
             if ($response->getStatus() !== 204) {
-                $this->_errors[] = [
+                $this->_errors[] = array(
                     'response' => $response,
                     'hubUrl' => $url
-                ];
+                );
             }
         }
     }
@@ -405,10 +400,10 @@ class Zend_Feed_Pubsubhubbub_Publisher
     {
         $client = Zend_Feed_Pubsubhubbub::getHttpClient();
         $client->setMethod(Zend_Http_Client::POST);
-        $client->setConfig([
+        $client->setConfig(array(
             'useragent' => 'Zend_Feed_Pubsubhubbub_Publisher/' . Zend_Version::VERSION,
-        ]);
-        $params   = [];
+        ));
+        $params   = array();
         $params[] = 'hub.mode=publish';
         $topics   = $this->getUpdatedTopicUrls();
         if (empty($topics)) {

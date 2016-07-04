@@ -46,7 +46,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      *
      * @var array
      */
-    protected $_defaults = [];
+    protected $_defaults = array();
 
     /**
      * Reverse
@@ -60,14 +60,14 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      *
      * @var array
      */
-    protected $_map = [];
+    protected $_map = array();
 
     /**
      * Values
      *
      * @var array
      */
-    protected $_values = [];
+    protected $_values = array();
 
     /**
      * Instantiates route based on passed Zend_Config structure
@@ -77,8 +77,8 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      */
     public static function getInstance(Zend_Config $config)
     {
-        $defs    = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : [];
-        $map     = ($config->map instanceof Zend_Config) ? $config->map->toArray() : [];
+        $defs    = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : array();
+        $map     = ($config->map instanceof Zend_Config) ? $config->map->toArray() : array();
         $reverse = (isset($config->reverse)) ? $config->reverse : null;
 
         return new self($config->route, $defs, $map, $reverse);
@@ -92,7 +92,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      * @param array $map
      * @param null  $reverse
      */
-    public function __construct($route, $defaults = [], $map = [], $reverse = null)
+    public function __construct($route, $defaults = array(), $map = array(), $reverse = null)
     {
         $this->_regex    = $route;
         $this->_defaults = (array) $defaults;
@@ -147,8 +147,9 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
 
         $values   = $this->_getMappedValues($values);
         $defaults = $this->_getMappedValues($this->_defaults, false, true);
+        $return   = $values + $defaults;
 
-        return $values + $defaults;
+        return $return;
     }
 
     /**
@@ -167,11 +168,11 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      */
     protected function _getMappedValues($values, $reversed = false, $preserve = false)
     {
-        if (count($this->_map) === 0) {
+        if (count($this->_map) == 0) {
             return $values;
         }
 
-        $return = [];
+        $return = array();
 
         foreach ($values as $key => $value) {
             if (is_int($key) && !$reversed) {
@@ -211,7 +212,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      * @throws Zend_Controller_Router_Exception
      * @return string Route path with user submitted parameters
      */
-    public function assemble($data = [], $reset = false, $encode = false, $partial = false)
+    public function assemble($data = array(), $reset = false, $encode = false, $partial = false)
     {
         if ($this->_reverse === null) {
             require_once 'Zend/Controller/Router/Exception.php';
@@ -245,7 +246,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
 
         ksort($mergedData);
 
-        $return = !empty($mergedData) ? @vsprintf($this->_reverse, $mergedData) : false;
+        $return = @vsprintf($this->_reverse, $mergedData);
 
         if ($return === false) {
             require_once 'Zend/Controller/Router/Exception.php';
@@ -285,7 +286,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
      */
     public function getVariables()
     {
-        $variables = [];
+        $variables = array();
 
         foreach ($this->_map as $key => $value) {
             if (is_numeric($key)) {

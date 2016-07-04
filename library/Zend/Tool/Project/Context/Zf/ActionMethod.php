@@ -103,9 +103,9 @@ class Zend_Tool_Project_Context_Zf_ActionMethod implements Zend_Tool_Project_Con
      */
     public function getPersistentAttributes()
     {
-        return [
+        return array(
             'actionName' => $this->getActionName()
-            ];
+            );
     }
 
     /**
@@ -195,10 +195,10 @@ class Zend_Tool_Project_Context_Zf_ActionMethod implements Zend_Tool_Project_Con
         }
 
         $controllerCodeGenFile = Zend_CodeGenerator_Php_File::fromReflectedFileName($controllerPath, true, true);
-        $controllerCodeGenFile->getClass()->setMethod([
+        $controllerCodeGenFile->getClass()->setMethod(array(
             'name' => $actionName . 'Action',
             'body' => $body
-            ]);
+            ));
 
         file_put_contents($controllerPath, $controllerCodeGenFile->generate());
         return true;

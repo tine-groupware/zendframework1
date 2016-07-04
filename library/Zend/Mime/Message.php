@@ -42,7 +42,7 @@ class Zend_Mime_Message
      *
      * @var array
      */
-    protected $_parts = [];
+    protected $_parts = array();
 
     /**
      * The Zend_Mime object for the message
@@ -213,14 +213,14 @@ class Zend_Mime_Message
     protected static function _disassembleMime($body, $boundary)
     {
         $start = 0;
-        $res   = [];
+        $res   = array();
         // find every mime part limiter and cut out the
         // string before it.
         // the part before the first boundary string is discarded:
         $p = strpos($body, '--' . $boundary . "\n", $start);
         if ($p === false) {
             // no parts found!
-            return [];
+            return array();
         }
 
         // position after first boundary line

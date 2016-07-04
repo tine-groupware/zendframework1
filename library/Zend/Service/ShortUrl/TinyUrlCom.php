@@ -92,7 +92,9 @@ class Zend_Service_ShortUrl_TinyUrlCom extends Zend_Service_ShortUrl_AbstractSho
         //find the redirect url link
         $results = $dom->query('a#redirecturl');
 
-        //get href URL
-        return $results->current()->getAttribute('href');
+        //get href
+        $originalUrl = $results->current()->getAttribute('href');
+
+        return $originalUrl;
     }
 }

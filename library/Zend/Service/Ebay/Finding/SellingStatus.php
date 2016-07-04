@@ -119,12 +119,12 @@ class Zend_Service_Ebay_Finding_SellingStatus extends Zend_Service_Ebay_Finding_
         $this->sellingState          = $this->_query(".//$ns:sellingState[1]", 'string');
         $this->timeLeft              = $this->_query(".//$ns:timeLeft[1]", 'string');
 
-        $this->_attributes['convertedCurrentPrice'] = [
+        $this->_attributes['convertedCurrentPrice'] = array(
             'currencyId' => $this->_query(".//$ns:convertedCurrentPrice[1]/@currencyId[1]", 'string')
-        ];
+        );
 
-        $this->_attributes['currentPrice'] = [
+        $this->_attributes['currentPrice'] = array(
             'currencyId' => $this->_query(".//$ns:currentPrice[1]/@currencyId[1]", 'string')
-        ];
+        );
     }
 }

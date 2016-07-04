@@ -58,20 +58,12 @@ class Zend_Reflection_Parameter extends ReflectionParameter
      */
     public function getClass($reflectionClass = 'Zend_Reflection_Class')
     {
-        if (PHP_VERSION_ID < 80000) {
-            $phpReflection  = parent::getClass();
-            if ($phpReflection == null) {
-                return null;
-            }
-            $phpReflectionClassName = $phpReflection->getName();
-        } else {
-            if (!parent::hasType()) {
-                return null;
-            }
-            $phpReflectionClassName = parent::getType();
+        $phpReflection  = parent::getClass();
+        if($phpReflection == null) {
+            return null;
         }
 
-        $zendReflection = new $reflectionClass($phpReflectionClassName);
+        $zendReflection = new $reflectionClass($phpReflection->getName());
         if (!$zendReflection instanceof Zend_Reflection_Class) {
             require_once 'Zend/Reflection/Exception.php';
             throw new Zend_Reflection_Exception('Invalid reflection class provided; must extend Zend_Reflection_Class');
@@ -117,21 +109,13 @@ class Zend_Reflection_Parameter extends ReflectionParameter
      */
     public function getType()
     {
-        try {
-            if ($docblock = $this->getDeclaringFunction()->getDocblock()) {
-                $params = $docblock->getTags('param');
+        if ($docblock = $this->getDeclaringFunction()->getDocblock()) {
+            $params = $docblock->getTags('param');
 
-                if (isset($params[$this->getPosition()])) {
-                    return $params[$this->getPosition()]->getType();
-                }
+            if (isset($params[$this->getPosition()])) {
+                return $params[$this->getPosition()]->getType();
+            }
 
-            }
-        } catch (Zend_Reflection_Exception $e) {
-            if (PHP_VERSION_ID >= 80000) {
-                return parent::getType();
-            } else {
-                throw $e;
-            }
         }
 
         return null;

@@ -53,7 +53,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      *
      * @var array
      */
-    protected $_markups = [];
+    protected $_markups = array();
 
     /**
      * Parser
@@ -88,7 +88,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      *
      * @var array
      */
-    protected $_groups = [];
+    protected $_groups = array();
 
     /**
      * Plugin loader for tags
@@ -119,7 +119,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      *
      * @return void
      */
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
@@ -249,10 +249,10 @@ abstract class Zend_Markup_Renderer_RendererAbstract
                         'No alias was provided but tag was defined as such');
             }
 
-            $this->_markups[$name] = [
+            $this->_markups[$name] = array(
                 'type' => self::TYPE_ALIAS,
                 'name' => $options['name']
-            ];
+            );
         } else {
             if ($type && array_key_exists('empty', $options) && $options['empty']) {
                 // add a single replace markup
@@ -290,7 +290,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      */
     public function clearMarkups()
     {
-        $this->_markups = [];
+        $this->_markups = array();
     }
 
     /**
@@ -673,7 +673,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      *
      * @return void
      */
-    public function addGroup($name, array $allowedInside = [], array $allowsInside = [])
+    public function addGroup($name, array $allowedInside = array(), array $allowsInside = array())
     {
         $this->_groups[$name] = $allowsInside;
 

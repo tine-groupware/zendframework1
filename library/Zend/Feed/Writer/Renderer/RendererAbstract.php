@@ -37,7 +37,7 @@ class Zend_Feed_Writer_Renderer_RendererAbstract
      * Extensions
      * @var array
      */
-    protected $_extensions = [];
+    protected $_extensions = array();
 
     /**
      * @var mixed
@@ -57,7 +57,7 @@ class Zend_Feed_Writer_Renderer_RendererAbstract
     /**
      * @var array
      */
-    protected $_exceptions = [];
+    protected $_exceptions = array();
 
     /**
      * Encoding of all text values

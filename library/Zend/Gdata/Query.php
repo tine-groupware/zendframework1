@@ -45,7 +45,7 @@ class Zend_Gdata_Query
      *
      * @var array
      */
-    protected $_params = [];
+    protected $_params = array();
 
     /**
      * Default URL
@@ -82,7 +82,7 @@ class Zend_Gdata_Query
      */
     public function getQueryString()
     {
-        $queryArray = [];
+        $queryArray = array();
         foreach ($this->_params as $name => $value) {
             if (substr($name, 0, 1) == '_') {
                 continue;
@@ -101,7 +101,7 @@ class Zend_Gdata_Query
      */
     public function resetParameters()
     {
-        $this->_params = [];
+        $this->_params = array();
     }
 
     /**
@@ -284,7 +284,7 @@ class Zend_Gdata_Query
     public function getMaxResults()
     {
         if (array_key_exists('max-results', $this->_params)) {
-            return (int)$this->_params['max-results'];
+            return intval($this->_params['max-results']);
         } else {
             return null;
         }
@@ -308,7 +308,7 @@ class Zend_Gdata_Query
     public function getStartIndex()
     {
         if (array_key_exists('start-index', $this->_params)) {
-            return (int)$this->_params['start-index'];
+            return intval($this->_params['start-index']);
         } else {
             return null;
         }
@@ -397,7 +397,7 @@ class Zend_Gdata_Query
     {
         $method = 'get'.ucfirst($name);
         if (method_exists($this, $method)) {
-            return call_user_func([&$this, $method]);
+            return call_user_func(array(&$this, $method));
         } else {
             require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception('Property ' . $name . '  does not exist');
@@ -408,7 +408,7 @@ class Zend_Gdata_Query
     {
         $method = 'set'.ucfirst($name);
         if (method_exists($this, $method)) {
-            return call_user_func([&$this, $method], $val);
+            return call_user_func(array(&$this, $method), $val);
         } else {
             require_once 'Zend/Gdata/App/Exception.php';
             throw new Zend_Gdata_App_Exception('Property ' . $name . '  does not exist');

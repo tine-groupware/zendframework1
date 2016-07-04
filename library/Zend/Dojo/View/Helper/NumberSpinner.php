@@ -61,7 +61,7 @@ class Zend_Dojo_View_Helper_NumberSpinner extends Zend_Dojo_View_Helper_Dijit
      * @param  array $attribs HTML attributes
      * @return string
      */
-    public function numberSpinner($id, $value = null, array $params = [], array $attribs = [])
+    public function numberSpinner($id, $value = null, array $params = array(), array $attribs = array())
     {
         // Get constraints and serialize to JSON if necessary
         if (array_key_exists('constraints', $params)) {
@@ -69,7 +69,7 @@ class Zend_Dojo_View_Helper_NumberSpinner extends Zend_Dojo_View_Helper_Dijit
                 unset($params['constraints']);
             }
         } else {
-            $constraints = [];
+            $constraints = array();
             if (array_key_exists('min', $params)) {
                 $constraints['min'] = $params['min'];
                 unset($params['min']);

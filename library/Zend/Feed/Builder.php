@@ -68,7 +68,7 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
      *
      * @var $_entries array
      */
-    private $_entries = [];
+    private $_entries = array();
 
     /**
      * Constructor. The $data array must conform to the following format:
@@ -214,7 +214,7 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
      */
     protected function _createHeader(array $data)
     {
-        $mandatories = ['title', 'link', 'charset'];
+        $mandatories = array('title', 'link', 'charset');
         foreach ($mandatories as $mandatory) {
             if (!isset($data[$mandatory])) {
                 /**
@@ -262,7 +262,7 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
             $this->_header->setRating($data['rating']);
         }
         if (isset($data['cloud'])) {
-            $mandatories = ['domain', 'path', 'registerProcedure', 'protocol'];
+            $mandatories = array('domain', 'path', 'registerProcedure', 'protocol');
             foreach ($mandatories as $mandatory) {
                 if (!isset($data['cloud'][$mandatory])) {
                     /**
@@ -276,7 +276,7 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
             $this->_header->setCloud($uri_str, $data['cloud']['registerProcedure'], $data['cloud']['protocol']);
         }
         if (isset($data['textInput'])) {
-            $mandatories = ['title', 'description', 'name', 'link'];
+            $mandatories = array('title', 'description', 'name', 'link');
             foreach ($mandatories as $mandatory) {
                 if (!isset($data['textInput'][$mandatory])) {
                     /**
@@ -343,7 +343,7 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
     protected function _createEntries(array $data)
     {
         foreach ($data as $row) {
-            $mandatories = ['title', 'link', 'description'];
+            $mandatories = array('title', 'link', 'description');
             foreach ($mandatories as $mandatory) {
                 if (!isset($row[$mandatory])) {
                     /**
@@ -373,7 +373,7 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
                 $entry->setCommentsRssUrl($row['commentRss']);
             }
             if (isset($row['source'])) {
-                $mandatories = ['title', 'url'];
+                $mandatories = array('title', 'url');
                 foreach ($mandatories as $mandatory) {
                     if (!isset($row['source'][$mandatory])) {
                         /**

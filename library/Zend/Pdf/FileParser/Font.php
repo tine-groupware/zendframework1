@@ -49,7 +49,7 @@ abstract class Zend_Pdf_FileParser_Font extends Zend_Pdf_FileParser
      * {@link __set()}.
      * @var array
      */
-    private $_fontProperties = [];
+    private $_fontProperties = array();
 
     /**
      * Flag indicating whether or not debug logging is active.

@@ -52,16 +52,16 @@ class Zend_Service_WindowsAzure_Management_SubscriptionOperationInstance
      * @param array  $operationCaller A collection of attributes that identifies the source of the operation.
      * @param array  $operationStatus The current status of the operation.
      */
-    public function __construct($operationId, $operationObjectId, $operationName, $operationParameters = [], $operationCaller = [], $operationStatus = []) 
+    public function __construct($operationId, $operationObjectId, $operationName, $operationParameters = array(), $operationCaller = array(), $operationStatus = array()) 
     {	        
-        $this->_data = [
+        $this->_data = array(
             'operationid'          => $operationId,
 	        'operationobjectid'    => $operationObjectId,
 	        'operationname'        => $operationName,
 	        'operationparameters'  => $operationParameters,
 	        'operationcaller'      => $operationCaller,
 	        'operationstatus'      => $operationStatus
-        ];
+        );
     }
     
 	/**

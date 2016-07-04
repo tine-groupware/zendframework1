@@ -71,7 +71,7 @@ class Zend_EventManager_GlobalEventManager
      * @param  array|object $argv 
      * @return Zend_EventManager_ResponseCollection
      */
-    public static function trigger($event, $context, $argv = [])
+    public static function trigger($event, $context, $argv = array())
     {
         return self::getEventCollection()->trigger($event, $context, $argv);
     }

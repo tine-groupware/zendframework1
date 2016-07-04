@@ -43,12 +43,12 @@ class Zend_Tool_Framework_Manifest_Repository
     /**
      * @var array
      */
-    protected $_manifests = [];
+    protected $_manifests = array();
 
     /**
      * @var array Array of Zend_Tool_Framework_Metadata_Interface
      */
-    protected $_metadatas = [];
+    protected $_metadatas = array();
 
     /**
      * setRegistry()
@@ -91,7 +91,7 @@ class Zend_Tool_Framework_Manifest_Repository
         if ($manifest instanceof Zend_Tool_Framework_Manifest_ProviderManifestable) {
             $providers = $manifest->getProviders();
             if (!is_array($providers)) {
-                $providers = [$providers];
+                $providers = array($providers);
             }
 
             foreach ($providers as $provider) {
@@ -119,7 +119,7 @@ class Zend_Tool_Framework_Manifest_Repository
         if ($manifest instanceof Zend_Tool_Framework_Manifest_ActionManifestable) {
             $actions = $manifest->getActions();
             if (!is_array($actions)) {
-                $actions = [$actions];
+                $actions = array($actions);
             }
 
             foreach ($actions as $action) {
@@ -173,7 +173,7 @@ class Zend_Tool_Framework_Manifest_Repository
             if ($manifest instanceof Zend_Tool_Framework_Manifest_MetadataManifestable) {
                 $metadatas = $manifest->getMetadata();
                 if (!is_array($metadatas)) {
-                    $metadatas = [$metadatas];
+                    $metadatas = array($metadatas);
                 }
 
                 foreach ($metadatas as $metadata) {
@@ -213,10 +213,10 @@ class Zend_Tool_Framework_Manifest_Repository
      * @param bool $includeNonExistentProperties
      * @return Zend_Tool_Framework_Manifest_Metadata[]
      */
-    public function getMetadatas(Array $searchProperties = [], $includeNonExistentProperties = true)
+    public function getMetadatas(Array $searchProperties = array(), $includeNonExistentProperties = true)
     {
 
-        $returnMetadatas = [];
+        $returnMetadatas = array();
 
         // loop through the metadatas so that we can search each individual one
         foreach ($this->_metadatas as $metadata) {
@@ -255,7 +255,7 @@ class Zend_Tool_Framework_Manifest_Repository
      * @param bool $includeNonExistentProperties
      * @return Zend_Tool_Framework_Manifest_Metadata
      */
-    public function getMetadata(Array $searchProperties = [], $includeNonExistentProperties = true)
+    public function getMetadata(Array $searchProperties = array(), $includeNonExistentProperties = true)
     {
         $metadatas = $this->getMetadatas($searchProperties, $includeNonExistentProperties);
         return array_shift($metadatas);
@@ -268,11 +268,11 @@ class Zend_Tool_Framework_Manifest_Repository
      */
     public function __toString()
     {
-        $metadatasByType = [];
+        $metadatasByType = array();
 
         foreach ($this->_metadatas as $metadata) {
             if (!array_key_exists($metadata->getType(), $metadatasByType)) {
-                $metadatasByType[$metadata->getType()] = [];
+                $metadatasByType[$metadata->getType()] = array();
             }
             $metadatasByType[$metadata->getType()][] = $metadata;
         }

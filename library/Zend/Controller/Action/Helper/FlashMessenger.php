@@ -47,7 +47,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
      *
      * @var array
      */
-    static protected $_messages = [];
+    static protected $_messages = array();
 
     /**
      * $_session - Zend_Session storage object
@@ -137,7 +137,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
     /**
      * addMessage() - Add a message to flash message
      *
-     * @param  string|string[] $message
+     * @param  string $message
      * @return Zend_Controller_Action_Helper_FlashMessenger Provides a fluent interface
      */
     public function addMessage($message, $namespace = null)
@@ -151,7 +151,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
         }
 
         if (!is_array(self::$_session->{$namespace})) {
-            self::$_session->{$namespace} = [];
+            self::$_session->{$namespace} = array();
         }
 
         self::$_session->{$namespace}[] = $message;
@@ -189,7 +189,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
             return self::$_messages[$namespace];
         }
 
-        return [];
+        return array();
     }
 
     /**
@@ -242,7 +242,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
             return self::$_session->{$namespace};
         }
 
-        return [];
+        return array();
     }
 
     /**
@@ -303,7 +303,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
     /**
      * Strategy pattern: proxy to addMessage()
      *
-     * @param  string|string[] $message
+     * @param  string $message
      * @return void
      */
     public function direct($message, $namespace=NULL)

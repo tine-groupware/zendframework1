@@ -122,13 +122,13 @@ class Zend_Crypt_DiffieHellman
     public function generateKeys()
     {
         if (function_exists('openssl_dh_compute_key') && self::$useOpenssl !== false) {
-            $details = [];
+            $details = array();
             $details['p'] = $this->getPrime();
             $details['g'] = $this->getGenerator();
             if ($this->hasPrivateKey()) {
                 $details['priv_key'] = $this->getPrivateKey();
             }
-            $opensslKeyResource = openssl_pkey_new( ['dh' => $details] );
+            $opensslKeyResource = openssl_pkey_new( array('dh' => $details) );
             $data = openssl_pkey_get_details($opensslKeyResource);
             $this->setPrivateKey($data['dh']['priv_key'], self::BINARY);
             $this->setPublicKey($data['dh']['pub_key'], self::BINARY);
@@ -381,7 +381,8 @@ class Zend_Crypt_DiffieHellman
      */
     protected function _generatePrivateKey()
     {
-        return $this->_math->rand($this->getGenerator(), $this->getPrime());
+        $rand = $this->_math->rand($this->getGenerator(), $this->getPrime());
+        return $rand;
     }
 
 }

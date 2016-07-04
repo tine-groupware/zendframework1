@@ -32,7 +32,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
      *
      * @var array
      */
-    protected $_data = [];
+    protected $_data = array();
 
     /**
      * DOM document object
@@ -67,7 +67,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
      *
      * @var array
      */
-    protected $_extensions = [];
+    protected $_extensions = array();
 
     /**
      * Constructor
@@ -210,7 +210,7 @@ abstract class Zend_Feed_Reader_EntryAbstract
     {
         foreach ($this->_extensions as $extension) {
             if (method_exists($extension, $method)) {
-                return call_user_func_array([$extension, $method], $args);
+                return call_user_func_array(array($extension, $method), $args);
             }
         }
         require_once 'Zend/Feed/Exception.php';

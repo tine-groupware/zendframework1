@@ -321,7 +321,7 @@ class Zend_Db_Statement_Pdo extends Zend_Db_Statement implements IteratorAggrega
      * @return mixed One object instance of the specified class.
      * @throws Zend_Db_Statement_Exception
      */
-    public function fetchObject($class = 'stdClass', array $config = [])
+    public function fetchObject($class = 'stdClass', array $config = array())
     {
         try {
             return $this->_stmt->fetchObject($class, $config);

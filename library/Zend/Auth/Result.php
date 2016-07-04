@@ -88,7 +88,7 @@ class Zend_Auth_Result
      * @param mixed $identity
      * @param array $messages
      */
-    public function __construct($code, $identity, array $messages = [])
+    public function __construct($code, $identity, array $messages = array())
     {
         $code = (int) $code;
 

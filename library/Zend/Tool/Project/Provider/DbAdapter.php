@@ -59,7 +59,7 @@ class Zend_Tool_Project_Provider_DbAdapter
 
         $this->_appConfigFilePath = $appConfigFileResource->getPath();
 
-        $this->_config = new Zend_Config_Ini($this->_appConfigFilePath, null, ['skipExtends' => true, 'allowModifications' => true]);
+        $this->_config = new Zend_Config_Ini($this->_appConfigFilePath, null, array('skipExtends' => true, 'allowModifications' => true));
 
         if ($sectionName != 'production') {
             $this->_sectionName = $sectionName;
@@ -86,7 +86,7 @@ class Zend_Tool_Project_Provider_DbAdapter
 
     protected function _configureViaDSN($dsn)
     {
-        $dsnVars = [];
+        $dsnVars = array();
 
         if (strpos($dsn, '=') === false) {
             throw new Zend_Tool_Project_Provider_Exception('At least one name value pair is expected, typcially '
@@ -96,7 +96,12 @@ class Zend_Tool_Project_Provider_DbAdapter
 
         parse_str($dsn, $dsnVars);
 
-        $dbConfigValues = ['resources' => ['db' => null]];
+        // parse_str suffers when magic_quotes is enabled
+        if (get_magic_quotes_gpc()) {
+            array_walk_recursive($dsnVars, array($this, '_cleanMagicQuotesInValues'));
+        }
+
+        $dbConfigValues = array('resources' => array('db' => null));
 
         if (isset($dsnVars['adapter'])) {
             $dbConfigValues['resources']['db']['adapter'] = $dsnVars['adapter'];
@@ -125,4 +130,10 @@ class Zend_Tool_Project_Provider_DbAdapter
                 );
         }
     }
+
+    protected function _cleanMagicQuotesInValues(&$value, $key)
+    {
+        $value = stripslashes($value);
+    }
+
 }

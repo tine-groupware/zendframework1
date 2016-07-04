@@ -64,7 +64,7 @@ class Zend_Pdf_Cmap_SegmentToDelta extends Zend_Pdf_Cmap
      * Array of ending character codes for each segment.
      * @var array
      */
-    protected $_segmentTableEndCodes = [];
+    protected $_segmentTableEndCodes = array();
 
     /**
      * The ending character code for the segment at the end of the low search
@@ -77,25 +77,25 @@ class Zend_Pdf_Cmap_SegmentToDelta extends Zend_Pdf_Cmap
      * Array of starting character codes for each segment.
      * @var array
      */
-    protected $_segmentTableStartCodes = [];
+    protected $_segmentTableStartCodes = array();
 
     /**
      * Array of character code to glyph delta values for each segment.
      * @var array
      */
-    protected $_segmentTableIdDeltas = [];
+    protected $_segmentTableIdDeltas = array();
 
     /**
      * Array of offsets into the glyph index array for each segment.
      * @var array
      */
-    protected $_segmentTableIdRangeOffsets = [];
+    protected $_segmentTableIdRangeOffsets = array();
 
     /**
      * Glyph index array. Stores glyph numbers, used with range offset.
      * @var array
      */
-    protected $_glyphIndexArray = [];
+    protected $_glyphIndexArray = array();
 
 
 
@@ -117,7 +117,7 @@ class Zend_Pdf_Cmap_SegmentToDelta extends Zend_Pdf_Cmap
      */
     public function glyphNumbersForCharacters($characterCodes)
     {
-        $glyphNumbers = [];
+        $glyphNumbers = array();
         foreach ($characterCodes as $key => $characterCode) {
 
             /* These tables only cover the 16-bit character range.
@@ -252,7 +252,7 @@ class Zend_Pdf_Cmap_SegmentToDelta extends Zend_Pdf_Cmap
      */
     public function getCoveredCharacters()
     {
-        $characterCodes = [];
+        $characterCodes = array();
         for ($i = 1; $i <= $this->_segmentCount; $i++) {
             for ($code = $this->_segmentTableStartCodes[$i]; $code <= $this->_segmentTableEndCodes[$i]; $code++) {
                 $characterCodes[] = $code;
@@ -275,7 +275,7 @@ class Zend_Pdf_Cmap_SegmentToDelta extends Zend_Pdf_Cmap
      */
     public function getCoveredCharactersGlyphs()
     {
-        $glyphNumbers = [];
+        $glyphNumbers = array();
 
         for ($segmentNum = 1; $segmentNum <= $this->_segmentCount; $segmentNum++) {
             if ($this->_segmentTableIdRangeOffsets[$segmentNum] == 0) {

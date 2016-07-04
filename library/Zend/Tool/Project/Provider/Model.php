@@ -44,10 +44,12 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
             throw new Zend_Tool_Project_Provider_Exception($exceptionMessage);
         }
 
-        return $modelsDirectory->createResource(
+        $newModel = $modelsDirectory->createResource(
             'modelFile',
-            ['modelName' => $modelName, 'moduleName' => $moduleName]
-        );
+            array('modelName' => $modelName, 'moduleName' => $moduleName)
+            );
+
+        return $newModel;
     }
 
     /**
@@ -70,7 +72,7 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
             return false;
         }
         
-        return (($modelsDirectory->search(['modelFile' => ['modelName' => $modelName]])) instanceof Zend_Tool_Project_Profile_Resource);
+        return (($modelsDirectory->search(array('modelFile' => array('modelName' => $modelName)))) instanceof Zend_Tool_Project_Profile_Resource);
     }
 
     /**
@@ -82,10 +84,10 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
      */
     protected static function _getModelsDirectoryResource(Zend_Tool_Project_Profile $profile, $moduleName = null)
     {
-        $profileSearchParams = [];
+        $profileSearchParams = array();
 
         if ($moduleName != null && is_string($moduleName)) {
-            $profileSearchParams = ['modulesDirectory', 'moduleDirectory' => ['moduleName' => $moduleName]];
+            $profileSearchParams = array('modulesDirectory', 'moduleDirectory' => array('moduleName' => $moduleName));
         }
 
         $profileSearchParams[] = 'modelsDirectory';
@@ -132,7 +134,7 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
                 'Note: The canonical model name that ' . $tense
                     . ' used with other providers is "' . $name . '";'
                     . ' not "' . $originalName . '" as supplied',
-                ['color' => ['yellow']]
+                array('color' => array('yellow'))
                 );
         }
 

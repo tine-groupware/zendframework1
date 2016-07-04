@@ -94,7 +94,7 @@ class Zend_Memory_Manager
      *
      * @var array
      */
-    private $_unloadCandidates = [];
+    private $_unloadCandidates = array();
 
     /**
      * List of object sizes.
@@ -105,7 +105,7 @@ class Zend_Memory_Manager
      *
      * @var array
      */
-    private $_sizes = [];
+    private $_sizes = array();
 
     /**
      * Last modified object
@@ -145,7 +145,7 @@ class Zend_Memory_Manager
          * (Ex. backend interface should be extended to provide this functionality)
          */
         $this->_managerId = uniqid('ZendMemManager', true);
-        $this->_tags = [$this->_managerId];
+        $this->_tags = array($this->_managerId);
         $this->_managerId .= '_';
     }
 

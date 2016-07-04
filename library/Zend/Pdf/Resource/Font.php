@@ -62,7 +62,7 @@ abstract class Zend_Pdf_Resource_Font extends Zend_Pdf_Resource
      * Array containing descriptive names for the font. See {@link fontName()}.
      * @var array
      */
-    protected $_fontNames = [];
+    protected $_fontNames = array();
 
     /**
      * Flag indicating whether or not this font is bold.
@@ -524,7 +524,6 @@ abstract class Zend_Pdf_Resource_Font extends Zend_Pdf_Resource
         if ($this->_unitsPerEm == 1000) {
             return $value;
         }
-
         return ceil(($value / $this->_unitsPerEm) * 1000);    // always round up
     }
 }

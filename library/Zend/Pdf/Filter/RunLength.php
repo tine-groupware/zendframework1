@@ -106,9 +106,7 @@ class Zend_Pdf_Filter_RunLength implements Zend_Pdf_Filter_Interface
             if ($length == 128) {
                 // EOD byte
                 break;
-            }
-
-            if ($length < 128) {
+            } else if ($length < 128) {
                 $length++;
 
                 $output .= substr($data, $offset, $length);

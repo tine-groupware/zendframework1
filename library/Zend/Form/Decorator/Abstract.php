@@ -54,7 +54,7 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
      * Decorator options
      * @var array
      */
-    protected $_options = [];
+    protected $_options = array();
 
     /**
      * Separator between new content and old
@@ -162,7 +162,7 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
      */
     public function clearOptions()
     {
-        $this->_options = [];
+        $this->_options = array();
         return $this;
     }
 

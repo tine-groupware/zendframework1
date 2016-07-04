@@ -59,7 +59,7 @@ abstract class Zend_Search_Lucene_Analysis_Analyzer_Common extends Zend_Search_L
      *
      * @var array
      */
-    private $_filters = [];
+    private $_filters = array();
 
     /**
      * Add Token filter to the Analyzer

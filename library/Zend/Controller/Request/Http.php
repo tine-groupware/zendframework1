@@ -52,7 +52,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      * Allowed parameter sources
      * @var array
      */
-    protected $_paramSources = ['_GET', '_POST'];
+    protected $_paramSources = array('_GET', '_POST');
 
     /**
      * REQUEST_URI
@@ -82,7 +82,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      * Instance parameters
      * @var array
      */
-    protected $_params = [];
+    protected $_params = array();
 
     /**
      * Raw request body
@@ -94,7 +94,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      * Alias keys for request parameters
      * @var array
      */
-    protected $_aliases = [];
+    protected $_aliases = array();
 
     /**
      * Constructor
@@ -673,7 +673,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      * @param  array $paramSoures
      * @return Zend_Controller_Request_Http
      */
-    public function setParamSources(array $paramSources = [])
+    public function setParamSources(array $paramSources = array())
     {
         $this->_paramSources = $paramSources;
         return $this;
@@ -1010,7 +1010,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
          * @see https://www.ietf.org/rfc/rfc3875 (4.1.2. and 4.1.3.)
          */
         if (isset($_SERVER[$temp])
-            && in_array($temp, ['CONTENT_TYPE', 'CONTENT_LENGTH'])
+            && in_array($temp, array('CONTENT_TYPE', 'CONTENT_LENGTH'))
         ) {
             return $_SERVER[$temp];
         }
@@ -1066,13 +1066,11 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
         if(null === $name) {
             return '';
         }
-
-        if (($scheme == self::SCHEME_HTTP && $port == 80) || ($scheme == self::SCHEME_HTTPS && $port == 443)) {
+        elseif (($scheme == self::SCHEME_HTTP && $port == 80) || ($scheme == self::SCHEME_HTTPS && $port == 443)) {
             return $name;
+        } else {
+            return $name . ':' . $port;
         }
-
-        return $name . ':' . $port;
-
     }
 
     /**

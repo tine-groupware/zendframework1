@@ -58,7 +58,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
     /**
      * @var array
      */
-    private $_subscribed = [];
+    private $_subscribed = array();
 
     /**
      * Constructor
@@ -96,12 +96,6 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
         if (isset($options['username'])) {
             $connect->setHeader('login', $options['username']);
             $connect->setHeader('passcode', $options['password']);
-        }
-
-        // Support for durable subscriptions
-        // Must send client-id header in CONNECT AND activemq.subscriptionName in SUBSCRIBE
-        if(isset($options['client-id'])) {
-            $connect->setHeader('client-id', $options['client-id']);
         }
 
         $response = $this->_client->send($connect)->receive();
@@ -210,14 +204,6 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
         $frame->setCommand('SUBSCRIBE');
         $frame->setHeader('destination', $queue->getName());
         $frame->setHeader('ack', 'client');
-
-        // Support for durable subscriptions
-        // If a client-id is configured in the driver options,
-        // set the activemq.subscriptionName header with client-id as the value
-        if(isset($this->_options['driverOptions']['client-id'])) {
-            $frame->setHeader('activemq.subscriptionName', $this->_options['driverOptions']['client-id']);
-        }
-
         $this->_client->send($frame);
         $this->_subscribed[$queue->getName()] = true;
     }
@@ -243,7 +229,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
         }
 
         // read
-        $data = [];
+        $data = array();
 
         // signal that we are reading
         if (!$this->_isSubscribed($queue)){
@@ -257,12 +243,12 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
 
                     switch ($response->getCommand()) {
                         case 'MESSAGE':
-                            $datum = [
+                            $datum = array(
                                 'message_id' => $response->getHeader('message-id'),
                                 'handle'     => $response->getHeader('message-id'),
                                 'body'       => $response->getBody(),
                                 'md5'        => md5($response->getBody())
-                            ];
+                            );
                             $data[] = $datum;
                             break;
                         default:
@@ -274,11 +260,11 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
             }
         }
 
-        $options = [
+        $options = array(
             'queue'        => $queue,
             'data'         => $data,
             'messageClass' => $queue->getMessageClass()
-        ];
+        );
 
         $classname = $queue->getMessageSetClass();
 
@@ -306,26 +292,20 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
         $frame->setCommand('SEND');
         $frame->setHeader('destination', $queue->getName());
         $frame->setHeader('content-length', strlen($message));
-
-        // If persistent driver option is present, set the persistent header
-        if(isset($this->_options['driverOptions']['persistent'])) {
-            $frame->setHeader('persistent', $this->_options['driverOptions']['persistent']);
-        }
-
         $frame->setBody((string) $message);
         $this->_client->send($frame);
 
-        $data = [
+        $data = array(
             'message_id' => null,
             'body'       => $message,
             'md5'        => md5($message),
             'handle'     => null
-        ];
+        );
 
-        $options = [
+        $options = array(
             'queue' => $queue,
             'data'  => $data
-        ];
+        );
 
         $classname = $queue->getMessageClass();
         if (!class_exists($classname)) {
@@ -372,7 +352,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      */
     public function getCapabilities()
     {
-        return [
+        return array(
             'create'        => false,
             'delete'        => false,
             'send'          => true,
@@ -381,6 +361,6 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
             'getQueues'     => false,
             'count'         => false,
             'isExists'      => false,
-        ];
+        );
     }
 }

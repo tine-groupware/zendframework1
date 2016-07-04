@@ -62,7 +62,7 @@ class Zend_Pdf_Element_String_Binary extends Zend_Pdf_Element_String
      */
     public static function unescape($inStr)
     {
-        $chunks = [];
+        $chunks = array();
         $offset = 0;
         $length = 0;
         while ($offset < strlen($inStr)) {

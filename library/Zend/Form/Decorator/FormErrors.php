@@ -42,7 +42,7 @@ class Zend_Form_Decorator_FormErrors extends Zend_Form_Decorator_Abstract
      * Default values for markup options
      * @var array
      */
-    protected $_defaults = [
+    protected $_defaults = array(
         'ignoreSubForms'          => false,
         'showCustomFormErrors'    => true,
         'onlyCustomFormErrors'    => false,
@@ -52,7 +52,7 @@ class Zend_Form_Decorator_FormErrors extends Zend_Form_Decorator_Abstract
         'markupListItemEnd'       => '</li>',
         'markupListItemStart'     => '<li>',
         'markupListStart'         => '<ul class="form-errors">',
-    ];
+    );
 
     /**#@+
      * Markup options

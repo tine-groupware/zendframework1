@@ -75,7 +75,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
      *
      * @param array|Zend_Config  $options   Options for the Zend_Cloud_Storage_WindowsAzure instance
      */
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
@@ -350,7 +350,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
             return $blobList;
         }
 
-        $returnValue = [];
+        $returnValue = array();
         foreach ($blobList as $blob) {
             $returnValue[] = $blob->Name;
         }
@@ -410,7 +410,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
     public function deleteMetadata($path, $options = null)
     {
         try {
-            $this->_storageClient->setBlobMetadata($this->_container, $destinationPath, []);
+            $this->_storageClient->setBlobMetadata($this->_container, $destinationPath, array());
         } catch (Zend_Service_WindowsAzure_Exception $e) {
             if (strpos($e->getMessage(), "could not be accessed") === false) {
                 throw new Zend_Cloud_StorageService_Exception('Error on delete metadata: '.$e->getMessage(), $e->getCode(), $e);

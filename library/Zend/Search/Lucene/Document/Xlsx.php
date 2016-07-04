@@ -88,10 +88,10 @@ class Zend_Search_Lucene_Document_Xlsx extends Zend_Search_Lucene_Document_OpenX
         }
 
         // Document data holders
-        $sharedStrings = [];
-        $worksheets = [];
-        $documentBody = [];
-        $coreProperties = [];
+        $sharedStrings = array();
+        $worksheets = array();
+        $documentBody = array();
+        $coreProperties = array();
 
         // Open OpenXML package
         $package = new ZipArchive();
@@ -150,7 +150,7 @@ class Zend_Search_Lucene_Document_Xlsx extends Zend_Search_Lucene_Document_OpenX
                         case "s":
                             // Value is a shared string
                             if ((string)$c->v != '') {
-                                $value = $sharedStrings[(int)$c->v];
+                                $value = $sharedStrings[intval($c->v)];
                             } else {
                                 $value = '';
                             }
@@ -239,7 +239,7 @@ class Zend_Search_Lucene_Document_Xlsx extends Zend_Search_Lucene_Document_OpenX
      * @return string
      */
     private function _parseRichText($is = null) {
-        $value = [];
+        $value = array();
 
         if (isset($is->t)) {
             $value[] = (string)$is->t;

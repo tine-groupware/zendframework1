@@ -44,7 +44,7 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
      */
     public function describeInstances($instanceId)
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'DescribeReservedInstances';
 
         if(is_array($instanceId) && !empty($instanceId)) {
@@ -60,9 +60,9 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
         $xpath = $response->getXPath();
         $items = $xpath->query('//ec2:reservedInstancesSet/ec2:item');
 
-        $return = [];
+        $return = array();
         foreach($items as $item) {
-            $i = [];
+            $i = array();
             $i['reservedInstancesId'] = $xpath->evaluate('string(ec2:reservedInstancesId/text())', $item);
             $i['instanceType'] = $xpath->evaluate('string(ec2:instanceType/text())', $item);
             $i['availabilityZone'] = $xpath->evaluate('string(ec2:availabilityZone/text())', $item);
@@ -90,7 +90,7 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
      */
     public function describeOfferings()
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'DescribeReservedInstancesOfferings';
 
         $response = $this->sendRequest($params);
@@ -98,9 +98,9 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
         $xpath = $response->getXPath();
         $items = $xpath->query('//ec2:reservedInstancesOfferingsSet/ec2:item');
 
-        $return = [];
+        $return = array();
         foreach($items as $item) {
-            $i = [];
+            $i = array();
             $i['reservedInstancesOfferingId'] = $xpath->evaluate('string(ec2:reservedInstancesOfferingId/text())', $item);
             $i['instanceType'] = $xpath->evaluate('string(ec2:instanceType/text())', $item);
             $i['availabilityZone'] = $xpath->evaluate('string(ec2:availabilityZone/text())', $item);
@@ -128,15 +128,16 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
      */
     public function purchaseOffering($offeringId, $intanceCount = 1)
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'PurchaseReservedInstancesOffering';
         $params['OfferingId.1'] = $offeringId;
-        $params['instanceCount.1'] = (int)$intanceCount;
+        $params['instanceCount.1'] = intval($intanceCount);
 
         $response = $this->sendRequest($params);
 
         $xpath = $response->getXPath();
+        $reservedInstancesId = $xpath->evaluate('string(//ec2:reservedInstancesId/text())');
 
-        return $xpath->evaluate('string(//ec2:reservedInstancesId/text())');
+        return $reservedInstancesId;
     }
 }

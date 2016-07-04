@@ -57,8 +57,8 @@ class Zend_Search_Lucene_Document_Docx extends Zend_Search_Lucene_Document_OpenX
         }
 
         // Document data holders
-        $documentBody = [];
-        $coreProperties = [];
+        $documentBody = array();
+        $coreProperties = array();
 
         // Open OpenXML package
         $package = new ZipArchive();

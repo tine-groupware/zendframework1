@@ -42,7 +42,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
      *
      * @var array
      */
-    protected $_priorities = [
+    protected $_priorities = array(
         Zend_Log::EMERG  => LOG_EMERG,
         Zend_Log::ALERT  => LOG_ALERT,
         Zend_Log::CRIT   => LOG_CRIT,
@@ -51,7 +51,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
         Zend_Log::NOTICE => LOG_NOTICE,
         Zend_Log::INFO   => LOG_INFO,
         Zend_Log::DEBUG  => LOG_DEBUG,
-    ];
+    );
 
     /**
      * The default log priority - for unmapped custom priorities
@@ -93,7 +93,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
      *
      * @var array
      */
-    protected $_validFacilities = [];
+    protected $_validFacilities = array();
 
     /**
      * Class constructor
@@ -101,7 +101,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
      * @param  array $params Array of options; may include "application" and "facility" keys
      * @return void
      */
-    public function __construct(array $params = [])
+    public function __construct(array $params = array())
     {
         if (isset($params['application'])) {
             $this->_application = $params['application'];
@@ -136,7 +136,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
      */
     protected function _initializeValidFacilities()
     {
-        $constants = [
+        $constants = array(
             'LOG_AUTH',
             'LOG_AUTHPRIV',
             'LOG_CRON',
@@ -156,7 +156,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
             'LOG_SYSLOG',
             'LOG_USER',
             'LOG_UUCP'
-        ];
+        );
 
         foreach ($constants as $constant) {
             if (defined($constant)) {

@@ -41,19 +41,23 @@ class Zend_Tool_Framework_System_Manifest
 
     public function getProviders()
     {
-        return [
+        $providers = array(
             new Zend_Tool_Framework_System_Provider_Version(),
             new Zend_Tool_Framework_System_Provider_Config(),
             new Zend_Tool_Framework_System_Provider_Phpinfo(),
             new Zend_Tool_Framework_System_Provider_Manifest()
-        ];
+            );
+
+        return $providers;
     }
 
     public function getActions()
     {
-        return [
+        $actions = array(
             new Zend_Tool_Framework_System_Action_Create(),
             new Zend_Tool_Framework_System_Action_Delete()
-        ];
+            );
+
+        return $actions;
     }
 }

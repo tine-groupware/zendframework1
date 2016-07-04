@@ -70,7 +70,7 @@ class Zend_Dojo_Form_SubForm extends Zend_Form_SubForm
         $decorators = $this->getDecorators();
         if (empty($decorators)) {
             $this->addDecorator('FormElements')
-                 ->addDecorator('HtmlTag', ['tag' => 'dl'])
+                 ->addDecorator('HtmlTag', array('tag' => 'dl'))
                  ->addDecorator('ContentPane');
         }
     }

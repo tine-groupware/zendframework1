@@ -36,7 +36,7 @@ abstract class Zend_Log_Writer_Abstract implements Zend_Log_FactoryInterface
     /**
      * @var array of Zend_Log_Filter_Interface
      */
-    protected $_filters = [];
+    protected $_filters = array();
 
     /**
      * Formats the log message before writing.

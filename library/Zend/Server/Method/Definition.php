@@ -39,7 +39,7 @@ class Zend_Server_Method_Definition
     /**
      * @var array
      */
-    protected $_invokeArguments = [];
+    protected $_invokeArguments = array();
 
     /**
      * @var string
@@ -59,7 +59,7 @@ class Zend_Server_Method_Definition
     /**
      * @var array Array of Zend_Server_Method_Prototype objects
      */
-    protected $_prototypes = [];
+    protected $_prototypes = array();
 
     /**
      * Constructor
@@ -183,7 +183,7 @@ class Zend_Server_Method_Definition
      */
     public function setPrototypes(array $prototypes)
     {
-        $this->_prototypes = [];
+        $this->_prototypes = array();
         $this->addPrototypes($prototypes);
         return $this;
     }
@@ -276,18 +276,18 @@ class Zend_Server_Method_Definition
     public function toArray()
     {
         $prototypes = $this->getPrototypes();
-        $signatures = [];
+        $signatures = array();
         foreach ($prototypes as $prototype) {
             $signatures[] = $prototype->toArray();
         }
 
-        return [
+        return array(
             'name'            => $this->getName(),
             'callback'        => $this->getCallback()->toArray(),
             'prototypes'      => $signatures,
             'methodHelp'      => $this->getMethodHelp(),
             'invokeArguments' => $this->getInvokeArguments(),
             'object'          => $this->getObject(),
-        ];
+        );
     }
 }

@@ -47,26 +47,23 @@ class Zend_Tool_Framework_Client_Console_ResponseDecorator_Blockize
      */
     public function decorate($content, $lineLength)
     {
-        if((int)(string) $lineLength != $lineLength) {
+        if(intval(strval($lineLength)) != $lineLength) {
             $lineLength = 72;
         }
 
         // break apart the message into wrapped chunks
         $lines = explode(PHP_EOL, wordwrap($content, $lineLength, PHP_EOL, false));
-        $content = [];
-
+        $content = array();
         foreach($lines AS $line) {
-            if(trim($line) === '') {
+            if(strlen(trim($line)) == 0) {
                 continue;
             }
 
             if(strlen($line) < $lineLength) {
                 $line .= str_repeat(" ", $lineLength-strlen($line));
             }
-
             $content[] = $line;
         }
-
         return implode(PHP_EOL, $content);
     }
 }

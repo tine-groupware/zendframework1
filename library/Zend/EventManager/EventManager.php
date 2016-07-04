@@ -43,7 +43,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Subscribed events and their listeners
      * @var array Array of Zend_Stdlib_PriorityQueue objects
      */
-    protected $events = [];
+    protected $events = array();
 
     /**
      * @var string Class representing the event being emitted
@@ -54,7 +54,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Identifiers, used to pull static signals from StaticEventManager
      * @var array
      */
-    protected $identifiers = [];
+    protected $identifiers = array();
 
     /**
      * Static collections
@@ -147,7 +147,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
         if (is_array($identifiers) || $identifiers instanceof Traversable) {
             $this->identifiers = array_unique((array) $identifiers);
         } elseif ($identifiers !== null) {
-            $this->identifiers = [$identifiers];
+            $this->identifiers = array($identifiers);
         }
         return $this;
     }
@@ -163,7 +163,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
         if (is_array($identifiers) || $identifiers instanceof Traversable) {
             $this->identifiers = array_unique($this->identifiers + (array) $identifiers);
         } elseif ($identifiers !== null) {
-            $this->identifiers = array_unique(array_merge($this->identifiers, [$identifiers]));
+            $this->identifiers = array_unique(array_merge($this->identifiers, array($identifiers)));
         }
         return $this;
     }
@@ -179,7 +179,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * @param  null|callback $callback
      * @return Zend_EventManager_ResponseCollection All listener return values
      */
-    public function trigger($event, $target = null, $argv = [], $callback = null)
+    public function trigger($event, $target = null, $argv = array(), $callback = null)
     {
         if ($event instanceof Zend_EventManager_EventDescription) {
             $e        = $event;
@@ -287,7 +287,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
 
         // Array of events should be registered individually, and return an array of all listeners
         if (is_array($event)) {
-            $listeners = [];
+            $listeners = array();
             foreach ($event as $name) {
                 $listeners[] = $this->attach($name, $callback, $priority);
             }
@@ -300,7 +300,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
         }
 
         // Create a callback handler, setting the event and priority in its metadata
-        $listener = new Zend_Stdlib_CallbackHandler($callback, ['event' => $event, 'priority' => $priority]);
+        $listener = new Zend_Stdlib_CallbackHandler($callback, array('event' => $event, 'priority' => $priority));
 
         // Inject the callback handler into the queue
         $this->events[$event]->insert($listener, $priority);
@@ -495,11 +495,11 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
     protected function getSharedListeners($event)
     {
         if (!$sharedCollections = $this->getSharedCollections()) {
-            return [];
+            return array();
         }
 
         $identifiers     = $this->getIdentifiers();
-        $sharedListeners = [];
+        $sharedListeners = array();
 
         foreach ($identifiers as $id) {
             if (!$listeners = $sharedCollections->getListeners($id, $event)) {

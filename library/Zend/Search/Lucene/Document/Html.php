@@ -41,14 +41,14 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      *
      * @var array
      */
-    private $_links = [];
+    private $_links = array();
 
     /**
      * List of document header links
      *
      * @var array
      */
-    private $_headerLinks = [];
+    private $_headerLinks = array();
 
     /**
      * Stored DOM representation
@@ -73,10 +73,10 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      *
      * @var array
      */
-    private $_inlineTags = ['a', 'abbr', 'acronym', 'dfn', 'em', 'strong', 'code',
+    private $_inlineTags = array('a', 'abbr', 'acronym', 'dfn', 'em', 'strong', 'code',
                                 'samp', 'kbd', 'var', 'b', 'i', 'big', 'small', 'strike',
                                 'tt', 'u', 'font', 'span', 'bdo', 'cite', 'del', 'ins',
-                                'q', 'sub', 'sup'];
+                                'q', 'sub', 'sup');
 
     /**
      * Object constructor
@@ -291,7 +291,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
         $analyzer = Zend_Search_Lucene_Analysis_Analyzer::getDefault();
         $analyzer->setInput($node->nodeValue, 'UTF-8');
 
-        $matchedTokens = [];
+        $matchedTokens = array();
 
         while (($token = $analyzer->nextToken()) !== null) {
             if (isset($wordsToHighlight[$token->getTermText()])) {
@@ -299,7 +299,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             }
         }
 
-        if (count($matchedTokens) === 0) {
+        if (count($matchedTokens) == 0) {
             return;
         }
 
@@ -352,7 +352,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      */
     protected function _highlightNodeRecursive(DOMNode $contextNode, $wordsToHighlight, $callback, $params)
     {
-        $textNodes = [];
+        $textNodes = array();
 
         if (!$contextNode->hasChildNodes()) {
             return;
@@ -396,7 +396,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      */
     public function highlight($words, $colour = '#66ffff')
     {
-        return $this->highlightExtended($words, [$this, 'applyColour'], [$colour]);
+        return $this->highlightExtended($words, array($this, 'applyColour'), array($colour));
     }
 
 
@@ -411,30 +411,27 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      * @return string
      * @throws Zend_Search_Lucene_Exception
      */
-    public function highlightExtended($words, $callback, $params = [])
+    public function highlightExtended($words, $callback, $params = array())
     {
         /** Zend_Search_Lucene_Analysis_Analyzer */
         require_once 'Zend/Search/Lucene/Analysis/Analyzer.php';
 
         if (!is_array($words)) {
-            $words = [$words];
+            $words = array($words);
         }
 
-        $wordsToHighlightList = [];
+        $wordsToHighlightList = array();
         $analyzer = Zend_Search_Lucene_Analysis_Analyzer::getDefault();
-
         foreach ($words as $wordString) {
             $wordsToHighlightList[] = $analyzer->tokenize($wordString);
         }
-
         $wordsToHighlight = call_user_func_array('array_merge', $wordsToHighlightList);
 
-        if (count($wordsToHighlight) === 0) {
+        if (count($wordsToHighlight) == 0) {
             return $this->_doc->saveHTML();
         }
 
-        $wordsToHighlightFlipped = [];
-
+        $wordsToHighlightFlipped = array();
         foreach ($wordsToHighlight as $id => $token) {
             $wordsToHighlightFlipped[$token->getTermText()] = $id;
         }
@@ -473,7 +470,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
         $xpath = new DOMXPath($this->_doc);
         $bodyNodes = $xpath->query('/html/body')->item(0)->childNodes;
 
-        $outputFragments = [];
+        $outputFragments = array();
         for ($count = 0; $count < $bodyNodes->length; $count++) {
             $outputFragments[] = $this->_doc->saveXML($bodyNodes->item($count));
         }

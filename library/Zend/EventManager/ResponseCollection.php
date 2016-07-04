@@ -49,7 +49,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * 
          * @var array
          */
-        protected $data = [];
+        protected $data = array();
 
         /**
          * Sorted stack of values
@@ -70,10 +70,10 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          */
         public function setIteratorMode($mode)
         {
-            $expected = [
+            $expected = array(
                 self::IT_MODE_DELETE => true,
                 self::IT_MODE_KEEP => true,
-            ];
+            );
 
             if (!isset($expected[$mode])) {
                 throw new InvalidArgumentException(sprintf('Invalid iterator mode specified ("%s")', $mode));
@@ -135,7 +135,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          */
         public function isEmpty()
         {
-            return $this->count === 0;
+            return ($this->count === 0);
         }
 
         /**
@@ -341,8 +341,8 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
         public function valid()
         {
             $key = key($this->stack);
-
-            return ($key !== null && $key !== false);
+            $var = ($key !== null && $key !== false);
+            return $var;
         }
     }
 }

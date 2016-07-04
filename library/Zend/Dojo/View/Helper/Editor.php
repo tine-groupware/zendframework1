@@ -50,7 +50,7 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
     /**
      * @var array Maps non-core plugin to module basename
      */
-    protected $_pluginsModules = [
+    protected $_pluginsModules = array(
         'createLink' => 'LinkDialog',
         'insertImage' => 'LinkDialog',
         'fontName' => 'FontChoice',
@@ -65,13 +65,13 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
         'tabIndent' => 'TabIndent',
         'toggleDir' => 'ToggleDir',
         'viewSource' => 'ViewSource'
-    ];
+    );
 
     /**
      * JSON-encoded parameters
      * @var array
      */
-    protected $_jsonParams = ['captureEvents', 'events', 'plugins', 'extraPlugins'];
+    protected $_jsonParams = array('captureEvents', 'events', 'plugins', 'extraPlugins');
 
     /**
      * dijit.Editor
@@ -82,7 +82,7 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
      * @param  array $attribs
      * @return string
      */
-    public function editor($id, $value = null, $params = [], $attribs = [])
+    public function editor($id, $value = null, $params = array(), $attribs = array())
     {
         if (isset($params['plugins'])) {
             foreach ($this->_getRequiredModules($params['plugins']) as $module) {
@@ -108,12 +108,12 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
         $textareaName = $this->_normalizeEditorName($hiddenName);
         $textareaId   = $hiddenId . '-Editor';
 
-        $hiddenAttribs = [
+        $hiddenAttribs = array(
             'id'    => $hiddenId,
             'name'  => $hiddenName,
             'value' => $value,
             'type'  => 'hidden',
-        ];
+        );
         $attribs['id'] = $textareaId;
 
         $this->_createGetParentFormFunction();
@@ -144,7 +144,7 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
      */
     protected function _getRequiredModules(array $plugins)
     {
-        $modules = [];
+        $modules = array();
         foreach ($plugins as $commandName) {
             if (isset($this->_pluginsModules[$commandName])) {
                 $pluginName = $this->_pluginsModules[$commandName];

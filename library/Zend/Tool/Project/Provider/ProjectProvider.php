@@ -50,14 +50,12 @@ class Zend_Tool_Project_Provider_ProjectProvider extends Zend_Tool_Project_Provi
             throw new Zend_Tool_Project_Provider_Exception('Zend_Tool_Project_Provider_Controller::createResource() expects \"projectProviderName\" is the name of a project provider resource to create.');
         }
 
-        $profileSearchParams = [];
+        $profileSearchParams = array();
         $profileSearchParams[] = 'projectProvidersDirectory';
 
-        return $profile->createResourceAt(
-            $profileSearchParams,
-            'projectProviderFile',
-            ['projectProviderName' => $projectProviderName, 'actionNames' => $actionNames]
-        );
+        $projectProvider = $profile->createResourceAt($profileSearchParams, 'projectProviderFile', array('projectProviderName' => $projectProviderName, 'actionNames' => $actionNames));
+
+        return $projectProvider;
     }
 
     /**

@@ -40,7 +40,7 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
      * Array of options for multi-item
      * @var array
      */
-    public $options = [];
+    public $options = array();
 
     /**
      * Flag: autoregister inArray validator?
@@ -58,7 +58,7 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
      * Which values are translated already?
      * @var array
      */
-    protected $_translated = [];
+    protected $_translated = array();
 
     /**
      * Retrieve separator
@@ -90,7 +90,7 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
     protected function _getMultiOptions()
     {
         if (null === $this->options || !is_array($this->options)) {
-            $this->options = [];
+            $this->options = array();
         }
 
         return $this->options;
@@ -207,8 +207,8 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
      */
     public function clearMultiOptions()
     {
-        $this->options = [];
-        $this->_translated = [];
+        $this->options = array();
+        $this->_translated = array();
         return $this;
     }
 
@@ -251,7 +251,7 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
                 $this->addValidator(
                     'InArray',
                     true,
-                    [array_keys($options)]
+                    array(array_keys($options))
                 );
             }
         }

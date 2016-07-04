@@ -65,7 +65,7 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
      * @param  array|Zend_Config $options
      * @return void
      */
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
@@ -168,7 +168,7 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
         }
         try {
             $queues =  $this->_storageClient->listQueues($prefix, $maxResults);
-            $result = [];
+            $result = array();
             foreach ($queues as $queue) {
                 $result[] = $queue->Name;
             }
@@ -278,7 +278,7 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
     {
         $messageClass = $this->getMessageClass();
         $setClass     = $this->getMessageSetClass();
-        $result = [];
+        $result = array();
         foreach ($messages as $message) {
             $result[] = new $messageClass($message->MessageText, $message);
         }

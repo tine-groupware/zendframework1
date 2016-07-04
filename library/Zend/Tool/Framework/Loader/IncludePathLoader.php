@@ -50,8 +50,8 @@ class Zend_Tool_Framework_Loader_IncludePathLoader extends Zend_Tool_Framework_L
         $paths = Zend_Loader::explodeIncludePath();
 
         // used for checking similarly named files
-        $relativeItems   = [];
-        $files           = [];
+        $relativeItems   = array();
+        $files           = array();
         $isZendTraversed = false;
 
         foreach ($paths as $path) {
@@ -124,10 +124,10 @@ class Zend_Tool_Framework_Loader_IncludePathLoader extends Zend_Tool_Framework_L
      */
     protected function _fileIsBlacklisted($file)
     {
-        $blacklist = [
+        $blacklist = array(
             "PHPUnit".DIRECTORY_SEPARATOR."Framework",
             "Zend".DIRECTORY_SEPARATOR."OpenId".DIRECTORY_SEPARATOR."Provider"
-        ];
+        );
 
         foreach($blacklist AS $blacklitedPattern) {
             if(strpos($file, $blacklitedPattern) !== false) {

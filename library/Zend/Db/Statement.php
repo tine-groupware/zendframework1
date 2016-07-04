@@ -64,35 +64,35 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
      *
      * @var array
      */
-    protected $_attribute = [];
+    protected $_attribute = array();
 
     /**
      * Column result bindings.
      *
      * @var array
      */
-    protected $_bindColumn = [];
+    protected $_bindColumn = array();
 
     /**
      * Query parameter bindings; covers bindParam() and bindValue().
      *
      * @var array
      */
-    protected $_bindParam = [];
+    protected $_bindParam = array();
 
     /**
      * SQL string split into an array at placeholders.
      *
      * @var array
      */
-    protected $_sqlSplit = [];
+    protected $_sqlSplit = array();
 
     /**
      * Parameter placeholders in the SQL string by position in the split array.
      *
      * @var array
      */
-    protected $_sqlParam = [];
+    protected $_sqlParam = array();
 
     /**
      * @var Zend_Db_Profiler_Query
@@ -141,7 +141,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
             $sql, -1, PREG_SPLIT_DELIM_CAPTURE|PREG_SPLIT_NO_EMPTY);
 
         // map params
-        $this->_sqlParam = [];
+        $this->_sqlParam = array();
         foreach ($this->_sqlSplit as $key => $val) {
             if ($val == '?') {
                 if ($this->_adapter->supportsParameters('positional') === false) {
@@ -164,7 +164,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         }
 
         // set up for binding
-        $this->_bindParam = [];
+        $this->_bindParam = array();
     }
 
     /**
@@ -193,7 +193,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
             // this segfaults only after 65,000 characters instead of 9,000
             $sql = preg_replace("/$q([^$q{$escapeChar}]*|($qe)*)*$q/s", '', $sql);
         }
-
+        
         // get a version of the SQL statement with all quoted
         // values and delimited identifiers stripped out
         // remove "foo\"bar"
@@ -336,7 +336,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
      */
     public function fetchAll($style = null, $col = null)
     {
-        $data = [];
+        $data = array();
         if ($style === Zend_Db::FETCH_COLUMN && $col === null) {
             $col = 0;
         }
@@ -360,7 +360,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
      */
     public function fetchColumn($col = 0)
     {
-        $data = [];
+        $data = array();
         $col = (int) $col;
         $row = $this->fetch(Zend_Db::FETCH_NUM);
         if (!is_array($row)) {
@@ -376,7 +376,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
      * @param array  $config OPTIONAL Constructor arguments for the class.
      * @return mixed One object instance of the specified class, or false.
      */
-    public function fetchObject($class = 'stdClass', array $config = [])
+    public function fetchObject($class = 'stdClass', array $config = array())
     {
         $obj = new $class($config);
         $row = $this->fetch(Zend_Db::FETCH_ASSOC);

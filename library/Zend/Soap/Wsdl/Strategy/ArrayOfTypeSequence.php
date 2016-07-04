@@ -107,7 +107,8 @@ class Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence extends Zend_Soap_Wsdl_Strateg
      */
     protected function _getSingularType($type)
     {
-        return $this->getContext()->getType(str_replace("[]", "", $type));
+        $singulartype = $this->getContext()->getType(str_replace("[]", "", $type));
+        return $singulartype;
     }
 
     /**

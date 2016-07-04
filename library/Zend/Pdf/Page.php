@@ -270,8 +270,7 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
             }
 
             $pageDim = explode(':', $param1);
-
-            if(count($pageDim) === 2 || count($pageDim) === 3) {
+            if(count($pageDim) == 2  ||  count($pageDim) == 3) {
                 $pageWidth  = $pageDim[0];
                 $pageHeight = $pageDim[1];
             } else {
@@ -416,11 +415,11 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
      */
     public function getResources()
     {
-        $resources = [];
+        $resources = array();
         $resDictionary = $this->_dictionary->Resources;
 
         foreach ($resDictionary->getKeys() as $resType) {
-            $resources[$resType] = [];
+            $resources[$resType] = array();
 
             if ($resType == 'ProcSet') {
                 foreach ($resDictionary->ProcSet->items as $procSetEntry) {
@@ -480,7 +479,7 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
     public function __clone()
     {
         $factory = Zend_Pdf_ElementFactory::createFactory(1);
-        $processed = [];
+        $processed = array();
 
         // Clone dictionary object.
         // Do it explicitly to prevent sharing page attributes between different
@@ -569,7 +568,7 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
             $this->_dictionary->Contents->touch();
         }
 
-        if ((!$this->_safeGS)  &&  (count($this->_dictionary->Contents->items) !== 0)) {
+        if ((!$this->_safeGS)  &&  (count($this->_dictionary->Contents->items) != 0)) {
             /**
              * Page already has some content which is not treated as safe.
              *
@@ -616,9 +615,9 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
         if ($this->_attached) {
             require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Page is attached to other documen. Use clone $page to get it context free.');
+        } else {
+            $objFactory->attach($this->_objFactory);
         }
-
-        $objFactory->attach($this->_objFactory);
     }
 
     /**
@@ -649,12 +648,12 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
         if ($this->_dictionary->Resources->Font === null) {
             // Page doesn't have any font attached
             // Return empty array
-            return [];
+            return array();
         }
 
         $fontResources = $this->_dictionary->Resources->Font;
 
-        $fontResourcesUnique = [];
+        $fontResourcesUnique = array();
         foreach ($fontResources->getKeys() as $fontResourceName) {
             $fontDictionary = $fontResources->$fontResourceName;
 
@@ -667,7 +666,7 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
             $fontResourcesUnique[spl_object_hash($fontDictionary->getObject())] = $fontDictionary;
         }
 
-        $fonts = [];
+        $fonts = array();
         require_once 'Zend/Pdf/Exception.php';
         foreach ($fontResourcesUnique as $resourceId => $fontDictionary) {
             try {
@@ -703,7 +702,7 @@ class Zend_Pdf_Page extends Zend_Pdf_Canvas_Abstract
 
         $fontResources = $this->_dictionary->Resources->Font;
 
-        $fontResourcesUnique = [];
+        $fontResourcesUnique = array();
 
         require_once 'Zend/Pdf/Exception.php';
         foreach ($fontResources->getKeys() as $fontResourceName) {

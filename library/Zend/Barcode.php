@@ -57,8 +57,8 @@ class Zend_Barcode
     public static function factory(
         $barcode,
         $renderer = 'image',
-        $barcodeConfig = [],
-        $rendererConfig = [],
+        $barcodeConfig = array(),
+        $rendererConfig = array(),
         $automaticRenderError = true
     ) {
         /*
@@ -88,10 +88,10 @@ class Zend_Barcode
         } catch (Zend_Exception $e) {
             $renderable = ($e instanceof Zend_Barcode_Exception) ? $e->isRenderable() : false;
             if ($automaticRenderError && $renderable) {
-                $barcode = self::makeBarcode('error', [
+                $barcode = self::makeBarcode('error', array(
                     'text' => $e->getMessage()
-                ]);
-                $renderer = self::makeRenderer($renderer, []);
+                ));
+                $renderer = self::makeRenderer($renderer, array());
             } else {
                 throw $e;
             }
@@ -108,7 +108,7 @@ class Zend_Barcode
      * @param mixed $barcodeConfig  OPTIONAL; an array or Zend_Config object with barcode parameters.
      * @return Zend_Barcode_Object
      */
-    public static function makeBarcode($barcode, $barcodeConfig = [])
+    public static function makeBarcode($barcode, $barcodeConfig = array())
     {
         if ($barcode instanceof Zend_Barcode_Object_ObjectAbstract) {
             return $barcode;
@@ -207,7 +207,7 @@ class Zend_Barcode
      * @param mixed $rendererConfig     OPTIONAL; an array or Zend_Config object with renderer parameters.
      * @return Zend_Barcode_Renderer
      */
-    public static function makeRenderer($renderer = 'image', $rendererConfig = [])
+    public static function makeRenderer($renderer = 'image', $rendererConfig = array())
     {
         if ($renderer instanceof Zend_Barcode_Renderer_RendererAbstract) {
             return $renderer;
@@ -315,8 +315,8 @@ class Zend_Barcode
     public static function render(
         $barcode,
         $renderer,
-        $barcodeConfig = [],
-        $rendererConfig = []
+        $barcodeConfig = array(),
+        $rendererConfig = array()
     ) {
         self::factory($barcode, $renderer, $barcodeConfig, $rendererConfig)->render();
     }
@@ -333,8 +333,8 @@ class Zend_Barcode
     public static function draw(
         $barcode,
         $renderer,
-        $barcodeConfig = [],
-        $rendererConfig = []
+        $barcodeConfig = array(),
+        $rendererConfig = array()
     ) {
         return self::factory($barcode, $renderer, $barcodeConfig, $rendererConfig)->draw();
     }

@@ -78,11 +78,11 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
     static public function factory($config)
     {
         $config = self::_parseConfig($config);
-        $config = array_merge([
+        $config = array_merge(array(
             'db'        => null,
             'table'     => null,
             'columnMap' => null,
-        ], $config);
+        ), $config);
 
         if (isset($config['columnmap'])) {
             $config['columnMap'] = $config['columnmap'];
@@ -134,7 +134,7 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
         if ($this->_columnMap === null) {
             $dataToInsert = $event;
         } else {
-            $dataToInsert = [];
+            $dataToInsert = array();
             foreach ($this->_columnMap as $columnName => $fieldKey) {
                 if (isset($event[$fieldKey])) {
                     $dataToInsert[$columnName] = $event[$fieldKey];

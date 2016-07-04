@@ -44,7 +44,7 @@ class Zend_TimeSync implements IteratorAggregate
      *
      * @var array
      */
-    protected $_timeservers = [];
+    protected $_timeservers = array();
 
     /**
      * Holds a reference to the timeserver that is currently being used
@@ -58,10 +58,10 @@ class Zend_TimeSync implements IteratorAggregate
      *
      * @var array
      */
-    protected $_allowedSchemes = [
+    protected $_allowedSchemes = array(
         'Ntp',
         'Sntp'
-    ];
+    );
 
     /**
      * Configuration array, set using the constructor or using
@@ -69,9 +69,9 @@ class Zend_TimeSync implements IteratorAggregate
      *
      * @var array
      */
-    public static $options = [
+    public static $options = array(
         'timeout' => 1
-    ];
+    );
 
     /**
      * Zend_TimeSync constructor
@@ -273,10 +273,10 @@ class Zend_TimeSync implements IteratorAggregate
 
         if ($pos = strrpos($adress, ':')) {
             $posbr = strpos($adress, ']');
-            if ($posbr && ($pos > $posbr)) {
+            if ($posbr and ($pos > $posbr)) {
                 $port = substr($adress, $pos + 1);
                 $adress = substr($adress, 0, $pos);
-            } else if (!$posbr && $pos) {
+            } else if (!$posbr and $pos) {
                 $port = substr($adress, $pos + 1);
                 $adress = substr($adress, 0, $pos);
             } else {

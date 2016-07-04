@@ -49,7 +49,7 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
      *
      * keys are integers representing a word size
      */
-    private $_maxDistances = [];
+    private $_maxDistances = array();
 
     /**
      * Base searching term.
@@ -182,15 +182,15 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
      */
     public function rewrite(Zend_Search_Lucene_Interface $index)
     {
-        $this->_matches  = [];
-        $this->_scores   = [];
-        $this->_termKeys = [];
+        $this->_matches  = array();
+        $this->_scores   = array();
+        $this->_termKeys = array();
 
         if ($this->_term->field === null) {
             // Search through all fields
             $fields = $index->getFieldNames(true /* indexed fields list */);
         } else {
-            $fields = [$this->_term->field];
+            $fields = array($this->_term->field);
         }
 
         require_once 'Zend/Search/Lucene/Index/Term.php';
@@ -225,11 +225,11 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
                                        $this->_maxDistances[strlen($target)] :
                                        $this->_calculateMaxDistance($prefixUtf8Length, $termRestLength, strlen($target));
 
-                    if ($termRestLength === 0) {
+                    if ($termRestLength == 0) {
                         // we don't have anything to compare.  That means if we just add
                         // the letters for current term we get the new word
                         $similarity = (($prefixUtf8Length == 0)? 0 : 1 - strlen($target)/$prefixUtf8Length);
-                    } else if (strlen($target) === 0) {
+                    } else if (strlen($target) == 0) {
                         $similarity = (($prefixUtf8Length == 0)? 0 : 1 - $termRestLength/$prefixUtf8Length);
                     } else if ($maxDistance < abs($termRestLength - strlen($target))){
                         //just adding the characters of term to target or vice-versa results in too many edits
@@ -297,39 +297,36 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
             $index->closeTermsStream();
         }
 
-        if (count($this->_matches) === 0) {
+        if (count($this->_matches) == 0) {
             require_once 'Zend/Search/Lucene/Search/Query/Empty.php';
             return new Zend_Search_Lucene_Search_Query_Empty();
-        }
-
-        if (count($this->_matches) === 1) {
+        } else if (count($this->_matches) == 1) {
             require_once 'Zend/Search/Lucene/Search/Query/Term.php';
             return new Zend_Search_Lucene_Search_Query_Term(reset($this->_matches));
-        }
+        } else {
+            require_once 'Zend/Search/Lucene/Search/Query/Boolean.php';
+            $rewrittenQuery = new Zend_Search_Lucene_Search_Query_Boolean();
 
-        require_once 'Zend/Search/Lucene/Search/Query/Boolean.php';
-        $rewrittenQuery = new Zend_Search_Lucene_Search_Query_Boolean();
+            array_multisort($this->_scores,   SORT_DESC, SORT_NUMERIC,
+                            $this->_termKeys, SORT_ASC,  SORT_STRING,
+                            $this->_matches);
 
-        array_multisort($this->_scores,   SORT_DESC, SORT_NUMERIC,
-                        $this->_termKeys, SORT_ASC,  SORT_STRING,
-                        $this->_matches);
+            $termCount = 0;
+            require_once 'Zend/Search/Lucene/Search/Query/Term.php';
+            foreach ($this->_matches as $id => $matchedTerm) {
+                $subquery = new Zend_Search_Lucene_Search_Query_Term($matchedTerm);
+                $subquery->setBoost($this->_scores[$id]);
 
-        $termCount = 0;
+                $rewrittenQuery->addSubquery($subquery);
 
-        require_once 'Zend/Search/Lucene/Search/Query/Term.php';
-        foreach ($this->_matches as $id => $matchedTerm) {
-            $subquery = new Zend_Search_Lucene_Search_Query_Term($matchedTerm);
-            $subquery->setBoost($this->_scores[$id]);
-
-            $rewrittenQuery->addSubquery($subquery);
-
-            $termCount++;
-            if ($termCount >= self::MAX_CLAUSE_COUNT) {
-                break;
+                $termCount++;
+                if ($termCount >= self::MAX_CLAUSE_COUNT) {
+                    break;
+                }
             }
-        }
 
-        return $rewrittenQuery;
+            return $rewrittenQuery;
+        }
     }
 
     /**
@@ -423,7 +420,7 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
      */
     protected function _highlightMatches(Zend_Search_Lucene_Search_Highlighter_Interface $highlighter)
     {
-        $words = [];
+        $words = array();
 
         require_once 'Zend/Search/Lucene/Index/Term.php';
         $prefix           = Zend_Search_Lucene_Index_Term::getPrefix($this->_term->text, $this->_prefixLength);
@@ -452,11 +449,11 @@ class Zend_Search_Lucene_Search_Query_Fuzzy extends Zend_Search_Lucene_Search_Qu
                                    $this->_maxDistances[strlen($target)] :
                                    $this->_calculateMaxDistance($prefixUtf8Length, $termRestLength, strlen($target));
 
-                if ($termRestLength === 0) {
+                if ($termRestLength == 0) {
                     // we don't have anything to compare.  That means if we just add
                     // the letters for current term we get the new word
                     $similarity = (($prefixUtf8Length == 0)? 0 : 1 - strlen($target)/$prefixUtf8Length);
-                } else if (strlen($target) === 0) {
+                } else if (strlen($target) == 0) {
                     $similarity = (($prefixUtf8Length == 0)? 0 : 1 - $termRestLength/$prefixUtf8Length);
                 } else if ($maxDistance < abs($termRestLength - strlen($target))){
                     //just adding the characters of term to target or vice-versa results in too many edits

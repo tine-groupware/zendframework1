@@ -53,17 +53,17 @@ class Zend_Tag_Item implements Zend_Tag_Taggable
      *
      * @var string
      */
-    protected $_params = [];
+    protected $_params = array();
 
     /**
      * Option keys to skip when calling setOptions()
      *
      * @var array
      */
-    protected $_skipOptions = [
+    protected $_skipOptions = array(
         'options',
         'param'
-    ];
+    );
 
     /**
      * Create a new tag according to the options

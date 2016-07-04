@@ -91,7 +91,7 @@ class Zend_Search_Lucene_Search_Query_Insignificant extends Zend_Search_Lucene_S
      */
     public function matchedDocs()
     {
-        return [];
+        return array();
     }
 
     /**
@@ -113,7 +113,7 @@ class Zend_Search_Lucene_Search_Query_Insignificant extends Zend_Search_Lucene_S
      */
     public function getQueryTerms()
     {
-        return [];
+        return array();
     }
 
     /**

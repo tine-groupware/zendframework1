@@ -53,14 +53,14 @@ class Zend_Application
      *
      * @var array
      */
-    protected $_optionKeys = [];
+    protected $_optionKeys = array();
 
     /**
      * Options for Zend_Application
      *
      * @var array
      */
-    protected $_options = [];
+    protected $_options = array();
 
     /**
      * Constructor
@@ -130,7 +130,7 @@ class Zend_Application
     {
         if (!empty($options['config'])) {
             if (is_array($options['config'])) {
-                $_options = [];
+                $_options = array();
                 foreach ($options['config'] as $tmp) {
                     $_options = $this->mergeOptions(
                         $_options, $this->_loadConfig($tmp)

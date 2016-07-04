@@ -201,19 +201,19 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
     /**
      * @var array
      */
-    protected $_dimensions = [];
+    protected $_dimensions = array();
     /**
      * @var array
      */
-    protected $_metrics = [];
+    protected $_metrics = array();
     /**
      * @var array
      */
-    protected $_sort = [];
+    protected $_sort = array();
     /**
      * @var array
      */
-    protected $_filters = [];
+    protected $_filters = array();
     
     /**
      * @param string $id
@@ -312,7 +312,7 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
      */
     public function addFilter($filter)
     {
-        $this->_filters[] = [$filter, true];
+        $this->_filters[] = array($filter, true);
         return $this;
     }
     
@@ -322,7 +322,7 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
      */
     public function addOrFilter($filter)
     {
-        $this->_filters[] = [$filter, false];
+        $this->_filters[] = array($filter, false);
         return $this;
     }
     
@@ -343,7 +343,7 @@ class Zend_Gdata_Analytics_DataQuery extends Zend_Gdata_Query
      */
     public function clearSort()
     {
-        $this->_sort = [];
+        $this->_sort = array();
         return $this;
     }
     

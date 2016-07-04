@@ -35,7 +35,7 @@ abstract class Zend_Service_Ebay_Abstract
     /**
      * @var array
      */
-    protected $_options = [];
+    protected $_options = array();
 
     /**
      * @var mixed
@@ -113,7 +113,7 @@ abstract class Zend_Service_Ebay_Abstract
     public static function optionsToArray($options)
     {
         if (null === $options) {
-            $options = [];
+            $options = array();
         } else if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         }
@@ -192,7 +192,7 @@ abstract class Zend_Service_Ebay_Abstract
     {
         $options  = self::optionsToArray($options);
         ksort($options);
-        $new      = [];
+        $new      = array();
         $runAgain = false;
         foreach ($options as $name => $value) {
             if (is_array($value)) {
@@ -283,7 +283,7 @@ abstract class Zend_Service_Ebay_Abstract
 
             // cast for: Amount, decimal, double, float, MeasureType
             case 'float':
-                $value = (float)(string)$value;
+                $value = floatval((string) $value);
                 break;
 
             // cast for: int, long

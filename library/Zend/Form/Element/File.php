@@ -130,9 +130,9 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
 
         if (!array_key_exists($type, $this->_loaders)) {
             require_once 'Zend/Loader/PluginLoader.php';
-            $loader = new Zend_Loader_PluginLoader([
+            $loader = new Zend_Loader_PluginLoader(array(
                 'Zend_File_Transfer_Adapter' => 'Zend/File/Transfer/Adapter/',
-            ]);
+            ));
             $this->setPluginLoader($loader, self::TRANSFER_ADAPTER);
         }
 
@@ -188,7 +188,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
             throw new Zend_Form_Element_Exception('Invalid adapter specified');
         }
 
-        foreach (['filter', 'validate'] as $type) {
+        foreach (array('filter', 'validate') as $type) {
             $loader = $this->getPluginLoader($type);
             $this->_adapter->setPluginLoader($loader, $type);
         }
@@ -219,7 +219,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      * @param  mixed $options
      * @return Zend_Form_Element_File
      */
-    public function addValidator($validator, $breakChainOnFailure = false, $options = [])
+    public function addValidator($validator, $breakChainOnFailure = false, $options = array())
     {
         $adapter = $this->getTransferAdapter();
         $adapter->addValidator($validator, $breakChainOnFailure, $options, $this->getName());
@@ -280,7 +280,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
         $adapter = $this->getTransferAdapter();
         $validators = $adapter->getValidators($this->getName());
         if ($validators === null) {
-            $validators = [];
+            $validators = array();
         }
 
         return $validators;
@@ -381,7 +381,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
         $filters = $adapter->getFilters($this->getName());
 
         if ($filters === null) {
-            $filters = [];
+            $filters = array();
         }
         return $filters;
     }
@@ -433,9 +433,9 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
         }
 
         if (!$this->isRequired()) {
-            $adapter->setOptions(['ignoreNoFile' => true], $this->getName());
+            $adapter->setOptions(array('ignoreNoFile' => true), $this->getName());
         } else {
-            $adapter->setOptions(['ignoreNoFile' => false], $this->getName());
+            $adapter->setOptions(array('ignoreNoFile' => false), $this->getName());
             if ($this->autoInsertNotEmptyValidator() && !$this->getValidator('NotEmpty')) {
                 $this->addValidator('NotEmpty', true);
             }
@@ -897,7 +897,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
             }
 
             if ($this->isArray() || is_array($value)) {
-                $aggregateMessages = [];
+                $aggregateMessages = array();
                 foreach ($value as $val) {
                     $aggregateMessages[] = str_replace('%value%', $val, $message);
                 }

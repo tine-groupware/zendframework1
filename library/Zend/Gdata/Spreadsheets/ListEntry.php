@@ -50,14 +50,14 @@ class Zend_Gdata_Spreadsheets_ListEntry extends Zend_Gdata_Entry
      * indexed by order added to this entry.
      * @var array
      */
-    protected $_custom = [];
+    protected $_custom = array();
 
     /**
      * List of custom row elements (Zend_Gdata_Spreadsheets_Extension_Custom),
      * indexed by element name.
      * @var array
      */
-    protected $_customByName = [];
+    protected $_customByName = array();
 
     /**
      * Constructs a new Zend_Gdata_Spreadsheets_ListEntry object.
@@ -136,7 +136,7 @@ class Zend_Gdata_Spreadsheets_ListEntry extends Zend_Gdata_Entry
      */
     public function setCustom($custom)
     {
-        $this->_custom = [];
+        $this->_custom = array();
         foreach ($custom as $c) {
             $this->addCustom($c);
         }

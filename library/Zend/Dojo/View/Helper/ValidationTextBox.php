@@ -61,7 +61,7 @@ class Zend_Dojo_View_Helper_ValidationTextBox extends Zend_Dojo_View_Helper_Diji
      * @param  array $attribs HTML attributes
      * @return string
      */
-    public function validationTextBox($id, $value = null, array $params = [], array $attribs = [])
+    public function validationTextBox($id, $value = null, array $params = array(), array $attribs = array())
     {
         return $this->_createFormElement($id, $value, $params, $attribs);
     }

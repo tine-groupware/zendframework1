@@ -47,13 +47,13 @@ class Zend_Oauth_Http_Utility
         Zend_Oauth_Config_ConfigInterface $config,
         array $serviceProviderParams = null
     ) {
-        $params = [
+        $params = array(
             'oauth_consumer_key'     => $config->getConsumerKey(),
             'oauth_nonce'            => $this->generateNonce(),
             'oauth_signature_method' => $config->getSignatureMethod(),
             'oauth_timestamp'        => $this->generateTimestamp(),
             'oauth_version'          => $config->getVersion(),
-        ];
+        );
 
         if ($config->getToken()->getToken() != null) {
             $params['oauth_token'] = $config->getToken()->getToken();
@@ -94,7 +94,7 @@ class Zend_Oauth_Http_Utility
                 }
             }
         }
-        $encodedParams = [];
+        $encodedParams = array();
         foreach ($params as $key => $value) {
             $encodedParams[] = self::urlEncode($key)
                              . '='
@@ -113,9 +113,9 @@ class Zend_Oauth_Http_Utility
      */
     public function toAuthorizationHeader(array $params, $realm = null, $excludeCustomParams = true)
     {
-        $headerValue = [
+        $headerValue = array(
             'OAuth realm="' . $realm . '"',
-        ];
+        );
 
         foreach ($params as $key => $value) {
             if ($excludeCustomParams) {
@@ -167,9 +167,9 @@ class Zend_Oauth_Http_Utility
      */
     public function parseQueryString($query)
     {
-        $params = [];
+        $params = array();
         if (empty($query)) {
-            return [];
+            return array();
         }
 
         // Not remotely perfect but beats parse_str() which converts

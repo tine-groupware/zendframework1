@@ -196,7 +196,7 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
      */
     public function setSubscriberCount($count)
     {
-        $count = (int)$count;
+        $count = intval($count);
         if ($count <= 0) {
             require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
             throw new Zend_Feed_Pubsubhubbub_Exception('Subscriber count must be'
@@ -230,13 +230,10 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
         } elseif (isset($_SERVER['REQUEST_URI'])) {
             $callbackUrl = $_SERVER['REQUEST_URI'];
             $scheme = 'http';
-
-            if ($_SERVER['HTTPS'] === 'on') {
+            if ($_SERVER['HTTPS'] == 'on') {
                 $scheme = 'https';
             }
-
             $schemeAndHttpHost = $scheme . '://' . $this->_getHttpHost();
-
             if (strpos($callbackUrl, $schemeAndHttpHost) === 0) {
                 $callbackUrl = substr($callbackUrl, strlen($schemeAndHttpHost));
             }
@@ -260,21 +257,18 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
             return $_SERVER['HTTP_HOST'];
         }
         $scheme = 'http';
-
         if ($_SERVER['HTTPS'] == 'on') {
             $scheme = 'https';
         }
-
         $name = $_SERVER['SERVER_NAME'];
         $port = $_SERVER['SERVER_PORT'];
-
         if (($scheme == 'http' && $port == 80)
             || ($scheme == 'https' && $port == 443)
         ) {
             return $name;
+        } else {
+            return $name . ':' . $port;
         }
-
-        return $name . ':' . $port;
     }
 
     /**
@@ -310,15 +304,12 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
     protected function _getRawBody()
     {
         $body = file_get_contents('php://input');
-
-        if (strlen(trim($body)) === 0 && isset($GLOBALS['HTTP_RAW_POST_DATA'])) {
+        if (strlen(trim($body)) == 0 && isset($GLOBALS['HTTP_RAW_POST_DATA'])) {
             $body = $GLOBALS['HTTP_RAW_POST_DATA'];
         }
-
         if (strlen(trim($body)) > 0) {
             return $body;
         }
-
         return false;
     }
 }

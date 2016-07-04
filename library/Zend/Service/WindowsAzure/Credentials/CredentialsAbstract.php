@@ -171,7 +171,7 @@ abstract class Zend_Service_WindowsAzure_Credentials_CredentialsAbstract
 	protected function _prepareQueryStringForSigning($value)
 	{
 	    // Return value
-	    $returnValue = [];
+	    $returnValue = array();
 	    
 	    // Prepare query string
 	    $queryParts = $this->_makeArrayOfQueryString($value);
@@ -196,7 +196,7 @@ abstract class Zend_Service_WindowsAzure_Credentials_CredentialsAbstract
 	protected function _makeArrayOfQueryString($value)
 	{
 		// Returnvalue
-		$returnValue = [];
+		$returnValue = array();
 		
 	    // Remove front ?     
    		if (strlen($value) > 0 && strpos($value, '?') === 0) {

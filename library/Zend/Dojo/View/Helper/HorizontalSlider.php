@@ -55,7 +55,7 @@ class Zend_Dojo_View_Helper_HorizontalSlider extends Zend_Dojo_View_Helper_Slide
      * @param  array $attribs HTML attributes
      * @return string
      */
-    public function horizontalSlider($id, $value = null, array $params = [], array $attribs = [])
+    public function horizontalSlider($id, $value = null, array $params = array(), array $attribs = array())
     {
         return $this->prepareSlider($id, $value, $params, $attribs);
     }

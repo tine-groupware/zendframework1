@@ -46,14 +46,13 @@ class Zend_Dojo_View_Helper_CustomDijit extends Zend_Dojo_View_Helper_DijitConta
      * Requires that either the {@link $_defaultDojotype} property is set, or
      * that you pass a value to the "dojoType" key of the $params argument.
      *
-     * @param string $id
-     * @param string $value
-     * @param array $params
-     * @param array $attribs
+     * @param  string $id
+     * @param  string $value
+     * @param  array $params
+     * @param  array $attribs
      * @return string|Zend_Dojo_View_Helper_CustomDijit
-     * @throws Zend_Dojo_View_Exception
      */
-    public function customDijit($id = null, $value = null, array $params = [], array $attribs = [])
+    public function customDijit($id = null, $value = null, array $params = array(), array $attribs = array())
     {
         if (null === $id) {
             return $this;
@@ -64,9 +63,7 @@ class Zend_Dojo_View_Helper_CustomDijit extends Zend_Dojo_View_Helper_DijitConta
         ) {
             require_once 'Zend/Dojo/View/Exception.php';
             throw new Zend_Dojo_View_Exception('No dojoType specified; cannot create dijit');
-        }
-
-        if (array_key_exists('dojoType', $params)) {
+        } elseif (array_key_exists('dojoType', $params)) {
             $this->_dijit  = $params['dojoType'];
             $this->_module = $params['dojoType'];
             unset($params['dojoType']);
@@ -89,22 +86,19 @@ class Zend_Dojo_View_Helper_CustomDijit extends Zend_Dojo_View_Helper_DijitConta
      * Requires that either the {@link $_defaultDojotype} property is set, or
      * that you pass a value to the "dojoType" key of the $params argument.
      *
-     * @param string $id
-     * @param array $params
-     * @param array $attribs
+     * @param  string $id
+     * @param  array $params
+     * @param  array $attribs
      * @return void
-     * @throws Zend_Dojo_View_Exception
      */
-    public function captureStart($id, array $params = [], array $attribs = [])
+    public function captureStart($id, array $params = array(), array $attribs = array())
     {
         if (!array_key_exists('dojoType', $params)
             && (null === $this->_defaultDojoType)
         ) {
             require_once 'Zend/Dojo/View/Exception.php';
             throw new Zend_Dojo_View_Exception('No dojoType specified; cannot create dijit');
-        }
-
-        if (array_key_exists('dojoType', $params)) {
+        } elseif (array_key_exists('dojoType', $params)) {
             $this->_dijit  = $params['dojoType'];
             $this->_module = $params['dojoType'];
             unset($params['dojoType']);

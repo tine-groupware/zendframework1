@@ -61,14 +61,14 @@ class Zend_Captcha_ReCaptcha extends Zend_Captcha_Base
      *
      * @var array
      */
-    protected $_serviceParams = [];
+    protected $_serviceParams = array();
 
     /**
      * Options defined by the service
      *
      * @var array
      */
-    protected $_serviceOptions = [];
+    protected $_serviceOptions = array();
 
     /**#@+
      * Error codes
@@ -82,11 +82,11 @@ class Zend_Captcha_ReCaptcha extends Zend_Captcha_Base
      * Error messages
      * @var array
      */
-    protected $_messageTemplates = [
+    protected $_messageTemplates = array(
         self::MISSING_VALUE => 'Missing captcha fields',
         self::ERR_CAPTCHA   => 'Failed to validate captcha',
         self::BAD_CAPTCHA   => 'Captcha value is wrong: %value%',
-    ];
+    );
 
     /**
      * Retrieve ReCaptcha Private key

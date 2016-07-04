@@ -35,8 +35,8 @@ class Zend_Tool_Project_Context_Repository implements Countable
     protected static $_instance = null;
     protected static $_isInitialized = false;
 
-    protected $_shortContextNames = [];
-    protected $_contexts          = [];
+    protected $_shortContextNames = array();
+    protected $_contexts          = array();
 
     /**
      * Enter description here...
@@ -117,13 +117,13 @@ class Zend_Tool_Project_Context_Repository implements Countable
         }
 
         $this->_shortContextNames[$normalName] = $index;
-        $this->_contexts[$index] = [
+        $this->_contexts[$index] = array(
             'isTopLevel'     => $isTopLevel,
             'isSystem'       => $isSystem,
             'isOverwritable' => $isOverwritable,
             'normalName'     => $normalName,
             'context'        => $context
-            ];
+            );
 
         return $this;
     }

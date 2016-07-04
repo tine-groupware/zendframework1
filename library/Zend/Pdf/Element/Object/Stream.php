@@ -98,16 +98,16 @@ class Zend_Pdf_Element_Object_Stream extends Zend_Pdf_Element_Object
      */
     private function _extractDictionaryData()
     {
-        $dictionaryArray = [];
+        $dictionaryArray = array();
 
-        $dictionaryArray['Filter']      = [];
-        $dictionaryArray['DecodeParms'] = [];
+        $dictionaryArray['Filter']      = array();
+        $dictionaryArray['DecodeParms'] = array();
         if ($this->_dictionary->Filter === null) {
             // Do nothing.
         } else if ($this->_dictionary->Filter->getType() == Zend_Pdf_Element::TYPE_ARRAY) {
             foreach ($this->_dictionary->Filter->items as $id => $filter) {
                 $dictionaryArray['Filter'][$id]      = $filter->value;
-                $dictionaryArray['DecodeParms'][$id] = [];
+                $dictionaryArray['DecodeParms'][$id] = array();
 
                 if ($this->_dictionary->DecodeParms !== null ) {
                     if ($this->_dictionary->DecodeParms->items[$id] !== null &&
@@ -121,7 +121,7 @@ class Zend_Pdf_Element_Object_Stream extends Zend_Pdf_Element_Object
             }
         } else if ($this->_dictionary->Filter->getType() != Zend_Pdf_Element::TYPE_NULL) {
             $dictionaryArray['Filter'][0]      = $this->_dictionary->Filter->value;
-            $dictionaryArray['DecodeParms'][0] = [];
+            $dictionaryArray['DecodeParms'][0] = array();
             if ($this->_dictionary->DecodeParms !== null ) {
                 foreach ($this->_dictionary->DecodeParms->getKeys() as $paramKey) {
                     $dictionaryArray['DecodeParms'][0][$paramKey] =
@@ -134,14 +134,14 @@ class Zend_Pdf_Element_Object_Stream extends Zend_Pdf_Element_Object
             $dictionaryArray['F'] = $this->_dictionary->F->value;
         }
 
-        $dictionaryArray['FFilter']      = [];
-        $dictionaryArray['FDecodeParms'] = [];
+        $dictionaryArray['FFilter']      = array();
+        $dictionaryArray['FDecodeParms'] = array();
         if ($this->_dictionary->FFilter === null) {
             // Do nothing.
         } else if ($this->_dictionary->FFilter->getType() == Zend_Pdf_Element::TYPE_ARRAY) {
             foreach ($this->_dictionary->FFilter->items as $id => $filter) {
                 $dictionaryArray['FFilter'][$id]      = $filter->value;
-                $dictionaryArray['FDecodeParms'][$id] = [];
+                $dictionaryArray['FDecodeParms'][$id] = array();
 
                 if ($this->_dictionary->FDecodeParms !== null ) {
                     if ($this->_dictionary->FDecodeParms->items[$id] !== null &&
@@ -155,7 +155,7 @@ class Zend_Pdf_Element_Object_Stream extends Zend_Pdf_Element_Object
             }
         } else {
             $dictionaryArray['FFilter'][0]      = $this->_dictionary->FFilter->value;
-            $dictionaryArray['FDecodeParms'][0] = [];
+            $dictionaryArray['FDecodeParms'][0] = array();
             if ($this->_dictionary->FDecodeParms !== null ) {
                 foreach ($this->_dictionary->FDecodeParms->getKeys() as $paramKey) {
                     $dictionaryArray['FDecodeParms'][0][$paramKey] =

@@ -85,9 +85,9 @@ class Zend_Tool_Project_Context_Zf_ViewControllerScriptsDirectory extends Zend_T
      */
     public function getPersistentAttributes()
     {
-        return [
+        return array(
             'forControllerName' => $this->_forControllerName
-            ];
+            );
     }
 
     /**

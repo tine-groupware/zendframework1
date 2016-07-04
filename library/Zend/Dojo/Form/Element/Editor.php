@@ -94,7 +94,7 @@ class Zend_Dojo_Form_Element_Editor extends Zend_Dojo_Form_Element_Dijit
     public function getCaptureEvents()
     {
         if (!$this->hasDijitParam('captureEvents')) {
-            return [];
+            return array();
         }
         return $this->getDijitParam('captureEvents');
     }
@@ -193,7 +193,7 @@ class Zend_Dojo_Form_Element_Editor extends Zend_Dojo_Form_Element_Dijit
     public function getEvents()
     {
         if (!$this->hasDijitParam('events')) {
-            return [];
+            return array();
         }
         return $this->getDijitParam('events');
     }
@@ -291,7 +291,7 @@ class Zend_Dojo_Form_Element_Editor extends Zend_Dojo_Form_Element_Dijit
     public function getPlugins()
     {
         if (!$this->hasDijitParam('plugins')) {
-            return [];
+            return array();
         }
         return $this->getDijitParam('plugins');
     }
@@ -483,7 +483,7 @@ class Zend_Dojo_Form_Element_Editor extends Zend_Dojo_Form_Element_Dijit
         } elseif (!empty($stylesheets)) {
             $stylesheets = (array) $stylesheets;
         } else {
-            $stylesheets = [];
+            $stylesheets = array();
         }
         if (!in_array($styleSheet, $stylesheets)) {
             $stylesheets[] = (string) $styleSheet;
@@ -651,7 +651,7 @@ class Zend_Dojo_Form_Element_Editor extends Zend_Dojo_Form_Element_Dijit
     public function getExtraPlugins()
     {
         if (!$this->hasDijitParam('extraPlugins')) {
-            return [];
+            return array();
         }
         return $this->getDijitParam('extraPlugins');
     }

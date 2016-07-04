@@ -71,7 +71,7 @@ class Zend_Controller_Front
      * controllers
      * @var array
      */
-    protected $_invokeParams = [];
+    protected $_invokeParams = array();
 
     /**
      * Subdirectory within a module containing controllers; defaults to 'controllers'
@@ -174,7 +174,7 @@ class Zend_Controller_Front
                     break;
                 case '_controllerDir':
                 case '_invokeParams':
-                    $this->{$name} = [];
+                    $this->{$name} = array();
                     break;
                 case '_plugins':
                     $this->{$name} = new Zend_Controller_Plugin_Broker();
@@ -287,7 +287,7 @@ class Zend_Controller_Front
     {
         try{
             $dir = new DirectoryIterator($path);
-        } catch(Throwable $e) {
+        } catch(Exception $e) {
             require_once 'Zend/Controller/Exception.php';
             throw new Zend_Controller_Exception("Directory $path not readable", 0, $e);
         }
@@ -707,7 +707,7 @@ class Zend_Controller_Front
     public function clearParams($name = null)
     {
         if (null === $name) {
-            $this->_invokeParams = [];
+            $this->_invokeParams = array();
         } elseif (is_string($name) && isset($this->_invokeParams[$name])) {
             unset($this->_invokeParams[$name]);
         } elseif (is_array($name)) {
@@ -848,7 +848,7 @@ class Zend_Controller_Front
         /**
          * Instantiate default request object (HTTP version) if none provided
          */
-        if ($request !== null) {
+        if (null !== $request) {
             $this->setRequest($request);
         } elseif ((null === $request) && (null === ($request = $this->getRequest()))) {
             require_once 'Zend/Controller/Request/Http.php';
@@ -859,7 +859,7 @@ class Zend_Controller_Front
         /**
          * Set base URL of request object, if available
          */
-        if (is_callable([$this->_request, 'setBaseUrl'])) {
+        if (is_callable(array($this->_request, 'setBaseUrl'))) {
             if (null !== $this->_baseUrl) {
                 $this->_request->setBaseUrl($this->_baseUrl);
             }
@@ -868,7 +868,7 @@ class Zend_Controller_Front
         /**
          * Instantiate default response object (HTTP version) if none provided
          */
-        if ($response !== null) {
+        if (null !== $response) {
             $this->setResponse($response);
         } elseif ((null === $this->_response) && (null === ($this->_response = $this->getResponse()))) {
             require_once 'Zend/Controller/Response/Http.php';
@@ -909,7 +909,7 @@ class Zend_Controller_Front
 
             try {
                 $router->route($this->_request);
-            }  catch (Throwable $e) {
+            }  catch (Exception $e) {
                 if ($this->throwExceptions()) {
                     throw $e;
                 }
@@ -952,7 +952,7 @@ class Zend_Controller_Front
                  */
                 try {
                     $dispatcher->dispatch($this->_request, $this->_response);
-                } catch (Throwable $e) {
+                } catch (Exception $e) {
                     if ($this->throwExceptions()) {
                         throw $e;
                     }
@@ -964,7 +964,7 @@ class Zend_Controller_Front
                  */
                 $this->_plugins->postDispatch($this->_request);
             } while (!$this->_request->isDispatched());
-        } catch (Throwable $e) {
+        } catch (Exception $e) {
             if ($this->throwExceptions()) {
                 throw $e;
             }
@@ -977,7 +977,7 @@ class Zend_Controller_Front
          */
         try {
             $this->_plugins->dispatchLoopShutdown();
-        } catch (Throwable $e) {
+        } catch (Exception $e) {
             if ($this->throwExceptions()) {
                 throw $e;
             }

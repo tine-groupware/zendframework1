@@ -45,7 +45,7 @@ class Zend_Service_Rackspace_Servers_SharedIpGroup
      * 
      * @var array 
      */
-    protected $serversId = [];
+    protected $serversId = array();
     /**
      * The service that has created the image object
      *
@@ -144,7 +144,7 @@ class Zend_Service_Rackspace_Servers_SharedIpGroup
      * @param  array $files 
      * @return Zend_Service_Rackspace_Servers_Server|boolean
      */
-    public function createServer(array $data, $metadata=[],$files=[]) 
+    public function createServer(array $data, $metadata=array(),$files=array()) 
     {
         $data['sharedIpGroupId']= (integer) $this->id;
         return $this->service->createServer($data,$metadata,$files);
@@ -156,10 +156,10 @@ class Zend_Service_Rackspace_Servers_SharedIpGroup
      */
     public function toArray()
     {
-        return [
+        return array (
             'name'    => $this->name,
             'id'      => $this->id,
             'servers' => $this->serversId
-        ];
+        );
     }
 }

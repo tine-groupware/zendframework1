@@ -76,7 +76,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
      *
      * @var array
      */
-    protected $_supportedSchemes = ['basic', 'digest'];
+    protected $_supportedSchemes = array('basic', 'digest');
 
     /**
      * List of schemes this class will accept from the client
@@ -119,7 +119,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
      *
      * @var array
      */
-    protected $_supportedAlgos = ['MD5'];
+    protected $_supportedAlgos = array('MD5');
 
     /**
      * The actual algorithm to use. Defaults to MD5
@@ -134,7 +134,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
      *
      * @var array
      */
-    protected $_supportedQops = ['auth'];
+    protected $_supportedQops = array('auth');
 
     /**
      * Whether or not to do Proxy Authentication instead of origin server
@@ -392,8 +392,8 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             $this->_response->setHttpResponseCode(400);
             return new Zend_Auth_Result(
                 Zend_Auth_Result::FAILURE_UNCATEGORIZED,
-                [],
-                ['Client requested an incorrect or unsupported authentication scheme']
+                array(),
+                array('Client requested an incorrect or unsupported authentication scheme')
             );
         }
 
@@ -450,8 +450,8 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         }
         return new Zend_Auth_Result(
             Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID,
-            [],
-            ['Invalid or absent credentials; challenging client']
+            array(),
+            array('Invalid or absent credentials; challenging client')
         );
     }
 
@@ -478,12 +478,14 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
      */
     protected function _digestHeader()
     {
-        return 'Digest realm="' . $this->_realm . '", '
+        $wwwauth = 'Digest realm="' . $this->_realm . '", '
                  . 'domain="' . $this->_domains . '", '
                  . 'nonce="' . $this->_calcNonce() . '", '
                  . ($this->_useOpaque ? 'opaque="' . $this->_calcOpaque() . '", ' : '')
                  . 'algorithm="' . $this->_algo . '", '
                  . 'qop="' . implode(',', $this->_supportedQops) . '"';
+
+        return $wwwauth;
     }
 
     /**
@@ -530,18 +532,17 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         }
         // Fix for ZF-1515: Now re-challenges on empty username or password
         $creds = array_filter(explode(':', $auth));
-        if (count($creds) !== 2) {
+        if (count($creds) != 2) {
             return $this->_challengeClient();
         }
 
         $password = $this->_basicResolver->resolve($creds[0], $this->_realm);
-
         if ($password && $this->_secureStringCompare($password, $creds[1])) {
-            $identity = ['username'=>$creds[0], 'realm'=>$this->_realm];
+            $identity = array('username'=>$creds[0], 'realm'=>$this->_realm);
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $identity);
+        } else {
+            return $this->_challengeClient();
         }
-
-        return $this->_challengeClient();
     }
 
     /**
@@ -573,8 +574,8 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             $this->_response->setHttpResponseCode(400);
             return new Zend_Auth_Result(
                 Zend_Auth_Result::FAILURE_UNCATEGORIZED,
-                [],
-                ['Invalid Authorization header format']
+                array(),
+                array('Invalid Authorization header format')
             );
         }
 
@@ -639,7 +640,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         // If our digest matches the client's let them in, otherwise return
         // a 401 code and exit to prevent access to the protected resource.
         if ($this->_secureStringCompare($digest, $data['response'])) {
-            $identity = ['username'=>$data['username'], 'realm'=>$data['realm']];
+            $identity = array('username'=>$data['username'], 'realm'=>$data['realm']);
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $identity);
         } else {
             return $this->_challengeClient();
@@ -664,10 +665,8 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         // would be surprising if the user just logged in.
         $timeout = ceil(time() / $this->_nonceTimeout) * $this->_nonceTimeout;
 
-        return hash(
-            'md5',
-            $timeout . ':' . $this->_request->getServer('HTTP_USER_AGENT') . ':' . __CLASS__
-        );
+        $nonce = hash('md5', $timeout . ':' . $this->_request->getServer('HTTP_USER_AGENT') . ':' . __CLASS__);
+        return $nonce;
     }
 
     /**
@@ -697,7 +696,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
     protected function _parseDigestAuth($header)
     {
         $temp = null;
-        $data = [];
+        $data = array();
 
         // See ZF-1052. Detect invalid usernames instead of just returning a
         // 400 code.
@@ -861,11 +860,9 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             return false;
         }
         $result = 0;
-
         for ($i = 0; $i < strlen($a); $i++) {
             $result |= ord($a[$i]) ^ ord($b[$i]);
         }
-
         return $result == 0;
     }
 }

@@ -46,7 +46,7 @@ abstract class Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract
      * @param array        $parameters     Parameters for function call
      * @return mixed
      */
-    public abstract function execute($function, $parameters = []);
+    public abstract function execute($function, $parameters = array());
     
     /**
      * Create a Zend_Service_WindowsAzure_RetryPolicy_NoRetry instance

@@ -58,7 +58,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
      *
      * @var array
      */
-    protected $connected_to = [null, null];
+    protected $connected_to = array(null, null);
 
     /**
      * Stream for storing output
@@ -72,13 +72,13 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
      *
      * @var array
      */
-    protected $config = [
+    protected $config = array(
         'persistent'    => false,
         'ssltransport'  => 'ssl',
         'sslcert'       => null,
         'sslpassphrase' => null,
         'sslusecontext' => false
-    ];
+    );
 
     /**
      * Request method - will be set by write() and might be used by read()
@@ -107,7 +107,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
      *
      * @param Zend_Config | array $config
      */
-    public function setConfig($config = [])
+    public function setConfig($config = array())
     {
         if ($config instanceof Zend_Config) {
             $config = $config->toArray();
@@ -236,20 +236,14 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
                     'Unable to Connect to ' . $host . ':' . $port . '. Error #' . $errno . ': ' . $errstr);
             }
 
-            //distinguish between request timeout and connect timeout like in curl adapter
-            // request_timeout defaults to connection timeout to keep backwards compatibility
-            if(!array_key_exists('request_timeout', $this->config)) {
-                $this->config['request_timeout'] = $this->config['timeout'];
-            }
-            
             // Set the stream timeout
-            if (! stream_set_timeout($this->socket, (int) $this->config['request_timeout'])) {
+            if (! stream_set_timeout($this->socket, (int) $this->config['timeout'])) {
                 require_once 'Zend/Http/Client/Adapter/Exception.php';
                 throw new Zend_Http_Client_Adapter_Exception('Unable to set the connection timeout');
             }
 
             // Update connected_to
-            $this->connected_to = [$host, $port];
+            $this->connected_to = array($host, $port);
         }
     }
 
@@ -263,7 +257,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
      * @param string        $body
      * @return string Request as string
      */
-    public function write($method, $uri, $http_ver = '1.1', $headers = [], $body = '')
+    public function write($method, $uri, $http_ver = '1.1', $headers = array(), $body = '')
     {
         // Make sure we're properly connected
         if (! $this->socket) {
@@ -471,10 +465,11 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
                     if ($buff === false || strlen($buff) === 0) {
                         $this->_checkSocketReadTimeout();
                         break;
+                    } else {
+                        $response .= $buff;
                     }
-
-                    $response .= $buff;
                 }
+
             } while (feof($this->socket) === false);
 
             $this->close();
@@ -496,7 +491,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
     {
         if (is_resource($this->socket)) @fclose($this->socket);
         $this->socket = null;
-        $this->connected_to = [null, null];
+        $this->connected_to = array(null, null);
     }
 
     /**

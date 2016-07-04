@@ -137,19 +137,19 @@ class Zend_Service_SqlAzure_Management_Client
 		}
 		
 		// Setup default Zend_Http_Client channel
-		$options = [
+		$options = array(
 		    'adapter'       => 'Zend_Http_Client_Adapter_Socket',
 		    'ssltransport'  => 'ssl',
 			'sslcert'       => $this->_certificatePath,
 			'sslpassphrase' => $this->_certificatePassphrase,
 			'sslusecontext' => true,
-		];
+		);
 		if (function_exists('curl_init')) {
 			// Set cURL options if cURL is used afterwards
-			$options['curloptions'] = [
+			$options['curloptions'] = array(
 					CURLOPT_FOLLOWLOCATION => true,
 					CURLOPT_TIMEOUT => 120,
-			];
+			);
 		}
 		$this->_httpClientChannel = new Zend_Http_Client(null, $options);
 	}
@@ -218,7 +218,7 @@ class Zend_Service_SqlAzure_Management_Client
 		$path = '/',
 		$queryString = '',
 		$httpVerb = Zend_Http_Client::GET,
-		$headers = [],
+		$headers = array(),
 		$rawData = null
 	) {
 	    // Clean path
@@ -228,7 +228,7 @@ class Zend_Service_SqlAzure_Management_Client
 			
 		// Clean headers
 		if (is_null($headers)) {
-		    $headers = [];
+		    $headers = array();
 		}
 		
 		// Ensure cUrl will also work correctly:
@@ -258,8 +258,8 @@ class Zend_Service_SqlAzure_Management_Client
 
 		// Execute request
 		$response = $this->_retryPolicy->execute(
-		    [$this->_httpClientChannel, 'request'],
-		    [$httpVerb]
+		    array($this->_httpClientChannel, 'request'),
+		    array($httpVerb)
 		);
 		
 		// Store request id
@@ -364,7 +364,7 @@ class Zend_Service_SqlAzure_Management_Client
     	
                 $response = $this->_performRequest(self::OP_SERVERS, '',
     		Zend_Http_Client::POST,
-    		['Content-Type' => 'application/xml; charset=utf-8'],
+    		array('Content-Type' => 'application/xml; charset=utf-8'),
     		'<Server xmlns="http://schemas.microsoft.com/sqlazure/2010/12/"><AdministratorLogin>' . $administratorLogin . '</AdministratorLogin><AdministratorLoginPassword>' . $administratorPassword . '</AdministratorLoginPassword><Location>' . $location . '</Location></Server>');
  	
                 if ($response->isSuccessful()) {
@@ -396,15 +396,15 @@ class Zend_Service_SqlAzure_Management_Client
 		$xmlServices = null;
 			
                 if (!$xml->Server) {
-                    return [];
+                    return array();
 		}
 		if (count($xml->Server) > 1) {
     		    $xmlServices = $xml->Server;
     		} else {
-    		    $xmlServices = [$xml->Server];
+    		    $xmlServices = array($xml->Server);
     		}
     		
-		$services = [];
+		$services = array();
 		if (!is_null($xmlServices)) {				
 				
                     for ($i = 0; $i < count($xmlServices); $i++) {
@@ -463,7 +463,7 @@ class Zend_Service_SqlAzure_Management_Client
     	
             $response = $this->_performRequest(self::OP_SERVERS . '/' . $serverName, '?op=ResetPassword',
     		Zend_Http_Client::POST,
-    		['Content-Type' => 'application/xml; charset=utf-8'],
+    		array('Content-Type' => 'application/xml; charset=utf-8'),
     		'<AdministratorLoginPassword xmlns="http://schemas.microsoft.com/sqlazure/2010/12/">' . $administratorPassword . '</AdministratorLoginPassword>');
     		
             if (!$response->isSuccessful()) {
@@ -503,7 +503,7 @@ class Zend_Service_SqlAzure_Management_Client
     	
             $response = $this->_performRequest(self::OP_SERVERS . '/' . $serverName . '/' . self::OP_FIREWALLRULES . '/' . $ruleName, '',
     		Zend_Http_Client::PUT,
-    		['Content-Type' => 'application/xml; charset=utf-8'],
+    		array('Content-Type' => 'application/xml; charset=utf-8'),
     		'<FirewallRule xmlns="http://schemas.microsoft.com/sqlazure/2010/12/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.microsoft.com/sqlazure/2010/12/ FirewallRule.xsd"><StartIpAddress>' . $startIpAddress . '</StartIpAddress><EndIpAddress>' . $endIpAddress . '</EndIpAddress></FirewallRule>');
 
             if ($response->isSuccessful()) {
@@ -540,15 +540,15 @@ class Zend_Service_SqlAzure_Management_Client
 		$xmlServices = null;
 			
     		if (!$xml->FirewallRule) {
-                    return [];
+                    return array();
 		}
 		if (count($xml->FirewallRule) > 1) {
     		    $xmlServices = $xml->FirewallRule;
     		} else {
-    		    $xmlServices = [$xml->FirewallRule];
+    		    $xmlServices = array($xml->FirewallRule);
     		}
     		
-		$services = [];
+		$services = array();
 		if (!is_null($xmlServices)) {				
                     
                     for ($i = 0; $i < count($xmlServices); $i++) {

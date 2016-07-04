@@ -46,7 +46,7 @@ class Zend_Queue_Stomp_Frame
      *
      * @var array
      */
-    protected $_headers = [];
+    protected $_headers = array();
 
     /**
      * The command for the frame
@@ -72,7 +72,7 @@ class Zend_Queue_Stomp_Frame
      */
     public function __construct()
     {
-        $this->setHeaders([]);
+        $this->setHeaders(array());
         $this->setBody(null);
         $this->setCommand(null);
         $this->setAutoContentLength(true);
@@ -323,7 +323,7 @@ class Zend_Queue_Stomp_Frame
             throw new Zend_Queue_Exception('$frame is not a string');
         }
 
-        $headers = [];
+        $headers = array();
         $body    = null;
         $command = false;
         $header  = '';

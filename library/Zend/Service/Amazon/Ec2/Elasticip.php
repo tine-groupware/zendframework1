@@ -44,14 +44,15 @@ class Zend_Service_Amazon_Ec2_Elasticip extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function allocate()
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'AllocateAddress';
 
         $response = $this->sendRequest($params);
 
         $xpath = $response->getXPath();
+        $ip = $xpath->evaluate('string(//ec2:publicIp/text())');
 
-        return $xpath->evaluate('string(//ec2:publicIp/text())');
+        return $ip;
     }
 
     /**
@@ -62,7 +63,7 @@ class Zend_Service_Amazon_Ec2_Elasticip extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function describe($publicIp = null)
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'DescribeAddresses';
 
         if(is_array($publicIp) && !empty($publicIp)) {
@@ -78,9 +79,9 @@ class Zend_Service_Amazon_Ec2_Elasticip extends Zend_Service_Amazon_Ec2_Abstract
         $xpath  = $response->getXPath();
         $nodes  = $xpath->query('//ec2:item');
 
-        $return = [];
+        $return = array();
         foreach ($nodes as $k => $node) {
-            $item = [];
+            $item = array();
             $item['publicIp']  = $xpath->evaluate('string(ec2:publicIp/text())', $node);
             $item['instanceId']   = $xpath->evaluate('string(ec2:instanceId/text())', $node);
 
@@ -99,7 +100,7 @@ class Zend_Service_Amazon_Ec2_Elasticip extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function release($publicIp)
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'ReleaseAddress';
         $params['PublicIp'] = $publicIp;
 
@@ -120,7 +121,7 @@ class Zend_Service_Amazon_Ec2_Elasticip extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function associate($instanceId, $publicIp)
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'AssociateAddress';
         $params['PublicIp'] = $publicIp;
         $params['InstanceId'] = $instanceId;
@@ -142,7 +143,7 @@ class Zend_Service_Amazon_Ec2_Elasticip extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function disassocate($publicIp)
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'DisssociateAddress';
         $params['PublicIp'] = $publicIp;
 

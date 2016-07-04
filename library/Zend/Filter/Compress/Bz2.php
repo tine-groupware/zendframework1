@@ -43,10 +43,10 @@ class Zend_Filter_Compress_Bz2 extends Zend_Filter_Compress_CompressAbstract
      *
      * @var array
      */
-    protected $_options = [
+    protected $_options = array(
         'blocksize' => 4,
         'archive'   => null,
-    ];
+    );
 
     /**
      * Class constructor
@@ -151,8 +151,7 @@ class Zend_Filter_Compress_Bz2 extends Zend_Filter_Compress_CompressAbstract
     public function decompress($content)
     {
         $archive = $this->getArchive();
-        // check $content for NULL bytes or else file_exists will error out
-        if (strpos($content, '/\0/') === false && @file_exists($content)) {
+        if (@file_exists($content)) {
             $archive = $content;
         }
 

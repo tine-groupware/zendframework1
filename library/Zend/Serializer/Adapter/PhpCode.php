@@ -39,7 +39,7 @@ class Zend_Serializer_Adapter_PhpCode extends Zend_Serializer_Adapter_AdapterAbs
      * @param  array $opts
      * @return string
      */
-    public function serialize($value, array $opts = [])
+    public function serialize($value, array $opts = array())
     {
         return var_export($value, true);
     }
@@ -54,7 +54,7 @@ class Zend_Serializer_Adapter_PhpCode extends Zend_Serializer_Adapter_AdapterAbs
      * @return mixed
      * @throws Zend_Serializer_Exception on eval error
      */
-    public function unserialize($code, array $opts = [])
+    public function unserialize($code, array $opts = array())
     {
         $eval = @eval('$ret=' . $code . ';');
         if ($eval === false) {

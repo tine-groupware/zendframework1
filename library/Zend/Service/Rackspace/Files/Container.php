@@ -240,7 +240,7 @@ class Zend_Service_Rackspace_Files_Container
      *
      * @return Zend_Service_Rackspace_Files_Object|bool
      */
-    public function getObject($name, $headers = [])
+    public function getObject($name, $headers = array())
     {
         return $this->service->getObject($this->getName(), $name, $headers);
     }
@@ -254,7 +254,7 @@ class Zend_Service_Rackspace_Files_Container
      *
      * @return bool
      */
-    public function addObject($name, $file, $metadata = [])
+    public function addObject($name, $file, $metadata = array())
     {
         return $this->service->storeObject(
             $this->getName(), $name, $file, $metadata
@@ -285,7 +285,7 @@ class Zend_Service_Rackspace_Files_Container
      * @return bool
      */
     public function copyObject(
-        $obj_source, $container_dest, $obj_dest, $metadata = [],
+        $obj_source, $container_dest, $obj_dest, $metadata = array(),
         $content_type = null
     )
     {
@@ -319,7 +319,7 @@ class Zend_Service_Rackspace_Files_Container
      *
      * @return bool
      */
-    public function setMetadataObject($object, $metadata = [])
+    public function setMetadataObject($object, $metadata = array())
     {
         return $this->service->setMetadataObject(
             $this->getName(), $object, $metadata

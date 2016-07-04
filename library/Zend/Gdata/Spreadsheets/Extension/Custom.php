@@ -61,7 +61,8 @@ class Zend_Gdata_Spreadsheets_Extension_Custom extends Zend_Gdata_Extension
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)
     {
-        return parent::getDOM($doc, $majorVersion, $minorVersion);
+        $element = parent::getDOM($doc, $majorVersion, $minorVersion);
+        return $element;
     }
 
     /**

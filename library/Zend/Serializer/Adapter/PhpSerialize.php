@@ -43,7 +43,7 @@ class Zend_Serializer_Adapter_PhpSerialize extends Zend_Serializer_Adapter_Adapt
      * @param  array|Zend_Config $opts
      * @return void
      */
-    public function __construct($opts = [])
+    public function __construct($opts = array())
     {
         parent::__construct($opts);
 
@@ -60,7 +60,7 @@ class Zend_Serializer_Adapter_PhpSerialize extends Zend_Serializer_Adapter_Adapt
      * @return string
      * @throws Zend_Serializer_Exception On serialize error
      */
-    public function serialize($value, array $opts = [])
+    public function serialize($value, array $opts = array())
     {
         $ret = serialize($value);
         if ($ret === false) {
@@ -80,7 +80,7 @@ class Zend_Serializer_Adapter_PhpSerialize extends Zend_Serializer_Adapter_Adapt
      * @return mixed
      * @throws Zend_Serializer_Exception on unserialize error
      */
-    public function unserialize($serialized, array $opts = [])
+    public function unserialize($serialized, array $opts = array())
     {
         // TODO: @see php.ini directive "unserialize_callback_func"
         $ret = @unserialize($serialized);

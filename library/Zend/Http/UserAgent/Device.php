@@ -42,7 +42,7 @@ interface Zend_Http_UserAgent_Device extends Serializable
      * @param  array $config
      * @return void
      */
-    public function __construct($userAgent = null, array $server = [], array $config = []);
+    public function __construct($userAgent = null, array $server = array(), array $config = array());
 
     /**
      * Attempt to match the user agent

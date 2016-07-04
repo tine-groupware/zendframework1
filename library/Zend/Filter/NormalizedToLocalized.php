@@ -42,11 +42,11 @@ class Zend_Filter_NormalizedToLocalized implements Zend_Filter_Interface
     /**
      * Set options
      */
-    protected $_options = [
+    protected $_options = array(
         'locale'      => null,
         'date_format' => null,
         'precision'   => null
-    ];
+    );
 
     /**
      * Class constructor
@@ -100,13 +100,9 @@ class Zend_Filter_NormalizedToLocalized implements Zend_Filter_Interface
             require_once 'Zend/Date.php';
             $date = new Zend_Date($value, $this->_options['locale']);
             return $date->toString($this->_options['date_format']);
-        }
-
-        if ($this->_options['precision'] === 0) {
+        } else if ($this->_options['precision'] === 0) {
             return Zend_Locale_Format::toInteger($value, $this->_options);
-        }
-
-        if ($this->_options['precision'] === null) {
+        } else if ($this->_options['precision'] === null) {
             return Zend_Locale_Format::toFloat($value, $this->_options);
         }
 

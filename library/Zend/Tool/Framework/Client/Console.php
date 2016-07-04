@@ -74,14 +74,14 @@ class Zend_Tool_Framework_Client_Console
     /**
      * @var array
      */
-    protected $_classesToLoad = [];
+    protected $_classesToLoad = array();
 
     /**
      * main() - This is typically called from zf.php. This method is a
      * self contained main() function.
      *
      */
-    public static function main($options = [])
+    public static function main($options = array())
     {
         $cliClient = new self($options);
         $cliClient->dispatch();
@@ -149,10 +149,10 @@ class Zend_Tool_Framework_Client_Console
         }
 
         // which classes are essential to initializing Zend_Tool_Framework_Client_Console
-        $classesToLoad = [
+        $classesToLoad = array(
             'Zend_Tool_Framework_Client_Console_Manifest',
             'Zend_Tool_Framework_System_Manifest'
-            ];
+            );
 
         if ($this->_classesToLoad) {
             if (is_string($this->_classesToLoad)) {
@@ -170,7 +170,7 @@ class Zend_Tool_Framework_Client_Console
         }
 
         $this->_registry->setLoader(
-            new Zend_Tool_Framework_Loader_BasicLoader(['classesToLoad' => $classesToLoad])
+            new Zend_Tool_Framework_Loader_BasicLoader(array('classesToLoad' => $classesToLoad))
             );
 
         return;
@@ -193,7 +193,7 @@ class Zend_Tool_Framework_Client_Console
         }
 
         $response->addContentDecorator(new Zend_Tool_Framework_Client_Response_ContentDecorator_Separator())
-            ->setDefaultDecoratorOptions(['separator' => true]);
+            ->setDefaultDecoratorOptions(array('separator' => true));
 
         $optParser = new Zend_Tool_Framework_Client_Console_ArgumentParser();
         $optParser->setArguments($_SERVER['argv'])

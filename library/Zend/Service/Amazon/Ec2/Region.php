@@ -46,7 +46,7 @@ class Zend_Service_Amazon_Ec2_Region extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function describe($region = null)
     {
-        $params = [];
+        $params = array();
         $params['Action'] = 'DescribeRegions';
 
         if(is_array($region) && !empty($region)) {
@@ -62,9 +62,9 @@ class Zend_Service_Amazon_Ec2_Region extends Zend_Service_Amazon_Ec2_Abstract
         $xpath  = $response->getXPath();
         $nodes  = $xpath->query('//ec2:item');
 
-        $return = [];
+        $return = array();
         foreach ($nodes as $k => $node) {
-            $item = [];
+            $item = array();
             $item['regionName']   = $xpath->evaluate('string(ec2:regionName/text())', $node);
             $item['regionUrl']  = $xpath->evaluate('string(ec2:regionUrl/text())', $node);
 

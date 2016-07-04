@@ -107,7 +107,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 	 * @return object Queue properties
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function createQueue($queueName = '', $metadata = [])
+	public function createQueue($queueName = '', $metadata = array())
 	{
 		if ($queueName === '') {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -119,7 +119,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 		}
 			
 		// Create metadata headers
-		$headers = [];
+		$headers = array();
 		$headers = array_merge($headers, $this->_generateMetadataHeaders($metadata)); 
 		
 		// Perform request
@@ -143,7 +143,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 	 * @param array  $metadata  Key/value pairs of meta data
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function createQueueIfNotExists($queueName = '', $metadata = [])
+	public function createQueueIfNotExists($queueName = '', $metadata = array())
 	{
 		if (!$this->queueExists($queueName)) {
 			$this->createQueue($queueName, $metadata);
@@ -179,7 +179,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 		        $queueName,
 		        $metadata
 		    );
-		    $queue->ApproximateMessageCount = (int)$response->getHeader('x-ms-approximate-message-count');
+		    $queue->ApproximateMessageCount = intval($response->getHeader('x-ms-approximate-message-count'));
 		    return $queue;
 		} else {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -217,24 +217,22 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 	 * @param array  $metadata       Key/value pairs of meta data
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function setQueueMetadata($queueName = '', $metadata = [])
+	public function setQueueMetadata($queueName = '', $metadata = array())
 	{
 		if ($queueName === '') {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Queue name is not specified.');
 		}
-
 		if (!self::isValidQueueName($queueName)) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 		    throw new Zend_Service_WindowsAzure_Exception('Queue name does not adhere to queue naming conventions. See http://msdn.microsoft.com/en-us/library/dd179349.aspx for more information.');
 		}
-
-		if (count($metadata) === 0) {
+		if (count($metadata) == 0) {
 		    return;
 		}
 		    
 		// Create metadata headers
-		$headers = [];
+		$headers = array();
 		$headers = array_merge($headers, $this->_generateMetadataHeaders($metadata)); 
 		
 		// Perform request
@@ -285,7 +283,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 	public function listQueues($prefix = null, $maxResults = null, $marker = null, $include = null, $currentResultCount = 0)
 	{
 	    // Build query string
-		$queryString = ['comp=list'];
+		$queryString = array('comp=list');
         if (!is_null($prefix)) {
 	        $queryString[] = 'prefix=' . $prefix;
         }
@@ -306,7 +304,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 			$xmlQueues = $this->_parseResponse($response)->Queues->Queue;
 			$xmlMarker = (string)$this->_parseResponse($response)->NextMarker;
 
-			$queues = [];
+			$queues = array();
 			if (!is_null($xmlQueues)) {
 				
 				for ($i = 0; $i < count($xmlQueues); $i++) {
@@ -365,7 +363,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 		}
 		    
 	    // Build query string
-		$queryString = [];
+		$queryString = array();
         if (!is_null($ttl)) {
 	        $queryString[] = 'messagettl=' . $ttl;
         }
@@ -378,7 +376,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 	    $rawData .= '</QueueMessage>';
 	        
 		// Perform request
-		$response = $this->_performRequest($queueName . '/messages', $queryString, Zend_Http_Client::POST, [], false, $rawData);
+		$response = $this->_performRequest($queueName . '/messages', $queryString, Zend_Http_Client::POST, array(), false, $rawData);
 
 		if (!$response->isSuccessful()) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -406,7 +404,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 		    throw new Zend_Service_WindowsAzure_Exception('Queue name does not adhere to queue naming conventions. See http://msdn.microsoft.com/en-us/library/dd179349.aspx for more information.');
 		}
-		if ($numOfMessages < 1 || $numOfMessages > 32 || (int)$numOfMessages != $numOfMessages) {
+		if ($numOfMessages < 1 || $numOfMessages > 32 || intval($numOfMessages) != $numOfMessages) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 		    throw new Zend_Service_WindowsAzure_Exception('Invalid number of messages to retrieve.');
 		}
@@ -416,7 +414,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 		}
 		    
 	    // Build query string
-		$queryString = [];
+		$queryString = array();
     	if ($peek) {
     	    $queryString[] = 'peekonly=true';
     	}
@@ -434,17 +432,17 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 		    // Parse results
 			$result = $this->_parseResponse($response);
 		    if (!$result) {
-		        return [];
+		        return array();
 		    }
 
 		    $xmlMessages = null;
 		    if (count($result->QueueMessage) > 1) {
     		    $xmlMessages = $result->QueueMessage;
     		} else {
-    		    $xmlMessages = [$result->QueueMessage];
+    		    $xmlMessages = array($result->QueueMessage);
     		}
 			
-			$messages = [];
+			$messages = array();
 			for ($i = 0; $i < count($xmlMessages); $i++) {
 				$messages[] = new Zend_Service_WindowsAzure_Storage_QueueMessage(
 					(string)$xmlMessages[$i]->MessageId,
@@ -521,10 +519,9 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 	 * @param Zend_Service_WindowsAzure_Storage_QueueMessage $message Message to delete from queue. A message retrieved using "peekMessages" can NOT be deleted!
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function deleteMessage($queueName, Zend_Service_WindowsAzure_Storage_QueueMessage $message)
+	public function deleteMessage($queueName = '', Zend_Service_WindowsAzure_Storage_QueueMessage $message)
 	{
-
-		if (empty($queueName)) {
+		if ($queueName === '') {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Queue name is not specified.');
 		}

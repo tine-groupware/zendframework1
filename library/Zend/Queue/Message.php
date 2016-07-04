@@ -36,7 +36,7 @@ class Zend_Queue_Message
      *
      * @var array
      */
-    protected $_data = [];
+    protected $_data = array();
 
      /**
      * Connected is true if we have a reference to a live
@@ -67,7 +67,7 @@ class Zend_Queue_Message
      * @param  array $options
      * @throws Zend_Queue_Exception
      */
-    public function __construct(array $options = [])
+    public function __construct(array $options = array())
     {
         if (isset($options['queue'])) {
             if ($options['queue'] instanceof Zend_Queue) {
@@ -151,7 +151,7 @@ class Zend_Queue_Message
      */
     public function __sleep()
     {
-        return ['_queueClass', '_data'];
+        return array('_queueClass', '_data');
     }
 
     /**

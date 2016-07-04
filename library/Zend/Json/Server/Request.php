@@ -57,7 +57,7 @@ class Zend_Json_Server_Request
      * Request parameters
      * @var array
      */
-    protected $_params = [];
+    protected $_params = array();
 
     /**
      * JSON-RPC version of request
@@ -126,7 +126,7 @@ class Zend_Json_Server_Request
      */
     public function setParams(array $params)
     {
-        $this->_params = [];
+        $this->_params = array();
         return $this->addParams($params);
     }
 
@@ -259,9 +259,9 @@ class Zend_Json_Server_Request
      */
     public function toJson()
     {
-        $jsonArray = [
+        $jsonArray = array(
             'method' => $this->getMethod()
-        ];
+        );
         if (null !== ($id = $this->getId())) {
             $jsonArray['id'] = $id;
         }

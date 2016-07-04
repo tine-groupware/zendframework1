@@ -151,7 +151,7 @@ abstract class Zend_Pdf_Element
             require_once 'Zend/Pdf/Element/Boolean.php';
             return new Zend_Pdf_Element_Boolean($input);
         } else if (is_array($input)) {
-            $pdfElementsArray = [];
+            $pdfElementsArray = array();
             $isDictionary = false;
 
             foreach ($input as $key => $value) {

@@ -51,7 +51,7 @@ class Zend_CodeGenerator_Php_Docblock extends Zend_CodeGenerator_Php_Abstract
     /**
      * @var array
      */
-    protected $_tags = [];
+    protected $_tags = array();
 
     /**
      * @var string

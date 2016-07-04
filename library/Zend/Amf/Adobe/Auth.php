@@ -54,7 +54,7 @@ class Zend_Amf_Adobe_Auth extends Zend_Amf_Auth_Abstract
      *
      * @var array
      */
-    protected $_users = [];
+    protected $_users = array();
 
     /**
      * Create auth adapter
@@ -79,8 +79,8 @@ Roles file format:
         foreach($xml->role as $role) {
             $this->_acl->addRole(new Zend_Acl_Role((string)$role["id"]));
             foreach($role->user as $user) {
-                $this->_users[(string)$user["name"]] = ["password" => (string)$user["password"],
-                                                             "role" => (string)$role["id"]];
+                $this->_users[(string)$user["name"]] = array("password" => (string)$user["password"],
+                                                             "role" => (string)$role["id"]);
             }
         }
     }
@@ -116,7 +116,7 @@ Roles file format:
         if(!isset($this->_users[$this->_username])) {
             return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND,
                 null,
-                ['Username not found']
+                array('Username not found')
                 );
         }
 
@@ -124,7 +124,7 @@ Roles file format:
         if($user["password"] != $this->_password) {
             return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID,
                 null,
-                ['Authentication failed']
+                array('Authentication failed')
                 );
         }
 

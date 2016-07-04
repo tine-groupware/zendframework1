@@ -174,13 +174,13 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setTopOffset($value)
     {
-        if (!is_numeric($value) || (int)$value < 0) {
+        if (!is_numeric($value) || intval($value) < 0) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 'Vertical position must be greater than or equals 0'
             );
         }
-        $this->_topOffset = (int)$value;
+        $this->_topOffset = intval($value);
         return $this;
     }
 
@@ -201,13 +201,13 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setLeftOffset($value)
     {
-        if (!is_numeric($value) || (int)$value < 0) {
+        if (!is_numeric($value) || intval($value) < 0) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 'Horizontal position must be greater than or equals 0'
             );
         }
-        $this->_leftOffset = (int)$value;
+        $this->_leftOffset = intval($value);
         return $this;
     }
 
@@ -241,7 +241,7 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setHorizontalPosition($value)
     {
-        if (!in_array($value, ['left' , 'center' , 'right'])) {
+        if (!in_array($value, array('left' , 'center' , 'right'))) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 "Invalid barcode position provided must be 'left', 'center' or 'right'"
@@ -269,7 +269,7 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setVerticalPosition($value)
     {
-        if (!in_array($value, ['top' , 'middle' , 'bottom'])) {
+        if (!in_array($value, array('top' , 'middle' , 'bottom'))) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 "Invalid barcode position provided must be 'top', 'middle' or 'bottom'"
@@ -296,13 +296,13 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setModuleSize($value)
     {
-        if (!is_numeric($value) || (float)$value <= 0) {
+        if (!is_numeric($value) || floatval($value) <= 0) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 'Float size must be greater than 0'
             );
         }
-        $this->_moduleSize = (float)$value;
+        $this->_moduleSize = floatval($value);
         return $this;
     }
 
@@ -393,7 +393,6 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
     protected function _adjustPosition($supportHeight, $supportWidth)
     {
         $barcodeHeight = $this->_barcode->getHeight(true) * $this->_moduleSize;
-
         if ($barcodeHeight != $supportHeight && $this->_topOffset == 0) {
             switch ($this->_verticalPosition) {
                 case 'middle':
@@ -409,9 +408,7 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
                     break;
             }
         }
-
         $barcodeWidth = $this->_barcode->getWidth(true) * $this->_moduleSize;
-
         if ($barcodeWidth != $supportWidth && $this->_leftOffset == 0) {
             switch ($this->_horizontalPosition) {
                 case 'center':
@@ -450,7 +447,7 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
             if ($this->_automaticRenderError && $renderable) {
                 $barcode = Zend_Barcode::makeBarcode(
                     'error',
-                    ['text' => $e->getMessage()]
+                    array('text' => $e->getMessage())
                 );
                 $this->setBarcode($barcode);
                 $this->_resource = null;

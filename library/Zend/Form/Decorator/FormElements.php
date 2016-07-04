@@ -76,10 +76,10 @@ class Zend_Form_Decorator_FormElements extends Zend_Form_Decorator_Abstract
 
         $belongsTo      = ($form instanceof Zend_Form) ? $form->getElementsBelongTo() : null;
         $elementContent = '';
-        $displayGroups  = ($form instanceof Zend_Form) ? $form->getDisplayGroups() : [];
+        $displayGroups  = ($form instanceof Zend_Form) ? $form->getDisplayGroups() : array();
         $separator      = $this->getSeparator();
         $translator     = $form->getTranslator();
-        $items          = [];
+        $items          = array();
         $view           = $form->getView();
         foreach ($form as $item) {
             $item->setView($view);

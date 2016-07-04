@@ -204,15 +204,15 @@ class Zend_Service_WindowsAzure_Storage
 		}
 		
 		// Setup default Zend_Http_Client channel
-		$options = [
+		$options = array(
 			'adapter' => 'Zend_Http_Client_Adapter_Proxy'
-		];
+		);
 		if (function_exists('curl_init')) {
 			// Set cURL options if cURL is used afterwards
-			$options['curloptions'] = [
+			$options['curloptions'] = array(
 					CURLOPT_FOLLOWLOCATION => true,
 					CURLOPT_TIMEOUT => 120,
-			];
+			);
 		}
 		$this->_httpClientChannel = new Zend_Http_Client(null, $options);
 	}
@@ -268,19 +268,19 @@ class Zend_Service_WindowsAzure_Storage
 	    if ($this->_useProxy) {
 	    	$credentials = explode(':', $this->_proxyCredentials);
 	    	
-	    	$this->_httpClientChannel->setConfig([
+	    	$this->_httpClientChannel->setConfig(array(
 				'proxy_host' => $this->_proxyUrl,
 	    		'proxy_port' => $this->_proxyPort,
 	    		'proxy_user' => $credentials[0],
 	    		'proxy_pass' => $credentials[1],
-	    	]);
+	    	));
 	    } else {
-			$this->_httpClientChannel->setConfig([
+			$this->_httpClientChannel->setConfig(array(
 				'proxy_host' => '',
 	    		'proxy_port' => 8080,
 	    		'proxy_user' => '',
 	    		'proxy_pass' => '',
-	    	]);
+	    	));
 	    }
 	}
 	
@@ -348,7 +348,7 @@ class Zend_Service_WindowsAzure_Storage
 		$path = '/',
 		$queryString = '',
 		$httpVerb = Zend_Http_Client::GET,
-		$headers = [],
+		$headers = array(),
 		$forTableStorage = false,
 		$rawData = null,
 		$resourceType = Zend_Service_WindowsAzure_Storage::RESOURCE_UNKNOWN,
@@ -361,7 +361,7 @@ class Zend_Service_WindowsAzure_Storage
 			
 		// Clean headers
 		if (is_null($headers)) {
-		    $headers = [];
+		    $headers = array();
 		}
 		
 		// Ensure cUrl will also work correctly:
@@ -392,10 +392,12 @@ class Zend_Service_WindowsAzure_Storage
 		$this->_httpClientChannel->setRawData($rawData);
 				
 		// Execute request
-        return $this->_retryPolicy->execute(
-		    [$this->_httpClientChannel, 'request'],
-		    [$httpVerb]
+		$response = $this->_retryPolicy->execute(
+		    array($this->_httpClientChannel, 'request'),
+		    array($httpVerb)
 		);
+		
+		return $response;
 	}
 	
 	/** 
@@ -435,15 +437,15 @@ class Zend_Service_WindowsAzure_Storage
 	 * @param array $metadata
 	 * @return HTTP headers containing metadata
 	 */
-	protected function _generateMetadataHeaders($metadata = [])
+	protected function _generateMetadataHeaders($metadata = array())
 	{
 		// Validate
 		if (!is_array($metadata)) {
-			return [];
+			return array();
 		}
 		
 		// Return headers
-		$headers = [];
+		$headers = array();
 		foreach ($metadata as $key => $value) {
 			if (strpos($value, "\r") !== false || strpos($value, "\n") !== false) {
                             require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -466,15 +468,15 @@ class Zend_Service_WindowsAzure_Storage
 	 * @param array $headers HTTP headers containing metadata
 	 * @return array
 	 */
-	protected function _parseMetadataHeaders($headers = [])
+	protected function _parseMetadataHeaders($headers = array())
 	{
 		// Validate
 		if (!is_array($headers)) {
-			return [];
+			return array();
 		}
 		
 		// Return metadata
-		$metadata = [];
+		$metadata = array();
 		foreach ($headers as $key => $value) {
 		    if (substr(strtolower($key), 0, 10) == "x-ms-meta-") {
 		        $metadata[str_replace("x-ms-meta-", '', strtolower($key))] = $value;
@@ -496,7 +498,7 @@ class Zend_Service_WindowsAzure_Storage
 			return get_object_vars($element->Metadata);
 		}
 
-		return [];
+		return array();
 	}
 	
 	/**

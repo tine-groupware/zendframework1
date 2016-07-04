@@ -54,9 +54,9 @@ class Zend_Service_WindowsAzure_Management_HostedServiceInstance
 	 * @param string $label           The label for the hosted service.
 	 * @param array  $deployments     Deployments for the hosted service.
 	 */
-    public function __construct($url, $serviceName, $description = '', $affinityGroup = '', $location = '', $label = '', $deployments = []) 
+    public function __construct($url, $serviceName, $description = '', $affinityGroup = '', $location = '', $label = '', $deployments = array()) 
     {	        
-        $this->_data = [
+        $this->_data = array(
             'url'              => $url,
             'servicename'      => $serviceName,
             'description'      => $description,
@@ -64,6 +64,6 @@ class Zend_Service_WindowsAzure_Management_HostedServiceInstance
             'location'         => $location,
             'label'            => base64_decode($label),
             'deployments'      => $deployments
-        ];
+        );
     }
 }

@@ -48,7 +48,7 @@ abstract class Zend_Feed_Reader_Extension_FeedAbstract
      *
      * @var array
      */
-    protected $_data = [];
+    protected $_data = array();
 
     /**
      * Parsed feed data in the shape of a DOMDocument
@@ -114,7 +114,8 @@ abstract class Zend_Feed_Reader_Extension_FeedAbstract
      */
     public function getEncoding()
     {
-        return $this->getDomDocument()->encoding;
+        $assumed = $this->getDomDocument()->encoding;
+        return $assumed;
     }
 
     /**

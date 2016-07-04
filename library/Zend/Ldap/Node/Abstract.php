@@ -40,11 +40,11 @@ require_once 'Zend/Ldap/Dn.php';
  */
 abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
 {
-    protected static $_systemAttributes=['createtimestamp', 'creatorsname',
+    protected static $_systemAttributes=array('createtimestamp', 'creatorsname',
         'entrycsn', 'entrydn', 'entryuuid', 'hassubordinates', 'modifiersname',
         'modifytimestamp', 'structuralobjectclass', 'subschemasubentry',
         'distinguishedname', 'instancetype', 'name', 'objectcategory', 'objectguid',
-        'usnchanged', 'usncreated', 'whenchanged', 'whencreated'];
+        'usnchanged', 'usncreated', 'whenchanged', 'whencreated');
 
     /**
      * Holds the node's DN.
@@ -101,7 +101,7 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
     public function reload(Zend_Ldap $ldap = null)
     {
         if ($ldap !== null) {
-            $data = $ldap->getEntry($this->_getDn(), ['*', '+'], true);
+            $data = $ldap->getEntry($this->_getDn(), array('*', '+'), true);
             $this->_loadData($data, true);
         }
         return $this;
@@ -129,7 +129,8 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
      */
     public function getDn()
     {
-        return clone $this->_getDn();
+        $dn = clone $this->_getDn();
+        return $dn;
     }
 
     /**
@@ -206,7 +207,7 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
      */
     public function getAttributes($includeSystemAttributes = true)
     {
-        $data = [];
+        $data = array();
         foreach ($this->getData($includeSystemAttributes) as $name => $value) {
             $data[$name] = $this->getAttribute($name, null);
         }
@@ -242,7 +243,7 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
     public function toArray($includeSystemAttributes = true)
     {
         $attributes = $this->getAttributes($includeSystemAttributes);
-        return array_merge(['dn' => $this->getDnString()], $attributes);
+        return array_merge(array('dn' => $this->getDnString()), $attributes);
     }
 
     /**
@@ -269,7 +270,7 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
     public function getData($includeSystemAttributes = true)
     {
         if ($includeSystemAttributes === false) {
-            $data = [];
+            $data = array();
             foreach ($this->_currentData as $key => $value) {
                 if (!in_array($key, self::$_systemAttributes)) {
                     $data[$key] = $value;

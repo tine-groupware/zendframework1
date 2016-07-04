@@ -59,7 +59,7 @@ class Zend_Dojo_View_Helper_SimpleTextarea extends Zend_Dojo_View_Helper_Dijit
      * @param  array $attribs HTML attributes
      * @return string
      */
-    public function simpleTextarea($id, $value = null, array $params = [], array $attribs = [])
+    public function simpleTextarea($id, $value = null, array $params = array(), array $attribs = array())
     {
         if (!array_key_exists('id', $attribs)) {
             $attribs['id']    = $id;
@@ -68,8 +68,10 @@ class Zend_Dojo_View_Helper_SimpleTextarea extends Zend_Dojo_View_Helper_Dijit
 
         $attribs = $this->_prepareDijit($attribs, $params, 'textarea');
 
-        return '<textarea' . $this->_htmlAttribs($attribs) . '>'
+        $html = '<textarea' . $this->_htmlAttribs($attribs) . '>'
               . $this->view->escape($value)
               . "</textarea>\n";
+
+        return $html;
     }
 }

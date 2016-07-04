@@ -66,9 +66,9 @@ abstract class Zend_Application_Module_Bootstrap
         }
 
         if ($application->hasOption('resourceloader')) {
-            $this->setOptions([
+            $this->setOptions(array(
                 'resourceloader' => $application->getOption('resourceloader')
-            ]);
+            ));
         }
         $this->initResourceLoader();
 

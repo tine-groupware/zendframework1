@@ -79,9 +79,9 @@ class Zend_Tool_Project_Context_Zf_TestApplicationModuleDirectory extends Zend_T
      */
     public function getPersistentAttributes()
     {
-        return [
+        return array(
             'forModuleName' => $this->getForModuleName()
-            ];
+            );
     }
 
     /**

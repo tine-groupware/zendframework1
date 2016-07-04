@@ -35,7 +35,7 @@ class Zend_Db_Table_Definition
     /**
      * @var array
      */
-    protected $_tableConfigs = [];
+    protected $_tableConfigs = array();
 
     /**
      * __construct()

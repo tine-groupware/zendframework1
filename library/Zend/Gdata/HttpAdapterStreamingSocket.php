@@ -56,7 +56,7 @@ class Zend_Gdata_HttpAdapterStreamingSocket extends Zend_Http_Client_Adapter_Soc
      * @param string        $body
      * @return string Request as string
      */
-    public function write($method, $uri, $http_ver = '1.1', $headers = [],
+    public function write($method, $uri, $http_ver = '1.1', $headers = array(),
         $body = '')
     {
         // Make sure we're properly connected

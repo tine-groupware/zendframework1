@@ -46,9 +46,9 @@ class Zend_Service_WindowsAzure_Storage_PageRegionInstance
      */
     public function __construct($start = 0, $end = 0) 
     {	        
-        $this->_data = [
+        $this->_data = array(
             'start'        => $start,
             'end'             => $end
-        ];
+        );
     }
 }

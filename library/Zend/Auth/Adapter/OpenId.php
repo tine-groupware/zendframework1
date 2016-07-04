@@ -244,7 +244,7 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
                     return new Zend_Auth_Result(
                         Zend_Auth_Result::FAILURE,
                         $id,
-                        ["Authentication failed", $consumer->getError()]);
+                        array("Authentication failed", $consumer->getError()));
                 }
             } else {
                 if (!$consumer->check($id,
@@ -255,7 +255,7 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
                     return new Zend_Auth_Result(
                         Zend_Auth_Result::FAILURE,
                         $id,
-                        ["Authentication failed", $consumer->getError()]);
+                        array("Authentication failed", $consumer->getError()));
                 }
             }
         } else {
@@ -270,12 +270,12 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
                 return new Zend_Auth_Result(
                     Zend_Auth_Result::SUCCESS,
                     $id,
-                    ["Authentication successful"]);
+                    array("Authentication successful"));
             } else {
                 return new Zend_Auth_Result(
                     Zend_Auth_Result::FAILURE,
                     $id,
-                    ["Authentication failed", $consumer->getError()]);
+                    array("Authentication failed", $consumer->getError()));
             }
         }
     }

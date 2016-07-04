@@ -177,11 +177,11 @@ class Zend_Db_Statement_Db2 extends Zend_Db_Statement
          * Return three-valued array like PDO.  But DB2 does not distinguish
          * between SQLCODE and native RDBMS error code, so repeat the SQLCODE.
          */
-        return [
+        return array(
             $error,
             $error,
             db2_stmt_errormsg()
-        ];
+        );
     }
 
     /**
@@ -214,7 +214,7 @@ class Zend_Db_Statement_Db2 extends Zend_Db_Statement
                 db2_stmt_error());
         }
 
-        $this->_keys = [];
+        $this->_keys = array();
         if ($field_num = $this->columnCount()) {
             for ($i = 0; $i < $field_num; $i++) {
                 $name = db2_field_name($this->_stmt, $i);
@@ -222,7 +222,7 @@ class Zend_Db_Statement_Db2 extends Zend_Db_Statement
             }
         }
 
-        $this->_values = [];
+        $this->_values = array();
         if ($this->_keys) {
             $this->_values = array_fill(0, count($this->_keys), null);
         }
@@ -287,9 +287,10 @@ class Zend_Db_Statement_Db2 extends Zend_Db_Statement
      * @param array  $config OPTIONAL Constructor arguments for the class.
      * @return mixed One object instance of the specified class.
      */
-    public function fetchObject($class = 'stdClass', array $config = [])
+    public function fetchObject($class = 'stdClass', array $config = array())
     {
-        return $this->fetch(Zend_Db::FETCH_OBJ);
+        $obj = $this->fetch(Zend_Db::FETCH_OBJ);
+        return $obj;
     }
 
     /**
@@ -345,7 +346,7 @@ class Zend_Db_Statement_Db2 extends Zend_Db_Statement
     public function fetchAll($style = null, $col = null)
     {
         $data = parent::fetchAll($style, $col);
-        $results = [];
+        $results = array();
         $remove = $this->_adapter->foldCase('ZEND_DB_ROWNUM');
 
         foreach ($data as $row) {

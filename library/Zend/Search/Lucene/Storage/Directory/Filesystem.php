@@ -120,15 +120,15 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
             if (file_exists($path)) {
                 require_once 'Zend/Search/Lucene/Exception.php';
                 throw new Zend_Search_Lucene_Exception('Path exists, but it\'s not a directory');
-            }
-
-            if (!self::mkdirs($path)) {
-                require_once 'Zend/Search/Lucene/Exception.php';
-                throw new Zend_Search_Lucene_Exception("Can't create directory '$path'.");
+            } else {
+                if (!self::mkdirs($path)) {
+                    require_once 'Zend/Search/Lucene/Exception.php';
+                    throw new Zend_Search_Lucene_Exception("Can't create directory '$path'.");
+                }
             }
         }
         $this->_dirPath = $path;
-        $this->_fileHandlers = [];
+        $this->_fileHandlers = array();
     }
 
 
@@ -143,7 +143,7 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
             $fileObject->close();
         }
 
-        $this->_fileHandlers = [];
+        $this->_fileHandlers = array();
     }
 
 
@@ -154,7 +154,7 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
      */
     public function fileList()
     {
-        $result = [];
+        $result = array();
 
         $dirContent = opendir( $this->_dirPath );
         while (($file = readdir($dirContent)) !== false) {
@@ -207,12 +207,15 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
         }
         unset($this->_fileHandlers[$filename]);
 
+        global $php_errormsg;
+        $trackErrors = ini_get('track_errors');
+        ini_set('track_errors', '1');
         if (!@unlink($this->_dirPath . '/' . $filename)) {
-            $err = error_get_last();
-            $phpErrormsg = $err['message'];
+            ini_set('track_errors', $trackErrors);
             require_once 'Zend/Search/Lucene/Exception.php';
-            throw new Zend_Search_Lucene_Exception('Can\'t delete file: ' . $phpErrormsg);
+            throw new Zend_Search_Lucene_Exception('Can\'t delete file: ' . $php_errormsg);
         }
+        ini_set('track_errors', $trackErrors);
     }
 
     /**
@@ -282,6 +285,8 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
      */
     public function renameFile($from, $to)
     {
+        global $php_errormsg;
+
         if (isset($this->_fileHandlers[$from])) {
             $this->_fileHandlers[$from]->close();
         }
@@ -299,13 +304,17 @@ class Zend_Search_Lucene_Storage_Directory_Filesystem extends Zend_Search_Lucene
             }
         }
 
+        $trackErrors = ini_get('track_errors');
+        ini_set('track_errors', '1');
+
         $success = @rename($this->_dirPath . '/' . $from, $this->_dirPath . '/' . $to);
         if (!$success) {
-            $err = error_get_last();
-            $phpErrormsg = $err['message'];
+            ini_set('track_errors', $trackErrors);
             require_once 'Zend/Search/Lucene/Exception.php';
-            throw new Zend_Search_Lucene_Exception($phpErrormsg);
+            throw new Zend_Search_Lucene_Exception($php_errormsg);
         }
+
+        ini_set('track_errors', $trackErrors);
 
         return $success;
     }

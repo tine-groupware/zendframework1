@@ -38,7 +38,7 @@ class Zend_Markup_TokenList implements RecursiveIterator
      *
      * @var array
      */
-    protected $_tokens = [];
+    protected $_tokens = array();
 
     /**
      * Get the current token

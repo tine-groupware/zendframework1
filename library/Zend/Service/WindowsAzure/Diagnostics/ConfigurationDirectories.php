@@ -52,11 +52,11 @@ class Zend_Service_WindowsAzure_Diagnostics_ConfigurationDirectories
 	 */
     public function __construct($bufferQuotaInMB = 0, $scheduledTransferPeriodInMinutes = 0) 
     {	        
-        $this->_data = [
+        $this->_data = array(
             'bufferquotainmb'        			=> $bufferQuotaInMB,
             'scheduledtransferperiodinminutes' 	=> $scheduledTransferPeriodInMinutes,
-        	'subscriptions'						=> []
-        ];
+        	'subscriptions'						=> array()
+        );
     }
     
 	/**

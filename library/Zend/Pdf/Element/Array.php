@@ -170,7 +170,7 @@ class Zend_Pdf_Element_Array extends Zend_Pdf_Element
      */
     public function toPhp()
     {
-        $phpArray = [];
+        $phpArray = array();
 
         foreach ($this->items as $item) {
             $phpArray[] = $item->toPhp();

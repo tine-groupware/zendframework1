@@ -70,12 +70,12 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      *
      * @var array
      */
-    protected $_optionKeys = [];
+    protected $_optionKeys = array();
 
     /**
      * @var array
      */
-    protected $_options = [];
+    protected $_options = array();
 
     /**
      * @var Zend_Loader_PluginLoader_Interface
@@ -85,17 +85,17 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     /**
      * @var array Class-based resource plugins
      */
-    protected $_pluginResources = [];
+    protected $_pluginResources = array();
 
     /**
      * @var array Initializers that have been run
      */
-    protected $_run = [];
+    protected $_run = array();
 
     /**
      * @var array Initializers that have been started but not yet completed (circular dependency detection)
      */
-    protected $_started = [];
+    protected $_started = array();
 
     /**
      * Constructor
@@ -228,7 +228,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
             if (version_compare(PHP_VERSION, '5.2.6') === -1) {
                 $class        = new ReflectionObject($this);
                 $classMethods = $class->getMethods();
-                $methodNames  = [];
+                $methodNames  = array();
 
                 foreach ($classMethods as $method) {
                     $methodNames[] = $method->getName();
@@ -237,7 +237,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
                 $methodNames = get_class_methods($this);
             }
 
-            $this->_classResources = [];
+            $this->_classResources = array();
             foreach ($methodNames as $method) {
                 if (5 < strlen($method) && '_init' === substr($method, 0, 5)) {
                     $this->_classResources[strtolower(substr($method, 5))] = $method;
@@ -327,7 +327,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      * Get a registered plugin resource
      *
      * @param string $resource
-     * @return Zend_Application_Resource_Resource|null
+     * @return Zend_Application_Resource_Resource
      * @throws Zend_Application_Bootstrap_Exception
      */
     public function getPluginResource($resource)
@@ -425,10 +425,10 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     public function getPluginLoader()
     {
         if ($this->_pluginLoader === null) {
-            $options = [
+            $options = array(
                 'Zend_Application_Resource'  => 'Zend/Application/Resource',
                 'ZendX_Application_Resource' => 'ZendX/Application/Resource'
-            ];
+            );
 
             $this->_pluginLoader = new Zend_Loader_PluginLoader($options);
         }

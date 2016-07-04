@@ -83,7 +83,7 @@ class Zend_Db_Profiler
      *
      * @var array
      */
-    protected $_queryProfiles = [];
+    protected $_queryProfiles = array();
 
     /**
      * Stores enabled state of the profiler.  If set to False, calls to
@@ -219,7 +219,7 @@ class Zend_Db_Profiler
      */
     public function clear()
     {
-        $this->_queryProfiles = [];
+        $this->_queryProfiles = array();
 
         return $this;
     }
@@ -382,7 +382,7 @@ class Zend_Db_Profiler
      */
     public function getQueryProfiles($queryType = null, $showUnfinished = false)
     {
-        $queryProfiles = [];
+        $queryProfiles = array();
         foreach ($this->_queryProfiles as $key => $qp) {
             if ($queryType === null) {
                 $condition = true;

@@ -78,7 +78,7 @@ class Zend_Pdf_Color_GrayScale extends Zend_Pdf_Color
      */
     public function getComponents()
     {
-        return [$this->_grayLevel->value];
+        return array($this->_grayLevel->value);
     }
 }
 

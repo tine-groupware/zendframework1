@@ -110,7 +110,7 @@ interface Zend_Db_Statement_Interface
      * @return bool
      * @throws Zend_Db_Statement_Exception
      */
-    public function execute(array $params = []);
+    public function execute(array $params = array());
 
     /**
      * Fetches a row from the result set.
@@ -150,7 +150,7 @@ interface Zend_Db_Statement_Interface
      * @return mixed One object instance of the specified class.
      * @throws Zend_Db_Statement_Exception
      */
-    public function fetchObject($class = 'stdClass', array $config = []);
+    public function fetchObject($class = 'stdClass', array $config = array());
 
     /**
      * Retrieve a statement attribute.

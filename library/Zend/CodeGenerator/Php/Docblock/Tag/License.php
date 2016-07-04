@@ -91,7 +91,8 @@ class Zend_CodeGenerator_Php_Docblock_Tag_License extends Zend_CodeGenerator_Php
      */
     public function generate()
     {
-        return '@license ' . $this->_url . ' ' . $this->_description . self::LINE_FEED;
+        $output = '@license ' . $this->_url . ' ' . $this->_description . self::LINE_FEED;
+        return $output;
     }
 
 }

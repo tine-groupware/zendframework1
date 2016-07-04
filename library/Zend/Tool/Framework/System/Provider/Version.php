@@ -44,7 +44,7 @@ class Zend_Tool_Framework_System_Provider_Version
     const MODE_MINOR = 'minor';
     const MODE_MINI  = 'mini';
 
-    protected $_specialties = ['MajorPart', 'MinorPart', 'MiniPart'];
+    protected $_specialties = array('MajorPart', 'MinorPart', 'MiniPart');
 
     public function setRegistry(Zend_Tool_Framework_Registry_Interface $registry)
     {
@@ -105,7 +105,7 @@ class Zend_Tool_Framework_System_Provider_Version
     protected function _splitVersion()
     {
         list($major, $minor, $mini) = explode('.', Zend_Version::VERSION);
-        return ['major' => $major, 'minor' => $minor, 'mini' => $mini];
+        return array('major' => $major, 'minor' => $minor, 'mini' => $mini);
     }
 
 }

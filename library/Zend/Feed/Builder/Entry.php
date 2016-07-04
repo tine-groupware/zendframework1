@@ -182,8 +182,8 @@ class Zend_Feed_Builder_Entry extends ArrayObject
      */
     public function setSource($title, $url)
     {
-        $this->offsetSet('source', ['title' => $title,
-                                         'url' => $url]);
+        $this->offsetSet('source', array('title' => $title,
+                                         'url' => $url));
         return $this;
     }
 
@@ -229,7 +229,7 @@ class Zend_Feed_Builder_Entry extends ArrayObject
         }
 
         if (!$this->offsetExists('category')) {
-            $categories = [$category];
+            $categories = array($category);
         } else {
             $categories = $this->offsetGet('category');
             $categories[] = $category;
@@ -284,13 +284,13 @@ class Zend_Feed_Builder_Entry extends ArrayObject
     public function addEnclosure($url, $type = '', $length = '')
     {
         if (!$this->offsetExists('enclosure')) {
-            $enclosure = [];
+            $enclosure = array();
         } else {
             $enclosure = $this->offsetGet('enclosure');
         }
-        $enclosure[] = ['url' => $url,
+        $enclosure[] = array('url' => $url,
                              'type' => $type,
-                             'length' => $length];
+                             'length' => $length);
         $this->offsetSet('enclosure', $enclosure);
         return $this;
     }

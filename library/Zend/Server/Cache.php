@@ -32,7 +32,7 @@ class Zend_Server_Cache
     /**
      * @var array Methods to skip when caching server
      */
-    protected static $_skipMethods = [];
+    protected static $_skipMethods = array();
 
     /**
      * Cache a file containing the dispatch list.

@@ -62,9 +62,11 @@ class Zend_View_Helper_FormLabel extends Zend_View_Helper_FormElement
         }
 
         // enabled; display label
-        return '<label'
+        $xhtml = '<label'
                 . $for
                 . $this->_htmlAttribs($attribs)
                 . '>' . $value . '</label>';
+
+        return $xhtml;
     }
 }

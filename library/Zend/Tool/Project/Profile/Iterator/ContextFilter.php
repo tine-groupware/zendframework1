@@ -34,27 +34,27 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     /**
      * @var array
      */
-    protected $_acceptTypes = [];
+    protected $_acceptTypes = array();
 
     /**
      * @var array
      */
-    protected $_denyTypes   = [];
+    protected $_denyTypes   = array();
 
     /**
      * @var array
      */
-    protected $_acceptNames = [];
+    protected $_acceptNames = array();
 
     /**
      * @var array
      */
-    protected $_denyNames   = [];
+    protected $_denyNames   = array();
 
     /**
      * @var array
      */
-    protected $_rawOptions = [];
+    protected $_rawOptions = array();
 
     /**
      * __construct()
@@ -62,7 +62,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
      * @param RecursiveIterator $iterator
      * @param array $options
      */
-    public function __construct(RecursiveIterator $iterator, $options = [])
+    public function __construct(RecursiveIterator $iterator, $options = array())
     {
         parent::__construct($iterator);
         $this->_rawOptions = $options;
@@ -97,7 +97,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     public function setAcceptTypes($acceptTypes)
     {
         if (!is_array($acceptTypes)) {
-            $acceptTypes = [$acceptTypes];
+            $acceptTypes = array($acceptTypes);
         }
 
         $this->_acceptTypes = $acceptTypes;
@@ -113,7 +113,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     public function setDenyTypes($denyTypes)
     {
         if (!is_array($denyTypes)) {
-            $denyTypes = [$denyTypes];
+            $denyTypes = array($denyTypes);
         }
 
         $this->_denyTypes = $denyTypes;
@@ -129,7 +129,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     public function setAcceptNames($acceptNames)
     {
         if (!is_array($acceptNames)) {
-            $acceptNames = [$acceptNames];
+            $acceptNames = array($acceptNames);
         }
 
         foreach ($acceptNames as $n => $v) {
@@ -149,7 +149,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     public function setDenyNames($denyNames)
     {
         if (!is_array($denyNames)) {
-            $denyNames = [$denyNames];
+            $denyNames = array($denyNames);
         }
 
         foreach ($denyNames as $n => $v) {

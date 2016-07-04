@@ -67,9 +67,9 @@ class Zend_Tool_Project_Context_Zf_FormFile extends Zend_Tool_Project_Context_Zf
      */
     public function getPersistentAttributes()
     {
-        return [
+        return array(
             'formName' => $this->getFormName()
-            ];
+            );
     }
 
     /**
@@ -92,22 +92,22 @@ class Zend_Tool_Project_Context_Zf_FormFile extends Zend_Tool_Project_Context_Zf
 
         $className = $this->getFullClassName($this->_formName, 'Form');
 
-        $codeGenFile = new Zend_CodeGenerator_Php_File([
+        $codeGenFile = new Zend_CodeGenerator_Php_File(array(
             'fileName' => $this->getPath(),
-            'classes' => [
-                new Zend_CodeGenerator_Php_Class([
+            'classes' => array(
+                new Zend_CodeGenerator_Php_Class(array(
                     'name' => $className,
                     'extendedClass' => 'Zend_Form',
-                    'methods' => [
-                        new Zend_CodeGenerator_Php_Method([
+                    'methods' => array(
+                        new Zend_CodeGenerator_Php_Method(array(
                             'name' => 'init',
                             'body' => '/* Form Elements & Other Definitions Here ... */',
-                            ])
-                        ]
+                            ))
+                        )
 
-                    ])
-                ]
-            ]);
+                    ))
+                )
+            ));
         return $codeGenFile->generate();
     }
 }

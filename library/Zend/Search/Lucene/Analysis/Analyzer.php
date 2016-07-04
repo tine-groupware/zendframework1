@@ -103,7 +103,7 @@ abstract class Zend_Search_Lucene_Analysis_Analyzer
     {
         $this->setInput($data, $encoding);
 
-        $tokenList = [];
+        $tokenList = array();
         while (($nextToken = $this->nextToken()) !== null) {
             $tokenList[] = $nextToken;
         }

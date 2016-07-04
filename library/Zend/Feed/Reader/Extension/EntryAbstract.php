@@ -32,7 +32,7 @@ abstract class Zend_Feed_Reader_Extension_EntryAbstract
      *
      * @var array
      */
-    protected $_data = [];
+    protected $_data = array();
 
     /**
      * DOM document object
@@ -119,7 +119,8 @@ abstract class Zend_Feed_Reader_Extension_EntryAbstract
      */
     public function getEncoding()
     {
-        return $this->getDomDocument()->encoding;
+        $assumed = $this->getDomDocument()->encoding;
+        return $assumed;
     }
 
     /**

@@ -70,9 +70,9 @@ class Zend_Service_WindowsAzure_Storage_BlobInstance
      * @param boolean $isPrefix        Is Prefix?
      * @param array   $metadata        Key/value pairs of meta data
      */
-    public function __construct($containerName, $name, $snapshotId, $etag, $lastModified, $url = '', $size = 0, $contentType = '', $contentEncoding = '', $contentLanguage = '', $cacheControl = '', $blobType = '', $leaseStatus = '', $isPrefix = false, $metadata = []) 
+    public function __construct($containerName, $name, $snapshotId, $etag, $lastModified, $url = '', $size = 0, $contentType = '', $contentEncoding = '', $contentLanguage = '', $cacheControl = '', $blobType = '', $leaseStatus = '', $isPrefix = false, $metadata = array()) 
     {	        
-        $this->_data = [
+        $this->_data = array(
             'container'        => $containerName,
             'name'             => $name,
         	'snapshotid'	   => $snapshotId,
@@ -88,6 +88,6 @@ class Zend_Service_WindowsAzure_Storage_BlobInstance
             'leasestatus'      => $leaseStatus,
             'isprefix'         => $isPrefix,
             'metadata'         => $metadata
-        ];
+        );
     }
 }

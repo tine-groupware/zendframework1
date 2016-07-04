@@ -179,7 +179,7 @@ class Zend_Search_Lucene_Search_Query_Term extends Zend_Search_Lucene_Search_Que
      */
     public function getQueryTerms()
     {
-        return [$this->_term];
+        return array($this->_term);
     }
 
     /**

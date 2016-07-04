@@ -64,7 +64,7 @@ class Zend_Mail_Transport_File extends Zend_Mail_Transport_Abstract
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
-            $options = [];
+            $options = array();
         }
 
         // Making sure we have some defaults to work with
@@ -72,7 +72,7 @@ class Zend_Mail_Transport_File extends Zend_Mail_Transport_Abstract
             $options['path'] = sys_get_temp_dir();
         }
         if (!isset($options['callback'])) {
-            $options['callback'] = [$this, 'defaultCallback'];
+            $options['callback'] = array($this, 'defaultCallback');
         }
 
         $this->setOptions($options);

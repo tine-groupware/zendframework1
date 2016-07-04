@@ -83,7 +83,7 @@ class Zend_Mail extends Zend_Mime_Message
      * Mail headers
      * @var array
      */
-    protected $_headers = [];
+    protected $_headers = array();
 
     /**
      * Encoding of Mail headers
@@ -101,13 +101,13 @@ class Zend_Mail extends Zend_Mime_Message
      * To: addresses
      * @var array
      */
-    protected $_to = [];
+    protected $_to = array();
 
     /**
      * Array of all recipients
      * @var array
      */
-    protected $_recipients = [];
+    protected $_recipients = array();
 
     /**
      * Reply-To header
@@ -238,11 +238,11 @@ class Zend_Mail extends Zend_Mime_Message
      */
     public function setType($type)
     {
-        $allowed = [
+        $allowed = array(
             Zend_Mime::MULTIPART_ALTERNATIVE,
             Zend_Mime::MULTIPART_MIXED,
             Zend_Mime::MULTIPART_RELATED,
-        ];
+        );
         if (!in_array($type, $allowed)) {
             /**
              * @see Zend_Mail_Exception
@@ -335,10 +335,10 @@ class Zend_Mail extends Zend_Mime_Message
      */
     public function setHeaderEncoding($encoding)
     {
-        $allowed = [
+        $allowed = array(
             Zend_Mime::ENCODING_BASE64,
             Zend_Mime::ENCODING_QUOTEDPRINTABLE
-        ];
+        );
         if (!in_array($encoding, $allowed)) {
             /**
              * @see Zend_Mail_Exception
@@ -527,7 +527,7 @@ class Zend_Mail extends Zend_Mime_Message
         if (isset($this->_headers[$headerName])) {
             $this->_headers[$headerName][] = $value;
         } else {
-            $this->_headers[$headerName] = [$value];
+            $this->_headers[$headerName] = array($value);
         }
 
         if ($append) {
@@ -574,7 +574,7 @@ class Zend_Mail extends Zend_Mime_Message
     public function addTo($email, $name='')
     {
         if (!is_array($email)) {
-            $email = [$name => $email];
+            $email = array($name => $email);
         }
 
         foreach ($email as $n => $recipient) {
@@ -596,7 +596,7 @@ class Zend_Mail extends Zend_Mime_Message
     public function addCc($email, $name='')
     {
         if (!is_array($email)) {
-            $email = [$name => $email];
+            $email = array($name => $email);
         }
 
         foreach ($email as $n => $recipient) {
@@ -615,7 +615,7 @@ class Zend_Mail extends Zend_Mime_Message
     public function addBcc($email)
     {
         if (!is_array($email)) {
-            $email = [$email];
+            $email = array($email);
         }
 
         foreach ($email as $recipient) {
@@ -656,8 +656,8 @@ class Zend_Mail extends Zend_Mime_Message
      */
     public function clearRecipients()
     {
-        $this->_recipients = [];
-        $this->_to = [];
+        $this->_recipients = array();
+        $this->_to = array();
 
         $this->clearHeader('To');
         $this->clearHeader('Cc');
@@ -773,7 +773,7 @@ class Zend_Mail extends Zend_Mime_Message
      */
     public static function setDefaultFrom($email, $name = null)
     {
-        self::$_defaultFrom = ['email' => $email, 'name' => $name];
+        self::$_defaultFrom = array('email' => $email, 'name' => $name);
     }
 
     /**
@@ -824,7 +824,7 @@ class Zend_Mail extends Zend_Mime_Message
      */
     public static function setDefaultReplyTo($email, $name = null)
     {
-        self::$_defaultReplyTo = ['email' => $email, 'name' => $name];
+        self::$_defaultReplyTo = array('email' => $email, 'name' => $name);
     }
 
     /**
@@ -1112,7 +1112,7 @@ class Zend_Mail extends Zend_Mime_Message
 
         $rand = mt_rand();
 
-        if ($this->_recipients !== []) {
+        if ($this->_recipients !== array()) {
             $recipient = array_rand($this->_recipients);
         } else {
             $recipient = 'unknown';
@@ -1138,10 +1138,10 @@ class Zend_Mail extends Zend_Mime_Message
      */
     public function addHeader($name, $value, $append = false)
     {
-        $prohibit = ['to', 'cc', 'bcc', 'from', 'subject',
+        $prohibit = array('to', 'cc', 'bcc', 'from', 'subject',
                           'reply-to', 'return-path',
                           'date', 'message-id',
-                         ];
+                         );
         if (in_array(strtolower($name), $prohibit)) {
             /**
              * @see Zend_Mail_Exception
@@ -1211,14 +1211,14 @@ class Zend_Mail extends Zend_Mime_Message
      */
     protected function _filterEmail($email)
     {
-        $rule = ["\r" => '',
+        $rule = array("\r" => '',
                       "\n" => '',
                       "\t" => '',
                       '"'  => '',
                       ','  => '',
                       '<'  => '',
                       '>'  => '',
-        ];
+        );
 
         return strtr($email, $rule);
     }
@@ -1231,13 +1231,13 @@ class Zend_Mail extends Zend_Mime_Message
      */
     protected function _filterName($name)
     {
-        $rule = ["\r" => '',
+        $rule = array("\r" => '',
                       "\n" => '',
                       "\t" => '',
                       '"'  => "'",
                       '<'  => '[',
                       '>'  => ']',
-        ];
+        );
 
         return trim(strtr($name, $rule));
     }
@@ -1250,10 +1250,10 @@ class Zend_Mail extends Zend_Mime_Message
      */
     protected function _filterOther($data)
     {
-        $rule = ["\r" => '',
+        $rule = array("\r" => '',
                       "\n" => '',
                       "\t" => '',
-        ];
+        );
 
         return strtr($data, $rule);
     }

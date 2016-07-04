@@ -42,10 +42,10 @@ class Zend_View_Helper_FormCheckbox extends Zend_View_Helper_FormElement
      * Default checked/unchecked options
      * @var array
      */
-    protected static $_defaultCheckedOptions = [
+    protected static $_defaultCheckedOptions = array(
         'checkedValue'   => '1',
         'uncheckedValue' => '0'
-    ];
+    );
 
     /**
      * Generates a 'checkbox' element.
@@ -154,11 +154,11 @@ class Zend_View_Helper_FormCheckbox extends Zend_View_Helper_FormElement
             $checkedValue = $value;
         }
 
-        return [
+        return array(
             'checked'        => $checked,
             'checkedString'  => $checkedString,
             'checkedValue'   => $checkedValue,
             'uncheckedValue' => $uncheckedValue,
-        ];
+        );
     }
 }

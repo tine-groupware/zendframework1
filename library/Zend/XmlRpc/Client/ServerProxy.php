@@ -48,7 +48,7 @@ class Zend_XmlRpc_Client_ServerProxy
     /**
      * @var array of Zend_XmlRpc_Client_ServerProxy
      */
-    private $_cache = [];
+    private $_cache = array();
 
 
     /**

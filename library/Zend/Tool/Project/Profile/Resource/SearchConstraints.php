@@ -34,7 +34,7 @@ class Zend_Tool_Project_Profile_Resource_SearchConstraints
     /**
      * @var array
      */
-    protected $_constraints = [];
+    protected $_constraints = array();
 
     /**
      * __construct()
@@ -62,7 +62,7 @@ class Zend_Tool_Project_Profile_Resource_SearchConstraints
             if (is_int($optionName)) {
                 $this->addConstraint($optionValue);
             } elseif (is_string($optionName)) {
-                $this->addConstraint(['name' => $optionName, 'params' => $optionValue]);
+                $this->addConstraint(array('name' => $optionName, 'params' => $optionValue));
             }
         }
 
@@ -79,7 +79,7 @@ class Zend_Tool_Project_Profile_Resource_SearchConstraints
     {
         if (is_string($constraint)) {
             $name   = $constraint;
-            $params = [];
+            $params = array();
         } elseif (is_array($constraint)) {
             $name   = $constraint['name'];
             $params = $constraint['params'];
@@ -110,7 +110,7 @@ class Zend_Tool_Project_Profile_Resource_SearchConstraints
      */
     protected function _makeConstraint($name, $params)
     {
-        $value = ['name' => $name, 'params' => $params];
+        $value = array('name' => $name, 'params' => $params);
         return new ArrayObject($value, ArrayObject::ARRAY_AS_PROPS);
     }
 

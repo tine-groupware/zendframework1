@@ -76,15 +76,15 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * Optional allowed attributes for script tag
      * @var array
      */
-    protected $_optionalAttributes = [
+    protected $_optionalAttributes = array(
         'charset', 'defer', 'language', 'src'
-    ];
+    );
 
     /**
      * Required attributes for script tag
      * @var string
      */
-    protected $_requiredAttributes = ['type'];
+    protected $_requiredAttributes = array('type');
 
     /**
      * Whether or not to format scripts using CDATA; used only if doctype
@@ -119,7 +119,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * @param  string $type Script type and/or array of script attributes
      * @return Zend_View_Helper_HeadScript
      */
-    public function headScript($mode = Zend_View_Helper_HeadScript::FILE, $spec = null, $placement = 'APPEND', array $attrs = [], $type = 'text/javascript')
+    public function headScript($mode = Zend_View_Helper_HeadScript::FILE, $spec = null, $placement = 'APPEND', array $attrs = array(), $type = 'text/javascript')
     {
         if ((null !== $spec) && is_string($spec)) {
             $action    = ucfirst(strtolower($mode));
@@ -147,7 +147,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * @param  string $typeOrAttrs
      * @return void
      */
-    public function captureStart($captureType = Zend_View_Helper_Placeholder_Container_Abstract::APPEND, $type = 'text/javascript', $attrs = [])
+    public function captureStart($captureType = Zend_View_Helper_Placeholder_Container_Abstract::APPEND, $type = 'text/javascript', $attrs = array())
     {
         if ($this->_captureLock) {
             require_once 'Zend/View/Helper/Placeholder/Container/Exception.php';
@@ -221,7 +221,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
             $action  = $matches['action'];
             $mode    = strtolower($matches['mode']);
             $type    = 'text/javascript';
-            $attrs   = [];
+            $attrs   = array();
 
             if ('offsetSet' == $action) {
                 $index = array_shift($args);
@@ -415,35 +415,25 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      */
     public function itemToString($item, $indent, $escapeStart, $escapeEnd)
     {
-        $isHTML5 = $this->view instanceof Zend_View_Abstract && $this->view->doctype()->isHtml5();
         $attrString = '';
         if (!empty($item->attributes)) {
             foreach ($item->attributes as $key => $value) {
                 if ((!$this->arbitraryAttributesAllowed() && !in_array($key, $this->_optionalAttributes))
-                    || in_array($key, ['conditional', 'noescape']))
+                    || in_array($key, array('conditional', 'noescape')))
                 {
                     continue;
                 }
-                if ('defer' === $key && !$isHTML5) {
+                if ('defer' == $key) {
                     $value = 'defer';
                 }
-                if ($isHTML5 && empty($value)) {
-                    $attrString .= sprintf(' %s', $key);
-                } else {
-                    $attrString .= sprintf(' %s="%s"', $key, ($this->_autoEscape) ? $this->_escape($value) : $value);
-                }
+                $attrString .= sprintf(' %s="%s"', $key, ($this->_autoEscape) ? $this->_escape($value) : $value);
             }
         }
 
         $addScriptEscape = !(isset($item->attributes['noescape']) && filter_var($item->attributes['noescape'], FILTER_VALIDATE_BOOLEAN));
 
         $type = ($this->_autoEscape) ? $this->_escape($item->type) : $item->type;
-        if ($isHTML5 && $type === 'text/javascript') {
-            $html  = '<script' . $attrString . '>';
-        } else {
-            $html  = '<script type="' . $type . '"' . $attrString . '>';
-        }
-
+        $html  = '<script type="' . $type . '"' . $attrString . '>';
         if (!empty($item->source)) {
             $html .= PHP_EOL ;
 
@@ -497,7 +487,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
         $escapeStart = ($useCdata) ? '//<![CDATA[' : '//<!--';
         $escapeEnd   = ($useCdata) ? '//]]>'       : '//-->';
 
-        $items = [];
+        $items = array();
         $this->getContainer()->ksort();
         foreach ($this as $item) {
             if (!$this->_isValid($item)) {
@@ -507,7 +497,8 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
             $items[] = $this->itemToString($item, $indent, $escapeStart, $escapeEnd);
         }
 
-        return implode($this->getSeparator(), $items);
+        $return = implode($this->getSeparator(), $items);
+        return $return;
     }
 
     /**

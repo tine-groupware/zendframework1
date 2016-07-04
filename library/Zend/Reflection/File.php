@@ -60,17 +60,17 @@ class Zend_Reflection_File implements Reflector
     /**
      * @var string[]
      */
-    protected $_requiredFiles   = [];
+    protected $_requiredFiles   = array();
 
     /**
      * @var Zend_Reflection_Class[]
      */
-    protected $_classes         = [];
+    protected $_classes         = array();
 
     /**
      * @var Zend_Reflection_Function[]
      */
-    protected $_functions       = [];
+    protected $_functions       = array();
 
     /**
      * @var string
@@ -208,7 +208,7 @@ class Zend_Reflection_File implements Reflector
      */
     public function getClasses($reflectionClass = 'Zend_Reflection_Class')
     {
-        $classes = [];
+        $classes = array();
         foreach ($this->_classes as $class) {
             $instance = new $reflectionClass($class);
             if (!$instance instanceof Zend_Reflection_Class) {
@@ -228,7 +228,7 @@ class Zend_Reflection_File implements Reflector
      */
     public function getFunctions($reflectionClass = 'Zend_Reflection_Function')
     {
-        $functions = [];
+        $functions = array();
         foreach ($this->_functions as $function) {
             $instance = new $reflectionClass($function);
             if (!$instance instanceof Zend_Reflection_Function) {
@@ -355,7 +355,7 @@ class Zend_Reflection_File implements Reflector
                 case T_DOLLAR_OPEN_CURLY_BRACES:
                 case T_CURLY_OPEN:
                     $embeddedVariableTrapped = true;
-                    break;
+                    continue;
 
                 // Name of something
                 case T_STRING:
@@ -366,7 +366,7 @@ class Zend_Reflection_File implements Reflector
                         $this->_classes[] = $value;
                         $classTrapped = false;
                     }
-                    break;
+                    continue;
 
                 // Required file names are T_CONSTANT_ENCAPSED_STRING
                 case T_CONSTANT_ENCAPSED_STRING:
@@ -374,7 +374,7 @@ class Zend_Reflection_File implements Reflector
                         $this->_requiredFiles[] = $value ."\n";
                         $requireTrapped = false;
                     }
-                    break;
+                    continue;
 
                 // Functions
                 case T_FUNCTION:

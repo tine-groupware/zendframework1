@@ -83,13 +83,10 @@ class Zend_Search_Lucene_Index_Term
     {
         $prefixBytes = 0;
         $prefixChars = 0;
-
         while ($prefixBytes < strlen($str)  &&  $prefixChars < $length) {
             $charBytes = 1;
-
             if ((ord($str[$prefixBytes]) & 0xC0) == 0xC0) {
                 $charBytes++;
-
                 if (ord($str[$prefixBytes]) & 0x20 ) {
                     $charBytes++;
                     if (ord($str[$prefixBytes]) & 0x10 ) {

@@ -53,17 +53,17 @@ class Zend_Tool_Framework_Provider_Repository
     /**
      * @var Zend_Tool_Framework_Provider_Interface[]
      */
-    protected $_unprocessedProviders = [];
+    protected $_unprocessedProviders = array();
 
     /**
      * @var Zend_Tool_Framework_Provider_Signature[]
      */
-    protected $_providerSignatures = [];
+    protected $_providerSignatures = array();
 
     /**
      * @var array Array of Zend_Tool_Framework_Provider_Inteface
      */
-    protected $_providers = [];
+    protected $_providers = array();
 
     /**
      * setRegistry()

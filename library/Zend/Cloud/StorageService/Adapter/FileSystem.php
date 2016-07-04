@@ -49,7 +49,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array|Zend_Config $options
      * @return void
      */
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
@@ -75,7 +75,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return false|string
      */
-    public function fetchItem($path, $options = [])
+    public function fetchItem($path, $options = array())
     {
         $filepath = $this->_getFullPath($path);
         $path     = realpath($filepath);
@@ -100,7 +100,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return void
      */
-    public function storeItem($destinationPath, $data, $options = [])
+    public function storeItem($destinationPath, $data, $options = array())
     {
         $path = $this->_getFullPath($destinationPath);
         file_put_contents($path, $data);
@@ -114,7 +114,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return void
      */
-    public function deleteItem($path, $options = [])
+    public function deleteItem($path, $options = array())
     {
         if (!isset($path)) {
             return;
@@ -139,7 +139,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return void
      */
-    public function copyItem($sourcePath, $destinationPath, $options = [])
+    public function copyItem($sourcePath, $destinationPath, $options = array())
     {
         copy($this->_getFullPath($sourcePath), $this->_getFullPath($destinationPath));
     }
@@ -157,7 +157,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return void
      */
-    public function moveItem($sourcePath, $destinationPath, $options = [])
+    public function moveItem($sourcePath, $destinationPath, $options = array())
     {
         rename($this->_getFullPath($sourcePath), $this->_getFullPath($destinationPath));
     }
@@ -194,7 +194,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
         $listing = scandir($this->_getFullPath($path));
 
         // Remove the hidden navigation directories
-        $listing = array_diff($listing, ['.', '..']);
+        $listing = array_diff($listing, array('.', '..'));
 
         return $listing;
     }
@@ -206,7 +206,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return array
      */
-    public function fetchMetadata($path, $options = [])
+    public function fetchMetadata($path, $options = array())
     {
         $fullPath = $this->_getFullPath($path);
         $metadata = null;
@@ -226,7 +226,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return void
      */
-    public function storeMetadata($destinationPath, $metadata, $options = [])
+    public function storeMetadata($destinationPath, $metadata, $options = array())
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('Storing metadata not implemented');

@@ -83,7 +83,7 @@ class Zend_Tool_Project_Context_Zf_LayoutScriptFile extends Zend_Tool_Project_Co
      */
     public function getPersistentAttributes()
     {
-        $attributes = [];
+        $attributes = array();
 
         if ($this->_layoutName) {
             $attributes['layoutName'] = $this->_layoutName;

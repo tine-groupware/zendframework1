@@ -67,10 +67,10 @@ class Zend_Json_Server_Smd
      * Allowed envelope types
      * @var array
      */
-    protected $_envelopeTypes = [
+    protected $_envelopeTypes = array(
         self::ENV_JSONRPC_1,
         self::ENV_JSONRPC_2,
-    ];
+    );
 
     /**
      * Service id
@@ -82,7 +82,7 @@ class Zend_Json_Server_Smd
      * Services offerred
      * @var array
      */
-    protected $_services = [];
+    protected $_services = array();
 
     /**
      * Service target
@@ -100,7 +100,7 @@ class Zend_Json_Server_Smd
      * Allowed transport types
      * @var array
      */
-    protected $_transportTypes = ['POST'];
+    protected $_transportTypes = array('POST');
 
     /**
      * Set object state via options
@@ -337,7 +337,7 @@ class Zend_Json_Server_Smd
      */
     public function setServices(array $services)
     {
-        $this->_services = [];
+        $this->_services = array();
         return $this->addServices($services);
     }
 
@@ -406,7 +406,7 @@ class Zend_Json_Server_Smd
 
         $services = $this->getServices();
         if (!empty($services)) {
-            $service['services'] = [];
+            $service['services'] = array();
             foreach ($services as $name => $svc) {
                 $svc->setEnvelope($envelope);
                 $service['services'][$name] = $svc->toArray();
@@ -432,19 +432,19 @@ class Zend_Json_Server_Smd
 
         $services = $this->getServices();
         if (!empty($services)) {
-            $service['methods'] = [];
+            $service['methods'] = array();
             foreach ($services as $name => $svc) {
-                $method = [
+                $method = array(
                     'name'       => $name,
                     'serviceURL' => $target,
-                ];
-                $params = [];
+                );
+                $params = array();
                 foreach ($svc->getParams() as $param) {
                     $paramName = array_key_exists('name', $param) ? $param['name'] : $param['type'];
-                    $params[] = [
+                    $params[] = array(
                         'name' => $paramName,
                         'type' => $param['type'],
-                    ];
+                    );
                 }
                 if (!empty($params)) {
                     $method['parameters'] = $params;

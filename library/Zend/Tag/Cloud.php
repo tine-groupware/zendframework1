@@ -66,10 +66,10 @@ class Zend_Tag_Cloud
      *
      * @var array
      */
-    protected $_skipOptions = [
+    protected $_skipOptions = array(
         'options',
         'config',
-    ];
+    );
 
     /**
      * Create a new tag cloud with options
@@ -327,7 +327,7 @@ class Zend_Tag_Cloud
             $pathPrefix = 'Zend/Tag/Cloud/Decorator/';
 
             require_once 'Zend/Loader/PluginLoader.php';
-            $this->_pluginLoader = new Zend_Loader_PluginLoader([$prefix => $pathPrefix]);
+            $this->_pluginLoader = new Zend_Loader_PluginLoader(array($prefix => $pathPrefix));
         }
 
         return $this->_pluginLoader;
@@ -385,8 +385,9 @@ class Zend_Tag_Cloud
         }
 
         $tagsResult  = $this->getTagDecorator()->render($tags);
+        $cloudResult = $this->getCloudDecorator()->render($tagsResult);
 
-        return $this->getCloudDecorator()->render($tagsResult);
+        return $cloudResult;
     }
 
     /**
@@ -397,12 +398,12 @@ class Zend_Tag_Cloud
     public function __toString()
     {
         try {
-            return $this->render();
+            $result = $this->render();
+            return $result;
         } catch (Exception $e) {
             $message = "Exception caught by tag cloud: " . $e->getMessage()
                      . "\nStack Trace:\n" . $e->getTraceAsString();
             trigger_error($message, E_USER_WARNING);
-
             return '';
         }
     }

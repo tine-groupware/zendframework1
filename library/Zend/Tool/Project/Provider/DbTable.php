@@ -31,7 +31,7 @@ class Zend_Tool_Project_Provider_DbTable
     implements Zend_Tool_Framework_Provider_Pretendable
 {
 
-    protected $_specialties = ['FromDatabase'];
+    protected $_specialties = array('FromDatabase');
 
     /**
      * @var Zend_Filter
@@ -40,10 +40,10 @@ class Zend_Tool_Project_Provider_DbTable
 
     public static function createResource(Zend_Tool_Project_Profile $profile, $dbTableName, $actualTableName, $moduleName = null)
     {
-        $profileSearchParams = [];
+        $profileSearchParams = array();
 
         if ($moduleName != null && is_string($moduleName)) {
-            $profileSearchParams = ['modulesDirectory', 'moduleDirectory' => ['moduleName' => $moduleName]];
+            $profileSearchParams = array('modulesDirectory', 'moduleDirectory' => array('moduleName' => $moduleName));
         }
 
         $profileSearchParams[] = 'modelsDirectory';
@@ -61,18 +61,17 @@ class Zend_Tool_Project_Provider_DbTable
             $dbTableDirectory = $modelsDirectory->createResource('DbTableDirectory');
         }
 
-        return $dbTableDirectory->createResource(
-            'DbTableFile',
-            ['dbTableName' => $dbTableName, 'actualTableName' => $actualTableName]
-        );
+        $dbTableFile = $dbTableDirectory->createResource('DbTableFile', array('dbTableName' => $dbTableName, 'actualTableName' => $actualTableName));
+
+        return $dbTableFile;
     }
 
     public static function hasResource(Zend_Tool_Project_Profile $profile, $dbTableName, $moduleName = null)
     {
-        $profileSearchParams = [];
+        $profileSearchParams = array();
 
         if ($moduleName != null && is_string($moduleName)) {
-            $profileSearchParams = ['modulesDirectory', 'moduleDirectory' => ['moduleName' => $moduleName]];
+            $profileSearchParams = array('modulesDirectory', 'moduleDirectory' => array('moduleName' => $moduleName));
         }
 
         $profileSearchParams[] = 'modelsDirectory';
@@ -84,7 +83,7 @@ class Zend_Tool_Project_Provider_DbTable
             return false;
         }
 
-        $dbTableFile = $dbTableDirectory->search(['DbTableFile' => ['dbTableName' => $dbTableName]]);
+        $dbTableFile = $dbTableDirectory->search(array('DbTableFile' => array('dbTableName' => $dbTableName)));
 
         return ($dbTableFile instanceof Zend_Tool_Project_Profile_Resource) ? true : false;
     }
@@ -122,7 +121,7 @@ class Zend_Tool_Project_Provider_DbTable
                 'Note: The canonical model name that ' . $tense
                     . ' used with other providers is "' . $name . '";'
                     . ' not "' . $originalName . '" as supplied',
-                ['color' => ['yellow']]
+                array('color' => array('yellow'))
                 );
         }
 
@@ -168,7 +167,7 @@ class Zend_Tool_Project_Provider_DbTable
         /* @var $db Zend_Db_Adapter_Abstract */
         $db = $zendApp->getBootstrap()->getResource('db');
 
-        $tableResources = [];
+        $tableResources = array();
         foreach ($db->listTables() as $actualTableName) {
 
             $dbTableName = $this->_convertTableNameToClassName($actualTableName);
@@ -188,7 +187,7 @@ class Zend_Tool_Project_Provider_DbTable
                 );
         }
 
-        if (count($tableResources) === 0) {
+        if (count($tableResources) == 0) {
             $this->_registry->getResponse()->appendContent('There are no tables in the selected database to write.');
         }
 

@@ -318,7 +318,7 @@ class Zend_Mail_Protocol_Pop3
         }
 
         $result = $this->request('LIST', true);
-        $messages = [];
+        $messages = array();
         $line = strtok($result, "\n");
         while ($line) {
             list($no, $size) = explode(' ', trim($line));
@@ -349,7 +349,7 @@ class Zend_Mail_Protocol_Pop3
         $result = $this->request('UIDL', true);
 
         $result = explode("\n", $result);
-        $messages = [];
+        $messages = array();
         foreach ($result as $line) {
             if (!$line) {
                 continue;
@@ -431,7 +431,8 @@ class Zend_Mail_Protocol_Pop3
      */
     public function retrieve($msgno)
     {
-        return $this->request("RETR $msgno", true);
+        $result = $this->request("RETR $msgno", true);
+        return $result;
     }
 
     /**

@@ -38,11 +38,11 @@ class Zend_Serializer_Adapter_Json extends Zend_Serializer_Adapter_AdapterAbstra
     /**
      * @var array Default options
      */
-    protected $_options = [
+    protected $_options = array(
         'cycleCheck'           => false,
         'enableJsonExprFinder' => false,
         'objectDecodeType'     => Zend_Json::TYPE_ARRAY,
-    ];
+    );
 
     /**
      * Serialize PHP value to JSON
@@ -52,7 +52,7 @@ class Zend_Serializer_Adapter_Json extends Zend_Serializer_Adapter_AdapterAbstra
      * @return string
      * @throws Zend_Serializer_Exception on JSON encoding exception
      */
-    public function serialize($value, array $opts = [])
+    public function serialize($value, array $opts = array())
     {
         $opts = $opts + $this->_options;
 
@@ -71,7 +71,7 @@ class Zend_Serializer_Adapter_Json extends Zend_Serializer_Adapter_AdapterAbstra
      * @param  array $opts
      * @return mixed
      */
-    public function unserialize($json, array $opts = [])
+    public function unserialize($json, array $opts = array())
     {
         $opts = $opts + $this->_options;
 

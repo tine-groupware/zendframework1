@@ -61,7 +61,7 @@ class Zend_Application_Resource_Multidb extends Zend_Application_Resource_Resour
      *
      * @var array
      */
-    protected $_dbs = [];
+    protected $_dbs = array();
 
     /**
      * An instance of the default db, if set

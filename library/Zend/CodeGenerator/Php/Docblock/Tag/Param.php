@@ -118,9 +118,11 @@ class Zend_CodeGenerator_Php_Docblock_Tag_Param extends Zend_CodeGenerator_Php_D
      */
     public function generate()
     {
-        return '@param '
+        $output = '@param '
             . (($this->_datatype  != null) ? $this->_datatype : 'unknown')
             . (($this->_paramName != null) ? ' $' . $this->_paramName : '')
             . (($this->_description != null) ? ' ' . $this->_description : '');
+        return $output;
     }
+
 }

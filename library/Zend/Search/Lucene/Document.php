@@ -43,7 +43,7 @@ class Zend_Search_Lucene_Document
      *
      * @var array
      */
-    protected $_fields = [];
+    protected $_fields = array();
 
     /**
      * Field boost factor

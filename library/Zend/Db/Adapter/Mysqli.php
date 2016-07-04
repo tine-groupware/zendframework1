@@ -63,7 +63,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
      *
      * @var array Associative array of datatypes to values 0, 1, or 2.
      */
-    protected $_numericDataTypes = [
+    protected $_numericDataTypes = array(
         Zend_Db::INT_TYPE    => Zend_Db::INT_TYPE,
         Zend_Db::BIGINT_TYPE => Zend_Db::BIGINT_TYPE,
         Zend_Db::FLOAT_TYPE  => Zend_Db::FLOAT_TYPE,
@@ -80,7 +80,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
         'DOUBLE PRECISION'   => Zend_Db::FLOAT_TYPE,
         'FIXED'              => Zend_Db::FLOAT_TYPE,
         'FLOAT'              => Zend_Db::FLOAT_TYPE
-    ];
+    );
 
     /**
      * @var Zend_Db_Statement_Mysqli
@@ -127,7 +127,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
      */
     public function listTables()
     {
-        $result = [];
+        $result = array();
         // Use mysqli extension API, because SHOW doesn't work
         // well as a prepared statement on MySQL 4.1.
         $sql = 'SHOW TABLES';
@@ -204,9 +204,9 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
             throw new Zend_Db_Adapter_Mysqli_Exception($this->getConnection()->error);
         }
 
-        $desc = [];
+        $desc = array();
 
-        $row_defaults = [
+        $row_defaults = array(
             'Length'          => null,
             'Scale'           => null,
             'Precision'       => null,
@@ -214,7 +214,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
             'Primary'         => false,
             'PrimaryPosition' => null,
             'Identity'        => false
-        ];
+        );
         $i = 1;
         $p = 1;
         foreach ($result as $key => $row) {
@@ -250,7 +250,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
                 }
                 ++$p;
             }
-            $desc[$this->foldCase($row['Field'])] = [
+            $desc[$this->foldCase($row['Field'])] = array(
                 'SCHEMA_NAME'      => null, // @todo
                 'TABLE_NAME'       => $this->foldCase($tableName),
                 'COLUMN_NAME'      => $this->foldCase($row['Field']),
@@ -265,7 +265,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
                 'PRIMARY'          => $row['Primary'],
                 'PRIMARY_POSITION' => $row['PrimaryPosition'],
                 'IDENTITY'         => $row['Identity']
-            ];
+            );
             ++$i;
         }
         return $desc;
@@ -496,7 +496,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
      */
     public function limit($sql, $count, $offset = 0)
     {
-        $count = (int)$count;
+        $count = intval($count);
         if ($count <= 0) {
             /**
              * @see Zend_Db_Adapter_Mysqli_Exception
@@ -505,7 +505,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
             throw new Zend_Db_Adapter_Mysqli_Exception("LIMIT argument count=$count is not valid");
         }
 
-        $offset = (int)$offset;
+        $offset = intval($offset);
         if ($offset < 0) {
             /**
              * @see Zend_Db_Adapter_Mysqli_Exception

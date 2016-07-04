@@ -38,13 +38,13 @@ abstract class Zend_Dojo_View_Helper_DijitContainer extends Zend_Dojo_View_Helpe
      * Capture locks
      * @var array
      */
-    protected $_captureLock = [];
+    protected $_captureLock = array();
 
     /**
      * Metadata information to use with captured content
      * @var array
      */
-    protected $_captureInfo = [];
+    protected $_captureInfo = array();
 
     /**
      * Begin capturing content for layout container
@@ -54,7 +54,7 @@ abstract class Zend_Dojo_View_Helper_DijitContainer extends Zend_Dojo_View_Helpe
      * @param  array $attribs
      * @return void
      */
-    public function captureStart($id, array $params = [], array $attribs = [])
+    public function captureStart($id, array $params = array(), array $attribs = array())
     {
         if (array_key_exists($id, $this->_captureLock)) {
             require_once 'Zend/Dojo/View/Exception.php';
@@ -62,10 +62,10 @@ abstract class Zend_Dojo_View_Helper_DijitContainer extends Zend_Dojo_View_Helpe
         }
 
         $this->_captureLock[$id] = true;
-        $this->_captureInfo[$id] = [
+        $this->_captureInfo[$id] = array(
             'params'  => $params,
             'attribs' => $attribs,
-        ];
+        );
 
         ob_start();
         return;

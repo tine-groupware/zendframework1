@@ -35,25 +35,25 @@ abstract class Zend_Controller_Response_Abstract
      * Body content
      * @var array
      */
-    protected $_body = [];
+    protected $_body = array();
 
     /**
      * Exception stack
-     * @var Throwable[]
+     * @var Exception
      */
-    protected $_exceptions = [];
+    protected $_exceptions = array();
 
     /**
      * Array of headers. Each header is an array with keys 'name' and 'value'
      * @var array
      */
-    protected $_headers = [];
+    protected $_headers = array();
 
     /**
      * Array of raw headers. Each header is a single string, the entire header to emit
      * @var array
      */
-    protected $_headersRaw = [];
+    protected $_headersRaw = array();
 
     /**
      * HTTP response code to use in headers
@@ -93,7 +93,7 @@ abstract class Zend_Controller_Response_Abstract
      */
     protected function _normalizeHeader($name)
     {
-        $filtered = str_replace(['-', '_'], ' ', (string) $name);
+        $filtered = str_replace(array('-', '_'), ' ', (string) $name);
         $filtered = ucwords(strtolower($filtered));
         $filtered = str_replace(' ', '-', $filtered);
         return $filtered;
@@ -124,11 +124,11 @@ abstract class Zend_Controller_Response_Abstract
             }
         }
 
-        $this->_headers[] = [
+        $this->_headers[] = array(
             'name'    => $name,
             'value'   => $value,
             'replace' => $replace
-        ];
+        );
 
         return $this;
     }
@@ -179,7 +179,7 @@ abstract class Zend_Controller_Response_Abstract
      */
     public function clearHeaders()
     {
-        $this->_headers = [];
+        $this->_headers = array();
 
         return $this;
     }
@@ -240,7 +240,7 @@ abstract class Zend_Controller_Response_Abstract
      */
     public function clearRawHeaders()
     {
-        $this->_headersRaw = [];
+        $this->_headersRaw = array();
         return $this;
     }
 
@@ -388,7 +388,7 @@ abstract class Zend_Controller_Response_Abstract
     public function setBody($content, $name = null)
     {
         if ((null === $name) || !is_string($name)) {
-            $this->_body = ['default' => (string) $content];
+            $this->_body = array('default' => (string) $content);
         } else {
             $this->_body[$name] = (string) $content;
         }
@@ -442,7 +442,7 @@ abstract class Zend_Controller_Response_Abstract
             return false;
         }
 
-        $this->_body = [];
+        $this->_body = array();
         return true;
     }
 
@@ -517,7 +517,7 @@ abstract class Zend_Controller_Response_Abstract
             unset($this->_body[$name]);
         }
 
-        $new = [$name => (string) $content];
+        $new = array($name => (string) $content);
         $this->_body = $new + $this->_body;
 
         return $this;
@@ -553,7 +553,7 @@ abstract class Zend_Controller_Response_Abstract
             return $this->append($name, $content);
         }
 
-        $ins  = [$name => (string) $content];
+        $ins  = array($name => (string) $content);
         $keys = array_keys($this->_body);
         $loc  = array_search($parent, $keys);
         if (!$before) {
@@ -591,10 +591,10 @@ abstract class Zend_Controller_Response_Abstract
     /**
      * Register an exception with the response
      *
-     * @param Throwable $e
+     * @param Exception $e
      * @return Zend_Controller_Response_Abstract
      */
-    public function setException(Throwable $e)
+    public function setException(Exception $e)
     {
         $this->_exceptions[] = $e;
         return $this;
@@ -680,7 +680,7 @@ abstract class Zend_Controller_Response_Abstract
      */
     public function getExceptionByType($type)
     {
-        $exceptions = [];
+        $exceptions = array();
         foreach ($this->_exceptions as $e) {
             if ($e instanceof $type) {
                 $exceptions[] = $e;
@@ -702,7 +702,7 @@ abstract class Zend_Controller_Response_Abstract
      */
     public function getExceptionByMessage($message)
     {
-        $exceptions = [];
+        $exceptions = array();
         foreach ($this->_exceptions as $e) {
             if ($message == $e->getMessage()) {
                 $exceptions[] = $e;
@@ -725,7 +725,7 @@ abstract class Zend_Controller_Response_Abstract
     public function getExceptionByCode($code)
     {
         $code       = (int) $code;
-        $exceptions = [];
+        $exceptions = array();
         foreach ($this->_exceptions as $e) {
             if ($code == $e->getCode()) {
                 $exceptions[] = $e;

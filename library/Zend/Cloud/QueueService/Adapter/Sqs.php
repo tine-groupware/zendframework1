@@ -57,7 +57,7 @@ class Zend_Cloud_QueueService_Adapter_Sqs
      * @param  array|Zend_Config $options
      * @return void
      */
-    public function __construct($options = [])
+    public function __construct($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
@@ -152,7 +152,7 @@ class Zend_Cloud_QueueService_Adapter_Sqs
             if(is_array($attributes)) {
                 return $attributes;
             } else {
-                return ['All' => $this->_sqs->getAttribute($queueId, 'All')];
+                return array('All' => $this->_sqs->getAttribute($queueId, 'All'));
             }
         } catch(Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_QueueService_Exception('Error on fetching queue metadata: '.$e->getMessage(), $e->getCode(), $e);
@@ -222,7 +222,7 @@ class Zend_Cloud_QueueService_Adapter_Sqs
     {
         $messageClass = $this->getMessageClass();
         $setClass     = $this->getMessageSetClass();
-        $result = [];
+        $result = array();
         foreach($messages as $message) {
             $result[] = new $messageClass($message['body'], $message);
         }

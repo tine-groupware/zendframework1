@@ -114,7 +114,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
      */
     protected function _assembleKey()
     {
-        $parts = [$this->_consumerSecret];
+        $parts = array($this->_consumerSecret);
         if ($this->_tokenSecret !== null) {
             $parts[] = $this->_tokenSecret;
         }
@@ -134,12 +134,12 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
      */
     protected function _getBaseSignatureString(array $params, $method = null, $url = null)
     {
-        $encodedParams = [];
+        $encodedParams = array();
         foreach ($params as $key => $value) {
             $encodedParams[Zend_Oauth_Http_Utility::urlEncode($key)] =
                 Zend_Oauth_Http_Utility::urlEncode($value);
         }
-        $baseStrings = [];
+        $baseStrings = array();
         if (isset($method)) {
             $baseStrings[] = strtoupper($method);
         }
@@ -166,7 +166,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
      */
     protected function _toByteValueOrderedQueryString(array $params)
     {
-        $return = [];
+        $return = array();
         uksort($params, 'strnatcmp');
         foreach ($params as $key => $value) {
             if (is_array($value)) {

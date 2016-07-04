@@ -41,7 +41,7 @@ class Zend_Service_Rackspace_Files_ContainerList implements Countable, Iterator,
     /**
      * @var array Array of Zend_Service_Rackspace_Files_Container
      */
-    protected $objects = [];
+    protected $objects = array();
     /**
      * @var int Iterator key
      */
@@ -56,7 +56,7 @@ class Zend_Service_Rackspace_Files_ContainerList implements Countable, Iterator,
      * @param  array $list
      * @return boolean
      */
-    public function __construct($service,$list = [])
+    public function __construct($service,$list = array())
     {
         if (!($service instanceof Zend_Service_Rackspace_Files ) || !is_array($list)) {
             require_once 'Zend/Service/Rackspace/Files/Exception.php';

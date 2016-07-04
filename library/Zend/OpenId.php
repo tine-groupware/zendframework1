@@ -338,11 +338,11 @@ class Zend_OpenId
         }
 
         // RFC 3986,6.2.3.  Scheme-Based Normalization
-        if ($scheme === 'http') {
+        if ($scheme == 'http') {
             if ($port == 80) {
                 $port = '';
             }
-        } else if ($scheme === 'https') {
+        } else if ($scheme == 'https') {
             if ($port == 443) {
                 $port = '';
             }
@@ -580,29 +580,22 @@ class Zend_OpenId
     {
         if (extension_loaded('gmp')) {
             $s = gmp_strval($bn, 16);
-
             if (strlen($s) % 2 != 0) {
                 $s = '0' . $s;
             } else if ($s[0] > '7') {
                 $s = '00' . $s;
             }
             return pack("H*", $s);
-        }
-
-        if (extension_loaded('bcmath')) {
+        } else if (extension_loaded('bcmath')) {
             $cmp = bccomp($bn, 0);
-
-            if ($cmp === 0) {
+            if ($cmp == 0) {
                 return "\0";
-            }
-
-            if ($cmp < 0) {
+            } else if ($cmp < 0) {
                 require_once "Zend/OpenId/Exception.php";
                 throw new Zend_OpenId_Exception(
                     'Big integer arithmetic error',
                     Zend_OpenId_Exception::ERROR_LONG_MATH);
             }
-
             $bin = "";
             while (bccomp($bn, 0) > 0) {
                 $bin = chr(bcmod($bn, 256)) . $bin;
@@ -613,7 +606,6 @@ class Zend_OpenId
             }
             return $bin;
         }
-
         require_once "Zend/OpenId/Exception.php";
         throw new Zend_OpenId_Exception(
             'The system doesn\'t have proper big integer extension',
@@ -635,14 +627,14 @@ class Zend_OpenId
     static public function createDhKey($p, $g, $priv_key = null)
     {
         if (function_exists('openssl_dh_compute_key')) {
-            $dh_details = [
+            $dh_details = array(
                     'p' => $p,
                     'g' => $g
-                ];
+                );
             if ($priv_key !== null) {
                 $dh_details['priv_key'] = $priv_key;
             }
-            return openssl_pkey_new(['dh'=>$dh_details]);
+            return openssl_pkey_new(array('dh'=>$dh_details));
         } else {
             $bn_p        = self::binToBigNum($p);
             $bn_g        = self::binToBigNum($g);
@@ -657,16 +649,16 @@ class Zend_OpenId
             }
             $pub_key     = self::bigNumToBin($bn_pub_key);
 
-            return [
+            return array(
                 'p'        => $bn_p,
                 'g'        => $bn_g,
                 'priv_key' => $bn_priv_key,
                 'pub_key'  => $bn_pub_key,
-                'details'  => [
+                'details'  => array(
                     'p'        => $p,
                     'g'        => $g,
                     'priv_key' => $priv_key,
-                    'pub_key'  => $pub_key]];
+                    'pub_key'  => $pub_key));
         }
     }
 

@@ -39,7 +39,7 @@ class Zend_Test_DbStatement implements Zend_Db_Statement_Interface
     /**
      * @var array
      */
-    protected $_fetchStack = [];
+    protected $_fetchStack = array();
 
     /**
      * @var int
@@ -62,7 +62,7 @@ class Zend_Test_DbStatement implements Zend_Db_Statement_Interface
      * @param array $rows
      * @return Zend_Test_DbStatement
      */
-    static public function createSelectStatement(array $rows=[])
+    static public function createSelectStatement(array $rows=array())
     {
         $stmt = new Zend_Test_DbStatement();
         foreach($rows AS $row) {
@@ -246,7 +246,7 @@ class Zend_Test_DbStatement implements Zend_Db_Statement_Interface
      * @return bool
      * @throws Zend_Db_Statement_Exception
      */
-    public function execute(array $params = [])
+    public function execute(array $params = array())
     {
         if($this->_queryProfile !== null) {
             $this->_queryProfile->bindParams($params);
@@ -266,11 +266,12 @@ class Zend_Test_DbStatement implements Zend_Db_Statement_Interface
      */
     public function fetch($style = null, $cursor = null, $offset = null)
     {
-        if (count($this->_fetchStack)) {
-            return array_shift($this->_fetchStack);
+        if(count($this->_fetchStack)) {
+            $row = array_shift($this->_fetchStack);
+            return $row;
+        } else {
+            return false;
         }
-
-        return false;
     }
 
     /**
@@ -284,7 +285,7 @@ class Zend_Test_DbStatement implements Zend_Db_Statement_Interface
     public function fetchAll($style = null, $col = null)
     {
         $rows = $this->_fetchStack;
-        $this->_fetchStack = [];
+        $this->_fetchStack = array();
 
         return $rows;
     }
@@ -323,7 +324,7 @@ class Zend_Test_DbStatement implements Zend_Db_Statement_Interface
      * @return mixed One object instance of the specified class.
      * @throws Zend_Db_Statement_Exception
      */
-    public function fetchObject($class = 'stdClass', array $config = [])
+    public function fetchObject($class = 'stdClass', array $config = array())
     {
         if(!class_exists($class)) {
             throw new Zend_Db_Statement_Exception("Class '".$class."' does not exist!");

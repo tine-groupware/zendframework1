@@ -55,7 +55,7 @@ abstract class Zend_TimeSync_Protocol
      *
      * @var array
      */
-    protected $_info = [];
+    protected $_info = array();
 
     /**
      * Abstract method that prepares the data to send to the timeserver
@@ -142,6 +142,7 @@ abstract class Zend_TimeSync_Protocol
         $this->_write($this->_prepare());
         $timestamp = $this->_extract($this->_read());
 
-        return new Zend_Date($this, null, $locale);
+        $date = new Zend_Date($this, null, $locale);
+        return $date;
     }
 }

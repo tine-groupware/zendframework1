@@ -56,7 +56,7 @@ class Zend_Tool_Framework_System_Provider_Manifest
         $manifestRepository = $this->_registry->getManifestRepository();
         $response           = $this->_registry->getResponse();
 
-        $metadataTree = [];
+        $metadataTree = array();
 
         $longestAttrNameLen = 50;
 
@@ -73,15 +73,15 @@ class Zend_Tool_Framework_System_Provider_Manifest
             }
 
             if (!array_key_exists($metadataType, $metadataTree)) {
-                $metadataTree[$metadataType] = [];
+                $metadataTree[$metadataType] = array();
             }
 
             if (!array_key_exists($metadataName, $metadataTree[$metadataType])) {
-                $metadataTree[$metadataType][$metadataName] = [];
+                $metadataTree[$metadataType][$metadataName] = array();
             }
 
             if (!array_key_exists($metadataAttrs, $metadataTree[$metadataType][$metadataName])) {
-                $metadataTree[$metadataType][$metadataName][$metadataAttrs] = [];
+                $metadataTree[$metadataType][$metadataName][$metadataAttrs] = array();
             }
 
             $longestAttrNameLen = (strlen($metadataAttrs) > $longestAttrNameLen) ? strlen($metadataAttrs) : $longestAttrNameLen;

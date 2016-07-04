@@ -81,7 +81,7 @@ class Zend_Dom_Query
      * XPath namespaces
      * @var array
      */
-    protected $_xpathNamespaces = [];
+    protected $_xpathNamespaces = array();
 
     /**
      * Constructor

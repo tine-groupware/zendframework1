@@ -61,14 +61,14 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      *
      * @var array
      */
-    protected static $_namespaceLocks = [];
+    protected static $_namespaceLocks = array();
 
     /**
      * Single instance namespace array to ensure data security.
      *
      * @var array
      */
-    protected static $_singleInstances = [];
+    protected static $_singleInstances = array();
 
     /**
      * resetSingleInstance()
@@ -85,7 +85,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
             return;
         }
 
-        self::$_singleInstances = [];
+        self::$_singleInstances = array();
         return;
     }
 
@@ -242,7 +242,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      */
     public static function unlockAll()
     {
-        self::$_namespaceLocks = [];
+        self::$_namespaceLocks = array();
     }
 
 
@@ -450,7 +450,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
         } else {
 
             if (is_string($variables)) {
-                $variables = [$variables];
+                $variables = array($variables);
             }
 
             foreach ($variables as $variable) {
@@ -502,7 +502,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
         } else {
 
             if (is_string($variables)) {
-                $variables = [$variables];
+                $variables = array($variables);
             }
 
             foreach ($variables as $variable) {

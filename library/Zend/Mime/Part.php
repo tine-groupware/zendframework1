@@ -352,7 +352,7 @@ class Zend_Mime_Part
      */
     public function getHeadersArray($EOL = Zend_Mime::LINEEND)
     {
-        $headers = [];
+        $headers = array();
 
         $contentType = $this->type;
         if ($this->charset) {
@@ -364,23 +364,23 @@ class Zend_Mime_Part
                             . " boundary=\"" . $this->boundary . '"';
         }
 
-        $headers[] = [
+        $headers[] = array(
             'Content-Type',
             $contentType
-        ];
+        );
 
         if ($this->encoding) {
-            $headers[] = [
+            $headers[] = array(
                 'Content-Transfer-Encoding',
                 $this->encoding
-            ];
+            );
         }
 
         if ($this->id) {
-            $headers[] = [
+            $headers[] = array(
                 'Content-ID',
                 '<' . $this->id . '>'
-            ];
+            );
         }
 
         if ($this->disposition) {
@@ -388,31 +388,31 @@ class Zend_Mime_Part
             if ($this->filename) {
                 $disposition .= '; filename="' . $this->filename . '"';
             }
-            $headers[] = [
+            $headers[] = array(
                 'Content-Disposition',
                 $disposition
-            ];
+            );
         }
 
         if ($this->description) {
-            $headers[] = [
+            $headers[] = array(
                 'Content-Description',
                 $this->description
-            ];
+            );
         }
 
         if ($this->location) {
-            $headers[] = [
+            $headers[] = array(
                 'Content-Location',
                 $this->location
-            ];
+            );
         }
 
         if ($this->language) {
-            $headers[] = [
+            $headers[] = array(
                 'Content-Language',
                 $this->language
-            ];
+            );
         }
 
         return $headers;

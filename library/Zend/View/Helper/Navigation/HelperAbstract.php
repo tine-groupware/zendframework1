@@ -609,10 +609,10 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * @return mixed                      returns what the container returns
      * @throws Zend_Navigation_Exception  if method does not exist in container
      */
-    public function __call($method, array $arguments = [])
+    public function __call($method, array $arguments = array())
     {
         return call_user_func_array(
-                [$this->getContainer(), $method],
+                array($this->getContainer(), $method),
                 $arguments);
     }
 
@@ -706,9 +706,9 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
         }
 
         if ($found) {
-            return ['page' => $found, 'depth' => $foundDepth];
+            return array('page' => $found, 'depth' => $foundDepth);
         } else {
-            return [];
+            return array();
         }
     }
 
@@ -783,13 +783,13 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
 
         // get attribs for anchor element
         $attribs = array_merge(
-            [
+            array(
                 'id'     => $page->getId(),
                 'title'  => $title,
                 'class'  => $page->getClass(),
                 'href'   => $page->getHref(),
                 'target' => $page->getTarget()
-            ],
+            ),
             $page->getCustomHtmlAttribs()
         );
 

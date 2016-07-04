@@ -42,7 +42,7 @@ class Zend_Mail_Message_File extends Zend_Mail_Part_File implements Zend_Mail_Me
      * flags for this message
      * @var array
      */
-    protected $_flags = [];
+    protected $_flags = array();
 
     /**
      * Public constructor

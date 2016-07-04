@@ -150,13 +150,13 @@ class Zend_Search_Lucene_Search_Query_Range extends Zend_Search_Lucene_Search_Qu
      */
     public function rewrite(Zend_Search_Lucene_Interface $index)
     {
-        $this->_matches = [];
+        $this->_matches = array();
 
         if ($this->_field === null) {
             // Search through all fields
             $fields = $index->getFieldNames(true /* indexed fields list */);
         } else {
-            $fields = [$this->_field];
+            $fields = array($this->_field);
         }
 
         require_once 'Zend/Search/Lucene.php';
@@ -218,24 +218,22 @@ class Zend_Search_Lucene_Search_Query_Range extends Zend_Search_Lucene_Search_Qu
             $index->closeTermsStream();
         }
 
-        if (count($this->_matches) === 0) {
+        if (count($this->_matches) == 0) {
             require_once 'Zend/Search/Lucene/Search/Query/Empty.php';
             return new Zend_Search_Lucene_Search_Query_Empty();
-        }
-
-        if (count($this->_matches) === 1) {
+        } else if (count($this->_matches) == 1) {
             require_once 'Zend/Search/Lucene/Search/Query/Term.php';
             return new Zend_Search_Lucene_Search_Query_Term(reset($this->_matches));
+        } else {
+            require_once 'Zend/Search/Lucene/Search/Query/MultiTerm.php';
+            $rewrittenQuery = new Zend_Search_Lucene_Search_Query_MultiTerm();
+
+            foreach ($this->_matches as $matchedTerm) {
+                $rewrittenQuery->addTerm($matchedTerm);
+            }
+
+            return $rewrittenQuery;
         }
-
-        require_once 'Zend/Search/Lucene/Search/Query/MultiTerm.php';
-        $rewrittenQuery = new Zend_Search_Lucene_Search_Query_MultiTerm();
-
-        foreach ($this->_matches as $matchedTerm) {
-            $rewrittenQuery->addTerm($matchedTerm);
-        }
-
-        return $rewrittenQuery;
     }
 
     /**
@@ -329,7 +327,7 @@ class Zend_Search_Lucene_Search_Query_Range extends Zend_Search_Lucene_Search_Qu
      */
     protected function _highlightMatches(Zend_Search_Lucene_Search_Highlighter_Interface $highlighter)
     {
-        $words = [];
+        $words = array();
 
         $docBody = $highlighter->getDocument()->getFieldUtf8Value('body');
         require_once 'Zend/Search/Lucene/Analysis/Analyzer.php';

@@ -225,7 +225,6 @@ class Zend_Session_SaveHandler_DbTable
      * @param int $lifetime
      * @param boolean $overrideLifetime (optional)
      * @return Zend_Session_SaveHandler_DbTable
-     * @throws Zend_Session_SaveHandler_Exception
      */
     public function setLifetime($lifetime, $overrideLifetime = null)
     {
@@ -235,9 +234,7 @@ class Zend_Session_SaveHandler_DbTable
              */
             require_once 'Zend/Session/SaveHandler/Exception.php';
             throw new Zend_Session_SaveHandler_Exception();
-        }
-
-        if (empty($lifetime)) {
+        } else if (empty($lifetime)) {
             $this->_lifetime = (int) ini_get('session.gc_maxlifetime');
         } else {
             $this->_lifetime = (int) $lifetime;
@@ -318,7 +315,7 @@ class Zend_Session_SaveHandler_DbTable
     {
         $return = '';
 
-        $rows = call_user_func_array([&$this, 'find'], $this->_getPrimary($id));
+        $rows = call_user_func_array(array(&$this, 'find'), $this->_getPrimary($id));
 
         if (count($rows)) {
             if ($this->_getExpirationTime($row = $rows->current()) > time()) {
@@ -340,24 +337,28 @@ class Zend_Session_SaveHandler_DbTable
      */
     public function write($id, $data)
     {
-        $data = [$this->_modifiedColumn => time(),
-                      $this->_dataColumn     => (string) $data];
+        $return = false;
 
-        $rows = call_user_func_array([&$this, 'find'], $this->_getPrimary($id));
+        $data = array($this->_modifiedColumn => time(),
+                      $this->_dataColumn     => (string) $data);
+
+        $rows = call_user_func_array(array(&$this, 'find'), $this->_getPrimary($id));
 
         if (count($rows)) {
             $data[$this->_lifetimeColumn] = $this->_getLifetime($rows->current());
-            $this->update($data, $this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE));
-            return true;
+
+            if ($this->update($data, $this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE))) {
+                $return = true;
+            }
         } else {
             $data[$this->_lifetimeColumn] = $this->_lifetime;
 
             if ($this->insert(array_merge($this->_getPrimary($id, self::PRIMARY_TYPE_ASSOC), $data))) {
-                return true;
+                $return = true;
             }
         }
 
-        return false;
+        return $return;
     }
 
     /**
@@ -368,8 +369,13 @@ class Zend_Session_SaveHandler_DbTable
      */
     public function destroy($id)
     {
-        $this->delete($this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE));
-        return true; //always return true, since if nothing can be deleted, it is already deleted and thats OK.
+        $return = false;
+
+        if ($this->delete($this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE))) {
+            $return = true;
+        }
+
+        return $return;
     }
 
     /**
@@ -433,9 +439,9 @@ class Zend_Session_SaveHandler_DbTable
     protected function _setupPrimaryAssignment()
     {
         if ($this->_primaryAssignment === null) {
-            $this->_primaryAssignment = [1 => self::PRIMARY_ASSIGNMENT_SESSION_ID];
+            $this->_primaryAssignment = array(1 => self::PRIMARY_ASSIGNMENT_SESSION_ID);
         } else if (!is_array($this->_primaryAssignment)) {
-            $this->_primaryAssignment = [1 => (string) $this->_primaryAssignment];
+            $this->_primaryAssignment = array(1 => (string) $this->_primaryAssignment);
         } else if (isset($this->_primaryAssignment[0])) {
             array_unshift($this->_primaryAssignment, null);
 
@@ -516,7 +522,7 @@ class Zend_Session_SaveHandler_DbTable
             $type = self::PRIMARY_TYPE_NUM;
         }
 
-        $primaryArray = [];
+        $primaryArray = array();
 
         foreach ($this->_primary as $index => $primary) {
             switch ($this->_primaryAssignment[$index]) {

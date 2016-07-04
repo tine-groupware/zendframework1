@@ -66,12 +66,14 @@ class Zend_View_Helper_Fieldset extends Zend_View_Helper_FormElement
         }
 
         // render fieldset
-        return '<fieldset'
+        $xhtml = '<fieldset'
                . $id
                . $this->_htmlAttribs($attribs)
                . '>'
                . $legend
                . $content
                . '</fieldset>';
+
+        return $xhtml;
     }
 }

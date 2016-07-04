@@ -105,14 +105,14 @@ class Zend_Tool_Project_Context_System_ProjectProfileFile
     /**
      * getContents()
      *
-     * @return string XML
+     * @return string
      */
     public function getContents()
     {
         $parser = new Zend_Tool_Project_Profile_FileParser_Xml();
         $profile = $this->_resource->getProfile();
-
-        return $parser->serialize($profile);
+        $xml = $parser->serialize($profile);
+        return $xml;
     }
 
 }

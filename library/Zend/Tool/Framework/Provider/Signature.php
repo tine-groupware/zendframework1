@@ -65,17 +65,17 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
     /**
      * @var array
      */
-    protected $_specialties = [];
+    protected $_specialties = array();
 
     /**
      * @var array
      */
-    protected $_actionableMethods = [];
+    protected $_actionableMethods = array();
 
     /**
      * @var unknown_type
      */
-    protected $_actions = [];
+    protected $_actions = array();
 
     /**
      * @var Zend_Reflection_Class
@@ -254,7 +254,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
      */
     protected function _processSpecialties()
     {
-        $specialties = [];
+        $specialties = array();
 
         if ($this->_providerReflection->hasMethod('getSpecialties')) {
             $specialties = $this->_provider->getSpecialties();
@@ -266,7 +266,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
             }
         } else {
             $defaultProperties = $this->_providerReflection->getDefaultProperties();
-            $specialties = (isset($defaultProperties['_specialties'])) ? $defaultProperties['_specialties'] : [];
+            $specialties = (isset($defaultProperties['_specialties'])) ? $defaultProperties['_specialties'] : array();
             if (!is_array($specialties)) {
                 require_once 'Zend/Tool/Framework/Provider/Exception.php';
                 throw new Zend_Tool_Framework_Provider_Exception(
@@ -275,7 +275,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
             }
         }
 
-        $this->_specialties = array_merge(['_Global'], $specialties);
+        $this->_specialties = array_merge(array('_Global'), $specialties);
 
     }
 
@@ -291,7 +291,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
 
         $methods = $this->_providerReflection->getMethods();
 
-        $actionableMethods = [];
+        $actionableMethods = array();
         foreach ($methods as $method) {
 
             $methodName = $method->getName();
@@ -305,7 +305,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
                 || !$method->isPublic()
                 || $methodName[0] == '_'
                 || $method->isStatic()
-                || in_array($methodName, ['getContextClasses', 'getName']) // other protected public methods will nee to go here
+                || in_array($methodName, array('getContextClasses', 'getName')) // other protected public methods will nee to go here
                 ) {
                 continue;
             }
@@ -349,7 +349,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
                 $this->_actions[] = $actionableMethods[$methodName]['action'];
             }
 
-            $parameterInfo = [];
+            $parameterInfo = array();
             $position = 1;
             foreach ($method->getParameters() as $parameter) {
                 $currentParam = $parameter->getName();

@@ -47,7 +47,7 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
      *
      * @var array
      */
-    protected $_alert  = [];
+    protected $_alert  = array();
 
     /**
      * Expiration
@@ -68,7 +68,7 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
      *
      * @var array
      */
-    protected $_custom = [];
+    protected $_custom = array();
 
     /**
      * Get Alert
@@ -108,11 +108,11 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
         if ($locArgs !== null) {
             if (!is_array($locArgs)) {
                 throw new Zend_Mobile_Push_Message_Exception('$locArgs must be an array of strings');
-            }
-
-            foreach ($locArgs as $str) {
-                if (!is_string($str)) {
-                    throw new Zend_Mobile_Push_Message_Exception('$locArgs contains an item that is not a string');
+            } else {
+                foreach ($locArgs as $str) {
+                    if (!is_string($str)) {
+                        throw new Zend_Mobile_Push_Message_Exception('$locArgs contains an item that is not a string');
+                    }
                 }
             }
         }
@@ -121,13 +121,13 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
             throw new Zend_Mobile_Push_Message_Exception('$launchImage must be a string');
         }
 
-        $this->_alert = [
+        $this->_alert = array(
             'body'           => $text,
             'action-loc-key' => $actionLocKey,
             'loc-key'        => $locKey,
             'loc-args'       => $locArgs,
             'launch-image'   => $launchImage,
-        ];
+        );
         return $this;
     }
 
@@ -237,7 +237,7 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
      */
     public function clearCustomData()
     {
-        $this->_custom = [];
+        $this->_custom = array();
         return $this;
     }
 
@@ -250,7 +250,7 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
      */
     public function setCustomData($array)
     {
-        $this->_custom = [];
+        $this->_custom = array();
         foreach ($array as $k => $v) {
             $this->addCustomData($k, $v);
         }
@@ -277,11 +277,9 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
         if (!is_string($this->_token) || strlen($this->_token) === 0) {
             return false;
         }
-
         if (null != $this->_id && !is_numeric($this->_id)) {
             return false;
         }
-
         return true;
     }
 }

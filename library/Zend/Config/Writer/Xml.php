@@ -72,7 +72,9 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
         $dom = dom_import_simplexml($xml)->ownerDocument;
         $dom->formatOutput = true;
 
-        return $dom->saveXML();
+        $xmlString = $dom->saveXML();
+
+        return $xmlString;
     }
 
     /**

@@ -35,11 +35,11 @@ class Zend_Gdata_Analytics_DataEntry extends Zend_Gdata_Entry
     /**
      * @var array
      */
-    protected $_dimensions = [];
+    protected $_dimensions = array();
     /**
      * @var array
      */
-    protected $_metrics = [];
+    protected $_metrics = array();
 
     /**
      * @param DOMElement $element

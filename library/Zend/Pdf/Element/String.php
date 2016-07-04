@@ -82,7 +82,7 @@ class Zend_Pdf_Element_String extends Zend_Pdf_Element
      */
     public static function escape($str)
     {
-        $outEntries = [];
+        $outEntries = array();
 
         foreach (str_split($str, 128) as $chunk) {
             // Collect sequence of unescaped characters
@@ -167,7 +167,7 @@ class Zend_Pdf_Element_String extends Zend_Pdf_Element
      */
     public static function unescape($str)
     {
-        $outEntries = [];
+        $outEntries = array();
 
         $offset = 0;
         while ($offset < strlen($str)) {

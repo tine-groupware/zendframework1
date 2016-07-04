@@ -56,7 +56,7 @@ class Zend_Test_PHPUnit_Db_Metadata_Generic implements PHPUnit_Extensions_Databa
      *
      * @var array
      */
-    protected $_tableMetadata = [];
+    protected $_tableMetadata = array();
 
     /**
      * Creates a new database meta data object using the given pdo connection
@@ -105,8 +105,8 @@ class Zend_Test_PHPUnit_Db_Metadata_Generic implements PHPUnit_Extensions_Databa
     public function getTableColumns($tableName)
     {
         $tableMeta = $this->getTableDescription($tableName);
-
-        return array_keys($tableMeta);
+        $columns = array_keys($tableMeta);
+        return $columns;
     }
 
     /**
@@ -120,7 +120,7 @@ class Zend_Test_PHPUnit_Db_Metadata_Generic implements PHPUnit_Extensions_Databa
     {
         $tableMeta = $this->getTableDescription($tableName);
 
-        $primaryColumnNames = [];
+        $primaryColumnNames = array();
         foreach($tableMeta AS $column) {
             if($column['PRIMARY'] == true) {
                 $primaryColumnNames[] = $column['COLUMN_NAME'];

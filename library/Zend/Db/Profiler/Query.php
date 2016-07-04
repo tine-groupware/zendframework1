@@ -62,7 +62,7 @@ class Zend_Db_Profiler_Query
     /**
      * @var array
      */
-    protected $_boundParams = [];
+    protected $_boundParams = array();
 
     /**
      * @var array
@@ -90,7 +90,7 @@ class Zend_Db_Profiler_Query
      */
     public function __clone()
     {
-        $this->_boundParams = [];
+        $this->_boundParams = array();
         $this->_endedMicrotime = null;
         $this->start();
     }

@@ -43,7 +43,7 @@ abstract class Zend_Search_Lucene_FSM
      *
      * @var array
      */
-    private $_states = [];
+    private $_states = array();
 
     /**
      * Current state
@@ -57,7 +57,7 @@ abstract class Zend_Search_Lucene_FSM
      *
      * @var array
      */
-    private $_inputAphabet = [];
+    private $_inputAphabet = array();
 
     /**
      * State transition table
@@ -66,7 +66,7 @@ abstract class Zend_Search_Lucene_FSM
      *
      * @var array
      */
-    private $_rules = [];
+    private $_rules = array();
 
     /**
      * List of entry actions
@@ -76,7 +76,7 @@ abstract class Zend_Search_Lucene_FSM
      *
      * @var array
      */
-    private $_entryActions =  [];
+    private $_entryActions =  array();
 
     /**
      * List of exit actions
@@ -86,7 +86,7 @@ abstract class Zend_Search_Lucene_FSM
      *
      * @var array
      */
-    private $_exitActions =  [];
+    private $_exitActions =  array();
 
     /**
      * List of input actions
@@ -96,7 +96,7 @@ abstract class Zend_Search_Lucene_FSM
      *
      * @var array
      */
-    private $_inputActions =  [];
+    private $_inputActions =  array();
 
     /**
      * List of input actions
@@ -106,7 +106,7 @@ abstract class Zend_Search_Lucene_FSM
      *
      * @var array
      */
-    private $_transitionActions =  [];
+    private $_transitionActions =  array();
 
     /**
      * Finite State machine constructor
@@ -134,7 +134,7 @@ abstract class Zend_Search_Lucene_FSM
      * @param array $inputAphabet
      * @param array $rules
      */
-    public function __construct($states = [], $inputAphabet = [], $rules = [])
+    public function __construct($states = array(), $inputAphabet = array(), $rules = array())
     {
         $this->addStates($states);
         $this->addInputSymbols($inputAphabet);
@@ -261,7 +261,7 @@ abstract class Zend_Search_Lucene_FSM
         }
 
         if (!isset($this->_rules[$sourceState])) {
-            $this->_rules[$sourceState] = [];
+            $this->_rules[$sourceState] = array();
         }
         if (isset($this->_rules[$sourceState][$input])) {
             require_once 'Zend/Search/Exception.php';
@@ -293,7 +293,7 @@ abstract class Zend_Search_Lucene_FSM
         }
 
         if (!isset($this->_entryActions[$state])) {
-            $this->_entryActions[$state] = [];
+            $this->_entryActions[$state] = array();
         }
 
         $this->_entryActions[$state][] = $action;
@@ -315,7 +315,7 @@ abstract class Zend_Search_Lucene_FSM
         }
 
         if (!isset($this->_exitActions[$state])) {
-            $this->_exitActions[$state] = [];
+            $this->_exitActions[$state] = array();
         }
 
         $this->_exitActions[$state][] = $action;
@@ -342,10 +342,10 @@ abstract class Zend_Search_Lucene_FSM
         }
 
         if (!isset($this->_inputActions[$state])) {
-            $this->_inputActions[$state] = [];
+            $this->_inputActions[$state] = array();
         }
         if (!isset($this->_inputActions[$state][$inputSymbol])) {
-            $this->_inputActions[$state][$inputSymbol] = [];
+            $this->_inputActions[$state][$inputSymbol] = array();
         }
 
         $this->_inputActions[$state][$inputSymbol][] = $action;
@@ -372,10 +372,10 @@ abstract class Zend_Search_Lucene_FSM
         }
 
         if (!isset($this->_transitionActions[$sourceState])) {
-            $this->_transitionActions[$sourceState] = [];
+            $this->_transitionActions[$sourceState] = array();
         }
         if (!isset($this->_transitionActions[$sourceState][$targetState])) {
-            $this->_transitionActions[$sourceState][$targetState] = [];
+            $this->_transitionActions[$sourceState][$targetState] = array();
         }
 
         $this->_transitionActions[$sourceState][$targetState][] = $action;
@@ -432,7 +432,7 @@ abstract class Zend_Search_Lucene_FSM
 
     public function reset()
     {
-        if (count($this->_states) === 0) {
+        if (count($this->_states) == 0) {
             require_once 'Zend/Search/Exception.php';
             throw new Zend_Search_Exception('There is no any state defined for FSM.');
         }

@@ -47,12 +47,12 @@ abstract class Zend_Tool_Framework_Loader_Abstract
     /**
      * @var array
      */
-    private $_retrievedFiles = [];
+    private $_retrievedFiles = array();
 
     /**
      * @var array
      */
-    private $_loadedClasses  = [];
+    private $_loadedClasses  = array();
 
     /**
      * _getFiles
@@ -81,12 +81,12 @@ abstract class Zend_Tool_Framework_Loader_Abstract
     public function load()
     {
         $this->_retrievedFiles = $this->getRetrievedFiles();
-        $this->_loadedClasses  = [];
+        $this->_loadedClasses  = array();
 
         $manifestRepository = $this->_registry->getManifestRepository();
         $providerRepository = $this->_registry->getProviderRepository();
 
-        $loadedClasses = [];
+        $loadedClasses = array();
 
         // loop through files and find the classes declared by loading the file
         foreach ($this->_retrievedFiles as $file) {

@@ -55,12 +55,12 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      * persistent => (boolean) Set TRUE to use a persistent connection
      * @var array
      */
-    protected $_config = [
+    protected $_config = array(
         'dbname'       => null,
         'username'     => null,
         'password'     => null,
         'persistent'   => false
-    ];
+    );
 
     /**
      * Keys are UPPERCASE SQL datatypes or the constants
@@ -73,14 +73,14 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      *
      * @var array Associative array of datatypes to values 0, 1, or 2.
      */
-    protected $_numericDataTypes = [
+    protected $_numericDataTypes = array(
         Zend_Db::INT_TYPE    => Zend_Db::INT_TYPE,
         Zend_Db::BIGINT_TYPE => Zend_Db::BIGINT_TYPE,
         Zend_Db::FLOAT_TYPE  => Zend_Db::FLOAT_TYPE,
         'BINARY_DOUBLE'      => Zend_Db::FLOAT_TYPE,
         'BINARY_FLOAT'       => Zend_Db::FLOAT_TYPE,
         'NUMBER'             => Zend_Db::FLOAT_TYPE,
-    ];
+    );
 
     /**
      * @var integer
@@ -283,10 +283,14 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      */
     public function lastSequenceId($sequenceName)
     {
-        $this->_connect();
-        $sql = 'SELECT '.$this->quoteIdentifier($sequenceName, true).'.CURRVAL FROM dual';
-
-        return $this->fetchOne($sql);
+        try {
+            $this->_connect();
+            $sql = 'SELECT '.$this->quoteIdentifier($sequenceName, true).'.CURRVAL FROM dual';
+            $value = $this->fetchOne($sql);
+            return $value;
+        } catch(Exception $e) {
+            return NULL;
+        }
     }
 
     /**
@@ -301,8 +305,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
     {
         $this->_connect();
         $sql = 'SELECT '.$this->quoteIdentifier($sequenceName, true).'.NEXTVAL FROM dual';
-
-        return $this->fetchOne($sql);
+        $value = $this->fetchOne($sql);
+        return $value;
     }
 
     /**
@@ -343,8 +347,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
     public function listTables()
     {
         $this->_connect();
-
-        return $this->fetchCol('SELECT table_name FROM all_tables');
+        $data = $this->fetchCol('SELECT table_name FROM all_tables');
+        return $data;
     }
 
     /**
@@ -441,9 +445,9 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
         $position        = 11;
         $char_length     = 12;
 
-        $desc = [];
+        $desc = array();
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = [false, null, false];
+            list ($primary, $primaryPosition, $identity) = array(false, null, false);
             if ($row[$constraint_type] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$position];
@@ -452,7 +456,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                  */
                 $identity = false;
             }
-            $desc[$this->foldCase($row[$column_name])] = [
+            $desc[$this->foldCase($row[$column_name])] = array(
                 'SCHEMA_NAME'      => $this->foldCase($row[$owner]),
                 'TABLE_NAME'       => $this->foldCase($row[$table_name]),
                 'COLUMN_NAME'      => $this->foldCase($row[$column_name]),
@@ -468,7 +472,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                 'PRIMARY'          => $primary,
                 'PRIMARY_POSITION' => $primaryPosition,
                 'IDENTITY'         => $identity
-            ];
+            );
         }
         return $desc;
     }
@@ -570,7 +574,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      */
     public function limit($sql, $count, $offset = 0)
     {
-        $count = (int)$count;
+        $count = intval($count);
         if ($count <= 0) {
             /**
              * @see Zend_Db_Adapter_Oracle_Exception
@@ -579,7 +583,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
             throw new Zend_Db_Adapter_Oracle_Exception("LIMIT argument count=$count is not valid");
         }
 
-        $offset = (int)$offset;
+        $offset = intval($offset);
         if ($offset < 0) {
             /**
              * @see Zend_Db_Adapter_Oracle_Exception
@@ -594,7 +598,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
          * Unfortunately because we use the column wildcard "*",
          * this puts an extra column into the query result set.
          */
-        return "SELECT z2.*
+        $limit_sql = "SELECT z2.*
             FROM (
                 SELECT z1.*, ROWNUM AS \"zend_db_rownum\"
                 FROM (
@@ -602,6 +606,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                 ) z1
             ) z2
             WHERE z2.\"zend_db_rownum\" BETWEEN " . ($offset+1) . " AND " . ($offset+$count);
+        return $limit_sql;
     }
 
     /**

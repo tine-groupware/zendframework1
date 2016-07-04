@@ -47,7 +47,7 @@ class Zend_Service_Amazon_SimpleDb_Attribute
         $this->_name     = $name;
 
         if (!is_array($values)) {
-            $this->_values = [$values];
+            $this->_values = array($values);
         } else {
             $this->_values = $values;
         }
@@ -101,7 +101,7 @@ class Zend_Service_Amazon_SimpleDb_Attribute
     public function setValues($values)
     {
         if (!is_array($values)) {
-            $values = [$values];
+            $values = array($values);
         }
         $this->_values = $values;
     }

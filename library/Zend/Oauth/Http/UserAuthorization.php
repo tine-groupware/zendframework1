@@ -58,9 +58,9 @@ class Zend_Oauth_Http_UserAuthorization extends Zend_Oauth_Http
      */
     public function assembleParams()
     {
-        $params = [
+        $params = array(
             'oauth_token' => $this->_consumer->getLastRequestToken()->getToken(),
-        ];
+        );
 
         if (!Zend_Oauth_Client::$supportsRevisionA) {
             $callback = $this->_consumer->getCallbackUrl();

@@ -41,25 +41,25 @@ class Zend_Cache_Backend
      *
      * @var array directives
      */
-    protected $_directives = [
+    protected $_directives = array(
         'lifetime' => 3600,
         'logging'  => false,
         'logger'   => null
-    ];
+    );
 
     /**
      * Available options
      *
      * @var array available options
      */
-    protected $_options = [];
+    protected $_options = array();
 
     /**
      * Constructor
      *
      * @param  array $options Associative array of options
      */
-    public function __construct(array $options = [])
+    public function __construct(array $options = array())
     {
         foreach ($options as $name => $value) {
             $this->setOption($name, $value);
@@ -76,7 +76,7 @@ class Zend_Cache_Backend
     public function setDirectives($directives)
     {
         if (!is_array($directives)) Zend_Cache::throwException('Directives parameter must be an array');
-        foreach ($directives as $name => $value) {
+        while (list($name, $value) = each($directives)) {
             if (!is_string($name)) {
                 Zend_Cache::throwException("Incorrect option name : $name");
             }
@@ -171,11 +171,11 @@ class Zend_Cache_Backend
      */
     public function getTmpDir()
     {
-        $tmpdir = [];
-        foreach ([$_ENV, $_SERVER] as $tab) {
-            foreach (['TMPDIR', 'TEMP', 'TMP', 'windir', 'SystemRoot'] as $key) {
+        $tmpdir = array();
+        foreach (array($_ENV, $_SERVER) as $tab) {
+            foreach (array('TMPDIR', 'TEMP', 'TMP', 'windir', 'SystemRoot') as $key) {
                 if (isset($tab[$key]) && is_string($tab[$key])) {
-                    if (($key == 'windir') || ($key == 'SystemRoot')) {
+                    if (($key == 'windir') or ($key == 'SystemRoot')) {
                         $dir = realpath($tab[$key] . '\\temp');
                     } else {
                         $dir = realpath($tab[$key]);

@@ -40,7 +40,7 @@ class Zend_Dom_Query_Css2Xpath
         $path = (string) $path;
         if (strstr($path, ',')) {
             $paths       = explode(',', $path);
-            $expressions = [];
+            $expressions = array();
             foreach ($paths as $path) {
                 $xpath = self::transform(trim($path));
                 if (is_string($xpath)) {
@@ -52,7 +52,7 @@ class Zend_Dom_Query_Css2Xpath
             return implode('|', $expressions);
         }
 
-        $paths    = ['//'];
+        $paths    = array('//');
         $path     = preg_replace('|\s+>\s+|', '>', $path);
         $segments = preg_split('/\s+/', $path);
         foreach ($segments as $key => $segment) {
@@ -101,21 +101,21 @@ class Zend_Dom_Query_Css2Xpath
         // arbitrary attribute strict equality
         $expression = preg_replace_callback(
             '|\[([a-z0-9_-]+)=[\'"]([^\'"]+)[\'"]\]|i',
-            [__CLASS__, '_createEqualityExpression'],
+            array(__CLASS__, '_createEqualityExpression'),
             $expression
         );
 
         // arbitrary attribute contains full word
         $expression = preg_replace_callback(
             '|\[([a-z0-9_-]+)~=[\'"]([^\'"]+)[\'"]\]|i',
-            [__CLASS__, '_normalizeSpaceAttribute'],
+            array(__CLASS__, '_normalizeSpaceAttribute'),
             $expression
         );
 
         // arbitrary attribute contains specified content
         $expression = preg_replace_callback(
             '|\[([a-z0-9_-]+)\*=[\'"]([^\'"]+)[\'"]\]|i',
-            [__CLASS__, '_createContainsExpression'],
+            array(__CLASS__, '_createContainsExpression'),
             $expression
         );
 

@@ -38,14 +38,14 @@ class Zend_Json_Server_Error
      * Allowed error codes
      * @var array
      */
-    protected $_allowedCodes = [
+    protected $_allowedCodes = array(
         self::ERROR_PARSE,
         self::ERROR_INVALID_REQUEST,
         self::ERROR_INVALID_METHOD,
         self::ERROR_INVALID_PARAMS,
         self::ERROR_INTERNAL,
         self::ERROR_OTHER,
-    ];
+    );
 
     /**
      * Current code
@@ -167,11 +167,11 @@ class Zend_Json_Server_Error
      */
     public function toArray()
     {
-        return [
+        return array(
             'code'    => $this->getCode(),
             'message' => $this->getMessage(),
             'data'    => $this->getData(),
-        ];
+        );
     }
 
     /**

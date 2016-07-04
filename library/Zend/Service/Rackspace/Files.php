@@ -112,7 +112,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
      * @param  array $options
      * @return Zend_Service_Rackspace_Files_ContainerList|bool
      */
-    public function getContainers($options=[])
+    public function getContainers($options=array())
     {
         $result= $this->httpCall($this->getStorageUrl(),'GET',null,$options);
         if ($result->isSuccessful()) {
@@ -126,7 +126,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
      * @param array $options
      * @return array|bool
      */
-    public function getCdnContainers($options=[])
+    public function getCdnContainers($options=array())
     {
         $options['enabled_only']= true;
         $result= $this->httpCall($this->getCdnUrl(),'GET',null,$options);
@@ -146,15 +146,14 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
     public function getInfoAccount()
     {
         $result= $this->httpCall($this->getStorageUrl(),'HEAD');
-
         if ($result->isSuccessful()) {
-            return [
+            $output= array(
                 'tot_containers'  => $result->getHeader(self::ACCOUNT_CONTAINER_COUNT),
                 'size_containers' => $result->getHeader(self::ACCOUNT_BYTES_USED),
                 'tot_objects'     => $result->getHeader(self::ACCOUNT_OBJ_COUNT)
-            ];
+            );
+            return $output;
         }
-
         return false;
     }
 
@@ -168,7 +167,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
      * @return bool|Zend_Service_Rackspace_Files_ObjectList
      * @throws Zend_Service_Rackspace_Exception
      */
-    public function getObjects($container,$options=[])
+    public function getObjects($container,$options=array())
     {
         if (empty($container)) {
             require_once 'Zend/Service/Rackspace/Exception.php';
@@ -189,13 +188,13 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
      * @return bool|Zend_Service_Rackspace_Files_Container
      * @throws Zend_Service_Rackspace_Exception
      */
-    public function createContainer($container,$metadata=[])
+    public function createContainer($container,$metadata=array())
     {
         if (empty($container)) {
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_PARAM_NO_NAME_CONTAINER);
         }
-        $headers=[];
+        $headers=array();
         if (!empty($metadata)) {
             foreach ($metadata as $key => $value) {
                 $headers[self::METADATA_CONTAINER_HEADER.rawurlencode(strtolower($key))]= rawurlencode($value);
@@ -205,9 +204,9 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
         $status= $result->getStatus();
         switch ($status) {
             case '201': // break intentionally omitted
-                $data= [
+                $data= array(
                     'name' => $container
-                ];
+                );
                 return new Zend_Service_Rackspace_Files_Container($this,$data);
             case '202':
                 $this->errorMsg= self::ERROR_CONTAINER_EXIST;
@@ -273,19 +272,19 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
                 $count= strlen(self::METADATA_CONTAINER_HEADER);
                 // Zend_Http_Response alters header name in array key, so match our header to what will be in the headers array
                 $headerName = ucwords(strtolower(self::METADATA_CONTAINER_HEADER)); 
-                $metadata= [];
+                $metadata= array();
                 foreach ($headers as $type => $value) {
                     if (strpos($type,$headerName)!==false) {
                         $metadata[strtolower(substr($type, $count))]= $value;
                     }
                 }
-
-                return [
+                $data= array (
                     'name'     => $container,
                     'count'    => $result->getHeader(self::CONTAINER_OBJ_COUNT),
                     'bytes'    => $result->getHeader(self::CONTAINER_BYTES_USE),
                     'metadata' => $metadata
-                ];
+                );
+                return $data;
             case '404':
                 $this->errorMsg= self::ERROR_CONTAINER_NOT_FOUND;
                 break;
@@ -319,7 +318,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
      * @return bool|Zend_Service_Rackspace_Files_Object
      * @throws Zend_Service_Rackspace_Exception
      */
-    public function getObject($container,$object,$headers=[])
+    public function getObject($container,$object,$headers=array())
     {
         if (empty($container)) {
             require_once 'Zend/Service/Rackspace/Exception.php';
@@ -333,7 +332,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
         $status= $result->getStatus();
         switch ($status) {
             case '200': // break intentionally omitted
-                $data= [
+                $data= array(
                     'name'          => $object,
                     'container'     => $container,
                     'hash'          => $result->getHeader(self::HEADER_HASH),
@@ -341,7 +340,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
                     'last_modified' => $result->getHeader(self::HEADER_LAST_MODIFIED),
                     'content_type'  => $result->getHeader(self::HEADER_CONTENT_TYPE),
                     'content'       => $result->getBody()
-                ];
+                );
                 return new Zend_Service_Rackspace_Files_Object($this,$data);
             case '404':
                 $this->errorMsg= self::ERROR_OBJECT_NOT_FOUND;
@@ -365,7 +364,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
      * @return bool
      * @throws Zend_Service_Rackspace_Exception
      */
-    public function storeObject($container,$object,$content,$metadata=[],$content_type=null) {
+    public function storeObject($container,$object,$content,$metadata=array(),$content_type=null) {
         if (empty($container)) {
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_PARAM_NO_NAME_CONTAINER);
@@ -452,7 +451,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
      * @return bool
      * @throws Zend_Service_Rackspace_Exception
      */
-    public function copyObject($container_source,$obj_source,$container_dest,$obj_dest,$metadata=[],$content_type=null) {
+    public function copyObject($container_source,$obj_source,$container_dest,$obj_dest,$metadata=array(),$content_type=null) {
         if (empty($container_source)) {
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_PARAM_NO_NAME_SOURCE_CONTAINER);
@@ -469,10 +468,10 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_PARAM_NO_NAME_DEST_OBJECT);
         }
-        $headers= [
+        $headers= array(
             self::HEADER_COPY_FROM => '/'.rawurlencode($container_source).'/'.rawurlencode($obj_source),
             self::HEADER_CONTENT_LENGTH => 0
-        ];
+        );
         if (!empty($content_type)) {
             $headers[self::HEADER_CONTENT_TYPE]= $content_type;
         }
@@ -519,15 +518,13 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
                 $count= strlen(self::METADATA_OBJECT_HEADER);
                 // Zend_Http_Response alters header name in array key, so match our header to what will be in the headers array
                 $headerName = ucwords(strtolower(self::METADATA_OBJECT_HEADER)); 
-                $metadata= [];
-
+                $metadata= array();
                 foreach ($headers as $type => $value) {
                     if (strpos($type,$headerName)!==false) {
                         $metadata[strtolower(substr($type, $count))]= $value;
                     }
                 }
-
-                return [
+                $data= array (
                     'name'          => $object,
                     'container'     => $container,
                     'hash'          => $result->getHeader(self::HEADER_HASH),
@@ -535,7 +532,8 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
                     'content_type'  => $result->getHeader(self::HEADER_CONTENT_TYPE),
                     'last_modified' => $result->getHeader(self::HEADER_LAST_MODIFIED),
                     'metadata'      => $metadata
-                ];
+                );
+                return $data;
             case '404':
                 $this->errorMsg= self::ERROR_OBJECT_NOT_FOUND;
                 break;
@@ -571,7 +569,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_PARAM_NO_NAME_OBJECT);
         }
-        $headers=[];
+        $headers=array();
         foreach ($metadata as $key => $value) {
             $headers[self::METADATA_OBJECT_HEADER.$key]= $value;
         }
@@ -604,34 +602,31 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_PARAM_NO_NAME_CONTAINER);
         }
-        $headers=[];
+        $headers=array();
         if (is_numeric($ttl) && ($ttl>=self::CDN_TTL_MIN) && ($ttl<=self::CDN_TTL_MAX)) {
             $headers[self::CDN_TTL]= $ttl;
         } else {
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_CDN_TTL_OUT_OF_RANGE);
         }
-
-        $result= $this->httpCall($this->getCdnUrl() . '/' . rawurlencode($container),'PUT',$headers);
+        $result= $this->httpCall($this->getCdnUrl().'/'.rawurlencode($container),'PUT',$headers);
         $status= $result->getStatus();
-
         switch ($status) {
             case '201':
             case '202': // break intentionally omitted
-                return [
-                    'cdn_uri' => $result->getHeader(self::CDN_URI),
+                $data= array (
+                    'cdn_uri'     => $result->getHeader(self::CDN_URI),
                     'cdn_uri_ssl' => $result->getHeader(self::CDN_SSL_URI)
-                ];
+                );
+                return $data;
             case '404':
-                $this->errorMsg = self::ERROR_CONTAINER_NOT_FOUND;
+                $this->errorMsg= self::ERROR_CONTAINER_NOT_FOUND;
                 break;
             default:
-                $this->errorMsg = $result->getBody();
+                $this->errorMsg= $result->getBody();
                 break;
         }
-
         $this->errorCode= $status;
-
         return false;
     }
 
@@ -655,7 +650,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
             require_once 'Zend/Service/Rackspace/Exception.php';
             throw new Zend_Service_Rackspace_Exception(self::ERROR_PARAM_UPDATE_CDN);
         }
-        $headers=[];
+        $headers=array();
         if (isset($ttl)) {
             if (is_numeric($ttl) && ($ttl>=self::CDN_TTL_MIN) && ($ttl<=self::CDN_TTL_MAX)) {
                 $headers[self::CDN_TTL]= $ttl;
@@ -711,11 +706,11 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
         $status= $result->getStatus();
         switch ($status) {
             case '204': // break intentionally omitted
-                $data= [
+                $data= array (
                     'ttl'         => $result->getHeader(self::CDN_TTL),
                     'cdn_uri'     => $result->getHeader(self::CDN_URI),
                     'cdn_uri_ssl' => $result->getHeader(self::CDN_SSL_URI)
-                ];
+                );
                 $data['cdn_enabled']= (strtolower($result->getHeader(self::CDN_ENABLED))!=='false');
                 $data['log_retention']= (strtolower($result->getHeader(self::CDN_LOG_RETENTION))!=='false');
                 return $data;

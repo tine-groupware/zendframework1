@@ -37,10 +37,10 @@ class Zend_XmlRpc_Server_Cache extends Zend_Server_Cache
     /**
      * @var array Skip system methods when caching XML-RPC server
      */
-    protected static $_skipMethods = [
+    protected static $_skipMethods = array(
         'system.listMethods',
         'system.methodHelp',
         'system.methodSignature',
         'system.multicall',
-    ];
+    );
 }

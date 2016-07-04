@@ -115,7 +115,7 @@ class Zend_View_Helper_Action extends Zend_View_Helper_Abstract
      * @param  array $params
      * @return string
      */
-    public function action($action, $controller, $module = null, array $params = [])
+    public function action($action, $controller, $module = null, array $params = array())
     {
         $this->resetObjects();
         if (null === $module) {

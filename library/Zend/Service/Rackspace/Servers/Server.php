@@ -80,11 +80,11 @@ class Zend_Service_Rackspace_Servers_Server
      * 
      * @var array 
      */
-    protected $addresses = [];
+    protected $addresses = array();
     /**
      * @var array
      */
-    protected $metadata = [];
+    protected $metadata = array();
     /**
      * The service that has created the server object
      *
@@ -309,7 +309,7 @@ class Zend_Service_Rackspace_Servers_Server
      */
     public function toArray()
     {
-        return [
+        return array (
             'name'      => $this->name,
             'id'        => $this->id,
             'imageId'   => $this->imageId,
@@ -320,6 +320,6 @@ class Zend_Service_Rackspace_Servers_Server
             'adminPass' => $this->adminPass,
             'addresses' => $this->addresses,
             'metadata'  => $this->metadata
-        ];
+        );
     }
 }

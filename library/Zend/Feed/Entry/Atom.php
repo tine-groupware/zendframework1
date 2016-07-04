@@ -103,7 +103,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
                 // Redirect
                 case 3:
                     $deleteUri = $response->getHeader('Location');
-                    break;
+                    continue;
                 // Error
                 default:
                     /**
@@ -153,8 +153,8 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
             $client = Zend_Feed::getHttpClient();
             $client->setUri($editUri);
             if (Zend_Feed::getHttpMethodOverride()) {
-                $client->setHeaders(['X-HTTP-Method-Override: PUT',
-                    'Content-Type: ' . self::CONTENT_TYPE]);
+                $client->setHeaders(array('X-HTTP-Method-Override: PUT',
+                    'Content-Type: ' . self::CONTENT_TYPE));
                 $client->setRawData($this->saveXML());
                 $response = $client->request('POST');
             } else {
@@ -162,7 +162,6 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
                 $client->setRawData($this->saveXML());
                 $response = $client->request('PUT');
             }
-
             if ($response->getStatus() !== 200) {
                 /**
                  * @see Zend_Feed_Exception
@@ -195,18 +194,18 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
         }
 
         // Update internal properties using $client->responseBody;
+        @ini_set('track_errors', 1);
         $newEntry = new DOMDocument;
         $newEntry = @Zend_Xml_Security::scan($response->getBody(), $newEntry);
+        @ini_restore('track_errors');
 
         if (!$newEntry) {
-            $err = error_get_last();
-            $phpErrormsg = isset($err) ? $err['message'] : null;
             // prevent the class to generate an undefined variable notice (ZF-2590)
-            if (!isset($phpErrormsg)) {
+            if (!isset($php_errormsg)) {
                 if (function_exists('xdebug_is_enabled')) {
-                    $phpErrormsg = '(error message not available, when XDebug is running)';
+                    $php_errormsg = '(error message not available, when XDebug is running)';
                 } else {
-                    $phpErrormsg = '(error message not available)';
+                    $php_errormsg = '(error message not available)';
                 }
             }
 
@@ -214,7 +213,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
              * @see Zend_Feed_Exception
              */
             require_once 'Zend/Feed/Exception.php';
-            throw new Zend_Feed_Exception('XML cannot be parsed: ' . $phpErrormsg);
+            throw new Zend_Feed_Exception('XML cannot be parsed: ' . $php_errormsg);
         }
 
         $newEntry = $newEntry->getElementsByTagName($this->_rootElement)->item(0);
@@ -262,7 +261,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
         $links = parent::__get('link');
         if (!is_array($links)) {
             if ($links instanceof Zend_Feed_Element) {
-                $links = [$links];
+                $links = array($links);
             } else {
                 return $links;
             }

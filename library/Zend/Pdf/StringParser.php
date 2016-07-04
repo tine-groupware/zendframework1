@@ -69,7 +69,7 @@ class Zend_Pdf_StringParser
      *
      * @var array
      */
-    private $_elements = [];
+    private $_elements = array();
 
     /**
      * PDF objects factory.
@@ -87,7 +87,7 @@ class Zend_Pdf_StringParser
     public function cleanUp()
     {
         $this->_context = null;
-        $this->_elements = [];
+        $this->_elements = array();
         $this->_objFactory = null;
     }
 
@@ -99,13 +99,17 @@ class Zend_Pdf_StringParser
      */
     public static function isWhiteSpace($chCode)
     {
-        return
-            $chCode == 0x00 || // null character
+        if ($chCode == 0x00 || // null character
             $chCode == 0x09 || // Tab
             $chCode == 0x0A || // Line feed
             $chCode == 0x0C || // Form Feed
             $chCode == 0x0D || // Carriage return
-            $chCode == 0x20;    // Space
+            $chCode == 0x20    // Space
+           ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -117,8 +121,7 @@ class Zend_Pdf_StringParser
      */
     public static function isDelimiter($chCode )
     {
-        return
-            $chCode == 0x28 || // '('
+        if ($chCode == 0x28 || // '('
             $chCode == 0x29 || // ')'
             $chCode == 0x3C || // '<'
             $chCode == 0x3E || // '>'
@@ -127,7 +130,12 @@ class Zend_Pdf_StringParser
             $chCode == 0x7B || // '{'
             $chCode == 0x7D || // '}'
             $chCode == 0x2F || // '/'
-            $chCode == 0x25;    // '%'
+            $chCode == 0x25    // '%'
+           ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -321,20 +329,15 @@ class Zend_Pdf_StringParser
                                                 $this->offset));
 
             default:
-                if (strcasecmp($nextLexeme, 'true') === 0) {
+                if (strcasecmp($nextLexeme, 'true') == 0) {
                     return ($this->_elements[] = new Zend_Pdf_Element_Boolean(true));
-                }
-
-                if (strcasecmp($nextLexeme, 'false') === 0) {
+                } else if (strcasecmp($nextLexeme, 'false') == 0) {
                     return ($this->_elements[] = new Zend_Pdf_Element_Boolean(false));
-                }
-
-                if (strcasecmp($nextLexeme, 'null') === 0) {
+                } else if (strcasecmp($nextLexeme, 'null') == 0) {
                     return ($this->_elements[] = new Zend_Pdf_Element_Null());
                 }
 
                 $ref = $this->_readReference($nextLexeme);
-
                 if ($ref !== null) {
                     return ($this->_elements[] = $ref);
                 }
@@ -430,7 +433,7 @@ class Zend_Pdf_StringParser
      */
     private function _readArray()
     {
-        $elements = [];
+        $elements = array();
 
         while ( strlen($nextLexeme = $this->readLexeme()) != 0 ) {
             if ($nextLexeme != ']') {
@@ -456,7 +459,7 @@ class Zend_Pdf_StringParser
     {
         $dictionary = new Zend_Pdf_Element_Dictionary();
 
-        while (strlen($nextLexeme = $this->readLexeme()) !== 0) {
+        while ( strlen($nextLexeme = $this->readLexeme()) != 0 ) {
             if ($nextLexeme != '>>') {
                 $nameStart = $this->offset - strlen($nextLexeme);
 
@@ -511,12 +514,9 @@ class Zend_Pdf_StringParser
             return null;
         }
 
-        return new Zend_Pdf_Element_Reference(
-            (int)$objNum,
-            (int)$genNum,
-            $this->_context,
-            $this->_objFactory->resolve()
-        );
+        $ref = new Zend_Pdf_Element_Reference((int)$objNum, (int)$genNum, $this->_context, $this->_objFactory->resolve());
+
+        return $ref;
     }
 
 
@@ -554,7 +554,7 @@ class Zend_Pdf_StringParser
 
         $this->offset    = $offset;
         $this->_context  = $context;
-        $this->_elements = [];
+        $this->_elements = array();
 
         $objNum = $this->readLexeme();
         if (!ctype_digit($objNum)) {

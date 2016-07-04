@@ -36,7 +36,7 @@ class Scaffolder
 	 * @param string $root Path Root path.
 	 * @param array $options Options array (key/value).
 	 */
-	public function invoke(Phar $phar, $rootPath, $options = [])
+	public function invoke(Phar $phar, $rootPath, $options = array())
 	{
 		// Check required parameters
 		if (empty($options['DiagnosticsConnectionString'])) {

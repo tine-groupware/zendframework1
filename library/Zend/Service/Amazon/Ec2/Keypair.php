@@ -46,7 +46,7 @@ class Zend_Service_Amazon_Ec2_Keypair extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function create($keyName)
     {
-        $params = [];
+        $params = array();
 
         $params['Action'] = 'CreateKeyPair';
 
@@ -60,7 +60,7 @@ class Zend_Service_Amazon_Ec2_Keypair extends Zend_Service_Amazon_Ec2_Abstract
         $response = $this->sendRequest($params);
         $xpath = $response->getXPath();
 
-        $return = [];
+        $return = array();
         $return['keyName']          = $xpath->evaluate('string(//ec2:keyName/text())');
         $return['keyFingerprint']   = $xpath->evaluate('string(//ec2:keyFingerprint/text())');
         $return['keyMaterial']      = $xpath->evaluate('string(//ec2:keyMaterial/text())');
@@ -78,7 +78,7 @@ class Zend_Service_Amazon_Ec2_Keypair extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function describe($keyName = null)
     {
-        $params = [];
+        $params = array();
 
         $params['Action'] = 'DescribeKeyPairs';
         if(is_array($keyName) && !empty($keyName)) {
@@ -94,9 +94,9 @@ class Zend_Service_Amazon_Ec2_Keypair extends Zend_Service_Amazon_Ec2_Abstract
 
         $nodes  = $xpath->query('//ec2:keySet/ec2:item');
 
-        $return = [];
+        $return = array();
         foreach ($nodes as $k => $node) {
-            $item = [];
+            $item = array();
             $item['keyName']          = $xpath->evaluate('string(ec2:keyName/text())', $node);
             $item['keyFingerprint']   = $xpath->evaluate('string(ec2:keyFingerprint/text())', $node);
 
@@ -116,7 +116,7 @@ class Zend_Service_Amazon_Ec2_Keypair extends Zend_Service_Amazon_Ec2_Abstract
      */
     public function delete($keyName)
     {
-        $params = [];
+        $params = array();
 
         $params['Action'] = 'DeleteKeyPair';
 
