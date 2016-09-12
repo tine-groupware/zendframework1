@@ -143,7 +143,12 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      */
     public function load($id, $doNotTestCacheValidity = false)
     {
-        $tmp = $this->_redis->get($id);
+        try {
+            $tmp = $this->_redis->get($id);
+        } catch (RedisException $re) {
+            $this->_log("Zend_Cache_Backend_Redis::load() : Got an exception trying to access redis cache: " . $re);
+            return false;
+        }
         if (is_array($tmp)) {
             return $tmp[0];
         }
