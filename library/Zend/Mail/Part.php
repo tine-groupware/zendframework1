@@ -148,7 +148,9 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
         } else if (isset($params['headers'])) {
             if (is_array($params['headers'])) {
                 $this->_headers = $params['headers'];
-                $this->_validateHeaders($this->_headers);
+                if (! isset($params['skipHeaderValidation']) || $params['skipHeaderValidation'] == false) {
+                    $this->_validateHeaders($this->_headers);
+                }
             } else {
                 if (!empty($params['noToplines'])) {
                     Zend_Mime_Decode::splitMessage($params['headers'], $this->_headers, $null, "\r\n");
@@ -286,7 +288,13 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
         $partClass = $this->getPartClass();
         $counter = 1;
         foreach ($parts as $part) {
-            $this->_parts[$counter++] = new $partClass(['headers' => $part['header'], 'content' => $part['body']]);
+            $this->_parts[$counter++] = new $partClass([
+                'headers' => $part['header'],
+                'content' => $part['body'],
+                // we need to skip header validation as the headers are already decoded (by Zend_Mime_Decode::splitMessageStruct)
+                // and could contain illegal chars
+                'skipHeaderValidation' => true
+            ]);
         }
     }
 
