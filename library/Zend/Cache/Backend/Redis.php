@@ -226,6 +226,10 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
         $tags = $tmp[3];
         
         $transaction = $this->_redis->multi();
+
+        if (! $transaction) {
+            return false;
+        }
         
         // remove from tag sets
         foreach ((array) $tags as $tag) {
