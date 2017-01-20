@@ -125,12 +125,15 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
                 $this->_data[$locale][$id] = $str;
             }
             if(strpos($line, 'msgstr[')!== FALSE){
-                $line = str_replace("\r\n", "\n", $line);    
+                $line = str_replace("\r\n", "\n", $line);
                 $str = substr($line, 11, -2);
                 $line = fgets($this->_file);
                 while (strpos($line, '"')=== 0){
                     $str = $str . substr($line, 1, -2);
                     $line = fgets($this->_file);
+                }
+                if (empty($this->_data[$locale][$id])) {
+                    unset($this->_data[$locale][$id]);
                 }
                 $this->_data[$locale][$id][] = $str;
                 fseek($this->_file, - strlen($line), SEEK_CUR);
