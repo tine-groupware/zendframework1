@@ -261,7 +261,12 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     {
         switch ($mode) {
             case Zend_Cache::CLEANING_MODE_ALL:
-                return $this->_redis->flushDB();
+                try {
+                    return $this->_redis->flushDB();
+                } catch (RedisException $re) {
+                    $this->_log("Zend_Cache_Backend_Redis::clean() : problem with Redis: " . $re->getMessage());
+                    return false;
+                }
                 break;
                 
             case Zend_Cache::CLEANING_MODE_OLD:
