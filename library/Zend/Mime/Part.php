@@ -175,7 +175,6 @@ class Zend_Mime_Part
      * if this was created with a stream, return a filtered stream for
      * reading the content. very useful for large file attachments.
      *
-     * @param string $EOL
      * @return mixed Stream
      * @throws Zend_Mime_Exception if not a stream or unable to append filter
      */
@@ -200,6 +199,11 @@ class Zend_Mime_Part
                 ));
                 break;
             default:
+                require_once 'StreamFilter/StringReplace.php';
+                $this->_appendFilterToStream('str.replace', array(
+                    'search'    => "\x0d\x0a",
+                    'replace'   => $EOL
+                ));
         }
         return $this->_content;
     }
@@ -290,17 +294,23 @@ class Zend_Mime_Part
     /**
      * Get the Content of the current Mime Part in the given encoding.
      *
-     * @param  string $EOL Line end; defaults to {@link Zend_Mime::LINEEND}
-     * @throws Zend_Mime_Exception
+     * @param string $EOL
      * @return string
      */
     public function getContent($EOL = Zend_Mime::LINEEND)
     {
         if ($this->_isStream) {
-            return stream_get_contents($this->getEncodedStream($EOL));
+            $result = stream_get_contents($this->getEncodedStream($EOL));
         } else {
-            return Zend_Mime::encode($this->_content, $this->encoding, $EOL);
+            $result = Zend_Mime::encode($this->_content, $this->encoding, $EOL);
+
+            if ($this->encoding !== Zend_Mime::ENCODING_QUOTEDPRINTABLE && $this->encoding !== Zend_Mime::ENCODING_BASE64) {
+                // need to replace those \r\n with $EOL and we don't want to overwrite Zend_Mime
+                $result = str_replace("\x0d\x0a", $EOL, $result);
+            }
         }
+
+        return $result;
     }
 
     /**
@@ -351,7 +361,7 @@ class Zend_Mime_Part
 
         if ($this->boundary) {
             $contentType .= ';' . $EOL
-                . " boundary=\"" . $this->boundary . '"';
+                            . " boundary=\"" . $this->boundary . '"';
         }
 
         $headers[] = array(
