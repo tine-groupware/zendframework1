@@ -50,7 +50,7 @@ class Zend_Json_Client_Response extends Zend_Json_Server_Response
             $this->setError(new Zend_Json_Server_Error(
                 $response['error']['message'],
                 $response['error']['code'],
-                $response['error']['data']
+                isset($response['error']['data']) ? $response['error']['data'] : ''
             ));
         } else {
             $this->setResult($response['result']);
