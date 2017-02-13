@@ -126,7 +126,13 @@ class Zend_Json_Client
      * @var bool
      */
     protected $_skipSystemLookup = false;
-    
+
+    /**
+     * count for request id
+     * @var int
+     */
+    protected $_requestId = 1;
+
     /**
      * Create a new XML-RPC client to a remote server
      *
@@ -279,7 +285,8 @@ class Zend_Json_Client
         ));
 
         $json = $this->_lastRequest->__toString();
-        
+//        echo 'c -> ' . $json . "\n";
+
         $http->setRawData($json);
         $httpResponse = $http->request(Zend_Http_Client::POST);
 
@@ -296,6 +303,7 @@ class Zend_Json_Client
             $response = new Zend_Json_Client_Response();
         }
         $this->_lastResponse = $response;
+//        echo 's -> ' . $httpResponse->getBody() . "\n";
         
         $this->_lastResponse->loadJson($httpResponse->getBody());
     }
@@ -336,7 +344,7 @@ class Zend_Json_Client
 
         $request = new Zend_Json_Server_Request();
         $request->setVersion('2.0');
-        $request->setId(1);
+        $request->setId($this->_requestId++);
         $request->setMethod($method);
         $request->setParams($params);
 
