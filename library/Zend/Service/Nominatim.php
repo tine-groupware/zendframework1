@@ -147,12 +147,23 @@ class Zend_Service_Nominatim
         $this->_httpClient->setParameterGet('format', 'xml');
         $this->_httpClient->setParameterGet('addressdetails', 1);
         $this->_httpClient->setParameterGet('osm_type', 'way');
-        
-        if (Tinebase_Core::isLogLevel(Zend_Log::DEBUG)) Tinebase_Core::getLogger()->debug(__METHOD__ . '::' . __LINE__ . ' Connecting to Nominatim with uri ' . $this->_httpClient->getUri(true));
+
+        // TODO allow to use Zend_Logger here
+//        if (Tinebase_Core::isLogLevel(Zend_Log::DEBUG)) Tinebase_Core::getLogger()->debug(__METHOD__ . '::' . __LINE__
+//            . ' Connecting to Nominatim with uri ' . $this->_httpClient->getUri(true));
         
         $response = $this->_httpClient->request();
-        
-        $xml = new SimpleXMLElement($response->getBody());
+        $body = $response->getBody();
+      
+        # check xml validity!
+        $isxml = @simplexml_load_string($body);
+        if (! $isxml) {
+            // TODO allow to use Zend_Logger here
+//            if (Tinebase_Core::isLogLevel(Zend_Log::DEBUG)) Tinebase_Core::getLogger()->debug(__METHOD__ . '::' . __LINE__
+//                . ' response: ' . $body);
+            throw new UnexpectedValueException('String could not be parsed as XML');
+        }
+        $xml = new SimpleXMLElement($body);
 
         $result = new Zend_Service_Nominatim_ResultSet($xml);
 
