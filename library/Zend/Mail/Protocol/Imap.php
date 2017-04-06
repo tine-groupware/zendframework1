@@ -54,19 +54,32 @@ class Zend_Mail_Protocol_Imap
      */
     protected $_logger = null;
 
+    protected $_connectionOptions = array();
+
     /**
      * Public constructor
      *
      * @param  string   $host  hostname or IP address of IMAP server, if given connect() is called
      * @param  int|null $port  port of IMAP server, null for default (143 or 993 for ssl)
      * @param  bool     $ssl   use ssl? 'SSL', 'TLS' or false
+     * @param  array    $connectionOptions
      * @throws Zend_Mail_Protocol_Exception
      */
-    function __construct($host = '', $port = null, $ssl = false)
+    public function __construct($host = '', $port = null, $ssl = false, $connectionOptions = array())
     {
+        $this->_connectionOptions = $connectionOptions;
+
         if ($host) {
             $this->connect($host, $port, $ssl);
         }
+    }
+
+    /**
+     * @param $connectionOptions
+     */
+    public function setConnectionOptions($connectionOptions)
+    {
+        $this->_connectionOptions = $connectionOptions;
     }
 
     /**
@@ -98,7 +111,18 @@ class Zend_Mail_Protocol_Imap
 
         $errno  =  0;
         $errstr = '';
-        $this->_socket = @fsockopen($host, $port, $errno, $errstr, self::TIMEOUT_CONNECTION);
+        $context = isset($this->_connectionOptions['context']) && is_array($this->_connectionOptions['context'])
+            ? stream_context_create($this->_connectionOptions['context'])
+            : null;
+        $this->_socket = stream_socket_client(
+            "$host:$port",
+            $errno,
+            $errstr,
+            isset($this->_connectionOptions['timeout']) ? $this->_connectionOptions['timeout'] : self::TIMEOUT_CONNECTION,
+            STREAM_CLIENT_CONNECT,
+            $context
+        );
+
         if (!$this->_socket) {
             /**
              * @see Zend_Mail_Protocol_Exception
