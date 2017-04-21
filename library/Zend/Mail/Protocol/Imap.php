@@ -113,7 +113,7 @@ class Zend_Mail_Protocol_Imap
         $errstr = '';
         $context = isset($this->_connectionOptions['context']) && is_array($this->_connectionOptions['context'])
             ? stream_context_create($this->_connectionOptions['context'])
-            : null;
+            : stream_context_create();
         $this->_socket = stream_socket_client(
             "$host:$port",
             $errno,
