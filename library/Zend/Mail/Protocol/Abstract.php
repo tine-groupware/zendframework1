@@ -130,6 +130,7 @@ abstract class Zend_Mail_Protocol_Abstract
      */
     public static $loggingEnabled = false;
 
+    protected $_connectionOptions = array();
 
     /**
      * Constructor.
@@ -156,6 +157,13 @@ abstract class Zend_Mail_Protocol_Abstract
         $this->_port = $port;
     }
 
+    /**
+     * @param $connectionOptions
+     */
+    public function setConnectionOptions($connectionOptions)
+    {
+        $this->_connectionOptions = $connectionOptions;
+    }
 
     /**
      * Class destructor to cleanup open resources
@@ -275,7 +283,17 @@ abstract class Zend_Mail_Protocol_Abstract
         $errorStr = '';
 
         // open connection
-        $this->_socket = @stream_socket_client($remote, $errorNum, $errorStr, self::TIMEOUT_CONNECTION);
+        $context = isset($this->_connectionOptions['context']) && is_array($this->_connectionOptions['context'])
+            ? stream_context_create($this->_connectionOptions['context'])
+            : stream_context_create();
+        $this->_socket = stream_socket_client(
+            $remote,
+            $errorNum,
+            $errorStr,
+            isset($this->_connectionOptions['timeout']) ? $this->_connectionOptions['timeout'] : self::TIMEOUT_CONNECTION,
+            STREAM_CLIENT_CONNECT,
+            $context
+        );
 
         if ($this->_socket === false) {
             if ($errorNum == 0) {
