@@ -153,6 +153,10 @@ class Zend_Mail_Protocol_Smtp extends Zend_Mail_Protocol_Abstract
             }
         }
 
+        if (isset($config['connectionOptions'])) {
+            $this->setConnectionOptions($config['connectionOptions']);
+        }
+
         parent::__construct($host, $port);
     }
 
