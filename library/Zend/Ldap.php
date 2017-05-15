@@ -268,7 +268,7 @@ class Zend_Ldap
 
         $permittedOptions = [
             'host'                   => null,
-            'port'                   => 0,
+            'port'                   => 389,
             'useSsl'                 => false,
             'username'               => null,
             'password'               => null,
