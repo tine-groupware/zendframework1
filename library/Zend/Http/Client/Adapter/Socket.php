@@ -78,8 +78,8 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
         'sslcert'           => null,
         'sslpassphrase'     => null,
         'sslusecontext'     => false,
-        'verify_peer'       => true,
-        'verify_peer_name'  => true,
+        'verify_peer'       => null,
+        'verify_peer_name'  => null,
     );
 
     /**
@@ -207,7 +207,18 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
             if ($secure || $this->config['sslusecontext']) {
                 foreach (array('sslcert', 'sslpassphrase', 'verify_peer', 'verify_peer_name') as $sslOption) {
                     if (isset($this->config[$sslOption]) && $this->config[$sslOption] !== null) {
-                        if (! stream_context_set_option($context, 'ssl', $sslOption, $this->config[$sslOption])) {
+                        switch ($sslOption) {
+                            case 'sslpassphrase':
+                                $option = 'passphrase';
+                                break;
+                            case 'sslcert':
+                                $option = 'local_cert';
+                                break;
+                            default:
+                                $option = $sslOption;
+                        }
+
+                        if (! stream_context_set_option($context, 'ssl', $option, $this->config[$sslOption])) {
                             require_once 'Zend/Http/Client/Adapter/Exception.php';
                             throw new Zend_Http_Client_Adapter_Exception('Unable to set ' . $sslOption .' option');
                         }
@@ -218,7 +229,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
             $flags = STREAM_CLIENT_CONNECT;
             if ($this->config['persistent']) $flags |= STREAM_CLIENT_PERSISTENT;
 
-            $this->socket = @stream_socket_client($host . ':' . $port,
+            $this->socket = stream_socket_client($host . ':' . $port,
                                                   $errno,
                                                   $errstr,
                                                   (int) $this->config['timeout'],
@@ -229,7 +240,8 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
                 $this->close();
                 require_once 'Zend/Http/Client/Adapter/Exception.php';
                 throw new Zend_Http_Client_Adapter_Exception(
-                    'Unable to Connect to ' . $host . ':' . $port . '. Error #' . $errno . ': ' . $errstr);
+                    'Unable to Connect to ' . $host . ':' . $port . '. Error #' . $errno . ': ' . $errstr
+                    . ' options: ' . print_r($this->config, true));
             }
 
             // Set the stream timeout
