@@ -84,7 +84,6 @@ class Zend_Cache_Backend
             if (array_key_exists($name, $this->_directives)) {
                 $this->_directives[$name] = $value;
             }
-
         }
 
         $this->_loggerSanity();
