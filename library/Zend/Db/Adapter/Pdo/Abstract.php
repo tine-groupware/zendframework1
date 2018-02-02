@@ -391,10 +391,18 @@ abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
             return null;
         }
         $matches = null;
-        if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})/', $version, $matches)) {
-            return $matches[1];
+        if (strpos($version, '-MariaDB') !== false) {
+            if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})-MariaDB/', $version, $matches)) {
+                return $matches[1];
+            } else {
+                return null;
+            }
         } else {
-            return null;
+            if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})/', $version, $matches)) {
+                return $matches[1];
+            } else {
+                return null;
+            }
         }
     }
 }
