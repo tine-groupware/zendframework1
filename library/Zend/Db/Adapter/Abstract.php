@@ -1125,7 +1125,8 @@ abstract class Zend_Db_Adapter_Abstract
                 get_class($this) . ' is not allowed to be serialized'
             );
         }
-        $this->_connection = null;
+	// even after serialization we want to continue to use this object, why not?!?
+        //$this->_connection = null;
 
         return array_keys(
             array_diff_key(get_object_vars($this), array('_connection' => null))
