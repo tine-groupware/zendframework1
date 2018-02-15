@@ -201,7 +201,7 @@ class Zend_Session extends Zend_Session_Abstract
         // set default options on first run only (before applying user settings)
         if (!self::$_defaultOptionsSet) {
             foreach (self::$_defaultOptions as $defaultOptionName => $defaultOptionValue) {
-                if (isset(self::$_defaultOptions[$defaultOptionName])) {
+                if (isset(self::$_defaultOptions[$defaultOptionName]) && ! self::sessionExists()) {
                     ini_set("session.$defaultOptionName", $defaultOptionValue);
                 }
             }
@@ -215,7 +215,7 @@ class Zend_Session extends Zend_Session_Abstract
             $userOptionName = strtolower($userOptionName);
 
             // set the ini based values
-            if (array_key_exists($userOptionName, self::$_defaultOptions)) {
+            if (array_key_exists($userOptionName, self::$_defaultOptions) && ! self::sessionExists()) {
                 ini_set("session.$userOptionName", $userOptionValue);
             }
             elseif (isset(self::$_localOptions[$userOptionName])) {
