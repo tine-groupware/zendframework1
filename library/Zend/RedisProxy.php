@@ -17,6 +17,47 @@
  */
 class Zend_RedisProxy
 {
+    const AFTER                 = Redis::AFTER;
+    const BEFORE                = Redis::BEFORE;
+
+    /**
+     * Options
+     */
+    const OPT_SERIALIZER        = Redis::OPT_SERIALIZER;
+    const OPT_PREFIX            = Redis::OPT_PREFIX;
+    const OPT_READ_TIMEOUT      = Redis::OPT_READ_TIMEOUT;
+    const OPT_SCAN              = Redis::OPT_SCAN;
+
+    /**
+     * Serializers
+     */
+    const SERIALIZER_NONE       = Redis::SERIALIZER_NONE;
+    const SERIALIZER_PHP        = Redis::SERIALIZER_PHP;
+    const SERIALIZER_IGBINARY   = Redis::SERIALIZER_IGBINARY;
+
+    /**
+     * Multi
+     */
+    const ATOMIC                = Redis::ATOMIC;
+    const MULTI                 = Redis::MULTI;
+    const PIPELINE              = Redis::PIPELINE;
+
+    /**
+     * Type
+     */
+    const REDIS_NOT_FOUND       = Redis::REDIS_NOT_FOUND;
+    const REDIS_STRING          = Redis::REDIS_STRING;
+    const REDIS_SET             = Redis::REDIS_SET;
+    const REDIS_LIST            = Redis::REDIS_LIST;
+    const REDIS_ZSET            = Redis::REDIS_ZSET;
+    const REDIS_HASH            = Redis::REDIS_HASH;
+
+    /**
+     * Scan
+     */
+    const SCAN_NORETRY          = Redis::SCAN_NORETRY;
+    const SCAN_RETRY            = Redis::SCAN_RETRY;
+
     /**
      * @var Redis
      */
