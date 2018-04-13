@@ -266,7 +266,28 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
         switch ($mode) {
             case Zend_Cache::CLEANING_MODE_ALL:
                 try {
-                    return $this->_redis->flushDB();
+                    $iterator = null;
+                    $success = true;
+                    $prefix = $this->_redis->getOption(Redis::OPT_PREFIX);
+                    if (!is_string($prefix) || strlen($prefix) === 0) {
+                        $prefix = null;
+                        $pattern = null;
+                    } else {
+                        $this->_redis->setOption(Redis::OPT_PREFIX, '');
+                        $pattern = $prefix . '*';
+                    }
+                    try {
+                        while (is_array($keys = $this->_redis->scan($iterator, $pattern, 100))) {
+                            // don't && the other way! we still want to delete as much as possible, even if it failes once
+                            $success = $this->_redis->del($keys) && $success;
+                        }
+                    } finally {
+                        if (null !== $prefix) {
+                            $this->_redis->setOption(Redis::OPT_PREFIX, $prefix);
+                        }
+                    }
+                    return $success;
+                    //return $this->_redis->flushDB();
                 } catch (RedisException $re) {
                     $this->_log("Zend_Cache_Backend_Redis::clean() : problem with Redis: " . $re->getMessage());
                     return false;
