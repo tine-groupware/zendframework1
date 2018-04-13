@@ -77,6 +77,29 @@ class Zend_RedisProxy
         $this->_redis = new Redis();
     }
 
+    public function scan(&$iterator, $pattern = null, $count = 0)
+    {
+        $tries = 0;
+        while (true) {
+            try {
+                return $this->_redis->scan($iterator, $pattern, $count);
+            } catch (RedisException $re) {
+                if (true === $this->_inMulti || ++$tries > 5) {
+                    throw $re;
+                }
+
+                // give Redis 100ms and try again
+                usleep(100000);
+
+                try {
+                    $this->_redis->ping();
+                } catch (RedisException $re) {
+                    $this->_reconnect();
+                }
+            }
+        }
+    }
+    
     /**
      * @param $_name
      * @param array $_arguments
@@ -106,6 +129,11 @@ class Zend_RedisProxy
 
             case 'discard':
                 $this->_inMulti = false;
+                break;
+
+            case 'flushDB':
+            case 'flushAll':
+                throw new RedisException($_name . ' is forbidden, it well may be a shared redis, don\'t do it ever!');
                 break;
 
             default:
