@@ -21,8 +21,6 @@
  */
 
 
-use Zend_RedisProxy as Redis;
-
 /**
  * @package    Zend_Cache
  * @subpackage Zend_Cache_Backend
@@ -93,7 +91,6 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      *
      * @param array $options associative array of options
      * @throws Zend_Cache_Exception
-     * @return void
      */
     public function __construct(array $options = array())
     {
@@ -111,8 +108,12 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
             }
             $this->setOption('servers', $value);
         }
-        
-        $this->_redis = new Redis;
+
+        if (defined('Redis::SERIALIZER_IGBINARY') && defined('Redis::OPT_SCAN')) {
+            $this->_redis = new Zend_RedisProxy();
+        } else {
+            $this->_redis = new Redis();
+        }
         
         foreach ($this->_options['servers'] as $server) {
             if (!(isset($server['port']) || array_key_exists('port', $server))) {
@@ -121,9 +122,6 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
             if (!(isset($server['persistent']) || array_key_exists('persistent', $server))) {
                 $server['persistent'] = self::DEFAULT_PERSISTENT;
             }
-            #if (!(isset($server['weight']) || array_key_exists('weight', $server))) {
-            #    $server['weight'] = self::DEFAULT_WEIGHT;
-            #}
             if (!(isset($server['timeout']) || array_key_exists('timeout', $server))) {
                 $server['timeout'] = self::DEFAULT_TIMEOUT;
             }
