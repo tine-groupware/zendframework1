@@ -154,6 +154,10 @@ class Zend_RedisProxy
                 $result = call_user_func_array([$this->_redis, $_name], $_arguments);
                 if ($result === $this->_redis) {
                     return $this;
+                } elseif (false === $result) {
+                    if (false === $this->_redis->ping()) {
+                        throw new RedisException();
+                    }
                 }
                 return $result;
             } catch (RedisException $re) {
@@ -172,7 +176,9 @@ class Zend_RedisProxy
                 }
 
                 try {
-                    $this->_redis->ping();
+                    if (false === $this->_redis->ping()) {
+                        $this->_reconnect();
+                    }
                 } catch (RedisException $re) {
                     $this->_reconnect();
                 }
