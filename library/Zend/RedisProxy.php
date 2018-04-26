@@ -9,13 +9,34 @@
  * @copyright   Copyright (c) 2018 Metaways Infosystems GmbH (http://www.metaways.de)
  */
 
+if (defined('Redis::SERIALIZER_IGBINARY')) {
+    class Zend_RedisProxy_C1 { const SERIALIZER_IGBINARY = Redis::SERIALIZER_IGBINARY;}
+} else {
+    class Zend_RedisProxy_C1 {}
+}
+
+if (defined('Redis::OPT_SCAN')) {
+    class Zend_RedisProxy_C2 extends Zend_RedisProxy_C1 { const OPT_SCAN = Redis::OPT_SCAN;}
+} else {
+    class Zend_RedisProxy_C2 extends Zend_RedisProxy_C1 {}
+}
+
+if (defined('Redis::SCAN_NORETRY') && defined('Redis::SCAN_RETRY')) {
+    class Zend_RedisProxy_C3 extends Zend_RedisProxy_C2 {
+        const SCAN_NORETRY = Redis::SCAN_NORETRY;
+        const SCAN_RETRY   = Redis::SCAN_RETRY;
+    }
+} else {
+    class Zend_RedisProxy_C3 extends Zend_RedisProxy_C2 {}
+}
+
 /**
  * A redis proxy that retries redis communication in case of failures
  *
  * @package     Tinebase
  * @subpackage  Backend
  */
-class Zend_RedisProxy
+class Zend_RedisProxy extends Zend_RedisProxy_C3
 {
     const AFTER                 = Redis::AFTER;
     const BEFORE                = Redis::BEFORE;
@@ -26,14 +47,12 @@ class Zend_RedisProxy
     const OPT_SERIALIZER        = Redis::OPT_SERIALIZER;
     const OPT_PREFIX            = Redis::OPT_PREFIX;
     const OPT_READ_TIMEOUT      = Redis::OPT_READ_TIMEOUT;
-    const OPT_SCAN              = Redis::OPT_SCAN;
 
     /**
      * Serializers
      */
     const SERIALIZER_NONE       = Redis::SERIALIZER_NONE;
     const SERIALIZER_PHP        = Redis::SERIALIZER_PHP;
-    const SERIALIZER_IGBINARY   = Redis::SERIALIZER_IGBINARY;
 
     /**
      * Multi
@@ -51,12 +70,6 @@ class Zend_RedisProxy
     const REDIS_LIST            = Redis::REDIS_LIST;
     const REDIS_ZSET            = Redis::REDIS_ZSET;
     const REDIS_HASH            = Redis::REDIS_HASH;
-
-    /**
-     * Scan
-     */
-    const SCAN_NORETRY          = Redis::SCAN_NORETRY;
-    const SCAN_RETRY            = Redis::SCAN_RETRY;
 
     /**
      * @var Redis
@@ -99,7 +112,7 @@ class Zend_RedisProxy
             }
         }
     }
-    
+
     /**
      * @param $_name
      * @param array $_arguments
@@ -133,7 +146,10 @@ class Zend_RedisProxy
 
             case 'flushDB':
             case 'flushAll':
-                throw new RedisException($_name . ' is forbidden, it well may be a shared redis, don\'t do it ever!');
+                if (defined(__CLASS__ . '::OPT_SCAN')) {
+                    throw new RedisException($_name .
+                        ' is forbidden, it well may be a shared redis, don\'t do it ever!');
+                }
                 break;
 
             default:
