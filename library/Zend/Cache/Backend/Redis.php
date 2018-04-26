@@ -20,6 +20,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
+use Zend_RedisProxy as Redis;
 
 /**
  * @package    Zend_Cache
@@ -97,9 +98,9 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
         if (!extension_loaded('redis')) {
             Zend_Cache::throwException('The redis extension must be loaded for using this backend !');
         }
-        
+
         parent::__construct($options);
-        
+
         if (isset($this->_options['servers'])) {
             $value= $this->_options['servers'];
             if (isset($value['host'])) {
@@ -109,12 +110,8 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
             $this->setOption('servers', $value);
         }
 
-        if (defined('Redis::SERIALIZER_IGBINARY') && defined('Redis::OPT_SCAN')) {
-            $this->_redis = new Zend_RedisProxy();
-        } else {
-            $this->_redis = new Redis();
-        }
-        
+        $this->_redis = new Redis();
+
         foreach ($this->_options['servers'] as $server) {
             if (!(isset($server['port']) || array_key_exists('port', $server))) {
                 $server['port'] = self::DEFAULT_PORT;
@@ -128,10 +125,10 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
             if (!(isset($server['prefix']) || array_key_exists('prefix', $server))) {
                 $server['prefix'] = self::DEFAULT_PREFIX;
             }
-            
+
             $this->_redis->connect($server['host'], $server['port'], $server['timeout']);
         }
-        
+
         $this->_redis->setOption(Redis::OPT_SERIALIZER, Redis::SERIALIZER_PHP);
         $this->_redis->setOption(Redis::OPT_PREFIX, $server['prefix']);
     }
@@ -192,14 +189,14 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function save($data, $id, $tags = array(), $specificLifetime = false)
     {
         $lifetime = $this->getLifetime($specificLifetime);
-        
+
         $transaction = $this->_redis->multi();
 
         if (! $transaction) {
             $this->_log("Zend_Cache_Backend_Redis::save() : problem with Redis multi-transaction during save");
             return false;
         }
-        
+
         if ($lifetime) {
             $transaction->setex($id, $lifetime, array($data, time(), $lifetime, (array)$tags));
         } else {
@@ -212,7 +209,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
         }
 
         $result = $transaction->exec();
-        
+
         return $result;
     }
 
@@ -226,19 +223,19 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     {
         $tmp = $this->_redis->get($id);
         $tags = $tmp[3];
-        
+
         $transaction = $this->_redis->multi();
 
         if (! $transaction) {
             return false;
         }
-        
+
         // remove from tag sets
         foreach ((array) $tags as $tag) {
             $transaction->sRem(self::TAG_PREFIX . $tag, $id);
         }
         $transaction->delete($id);
-        
+
         return $transaction->exec();
     }
 
@@ -264,79 +261,49 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
         switch ($mode) {
             case Zend_Cache::CLEANING_MODE_ALL:
                 try {
-                    $iterator = null;
-                    $success = true;
-                    $prefix = $this->_redis->getOption(Redis::OPT_PREFIX);
-                    if (!is_string($prefix) || strlen($prefix) === 0) {
-                        $prefix = null;
-                        $pattern = null;
+                    if (defined('Redis::OPT_SCAN')) {
+                        $iterator = null;
+                        $success = true;
+                        $prefix = $this->_redis->getOption(Redis::OPT_PREFIX);
+                        if (!is_string($prefix) || strlen($prefix) === 0) {
+                            $prefix = null;
+                            $pattern = null;
+                        } else {
+                            $this->_redis->setOption(Redis::OPT_PREFIX, '');
+                            $pattern = $prefix . '*';
+                        }
+                        try {
+                            while (is_array($keys = $this->_redis->scan($iterator, $pattern, 100))) {
+                                // don't && the other way! we still want to delete as much as possible, even if it failes once
+                                $success = $this->_redis->del($keys) && $success;
+                            }
+                        } finally {
+                            if (null !== $prefix) {
+                                $this->_redis->setOption(Redis::OPT_PREFIX, $prefix);
+                            }
+                        }
+                        return $success;
                     } else {
-                        $this->_redis->setOption(Redis::OPT_PREFIX, '');
-                        $pattern = $prefix . '*';
+                        return $this->_redis->flushDB();
                     }
-                    try {
-                        while (is_array($keys = $this->_redis->scan($iterator, $pattern, 100))) {
-                            // don't && the other way! we still want to delete as much as possible, even if it failes once
-                            $success = $this->_redis->del($keys) && $success;
-                        }
-                    } finally {
-                        if (null !== $prefix) {
-                            $this->_redis->setOption(Redis::OPT_PREFIX, $prefix);
-                        }
-                    }
-                    return $success;
-                    //return $this->_redis->flushDB();
                 } catch (RedisException $re) {
                     $this->_log("Zend_Cache_Backend_Redis::clean() : problem with Redis: " . $re->getMessage());
                     return false;
                 }
                 break;
-                
+
             case Zend_Cache::CLEANING_MODE_OLD:
                 $this->_log("Zend_Cache_Backend_Redis::clean() : CLEANING_MODE_OLD is not required for Redis backend");
                 break;
-                
+
             case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
                 $ids = $this->getIdsMatchingTags($tags);
-                
+
                 if (!empty($ids)) {
                     $values = $this->_redis->getMultiple($ids);
-                    
+
                     $transaction = $this->_redis->multi();
-                    
-                    $i = 0;
-                    foreach ($ids as $id) {
-                        $transaction->delete($id);
-                        
-                        // if the record also has some other tags attached, remove record from these tag lists too
-                        // $values[$i] can be null if id was not found by getMultiple
-                        if (is_array($values[$i]) && is_array($values[$i][3])) {
-                            $allTags = array_unique(array_merge((array) $tags, $values[$i][3]));
-                        // otherwise just remove from the tag lists provided
-                        } else {
-                            $allTags = (array) $tags;
-                        }
-                        
-                        foreach($allTags as $tag) {
-                            $transaction->sRem(self::TAG_PREFIX . $tag, $id);
-                        }
-                        
-                        $i++;
-                    }
-                    
-                    $transaction->exec();
-                }
-                
-                break;
-                
-            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                $ids = $this->getIdsMatchingAnyTags($tags);
-                
-                if (!empty($ids)) {
-                    $values = $this->_redis->getMultiple($ids);
-                    
-                    $transaction = $this->_redis->multi();
-                    
+
                     $i = 0;
                     foreach ($ids as $id) {
                         $transaction->delete($id);
@@ -353,22 +320,55 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
                         foreach($allTags as $tag) {
                             $transaction->sRem(self::TAG_PREFIX . $tag, $id);
                         }
-                        
+
                         $i++;
                     }
-                    
+
                     $transaction->exec();
                 }
-                
+
                 break;
-            
+
+            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+                $ids = $this->getIdsMatchingAnyTags($tags);
+
+                if (!empty($ids)) {
+                    $values = $this->_redis->getMultiple($ids);
+
+                    $transaction = $this->_redis->multi();
+
+                    $i = 0;
+                    foreach ($ids as $id) {
+                        $transaction->delete($id);
+
+                        // if the record also has some other tags attached, remove record from these tag lists too
+                        // $values[$i] can be null if id was not found by getMultiple
+                        if (is_array($values[$i]) && is_array($values[$i][3])) {
+                            $allTags = array_unique(array_merge((array) $tags, $values[$i][3]));
+                            // otherwise just remove from the tag lists provided
+                        } else {
+                            $allTags = (array) $tags;
+                        }
+
+                        foreach($allTags as $tag) {
+                            $transaction->sRem(self::TAG_PREFIX . $tag, $id);
+                        }
+
+                        $i++;
+                    }
+
+                    $transaction->exec();
+                }
+
+                break;
+
             case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
                 $this->_log(self::TAGS_UNSUPPORTED_BY_CLEAN_OF_REDIS_BACKEND);
                 break;
-                
+
             default:
                 Zend_Cache::throwException('Invalid mode for clean() method');
-                   break;
+                break;
         }
     }
 
@@ -392,7 +392,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function setDirectives($directives)
     {
         parent::setDirectives($directives);
-        
+
         $lifetime = $this->getLifetime(false);
         if ($lifetime === null) {
             // #ZF-4614 : we tranform null to zero to get the maximal lifetime
@@ -419,7 +419,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function getTags()
     {
         $keysWithCachePrefix = $this->_redis->keys(self::TAG_PREFIX . '*');
-        
+
         return $this->_removeTagPrefix($keysWithCachePrefix);
     }
 
@@ -434,12 +434,12 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function getIdsMatchingTags($tags = array())
     {
         $cacheTags = array();
-        
+
         foreach ((array) $tags as $tag) {
             $cacheTags[] = self::TAG_PREFIX . $tag;
         }
         $ids = $this->_redis->sInter($cacheTags);
-        
+
         return $ids;
     }
 
@@ -468,12 +468,12 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function getIdsMatchingAnyTags($tags = array())
     {
         $cacheTags = array();
-        
+
         foreach ((array) $tags as $tag) {
             $cacheTags[] = self::TAG_PREFIX . $tag;
         }
         $ids = $this->_redis->sUnion($cacheTags);
-        
+
         return $ids;
     }
 
@@ -486,7 +486,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function getFillingPercentage()
     {
         $this->_log("Filling percentage not supported by the Redis backend");
-        
+
         return 0;
     }
 
@@ -504,18 +504,18 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function getMetadatas($id)
     {
         $tmp = $this->_redis->get($id);
-        
+
         if (is_array($tmp)) {
             $mtime = $tmp[1];
             $lifetime = $tmp[2];
-            
+
             return array(
                 'expire' => $mtime + $lifetime,
                 'tags'   => $tmp[3],
                 'mtime'  => $mtime
             );
         }
-        
+
         return false;
     }
 
@@ -529,23 +529,23 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function touch($id, $extraLifetime)
     {
         $tmp = $this->_redis->get($id);
-        
+
         if (is_array($tmp)) {
             $data = $tmp[0];
             $mtime = $tmp[1];
             $lifetime = $tmp[2];
             $tags = $tmp[3];
-            
+
             $newLifetime = $lifetime - (time() - $mtime) + $extraLifetime;
             if ($newLifetime <=0) {
                 return false;
             }
-            
+
             $result = $this->_redis->setex($id, $newLifetime, array($data, time(), $newLifetime, $tags));
-            
+
             return $result;
         }
-        
+
         return false;
     }
 
@@ -577,22 +577,22 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
 
     /**
      * strip key prefix and tag prefix from key name
-     * 
+     *
      * @param array $keys
      * @return array
      */
     protected function _removeTagPrefix(array $keys)
     {
         $keyPrefix = $this->_redis->getOption(Redis::OPT_PREFIX);
-        
+
         $pos = strlen($keyPrefix) + strlen(self::TAG_PREFIX);
-        
+
         $result = array();
-        
+
         foreach ($keys as $key) {
             $result[] = substr($key, $pos);
         }
-        
+
         return $result;
-    }    
+    }
 }
