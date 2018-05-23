@@ -428,6 +428,10 @@ class Zend_Mime_Part
     {
         $res = '';
         foreach ($this->getHeadersArray($EOL) as $header) {
+            if (is_array($header[0]) || is_array($header[1])) {
+                throw new Zend_Mail_Exception('header must not be array: ' . print_r($header[0], true). ' '
+                    . print_r($header[1], true) . ' ' . print_r($this, true));
+            }
             $res .= $header[0] . ': ' . $header[1] . $EOL;
         }
 
