@@ -113,6 +113,13 @@ class Zend_Mime_Part
     protected $_content;
 
     /**
+     * original content stream
+     *
+     * @var resource
+     */
+    protected $_originalStream = null;
+
+    /**
      * @var bool
      */
     protected $_isStream = false;
@@ -126,12 +133,19 @@ class Zend_Mime_Part
      * as a string or stream
      *
      * @param mixed $content String or Stream containing the content
+     * @param boolean $preserveOriginal for more robust stream resets
      */
-    public function __construct($content)
+    public function __construct($content, $preserveOriginal = false)
     {
         $this->_content = $content;
         if (is_resource($content)) {
             $this->_isStream = true;
+            if ($preserveOriginal) {
+                $this->_originalStream = fopen("php://temp", "r+");
+                stream_copy_to_stream($this->_content, $this->_originalStream);
+                rewind($this->_content);
+                rewind($this->_originalStream);
+            }
         }
     }
 
@@ -282,9 +296,17 @@ class Zend_Mime_Part
             throw new Zend_Mime_Exception('Attempt to reset the stream of a string part');
         }
 
-        foreach ($this->_decodeFilterResources as $filter) {
-            stream_filter_remove($filter);
+        if (is_resource($this->_originalStream)) {
+            fclose($this->_content);
+            $this->_content = fopen("php://temp", "r+");
+            stream_copy_to_stream($this->_originalStream, $this->_content);
+            rewind($this->_originalStream);
+        } else {
+            foreach ($this->_decodeFilterResources as $filter) {
+                stream_filter_remove($filter);
+            }
         }
+
         $this->_decodeFilters = array();
         $this->_decodeFilterResources = array();
 
