@@ -287,18 +287,10 @@ class Zend_XmlRpc_RequestTest extends PHPUnit_Framework_TestCase
         }
 
         $result = $sx->xpath('//methodName');
-        $count = 0;
-        while (list( , $node) = each($result)) {
-            ++$count;
-        }
-        $this->assertEquals(1, $count, $xml);
+        $this->assertEquals(1, count($result), $xml);
 
         $result = $sx->xpath('//params');
-        $count = 0;
-        while (list( , $node) = each($result)) {
-            ++$count;
-        }
-        $this->assertEquals(1, $count, $xml);
+        $this->assertEquals(1, count($result), $xml);
 
         try {
             $methodName = (string) $sx->methodName;
