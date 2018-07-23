@@ -756,7 +756,7 @@ echo $this->navigation()->breadcrumbs()
 
             <programlisting language="php"><![CDATA[
 echo implode(', ', array_map(
-        create_function('$a', 'return $a->getLabel();'),
+        function ($a) { return $a->getLabel(); },
         $this->pages));
 ]]></programlisting>
 

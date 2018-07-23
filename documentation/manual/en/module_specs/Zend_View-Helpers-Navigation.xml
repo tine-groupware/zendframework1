@@ -762,7 +762,7 @@ echo $this->navigation()->breadcrumbs()
 
             <programlisting language="php"><![CDATA[
 echo implode(', ', array_map(
-        create_function('$a', 'return $a->getLabel();'),
+        function ($a) { return $a->getLabel(); },
         $this->pages));
 ]]></programlisting>
 
@@ -1261,10 +1261,10 @@ Output:
                     should be rendered.
                 </para>
             </listitem>
-            
+
             <listitem>
                 <para>
-                    <code>{get|set}ExpandSiblingNodesOfActiveBranch()</code> 
+                    <code>{get|set}ExpandSiblingNodesOfActiveBranch()</code>
                     gets/sets a flag specifying whether the sibling nodes of all
                     nodes in the active branch should also be expanded and rendered.
                 </para>
@@ -1380,8 +1380,8 @@ Output:
 
                     <listitem>
                         <para>
-                            <code>expandSiblingNodesOfActiveBranch</code>; 
-                            whether the sibling nodes of nodes in the active 
+                            <code>expandSiblingNodesOfActiveBranch</code>;
+                            whether the sibling nodes of nodes in the active
                             branch should be expanded and rendered. Expects
                             a <type>Boolean</type> value.
                         </para>
@@ -1823,7 +1823,7 @@ Output:
 </ul>
 ]]></programlisting>
         </example>
-        
+
         <example id="zend.view.helpers.initial.navigation.menu.example10">
             <title>Rendering a custom menu using a partial view script</title>
 
@@ -1862,10 +1862,10 @@ foreach ($this->container as $page) {
 <a href="/community">Community</a>
 ]]></programlisting>
         </example>
-        
+
         <example id="zend.view.helpers.initial.navigation.menu.example11">
             <title>
-                Rendering only the active branch and all siblings of the active branch 
+                Rendering only the active branch and all siblings of the active branch
             </title>
 
             <programlisting language="php"><![CDATA[
@@ -1911,7 +1911,7 @@ echo $this->navigation()
     </li>
 </ul>
 ]]></programlisting>
-        </example>        
+        </example>
     </sect4>
 
     <sect4 id="zend.view.helpers.initial.navigation.sitemap">

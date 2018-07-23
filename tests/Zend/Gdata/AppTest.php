@@ -598,8 +598,8 @@ class Zend_Gdata_AppTest extends PHPUnit_Framework_TestCase
 
     /**
      * When error handler is overridden to throw an ErrorException, the extension loader
-     * in Zend_Gdata will throw an ErrorException when the class doesn't exist in the 
-     * first extension directory even if it exists in subsequent ones.  This test 
+     * in Zend_Gdata will throw an ErrorException when the class doesn't exist in the
+     * first extension directory even if it exists in subsequent ones.  This test
      * enforces a fix that keeps this from happening
      *
      * @group ZF-12268
@@ -608,8 +608,8 @@ class Zend_Gdata_AppTest extends PHPUnit_Framework_TestCase
     public function testLoadExtensionCausesFatalErrorWhenErrorHandlerIsOverridden()
     {
         // Override the error handler to throw an ErrorException
-        set_error_handler(create_function('$a, $b, $c, $d', 'throw new ErrorException($b, 0, $a, $c, $d);'), E_ALL);
-        try { 
+        set_error_handler(function($a, $b, $c, $d) { throw new ErrorException($b, 0, $a, $c, $d); }, E_ALL);
+        try {
             $eq = $this->service->newEventQuery();
             restore_error_handler();
             $this->assertTrue($eq instanceof Zend_Gdata_Calendar_EventQuery);
