@@ -1,6 +1,6 @@
 {
-    "name": "zendframework/zendframework1-PHP7.2",
-    "description": "Zend Framework 1",
+    "name": "zendframework/zendframework1-php7.2",
+    "description": "Zend Framework 1 PHP7.2 compatible",
     "type": "library",
     "keywords": [
         "framework",
