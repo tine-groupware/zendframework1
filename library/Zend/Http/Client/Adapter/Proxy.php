@@ -302,6 +302,10 @@ class Zend_Http_Client_Adapter_Proxy extends Zend_Http_Client_Adapter_Socket
             STREAM_CRYPTO_METHOD_SSLv23_CLIENT,
             STREAM_CRYPTO_METHOD_SSLv2_CLIENT
         ];
+        if (defined('STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT')) {
+            array_unshift($modes, STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT);
+            array_unshift($modes, STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT);
+        }
 
         $success = false;
         foreach($modes as $mode) {
