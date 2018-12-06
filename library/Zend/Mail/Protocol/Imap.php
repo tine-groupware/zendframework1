@@ -652,7 +652,7 @@ class Zend_Mail_Protocol_Imap
         $this->sendRequest($uid ? 'UID FETCH' : 'FETCH', array($set, $itemList), $tag);
 
         // BODY.PEEK gets returned as BODY
-        foreach($items as &$item) {
+        foreach ($items as &$item) {
             if (substr($item, 0, 9) == 'BODY.PEEK') {
                 $item = 'BODY' . substr($item, 9);
             }
@@ -661,7 +661,7 @@ class Zend_Mail_Protocol_Imap
         $result = array();
         while (!$this->readLine($tokens, $tag)) {
             // ignore other responses
-            if ($tokens[1] != 'FETCH') {
+            if ($tokens[1] != 'FETCH' || !is_array($tokens[2])) {
                 continue;
             }
 
@@ -670,12 +670,6 @@ class Zend_Mail_Protocol_Imap
                 $data[current($tokens[2])] = next($tokens[2]);
                 next($tokens[2]);
             }
-
-            // ignore other messages
-            // with UID FETCH we get the ID and NOT the UID as $tokens[0]
-            #if ($to === null && !is_array($from) && $tokens[0] != $from) {
-            #    continue;
-            #}
 
             // if we want only one message we can ignore everything else and just return
             if ($to === null && !is_array($from) && (($uid !== true && $tokens[0] == $from) || ($uid === true && $data['UID'] == $from))) {
