@@ -130,6 +130,9 @@ class Zend_Mail_Protocol_Sieve
                 }
                 throw new Zend_Mail_Protocol_Exception("cannot enable TLS: $message");
             }
+            if ($this->_implementation == 'Dovecot Pigeonhole') {
+                $this->readResponse();
+            }
         }
         
         return $this->_welcome;
