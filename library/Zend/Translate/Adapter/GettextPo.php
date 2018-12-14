@@ -116,7 +116,8 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
             }
             if(strpos($line, 'msgstr "')!== FALSE){
                 $line = str_replace("\r\n", "\n", $line);
-                $str = substr($line, 8, -2);
+		$line = str_replace("\n", "", $line);
+                $str = substr($line, 8, -1);
                 $line = fgets($this->_file);
                 while (strpos($line, '"')=== 0){
                     $str = $str . substr($line, 1, -2);
