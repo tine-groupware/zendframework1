@@ -1687,7 +1687,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 $order = null;
                 switch ($argc) {
                     case 0:
-                        continue;
+                        break;
                     case (1 <= $argc):
                         $subForm = array_shift($spec);
 
