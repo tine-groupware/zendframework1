@@ -6,7 +6,7 @@
  * @subpackage  Backend
  * @license     http://www.gnu.org/licenses/agpl.html AGPL Version 3
  * @author      Paul Mehrer <p.mehrer@metaways.de>
- * @copyright   Copyright (c) 2018 Metaways Infosystems GmbH (http://www.metaways.de)
+ * @copyright   Copyright (c) 2018-2019 Metaways Infosystems GmbH (http://www.metaways.de)
  */
 
 if (defined('Redis::SERIALIZER_IGBINARY')) {
@@ -188,7 +188,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                     case 'connect':
                     case 'open':
                     case 'pconnect':
-                        continue;
+                        continue 2;
                 }
 
                 try {
