@@ -368,7 +368,7 @@ class Zend_Session extends Zend_Session_Abstract
             return;
         }
         
-        if (!self::sessionExists()) { // session_set_cookie_params(): Cannot change session cookie parameters when session is active
+        if (!self::$_sessionStarted) { // session_set_cookie_params(): Cannot change session cookie parameters when session is active
             $cookieParams = session_get_cookie_params();
             session_set_cookie_params(
                     $seconds,
