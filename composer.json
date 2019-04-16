@@ -1,6 +1,6 @@
 {
-    "name": "shardj/zendframework1-php7.2",
-    "description": "Zend Framework 1 PHP7.2 compatible",
+    "name": "shardj/zf1-future",
+    "description": "Zend Framework 1 PHP 7.2 and 7.3 compatible",
     "type": "library",
     "keywords": [
         "framework",
@@ -33,5 +33,8 @@
     },
     "archive": {
         "exclude": ["/demos", "/documentation", "/tests"]
+    },
+    "replace": {
+        "zendframework/zendframework1": "1.*"
     }
 }

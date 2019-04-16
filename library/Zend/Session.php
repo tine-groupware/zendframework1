@@ -216,7 +216,9 @@ class Zend_Session extends Zend_Session_Abstract
 
             // set the ini based values
             if (array_key_exists($userOptionName, self::$_defaultOptions)) {
-                ini_set("session.$userOptionName", $userOptionValue);
+                if(!self::$_sessionStarted) {
+                    ini_set("session.$userOptionName", $userOptionValue);
+                }
             }
             elseif (isset(self::$_localOptions[$userOptionName])) {
                 self::${self::$_localOptions[$userOptionName]} = $userOptionValue;
