@@ -278,6 +278,7 @@ class Zend_Session extends Zend_Session_Abstract
             array(&$saveHandler, 'destroy'),
             array(&$saveHandler, 'gc')
             );
+        register_shutdown_function('session_write_close');
 
         if (!$result) {
             throw new Zend_Session_Exception('Unable to set session handler');
