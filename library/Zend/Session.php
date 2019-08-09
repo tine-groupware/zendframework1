@@ -199,7 +199,7 @@ class Zend_Session extends Zend_Session_Abstract
     public static function setOptions(array $userOptions = array())
     {
         // set default options on first run only (before applying user settings)
-        if (!self::$_defaultOptionsSet) {
+        if (!self::$_defaultOptionsSet && !self::$_unitTestEnabled) {
             foreach (self::$_defaultOptions as $defaultOptionName => $defaultOptionValue) {
                 if (isset(self::$_defaultOptions[$defaultOptionName])) {
                     ini_set("session.$defaultOptionName", $defaultOptionValue);
