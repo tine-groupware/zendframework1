@@ -282,9 +282,10 @@ class Zend_Config_Yaml extends Zend_Config
      *
      * @param  int $currentIndent Current indent level
      * @param  array $lines  YAML lines
+     * @param int $pointer The current line being parsed
      * @return array|string
      */
-    protected static function _decodeYaml($currentIndent, &$lines, &$pointer = -1)
+    protected static function _decodeYaml($currentIndent, $lines, &$pointer = -1)
     {
         $config = array();
         $inIndent = false;
