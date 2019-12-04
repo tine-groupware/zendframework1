@@ -1,6 +1,6 @@
 {
     "name": "shardj/zf1-future",
-    "description": "Zend Framework 1 PHP 7.2 and 7.3 compatible",
+    "description": "Zend Framework 1 PHP 5.2.11+ compatible. The aim is to keep ZF1 working with the latest PHP versions",
     "type": "library",
     "keywords": [
         "framework",
