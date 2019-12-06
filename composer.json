@@ -1,6 +1,6 @@
 {
     "name": "shardj/zf1-future",
-    "description": "Zend Framework 1 PHP 5.2.11+ compatible. The aim is to keep ZF1 working with the latest PHP versions",
+    "description": "Zend Framework 1 PHP 5.4+ compatible. The aim is to keep ZF1 working with the latest PHP versions",
     "type": "library",
     "keywords": [
         "framework",
@@ -9,7 +9,7 @@
     "homepage": "http://framework.zend.com/",
     "license": "BSD-3-Clause",
     "require": {
-        "php": ">=5.2.11"
+        "php": ">=5.4"
     },
     "autoload": {
         "psr-0": {
