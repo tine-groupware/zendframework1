@@ -191,9 +191,9 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         if (!empty($q)) {
             $escapeChar = preg_quote($escapeChar);
             // this segfaults only after 65,000 characters instead of 9,000
-            $sql = preg_replace("/$q([^$q{$escapeChar}]*|($qe)*)*$q/s", '', $sql);
+            $sql = preg_replace("/$q([^$q[$escapeChar]]*|($qe)*)*$q/s", '', $sql);
         }
-        
+
         // get a version of the SQL statement with all quoted
         // values and delimited identifiers stripped out
         // remove "foo\"bar"
