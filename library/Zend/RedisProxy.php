@@ -81,6 +81,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
 
     protected $_inMulti = false;
     protected $_multiPipe = [];
+    protected $_multiArgs = [];
 
     /**
      * Tinebase_Backend_Redis constructor.
@@ -138,6 +139,8 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
 
             case 'multi':
                 $this->_inMulti = true;
+                $this->_multiArgs = $_arguments;
+                $this->_multiPipe = [];
                 break;
 
             case 'discard':
@@ -154,10 +157,46 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
 
             default:
                 if (true === $this->_inMulti) {
+                    // we do not retry exec as we cant be sure if Redis did execute a "failed" exec or not
+                    // so exec is: either it works or not
                     if ('exec' === $_name) {
                         $this->_inMulti = false;
+                        $result = call_user_func_array([$this->_redis, $_name], $_arguments);
+                    } else {
+                        while (true) {
+                            try {
+                                if ($tries > 0) {
+                                    // restart the multi
+                                    if (call_user_func_array([$this->_redis, 'multi'], $this->_multiArgs) !==
+                                            $this->_redis) {
+                                        throw new RedisException();
+                                    }
+                                    // redo the recorded multi pipe
+                                    foreach ($this->_multiPipe as $call) {
+                                        if (call_user_func_array([$this->_redis, $call[0]], $call[1]) !==
+                                                $this->_redis) {
+                                            throw new RedisException();
+                                        }
+                                    }
+                                }
+                                if (($result = call_user_func_array([$this->_redis, $_name], $_arguments)) !==
+                                        $this->_redis) {
+                                    throw new RedisException();
+                                }
+                                break;
+                            } catch (RedisException $re) {
+                                if (++$tries > 5) {
+                                    throw $re;
+                                }
+
+                                // give Redis 100ms and try again
+                                usleep(100000);
+
+                                $this->_reconnect();
+                            }
+                        }
+                        $this->_multiPipe[] = [$_name, $_arguments];
                     }
-                    $result = call_user_func_array([$this->_redis, $_name], $_arguments);
                     if ($result === $this->_redis) {
                         return $this;
                     }
@@ -204,11 +243,10 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
 
     protected function _reconnect()
     {
-        $cM = $this->_connectionMethod;
-        $cA = $this->_connectionArguments;
-        $this->close();
-        $this->_connectionMethod = $cM;
-        $this->_connectionArguments = $cA;
+        try {
+            $this->_redis->close();
+        } catch (RedisException $re) {}
+        $this->_redis = new Redis();
         try {
             call_user_func_array([$this->_redis, $this->_connectionMethod], $this->_connectionArguments);
         } catch (RedisException $re) {}
