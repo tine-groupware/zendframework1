@@ -76,6 +76,11 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
      */
     protected $_redis = null;
 
+    /**
+     * @var callable|null
+     */
+    protected $_logDelegator = null;
+
     protected $_connectionMethod = null;
     protected $_connectionArguments = null;
 
@@ -91,6 +96,18 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
         $this->_redis = new Redis();
     }
 
+    public function setLogDelegator(callable $delegator = null)
+    {
+        $this->_logDelegator = $delegator;
+    }
+
+    protected function _delegateLog(RedisException $re)
+    {
+        if (null !== $this->_logDelegator) {
+            ($this->_logDelegator)($re);
+        }
+    }
+
     public function scan(&$iterator, $pattern = null, $count = 0)
     {
         $tries = 0;
@@ -101,6 +118,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                 if (true === $this->_inMulti || ++$tries > 5) {
                     throw $re;
                 }
+                $this->_delegateLog($re);
 
                 // give Redis 100ms and try again
                 usleep(100000);
@@ -188,6 +206,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                                 if (++$tries > 5) {
                                     throw $re;
                                 }
+                                $this->_delegateLog($re);
 
                                 // give Redis 100ms and try again
                                 usleep(100000);
@@ -219,6 +238,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                 if (++$tries > 5) {
                     throw $re;
                 }
+                $this->_delegateLog($re);
 
                 // give Redis 100ms and try again
                 usleep(100000);
