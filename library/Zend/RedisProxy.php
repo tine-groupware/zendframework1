@@ -232,6 +232,8 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                     if (false === $this->_redis->ping()) {
                         throw new RedisException();
                     }
+                    // if multi failed, reset multi state
+                    $this->_inMulti = false;
                 }
                 return $result;
             } catch (RedisException $re) {
