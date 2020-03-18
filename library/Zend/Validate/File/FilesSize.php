@@ -155,6 +155,6 @@ class Zend_Validate_File_FilesSize extends Zend_Validate_File_Size
             }
         }
 
-        return !empty($this->_messages);
+        return empty($this->_messages);
     }
 }
