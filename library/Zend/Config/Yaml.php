@@ -274,7 +274,6 @@ class Zend_Config_Yaml extends Zend_Config
     public static function decode($yaml)
     {
         $lines = explode("\n", $yaml);
-        reset($lines);
         return self::_decodeYaml(0, $lines);
     }
 
@@ -283,31 +282,32 @@ class Zend_Config_Yaml extends Zend_Config
      *
      * @param  int $currentIndent Current indent level
      * @param  array $lines  YAML lines
+     * @param int $pointer The current line being parsed
      * @return array|string
      */
-    protected static function _decodeYaml($currentIndent, &$lines)
+    protected static function _decodeYaml($currentIndent, $lines, &$pointer = -1)
     {
-        $config   = array();
+        $config = array();
         $inIndent = false;
-        foreach ($line as $n => $line) {
-            $lineno = $n + 1;
+        while (++$pointer < count($lines)) {
+            $lineno = $pointer + 1;
 
-            $line = rtrim(preg_replace("/#.*$/", "", $line));
-            if (strlen($line) == 0) {
+            $lines[$pointer] = rtrim(preg_replace("/#.*$/", "", $lines[$pointer]));
+            if (strlen($lines[$pointer]) == 0) {
                 continue;
             }
 
-            $indent = strspn($line, " ");
+            $indent = strspn($lines[$pointer], " ");
 
             // line without the spaces
-            $line = trim($line);
-            if (strlen($line) == 0) {
+            $lines[$pointer] = trim($lines[$pointer]);
+            if (strlen($lines[$pointer]) == 0) {
                 continue;
             }
 
             if ($indent < $currentIndent) {
                 // this level is done
-                prev($lines);
+                $pointer--;
                 return $config;
             }
 
@@ -316,7 +316,7 @@ class Zend_Config_Yaml extends Zend_Config
                 $inIndent      = true;
             }
 
-            if (preg_match("/(?!-)([\w\-]+):\s*(.*)/", $line, $m)) {
+            if (preg_match("/(?!-)([\w\-]+):\s*(.*)/", $lines[$pointer], $m)) {
                 // key: value
                 if (strlen($m[2])) {
                     // simple key: value
@@ -324,27 +324,27 @@ class Zend_Config_Yaml extends Zend_Config
                     $value = self::_parseValue($value);
                 } else {
                     // key: and then values on new lines
-                    $value = self::_decodeYaml($currentIndent + 1, $lines);
+                    $value = self::_decodeYaml($currentIndent + 1, $lines, $pointer);
                     if (is_array($value) && !count($value)) {
                         $value = "";
                     }
                 }
                 $config[$m[1]] = $value;
-            } elseif ($line[0] == "-") {
+            } elseif ($lines[$pointer][0] == "-") {
                 // item in the list:
                 // - FOO
-                if (strlen($line) > 2) {
-                    $value = substr($line, 2);
+                if (strlen($lines[$pointer]) > 2) {
+                    $value = substr($lines[$pointer], 2);
 
                     $config[] = self::_parseValue($value);
                 } else {
-                    $config[] = self::_decodeYaml($currentIndent + 1, $lines);
+                    $config[] = self::_decodeYaml($currentIndent + 1, $lines, $pointer);
                 }
             } else {
                 require_once 'Zend/Config/Exception.php';
                 throw new Zend_Config_Exception(sprintf(
                     'Error parsing YAML at line %d - unsupported syntax: "%s"',
-                    $lineno, $line
+                    $lineno, $lines[$pointer]
                 ));
             }
         }

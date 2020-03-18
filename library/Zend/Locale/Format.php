@@ -925,7 +925,7 @@ class Zend_Locale_Format
                             $result['day']    = $splitted[0][$cnt];
                         }
                     } else {
-                        $result['day'] = iconv_substr($splitted[0][0], $split, 2);
+                        $result['day'] = (iconv_substr($splitted[0][0], $split, 2)?: false);
                         $split += 2;
                     }
                     ++$cnt;
@@ -936,7 +936,7 @@ class Zend_Locale_Format
                             $result['month']  = $splitted[0][$cnt];
                         }
                     } else {
-                        $result['month'] = iconv_substr($splitted[0][0], $split, 2);
+                        $result['month'] = (iconv_substr($splitted[0][0], $split, 2)?: false);
                         $split += 2;
                     }
                     ++$cnt;
@@ -953,7 +953,7 @@ class Zend_Locale_Format
                             $result['year']   = $splitted[0][$cnt];
                         }
                     } else {
-                        $result['year']   = iconv_substr($splitted[0][0], $split, $length);
+                        $result['year']   = (iconv_substr($splitted[0][0], $split, $length)?: false);
                         $split += $length;
                     }
 
@@ -965,7 +965,7 @@ class Zend_Locale_Format
                             $result['hour']   = $splitted[0][$cnt];
                         }
                     } else {
-                        $result['hour']   = iconv_substr($splitted[0][0], $split, 2);
+                        $result['hour']   = (iconv_substr($splitted[0][0], $split, 2)?: false);
                         $split += 2;
                     }
                     ++$cnt;
@@ -976,7 +976,7 @@ class Zend_Locale_Format
                             $result['minute'] = $splitted[0][$cnt];
                         }
                     } else {
-                        $result['minute'] = iconv_substr($splitted[0][0], $split, 2);
+                        $result['minute'] = (iconv_substr($splitted[0][0], $split, 2)?: false);
                         $split += 2;
                     }
                     ++$cnt;
@@ -987,7 +987,7 @@ class Zend_Locale_Format
                             $result['second'] = $splitted[0][$cnt];
                         }
                     } else {
-                        $result['second'] = iconv_substr($splitted[0][0], $split, 2);
+                        $result['second'] = (iconv_substr($splitted[0][0], $split, 2)?: false);
                         $split += 2;
                     }
                     ++$cnt;

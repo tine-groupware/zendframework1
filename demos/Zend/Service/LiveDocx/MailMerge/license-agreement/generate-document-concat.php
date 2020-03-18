@@ -162,7 +162,7 @@ function randomString()
     
     for ($i = 0; $i < $stringLen; $i ++) {
         $pos = (rand() % $poolLen);
-        $ret .= $pool{$pos};
+        $ret .= $pool[$pos];
     }
     
     return $ret;
