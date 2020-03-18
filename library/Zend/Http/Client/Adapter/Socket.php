@@ -238,7 +238,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
 
             //distinguish between request timeout and connect timeout like in curl adapter
             // request_timeout defaults to connection timeout to keep backwards compatibility
-            if(array_key_exists('request_timeout', $this->config)) {
+            if(!array_key_exists('request_timeout', $this->config)) {
                 $this->config['request_timeout'] = $this->config['timeout'];
             }
             
