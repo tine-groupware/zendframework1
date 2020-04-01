@@ -69,10 +69,21 @@ final class Zend_Version
         if (null === self::$_latestVersion) {
             self::$_latestVersion = 'not available';
 
-            $handle = fopen('http://framework.zend.com/api/zf-version', 'r');
-            if (false !== $handle) {
-                self::$_latestVersion = stream_get_contents($handle);
-                fclose($handle);
+            $opts = [
+                'http' => [
+                    'method' => 'GET',
+                    'header' => [
+                        'User-Agent: PHP'
+                    ]
+                ]
+            ];
+            $context = stream_context_create($opts);
+            $content = file_get_contents('https://api.github.com/repos/Shardj/zf1-future/releases/latest', false, $context);
+
+            if (false !== $content) {
+                $releaseName = json_decode($content, true)['name'];
+
+                self::$_latestVersion = array_pop(explode('-', $releaseName));
             }
         }
 
