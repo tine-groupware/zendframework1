@@ -28,7 +28,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  */
 require_once 'Zend/Loader/Autoloader.php';
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
-require_once 'Zend/Application/Resource/Useragent.php';
+require_once 'Zend/Application/Resource/UserAgent.php';
 
 /**
  * @category   Zend
