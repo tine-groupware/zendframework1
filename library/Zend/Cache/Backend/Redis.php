@@ -222,6 +222,9 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function remove($id)
     {
         $tmp = $this->_redis->get($id);
+        if (! $tmp) {
+            return false;
+        }
         $tags = $tmp[3];
 
         $transaction = $this->_redis->multi();
