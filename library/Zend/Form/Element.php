@@ -735,6 +735,11 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function getDescription()
     {
+        $translator = $this->getTranslator();
+        if (null !== $translator) {
+            return $translator->translate($this->_description);
+        }
+
         return $this->_description;
     }
 
