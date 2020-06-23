@@ -287,7 +287,7 @@ class Zend_Controller_Front
     {
         try{
             $dir = new DirectoryIterator($path);
-        } catch(\Throwable $e) {
+        } catch(Throwable $e) {
             require_once 'Zend/Controller/Exception.php';
             throw new Zend_Controller_Exception("Directory $path not readable", 0, $e);
         }
