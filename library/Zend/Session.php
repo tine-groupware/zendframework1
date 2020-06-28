@@ -115,7 +115,8 @@ class Zend_Session extends Zend_Session_Abstract
         'bug_compat_42'             => null,
         'bug_compat_warn'           => null,
         'hash_function'             => null,
-        'hash_bits_per_character'   => null
+        'hash_bits_per_character'   => null,
+        'lazy_write'                => null,
     );
 
     /**
