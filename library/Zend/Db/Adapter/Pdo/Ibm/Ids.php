@@ -247,7 +247,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
      */
     public function limit($sql, $count, $offset = 0)
     {
-        $count = intval($count);
+        $count = (int)$count;
         if ($count < 0) {
             /** @see Zend_Db_Adapter_Exception */
             require_once 'Zend/Db/Adapter/Exception.php';
@@ -256,7 +256,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
               $limit_sql = str_ireplace("SELECT", "SELECT * FROM (SELECT", $sql);
               $limit_sql .= ") WHERE 0 = 1";
         } else {
-            $offset = intval($offset);
+            $offset = (int)$offset;
             if ($offset < 0) {
                 /** @see Zend_Db_Adapter_Exception */
                 require_once 'Zend/Db/Adapter/Exception.php';

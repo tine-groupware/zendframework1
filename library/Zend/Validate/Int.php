@@ -127,7 +127,7 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
             $valueFiltered = str_replace($locale['decimal_point'], '.', $value);
             $valueFiltered = str_replace($locale['thousands_sep'], '', $valueFiltered);
 
-            if (strval(intval($valueFiltered)) != $valueFiltered) {
+            if ((string)(int)$valueFiltered != $valueFiltered) {
                 $this->_error(self::NOT_INT);
                 return false;
             }

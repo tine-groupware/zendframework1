@@ -101,7 +101,7 @@ abstract class Zend_Date_DateObject {
      */
     protected function getUnixTimestamp()
     {
-        if ($this->_unixTimestamp === intval($this->_unixTimestamp)) {
+        if ($this->_unixTimestamp === (int)$this->_unixTimestamp) {
             return (int) $this->_unixTimestamp;
         } else {
             return (string) $this->_unixTimestamp;
@@ -173,9 +173,9 @@ abstract class Zend_Date_DateObject {
         }
 
         // date to integer
-        $day   = intval($day);
-        $month = intval($month);
-        $year  = intval($year);
+        $day   = (int)$day;
+        $month = (int)$month;
+        $year  = (int)$year;
 
         // correct months > 12 and months < 1
         if ($month > 12) {
@@ -945,7 +945,7 @@ abstract class Zend_Date_DateObject {
         // get quadrant
         $solLongitude = $this->_range($solLongitude, $fullCircle);
 
-        if (($solLongitude / $quarterCircle) - intval($solLongitude / $quarterCircle) == 0) {
+        if (($solLongitude / $quarterCircle) - (int)($solLongitude / $quarterCircle) == 0) {
             $solLongitude += 4.84814E-6;
         }
 
@@ -991,11 +991,11 @@ abstract class Zend_Date_DateObject {
         $universalTime *= 24 / $fullCircle;
 
         // convert to time
-        $hour = intval($universalTime);
+        $hour = (int)$universalTime;
         $universalTime    = ($universalTime - $hour) * 60;
-        $min  = intval($universalTime);
+        $min  = (int)$universalTime;
         $universalTime    = ($universalTime - $min) * 60;
-        $sec  = intval($universalTime);
+        $sec  = (int)$universalTime;
 
         return $this->mktime($hour, $min, $sec, $this->date('m', $this->_unixTimestamp),
                              $this->date('j', $this->_unixTimestamp), $this->date('Y', $this->_unixTimestamp),

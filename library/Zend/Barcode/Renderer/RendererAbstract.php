@@ -174,13 +174,13 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setTopOffset($value)
     {
-        if (!is_numeric($value) || intval($value) < 0) {
+        if (!is_numeric($value) || (int)$value < 0) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 'Vertical position must be greater than or equals 0'
             );
         }
-        $this->_topOffset = intval($value);
+        $this->_topOffset = (int)$value;
         return $this;
     }
 
@@ -201,13 +201,13 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setLeftOffset($value)
     {
-        if (!is_numeric($value) || intval($value) < 0) {
+        if (!is_numeric($value) || (int)$value < 0) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 'Horizontal position must be greater than or equals 0'
             );
         }
-        $this->_leftOffset = intval($value);
+        $this->_leftOffset = (int)$value;
         return $this;
     }
 
@@ -296,13 +296,13 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
      */
     public function setModuleSize($value)
     {
-        if (!is_numeric($value) || floatval($value) <= 0) {
+        if (!is_numeric($value) || (float)$value <= 0) {
             require_once 'Zend/Barcode/Renderer/Exception.php';
             throw new Zend_Barcode_Renderer_Exception(
                 'Float size must be greater than 0'
             );
         }
-        $this->_moduleSize = floatval($value);
+        $this->_moduleSize = (float)$value;
         return $this;
     }
 

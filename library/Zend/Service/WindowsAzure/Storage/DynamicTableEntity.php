@@ -109,9 +109,9 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
             	
             	// Try to convert the type
             	if ($type == 'Edm.Int32' || $type == 'Edm.Int64') {
-            		$value = intval($value);
+            		$value = (int)$value;
             	} else if ($type == 'Edm.Double') {
-            		$value = floatval($value);
+            		$value = (float)$value;
             	} else if ($type == 'Edm.Boolean') {
             		if (!is_bool($value)) {
             			$value = strtolower($value) == 'true';
