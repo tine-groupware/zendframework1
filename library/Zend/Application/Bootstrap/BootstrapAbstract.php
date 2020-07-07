@@ -327,7 +327,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      * Get a registered plugin resource
      *
      * @param string $resource
-     * @return Zend_Application_Resource_Resource
+     * @return Zend_Application_Resource_Resource|null
      * @throws Zend_Application_Bootstrap_Exception
      */
     public function getPluginResource($resource)
