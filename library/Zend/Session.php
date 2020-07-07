@@ -236,7 +236,7 @@ class Zend_Session extends Zend_Session_Abstract
      * getOptions()
      *
      * @param string $optionName OPTIONAL
-     * @return array|string
+     * @return array|string|null
      */
     public static function getOptions($optionName = null)
     {
