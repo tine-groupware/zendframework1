@@ -336,7 +336,7 @@ class Zend_Currency
      *
      * @param  string             $currency (Optional) Currency name
      * @param  string|Zend_Locale $locale   (Optional) Locale to display informations
-     * @return string
+     * @return string|null
      */
     public function getSymbol($currency = null, $locale = null)
     {
@@ -364,7 +364,7 @@ class Zend_Currency
      *
      * @param  string             $currency OPTIONAL Currency's name
      * @param  string|Zend_Locale $locale   OPTIONAL The locale
-     * @return string
+     * @return string|null
      */
     public function getShortName($currency = null, $locale = null)
     {
@@ -399,7 +399,7 @@ class Zend_Currency
      *
      * @param  string             $currency (Optional) Currency's short name
      * @param  string|Zend_Locale $locale   (Optional) The locale
-     * @return string
+     * @return string|null
      */
     public function getName($currency = null, $locale = null)
     {
