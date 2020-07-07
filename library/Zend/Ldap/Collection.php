@@ -92,7 +92,7 @@ class Zend_Ldap_Collection implements Iterator, Countable
     /**
      * Get first entry
      *
-     * @return array
+     * @return array|null
      */
     public function getFirst()
     {
