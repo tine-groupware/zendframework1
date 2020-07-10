@@ -39,7 +39,7 @@ abstract class Zend_Controller_Response_Abstract
 
     /**
      * Exception stack
-     * @var Throwable
+     * @var Throwable[]
      */
     protected $_exceptions = array();
 

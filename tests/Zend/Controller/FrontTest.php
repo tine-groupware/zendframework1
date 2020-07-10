@@ -21,6 +21,8 @@
  */
 
 // Call Zend_Controller_FrontTest::main() if this source file is executed directly.
+use MyApp\Controller\Plugin\ThrowingPlugin;
+
 if (!defined("PHPUnit_MAIN_METHOD")) {
     define("PHPUnit_MAIN_METHOD", "Zend_Controller_FrontTest::main");
 
@@ -704,6 +706,79 @@ class Zend_Controller_FrontTest extends PHPUnit_Framework_TestCase
         $response = $this->_controller->dispatch($request);
 
         $this->assertFalse(Zend_Controller_Action_HelperBroker::hasHelper('viewRenderer'));
+    }
+
+    public function testDispatcherHandlesTypeError()
+    {
+        $request = new Zend_Controller_Request_Http('http://example.com/index/type-error');
+
+        $this->_controller
+            ->setParam('noErrorHandler', false)
+            ->setRequest($request);
+        $response = new Zend_Controller_Response_Cli();
+        $this->_controller->throwExceptions(false);
+        $this->_controller->dispatch($request, $response);
+
+        $body = $this->_controller->getResponse()->getBody();
+        $this->assertNotContains('Type error action called', $body);
+        $this->assertContains('EXCEPTION_OTHER', $body);
+        $this->assertContains('Return value of IndexController::produceTypeError() must be an instance of IndexController, instance of stdClass returned', $body);
+        $this->assertSame(500, $this->_controller->getResponse()->getHttpResponseCode());
+    }
+
+    public function testDispatcherHandlesException()
+    {
+        $request = new Zend_Controller_Request_Http('http://example.com/index/exception');
+
+        $this->_controller
+            ->setParam('noErrorHandler', false)
+            ->setRequest($request);
+        $response = new Zend_Controller_Response_Cli();
+        $this->_controller->throwExceptions(false);
+        $this->_controller->dispatch($request, $response);
+
+        $body = $this->_controller->getResponse()->getBody();
+        $this->assertNotContains('Exception action called', $body);
+        $this->assertContains('EXCEPTION_OTHER', $body);
+        $this->assertContains('This is an exception message', $body);
+        $this->assertSame(500, $this->_controller->getResponse()->getHttpResponseCode());
+    }
+
+    public function testDispatcherPassesTypeErrorThroughWhenThrowExceptions()
+    {
+        $request = new Zend_Controller_Request_Http('http://example.com/index/type-error');
+
+        $this->_controller->setRequest($request);
+        $response = new Zend_Controller_Response_Cli();
+        $this->_controller->throwExceptions(true);
+
+        try {
+            $this->_controller->dispatch($request, $response);
+            $this->fail('Should have thrown');
+        } catch (\Throwable $e) {
+            $this->assertSame(
+                'Return value of IndexController::produceTypeError() must be an instance of IndexController, instance of stdClass returned',
+                $e->getMessage()
+            );
+        }
+    }
+
+    public function testDispatcherCatchesTypeExceptionFromPlugin()
+    {
+        $request = new Zend_Controller_Request_Http('http://example.com/index/index');
+        require_once __DIR__ . '/_files/Plugins/ThrowingPlugin.php';
+        $this->_controller
+            ->setParam('noErrorHandler', false)
+            ->setRequest($request)
+            ->registerPlugin(new ThrowingPlugin());
+        $response = new Zend_Controller_Response_Cli();
+        $this->_controller->throwExceptions(false);
+        $this->_controller->dispatch($request, $response);
+
+        $body = $this->_controller->getResponse()->getBody();
+        $this->assertContains('EXCEPTION_OTHER', $body);
+        $this->assertContains('Return value of MyApp\Controller\Plugin\ThrowingPlugin::produceTypeError() must be an instance of MyApp\Controller\Plugin\ThrowingPlugin, instance of stdClass returned', $body);
+        $this->assertSame(500, $this->_controller->getResponse()->getHttpResponseCode());
     }
 }
 
