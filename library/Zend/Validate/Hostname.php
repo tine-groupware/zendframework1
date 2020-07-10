@@ -2369,13 +2369,13 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                 $pos = (int) ($pos * (36 - $tag));
             }
 
-            $delta   = intval($init ? (($index - $old_index) / 700) : (($index - $old_index) / 2));
-            $delta  += intval($delta / ($lengthd + 1));
+            $delta   = (int)($init ? (($index - $old_index) / 700) : (($index - $old_index) / 2));
+            $delta  += (int)($delta / ($lengthd + 1));
             for ($key = 0; $delta > 910 / 2; $key += 36) {
-                $delta = intval($delta / 35);
+                $delta = (int)($delta / 35);
             }
 
-            $base   = intval($key + 36 * $delta / ($delta + 38));
+            $base   = (int)($key + 36 * $delta / ($delta + 38));
             $init   = false;
             $char  += (int) ($index / ($lengthd + 1));
             $index %= ($lengthd + 1);

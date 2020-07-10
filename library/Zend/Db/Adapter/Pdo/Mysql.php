@@ -247,14 +247,14 @@ class Zend_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Abstract
      */
      public function limit($sql, $count, $offset = 0)
      {
-        $count = intval($count);
+        $count = (int)$count;
         if ($count <= 0) {
             /** @see Zend_Db_Adapter_Exception */
             require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("LIMIT argument count=$count is not valid");
         }
 
-        $offset = intval($offset);
+        $offset = (int)$offset;
         if ($offset < 0) {
             /** @see Zend_Db_Adapter_Exception */
             require_once 'Zend/Db/Adapter/Exception.php';

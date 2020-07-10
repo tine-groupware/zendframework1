@@ -645,7 +645,7 @@ class Zend_Locale_Format
      */
     public static function getFloat($input, array $options = array())
     {
-        return floatval(self::getNumber($input, $options));
+        return (float)self::getNumber($input, $options);
     }
 
     /**
@@ -694,7 +694,7 @@ class Zend_Locale_Format
     public static function getInteger($input, array $options = array())
     {
         $options['precision'] = 0;
-        return intval(self::getFloat($input, $options));
+        return (int)self::getFloat($input, $options);
     }
 
     /**

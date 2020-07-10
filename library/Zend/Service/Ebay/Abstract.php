@@ -283,7 +283,7 @@ abstract class Zend_Service_Ebay_Abstract
 
             // cast for: Amount, decimal, double, float, MeasureType
             case 'float':
-                $value = floatval((string) $value);
+                $value = (float)(string)$value;
                 break;
 
             // cast for: int, long

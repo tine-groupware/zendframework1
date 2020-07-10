@@ -487,7 +487,7 @@ class Zend_Date extends Zend_Date_DateObject
     {
         $result = $this->get($part);
         if (is_numeric($result)) {
-          return intval("$result");
+          return (int)$result;
         } else {
           return false;
         }
@@ -1447,8 +1447,8 @@ class Zend_Date extends Zend_Date_DateObject
             // day formats
             case self::DAY:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + intval($date), 1970, true),
-                                                 $this->mktime(0, 0, 0, 1, 1 + intval($day), 1970, true), $hour);
+                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + (int)$date, 1970, true),
+                                                 $this->mktime(0, 0, 0, 1, 1 + (int)$day, 1970, true), $hour);
                 }
 
                 require_once 'Zend/Date/Exception.php';
@@ -1515,7 +1515,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::WEEKDAY_8601:
                 $weekday = (int) $this->toString(self::WEEKDAY_8601, 'iso', $locale);
-                if ((intval($date) > 0) and (intval($date) < 8)) {
+                if ((int)$date < 8 && (int)$date > 0) {
                     return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + intval($date), 1970, true),
                                                  $this->mktime(0, 0, 0, 1, 1 + $weekday, 1970, true), $hour);
                 }
@@ -1532,7 +1532,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::WEEKDAY_DIGIT:
                 $weekday = (int) $this->toString(self::WEEKDAY_DIGIT, 'iso', $locale);
-                if (is_numeric($date) and (intval($date) >= 0) and (intval($date) < 7)) {
+                if (is_numeric($date) && (int)$date >= 0 && (int)$date < 7) {
                     return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + $date, 1970, true),
                                                  $this->mktime(0, 0, 0, 1, 1 + $weekday, 1970, true), $hour);
                 }
@@ -1828,7 +1828,7 @@ class Zend_Date extends Zend_Date_DateObject
                         $calc = 'set';
                     }
 
-                    return $this->_assign($calc, $this->mktime(0, 0, 0, $month, $day, intval($date), true),
+                    return $this->_assign($calc, $this->mktime(0, 0, 0, $month, $day, (int)$date, true),
                                                  $this->mktime(0, 0, 0, $month, $day, $year,         true), false);
                 }
 
@@ -1846,7 +1846,7 @@ class Zend_Date extends Zend_Date_DateObject
                         $calc = 'set';
                     }
 
-                    return $this->_assign($calc, $this->mktime(0, 0, 0, $month, $day, intval($date), true),
+                    return $this->_assign($calc, $this->mktime(0, 0, 0, $month, $day, (int)$date, true),
                                                  $this->mktime(0, 0, 0, $month, $day, $year,         true), false);
                 }
 
@@ -1856,7 +1856,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::YEAR_SHORT:
                 if (is_numeric($date)) {
-                    $date = intval($date);
+                    $date = (int)$date;
                     if (($calc == 'set') || ($calc == 'cmp')) {
                         $date = self::getFullYear($date);
                     }
@@ -1878,7 +1878,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::YEAR_SHORT_8601:
                 if (is_numeric($date)) {
-                    $date = intval($date);
+                    $date = (int)$date;
                     if (($calc === 'set') || ($calc === 'cmp')) {
                         $date = self::getFullYear($date);
                     }
@@ -1906,7 +1906,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::SWATCH:
                 if (is_numeric($date)) {
-                    $rest    = intval($date);
+                    $rest    = (int)$date;
                     $hours   = floor($rest * 24 / 1000);
                     $rest    = $rest - ($hours * 1000 / 24);
                     $minutes = floor($rest * 1440 / 1000);
@@ -1920,19 +1920,10 @@ class Zend_Date extends Zend_Date_DateObject
                 throw new Zend_Date_Exception("invalid date ($date) operand, swatchstamp expected", 0, null, $date);
                 break;
 
+            case self::HOUR_SHORT:
             case self::HOUR_SHORT_AM:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(intval($date), 0, 0, 1, 1, 1970, true),
-                                                 $this->mktime($hour,         0, 0, 1, 1, 1970, true), false);
-                }
-
-                require_once 'Zend/Date/Exception.php';
-                throw new Zend_Date_Exception("invalid date ($date) operand, hour expected", 0, null, $date);
-                break;
-
-            case self::HOUR_SHORT:
-                if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(intval($date), 0, 0, 1, 1, 1970, true),
+                    return $this->_assign($calc, $this->mktime((int)$date, 0, 0, 1, 1, 1970, true),
                                                  $this->mktime($hour,         0, 0, 1, 1, 1970, true), false);
                 }
 
@@ -1942,7 +1933,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::HOUR_AM:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(intval($date), 0, 0, 1, 1, 1970, true),
+                    return $this->_assign($calc, $this->mktime((int)$date, 0, 0, 1, 1, 1970, true),
                                                  $this->mktime($hour,         0, 0, 1, 1, 1970, true), false);
                 }
 
@@ -1952,7 +1943,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::HOUR:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(intval($date), 0, 0, 1, 1, 1970, true),
+                    return $this->_assign($calc, $this->mktime((int)$date, 0, 0, 1, 1, 1970, true),
                                                  $this->mktime($hour,         0, 0, 1, 1, 1970, true), false);
                 }
 
@@ -1962,7 +1953,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::MINUTE:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(0, intval($date), 0, 1, 1, 1970, true),
+                    return $this->_assign($calc, $this->mktime(0, (int)$date, 0, 1, 1, 1970, true),
                                                  $this->mktime(0, $minute,       0, 1, 1, 1970, true), false);
                 }
 
@@ -1972,7 +1963,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::SECOND:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(0, 0, intval($date), 1, 1, 1970, true),
+                    return $this->_assign($calc, $this->mktime(0, 0, (int)$date, 1, 1, 1970, true),
                                                  $this->mktime(0, 0, $second,       1, 1, 1970, true), false);
                 }
 
@@ -2003,7 +1994,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::MINUTE_SHORT:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(0, intval($date), 0, 1, 1, 1970, true),
+                    return $this->_assign($calc, $this->mktime(0, (int)$date, 0, 1, 1, 1970, true),
                                                  $this->mktime(0, $minute,       0, 1, 1, 1970, true), false);
                 }
 
@@ -2013,7 +2004,7 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::SECOND_SHORT:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(0, 0, intval($date), 1, 1, 1970, true),
+                    return $this->_assign($calc, $this->mktime(0, 0, (int)$date, 1, 1, 1970, true),
                                                  $this->mktime(0, 0, $second,       1, 1, 1970, true), false);
                 }
 
@@ -4449,7 +4440,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     public function setFractionalPrecision($precision)
     {
-        if (!intval($precision) or ($precision < 0) or ($precision > 9)) {
+        if (!(int)$precision or ($precision < 0) or ($precision > 9)) {
             require_once 'Zend/Date/Exception.php';
             throw new Zend_Date_Exception("precision ($precision) must be a positive integer less than 10", 0, null, $precision);
         }
@@ -4488,7 +4479,7 @@ class Zend_Date extends Zend_Date_DateObject
     {
         if ($milli === null) {
             list($milli, $time) = explode(" ", microtime());
-            $milli = intval($milli);
+            $milli = (int)$milli;
             $precision = 6;
         } else if (!is_numeric($milli)) {
             require_once 'Zend/Date/Exception.php';
@@ -4521,7 +4512,7 @@ class Zend_Date extends Zend_Date_DateObject
     {
         if ($milli === null) {
             list($milli, $time) = explode(" ", microtime());
-            $milli = intval($milli);
+            $milli = (int)$milli;
         } else if (!is_numeric($milli)) {
             require_once 'Zend/Date/Exception.php';
             throw new Zend_Date_Exception("invalid milli second ($milli) operand", 0, null, $milli);
@@ -4600,7 +4591,7 @@ class Zend_Date extends Zend_Date_DateObject
     {
         if ($milli === null) {
             list($milli, $time) = explode(" ", microtime());
-            $milli = intval($milli);
+            $milli = (int)$milli;
         } else if (is_numeric($milli) === false) {
             require_once 'Zend/Date/Exception.php';
             throw new Zend_Date_Exception("invalid milli second ($milli) operand", 0, null, $milli);
