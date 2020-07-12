@@ -1481,8 +1481,8 @@ class Zend_Date extends Zend_Date_DateObject
 
             case self::DAY_SHORT:
                 if (is_numeric($date)) {
-                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + intval($date), 1970, true),
-                                                 $this->mktime(0, 0, 0, 1, 1 + intval($day), 1970, true), $hour);
+                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + (int) $date, 1970, true),
+                                                 $this->mktime(0, 0, 0, 1, 1 + (int) $day, 1970, true), $hour);
                 }
 
                 require_once 'Zend/Date/Exception.php';
@@ -1516,7 +1516,7 @@ class Zend_Date extends Zend_Date_DateObject
             case self::WEEKDAY_8601:
                 $weekday = (int) $this->toString(self::WEEKDAY_8601, 'iso', $locale);
                 if ((int)$date < 8 && (int)$date > 0) {
-                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + intval($date), 1970, true),
+                    return $this->_assign($calc, $this->mktime(0, 0, 0, 1, 1 + (int) $date, 1970, true),
                                                  $this->mktime(0, 0, 0, 1, 1 + $weekday, 1970, true), $hour);
                 }
 

@@ -879,7 +879,7 @@ abstract class Zend_Db_Adapter_Abstract
             $quotedValue = '0';
             switch ($this->_numericDataTypes[$type]) {
                 case Zend_Db::INT_TYPE: // 32-bit integer
-                    $quotedValue = (string) intval($value);
+                    $quotedValue = (string) (int) $value;
                     break;
                 case Zend_Db::BIGINT_TYPE: // 64-bit integer
                     // ANSI SQL-style hex literals (e.g. x'[\dA-F]+')

@@ -47,7 +47,7 @@ class Zend_Tool_Framework_Client_Console_ResponseDecorator_Blockize
      */
     public function decorate($content, $lineLength)
     {
-        if((int)strval($lineLength) != $lineLength) {
+        if((int)(string) $lineLength != $lineLength) {
             $lineLength = 72;
         }
 
