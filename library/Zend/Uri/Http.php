@@ -273,12 +273,12 @@ class Zend_Uri_Http extends Zend_Uri
     {
         // Return true if and only if all parts of the URI have passed validation
         return $this->validateUsername()
-           and $this->validatePassword()
-           and $this->validateHost()
-           and $this->validatePort()
-           and $this->validatePath()
-           and $this->validateQuery()
-           and $this->validateFragment();
+           && $this->validatePassword()
+           && $this->validateHost()
+           && $this->validatePort()
+           && $this->validatePath()
+           && $this->validateQuery()
+           && $this->validateFragment();
     }
 
     /**
@@ -374,7 +374,7 @@ class Zend_Uri_Http extends Zend_Uri
         }
 
         // If the password is nonempty, but there is no username, then it is considered invalid
-        if (strlen($password) > 0 and strlen($this->_username) === 0) {
+        if (strlen($password) > 0 && strlen($this->_username) === 0) {
             return false;
         }
 
@@ -494,7 +494,7 @@ class Zend_Uri_Http extends Zend_Uri
         }
 
         // Check the port against the allowed values
-        return ctype_digit((string) $port) and 1 <= $port and $port <= 65535;
+        return ctype_digit((string) $port) && 1 <= $port && $port <= 65535;
     }
 
     /**

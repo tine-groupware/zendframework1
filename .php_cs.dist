@@ -10,4 +10,5 @@ return PhpCsFixer\Config::create()
         'array_syntax' => ['syntax' => 'long'],
         'list_syntax' => ['syntax' => 'long'],
         'modernize_types_casting' => true,
+        'logical_operators' => true,
     ]);
