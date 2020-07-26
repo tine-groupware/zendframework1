@@ -120,7 +120,8 @@ class Zend_Session extends Zend_Session_Abstract
         'trans_sid_tags'            => null,
         'trans_sid_hosts'           => null,
         'sid_length'                => null,
-        'sid_bits_per_character'    => null
+        'sid_bits_per_character'    => null,
+        'cookie_samesite'           => null
     );
 
     /**
