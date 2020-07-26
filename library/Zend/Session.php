@@ -117,6 +117,10 @@ class Zend_Session extends Zend_Session_Abstract
         'hash_function'             => null,
         'hash_bits_per_character'   => null,
         'lazy_write'                => null,
+        'trans_sid_tags'            => null,
+        'trans_sid_hosts'           => null,
+        'sid_length'                => null,
+        'sid_bits_per_character'    => null
     );
 
     /**
