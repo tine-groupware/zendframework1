@@ -116,7 +116,7 @@ class Zend_Controller_Dispatcher_Standard extends Zend_Controller_Dispatcher_Abs
      * If a module is specified, returns just that directory.
      *
      * @param  string $module Module name
-     * @return array|string Returns array of all directories by default, single
+     * @return array|string|null Returns array of all directories by default, single
      * module directory if module argument provided
      */
     public function getControllerDirectory($module = null)
@@ -306,7 +306,7 @@ class Zend_Controller_Dispatcher_Standard extends Zend_Controller_Dispatcher_Abs
 
         try {
             $controller->dispatch($action);
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
             // Clean output buffer on error
             $curObLevel = ob_get_level();
             if ($curObLevel > $obLevel) {

@@ -13,18 +13,44 @@
  * to license@zend.com so we can send you a copy immediately.
  *
  * @category   Zend
- * @package    Zend_Tool
+ * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
 
 /**
+ * @see Zend_Validate_Barcode_AdapterAbstract
+ */
+require_once 'Zend/Validate/Barcode/AdapterAbstract.php';
+
+/**
  * @category   Zend
- * @package    Zend_Tool
+ * @package    Zend_Validate
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-interface Zend_Tool_Framework_Provider_DocblockManifestInterface
+class IntelligentMail extends Zend_Validate_Barcode_AdapterAbstract
 {
+    /**
+     * Allowed barcode lengths
+     * @var integer
+     */
+    protected $_length = array(20, 25, 29, 31);
+
+    /**
+     * Allowed barcode characters
+     * @var string
+     */
+    protected $_characters = '0123456789';
+
+    /**
+     * Constructor
+     *
+     * Sets check flag to false.
+     */
+    public function __construct()
+    {
+        $this->setCheck(false);
+    }
 }

@@ -179,7 +179,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 		        $queueName,
 		        $metadata
 		    );
-		    $queue->ApproximateMessageCount = intval($response->getHeader('x-ms-approximate-message-count'));
+		    $queue->ApproximateMessageCount = (int)$response->getHeader('x-ms-approximate-message-count');
 		    return $queue;
 		} else {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -404,7 +404,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 		    throw new Zend_Service_WindowsAzure_Exception('Queue name does not adhere to queue naming conventions. See http://msdn.microsoft.com/en-us/library/dd179349.aspx for more information.');
 		}
-		if ($numOfMessages < 1 || $numOfMessages > 32 || intval($numOfMessages) != $numOfMessages) {
+		if ($numOfMessages < 1 || $numOfMessages > 32 || (int)$numOfMessages != $numOfMessages) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 		    throw new Zend_Service_WindowsAzure_Exception('Invalid number of messages to retrieve.');
 		}

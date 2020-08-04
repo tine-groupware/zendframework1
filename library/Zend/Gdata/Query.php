@@ -284,7 +284,7 @@ class Zend_Gdata_Query
     public function getMaxResults()
     {
         if (array_key_exists('max-results', $this->_params)) {
-            return intval($this->_params['max-results']);
+            return (int)$this->_params['max-results'];
         } else {
             return null;
         }
@@ -308,7 +308,7 @@ class Zend_Gdata_Query
     public function getStartIndex()
     {
         if (array_key_exists('start-index', $this->_params)) {
-            return intval($this->_params['start-index']);
+            return (int)$this->_params['start-index'];
         } else {
             return null;
         }

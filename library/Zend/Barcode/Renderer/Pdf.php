@@ -78,7 +78,7 @@ class Zend_Barcode_Renderer_Pdf extends Zend_Barcode_Renderer_RendererAbstract
         }
 
         $this->_resource = $pdf;
-        $this->_page     = intval($page);
+        $this->_page     = (int)$page;
 
         if (!count($this->_resource->pages)) {
             $this->_page = 0;

@@ -126,7 +126,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      * Return a single parameter of route's defaults
      *
      * @param string $name Array key of the parameter
-     * @return string Previously set default
+     * @return string|null Previously set default
      */
     public function getDefault($name)
     {

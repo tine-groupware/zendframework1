@@ -214,9 +214,9 @@ class Zend_Service_Amazon_Ec2_Ebs extends Zend_Service_Amazon_Ec2_Abstract
         $params = array();
         $params['Action']       = 'DetachVolume';
         $params['VolumeId']     = $volumeId;
-        $params['InstanceId']   = strval($instanceId);
-        $params['Device']       = strval($device);
-        $params['Force']        = strval($force);
+        $params['InstanceId']   = (string) $instanceId;
+        $params['Device']       = (string) $device;
+        $params['Force']        = (string) $force;
 
         $response = $this->sendRequest($params);
 

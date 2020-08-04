@@ -249,7 +249,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber
      */
     public function setLeaseSeconds($seconds)
     {
-        $seconds = intval($seconds);
+        $seconds = (int)$seconds;
         if ($seconds <= 0) {
             require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
             throw new Zend_Feed_Pubsubhubbub_Exception('Expected lease seconds'

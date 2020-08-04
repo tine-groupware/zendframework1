@@ -342,13 +342,13 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      */
     public function setBarHeight($value)
     {
-        if (intval($value) <= 0) {
+        if ((int)$value <= 0) {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
                 'Bar height must be greater than 0'
             );
         }
-        $this->_barHeight = intval($value);
+        $this->_barHeight = (int)$value;
         return $this;
     }
 
@@ -371,13 +371,14 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      */
     public function setBarThinWidth($value)
     {
-        if (intval($value) <= 0) {
+        $value = (int)$value;
+        if ($value <= 0) {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
                 'Bar width must be greater than 0'
             );
         }
-        $this->_barThinWidth = intval($value);
+        $this->_barThinWidth = $value;
         return $this;
     }
 
@@ -400,13 +401,14 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      */
     public function setBarThickWidth($value)
     {
-        if (intval($value) <= 0) {
+        $value = (int)$value;
+        if ($value <= 0) {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
                 'Bar width must be greater than 0'
             );
         }
-        $this->_barThickWidth = intval($value);
+        $this->_barThickWidth = (int)$value;
         return $this;
     }
 
@@ -430,13 +432,14 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      */
     public function setFactor($value)
     {
-        if (floatval($value) <= 0) {
+        $value = (float)$value;
+        if ($value <= 0) {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
                 'Factor must be greater than 0'
             );
         }
-        $this->_factor = floatval($value);
+        $this->_factor = $value;
         return $this;
     }
 
@@ -463,7 +466,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
         if (preg_match('`\#[0-9A-F]{6}`', $value)) {
             $this->_foreColor = hexdec($value);
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
-            $this->_foreColor = intval($value);
+            $this->_foreColor = (int)$value;
         } else {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
@@ -495,7 +498,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
         if (preg_match('`\#[0-9A-F]{6}`', $value)) {
             $this->_backgroundColor = hexdec($value);
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
-            $this->_backgroundColor = intval($value);
+            $this->_backgroundColor = (int)$value;
         } else {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
@@ -582,7 +585,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      */
     public function setOrientation($value)
     {
-        $value              = floatval($value);
+        $value              = (float)$value;
         $this->_orientation = $value - floor($value / 360) * 360;
         return $this;
     }
@@ -1205,8 +1208,8 @@ abstract class Zend_Barcode_Object_ObjectAbstract
             + $this->getOffsetTop();
 
         return array(
-            intval($x2),
-            intval($y2)
+            (int)$x2,
+            (int)$y2
         );
     }
 
