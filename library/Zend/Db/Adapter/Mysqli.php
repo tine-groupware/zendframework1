@@ -496,7 +496,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
      */
     public function limit($sql, $count, $offset = 0)
     {
-        $count = intval($count);
+        $count = (int)$count;
         if ($count <= 0) {
             /**
              * @see Zend_Db_Adapter_Mysqli_Exception
@@ -505,7 +505,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
             throw new Zend_Db_Adapter_Mysqli_Exception("LIMIT argument count=$count is not valid");
         }
 
-        $offset = intval($offset);
+        $offset = (int)$offset;
         if ($offset < 0) {
             /**
              * @see Zend_Db_Adapter_Mysqli_Exception

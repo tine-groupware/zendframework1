@@ -1089,8 +1089,8 @@ class Zend_Text_Figlet
             // Convert it if required
             if (substr($uniCode, 0, 2) === '0x') {
                 $uniCode = hexdec(substr($uniCode, 2));
-            } else if (substr($uniCode, 0, 1) === '0' and
-                       $uniCode !== '0' or
+            } else if (substr($uniCode, 0, 1) === '0' &&
+                       $uniCode !== '0' ||
                        substr($uniCode, 0, 2) === '-0') {
                 $uniCode = octdec($uniCode);
             } else {

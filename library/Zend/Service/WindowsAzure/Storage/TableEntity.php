@@ -213,7 +213,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
                     switch (strtolower($accessor->AzurePropertyType)) {
         	            case 'edm.int32':
         	            case 'edm.int64':
-        	                $values[$accessor->AzurePropertyName] = intval($values[$accessor->AzurePropertyName]); break;
+        	                $values[$accessor->AzurePropertyName] = (int)$values[$accessor->AzurePropertyName]; break;
         	            case 'edm.boolean':
         	                if ($values[$accessor->AzurePropertyName] == 'true' || $values[$accessor->AzurePropertyName] == '1')
         	                    $values[$accessor->AzurePropertyName] = true;
@@ -221,7 +221,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
         	                    $values[$accessor->AzurePropertyName] = false;
         	                break;
         	            case 'edm.double':
-        	                $values[$accessor->AzurePropertyName] = floatval($values[$accessor->AzurePropertyName]); break;
+        	                $values[$accessor->AzurePropertyName] = (float)$values[$accessor->AzurePropertyName]; break;
         	            case 'edm.datetime':
         	            	$values[$accessor->AzurePropertyName] = $this->_convertToDateTime($values[$accessor->AzurePropertyName]); break;
         	        }

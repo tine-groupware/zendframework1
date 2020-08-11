@@ -3468,7 +3468,7 @@ class Zend_Form_FormTest extends PHPUnit_Framework_TestCase
         foreach ($this->form as $key => $value) {
             $received[] = $key;
             $this->assertTrue(($value instanceof Zend_Form_Element)
-                              or ($value instanceof Zend_Form_SubForm));
+                              || ($value instanceof Zend_Form_SubForm));
         }
         $this->assertSame($expected, $received);
     }
@@ -3482,7 +3482,7 @@ class Zend_Form_FormTest extends PHPUnit_Framework_TestCase
         foreach ($this->form as $key => $value) {
             $received[] = $key;
             $this->assertTrue(($value instanceof Zend_Form_Element)
-                              or ($value instanceof Zend_Form_DisplayGroup));
+                              || ($value instanceof Zend_Form_DisplayGroup));
         }
         $this->assertSame($expected, $received);
     }

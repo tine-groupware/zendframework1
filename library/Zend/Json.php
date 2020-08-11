@@ -236,7 +236,7 @@ class Zend_Json
         if ($match) {
             return new Zend_Json_Expr($matchings[1]);
         } else {
-            return (trim(strval($simpleXmlElementObject)));
+            return (trim((string) $simpleXmlElementObject));
         }
     }
     /**

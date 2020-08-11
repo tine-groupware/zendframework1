@@ -350,7 +350,7 @@ class Zend_Feed_ReaderTest extends PHPUnit_Framework_TestCase
         foreach (array($_ENV, $_SERVER) as $tab) {
             foreach (array('TMPDIR', 'TEMP', 'TMP', 'windir', 'SystemRoot') as $key) {
                 if (isset($tab[$key])) {
-                    if (($key == 'windir') or ($key == 'SystemRoot')) {
+                    if (($key == 'windir') || ($key == 'SystemRoot')) {
                         $dir = realpath($tab[$key] . '\\temp');
                     } else {
                         $dir = realpath($tab[$key]);

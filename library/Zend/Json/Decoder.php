@@ -443,8 +443,8 @@ class Zend_Json_Decoder
                         require_once 'Zend/Json/Exception.php';
                         throw new Zend_Json_Exception("Octal notation not supported by JSON (value: $datum)");
                     } else {
-                        $val  = intval($datum);
-                        $fVal = floatval($datum);
+                        $val  = (int)$datum;
+                        $fVal = (float)$datum;
                         $this->_tokenValue = ($val == $fVal ? $val : $fVal);
                     }
                 } else {
