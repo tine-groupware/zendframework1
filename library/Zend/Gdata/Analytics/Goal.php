@@ -30,7 +30,7 @@ require_once 'Zend/Gdata/Extension.php';
  * @package    Zend_Gdata
  * @subpackage Analytics
  */
-class Goal extends Zend_Gdata_Extension
+class Zend_Gdata_Analytics_Goal extends Zend_Gdata_Extension
 {
     protected $_rootNamespace = 'ga';
     protected $_rootElement = 'goal';
@@ -40,7 +40,7 @@ class Goal extends Zend_Gdata_Extension
         $this->registerAllNamespaces(Zend_Gdata_Analytics::$namespaces);
         parent::__construct();
     }
-    
+
     /**
      * @return string
      */
