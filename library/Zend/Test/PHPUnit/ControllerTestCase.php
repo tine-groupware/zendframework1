@@ -37,14 +37,14 @@ require_once 'Zend/Registry.php';
 /**
  * Functional testing scaffold for MVC applications
  *
- * @uses       PHPUnit\Framework\TestCase
+ * @uses       PHPUnit_Framework_TestCase
  * @category   Zend
  * @package    Zend_Test
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit\Framework\TestCase
+abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_TestCase
 {
     /**
      * @var mixed Bootstrap file path or callback
@@ -120,7 +120,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit\Framework\Te
      *
      * Calls {@link bootstrap()} by default
      */
-    protected function setUp(): void
+    protected function setUp()
     {
         $this->bootstrap();
     }
