@@ -337,8 +337,6 @@ class Zend_Session_SaveHandler_DbTable
      */
     public function write($id, $data)
     {
-        $return = false;
-
         $data = array($this->_modifiedColumn => time(),
                       $this->_dataColumn     => (string) $data);
 
@@ -347,16 +345,16 @@ class Zend_Session_SaveHandler_DbTable
         if (count($rows)) {
             $data[$this->_lifetimeColumn] = $this->_getLifetime($rows->current());
             $this->update($data, $this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE));
-            $return = true;
+            return true;
         } else {
             $data[$this->_lifetimeColumn] = $this->_lifetime;
 
             if ($this->insert(array_merge($this->_getPrimary($id, self::PRIMARY_TYPE_ASSOC), $data))) {
-                $return = true;
+                return true;
             }
         }
 
-        return $return;
+        return false;
     }
 
     /**
@@ -367,13 +365,8 @@ class Zend_Session_SaveHandler_DbTable
      */
     public function destroy($id)
     {
-        $return = false;
-
-        if ($this->delete($this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE))) {
-            $return = true;
-        }
-
-        return $return;
+        $this->delete($this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE));
+        return true; //always return true, since if nothing can be deleted, it is already deleted and thats OK.
     }
 
     /**

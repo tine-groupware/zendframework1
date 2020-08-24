@@ -130,10 +130,14 @@ class Zend_Loader
         /**
          * Try finding for the plain filename in the include_path.
          */
+        // "@":
+        // - Avoid error-logs full of PHP Warnings due to autoloads from class-exists()-checks.
+        // - If a class does not exist that we really need, error will be thrown anyway.
+        // - Fatal errors from the included files are still thrown anyway.
         if ($once) {
-            include_once $filename;
+            @include_once $filename;
         } else {
-            include $filename;
+            @include $filename;
         }
 
         /**

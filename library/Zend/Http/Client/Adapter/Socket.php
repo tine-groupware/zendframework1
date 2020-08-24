@@ -236,8 +236,14 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
                     'Unable to Connect to ' . $host . ':' . $port . '. Error #' . $errno . ': ' . $errstr);
             }
 
+            //distinguish between request timeout and connect timeout like in curl adapter
+            // request_timeout defaults to connection timeout to keep backwards compatibility
+            if(!array_key_exists('request_timeout', $this->config)) {
+                $this->config['request_timeout'] = $this->config['timeout'];
+            }
+            
             // Set the stream timeout
-            if (! stream_set_timeout($this->socket, (int) $this->config['timeout'])) {
+            if (! stream_set_timeout($this->socket, (int) $this->config['request_timeout'])) {
                 require_once 'Zend/Http/Client/Adapter/Exception.php';
                 throw new Zend_Http_Client_Adapter_Exception('Unable to set the connection timeout');
             }
