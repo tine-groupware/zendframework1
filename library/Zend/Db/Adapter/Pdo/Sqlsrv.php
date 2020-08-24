@@ -93,9 +93,6 @@ class Zend_Db_Adapter_Pdo_Sqlsrv extends Zend_Db_Adapter_Pdo_Abstract
             }
 
             if(isset($dsn['host'])) {
-                if($dsn['host'] == '127.0.0.1') {
-                    $dsn['host'] = '(local)';
-                }
                 $dsn['Server'] = $dsn['host'];
                 unset($dsn['host']);
             }
