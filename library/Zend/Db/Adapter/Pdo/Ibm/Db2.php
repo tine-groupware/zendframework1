@@ -94,7 +94,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
         }
         $sql .= " ORDER BY c.colno";
 
-        $desc = array();
+        $desc = [];
         $stmt = $this->_adapter->query($sql);
 
         /**
@@ -120,7 +120,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
         $colseq         = 11;
 
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = array(false, null, false);
+            list ($primary, $primaryPosition, $identity) = [false, null, false];
             if ($row[$tabconstype] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$colseq];
@@ -133,7 +133,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
                 $identity = true;
             }
 
-            $desc[$this->_adapter->foldCase($row[$colname])] = array(
+            $desc[$this->_adapter->foldCase($row[$colname])] = [
             'SCHEMA_NAME'      => $this->_adapter->foldCase($row[$tabschema]),
             'TABLE_NAME'       => $this->_adapter->foldCase($row[$tabname]),
             'COLUMN_NAME'      => $this->_adapter->foldCase($row[$colname]),
@@ -148,7 +148,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
             'PRIMARY'          => $primary,
             'PRIMARY_POSITION' => $primaryPosition,
             'IDENTITY'         => $identity
-            );
+            ];
         }
 
         return $desc;

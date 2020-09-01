@@ -69,14 +69,14 @@ final class Zend_Version
         if (null === self::$_latestVersion) {
             self::$_latestVersion = 'not available';
 
-            $opts = array(
-                'http' => array(
+            $opts = [
+                'http' => [
                     'method' => 'GET',
-                    'header' => array(
+                    'header' => [
                         'User-Agent: PHP'
-                    )
-                )
-            );
+                    ]
+                ]
+            ];
             $context = stream_context_create($opts);
             $content = file_get_contents('https://api.github.com/repos/Shardj/zf1-future/releases/latest', false, $context);
 

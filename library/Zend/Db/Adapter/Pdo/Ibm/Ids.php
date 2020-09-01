@@ -91,7 +91,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
         }
         $sql .= " ORDER BY c.colno";
 
-        $desc = array();
+        $desc = [];
         $stmt = $this->_adapter->query($sql);
 
         $result = $stmt->fetchAll(Zend_Db::FETCH_NUM);
@@ -130,7 +130,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
                 $identity = true;
             }
 
-            $desc[$this->_adapter->foldCase($row[$colname])] = array (
+            $desc[$this->_adapter->foldCase($row[$colname])] = [
                 'SCHEMA_NAME'       => $this->_adapter->foldCase($row[$tabschema]),
                 'TABLE_NAME'        => $this->_adapter->foldCase($row[$tabname]),
                 'COLUMN_NAME'       => $this->_adapter->foldCase($row[$colname]),
@@ -145,7 +145,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
                 'PRIMARY'           => $primary,
                 'PRIMARY_POSITION'  => $primaryPosition,
                 'IDENTITY'          => $identity
-            );
+            ];
         }
 
         return $desc;
@@ -160,7 +160,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
      */
     protected function _getDataType($typeNo)
     {
-        $typemap = array(
+        $typemap = [
             0       => "CHAR",
             1       => "SMALLINT",
             2       => "INTEGER",
@@ -186,7 +186,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
             22      => "Unnamed ROW",
             40      => "Variable-length opaque type",
             4118    => "Named ROW"
-        );
+        ];
 
         if ($typeNo - 256 >= 0) {
             $typeNo = $typeNo - 256;
@@ -214,7 +214,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
         $stmt = $this->_adapter->query($sql);
         $results = $stmt->fetchAll();
 
-        $cols = array();
+        $cols = [];
 
         // this should return only 1 row
         // unless there is no primary key,
