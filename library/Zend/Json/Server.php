@@ -82,9 +82,12 @@ class Zend_Json_Server extends Zend_Server_Abstract
     /**
      * Attach a function or callback to the server
      *
-     * @param  string|array $function Valid PHP callback
-     * @param  string $namespace  Ignored
+     * @param string|array $function Valid PHP callback
+     * @param string $namespace Ignored
      * @return Zend_Json_Server
+     * @throws Zend_Json_Server_Exception
+     * @throws Zend_Server_Exception
+     * @throws Zend_Server_Reflection_Exception
      */
     public function addFunction($function, $namespace = '')
     {
@@ -134,10 +137,12 @@ class Zend_Json_Server extends Zend_Server_Abstract
     /**
      * Register a class with the server
      *
-     * @param  string $class
-     * @param  string $namespace Ignored
-     * @param  mixed $argv Ignored
+     * @param string $class
+     * @param string $namespace Ignored
+     * @param mixed $argv Ignored
      * @return Zend_Json_Server
+     * @throws Zend_Server_Exception
+     * @throws Zend_Server_Reflection_Exception
      */
     public function setClass($class, $namespace = '', $argv = null)
     {
@@ -175,15 +180,19 @@ class Zend_Json_Server extends Zend_Server_Abstract
     /**
      * Handle request
      *
-     * @param  Zend_Json_Server_Request $request
+     * @param Zend_Json_Server_Request $request
      * @return null|Zend_Json_Server_Response
+     * @throws Zend_Json_Server_Exception
+     * @throws Zend_Server_Exception
      */
     public function handle($request = false)
     {
         if ((false !== $request) && (!$request instanceof Zend_Json_Server_Request)) {
             require_once 'Zend/Json/Server/Exception.php';
             throw new Zend_Json_Server_Exception('Invalid request type provided; cannot handle');
-        } elseif ($request) {
+        }
+
+        if ($request) {
             $this->setRequest($request);
         }
 
@@ -206,8 +215,9 @@ class Zend_Json_Server extends Zend_Server_Abstract
     /**
      * Load function definitions
      *
-     * @param  array|Zend_Server_Definition $definition
+     * @param array|Zend_Server_Definition $definition
      * @return void
+     * @throws Zend_Json_Server_Exception
      */
     public function loadFunctions($definition)
     {
@@ -341,8 +351,9 @@ class Zend_Json_Server extends Zend_Server_Abstract
     /**
      * Add service method to service map
      *
-     * @param  Zend_Server_Reflection_Function $method
+     * @param Zend_Server_Reflection_Function $method
      * @return void
+     * @throws Zend_Json_Server_Exception
      */
     protected function _addMethodServiceMap(Zend_Server_Method_Definition $method)
     {
@@ -497,7 +508,9 @@ class Zend_Json_Server extends Zend_Server_Abstract
     /**
      * Internal method for handling request
      *
-     * @return void
+     * @return false
+     * @throws ReflectionException
+     * @throws Zend_Server_Exception
      */
     protected function _handle()
     {

@@ -277,7 +277,6 @@ class Zend_Service_StrikeIron_BaseTest_MockSoapClient
         if ($method == 'ReturnTheObject') {
             // testMethodResultWrappingAnyObject
             return new stdclass();
-
         } else if ($method == 'WrapThis') {
             // testMethodResultWrappingAnObjectAndSelectingDefaultResultProperty
             return (object)['WrapThisResult' => 'unwraped'];
@@ -285,7 +284,6 @@ class Zend_Service_StrikeIron_BaseTest_MockSoapClient
         } else if ($method == 'ThrowTheException') {
             // testMethodExceptionsAreWrapped
             throw new Exception('foo', 43);
-
         } else if ($method == 'ReturnNoOutputHeaders') {
             // testGettingSubscriptionInfoThrowsWhenHeaderNotFound
             $outputHeaders = [];
