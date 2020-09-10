@@ -297,9 +297,9 @@ class Zend_Amf_Server implements Zend_Server_Interface
      * Loads a remote class or method and executes the function and returns
      * the result
      *
-     * @param string $method Is the method to execute
-     * @param null $params
-     * @param null $source
+     * @param  string $method Is the method to execute
+     * @param  mixed $params values for the method
+     * @param string|null $source
      * @return mixed $response the result of executing the method
      * @throws Zend_Acl_Exception
      * @throws Zend_Amf_Server_Exception
