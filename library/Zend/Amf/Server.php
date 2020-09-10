@@ -295,7 +295,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
      * the result
      *
      * @param  string $method Is the method to execute
-     * @param  mixed $param values for the method
+     * @param  mixed $params values for the method
      * @return mixed $response the result of executing the method
      * @throws Zend_Amf_Server_Exception
      */
