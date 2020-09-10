@@ -9,4 +9,6 @@ return PhpCsFixer\Config::create()
     ->setRules([
         'array_syntax' => ['syntax' => 'long'],
         'list_syntax' => ['syntax' => 'long'],
+        'modernize_types_casting' => true,
+        'logical_operators' => true,
     ]);
