@@ -19,7 +19,6 @@
  * @version    $Id$
  */
 
-
 /** User land classes and interfaces turned on by Zend/Search/Lucene.php file inclusion. */
 /** @todo Section should be removed with ZF 2.0 release as obsolete                      */
 
@@ -72,8 +71,6 @@ require_once 'Zend/Search/Lucene/Search/Query/Empty.php';
 require_once 'Zend/Search/Lucene/Search/Query/Insignificant.php';
 
 
-
-
 /** Internally used classes */
 
 /** Zend_Search_Lucene_Interface */
@@ -84,7 +81,6 @@ require_once 'Zend/Search/Lucene/Index/SegmentInfo.php';
 
 /** Zend_Search_Lucene_LockManager */
 require_once 'Zend/Search/Lucene/LockManager.php';
-
 
 /**
  * @category   Zend
@@ -163,7 +159,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      */
     private $_hasChanges = false;
 
-
     /**
      * Signal, that index is already closed, changes are fixed and resources are cleaned up
      *
@@ -202,6 +197,8 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      *
      * @param mixed $directory
      * @return Zend_Search_Lucene_Interface
+     * @throws Zend_Search_Exception
+     * @throws Zend_Search_Lucene_Exception
      */
     public static function create($directory)
     {
@@ -216,6 +213,8 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      *
      * @param mixed $directory
      * @return Zend_Search_Lucene_Interface
+     * @throws Zend_Search_Exception
+     * @throws Zend_Search_Lucene_Exception
      */
     public static function open($directory)
     {
@@ -504,6 +503,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      *
      * @param Zend_Search_Lucene_Storage_Directory_Filesystem|string $directory
      * @throws Zend_Search_Lucene_Exception
+     * @throws Zend_Search_Exception
      */
     public function __construct($directory = null, $create = false)
     {
@@ -537,9 +537,9 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
 
                 if (strpos($e->getMessage(), 'Can\'t obtain exclusive index lock') === false) {
                     throw new Zend_Search_Lucene_Exception($e->getMessage(), $e->getCode(), $e);
-                } else {
-                    throw new Zend_Search_Lucene_Exception('Can\'t create index. It\'s under processing now', 0, $e);
                 }
+
+                throw new Zend_Search_Lucene_Exception('Can\'t create index. It\'s under processing now', 0, $e);
             }
 
             if ($this->_generation == -1) {
@@ -564,7 +564,9 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         if ($this->_generation == -1) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Index doesn\'t exists in the specified directory.');
-        } else if ($this->_generation == 0) {
+        }
+
+        if ($this->_generation == 0) {
             $this->_readPre21SegmentsFile();
         } else {
             $this->_readSegmentsFile();
@@ -916,6 +918,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
      * @param Zend_Search_Lucene_Search_QueryParser|string $query
      * @return array Zend_Search_Lucene_Search_QueryHit
      * @throws Zend_Search_Lucene_Exception
+     * @throws Zend_Search_Exception
      */
     public function find($query)
     {
@@ -1021,9 +1024,9 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
                             } catch (Zend_Search_Lucene_Exception $e) {
                                 if (strpos($e->getMessage(), 'not found') === false) {
                                     throw new Zend_Search_Lucene_Exception($e->getMessage(), $e->getCode(), $e);
-                                } else {
-                                    $value = null;
                                 }
+
+                                $value = null;
                             }
 
                             $valuesArray[] = $value;
@@ -1157,7 +1160,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         return $doc;
     }
 
-
     /**
      * Returns true if index contain documents with specified term.
      *
@@ -1231,13 +1233,15 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
 
         if (count($subResults) == 0) {
             return [];
-        } else if (count($subResults) == 1) {
+        }
+
+        if (count($subResults) == 1) {
             // Index is optimized (only one segment)
             // Do not perform array reindexing
             return reset($subResults);
-        } else {
-            $result = call_user_func_array('array_merge', $subResults);
         }
+
+        $result = call_user_func_array('array_merge', $subResults);
 
         return $result;
     }
@@ -1285,7 +1289,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         return $result;
     }
 
-
     /**
      * Returns the number of documents in this index containing the $term.
      *
@@ -1305,7 +1308,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         return $result;
     }
 
-
     /**
      * Retrive similarity used by index reader
      *
@@ -1318,7 +1320,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
 
         return Zend_Search_Lucene_Search_Similarity::getDefault();
     }
-
 
     /**
      * Returns a normalization factor for "field, document" pair.
@@ -1365,7 +1366,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         return false;
     }
 
-
     /**
      * Deletes a document from the index.
      * $id is an internal document id
@@ -1398,8 +1398,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         $this->_hasChanges = true;
     }
 
-
-
     /**
      * Adds a document to this index.
      *
@@ -1412,7 +1410,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
 
         $this->_hasChanges = true;
     }
-
 
     /**
      * Update document counter
@@ -1441,7 +1438,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         }
     }
 
-
     /**
      * Optimize index.
      *
@@ -1457,7 +1453,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             $this->_updateDocCount();
         }
     }
-
 
     /**
      * Returns an array of all terms in this index.
@@ -1498,7 +1493,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
 
         return $result;
     }
-
 
     /**
      * Terms stream priority queue object
@@ -1564,7 +1558,6 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
         $this->_termsStream->closeTermsStream();
         $this->_termsStream = null;
     }
-
 
     /*************************************************************************
     @todo UNIMPLEMENTED

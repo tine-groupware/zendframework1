@@ -522,9 +522,10 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
     /**
      * Normalize an item to attach to the collection
      *
-     * @param  array|object $item
-     * @param  string|int|null $id
+     * @param array|object $item
+     * @param string|int|null $id
      * @return array
+     * @throws Zend_Dojo_Exception
      */
     protected function _normalizeItem($item, $id)
     {
@@ -549,7 +550,9 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
         if ((null === $id) && !array_key_exists($identifier, $item)) {
             require_once 'Zend/Dojo/Exception.php';
             throw new Zend_Dojo_Exception('Item must contain a column matching the currently set identifier');
-        } elseif (null === $id) {
+        }
+
+        if (null === $id) {
             $id = $item[$identifier];
         } else {
             $item[$identifier] = $id;
