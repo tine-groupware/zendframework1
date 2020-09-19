@@ -5,7 +5,9 @@ If you have any requests for tags, releases, or anything else. Feel free to rais
 
 ## Installation
 
-Installable through git clone or through `composer require shardj/zf1-future` https://packagist.org/packages/shardj/zf1-future  
+Installable through git clone or through  
+`composer require shardj/zf1-future` https://packagist.org/packages/shardj/zf1-future  
+
 Minimum PHP Version is 7.0
 
 
