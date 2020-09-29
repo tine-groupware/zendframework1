@@ -2,7 +2,16 @@
 
 If you have any requests for tags, releases, or anything else. Feel free to raise an issue and I'll get it sorted.
 
-Installable through git clone or through `composer require shardj/zf1-future` https://packagist.org/packages/shardj/zf1-future
+
+## Installation
+
+Installable through git clone or through  
+`composer require shardj/zf1-future` https://packagist.org/packages/shardj/zf1-future  
+
+Minimum PHP Version is 7.0
+
+
+## Extras
 
 Recently https://github.com/Shardj/zf1-extras-future has been created for those who need it.
 
