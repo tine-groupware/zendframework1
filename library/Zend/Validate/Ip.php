@@ -178,12 +178,13 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
         }
 
         $colonCount = substr_count($value, ':');
+
         if ($colonCount < 8) {
             return preg_match('/\A(?::|(?:[a-f0-9]{1,4}:)+):(?:(?:[a-f0-9]{1,4}:)*[a-f0-9]{1,4})?\z/i', $value);
         }
 
         // special case with ending or starting double colon
-        if ($colonCount == 8) {
+        if ($colonCount === 8) {
             return preg_match('/\A(?:::)?(?:[a-f0-9]{1,4}:){6}[a-f0-9]{1,4}(?:::)?\z/i', $value);
         }
 

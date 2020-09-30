@@ -217,6 +217,7 @@ class Zend_Http_Client_Adapter_Curl implements Zend_Http_Client_Adapter_Interfac
 
         // Do the actual connection
         $this->_curl = curl_init();
+
         if ($port != 80) {
             curl_setopt($this->_curl, CURLOPT_PORT, (int)$port);
         }

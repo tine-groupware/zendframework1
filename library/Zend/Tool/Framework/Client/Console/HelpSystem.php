@@ -266,7 +266,7 @@ class Zend_Tool_Framework_Client_Console_HelpSystem
 
                 // check for providers without a _Global action
                 $isSingleSpecialProviderAction = false;
-                if (!$actionIsGlobal && count($actionableGlobalMetadatas) == 1) {
+                if (!$actionIsGlobal && count($actionableGlobalMetadatas) === 1) {
                     $isSingleSpecialProviderAction = true;
                     $this->_respondWithProviderName($providerMetadata);
                     $providerNameDisplayed = true;

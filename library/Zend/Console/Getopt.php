@@ -599,7 +599,7 @@ class Zend_Console_Getopt
             $flags = [];
             if (is_array($rule['alias'])) {
                 foreach ($rule['alias'] as $flag) {
-                    $flags[] = (strlen($flag) == 1 ? '-' : '--') . $flag;
+                    $flags[] = (strlen($flag) === 1 ? '-' : '--') . $flag;
                 }
             }
             $linepart['name'] = implode('|', $flags);
@@ -654,7 +654,7 @@ class Zend_Console_Getopt
             }
             $flag = $this->_ruleMap[$flag];
             if (isset($this->_rules[$alias]) || isset($this->_ruleMap[$alias])) {
-                $o = (strlen($alias) == 1 ? '-' : '--') . $alias;
+                $o = (strlen($alias) === 1 ? '-' : '--') . $alias;
                 require_once 'Zend/Console/Getopt/Exception.php';
                 throw new Zend_Console_Getopt_Exception(
                     "Option \"$o\" is being defined more than once.");
@@ -943,7 +943,7 @@ class Zend_Console_Getopt
                     throw new Zend_Console_Getopt_Exception(
                         "Blank flag not allowed in rule \"$ruleCode\".");
                 }
-                if (strlen($flag) == 1) {
+                if (strlen($flag) === 1) {
                     if (isset($this->_ruleMap[$flag])) {
                         require_once 'Zend/Console/Getopt/Exception.php';
                         throw new Zend_Console_Getopt_Exception(

@@ -934,7 +934,7 @@ class Zend_Date extends Zend_Date_DateObject
 
         switch ($token[0]) {
             case 'y' :
-                if ((strlen($token) == 4) && (abs($this->getUnixTimestamp()) <= 0x7FFFFFFF)) {
+                if ((strlen($token) === 4) && (abs($this->getUnixTimestamp()) <= 0x7FFFFFFF)) {
                     return 'Y';
                 }
 
@@ -943,7 +943,7 @@ class Zend_Date extends Zend_Date_DateObject
                 break;
 
             case 'Y' :
-                if ((strlen($token) == 4) && (abs($this->getUnixTimestamp()) <= 0x7FFFFFFF)) {
+                if ((strlen($token) === 4) && (abs($this->getUnixTimestamp()) <= 0x7FFFFFFF)) {
                     return 'o';
                 }
 
@@ -2085,7 +2085,7 @@ class Zend_Date extends Zend_Date_DateObject
                     $datematch[1] = 1970;
                     $datematch[2] = 1;
                     $datematch[3] = 1;
-                } else if (iconv_strlen($datematch[1], 'UTF-8') == 2) {
+                } else if (iconv_strlen($datematch[1], 'UTF-8') === 2) {
                     $datematch[1] = self::getFullYear($datematch[1]);
                 }
                 if (empty($timematch)) {
@@ -2686,13 +2686,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     public function equals($date, $part = self::TIMESTAMP, $locale = null)
     {
-        $result = $this->compare($date, $part, $locale);
-
-        if ($result == 0) {
-            return true;
-        }
-
-        return false;
+        return $this->compare($date, $part, $locale) === 0;
     }
 
     /**
@@ -2731,13 +2725,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     public function isLater($date, $part = null, $locale = null)
     {
-        $result = $this->compare($date, $part, $locale);
-
-        if ($result == 1) {
-            return true;
-        }
-
-        return false;
+        return $this->compare($date, $part, $locale) === 1;
     }
 
     /**

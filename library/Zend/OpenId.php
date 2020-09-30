@@ -338,11 +338,11 @@ class Zend_OpenId
         }
 
         // RFC 3986,6.2.3.  Scheme-Based Normalization
-        if ($scheme == 'http') {
+        if ($scheme === 'http') {
             if ($port == 80) {
                 $port = '';
             }
-        } else if ($scheme == 'https') {
+        } else if ($scheme === 'https') {
             if ($port == 443) {
                 $port = '';
             }
@@ -580,22 +580,29 @@ class Zend_OpenId
     {
         if (extension_loaded('gmp')) {
             $s = gmp_strval($bn, 16);
+
             if (strlen($s) % 2 != 0) {
                 $s = '0' . $s;
             } else if ($s[0] > '7') {
                 $s = '00' . $s;
             }
             return pack("H*", $s);
-        } else if (extension_loaded('bcmath')) {
+        }
+
+        if (extension_loaded('bcmath')) {
             $cmp = bccomp($bn, 0);
-            if ($cmp == 0) {
+
+            if ($cmp === 0) {
                 return "\0";
-            } else if ($cmp < 0) {
+            }
+
+            if ($cmp < 0) {
                 require_once "Zend/OpenId/Exception.php";
                 throw new Zend_OpenId_Exception(
                     'Big integer arithmetic error',
                     Zend_OpenId_Exception::ERROR_LONG_MATH);
             }
+
             $bin = "";
             while (bccomp($bn, 0) > 0) {
                 $bin = chr(bcmod($bn, 256)) . $bin;
@@ -606,6 +613,7 @@ class Zend_OpenId
             }
             return $bin;
         }
+
         require_once "Zend/OpenId/Exception.php";
         throw new Zend_OpenId_Exception(
             'The system doesn\'t have proper big integer extension',

@@ -135,15 +135,18 @@ class Zend_Barcode_Renderer_Pdf extends Zend_Barcode_Renderer_RendererAbstract
     protected function _drawPolygon($points, $color, $filled = true)
     {
         $page = $this->_resource->pages[$this->_page];
+
         foreach ($points as $point) {
             $x[] = $point[0] * $this->_moduleSize + $this->_leftOffset;
             $y[] = $page->getHeight() - $point[1] * $this->_moduleSize - $this->_topOffset;
         }
-        if (count($y) == 4) {
+
+        if (count($y) === 4) {
             if ($x[0] != $x[3] && $y[0] == $y[3]) {
                 $y[0] -= ($this->_moduleSize / 2);
                 $y[3] -= ($this->_moduleSize / 2);
             }
+
             if ($x[1] != $x[2] && $y[1] == $y[2]) {
                 $y[1] += ($this->_moduleSize / 2);
                 $y[2] += ($this->_moduleSize / 2);

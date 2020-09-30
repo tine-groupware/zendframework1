@@ -313,7 +313,7 @@ class Zend_Config implements Countable, Iterator
      */
     public function getSectionName()
     {
-        if(is_array($this->_loadedSection) && count($this->_loadedSection) == 1) {
+        if(is_array($this->_loadedSection) && count($this->_loadedSection) === 1) {
             $this->_loadedSection = $this->_loadedSection[0];
         }
         return $this->_loadedSection;
@@ -468,8 +468,8 @@ class Zend_Config implements Countable, Iterator
                 if (isset($firstArray[$key])) {
                     $firstArray[$key] = $this->_arrayMergeRecursive($firstArray[$key], $value);
                 } else {
-                    if($key === 0) {
-                        $firstArray= [0=>$this->_arrayMergeRecursive($firstArray, $value)];
+                    if ($key === 0) {
+                        $firstArray = [0 => $this->_arrayMergeRecursive($firstArray, $value)];
                     } else {
                         $firstArray[$key] = $value;
                     }

@@ -167,7 +167,7 @@ class Zend_Http_Header_SetCookie
             }
             $headers[] = $header;
         }
-        return count($headers) == 1 ? array_pop($headers) : $headers;
+        return count($headers) === 1 ? array_pop($headers) : $headers;
     }
 
     /**

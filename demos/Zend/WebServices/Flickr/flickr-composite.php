@@ -109,7 +109,7 @@ if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
                     $widths[] = $result->Medium->width;
                 }
             }
-            if (sizeof($images) == 0) {
+            if (count($images) === 0) {
                 echo '<p style="color: orange; font-weight: bold">No Results Found.</p>';
             } else {
                 sort($heights);

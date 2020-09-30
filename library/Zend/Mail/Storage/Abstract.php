@@ -76,6 +76,7 @@ abstract class Zend_Mail_Storage_Abstract implements Countable, ArrayAccess, See
     {
         if (strpos($var, 'has') === 0) {
             $var = strtolower(substr($var, 3));
+
             return isset($this->_has[$var]) ? $this->_has[$var] : null;
         }
 

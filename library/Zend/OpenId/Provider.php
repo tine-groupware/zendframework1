@@ -576,19 +576,19 @@ class Zend_OpenId_Provider
                 if (strpos($root, $site) === 0) {
                     $trusted = $t;
                     break;
-                } else {
-                    /* OpenID 2.0 (9.2) check for realm wild-card matching */
-                    $n = strpos($site, '://*.');
-                    if ($n != false) {
-                        $regex = '/^'
-                               . preg_quote(substr($site, 0, $n+3), '/')
-                               . '[A-Za-z1-9_\.]+?'
-                               . preg_quote(substr($site, $n+4), '/')
-                               . '/';
-                        if (preg_match($regex, $root)) {
-                            $trusted = $t;
-                            break;
-                        }
+                }
+
+                /* OpenID 2.0 (9.2) check for realm wild-card matching */
+                $n = strpos($site, '://*.');
+                if ($n != false) {
+                    $regex = '/^'
+                           . preg_quote(substr($site, 0, $n+3), '/')
+                           . '[A-Za-z1-9_\.]+?'
+                           . preg_quote(substr($site, $n+4), '/')
+                           . '/';
+                    if (preg_match($regex, $root)) {
+                        $trusted = $t;
+                        break;
                     }
                 }
             }
@@ -603,9 +603,12 @@ class Zend_OpenId_Provider
         if ($trusted === false) {
             $ret['openid.mode'] = 'cancel';
             return $ret;
-        } else if ($trusted === null) {
+        }
+
+        if ($trusted === null) {
             /* Redirect to Server Trust Screen */
             $params2 = [];
+
             foreach ($params as $key => $val) {
                 if (strpos($key, 'openid_ns_') === 0) {
                     $key = 'openid.ns.' . substr($key, strlen('openid_ns_'));
@@ -794,10 +797,13 @@ class Zend_OpenId_Provider
         if (strlen($a) !== strlen($b)) {
             return false;
         }
+
         $result = 0;
+
         for ($i = 0; $i < strlen($a); $i++) {
             $result |= ord($a[$i]) ^ ord($b[$i]);
         }
+
         return $result == 0;
     }
 }

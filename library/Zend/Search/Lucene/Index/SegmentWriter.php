@@ -484,6 +484,7 @@ abstract class Zend_Search_Lucene_Index_SegmentWriter
             $this->_lastIndexPosition = $indexPosition;
 
         }
+
         $this->_termCount++;
     }
 
@@ -526,8 +527,10 @@ abstract class Zend_Search_Lucene_Index_SegmentWriter
             // Calculate actual matched UTF-8 pattern
             $prefixBytes = 0;
             $prefixChars = 0;
+
             while ($prefixBytes < $matchedBytes) {
                 $charBytes = 1;
+
                 if ((ord($term->text[$prefixBytes]) & 0xC0) == 0xC0) {
                     $charBytes++;
                     if (ord($term->text[$prefixBytes]) & 0x20 ) {

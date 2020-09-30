@@ -532,17 +532,18 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         }
         // Fix for ZF-1515: Now re-challenges on empty username or password
         $creds = array_filter(explode(':', $auth));
-        if (count($creds) != 2) {
+        if (count($creds) !== 2) {
             return $this->_challengeClient();
         }
 
         $password = $this->_basicResolver->resolve($creds[0], $this->_realm);
+
         if ($password && $this->_secureStringCompare($password, $creds[1])) {
             $identity = ['username'=>$creds[0], 'realm'=>$this->_realm];
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $identity);
-        } else {
-            return $this->_challengeClient();
         }
+
+        return $this->_challengeClient();
     }
 
     /**
@@ -860,9 +861,11 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             return false;
         }
         $result = 0;
+
         for ($i = 0; $i < strlen($a); $i++) {
             $result |= ord($a[$i]) ^ ord($b[$i]);
         }
+
         return $result == 0;
     }
 }

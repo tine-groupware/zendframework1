@@ -521,8 +521,9 @@ class Zend_Mime
                 }
                 $tmp = "";
             }
+
             // don't forget to append the rest to the last line
-            if (strlen($str) == 0) {
+            if (strlen($str) === 0) {
                 $lines[$currentLine] .= $tmp;
             }
         }
@@ -531,6 +532,7 @@ class Zend_Mime
         for ($i = 0; $i < count($lines); $i++) {
             $lines[$i] = " " . $prefix . $lines[$i] . "?=";
         }
+
         $str = trim(implode($lineEnd, $lines));
 
         return $str;

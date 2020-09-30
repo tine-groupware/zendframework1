@@ -139,12 +139,14 @@ class Zend_Amf_Parse_Amf3_Deserializer extends Zend_Amf_Parse_Deserializer
         $count        = 1;
         $intReference = $this->_stream->readByte();
         $result       = 0;
+
         while ((($intReference & 0x80) != 0) && $count < 4) {
             $result       <<= 7;
             $result        |= ($intReference & 0x7f);
             $intReference   = $this->_stream->readByte();
             $count++;
         }
+
         if ($count < 4) {
             $result <<= 7;
             $result  |= $intReference;
@@ -243,12 +245,15 @@ class Zend_Amf_Parse_Amf3_Deserializer extends Zend_Amf_Parse_Deserializer
     public function readArray()
     {
         $arrayReference = $this->readInteger();
-        if (($arrayReference & 0x01)==0){
+
+        if (($arrayReference & 0x01) == 0){
             $arrayReference = $arrayReference >> 1;
+
             if ($arrayReference>=count($this->_referenceObjects)) {
                 require_once 'Zend/Amf/Exception.php';
                 throw new Zend_Amf_Exception('Unknow array reference: ' . $arrayReference);
             }
+
             return $this->_referenceObjects[$arrayReference];
         }
 
@@ -282,7 +287,7 @@ class Zend_Amf_Parse_Amf3_Deserializer extends Zend_Amf_Parse_Deserializer
     public function readObject()
     {
         $traitsInfo   = $this->readInteger();
-        $storedObject = ($traitsInfo & 0x01)==0;
+        $storedObject = ($traitsInfo & 0x01) == 0;
         $traitsInfo   = $traitsInfo >> 1;
 
         // Check if the Object is in the stored Objects reference table

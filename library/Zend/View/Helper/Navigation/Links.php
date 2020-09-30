@@ -309,7 +309,7 @@ class Zend_View_Helper_Navigation_Links
                     }
                 }
 
-                return count($result) == 1 ? $result[0] : $result;
+                return count($result) === 1 ? $result[0] : $result;
             }
         }
 

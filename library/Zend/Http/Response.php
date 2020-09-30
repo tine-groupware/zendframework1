@@ -165,8 +165,9 @@ class Zend_Http_Response
 
         foreach ($headers as $name => $value) {
             if (is_int($name)) {
-                $header = explode(":", $value, 2);
-                if (count($header) != 2) {
+                $header = explode(':', $value, 2);
+
+                if (count($header) !== 2) {
                     require_once 'Zend/Http/Exception.php';
                     throw new Zend_Http_Exception("'{$value}' is not a valid HTTP header");
                 }
@@ -206,11 +207,8 @@ class Zend_Http_Response
     public function isError()
     {
         $restype = floor($this->code / 100);
-        if ($restype == 4 || $restype == 5) {
-            return true;
-        }
 
-        return false;
+        return $restype == 4 || $restype == 5;
     }
 
     /**
@@ -221,11 +219,8 @@ class Zend_Http_Response
     public function isSuccessful()
     {
         $restype = floor($this->code / 100);
-        if ($restype == 2 || $restype == 1) { // Shouldn't 3xx count as success as well ???
-            return true;
-        }
 
-        return false;
+        return $restype == 2 || $restype == 1; // Shouldn't 3xx count as success as well ???
     }
 
     /**
@@ -236,11 +231,8 @@ class Zend_Http_Response
     public function isRedirect()
     {
         $restype = floor($this->code / 100);
-        if ($restype == 3) {
-            return true;
-        }
 
-        return false;
+        return $restype == 3;
     }
 
     /**
@@ -677,11 +669,12 @@ class Zend_Http_Response
          * @link http://framework.zend.com/issues/browse/ZF-6040
          */
         $zlibHeader = unpack('n', substr($body, 0, 2));
+
         if ($zlibHeader[1] % 31 == 0 && ord($body[0]) == 0x78 && in_array(ord($body[1]), [0x01, 0x5e, 0x9c, 0xda])) {
             return gzuncompress($body);
-        } else {
-            return gzinflate($body);
         }
+
+        return gzinflate($body);
     }
 
     /**

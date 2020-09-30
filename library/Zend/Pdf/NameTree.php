@@ -63,7 +63,7 @@ class Zend_Pdf_NameTree implements ArrayAccess, Iterator, Countable
             $leafNodes[] = $rootDictionary;
         }
 
-        while (count($intermediateNodes) != 0) {
+        while (count($intermediateNodes) !== 0) {
             $newIntermediateNodes = [];
             foreach ($intermediateNodes as $node) {
                 foreach ($node->Kids->items as $childNode) {

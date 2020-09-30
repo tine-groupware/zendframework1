@@ -186,9 +186,11 @@ class Zend_Cache_Backend_WinCache extends Zend_Cache_Backend implements Zend_Cac
         $mem = wincache_ucache_meminfo();
         $memSize = $mem['memory_total'];
         $memUsed = $memSize - $mem['memory_free'];
+
         if ($memSize == 0) {
             Zend_Cache::throwException('can\'t get WinCache memory size');
         }
+
         if ($memUsed > $memSize) {
             return 100;
         }

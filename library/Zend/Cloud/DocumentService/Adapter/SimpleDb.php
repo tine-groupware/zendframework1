@@ -304,15 +304,17 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * @param  string $collectionName Collection name
      * @param  mixed $documentId Document ID, adapter-dependent
      * @param  array $options
-     * @return Zend_Cloud_DocumentService_Document
+     * @return array|Zend_Cloud_DocumentService_Document
      */
     public function fetchDocument($collectionName, $documentId, $options = null)
     {
         try {
             $attributes = $this->_simpleDb->getAttributes($collectionName, $documentId);
-            if ($attributes == false || count($attributes) == 0) {
+
+            if ($attributes == false || count($attributes) === 0) {
                 return false;
             }
+
             return $this->_resolveAttributes($attributes, true);
         } catch(Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on fetching document: '.$e->getMessage(), $e->getCode(), $e);
@@ -407,9 +409,9 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         $result = [];
         foreach ($attributes as $attr) {
             $value = $attr->getValues();
-            if (count($value) == 0) {
+            if (count($value) === 0) {
                 $value = null;
-            } elseif (count($value) == 1) {
+            } elseif (count($value) === 1) {
                 $value = $value[0];
             }
             $result[$attr->getName()] = $value;

@@ -462,7 +462,7 @@ class Zend_Service_WindowsAzure_Storage_Table
         );
         
         // Return
-        if (count($result) == 1) {
+        if (count($result) === 1) {
             return $result[0];
         }
         

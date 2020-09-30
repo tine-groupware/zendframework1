@@ -580,7 +580,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
          * is a scalar.
          */
         $primaryKey = $this->_getPrimaryKey(true);
-        if (count($primaryKey) == 1) {
+        if (count($primaryKey) === 1) {
             return current($primaryKey);
         }
 

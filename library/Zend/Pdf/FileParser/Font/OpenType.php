@@ -349,15 +349,18 @@ abstract class Zend_Pdf_FileParser_Font_OpenType extends Zend_Pdf_FileParser_Fon
         /* Now go back and extract the interesting strings.
          */
         $fontNames = [];
+
         foreach ($nameRecords as $name => $languages) {
             foreach ($languages as $language => $attributes) {
                 $stringOffset = $storageOffset + $attributes['offset'];
                 $this->moveToOffset($stringOffset);
+
                 if ($attributes['platform'] == 3) {
                     $string = $this->readStringUTF16($attributes['length']);
                 } else {
                     $string = $this->readStringMacRoman($attributes['length']);
                 }
+
                 $fontNames[$name][$language] = $string;
             }
         }

@@ -371,6 +371,7 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
         $dir = dirname($this->_options['cache_db_complete_path']);
         $free = disk_free_space($dir);
         $total = disk_total_space($dir);
+
         if ($total == 0) {
             Zend_Cache::throwException('can\'t get disk_total_space');
         } else {
@@ -528,7 +529,8 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
     {
         if ($this->_options['automatic_vacuum_factor'] > 0) {
             $rand = rand(1, $this->_options['automatic_vacuum_factor']);
-            if ($rand == 1) {
+
+            if ($rand === 1) {
                 $this->_query('VACUUM');
             }
         }
@@ -581,16 +583,23 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
     private function _checkStructureVersion()
     {
         $result = $this->_query("SELECT num FROM version");
-        if (!$result) return false;
+
+        if (!$result) {
+            return false;
+        }
+
         $row = @sqlite_fetch_array($result);
+
         if (!$row) {
             return false;
         }
+
         if (((int) $row['num']) != 1) {
             // old cache structure
             $this->_log('Zend_Cache_Backend_Sqlite::_checkStructureVersion() : old cache structure version detected => the cache is going to be dropped');
             return false;
         }
+
         return true;
     }
 

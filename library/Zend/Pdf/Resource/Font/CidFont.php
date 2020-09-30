@@ -176,7 +176,7 @@ abstract class Zend_Pdf_Resource_Font_CidFont extends Zend_Pdf_Resource_Font
             $lastCharCode = $charCode;
         }
         // Save last sequence, if widths array is not empty (it may happens for monospaced fonts)
-        if (count($charWidths) != 0) {
+        if (count($charWidths) !== 0) {
             $widthsSequences[$sequenceStartCode] = $charCodesSequense;
         }
 
@@ -206,7 +206,7 @@ abstract class Zend_Pdf_Resource_Font_CidFont extends Zend_Pdf_Resource_Font
                     $lastWidth = $width;
                 } else {
                     // Width is equal to previous
-                    if (count($pdfWidths) != 0) {
+                    if (count($pdfWidths) !== 0) {
                         // We already have some widths collected
                         // So, we've just detected new widths sequence
 
@@ -214,7 +214,7 @@ abstract class Zend_Pdf_Resource_Font_CidFont extends Zend_Pdf_Resource_Font
                         array_pop($pdfWidths);
 
                         // and write the rest if it's not empty
-                        if (count($pdfWidths) != 0) {
+                        if (count($pdfWidths) !== 0) {
                             // Save it as 'c_1st [w1 w2 ... wn]'.
                             $pdfCharsWidths[] = new Zend_Pdf_Element_Numeric($startCode); // First character code
                             $pdfCharsWidths[] = new Zend_Pdf_Element_Array($pdfWidths);   // Widths array
@@ -233,7 +233,7 @@ abstract class Zend_Pdf_Resource_Font_CidFont extends Zend_Pdf_Resource_Font
             }
 
             // Check if we have widths collection or widths sequence to wite it down
-            if (count($pdfWidths) != 0) {
+            if (count($pdfWidths) !== 0) {
                 // We have some widths collected
                 // Save it as 'c_1st [w1 w2 ... wn]'.
                 $pdfCharsWidths[] = new Zend_Pdf_Element_Numeric($startCode); // First character code
@@ -344,6 +344,7 @@ abstract class Zend_Pdf_Resource_Font_CidFont extends Zend_Pdf_Resource_Font
         }
 
         $charCount = iconv_strlen($string, 'UTF-16BE');
+
         if ($charCount == 0) {
             return 0;
         }

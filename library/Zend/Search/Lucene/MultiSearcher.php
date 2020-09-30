@@ -234,7 +234,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public static function getDefaultSearchField()
     {
-        if (count($this->_indices) == 0) {
+        if (count($this->_indices) === 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }
@@ -275,7 +275,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public static function getResultSetLimit()
     {
-        if (count($this->_indices) == 0) {
+        if (count($this->_indices) === 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }
@@ -305,7 +305,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public function getMaxBufferedDocs()
     {
-        if (count($this->_indices) == 0) {
+        if (count($this->_indices) === 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }
@@ -354,7 +354,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public function getMaxMergeDocs()
     {
-        if (count($this->_indices) == 0) {
+        if (count($this->_indices) === 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }
@@ -410,7 +410,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public function getMergeFactor()
     {
-        if (count($this->_indices) == 0) {
+        if (count($this->_indices) === 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }
@@ -462,17 +462,18 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public function find($query)
     {
-        if (count($this->_indices) == 0) {
+        if (count($this->_indices) === 0) {
             return [];
         }
 
         $hitsList = [];
 
         $indexShift = 0;
+
         foreach ($this->_indices as $index) {
             $hits = $index->find($query);
 
-            if ($indexShift != 0) {
+            if ($indexShift !== 0) {
                 foreach ($hits as $hit) {
                     $hit->id += $indexShift;
                 }
@@ -570,10 +571,11 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
         $docsList = [];
 
         $indexShift = 0;
+
         foreach ($this->_indices as $index) {
             $docs = $index->termDocs($term);
 
-            if ($indexShift != 0) {
+            if ($indexShift !== 0) {
                 foreach ($docs as $id => $docId) {
                     $docs[$id] += $indexShift;
                 }
@@ -622,15 +624,17 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
         $freqsList = [];
 
         $indexShift = 0;
+
         foreach ($this->_indices as $index) {
             $freqs = $index->termFreqs($term);
 
-            if ($indexShift != 0) {
+            if ($indexShift !== 0) {
                 $freqsShifted = [];
 
                 foreach ($freqs as $docId => $freq) {
                     $freqsShifted[$docId + $indexShift] = $freq;
                 }
+
                 $freqs = $freqsShifted;
             }
 
@@ -660,15 +664,17 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
         $termPositionsList = [];
 
         $indexShift = 0;
+
         foreach ($this->_indices as $index) {
             $termPositions = $index->termPositions($term);
 
-            if ($indexShift != 0) {
+            if ($indexShift !== 0) {
                 $termPositionsShifted = [];
 
                 foreach ($termPositions as $docId => $positions) {
                     $termPositions[$docId + $indexShift] = $positions;
                 }
+
                 $termPositions = $termPositionsShifted;
             }
 
@@ -704,7 +710,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      */
     public function getSimilarity()
     {
-        if (count($this->_indices) == 0) {
+        if (count($this->_indices) === 0) {
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('Indices list is empty');
         }

@@ -1066,11 +1066,13 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
         if(null === $name) {
             return '';
         }
-        elseif (($scheme == self::SCHEME_HTTP && $port == 80) || ($scheme == self::SCHEME_HTTPS && $port == 443)) {
+
+        if (($scheme == self::SCHEME_HTTP && $port == 80) || ($scheme == self::SCHEME_HTTPS && $port == 443)) {
             return $name;
-        } else {
-            return $name . ':' . $port;
         }
+
+        return $name . ':' . $port;
+
     }
 
     /**

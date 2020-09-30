@@ -354,12 +354,15 @@ class Zend_Mobile_Push_Message_Mpns_Tile extends Zend_Mobile_Push_Message_Mpns
         if (!isset($this->_token) || strlen($this->_token) === 0) {
             return false;
         }
+
         if (empty($this->_backgroundImage)) {
             return false;
         }
+
         if (empty($this->_title)) {
             return false;
         }
+
         return parent::validate();
     }
 }

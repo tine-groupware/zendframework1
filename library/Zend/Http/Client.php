@@ -1189,9 +1189,12 @@ class Zend_Http_Client
             $host = $this->uri->getHost();
 
             // If the port is not default, add it
-            if (! (($this->uri->getScheme() == 'http' && $this->uri->getPort() == 80) ||
-                  ($this->uri->getScheme() == 'https' && $this->uri->getPort() == 443))) {
-                $host .= ':' . $this->uri->getPort();
+            $scheme = $this->uri->getScheme();
+            $port = $this->uri->getPort();
+
+            if (!(($scheme === 'http' && $port == 80) ||
+                  ($scheme === 'https' && $port == 443))) {
+                $host .= ':' . $port;
             }
 
             $headers[] = "Host: {$host}";

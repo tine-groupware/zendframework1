@@ -181,15 +181,16 @@ class Zend_Ldap_Dn implements ArrayAccess
         $caseFold = self::_sanitizeCaseFold($caseFold, $this->_caseFold);
         $this->_assertIndex($index);
         $length = (int)$length;
+
         if ($length <= 0) {
             $length = 1;
         }
+
         if ($length === 1) {
             return self::_caseFoldRdn($this->_dn[$index], $caseFold);
         }
-        else {
-            return self::_caseFoldDn(array_slice($this->_dn, $index, $length, false), $caseFold);
-        }
+
+        return self::_caseFoldDn(array_slice($this->_dn, $index, $length, false), $caseFold);
     }
 
     /**
@@ -530,10 +531,16 @@ class Zend_Ldap_Dn implements ArrayAccess
                     $val = $val . '\20';
                 }
             }
-            if (null === $val) $val = '\0';  // apply escaped "null" if string is empty
+
+            if (null === $val) {
+                // apply escaped "null" if string is empty
+                $val = '\0';
+            }
+
             $values[$key] = $val;
         }
-        return (count($values) == 1) ? $values[0] : $values;
+
+        return (count($values) === 1) ? $values[0] : $values;
     }
 
     /**
@@ -555,14 +562,18 @@ class Zend_Ldap_Dn implements ArrayAccess
          */
         require_once 'Zend/Ldap/Converter.php';
 
-        if (!is_array($values)) $values = [$values];
+        if (!is_array($values)) {
+            $values = [$values];
+        }
+
         foreach ($values as $key => $val) {
             // strip slashes from special chars
             $val = str_replace(['\\\\', '\,', '\+', '\"', '\<', '\>', '\;', '\#', '\='],
                 ['\\', ',', '+', '"', '<', '>', ';', '#', '=', ], $val);
             $values[$key] = Zend_Ldap_Converter::hex32ToAsc($val);
         }
-        return (count($values) == 1) ? $values[0] : $values;
+
+        return (count($values) === 1) ? $values[0] : $values;
     }
 
     /**
@@ -676,6 +687,7 @@ class Zend_Ldap_Dn implements ArrayAccess
                         }
                         $state = 1;
                         $ko = $di + 1;
+
                         if ($ch === '+' && $multi === false) {
                             $lastKey = array_pop($ka);
                             $lastVal = array_pop($va);
@@ -698,6 +710,7 @@ class Zend_Ldap_Dn implements ArrayAccess
         if ($keys !== null) {
             $keys = $ka;
         }
+
         if ($vals !== null) {
             $vals = $va;
         }

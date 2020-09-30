@@ -341,6 +341,7 @@ class Zend_Measure_Number extends Zend_Measure_Abstract
                 $value = call_user_func(Zend_Locale_Math::$div, $value, $base, 0);
 
                 --$count;
+
                 if ($count === 0) {
                     require_once 'Zend/Measure/Exception.php';
                     throw new Zend_Measure_Exception("Your value '$tempvalue' cannot be processed because it extends 200 digits");
@@ -368,6 +369,7 @@ class Zend_Measure_Number extends Zend_Measure_Abstract
                     }
 
                     --$count;
+
                     if ($count === 0) {
                         require_once 'Zend/Measure/Exception.php';
                         throw new Zend_Measure_Exception("Your value '$tempvalue' cannot be processed because it extends 200 digits");

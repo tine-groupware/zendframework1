@@ -242,9 +242,11 @@ class Zend_Feed_Pubsubhubbub_Publisher
                 .' of "' . $url . '" must be a non-empty string and a valid'
                 .'URL');
         }
+
         $client = $this->_getHttpClient();
         $client->setUri($url);
         $response = $client->request();
+
         if ($response->getStatus() !== 204) {
             require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
             throw new Zend_Feed_Pubsubhubbub_Exception('Notification to Hub Server '
@@ -274,10 +276,13 @@ class Zend_Feed_Pubsubhubbub_Publisher
             throw new Zend_Feed_Pubsubhubbub_Exception('No Hub Server URLs'
                 . ' have been set so no notifcations can be sent');
         }
+
         $this->_errors = [];
+
         foreach ($hubs as $url) {
             $client->setUri($url);
             $response = $client->request();
+
             if ($response->getStatus() !== 204) {
                 $this->_errors[] = [
                     'response' => $response,

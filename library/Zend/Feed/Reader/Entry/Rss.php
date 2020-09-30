@@ -193,7 +193,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
             }
         }
 
-        if (count($authors) == 0) {
+        if (count($authors) === 0) {
             $authors = $this->getExtension('Atom')->getAuthors();
         } else {
             $authors = new Zend_Feed_Reader_Collection_Author(
@@ -201,7 +201,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
             );
         }
 
-        if (count($authors) == 0) {
+        if (count($authors) === 0) {
             $authors = null;
         }
 
@@ -504,7 +504,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
             $categoryCollection = $this->getExtension('DublinCore')->getCategories();
         }
 
-        if (count($categoryCollection) == 0) {
+        if (count($categoryCollection) === 0) {
             $categoryCollection = $this->getExtension('Atom')->getCategories();
         }
 

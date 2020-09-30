@@ -1089,7 +1089,8 @@ abstract class Zend_Db_Table_Abstract
          * else return an associative array of the PK column/value pairs.
          */
         $pkData = array_intersect_key($data, array_flip($primary));
-        if (count($primary) == 1) {
+
+        if (count($primary) === 1) {
             reset($pkData);
             return current($pkData);
         }
@@ -1303,37 +1304,45 @@ abstract class Zend_Db_Table_Abstract
 
         $whereList = [];
         $numberTerms = 0;
+
         foreach ($args as $keyPosition => $keyValues) {
             if (is_array($keyValues) || $keyValues instanceof Countable) {
                 $keyValuesCount = count($keyValues);
             } else {
                 $keyValuesCount = $keyValues === null ? 0 : 1;
             }
+
             // Coerce the values to an array.
             // Don't simply typecast to array, because the values
             // might be Zend_Db_Expr objects.
             if (!is_array($keyValues)) {
                 $keyValues = [$keyValues];
             }
-            if ($numberTerms == 0) {
+
+            if ($numberTerms === 0) {
                 $numberTerms = $keyValuesCount;
-            } else if ($keyValuesCount != $numberTerms) {
+            } else if ($keyValuesCount !== $numberTerms) {
                 require_once 'Zend/Db/Table/Exception.php';
                 throw new Zend_Db_Table_Exception("Missing value(s) for the primary key");
             }
+
             $keyValues = array_values($keyValues);
+
             for ($i = 0; $i < $keyValuesCount; ++$i) {
                 if (!isset($whereList[$i])) {
                     $whereList[$i] = [];
                 }
+
                 $whereList[$i][$keyPosition] = $keyValues[$i];
             }
         }
 
         $whereClause = null;
+
         if (count($whereList)) {
             $whereOrTerms = [];
             $tableName = $this->_db->quoteTableAs($this->_name, null, true);
+
             foreach ($whereList as $keyValueSets) {
                 $whereAndTerms = [];
                 foreach ($keyValueSets as $keyPosition => $keyValue) {
@@ -1442,7 +1451,7 @@ abstract class Zend_Db_Table_Abstract
 
         $rows = $this->_fetch($select);
 
-        if (count($rows) == 0) {
+        if (count($rows) === 0) {
             return null;
         }
 

@@ -380,6 +380,7 @@ class Zend_OpenId_Consumer
             }
 
             $params2 = [];
+
             foreach ($params as $key => $val) {
                 if (strpos($key, 'openid_ns_') === 0) {
                     $key = 'openid.ns.' . substr($key, strlen('openid_ns_'));
@@ -390,6 +391,7 @@ class Zend_OpenId_Consumer
                 }
                 $params2[$key] = $val;
             }
+
             $params2['openid.mode'] = 'check_authentication';
             $ret = $this->_httpRequest($server, 'POST', $params2, $status);
             if ($status != 200) {
@@ -402,7 +404,7 @@ class Zend_OpenId_Consumer
                     $line = trim($line);
                     if (!empty($line)) {
                         $x = explode(':', $line, 2);
-                        if (is_array($x) && count($x) == 2) {
+                        if (is_array($x) && count($x) === 2) {
                             list($key, $value) = $x;
                             $r[trim($key)] = trim($value);
                         }
@@ -528,14 +530,17 @@ class Zend_OpenId_Consumer
             $this->_setError('HTTP Request failed: ' . $e->getMessage());
             return false;
         }
+
         $status = $response->getStatus();
         $body = $response->getBody();
+
         if ($status == 200 || ($status == 400 && !empty($body))) {
             return $body;
-        }else{
-            $this->_setError('Bad HTTP response');
-            return false;
         }
+
+        $this->_setError('Bad HTTP response');
+
+        return false;
     }
 
     /**
@@ -608,7 +613,7 @@ class Zend_OpenId_Consumer
                 $line = trim($line);
                 if (!empty($line)) {
                     $x = explode(':', $line, 2);
-                    if (is_array($x) && count($x) == 2) {
+                    if (is_array($x) && count($x) === 2) {
                         list($key, $value) = $x;
                         $r[trim($key)] = trim($value);
                     } else {

@@ -78,11 +78,13 @@ class Zend_Locale_Format
      */
     private static function _checkOptions(array $options = [])
     {
-        if (count($options) == 0) {
+        if (count($options) === 0) {
             return self::$_options;
         }
+
         foreach ($options as $name => $value) {
             $name  = strtolower($name);
+
             if ($name !== 'locale') {
                 if (gettype($value) === 'string') {
                     $value = strtolower($value);
@@ -385,6 +387,7 @@ class Zend_Locale_Format
         $prec = call_user_func(Zend_Locale_Math::$sub, $value, $number, $options['precision']);
         $prec = Zend_Locale_Math::floatalize($prec);
         $prec = Zend_Locale_Math::normalize($prec);
+
         if (iconv_strpos($prec, '-') !== false) {
             $prec = iconv_substr($prec, 1);
         }
@@ -429,6 +432,7 @@ class Zend_Locale_Format
         }
 
         $format .= $rest;
+
         // Add seperation
         if ($group == 0) {
             // no seperation
@@ -547,7 +551,7 @@ class Zend_Locale_Format
         $decimal  = preg_replace('/[^#0,;\.\-Ee]/u', '',$decimal);
         $patterns = explode(';', $decimal);
 
-        if (count($patterns) == 1) {
+        if (count($patterns) === 1) {
             $patterns[1] = '-' . $patterns[0];
         }
 
@@ -907,17 +911,19 @@ class Zend_Locale_Format
         $split = false;
         preg_match_all('/\d+/u', $number, $splitted);
 
-        if (count($splitted[0]) == 0) {
+        if (count($splitted[0]) === 0) {
             self::_setEncoding($oenc);
             require_once 'Zend/Locale/Exception.php';
             throw new Zend_Locale_Exception("No date part in '$date' found.");
         }
-        if (count($splitted[0]) == 1) {
+
+        if (count($splitted[0]) === 1) {
             $split = 0;
         }
-        $cnt = 0;
-        foreach($parse as $key => $value) {
 
+        $cnt = 0;
+
+        foreach($parse as $key => $value) {
             switch($value) {
                 case 'd':
                     if ($split === false) {
@@ -1076,7 +1082,7 @@ class Zend_Locale_Format
         }
 
         if (isset($result['year'])) {
-            if (((iconv_strlen($result['year']) == 2) && ($result['year'] < 10)) ||
+            if (((iconv_strlen($result['year']) === 2) && ($result['year'] < 10)) ||
                 (((iconv_strpos($format, 'yy') !== false) && (iconv_strpos($format, 'yyyy') === false)) ||
                 ((iconv_strpos($format, 'YY') !== false) && (iconv_strpos($format, 'YYYY') === false)))) {
                 if (($result['year'] >= 0) && ($result['year'] < 100)) {

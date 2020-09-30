@@ -174,14 +174,15 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
 
         // Check for "special get" URI's
         $specialGetTarget = false;
+
         if ($pathElementCount && array_search($path[0], ['index', 'new']) > -1) {
             $specialGetTarget = array_shift($path);
         } elseif ($pathElementCount && $path[$pathElementCount-1] == 'edit') {
             $specialGetTarget = 'edit';
             $params['id'] = urldecode($path[$pathElementCount-2]);
-        } elseif ($pathElementCount == 1) {
+        } elseif ($pathElementCount === 1) {
             $params['id'] = urldecode(array_shift($path));
-        } elseif ($pathElementCount == 0 && !isset($params['id'])) {
+        } elseif ($pathElementCount === 0 && !isset($params['id'])) {
             $specialGetTarget = 'index';
         }
 

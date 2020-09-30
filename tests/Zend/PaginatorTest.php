@@ -803,15 +803,15 @@ class Zend_PaginatorTest extends PHPUnit_Framework_TestCase
     {
         // Current page number
         $this->_paginator->setCurrentPageNumber(3.3);
-        $this->assertTrue($this->_paginator->getCurrentPageNumber() == 3);
+        $this->assertTrue($this->_paginator->getCurrentPageNumber() === 3);
 
         // Item count per page
         $this->_paginator->setItemCountPerPage(3.3);
-        $this->assertTrue($this->_paginator->getItemCountPerPage() == 3);
+        $this->assertTrue($this->_paginator->getItemCountPerPage() === 3);
 
         // Page range
         $this->_paginator->setPageRange(3.3);
-        $this->assertTrue($this->_paginator->getPageRange() == 3);
+        $this->assertTrue($this->_paginator->getPageRange() === 3);
     }
 
     /**

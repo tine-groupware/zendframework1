@@ -1051,13 +1051,14 @@ class Zend_View_Helper_Navigation_Menu
         ];
 
         if (is_array($partial)) {
-            if (count($partial) != 2) {
+            if (count($partial) !== 2) {
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(
                     'Unable to render menu: A view partial supplied as '
                     .  'an array must contain two values: partial view '
                     .  'script and module where script can be found'
                 );
+
                 $e->setView($this->view);
                 throw $e;
             }

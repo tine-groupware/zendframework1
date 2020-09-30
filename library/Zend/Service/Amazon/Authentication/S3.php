@@ -57,11 +57,11 @@ class Zend_Service_Amazon_Authentication_S3 extends Zend_Service_Amazon_Authenti
 
         // Search for the Content-type, Content-MD5 and Date headers
         foreach ($headers as $key => $val) {
-            if (strcasecmp($key, 'content-type') == 0) {
+            if (strcasecmp($key, 'content-type') === 0) {
                 $type = $val;
-            } else if (strcasecmp($key, 'content-md5') == 0) {
+            } else if (strcasecmp($key, 'content-md5') === 0) {
                 $md5 = $val;
-            } else if (strcasecmp($key, 'date') == 0) {
+            } else if (strcasecmp($key, 'date') === 0) {
                 $date = $val;
             }
         }

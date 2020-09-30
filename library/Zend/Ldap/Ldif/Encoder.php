@@ -207,10 +207,14 @@ class Zend_Ldap_Ldif_Encoder
             if ($char >= 127) {
                 $base64 = true;
                 break;
-            } else if ($i === 0 && in_array($char, $unsafe_init_char)) {
+            }
+
+            if ($i === 0 && in_array($char, $unsafe_init_char)) {
                 $base64 = true;
                 break;
-            } else if (in_array($char, $unsafe_char)) {
+            }
+
+            if (in_array($char, $unsafe_char)) {
                 $base64 = true;
                 break;
             }

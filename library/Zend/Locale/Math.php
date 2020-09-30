@@ -217,7 +217,8 @@ class Zend_Locale_Math
         }
 
         $split = explode('e', $value);
-        if (count($split) == 1) {
+
+        if (count($split) === 1) {
             $split = explode('E', $value);
         }
 

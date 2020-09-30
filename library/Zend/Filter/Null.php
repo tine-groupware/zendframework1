@@ -165,7 +165,7 @@ class Zend_Filter_Null implements Zend_Filter_Interface
         // INTEGER (0)
         if ($type >= self::INTEGER) {
             $type -= self::INTEGER;
-            if (is_int($value) && ($value == 0)) {
+            if (is_int($value) && ($value === 0)) {
                 return null;
             }
         }

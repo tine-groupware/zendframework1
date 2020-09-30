@@ -322,16 +322,21 @@ class Zend_Feed_Writer_Feed_FeedAbstract
         if (preg_match('/^tag:(?<name>.*),(?<date>\d{4}-?\d{0,2}-?\d{0,2}):(?<specific>.*)(.*:)*$/', $id, $matches)) {
             $dvalid = false;
             $nvalid = false;
+
             $date = $matches['date'];
             $d6 = strtotime($date);
-            if ((strlen($date) == 4) && $date <= date('Y')) {
+            $lenDate = strlen($date);
+
+            if (($lenDate === 4) && $date <= date('Y')) {
                 $dvalid = true;
-            } elseif ((strlen($date) == 7) && ($d6 < strtotime("now"))) {
+            } elseif (($lenDate === 7) && ($d6 < time())) {
                 $dvalid = true;
-            } elseif ((strlen($date) == 10) && ($d6 < strtotime("now"))) {
+            } elseif (($lenDate === 10) && ($d6 < time())) {
                 $dvalid = true;
             }
+
             $validator = new Zend_Validate_EmailAddress;
+
             if ($validator->isValid($matches['name'])) {
                 $nvalid = true;
             } else {
