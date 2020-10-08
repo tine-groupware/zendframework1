@@ -277,9 +277,11 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
         if (!is_string($this->_token) || strlen($this->_token) === 0) {
             return false;
         }
+
         if (null != $this->_id && !is_numeric($this->_id)) {
             return false;
         }
+
         return true;
     }
 }

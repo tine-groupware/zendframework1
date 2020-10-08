@@ -194,10 +194,13 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
         }
         $op1 = self::normalize($op1);
         $op2 = self::normalize($op2);
-        if ((int)$op2 == 0) {
+
+        if ((int)$op2 === 0) {
             return NULL;
         }
+
         $result = $op1 % $op2;
+
         if (is_nan($result)  ||  (($op1 - $result) % $op2 != 0)) {
             require_once 'Zend/Locale/Math/Exception.php';
             throw new Zend_Locale_Math_Exception("modulus calculation error: $op1 % $op2 != $result", $op1, $op2, $result);

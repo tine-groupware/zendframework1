@@ -419,7 +419,7 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
                         break;
                     case 'memberIsDn':
                         $adapterOptions[$key] = ($value === true ||
-                                $value === '1' || strcasecmp($value, 'true') == 0);
+                                $value === '1' || strcasecmp($value, 'true') === 0);
                         break;
                     default:
                         $adapterOptions[$key] = trim($value);
@@ -468,9 +468,9 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
 
         if ($result === 1) {
             return true;
-        } else {
-            return 'Failed to verify group membership with ' . $group->toString();
         }
+
+        return 'Failed to verify group membership with ' . $group->toString();
     }
 
     /**

@@ -135,7 +135,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          */
         public function isEmpty()
         {
-            return ($this->count === 0);
+            return $this->count === 0;
         }
 
         /**

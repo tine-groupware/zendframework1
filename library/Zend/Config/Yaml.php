@@ -293,7 +293,7 @@ class Zend_Config_Yaml extends Zend_Config
             $lineno = $pointer + 1;
 
             $lines[$pointer] = rtrim(preg_replace("/#.*$/", "", $lines[$pointer]));
-            if (strlen($lines[$pointer]) == 0) {
+            if (strlen($lines[$pointer]) === 0) {
                 continue;
             }
 
@@ -301,7 +301,7 @@ class Zend_Config_Yaml extends Zend_Config
 
             // line without the spaces
             $lines[$pointer] = trim($lines[$pointer]);
-            if (strlen($lines[$pointer]) == 0) {
+            if (strlen($lines[$pointer]) === 0) {
                 continue;
             }
 

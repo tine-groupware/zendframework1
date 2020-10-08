@@ -471,11 +471,10 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
                     if ($buff === false || strlen($buff) === 0) {
                         $this->_checkSocketReadTimeout();
                         break;
-                    } else {
-                        $response .= $buff;
                     }
-                }
 
+                    $response .= $buff;
+                }
             } while (feof($this->socket) === false);
 
             $this->close();

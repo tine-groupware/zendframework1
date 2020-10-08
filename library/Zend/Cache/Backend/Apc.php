@@ -187,9 +187,11 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
         $memSize    = $mem['num_seg'] * $mem['seg_size'];
         $memAvailable= $mem['avail_mem'];
         $memUsed = $memSize - $memAvailable;
-        if ($memSize == 0) {
+
+        if ($memSize === 0) {
             Zend_Cache::throwException('can\'t get apc memory size');
         }
+
         if ($memUsed > $memSize) {
             return 100;
         }

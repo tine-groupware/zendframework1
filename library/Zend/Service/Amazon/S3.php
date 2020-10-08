@@ -380,7 +380,8 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         $this->_validBucketName($nameparts[0]);
 
         $firstpart = array_shift($nameparts);
-        if (count($nameparts) == 0) {
+
+        if (count($nameparts) === 0) {
             return $firstpart;
         }
 
@@ -729,13 +730,13 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
 
         // Search for the Content-type, Content-MD5 and Date headers
         foreach ($headers as $key=>$val) {
-            if (strcasecmp($key, 'content-type') == 0) {
+            if (strcasecmp($key, 'content-type') === 0) {
                 $type = $val;
             }
-            else if (strcasecmp($key, 'content-md5') == 0) {
+            else if (strcasecmp($key, 'content-md5') === 0) {
                 $md5 = $val;
             }
-            else if (strcasecmp($key, 'date') == 0) {
+            else if (strcasecmp($key, 'date') === 0) {
                 $date = $val;
             }
         }

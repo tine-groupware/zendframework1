@@ -239,18 +239,19 @@ abstract class Zend_Measure_Abstract
         } else {
             // Convert to standard value
             $value = $this->_value;
+
             if (is_array($this->_units[$this->getType()][0])) {
                 foreach ($this->_units[$this->getType()][0] as $key => $found) {
                     switch ($key) {
-                        case "/":
+                        case '/':
                             if ($found != 0) {
                                 $value = call_user_func(Zend_Locale_Math::$div, $value, $found, 25);
                             }
                             break;
-                        case "+":
+                        case '+':
                             $value = call_user_func(Zend_Locale_Math::$add, $value, $found, 25);
                             break;
-                        case "-":
+                        case '-':
                             $value = call_user_func(Zend_Locale_Math::$sub, $value, $found, 25);
                             break;
                         default:

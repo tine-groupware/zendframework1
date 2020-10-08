@@ -189,29 +189,27 @@ abstract class Zend_Date_DateObject {
         }
 
         $date = 0;
-        if ($year >= 1970) {
 
+        if ($year >= 1970) {
             // Date is after UNIX epoch
             // go through leapyears
             // add months from latest given year
             for ($count = 1970; $count <= $year; $count++) {
 
                 $leapyear = self::isYearLeapYear($count);
-                if ($count < $year) {
 
+                if ($count < $year) {
                     $date += 365;
                     if ($leapyear === true) {
                         $date++;
                     }
-
                 } else {
-
                     for ($mcount = 0; $mcount < ($month - 1); $mcount++) {
                         $date += self::$_monthTable[$mcount];
-                        if (($leapyear === true) && ($mcount == 1)) {
+
+                        if (($leapyear === true) && ($mcount === 1)) {
                             $date++;
                         }
-
                     }
                 }
             }
@@ -235,7 +233,7 @@ abstract class Zend_Date_DateObject {
 
                     for ($mcount = 11; $mcount > ($month - 1); $mcount--) {
                         $date += self::$_monthTable[$mcount];
-                        if (($leapyear === true) && ($mcount == 2)) {
+                        if (($leapyear === true) && ($mcount === 2)) {
                             $date++;
                         }
 
@@ -281,7 +279,9 @@ abstract class Zend_Date_DateObject {
         // all leapyears can be divided through 400
         if ($year % 400 == 0) {
             return true;
-        } else if (($year > 1582) && ($year % 100 == 0)) {
+        }
+
+        if (($year > 1582) && ($year % 100 == 0)) {
             return false;
         }
 
@@ -343,6 +343,7 @@ abstract class Zend_Date_DateObject {
                 }
 
                 $dst = date("I", $tempstamp);
+
                 if ($dst === 1) {
                     $timestamp += 3600;
                 }
@@ -390,9 +391,11 @@ abstract class Zend_Date_DateObject {
 
                 case 'N':  // ISO 8601 numeric day of week, 1 - 7
                     $day = self::dayOfWeek($date['year'], $date['mon'], $date['mday']);
-                    if ($day == 0) {
+
+                    if ($day === 0) {
                         $day = 7;
                     }
+
                     $output .= $day;
                     break;
 
@@ -739,21 +742,25 @@ abstract class Zend_Date_DateObject {
             $secondsPerYear = 86400 * ($leapyear ? 366 : 365) + $day;
 
             $timestamp = $day;
+
             // iterate through months
             for ($i = 12; --$i >= 0;) {
                 $day = $timestamp;
 
                 $timestamp += self::$_monthTable[$i] * 86400;
-                if (($leapyear === true) && ($i == 1)) {
+
+                if (($leapyear === true) && ($i === 1)) {
                     $timestamp += 86400;
                 }
 
                 if ($timestamp >= 0) {
                     $month  = $i;
                     $numday = self::$_monthTable[$i];
-                    if (($leapyear === true) && ($i == 1)) {
+
+                    if (($leapyear === true) && ($i === 1)) {
                         ++$numday;
                     }
+
                     break;
                 }
             }
@@ -784,21 +791,24 @@ abstract class Zend_Date_DateObject {
             $secondsPerYear = $day;
 
             $timestamp = $day;
+
             // iterate through months
             for ($i = 0; $i <= 11; $i++) {
                 $day = $timestamp;
                 $timestamp -= self::$_monthTable[$i] * 86400;
 
-                if (($leapyear === true) && ($i == 1)) {
+                if (($leapyear === true) && ($i === 1)) {
                     $timestamp -= 86400;
                 }
 
                 if ($timestamp < 0) {
                     $month  = $i;
                     $numday = self::$_monthTable[$i];
-                    if (($leapyear === true) && ($i == 1)) {
+
+                    if (($leapyear === true) && ($i === 1)) {
                         ++$numday;
                     }
+
                     break;
                 }
             }
@@ -872,11 +882,11 @@ abstract class Zend_Date_DateObject {
 
         $dayofweek = self::dayOfWeek($year, $month, $day);
         $firstday  = self::dayOfWeek($year, 1, 1);
+
         if (($month == 1) && (($firstday < 1) || ($firstday > 4)) && ($day < 4)) {
             $firstday  = self::dayOfWeek($year - 1, 1, 1);
             $month     = 12;
             $day       = 31;
-
         } else if (($month == 12) && ((self::dayOfWeek($year + 1, 1, 1) < 5) &&
                    (self::dayOfWeek($year + 1, 1, 1) > 0))) {
             return 1;

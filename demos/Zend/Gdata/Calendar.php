@@ -670,7 +670,7 @@ function deleteEventByUrl ($client, $url)
 if (isset($argc) && $argc >= 2) {
   switch ($argv[1]) {
     case 'outputCalendar':
-      if ($argc == 4) {
+      if ($argc === 4) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         outputCalendar($client);
       } else {
@@ -679,7 +679,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'outputCalendarMagicCookie':
-      if ($argc == 4) {
+      if ($argc === 4) {
         outputCalendarMagicCookie($argv[2], $argv[3]);
       } else {
         echo "Usage: php {$argv[0]} {$argv[1]} " .
@@ -687,7 +687,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'outputCalendarByDateRange':
-      if ($argc == 6) {
+      if ($argc === 6) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         outputCalendarByDateRange($client, $argv[4], $argv[5]);
       } else {
@@ -696,7 +696,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'outputCalendarByFullTextQuery':
-      if ($argc == 5) {
+      if ($argc === 5) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         outputCalendarByFullTextQuery($client, $argv[4]);
       } else {
@@ -705,7 +705,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'outputCalendarList':
-      if ($argc == 4) {
+      if ($argc === 4) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         outputCalendarList($client);
       } else {
@@ -714,7 +714,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'updateEvent':
-      if ($argc == 6) {
+      if ($argc === 6) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         updateEvent($client, $argv[4], $argv[5]);
       } else {
@@ -723,7 +723,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'setReminder':
-      if ($argc == 6) {
+      if ($argc === 6) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         setReminder($client, $argv[4], $argv[5]);
       } else {
@@ -732,7 +732,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'addExtendedProperty':
-      if ($argc == 7) {
+      if ($argc === 7) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         addExtendedProperty($client, $argv[4], $argv[5], $argv[6]);
       } else {
@@ -741,7 +741,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'deleteEventById':
-      if ($argc == 5) {
+      if ($argc === 5) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         deleteEventById($client, $argv[4]);
       } else {
@@ -750,7 +750,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'deleteEventByUrl':
-      if ($argc == 5) {
+      if ($argc === 5) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         deleteEventByUrl($client, $argv[4]);
       } else {
@@ -759,7 +759,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'createEvent':
-      if ($argc == 12) {
+      if ($argc === 12) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         $id = createEvent($client, $argv[4], $argv[5], $argv[6], $argv[7],
             $argv[8], $argv[9], $argv[10], $argv[11]);
@@ -774,7 +774,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'createQuickAddEvent':
-      if ($argc == 5) {
+      if ($argc === 5) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         $id = createQuickAddEvent($client, $argv[4]);
         print "Event created with ID: $id\n";
@@ -786,7 +786,7 @@ if (isset($argc) && $argc >= 2) {
       }
       break;
     case 'createWebContentEvent':
-        if ($argc == 12) {
+        if ($argc === 12) {
           $client = getClientLoginHttpClient($argv[2], $argv[3]);
           $id = createWebContentEvent($client, $argv[4], $argv[5], $argv[6],
               $argv[7], $argv[8], $argv[9], $argv[10], $argv[11]);
@@ -803,7 +803,7 @@ if (isset($argc) && $argc >= 2) {
         }
         break;
     case 'createRecurringEvent':
-      if ($argc == 7) {
+      if ($argc === 7) {
         $client = getClientLoginHttpClient($argv[2], $argv[3]);
         createRecurringEvent($client, $argv[4], $argv[5], $argv[6]);
       } else {

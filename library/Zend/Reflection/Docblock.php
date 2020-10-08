@@ -269,7 +269,9 @@ class Zend_Reflection_Docblock implements Reflector
 
             $matches = [];
 
-            if ((strpos($line, '@') === 0) && (preg_match('#^(@\w+.*?)(\n)(?:@|\r?\n|$)#s', $parsedDocComment, $matches))) {
+            if ((strpos($line, '@') === 0)
+                && (preg_match('#^(@\w+.*?)(\n)(?:@|\r?\n|$)#s', $parsedDocComment, $matches))
+            ) {
                 $this->_tags[] = Zend_Reflection_Docblock_Tag::factory($matches[1]);
                 $parsedDocComment = str_replace($matches[1] . $matches[2], '', $parsedDocComment);
             } else {

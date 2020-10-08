@@ -125,6 +125,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
             }
 
             $identity = false;
+
             if ($row[$typename] == 6 + 256 ||
                 $row[$typename] == 18 + 256) {
                 $identity = true;
@@ -226,13 +227,15 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
         }
 
         $position = 0;
+
         foreach ($row as $key => $colno) {
             $position++;
+
             if ($colno == 0) {
                 return $cols;
-            } else {
-                $cols[$colno] = $position;
             }
+
+            $cols[$colno] = $position;
         }
     }
 
@@ -248,28 +251,32 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
     public function limit($sql, $count, $offset = 0)
     {
         $count = (int)$count;
+
         if ($count < 0) {
             /** @see Zend_Db_Adapter_Exception */
             require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("LIMIT argument count=$count is not valid");
         }
 
-        if ($count == 0) {
+        if ($count === 0) {
               $limit_sql = str_ireplace("SELECT", "SELECT * FROM (SELECT", $sql);
               $limit_sql .= ") WHERE 0 = 1";
         } else {
             $offset = (int)$offset;
+
             if ($offset < 0) {
                 /** @see Zend_Db_Adapter_Exception */
                 require_once 'Zend/Db/Adapter/Exception.php';
                 throw new Zend_Db_Adapter_Exception("LIMIT argument offset=$offset is not valid");
             }
-            if ($offset == 0) {
+
+            if ($offset === 0) {
                 $limit_sql = str_ireplace("SELECT", "SELECT FIRST $count", $sql);
             } else {
                 $limit_sql = str_ireplace("SELECT", "SELECT SKIP $offset LIMIT $count", $sql);
             }
         }
+
         return $limit_sql;
     }
 

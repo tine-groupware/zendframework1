@@ -74,11 +74,11 @@ class Zend_Search_Lucene_Index_DictionaryLoader
                               ord($data[$pos+6]) << 8   |
                               ord($data[$pos+7]);
         } else {
-            if ((ord($data[$pos])            != 0) ||
-                (ord($data[$pos+1])          != 0) ||
-                (ord($data[$pos+2])          != 0) ||
-                (ord($data[$pos+3])          != 0) ||
-                ((ord($data[$pos+4]) & 0x80) != 0)) {
+            if ((ord($data[$pos])            !== 0) ||
+                (ord($data[$pos+1])          !== 0) ||
+                (ord($data[$pos+2])          !== 0) ||
+                (ord($data[$pos+3])          !== 0) ||
+                ((ord($data[$pos+4]) & 0x80) !== 0)) {
                     require_once 'Zend/Search/Lucene/Exception.php';
                     throw new Zend_Search_Lucene_Exception('Largest supported segment size (for 32-bit mode) is 2Gb');
                  }
@@ -122,10 +122,12 @@ class Zend_Search_Lucene_Index_DictionaryLoader
             // $termSuffix       = $tiiFile->readString();
             $nbyte = ord($data[$pos++]);
             $len = $nbyte & 0x7F;
+
             for ($shift=7; ($nbyte & 0x80) != 0; $shift += 7) {
                 $nbyte = ord($data[$pos++]);
                 $len |= ($nbyte & 0x7F) << $shift;
             }
+
             if ($len == 0) {
                 $termSuffix = '';
             } else {
@@ -164,6 +166,7 @@ class Zend_Search_Lucene_Index_DictionaryLoader
             $pb = 0; $pc = 0;
             while ($pb < strlen($prevTerm)  &&  $pc < $termPrefixLength) {
                 $charBytes = 1;
+
                 if ((ord($prevTerm[$pb]) & 0xC0) == 0xC0) {
                     $charBytes++;
                     if (ord($prevTerm[$pb]) & 0x20 ) {

@@ -672,6 +672,7 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
         }
 
         $offset = (int)$offset;
+
         if ($offset < 0) {
             /**
              * @see Zend_Db_Adapter_Db2_Exception
@@ -680,9 +681,8 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
             throw new Zend_Db_Adapter_Db2_Exception("LIMIT argument offset=$offset is not valid");
         }
 
-        if ($offset == 0) {
-            $limit_sql = $sql . " FETCH FIRST $count ROWS ONLY";
-            return $limit_sql;
+        if ($offset === 0) {
+            return $sql . " FETCH FIRST $count ROWS ONLY";
         }
 
         /**

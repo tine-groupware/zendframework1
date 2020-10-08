@@ -173,13 +173,14 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
         }
 
         $offset = (int)$offset;
+
         if ($offset < 0) {
             /** @see Zend_Db_Adapter_Exception */
             require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("LIMIT argument offset=$offset is not valid");
         }
 
-        if ($offset == 0 && $count > 0) {
+        if ($offset === 0 && $count > 0) {
             $limit_sql = $sql . " FETCH FIRST $count ROWS ONLY";
             return $limit_sql;
         }

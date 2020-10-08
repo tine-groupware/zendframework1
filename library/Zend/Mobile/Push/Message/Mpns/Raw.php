@@ -144,9 +144,11 @@ class Zend_Mobile_Push_Message_Mpns_Raw extends Zend_Mobile_Push_Message_Mpns
         if (!isset($this->_token) || strlen($this->_token) === 0) {
             return false;
         }
+
         if (empty($this->_msg)) {
             return false;
         }
+
         return parent::validate();
     }
 }

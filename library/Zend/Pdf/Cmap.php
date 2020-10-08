@@ -274,12 +274,15 @@ abstract class Zend_Pdf_Cmap
             throw new Zend_Pdf_Exception("Index out of range: $index",
                                          Zend_Pdf_Exception::INDEX_OUT_OF_RANGE);
         }
+
         $number = ord($data[$index]);
+
         if (($number & 0x80) == 0x80) {    // negative
             $number = ~((((~ $number) & 0xff) << 8) | ((~ ord($data[++$index])) & 0xff));
         } else {
             $number = ($number << 8) | ord($data[++$index]);
         }
+
         return $number;
     }
 

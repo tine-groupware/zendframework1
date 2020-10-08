@@ -235,11 +235,13 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
         if (!is_array($this->_token) || empty($this->_token)) {
             return false;
         }
+
         if ($this->_ttl !== 2419200 &&
             (!is_scalar($this->_id) ||
             strlen($this->_id) === 0)) {
             return false;
         }
+
         return true;
     }
 
@@ -253,25 +255,31 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
     public function toJson()
     {
         $json = [];
+
         if ($this->_token) {
             $json['registration_ids'] = $this->_token;
         }
+
         if ($this->_id) {
             $json['collapse_key'] = (string) $this->_id;
         }
+
         if ($this->_data) {
             $json['data'] = $this->_data;
         }
+
         if ($this->_delay) {
             $json['delay_while_idle'] = $this->_delay;
         }
+
         if ($this->_ttl !== 2419200) {
             $json['time_to_live'] = $this->_ttl;
         }
+
         if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
             return json_encode($json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        } else {
-            return json_encode($json);
         }
+
+        return json_encode($json);
     }
 }

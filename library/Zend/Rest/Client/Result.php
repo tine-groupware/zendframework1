@@ -107,13 +107,15 @@ class Zend_Rest_Client_Result implements IteratorAggregate {
         $result = $this->_sxml->xpath("//$name");
         $count  = count($result);
 
-        if ($count == 0) {
+        if ($count === 0) {
             return null;
-        } elseif ($count == 1) {
-            return $result[0];
-        } else {
-            return $result;
         }
+
+        if ($count === 1) {
+            return $result[0];
+        }
+
+        return $result;
     }
 
     /**

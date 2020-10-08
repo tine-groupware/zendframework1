@@ -172,7 +172,7 @@ class Zend_Validate_NotEmpty extends Zend_Validate_Abstract
             $type -= self::OBJECT_COUNT;
             $object = true;
 
-            if (is_object($value) && ($value instanceof Countable) && (count($value) == 0)) {
+            if (is_object($value) && ($value instanceof Countable) && (count($value) === 0)) {
                 $this->_error(self::IS_EMPTY);
                 return false;
             }
@@ -259,7 +259,8 @@ class Zend_Validate_NotEmpty extends Zend_Validate_Abstract
         // INTEGER (0)
         if ($type >= self::INTEGER) {
             $type -= self::INTEGER;
-            if (is_int($value) && ($value == 0)) {
+
+            if (is_int($value) && ($value === 0)) {
                 $this->_error(self::IS_EMPTY);
                 return false;
             }
@@ -268,7 +269,8 @@ class Zend_Validate_NotEmpty extends Zend_Validate_Abstract
         // BOOLEAN (false)
         if ($type >= self::BOOLEAN) {
             $type -= self::BOOLEAN;
-            if (is_bool($value) && ($value == false)) {
+
+            if (is_bool($value) && ($value === false)) {
                 $this->_error(self::IS_EMPTY);
                 return false;
             }

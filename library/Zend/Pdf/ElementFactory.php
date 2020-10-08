@@ -430,7 +430,7 @@ class Zend_Pdf_ElementFactory implements Zend_Pdf_ElementFactory_Interface
      */
     public function isModified()
     {
-        if (count($this->_modifiedObjects) != 0) {
+        if (count($this->_modifiedObjects) !== 0) {
             return true;
         }
 

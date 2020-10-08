@@ -530,7 +530,8 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
                 $this->_fastBackendFillingPercentage = $this->_fastBackend->getFillingPercentage();
             } else {
                 $rand = rand(1, $this->_options['stats_update_factor']);
-                if ($rand == 1) {
+
+                if ($rand === 1) {
                     // we force a refresh
                     $this->_fastBackendFillingPercentage = $this->_fastBackend->getFillingPercentage();
                 }

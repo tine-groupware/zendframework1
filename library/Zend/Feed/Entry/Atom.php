@@ -162,6 +162,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
                 $client->setRawData($this->saveXML());
                 $response = $client->request('PUT');
             }
+
             if ($response->getStatus() !== 200) {
                 /**
                  * @see Zend_Feed_Exception

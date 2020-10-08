@@ -223,11 +223,13 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Queue name is not specified.');
 		}
+
 		if (!self::isValidQueueName($queueName)) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 		    throw new Zend_Service_WindowsAzure_Exception('Queue name does not adhere to queue naming conventions. See http://msdn.microsoft.com/en-us/library/dd179349.aspx for more information.');
 		}
-		if (count($metadata) == 0) {
+
+		if (count($metadata) === 0) {
 		    return;
 		}
 		    

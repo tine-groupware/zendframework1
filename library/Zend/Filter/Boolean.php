@@ -321,11 +321,11 @@ class Zend_Filter_Boolean implements Zend_Filter_Interface
         // INTEGER (0)
         if ($type >= self::INTEGER) {
             $type -= self::INTEGER;
-            if (is_int($value) && ($value == 0)) {
+            if (is_int($value) && ($value === 0)) {
                 return false;
             }
 
-            if ((!$casting) && is_int($value) && ($value == 1)) {
+            if ((!$casting) && is_int($value) && ($value === 1)) {
                 return true;
             }
         }

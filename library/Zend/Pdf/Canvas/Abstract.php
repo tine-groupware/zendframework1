@@ -435,8 +435,13 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         $yC = new Zend_Pdf_Element_Numeric($y);
 
         if ($startAngle !== null) {
-            if ($startAngle != 0) { $startAngle = fmod($startAngle, M_PI*2); }
-            if ($endAngle   != 0) { $endAngle   = fmod($endAngle,   M_PI*2); }
+            if ($startAngle != 0) {
+                $startAngle = fmod($startAngle, M_PI*2);
+            }
+
+            if ($endAngle != 0) {
+                $endAngle = fmod($endAngle,   M_PI*2);
+            }
 
             if ($startAngle > $endAngle) {
                 $endAngle += M_PI*2;
@@ -646,8 +651,13 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         $yC = new Zend_Pdf_Element_Numeric($y);
 
         if ($startAngle !== null) {
-            if ($startAngle != 0) { $startAngle = fmod($startAngle, M_PI*2); }
-            if ($endAngle   != 0) { $endAngle   = fmod($endAngle,   M_PI*2); }
+            if ($startAngle != 0) {
+                $startAngle = fmod($startAngle, M_PI * 2);
+            }
+
+            if ($endAngle != 0) {
+                $endAngle = fmod($endAngle, M_PI * 2);
+            }
 
             if ($startAngle > $endAngle) {
                 $endAngle += M_PI*2;

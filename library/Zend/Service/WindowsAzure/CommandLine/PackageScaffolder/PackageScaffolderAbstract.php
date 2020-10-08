@@ -47,6 +47,7 @@ abstract class Zend_Service_WindowsAzure_CommandLine_PackageScaffolder_PackageSc
 		if (error_reporting() === 0) {
 			return;
 		}
+
 		file_put_contents('php://stderr', $message . ($newLine ? "\r\n" : ''));
 	}
 	

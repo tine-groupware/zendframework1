@@ -1117,7 +1117,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
         if (!$router instanceof Zend_Controller_Router_Rewrite) {
             throw new Exception('This url helper utility function only works when the router is of type Zend_Controller_Router_Rewrite');
         }
-        if (count($router->getRoutes()) == 0) {
+        if (count($router->getRoutes()) === 0) {
             $router->addDefaultRoutes();
         }
         return $router->assemble($urlOptions, $name, $reset, $encode);

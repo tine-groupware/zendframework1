@@ -276,44 +276,54 @@ class Zend_Json
         $value = self::_getXmlValue($simpleXmlElementObject);
         $attributes = (array) $simpleXmlElementObject->attributes();
 
-        if (count($children) == 0) {
-            if (!empty($attributes) && !$ignoreXmlAttributes) {
-                foreach ($attributes['@attributes'] as $k => $v) {
-                    $attributes['@attributes'][$k]= self::_getXmlValue($v);
-                }
-                if (!empty($value)) {
-                    $attributes['@text'] = $value;
-                } 
-                return [$name => $attributes];
-            } else {
-               return [$name => $value];
-            }
-        } else {
-            $childArray= [];
-            foreach ($children as $child) {
-                $childname = $child->getName();
-                $element = self::_processXml($child,$ignoreXmlAttributes,$recursionDepth+1);
-                if (array_key_exists($childname, $childArray)) {
-                    if (empty($subChild[$childname])) {
-                        $childArray[$childname] = [$childArray[$childname]];
-                        $subChild[$childname] = true;
-                    }
-                    $childArray[$childname][] = $element[$childname];
-                } else {
-                    $childArray[$childname] = $element[$childname];
-                }
-            }
+        if (count($children) === 0) {
             if (!empty($attributes) && !$ignoreXmlAttributes) {
                 foreach ($attributes['@attributes'] as $k => $v) {
                     $attributes['@attributes'][$k] = self::_getXmlValue($v);
                 }
-                $childArray['@attributes'] = $attributes['@attributes'];
+
+                if (!empty($value)) {
+                    $attributes['@text'] = $value;
+                }
+
+                return [$name => $attributes];
             }
-            if (!empty($value)) {
-                $childArray['@text'] = $value;
-            }
-            return [$name => $childArray];
+
+            return [$name => $value];
         }
+
+        $childArray= [];
+
+        foreach ($children as $child) {
+            $childname = $child->getName();
+            $element = self::_processXml($child,$ignoreXmlAttributes,$recursionDepth+1);
+
+            if (array_key_exists($childname, $childArray)) {
+                if (empty($subChild[$childname])) {
+                    $childArray[$childname] = [$childArray[$childname]];
+                    $subChild[$childname] = true;
+                }
+
+                $childArray[$childname][] = $element[$childname];
+            } else {
+                $childArray[$childname] = $element[$childname];
+            }
+        }
+
+        if (!empty($attributes) && !$ignoreXmlAttributes) {
+            foreach ($attributes['@attributes'] as $k => $v) {
+                $attributes['@attributes'][$k] = self::_getXmlValue($v);
+            }
+
+            $childArray['@attributes'] = $attributes['@attributes'];
+        }
+
+        if (!empty($value)) {
+            $childArray['@text'] = $value;
+        }
+
+        return [$name => $childArray];
+
     }
 
     /**
@@ -432,7 +442,7 @@ class Zend_Json
                 // Count # of unescaped double-quotes in token, subtract # of
                 // escaped double-quotes and if the result is odd then we are 
                 // inside a string literal
-                if ((substr_count($token, "\"")-substr_count($token, "\\\"")) % 2 != 0) {
+                if ((substr_count($token, "\"") - substr_count($token, "\\\"")) % 2 != 0) {
                     $inLiteral = !$inLiteral;
                 }
             }

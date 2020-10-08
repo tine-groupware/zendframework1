@@ -194,9 +194,11 @@ class Zend_Ldap
          * can and eliminate dupes.
          */
         $estr1 = @ldap_error($this->_resource);
+
         if ($errorCode !== 0 && $estr1 === 'Success') {
             $estr1 = @ldap_err2str($errorCode);
         }
+
         if (!empty($estr1)) {
             $errorMessages[] = $estr1;
         }
@@ -301,7 +303,7 @@ class Zend_Ldap
                     case 'optReferrals':
                     case 'tryUsernameSplit':
                         $permittedOptions[$key] = ($val === true ||
-                                $val === '1' || strcasecmp($val, 'true') == 0);
+                                $val === '1' || strcasecmp($val, 'true') === 0);
                         break;
                     default:
                         $permittedOptions[$key] = trim($val);
@@ -550,15 +552,19 @@ class Zend_Ldap
         }
         $accountDomainName = $this->_getAccountDomainName();
         $accountDomainNameShort = $this->_getAccountDomainNameShort();
+
         if ($accountDomainName === null && $accountDomainNameShort === null) {
             return true;
         }
-        if (strcasecmp($dname, $accountDomainName) == 0) {
+
+        if (strcasecmp($dname, $accountDomainName) === 0) {
             return true;
         }
-        if (strcasecmp($dname, $accountDomainNameShort) == 0) {
+
+        if (strcasecmp($dname, $accountDomainNameShort) === 0) {
             return true;
         }
+
         return false;
     }
 
@@ -668,8 +674,11 @@ class Zend_Ldap
         if ($count === 1) {
             $acct = $accounts->getFirst();
             $accounts->close();
+
             return $acct;
-        } else if ($count === 0) {
+        }
+
+        if ($count === 0) {
             /**
              * @see Zend_Ldap_Exception
              */
@@ -684,6 +693,7 @@ class Zend_Ldap
             $code = Zend_Ldap_Exception::LDAP_OPERATIONS_ERROR;
             $str = "Unexpected result count ($count) for: $accountFilter";
         }
+
         $accounts->close();
         /**
          * @see Zend_Ldap_Exception
@@ -1088,7 +1098,7 @@ class Zend_Ldap
      */
     public function exists($dn)
     {
-        return ($this->count('(objectClass=*)', $dn, self::SEARCH_SCOPE_BASE) == 1);
+        return ($this->count('(objectClass=*)', $dn, self::SEARCH_SCOPE_BASE) === 1);
     }
 
     /**
@@ -1176,7 +1186,7 @@ class Zend_Ldap
                         throw new InvalidArgumentException('Only scalar values allowed in LDAP data');
                     } else {
                         $v = (string)$v;
-                        if (strlen($v) == 0) {
+                        if (strlen($v) === 0) {
                             unset($value[$i]);
                         } else {
                             $value[$i] = $v;
@@ -1190,7 +1200,7 @@ class Zend_Ldap
                     throw new InvalidArgumentException('Only scalar values allowed in LDAP data');
                 } else {
                     $value = (string)$value;
-                    if (strlen($value) == 0) {
+                    if (strlen($value) === 0) {
                         $entry[$key] = [];
                     } else {
                         $entry[$key] = [$value];

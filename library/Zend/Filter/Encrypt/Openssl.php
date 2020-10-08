@@ -356,7 +356,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
         $encrypted     = [];
         $encryptedkeys = [];
 
-        if (count($this->_keys['public']) == 0) {
+        if (count($this->_keys['public']) === 0) {
             require_once 'Zend/Filter/Exception.php';
             throw new Zend_Filter_Exception('Openssl can not encrypt without public keys');
         }

@@ -691,7 +691,7 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
         $this->assertFalse(Zend_LocaleTestHelper::isLocale('', false));
         $this->assertTrue(Zend_LocaleTestHelper::isLocale('auto'));
         $this->assertTrue(Zend_LocaleTestHelper::isLocale('browser'));
-        if (count(Zend_Locale::getEnvironment()) != 0) {
+        if (count(Zend_Locale::getEnvironment()) !== 0) {
             $this->assertTrue(Zend_LocaleTestHelper::isLocale('environment'));
         }
 
@@ -707,7 +707,7 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
         $this->assertFalse(Zend_LocaleTestHelper::isLocale('', false));
         $this->assertTrue(is_string(Zend_LocaleTestHelper::isLocale('auto')));
         $this->assertTrue(is_string(Zend_LocaleTestHelper::isLocale('browser')));
-        if (count(Zend_Locale::getEnvironment()) != 0) {
+        if (count(Zend_Locale::getEnvironment()) !== 0) {
             $this->assertTrue(is_string(Zend_LocaleTestHelper::isLocale('environment')));
         }
         restore_error_handler();

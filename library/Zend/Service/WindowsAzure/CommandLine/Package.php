@@ -120,7 +120,7 @@ class Zend_Service_WindowsAzure_CommandLine_Package
 			isset($_SERVER['ProgramFiles']) ? glob($_SERVER['ProgramFiles(x86)'] . '\Windows Azure SDK\*\bin', GLOB_NOSORT) : [],
 			isset($_SERVER['ProgramFiles']) ? glob($_SERVER['ProgramW6432'] . '\Windows Azure SDK\*\bin', GLOB_NOSORT) : []
 		);
-		if (count($windowsAzureSdkFolderCandidates) == 0) {
+		if (count($windowsAzureSdkFolderCandidates) === 0) {
 			throw new Zend_Service_Console_Exception('Could not locate Windows Azure SDK for PHP.');
 		}
 		$cspack = '"' . $windowsAzureSdkFolderCandidates[0] . '\cspack.exe' . '"';

@@ -62,13 +62,17 @@ class Zend_Mail_MaildirTest extends PHPUnit_Framework_TestCase
             if (!file_exists($this->_tmpdir)) {
                 mkdir($this->_tmpdir);
             }
+
             $count = 0;
             $dh = opendir($this->_tmpdir);
+
             while (readdir($dh) !== false) {
                 ++$count;
             }
+
             closedir($dh);
-            if ($count != 2) {
+
+            if ($count !== 2) {
                 $this->markTestSkipped('Are you sure your tmp dir is a valid empty dir?');
                 return;
             }

@@ -239,7 +239,7 @@ class Zend_Cache_Backend_Static
         $pathName = realpath($this->_options['public_dir']) . dirname($id);
         $this->_createDirectoriesFor($pathName);
 
-        if ($id === null || strlen($id) == 0) {
+        if ($id === null || strlen($id) === 0) {
             $dataUnserialized = unserialize($data);
             $data = $dataUnserialized['data'];
         }

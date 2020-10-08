@@ -432,7 +432,7 @@ abstract class Zend_Search_Lucene_FSM
 
     public function reset()
     {
-        if (count($this->_states) == 0) {
+        if (count($this->_states) === 0) {
             require_once 'Zend/Search/Exception.php';
             throw new Zend_Search_Exception('There is no any state defined for FSM.');
         }

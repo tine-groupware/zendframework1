@@ -358,19 +358,24 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
 
             @list($uniq, $info) = explode(':', $entry, 2);
             @list(,$size) = explode(',', $uniq, 2);
+
             if ($size && $size[0] == 'S' && $size[1] == '=') {
                 $size = substr($size, 2);
             }
+
             if (!ctype_digit($size)) {
                 $size = null;
             }
+
             @list($version, $flags) = explode(',', $info, 2);
+
             if ($version != 2) {
                 $flags = '';
             }
 
             $named_flags = $default_flags;
             $length = strlen($flags);
+
             for ($i = 0; $i < $length; ++$i) {
                 $flag = $flags[$i];
                 $named_flags[$flag] = isset(self::$_knownFlags[$flag]) ? self::$_knownFlags[$flag] : $flag;

@@ -376,7 +376,7 @@ class Zend_Feed_Reader_Feed_Atom extends Zend_Feed_Reader_FeedAbstract
 
         $categoryCollection = $this->getExtension('Atom')->getCategories();
 
-        if (count($categoryCollection) == 0) {
+        if (count($categoryCollection) === 0) {
             $categoryCollection = $this->getExtension('DublinCore')->getCategories();
         }
 

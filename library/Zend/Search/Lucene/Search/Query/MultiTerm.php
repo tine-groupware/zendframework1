@@ -162,7 +162,7 @@ class Zend_Search_Lucene_Search_Query_MultiTerm extends Zend_Search_Lucene_Searc
      */
     public function rewrite(Zend_Search_Lucene_Interface $index)
     {
-        if (count($this->_terms) == 0) {
+        if (count($this->_terms) === 0) {
             require_once 'Zend/Search/Lucene/Search/Query/Empty.php';
             return new Zend_Search_Lucene_Search_Query_Empty();
         }
@@ -244,7 +244,7 @@ class Zend_Search_Lucene_Search_Query_MultiTerm extends Zend_Search_Lucene_Searc
          * (they may have different signs)
          */
 
-        if (count($terms) == 1) {
+        if (count($terms) === 1) {
             // It's already checked, that it's not a prohibited term
 
             // It's one term query with one required or optional element
@@ -255,7 +255,7 @@ class Zend_Search_Lucene_Search_Query_MultiTerm extends Zend_Search_Lucene_Searc
             return $optimizedQuery;
         }
 
-        if (count($terms) == 0) {
+        if (count($terms) === 0) {
             require_once 'Zend/Search/Lucene/Search/Query/Empty.php';
             return new Zend_Search_Lucene_Search_Query_Empty();
         }
@@ -324,7 +324,7 @@ class Zend_Search_Lucene_Search_Query_MultiTerm extends Zend_Search_Lucene_Searc
     {
         $this->_resVector = null;
 
-        if (count($this->_terms) == 0) {
+        if (count($this->_terms) === 0) {
             $this->_resVector = [];
         }
 
@@ -417,7 +417,7 @@ class Zend_Search_Lucene_Search_Query_MultiTerm extends Zend_Search_Lucene_Searc
                 $required = $updatedVector;
             }
 
-            if (count($required) == 0) {
+            if (count($required) === 0) {
                 // Empty result set, we don't need to check other terms
                 break;
             }
@@ -429,7 +429,7 @@ class Zend_Search_Lucene_Search_Query_MultiTerm extends Zend_Search_Lucene_Searc
             $this->_resVector = $optional;
         }
 
-        if (count($prohibited) != 0) {
+        if (count($prohibited) !== 0) {
             // $this->_resVector = array_diff_key($this->_resVector, $prohibited);
 
             /**

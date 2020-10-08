@@ -117,7 +117,7 @@ class Zend_Service_Amazon_Ec2_Securitygroups extends Zend_Service_Amazon_Ec2_Abs
                     $sItem['ipRanges'][] = $xpath->evaluate('string(ec2:cidrIp/text())', $ip);
                 }
 
-                if(count($sItem['ipRanges']) == 1) {
+                if(count($sItem['ipRanges']) === 1) {
                     $sItem['ipRanges'] = $sItem['ipRanges'][0];
                 }
 

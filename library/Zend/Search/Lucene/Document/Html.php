@@ -299,7 +299,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             }
         }
 
-        if (count($matchedTokens) == 0) {
+        if (count($matchedTokens) === 0) {
             return;
         }
 
@@ -422,16 +422,19 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
 
         $wordsToHighlightList = [];
         $analyzer = Zend_Search_Lucene_Analysis_Analyzer::getDefault();
+
         foreach ($words as $wordString) {
             $wordsToHighlightList[] = $analyzer->tokenize($wordString);
         }
+
         $wordsToHighlight = call_user_func_array('array_merge', $wordsToHighlightList);
 
-        if (count($wordsToHighlight) == 0) {
+        if (count($wordsToHighlight) === 0) {
             return $this->_doc->saveHTML();
         }
 
         $wordsToHighlightFlipped = [];
+
         foreach ($wordsToHighlight as $id => $token) {
             $wordsToHighlightFlipped[$token->getTermText()] = $id;
         }

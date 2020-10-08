@@ -133,7 +133,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntityQuery
 	        $condition = $this->_quoteInto($condition, $value);
 	    }
 	    
-		if (count($this->_where) == 0) {
+		if (count($this->_where) === 0) {
 			$cond = '';
 		} else if ($cond !== '') {
 			$cond = ' ' . strtolower(trim($cond)) . ' ';

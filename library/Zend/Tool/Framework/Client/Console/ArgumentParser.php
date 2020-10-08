@@ -138,7 +138,7 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
         }
 
         // ensure there are arguments left
-        if (count($this->_argumentsWorking) == 0) {
+        if (count($this->_argumentsWorking) === 0) {
             $this->_request->setDispatchable(false); // at this point request is not dispatchable
 
             // check to see if this was a help request
@@ -169,7 +169,7 @@ class Zend_Tool_Framework_Client_Console_ArgumentParser implements Zend_Tool_Fra
         /* @TODO Action Parameter Requirements */
 
         // make sure there are more "words" on the command line
-        if (count($this->_argumentsWorking) == 0) {
+        if (count($this->_argumentsWorking) === 0) {
             $this->_request->setDispatchable(false); // at this point request is not dispatchable
 
             // check to see if this is a help request

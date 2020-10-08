@@ -381,6 +381,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     {
         $free = disk_free_space($this->_options['cache_dir']);
         $total = disk_total_space($this->_options['cache_dir']);
+
         if ($total == 0) {
             Zend_Cache::throwException('can\'t get disk_total_space');
         } else {

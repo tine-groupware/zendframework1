@@ -324,7 +324,7 @@ class InstallationChecker {
         $error_count = 0;
         foreach($this->_allErrors as $key => $value) {
             $output .= $key . ' -- ';
-            if (($value['tested'] == true) && (count($value['errors']) == 0)) {
+            if (($value['tested'] == true) && (count($value['errors']) === 0)) {
                 $output .= "No errors found\n";
             } elseif ($value['tested'] == true) {
                 $output .= "Tested\n";
@@ -363,7 +363,7 @@ class InstallationChecker {
         $error_count = 0;
         foreach($this->_allErrors as $key => $value) {
             $html .= "<tr><td class=\"verification_type\">" . $key . "</td>";
-            if (($value['tested'] == true) && (count($value['errors']) == 0)) {
+            if (($value['tested'] == true) && (count($value['errors']) === 0)) {
                 $html .= "<td class=\"success\">Tested</td></tr>\n" .
                     "<tr><td colspan=\"2\">No errors found</td></tr>\n";
             } elseif ($value['tested'] == true) {

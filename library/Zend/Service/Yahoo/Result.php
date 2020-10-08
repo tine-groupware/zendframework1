@@ -96,6 +96,7 @@ class Zend_Service_Yahoo_Result
         foreach ($this->_fields as $f) {
             $query = "./yh:$f/text()";
             $node = $this->_xpath->query($query, $result);
+
             if ($node->length == 1) {
                 $this->{$f} = $node->item(0)->data;
             }
@@ -113,6 +114,7 @@ class Zend_Service_Yahoo_Result
     protected function _setThumbnail()
     {
         $node = $this->_xpath->query('./yh:Thumbnail', $this->_result);
+
         if ($node->length == 1) {
             /**
              * @see Zend_Service_Yahoo_Image

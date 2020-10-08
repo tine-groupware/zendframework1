@@ -242,10 +242,13 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
         if (strlen($a) !== strlen($b)) {
             return false;
         }
+
         $result = 0;
+
         for ($i = 0; $i < strlen($a); $i++) {
             $result |= ord($a[$i]) ^ ord($b[$i]);
         }
+
         return $result == 0;
     }
 }

@@ -170,7 +170,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             if (!empty($_ENV['MAGIC'])) {
                 $this->setMagicFile($_ENV['MAGIC']);
             } elseif (
-                !(@ini_get("safe_mode") == 'On' || @ini_get("safe_mode") === 1)
+                !(@ini_get('safe_mode') == 'On' || @ini_get('safe_mode') === 1)
                 && $this->shouldTryCommonMagicFiles() // @see ZF-11784
             ) {
                 require_once 'Zend/Validate/Exception.php';

@@ -66,10 +66,10 @@ class Zend_Soap_Server_Proxy
      */
     protected function _preProcessArguments($arguments)
     {
-        if (count($arguments) == 1 && is_object($arguments[0])) {
+        if (count($arguments) === 1 && is_object($arguments[0])) {
             return get_object_vars($arguments[0]);
-	} else {
-            return $arguments;
-	}
+	    }
+
+        return $arguments;
     }
 }

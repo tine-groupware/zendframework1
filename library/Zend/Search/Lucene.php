@@ -469,7 +469,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
                 throw new Zend_Search_Lucene_Exception('Separate norm files are not supported. Optimize index to use it with Zend_Search_Lucene.');
             }
 
-            $isCompoundByte     = $segmentsFile->readByte();
+            $isCompoundByte = $segmentsFile->readByte();
 
             if ($isCompoundByte == 0xFF) {
                 // The segment is not a compound file
@@ -950,7 +950,8 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
 
         foreach ($query->matchedDocs() as $id => $num) {
             $docScore = $query->score($id, $this);
-            if( $docScore != 0 ) {
+
+            if ($docScore != 0) {
                 $hit = new Zend_Search_Lucene_Search_QueryHit($this);
                 $hit->id = $id;
                 $hit->score = $docScore;
@@ -969,7 +970,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             }
         }
 
-        if (count($hits) == 0) {
+        if (count($hits) === 0) {
             // skip sorting, which may cause a error on empty index
             return [];
         }
@@ -980,7 +981,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             }
         }
 
-        if (func_num_args() == 1) {
+        if (func_num_args() === 1) {
             // sort by scores
             array_multisort($scores, SORT_DESC, SORT_NUMERIC,
                             $ids,    SORT_ASC,  SORT_NUMERIC,
@@ -1197,17 +1198,17 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             $segmentStartDocId += $segmentInfo->count();
         }
 
-        if (count($subResults) == 0) {
+        if (count($subResults) === 0) {
             return [];
-        } else if (count($subResults) == 1) {
+        }
+
+        if (count($subResults) === 1) {
             // Index is optimized (only one segment)
             // Do not perform array reindexing
             return reset($subResults);
-        } else {
-            $result = call_user_func_array('array_merge', $subResults);
         }
 
-        return $result;
+        return call_user_func_array('array_merge', $subResults);
     }
 
     /**
@@ -1231,11 +1232,11 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             $segmentStartDocId += $segmentInfo->count();
         }
 
-        if (count($subResults) == 0) {
+        if (count($subResults) === 0) {
             return [];
         }
 
-        if (count($subResults) == 1) {
+        if (count($subResults) === 1) {
             // Index is optimized (only one segment)
             // Do not perform array reindexing
             return reset($subResults);

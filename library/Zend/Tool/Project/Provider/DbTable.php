@@ -187,7 +187,7 @@ class Zend_Tool_Project_Provider_DbTable
                 );
         }
 
-        if (count($tableResources) == 0) {
+        if (count($tableResources) === 0) {
             $this->_registry->getResponse()->appendContent('There are no tables in the selected database to write.');
         }
 

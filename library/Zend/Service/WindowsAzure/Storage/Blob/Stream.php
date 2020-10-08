@@ -119,11 +119,14 @@ class Zend_Service_WindowsAzure_Storage_Blob_Stream
     protected function _getFileName($path)
     {
         $url = parse_url($path);
+
         if ($url['host']) {
             $fileName = isset($url['path']) ? $url['path'] : $url['host'];
+
     	    if (strpos($fileName, '/') === 0) {
     	        $fileName = substr($fileName, 1);
     	    }
+
             return $fileName;
         }
 

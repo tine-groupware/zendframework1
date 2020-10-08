@@ -317,6 +317,7 @@ class Zend_Mail_Protocol_Smtp extends Zend_Mail_Protocol_Abstract
                 // Escape lines prefixed with a '.'
                 $line = '.' . $line;
             }
+
             $this->_send($line);
         }
 
