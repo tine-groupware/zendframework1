@@ -103,12 +103,12 @@ abstract class Zend_Ldap_Filter_Abstract
      * Any control characters with an ACII code < 32 as well as the characters with special meaning in
      * LDAP filters "*", "(", ")", and "\" (the backslash) are converted into the representation of a
      * backslash followed by two hex digits representing the hexadecimal value of the character.
+     *
      * @see Net_LDAP2_Util::escape_filter_value() from Benedikt Hallinger <beni@php.net>
      * @link http://pear.php.net/package/Net_LDAP2
      * @author Benedikt Hallinger <beni@php.net>
-     *
      * @param  string|array $values Array of values to escape
-     * @return array Array $values, but escaped
+     * @return string|array Escaped $values: String if single or array if multiple
      */
     public static function escapeValue($values = [])
     {
@@ -124,6 +124,7 @@ abstract class Zend_Ldap_Filter_Abstract
         foreach ($values as $key => $val) {
             // Escaping of filter meta characters
             $val = str_replace(['\\', '*', '(', ')'], ['\5c', '\2a', '\28', '\29'], $val);
+
             // ASCII < 32 escaping
             $val = Zend_Ldap_Converter::ascToHex32($val);
 
@@ -135,7 +136,7 @@ abstract class Zend_Ldap_Filter_Abstract
             $values[$key] = $val;
         }
 
-        return (count($values) === 1) ? $values[0] : $values;
+        return count($values) === 1 ? $values[0] : $values;
     }
 
     /**
