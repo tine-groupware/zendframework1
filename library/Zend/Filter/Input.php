@@ -751,9 +751,10 @@ class Zend_Filter_Input
             }
         }
 
-        $message = str_replace('%rule%', $rule, $message);
-        $message = str_replace('%field%', $field, $message);
-        return $message;
+        return str_replace(
+            ['%rule%', '%field%'],
+            [$rule, $field],
+            $message);
     }
 
     /**
@@ -771,9 +772,10 @@ class Zend_Filter_Input
             }
         }
 
-        $message = str_replace('%rule%', $rule, $message);
-        $message = str_replace('%field%', $field, $message);
-        return $message;
+        return str_replace(
+            ['%rule%', '%field%'],
+            [$rule, $field],
+            $message);
     }
 
     /**

@@ -466,11 +466,12 @@ class Zend_Mime
      */
     private static function _encodeQuotedPrintable($str)
     {
-        $str = str_replace('=', '=3D', $str);
-        $str = str_replace(self::$qpKeys, self::$qpReplaceValues, $str);
-        $str = rtrim($str);
+        $str = str_replace(
+            ['=', self::$qpKeys],
+            ['=3D', self::$qpReplaceValues],
+            $str);
 
-        return $str;
+        return rtrim($str);
     }
 
     /**

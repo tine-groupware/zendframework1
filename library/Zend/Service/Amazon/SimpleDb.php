@@ -542,10 +542,14 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
         unset($parameters['Signature']);
 
         $arrData = [];
+
         foreach ($parameters as $key => $value) {
             $value = urlencode($value);
-            $value = str_replace("%7E", "~", $value);
-            $value = str_replace("+", "%20", $value);
+            $value = str_replace(
+                ["%7E", "+"],
+                ["~", "%20"],
+                $value);
+
             $arrData[] = urlencode($key) . '=' . $value;
         }
 
