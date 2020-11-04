@@ -2418,10 +2418,9 @@ class Zend_Service_WindowsAzure_Management_Client
      * @return string
      */
     public function _cleanConfiguration($configuration) {
-    	$configuration = str_replace('?<?', '<?', $configuration);
-		$configuration = str_replace("\r", "", $configuration);
-		$configuration = str_replace("\n", "", $configuration);
-		
-		return $configuration;
+        return str_replace(
+            ['?<?', "\r", "\n"],
+            ['<?', "", ""],
+            $configuration);
     }
 }
