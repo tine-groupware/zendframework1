@@ -831,8 +831,11 @@ abstract class Zend_Translate_Adapter {
      */
     protected function _log($message, $locale) {
         if ($this->_options['logUntranslated']) {
-            $message = str_replace('%message%', $message, $this->_options['logMessage']);
-            $message = str_replace('%locale%', $locale, $message);
+            $message = str_replace(
+                ['%message%', '%locale%'],
+                [$message, $locale],
+                $this->_options['logMessage']);
+
             if ($this->_options['log']) {
                 $this->_options['log']->log($message, $this->_options['logPriority']);
             } else {

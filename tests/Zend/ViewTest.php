@@ -755,13 +755,16 @@ class Zend_ViewTest extends PHPUnit_Framework_TestCase
             foreach ($path as $k => $p) {
                 $path[$k] = $this->_filterPath($p);
             }
+
             return $path;
         }
 
-        $path = str_replace(DIRECTORY_SEPARATOR, '/', $path);
-        $path = str_replace('//', '/', $path);
-        $path = rtrim($path, '/');
-        return $path;
+        $path = str_replace(
+            [DIRECTORY_SEPARATOR, '//'],
+            '/',
+            $path);
+
+        return rtrim($path, '/');
     }
 
     protected function _testBasePath(Zend_View $view, $base, $classPrefix = null)
