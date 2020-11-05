@@ -228,6 +228,7 @@ class Zend_Barcode_Renderer_Pdf extends Zend_Barcode_Renderer_RendererAbstract
     /**
      * Calculate the width of a string:
      * in case of using alignment parameter in drawText
+     *
      * @param string $text
      * @param Zend_Pdf_Font $font
      * @param float $fontSize
@@ -237,12 +238,14 @@ class Zend_Barcode_Renderer_Pdf extends Zend_Barcode_Renderer_RendererAbstract
     {
         $drawingString = iconv('UTF-8', 'UTF-16BE//IGNORE', $text);
         $characters    = [];
+
         for ($i = 0; $i < strlen($drawingString); $i ++) {
             $characters[] = (ord($drawingString[$i ++]) << 8) | ord($drawingString[$i]);
         }
+
         $glyphs = $font->glyphNumbersForCharacters($characters);
         $widths = $font->widthsForGlyphs($glyphs);
-        $stringWidth = (array_sum($widths) / $font->getUnitsPerEm()) * $fontSize;
-        return $stringWidth;
+
+        return (array_sum($widths) / $font->getUnitsPerEm()) * $fontSize;
     }
 }

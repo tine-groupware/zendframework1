@@ -258,8 +258,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
     {
         $this->_connect();
         $sql = 'SELECT '.$this->quoteIdentifier($sequenceName, true).'.CURRVAL FROM dual';
-        $value = $this->fetchOne($sql);
-        return $value;
+
+        return $this->fetchOne($sql);
     }
 
     /**
@@ -274,8 +274,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
     {
         $this->_connect();
         $sql = 'SELECT '.$this->quoteIdentifier($sequenceName, true).'.NEXTVAL FROM dual';
-        $value = $this->fetchOne($sql);
-        return $value;
+
+        return $this->fetchOne($sql);
     }
 
     /**
@@ -318,8 +318,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
     public function listTables()
     {
         $this->_connect();
-        $data = $this->fetchCol('SELECT table_name FROM all_tables');
-        return $data;
+
+        return $this->fetchCol('SELECT table_name FROM all_tables');
     }
 
     /**
@@ -562,7 +562,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
          * Unfortunately because we use the column wildcard "*",
          * this puts an extra column into the query result set.
          */
-        $limit_sql = "SELECT z2.*
+        return "SELECT z2.*
             FROM (
                 SELECT z1.*, ROWNUM AS \"zend_db_rownum\"
                 FROM (
@@ -570,7 +570,6 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                 ) z1
             ) z2
             WHERE z2.\"zend_db_rownum\" BETWEEN " . ($offset+1) . " AND " . ($offset+$count);
-        return $limit_sql;
     }
 
     /**

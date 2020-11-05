@@ -1245,8 +1245,8 @@ class Zend_Service_Twitter
         $client = $this->getHttpClient();
         $this->prepare($path, $client);
         $client->setParameterGet($query);
-        $response = $client->request(Zend_Http_Client::GET);
-        return $response;
+
+        return $client->request(Zend_Http_Client::GET);
     }
 
     /**
@@ -1261,8 +1261,8 @@ class Zend_Service_Twitter
     {
         $client = $this->getHttpClient();
         $this->prepare($path, $client);
-        $response = $this->performPost(Zend_Http_Client::POST, $data, $client);
-        return $response;
+
+        return $this->performPost(Zend_Http_Client::POST, $data, $client);
     }
 
     /**

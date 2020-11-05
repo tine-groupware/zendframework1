@@ -266,12 +266,11 @@ class Zend_Test_DbStatement implements Zend_Db_Statement_Interface
      */
     public function fetch($style = null, $cursor = null, $offset = null)
     {
-        if(count($this->_fetchStack)) {
-            $row = array_shift($this->_fetchStack);
-            return $row;
-        } else {
-            return false;
+        if (count($this->_fetchStack)) {
+            return array_shift($this->_fetchStack);
         }
+
+        return false;
     }
 
     /**

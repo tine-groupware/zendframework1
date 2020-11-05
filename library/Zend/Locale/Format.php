@@ -1323,11 +1323,9 @@ class Zend_Locale_Format
      */
     protected static function _getEncoding()
     {
-        $oenc = PHP_VERSION_ID < 50600
+        return PHP_VERSION_ID < 50600
             ? iconv_get_encoding('internal_encoding')
             : ini_get('default_charset');
-
-        return $oenc;
     }
 
     /**

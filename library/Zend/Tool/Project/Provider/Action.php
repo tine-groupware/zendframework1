@@ -63,9 +63,7 @@ class Zend_Tool_Project_Provider_Action
 
         $controllerFile = self::_getControllerFileResource($profile, $controllerName, $moduleName);
 
-        $actionMethod = $controllerFile->createResource('ActionMethod', ['actionName' => $actionName]);
-
-        return $actionMethod;
+        return $controllerFile->createResource('ActionMethod', ['actionName' => $actionName]);
     }
 
     /**

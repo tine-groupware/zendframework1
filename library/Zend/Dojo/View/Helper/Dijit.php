@@ -154,11 +154,10 @@ abstract class Zend_Dojo_View_Helper_Dijit extends Zend_View_Helper_HtmlElement
         $attribs = $this->_prepareDijit($attribs, $params, 'layout', $dijit);
 
         $nodeType = $this->getRootNode();
-        $html = '<' . $nodeType . $this->_htmlAttribs($attribs) . '>'
+
+        return '<' . $nodeType . $this->_htmlAttribs($attribs) . '>'
               . $content
               . "</$nodeType>\n";
-
-        return $html;
     }
 
     /**
@@ -182,10 +181,9 @@ abstract class Zend_Dojo_View_Helper_Dijit extends Zend_View_Helper_HtmlElement
 
         $attribs = $this->_prepareDijit($attribs, $params, 'element', $dijit);
 
-        $html = '<input'
+        return '<input'
               . $this->_htmlAttribs($attribs)
               . $this->getClosingBracket();
-        return $html;
     }
 
     /**

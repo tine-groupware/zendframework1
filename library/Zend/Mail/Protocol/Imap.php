@@ -386,9 +386,8 @@ class Zend_Mail_Protocol_Imap
     public function requestAndResponse($command, $tokens = [], $dontParse = false)
     {
         $this->sendRequest($command, $tokens, $tag);
-        $response = $this->readResponse($tag, $dontParse);
 
-        return $response;
+        return $this->readResponse($tag, $dontParse);
     }
 
     /**

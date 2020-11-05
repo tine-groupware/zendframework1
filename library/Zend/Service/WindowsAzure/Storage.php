@@ -392,12 +392,10 @@ class Zend_Service_WindowsAzure_Storage
 		$this->_httpClientChannel->setRawData($rawData);
 				
 		// Execute request
-		$response = $this->_retryPolicy->execute(
+        return $this->_retryPolicy->execute(
 		    [$this->_httpClientChannel, 'request'],
 		    [$httpVerb]
 		);
-		
-		return $response;
 	}
 	
 	/** 

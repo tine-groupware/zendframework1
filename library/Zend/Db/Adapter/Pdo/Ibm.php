@@ -309,9 +309,7 @@ class Zend_Db_Adapter_Pdo_Ibm extends Zend_Db_Adapter_Pdo_Abstract
             return $this->lastSequenceId($sequenceName);
         }
 
-        $id = $this->getConnection()->lastInsertId();
-
-        return $id;
+        return $this->getConnection()->lastInsertId();
     }
 
     /**

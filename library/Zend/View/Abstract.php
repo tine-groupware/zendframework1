@@ -441,8 +441,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     public function getScriptPath($name)
     {
         try {
-            $path = $this->_script($name);
-            return $path;
+            return $this->_script($name);
         } catch (Zend_View_Exception $e) {
             if (strstr($e->getMessage(), 'no view script directory set')) {
                 throw $e;

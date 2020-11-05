@@ -49,8 +49,8 @@ class Zend_Oauth_Http_RequestToken extends Zend_Oauth_Http
     {
         $params   = $this->assembleParams();
         $response = $this->startRequestCycle($params);
-        $return   = new Zend_Oauth_Token_Request($response);
-        return $return;
+
+        return new Zend_Oauth_Token_Request($response);
     }
 
     /**

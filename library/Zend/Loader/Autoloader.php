@@ -501,9 +501,10 @@ class Zend_Loader_Autoloader
     /**
      * Retrieve the filesystem path for the requested ZF version
      *
-     * @param  string $path
-     * @param  string $version
+     * @param string $path
+     * @param string $version
      * @return void
+     * @throws Zend_Loader_Exception
      */
     protected function _getVersionPath($path, $version)
     {
@@ -518,8 +519,7 @@ class Zend_Loader_Autoloader
             throw new Zend_Loader_Exception('No valid ZF installations discovered');
         }
 
-        $matchedVersion = array_pop($availableVersions);
-        return $matchedVersion;
+        return array_pop($availableVersions);
     }
 
     /**

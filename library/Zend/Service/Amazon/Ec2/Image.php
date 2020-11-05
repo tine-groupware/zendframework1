@@ -62,9 +62,7 @@ class Zend_Service_Amazon_Ec2_Image extends Zend_Service_Amazon_Ec2_Abstract
         $response = $this->sendRequest($params);
         $xpath = $response->getXPath();
 
-        $amiId = $xpath->evaluate('string(//ec2:imageId/text())');
-
-        return $amiId;
+        return $xpath->evaluate('string(//ec2:imageId/text())');
     }
 
     /**

@@ -47,9 +47,8 @@ class Zend_Config_Writer_Array extends Zend_Config_Writer_FileAbstract
             $data = [$sectionName => $data];
         }
 
-        $arrayString = "<?php\n"
-                     . "return " . var_export($data, true) . ";\n";
+        return "<?php\n"
+            . "return " . var_export($data, true) . ";\n";
 
-        return $arrayString;
     }
 }

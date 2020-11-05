@@ -478,14 +478,12 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
      */
     protected function _digestHeader()
     {
-        $wwwauth = 'Digest realm="' . $this->_realm . '", '
+        return 'Digest realm="' . $this->_realm . '", '
                  . 'domain="' . $this->_domains . '", '
                  . 'nonce="' . $this->_calcNonce() . '", '
                  . ($this->_useOpaque ? 'opaque="' . $this->_calcOpaque() . '", ' : '')
                  . 'algorithm="' . $this->_algo . '", '
                  . 'qop="' . implode(',', $this->_supportedQops) . '"';
-
-        return $wwwauth;
     }
 
     /**
@@ -666,8 +664,10 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         // would be surprising if the user just logged in.
         $timeout = ceil(time() / $this->_nonceTimeout) * $this->_nonceTimeout;
 
-        $nonce = hash('md5', $timeout . ':' . $this->_request->getServer('HTTP_USER_AGENT') . ':' . __CLASS__);
-        return $nonce;
+        return hash(
+            'md5',
+            $timeout . ':' . $this->_request->getServer('HTTP_USER_AGENT') . ':' . __CLASS__
+        );
     }
 
     /**

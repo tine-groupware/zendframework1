@@ -2088,8 +2088,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
     public function __toString()
     {
         try {
-            $return = $this->render();
-            return $return;
+            return $this->render();
         } catch (Exception $e) {
             trigger_error($e->getMessage(), E_USER_WARNING);
             return '';

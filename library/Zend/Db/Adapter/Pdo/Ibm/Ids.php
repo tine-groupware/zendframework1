@@ -290,8 +290,8 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
     {
         $sql = 'SELECT '.$this->_adapter->quoteIdentifier($sequenceName).'.CURRVAL FROM '
                .'systables WHERE tabid = 1';
-        $value = $this->_adapter->fetchOne($sql);
-        return $value;
+
+        return $this->_adapter->fetchOne($sql);
     }
 
      /**
@@ -304,7 +304,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Ids
     {
         $sql = 'SELECT '.$this->_adapter->quoteIdentifier($sequenceName).'.NEXTVAL FROM '
                .'systables WHERE tabid = 1';
-        $value = $this->_adapter->fetchOne($sql);
-        return $value;
+
+        return $this->_adapter->fetchOne($sql);
     }
 }

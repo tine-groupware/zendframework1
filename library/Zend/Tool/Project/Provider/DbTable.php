@@ -61,9 +61,10 @@ class Zend_Tool_Project_Provider_DbTable
             $dbTableDirectory = $modelsDirectory->createResource('DbTableDirectory');
         }
 
-        $dbTableFile = $dbTableDirectory->createResource('DbTableFile', ['dbTableName' => $dbTableName, 'actualTableName' => $actualTableName]);
-
-        return $dbTableFile;
+        return $dbTableDirectory->createResource(
+            'DbTableFile',
+            ['dbTableName' => $dbTableName, 'actualTableName' => $actualTableName]
+        );
     }
 
     public static function hasResource(Zend_Tool_Project_Profile $profile, $dbTableName, $moduleName = null)

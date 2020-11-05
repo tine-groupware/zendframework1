@@ -291,7 +291,7 @@ class Zend_Gdata_Spreadsheets extends Zend_Gdata
      * @param int $inputValue The new value for the cell
      * @param string $key The key for the spreadsheet to be updated
      * @param string $wkshtId (optional) The worksheet to be updated
-     * @return CellEntry The updated cell entry.
+     * @return CellEntry Response: The updated cell entry.
      */
     public function updateCell($row, $col, $inputValue, $key, $wkshtId = 'default')
     {
@@ -304,8 +304,8 @@ class Zend_Gdata_Spreadsheets extends Zend_Gdata
 
         $entry = $this->getCellEntry($query);
         $entry->setCell(new Zend_Gdata_Spreadsheets_Extension_Cell(null, $row, $col, $inputValue));
-        $response = $entry->save();
-        return $response;
+
+        return $entry->save();
     }
 
     /**

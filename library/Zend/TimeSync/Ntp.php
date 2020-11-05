@@ -424,8 +424,7 @@ class Zend_TimeSync_Ntp extends Zend_TimeSync_Protocol
         $this->_info['offset'] += $binary['transmitstamp'];
         $this->_info['offset'] -= $binary['clientreceived'];
         $this->_info['offset'] /= 2;
-        $time = (time() - $this->_info['offset']);
 
-        return $time;
+        return (time() - $this->_info['offset']);
     }
 }

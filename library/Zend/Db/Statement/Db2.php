@@ -289,8 +289,7 @@ class Zend_Db_Statement_Db2 extends Zend_Db_Statement
      */
     public function fetchObject($class = 'stdClass', array $config = [])
     {
-        $obj = $this->fetch(Zend_Db::FETCH_OBJ);
-        return $obj;
+        return $this->fetch(Zend_Db::FETCH_OBJ);
     }
 
     /**

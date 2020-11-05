@@ -1131,9 +1131,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         }
 
         $class = $this->getPluginLoader(self::ELEMENT)->load($type);
-        $element = new $class($name, $options);
 
-        return $element;
+        return new $class($name, $options);
     }
 
     /**
@@ -2106,8 +2105,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         }
 
         $start = strrpos($value, '[') + 1;
-        $name = substr($value, $start, $endPos - $start);
-        return $name;
+
+        return substr($value, $start, $endPos - $start);
     }
 
     /**
@@ -3007,12 +3006,12 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     public function __toString()
     {
         try {
-            $return = $this->render();
-            return $return;
+            return $this->render();
         } catch (Exception $e) {
             $message = "Exception caught by form: " . $e->getMessage()
                      . "\nStack Trace:\n" . $e->getTraceAsString();
             trigger_error($message, E_USER_WARNING);
+
             return '';
         }
     }

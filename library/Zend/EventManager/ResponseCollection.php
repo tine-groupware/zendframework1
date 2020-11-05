@@ -341,8 +341,8 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
         public function valid()
         {
             $key = key($this->stack);
-            $var = ($key !== null && $key !== false);
-            return $var;
+
+            return ($key !== null && $key !== false);
         }
     }
 }

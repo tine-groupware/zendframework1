@@ -190,9 +190,7 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
             return $this;
         }
 
-        $map = include $path;
-
-        return $map;
+        return include $path;
     }
 
     /**

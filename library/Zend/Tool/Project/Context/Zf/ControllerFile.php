@@ -216,8 +216,8 @@ EOS
     {
         $codeGenFile = Zend_CodeGenerator_Php_File::fromReflectedFileName($this->getPath());
         $codeGenFileClasses = $codeGenFile->getClasses();
-        $class = array_shift($codeGenFileClasses);
-        return $class;
+
+        return array_shift($codeGenFileClasses);
     }
 
 }

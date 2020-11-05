@@ -160,8 +160,8 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
     public function listDocuments($collectionName, array $options = null)
     {
         $query = $this->select('*')->from($collectionName);
-        $items = $this->query($collectionName, $query, $options);
-        return $items;
+
+        return $this->query($collectionName, $query, $options);
     }
 
     /**

@@ -1103,8 +1103,8 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
                 throw new Zend_Db_Table_Row_Exception($e->getMessage(), $e->getCode(), $e);
             }
         }
-        $rowset = new $rowsetClass($config);
-        return $rowset;
+
+        return new $rowsetClass($config);
     }
 
     /**

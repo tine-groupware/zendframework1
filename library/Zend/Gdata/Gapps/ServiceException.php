@@ -127,12 +127,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
      *              if not found.
      */
     public function getError($errorCode) {
-        if (array_key_exists($errorCode, $this->_errors)) {
-            $result = $this->_errors[$errorCode];
-            return $result;
-        } else {
-            return null;
-        }
+        return $this->_errors[$errorCode] ?? null;
     }
 
     /**

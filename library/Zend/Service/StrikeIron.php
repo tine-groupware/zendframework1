@@ -85,8 +85,6 @@ class Zend_Service_StrikeIron
         }
 
         // instantiate and return the service
-        $service = new $class(array_merge($this->_options, $options));
-        return $service;
+        return new $class(array_merge($this->_options, $options));
     }
-
 }

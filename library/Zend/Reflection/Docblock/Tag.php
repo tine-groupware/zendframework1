@@ -96,9 +96,7 @@ class Zend_Reflection_Docblock_Tag implements Reflector
      */
     public function __toString()
     {
-        $str = "Docblock Tag [ * @".$this->_name." ]".PHP_EOL;
-
-        return $str;
+        return "Docblock Tag [ * @".$this->_name." ]".PHP_EOL;
     }
 
     /**

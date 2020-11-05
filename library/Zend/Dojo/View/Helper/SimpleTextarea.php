@@ -68,10 +68,8 @@ class Zend_Dojo_View_Helper_SimpleTextarea extends Zend_Dojo_View_Helper_Dijit
 
         $attribs = $this->_prepareDijit($attribs, $params, 'textarea');
 
-        $html = '<textarea' . $this->_htmlAttribs($attribs) . '>'
+        return '<textarea' . $this->_htmlAttribs($attribs) . '>'
               . $this->view->escape($value)
               . "</textarea>\n";
-
-        return $html;
     }
 }

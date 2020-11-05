@@ -53,15 +53,14 @@ class Zend_Tool_Project_Provider_Controller
             } else {
                 $exceptionMessage = 'A controller directory was not found.';
             }
+
             throw new Zend_Tool_Project_Provider_Exception($exceptionMessage);
         }
 
-        $newController = $controllersDirectory->createResource(
+        return $controllersDirectory->createResource(
             'controllerFile',
             ['controllerName' => $controllerName, 'moduleName' => $moduleName]
             );
-
-        return $newController;
     }
 
     /**

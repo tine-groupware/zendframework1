@@ -277,12 +277,14 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
             require_once 'Zend/Ldap/Exception.php';
             throw new Zend_Ldap_Exception(null, '$dn is of a wrong data type.');
         }
+
         $data = $ldap->getEntry($dn, ['*', '+'], true);
+
         if ($data === null) {
             return null;
         }
-        $entry = new self($dn, $data, true, $ldap);
-        return $entry;
+
+        return new self($dn, $data, true, $ldap);
     }
 
     /**
@@ -497,8 +499,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      */
     public function getCurrentDn()
     {
-        $dn = clone parent::_getDn();
-        return $dn;
+        return clone parent::_getDn();
     }
 
     /**

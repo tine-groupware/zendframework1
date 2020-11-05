@@ -189,7 +189,6 @@ class Zend_Service_Amazon_Ec2_Instance_Windows extends Zend_Service_Amazon_Ec2_A
      */
     protected function _signS3UploadPolicy($policy)
     {
-        $hmac = Zend_Crypt_Hmac::compute($this->_getSecretKey(), 'SHA1', $policy, Zend_Crypt_Hmac::BINARY);
-        return $hmac;
+        return Zend_Crypt_Hmac::compute($this->_getSecretKey(), 'SHA1', $policy, Zend_Crypt_Hmac::BINARY);
     }
 }

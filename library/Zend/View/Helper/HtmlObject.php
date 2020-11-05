@@ -70,11 +70,9 @@ class Zend_View_Helper_HtmlObject extends Zend_View_Helper_HtmlElement
         }
 
         // Object header
-        $xhtml = '<object' . $this->_htmlAttribs($attribs) . '>' . self::EOL
+        return '<object' . $this->_htmlAttribs($attribs) . '>' . self::EOL
                  . implode(self::EOL, $paramHtml) . self::EOL
                  . ($content ? $content . self::EOL : '')
                  . '</object>';
-
-        return $xhtml;
     }
 }

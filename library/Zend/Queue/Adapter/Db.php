@@ -278,9 +278,7 @@ class Zend_Queue_Adapter_Db extends Zend_Queue_Adapter_AdapterAbstract
             $this->_queues[$queue->queue_name] = (int)$queue->queue_id;
         }
 
-        $list = array_keys($this->_queues);
-
-        return $list;
+        return array_keys($this->_queues);
     }
 
     /**

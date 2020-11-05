@@ -511,9 +511,12 @@ class Zend_Pdf_StringParser
             return null;
         }
 
-        $ref = new Zend_Pdf_Element_Reference((int)$objNum, (int)$genNum, $this->_context, $this->_objFactory->resolve());
-
-        return $ref;
+        return new Zend_Pdf_Element_Reference(
+            (int)$objNum,
+            (int)$genNum,
+            $this->_context,
+            $this->_objFactory->resolve()
+        );
     }
 
 

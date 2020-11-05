@@ -573,9 +573,10 @@ abstract class Zend_Db_Adapter_Abstract
         if ($this->supportsParameters('positional')) {
             $bind = array_values($bind);
         }
+
         $stmt = $this->query($sql, $bind);
-        $result = $stmt->rowCount();
-        return $result;
+
+        return $stmt->rowCount();
     }
 
     /**
@@ -636,8 +637,8 @@ abstract class Zend_Db_Adapter_Abstract
         } else {
             $stmt = $this->query($sql, $bind);
         }
-        $result = $stmt->rowCount();
-        return $result;
+
+        return $stmt->rowCount();
     }
 
     /**
@@ -662,8 +663,8 @@ abstract class Zend_Db_Adapter_Abstract
          * Execute the statement and return the number of affected rows
          */
         $stmt = $this->query($sql);
-        $result = $stmt->rowCount();
-        return $result;
+
+        return $stmt->rowCount();
     }
 
     /**
@@ -734,9 +735,10 @@ abstract class Zend_Db_Adapter_Abstract
         if ($fetchMode === null) {
             $fetchMode = $this->_fetchMode;
         }
+
         $stmt = $this->query($sql, $bind);
-        $result = $stmt->fetchAll($fetchMode);
-        return $result;
+
+        return $stmt->fetchAll($fetchMode);
     }
 
     /**
@@ -753,9 +755,10 @@ abstract class Zend_Db_Adapter_Abstract
         if ($fetchMode === null) {
             $fetchMode = $this->_fetchMode;
         }
+
         $stmt = $this->query($sql, $bind);
-        $result = $stmt->fetch($fetchMode);
-        return $result;
+
+        return $stmt->fetch($fetchMode);
     }
 
     /**
@@ -792,8 +795,8 @@ abstract class Zend_Db_Adapter_Abstract
     public function fetchCol($sql, $bind = [])
     {
         $stmt = $this->query($sql, $bind);
-        $result = $stmt->fetchAll(Zend_Db::FETCH_COLUMN, 0);
-        return $result;
+
+        return $stmt->fetchAll(Zend_Db::FETCH_COLUMN, 0);
     }
 
     /**
@@ -826,8 +829,8 @@ abstract class Zend_Db_Adapter_Abstract
     public function fetchOne($sql, $bind = [])
     {
         $stmt = $this->query($sql, $bind);
-        $result = $stmt->fetchColumn(0);
-        return $result;
+
+        return $stmt->fetchColumn(0);
     }
 
     /**

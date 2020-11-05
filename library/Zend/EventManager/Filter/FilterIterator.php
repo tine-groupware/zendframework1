@@ -103,11 +103,11 @@ class Zend_EventManager_Filter_FilterIterator extends Zend_Stdlib_SplPriorityQue
         }
 
         $next = $this->extract();
+
         if (!$next instanceof Zend_Stdlib_CallbackHandler) {
             return;
         }
 
-        $return = call_user_func($next->getCallback(), $context, $params, $chain);
-        return $return;
+        return call_user_func($next->getCallback(), $context, $params, $chain);
     }
 }

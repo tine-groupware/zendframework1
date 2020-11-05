@@ -105,8 +105,8 @@ class Zend_Test_PHPUnit_Db_Metadata_Generic implements PHPUnit_Extensions_Databa
     public function getTableColumns($tableName)
     {
         $tableMeta = $this->getTableDescription($tableName);
-        $columns = array_keys($tableMeta);
-        return $columns;
+
+        return array_keys($tableMeta);
     }
 
     /**

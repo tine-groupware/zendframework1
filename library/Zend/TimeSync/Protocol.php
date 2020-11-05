@@ -142,7 +142,6 @@ abstract class Zend_TimeSync_Protocol
         $this->_write($this->_prepare());
         $timestamp = $this->_extract($this->_read());
 
-        $date = new Zend_Date($this, null, $locale);
-        return $date;
+        return new Zend_Date($this, null, $locale);
     }
 }

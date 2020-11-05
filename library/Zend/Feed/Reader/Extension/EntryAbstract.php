@@ -119,8 +119,7 @@ abstract class Zend_Feed_Reader_Extension_EntryAbstract
      */
     public function getEncoding()
     {
-        $assumed = $this->getDomDocument()->encoding;
-        return $assumed;
+        return $this->getDomDocument()->encoding;
     }
 
     /**

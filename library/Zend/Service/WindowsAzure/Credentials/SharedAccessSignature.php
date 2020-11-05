@@ -135,9 +135,8 @@ class Zend_Service_WindowsAzure_Credentials_SharedAccessSignature
     	$stringToSign[] = $identifier;
 
     	$stringToSign = implode("\n", $stringToSign);
-    	$signature    = base64_encode(hash_hmac('sha256', $stringToSign, $this->_accountKey, true));
-	
-    	return $signature;
+
+        return base64_encode(hash_hmac('sha256', $stringToSign, $this->_accountKey, true));
     }
 
     /**

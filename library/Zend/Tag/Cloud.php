@@ -385,9 +385,8 @@ class Zend_Tag_Cloud
         }
 
         $tagsResult  = $this->getTagDecorator()->render($tags);
-        $cloudResult = $this->getCloudDecorator()->render($tagsResult);
 
-        return $cloudResult;
+        return $this->getCloudDecorator()->render($tagsResult);
     }
 
     /**
@@ -398,12 +397,12 @@ class Zend_Tag_Cloud
     public function __toString()
     {
         try {
-            $result = $this->render();
-            return $result;
+            return $this->render();
         } catch (Exception $e) {
             $message = "Exception caught by tag cloud: " . $e->getMessage()
                      . "\nStack Trace:\n" . $e->getTraceAsString();
             trigger_error($message, E_USER_WARNING);
+
             return '';
         }
     }

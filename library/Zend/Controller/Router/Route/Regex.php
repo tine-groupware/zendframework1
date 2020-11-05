@@ -147,9 +147,8 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
 
         $values   = $this->_getMappedValues($values);
         $defaults = $this->_getMappedValues($this->_defaults, false, true);
-        $return   = $values + $defaults;
 
-        return $return;
+        return $values + $defaults;
     }
 
     /**
