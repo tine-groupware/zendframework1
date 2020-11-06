@@ -60,6 +60,8 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
         'title',
         'extras',
         'sizes',
+        'crossorigin',
+        'as',
     ];
 
     /**
@@ -290,6 +292,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      */
     public function itemToString(stdClass $item)
     {
+        $isHTML5 = $this->view instanceof Zend_View_Abstract && $this->view->doctype()->isHtml5();
         $attributes = (array) $item;
         $link       = '<link ';
 
@@ -297,10 +300,18 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
             if (isset($attributes[$itemKey])) {
                 if(is_array($attributes[$itemKey])) {
                     foreach($attributes[$itemKey] as $key => $value) {
-                        $link .= sprintf('%s="%s" ', $key, ($this->_autoEscape) ? $this->_escape($value) : $value);
+                        if ($isHTML5 && empty($value)) {
+                            $link .= sprintf('%s ', $key);
+                        } else {
+                            $link .= sprintf('%s="%s" ', $key, ($this->_autoEscape) ? $this->_escape($value) : $value);
+                        }
                     }
                 } else {
-                    $link .= sprintf('%s="%s" ', $itemKey, ($this->_autoEscape) ? $this->_escape($attributes[$itemKey]) : $attributes[$itemKey]);
+                    if ($isHTML5 && empty($attributes[$itemKey])) {
+                        $link .= sprintf('%s ', $itemKey);
+                    } else {
+                        $link .= sprintf('%s="%s" ', $itemKey, ($this->_autoEscape) ? $this->_escape($attributes[$itemKey]) : $attributes[$itemKey]);
+                    }
                 }
             }
         }
@@ -441,7 +452,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
         $href  = array_shift($args);
         $type  = array_shift($args);
         $title = array_shift($args);
-        
+
         $extras = null;
         if(0 < count($args) && is_array($args[0])) {
             $extras = array_shift($args);
