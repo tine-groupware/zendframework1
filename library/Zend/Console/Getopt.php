@@ -506,9 +506,8 @@ class Zend_Console_Getopt
          * @see Zend_Json
          */
         require_once 'Zend/Json.php';
-        $json = Zend_Json::encode($j);
 
-        return $json;
+        return Zend_Json::encode($j);
     }
 
     /**
@@ -522,16 +521,18 @@ class Zend_Console_Getopt
         $doc = new DomDocument('1.0', 'utf-8');
         $optionsNode = $doc->createElement('options');
         $doc->appendChild($optionsNode);
+
         foreach ($this->_options as $flag => $value) {
             $optionNode = $doc->createElement('option');
             $optionNode->setAttribute('flag', utf8_encode($flag));
+
             if ($value !== true) {
                 $optionNode->setAttribute('parameter', utf8_encode($value));
             }
             $optionsNode->appendChild($optionNode);
         }
-        $xml = $doc->saveXML();
-        return $xml;
+
+        return $doc->saveXML();
     }
 
     /**
@@ -558,15 +559,19 @@ class Zend_Console_Getopt
     public function getOption($flag)
     {
         $this->parse();
+
         if ($this->_getoptConfig[self::CONFIG_IGNORECASE]) {
             $flag = strtolower($flag);
         }
+
         if (isset($this->_ruleMap[$flag])) {
             $flag = $this->_ruleMap[$flag];
+
             if (isset($this->_options[$flag])) {
                 return $this->_options[$flag];
             }
         }
+
         return null;
     }
 

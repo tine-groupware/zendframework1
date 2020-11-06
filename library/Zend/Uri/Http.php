@@ -183,8 +183,7 @@ class Zend_Uri_Http extends Zend_Uri
             throw new Zend_Uri_Exception("Invalid scheme: '$scheme'");
         }
 
-        $schemeHandler = new Zend_Uri_Http($scheme, $schemeSpecific);
-        return $schemeHandler;
+        return new Zend_Uri_Http($scheme, $schemeSpecific);
     }
 
     /**

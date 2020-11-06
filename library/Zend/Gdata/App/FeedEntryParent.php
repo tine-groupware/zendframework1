@@ -172,8 +172,8 @@ abstract class Zend_Gdata_App_FeedEntryParent extends Zend_Gdata_App_Base
         if (!$this->_service) {
             $this->_service = new Zend_Gdata_App();
         }
-        $client = $this->_service->getHttpClient();
-        return $client;
+
+        return $this->_service->getHttpClient();
     }
 
     /**

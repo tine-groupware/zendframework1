@@ -691,7 +691,7 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
          * Unfortunately because we use the column wildcard "*",
          * this puts an extra column into the query result set.
          */
-        $limit_sql = "SELECT z2.*
+        return "SELECT z2.*
             FROM (
                 SELECT ROW_NUMBER() OVER() AS \"ZEND_DB_ROWNUM\", z1.*
                 FROM (
@@ -699,7 +699,6 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
                 ) z1
             ) z2
             WHERE z2.zend_db_rownum BETWEEN " . ($offset+1) . " AND " . ($offset+$count);
-        return $limit_sql;
     }
 
     /**
@@ -819,8 +818,8 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
 
         if ($objectName === null) {
             $sql = 'SELECT IDENTITY_VAL_LOCAL() AS VAL FROM QSYS2.QSQPTABL';
-            $value = $this->fetchOne($sql);
-            return $value;
+
+            return $this->fetchOne($sql);
         }
 
         if (strtoupper($idType) === 'S'){

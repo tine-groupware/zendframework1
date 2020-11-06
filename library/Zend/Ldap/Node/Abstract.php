@@ -129,8 +129,7 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
      */
     public function getDn()
     {
-        $dn = clone $this->_getDn();
-        return $dn;
+        return clone $this->_getDn();
     }
 
     /**

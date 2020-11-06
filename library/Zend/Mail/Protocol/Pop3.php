@@ -431,8 +431,7 @@ class Zend_Mail_Protocol_Pop3
      */
     public function retrieve($msgno)
     {
-        $result = $this->request("RETR $msgno", true);
-        return $result;
+        return $this->request("RETR $msgno", true);
     }
 
     /**

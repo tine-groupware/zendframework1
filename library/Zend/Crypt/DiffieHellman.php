@@ -381,8 +381,7 @@ class Zend_Crypt_DiffieHellman
      */
     protected function _generatePrivateKey()
     {
-        $rand = $this->_math->rand($this->getGenerator(), $this->getPrime());
-        return $rand;
+        return $this->_math->rand($this->getGenerator(), $this->getPrime());
     }
 
 }

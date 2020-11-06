@@ -142,22 +142,26 @@ class Zend_Cache_Backend_Static
         } else {
             $id = $this->_decodeId($id);
         }
+
         if (!$this->_verifyPath($id)) {
             Zend_Cache::throwException('Invalid cache id: does not match expected public_dir path');
         }
+
         if ($doNotTestCacheValidity) {
             $this->_log("Zend_Cache_Backend_Static::load() : \$doNotTestCacheValidity=true is unsupported by the Static backend");
         }
 
         $fileName = basename($id);
+
         if ($fileName === '') {
             $fileName = $this->_options['index_filename'];
         }
+
         $pathName = $this->_options['public_dir'] . dirname($id);
         $file     = rtrim($pathName, '/') . '/' . $fileName . $this->_options['file_extension'];
+
         if (file_exists($file)) {
-            $content = file_get_contents($file);
-            return $content;
+            return file_get_contents($file);
         }
 
         return false;

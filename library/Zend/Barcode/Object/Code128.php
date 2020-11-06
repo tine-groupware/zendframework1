@@ -197,8 +197,8 @@ class Zend_Barcode_Object_Code128 extends Zend_Barcode_Object_ObjectAbstract
         $encodedData = $convertedChars * $characterLength;
         // ...except the STOP character (13)
         $encodedData += $characterLength + 2 * $this->_barThinWidth * $this->_factor;
-        $width = $quietZone + $encodedData + $quietZone;
-        return $width;
+
+        return $quietZone + $encodedData + $quietZone;
     }
 
     /**
@@ -371,13 +371,12 @@ class Zend_Barcode_Object_Code128 extends Zend_Barcode_Object_ObjectAbstract
         unset($tableOfChars[0]);
 
         $k = 1;
+
         foreach ($tableOfChars as $char) {
             $sum += ($k++) * $char;
         }
 
-        $checksum = $sum % 103;
-
-        return $checksum;
+        return $sum % 103;
     }
 
     /**

@@ -50,9 +50,8 @@ class Zend_Service_Amazon_Ec2_Elasticip extends Zend_Service_Amazon_Ec2_Abstract
         $response = $this->sendRequest($params);
 
         $xpath = $response->getXPath();
-        $ip = $xpath->evaluate('string(//ec2:publicIp/text())');
 
-        return $ip;
+        return $xpath->evaluate('string(//ec2:publicIp/text())');
     }
 
     /**

@@ -136,8 +136,7 @@ class Zend_Service_Amazon_Ec2_Instance_Reserved extends Zend_Service_Amazon_Ec2_
         $response = $this->sendRequest($params);
 
         $xpath = $response->getXPath();
-        $reservedInstancesId = $xpath->evaluate('string(//ec2:reservedInstancesId/text())');
 
-        return $reservedInstancesId;
+        return $xpath->evaluate('string(//ec2:reservedInstancesId/text())');
     }
 }

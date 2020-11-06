@@ -557,8 +557,7 @@ abstract class Zend_Translate_Adapter {
      */
     public function isAvailable($locale)
     {
-        $return = isset($this->_translate[(string) $locale]);
-        return $return;
+        return isset($this->_translate[(string) $locale]);
     }
 
     /**

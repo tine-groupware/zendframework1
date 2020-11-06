@@ -569,11 +569,12 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     {
         $file = $this->_metadatasFile($id);
         $result = $this->_fileGetContents($file);
+
         if (!$result) {
             return false;
         }
-        $tmp = @unserialize($result);
-        return $tmp;
+
+        return @unserialize($result);
     }
 
     /**
@@ -893,8 +894,8 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     protected function _idToFileName($id)
     {
         $prefix = $this->_options['file_name_prefix'];
-        $result = $prefix . '---' . $id;
-        return $result;
+
+        return $prefix . '---' . $id;
     }
 
     /**

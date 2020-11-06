@@ -176,8 +176,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
      */
     public function getPublicKey()
     {
-        $key = $this->_keys['public'];
-        return $key;
+        return $this->_keys['public'];
     }
 
     /**
@@ -209,8 +208,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
      */
     public function getPrivateKey()
     {
-        $key = $this->_keys['private'];
-        return $key;
+        return $this->_keys['private'];
     }
 
     /**
@@ -247,8 +245,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
      */
     public function getEnvelopeKey()
     {
-        $key = $this->_keys['envelope'];
-        return $key;
+        return $this->_keys['envelope'];
     }
 
     /**

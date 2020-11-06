@@ -43,12 +43,10 @@ class Zend_Tool_Project_Provider_Form extends Zend_Tool_Project_Provider_Abstrac
             throw new Zend_Tool_Project_Provider_Exception($exceptionMessage);
         }
 
-        $newForm = $formsDirectory->createResource(
+        return $formsDirectory->createResource(
             'formFile',
             ['formName' => $formName, 'moduleName' => $moduleName]
             );
-
-        return $newForm;
     }
 
     /**

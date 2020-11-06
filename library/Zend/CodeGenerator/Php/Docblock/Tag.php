@@ -113,8 +113,7 @@ class Zend_CodeGenerator_Php_Docblock_Tag extends Zend_CodeGenerator_Php_Abstrac
             $tagClass = 'Zend_CodeGenerator_Php_Docblock_Tag';
         }
 
-        $tag = new $tagClass(['name' => $tagName]);
-        return $tag;
+        return new $tagClass(['name' => $tagName]);
     }
 
     /**

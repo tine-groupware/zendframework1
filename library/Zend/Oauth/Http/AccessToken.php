@@ -44,13 +44,14 @@ class Zend_Oauth_Http_AccessToken extends Zend_Oauth_Http
      * Initiate a HTTP request to retrieve an Access Token.
      *
      * @return Zend_Oauth_Token_Access
+     * @throws Zend_Oauth_Exception
      */
     public function execute()
     {
         $params   = $this->assembleParams();
         $response = $this->startRequestCycle($params);
-        $return   = new Zend_Oauth_Token_Access($response);
-        return $return;
+
+        return new Zend_Oauth_Token_Access($response);
     }
 
     /**

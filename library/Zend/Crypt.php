@@ -86,8 +86,8 @@ class Zend_Crypt
         }
         self::_detectHashSupport($algorithm);
         $supportedMethod = '_digest' . ucfirst(self::$_type);
-        $result = self::$supportedMethod($algorithm, $data, $binaryOutput);
-        return $result;
+
+        return self::$supportedMethod($algorithm, $data, $binaryOutput);
     }
 
     /**

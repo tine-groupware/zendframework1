@@ -341,15 +341,12 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     protected function _query($value)
     {
         $select = $this->getSelect();
-        /**
-         * Run query
-         */
-        $result = $select->getAdapter()->fetchRow(
+
+        // Run query
+        return $select->getAdapter()->fetchRow(
             $select,
             ['value' => $value], // this should work whether db supports positional or named params
             Zend_Db::FETCH_ASSOC
-            );
-
-        return $result;
+        );
     }
 }

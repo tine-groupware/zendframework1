@@ -368,8 +368,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      */
     public function createData(array $attributes)
     {
-        $data = (object) $attributes;
-        return $data;
+        return (object)$attributes;
     }
 
     /**

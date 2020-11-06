@@ -106,8 +106,8 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
                 $restfulConfigArray[$key] = explode(',', $values);
             }
         }
-        $instance = new self($frontController, $defaultsArray, $restfulConfigArray);
-        return $instance;
+
+        return new self($frontController, $defaultsArray, $restfulConfigArray);
     }
 
     /**

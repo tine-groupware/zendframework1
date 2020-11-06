@@ -254,7 +254,6 @@ class Zend_Tool_Project_Context_Zf_ApplicationConfigFile extends Zend_Tool_Proje
 
     protected function _getDefaultContents()
     {
-
         $contents =<<<EOS
 [production]
 phpSettings.display_startup_errors = 0

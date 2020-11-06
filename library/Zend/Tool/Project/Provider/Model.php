@@ -44,12 +44,10 @@ class Zend_Tool_Project_Provider_Model extends Zend_Tool_Project_Provider_Abstra
             throw new Zend_Tool_Project_Provider_Exception($exceptionMessage);
         }
 
-        $newModel = $modelsDirectory->createResource(
+        return $modelsDirectory->createResource(
             'modelFile',
             ['modelName' => $modelName, 'moduleName' => $moduleName]
-            );
-
-        return $newModel;
+        );
     }
 
     /**

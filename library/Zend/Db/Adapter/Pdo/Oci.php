@@ -143,8 +143,7 @@ class Zend_Db_Adapter_Pdo_Oci extends Zend_Db_Adapter_Pdo_Abstract
      */
     public function listTables()
     {
-        $data = $this->fetchCol('SELECT table_name FROM all_tables');
-        return $data;
+        return $this->fetchCol('SELECT table_name FROM all_tables');
     }
 
     /**
@@ -282,8 +281,8 @@ class Zend_Db_Adapter_Pdo_Oci extends Zend_Db_Adapter_Pdo_Abstract
     public function lastSequenceId($sequenceName)
     {
         $this->_connect();
-        $value = $this->fetchOne('SELECT '.$this->quoteIdentifier($sequenceName, true).'.CURRVAL FROM dual');
-        return $value;
+
+        return $this->fetchOne('SELECT '.$this->quoteIdentifier($sequenceName, true).'.CURRVAL FROM dual');
     }
 
     /**
@@ -297,8 +296,8 @@ class Zend_Db_Adapter_Pdo_Oci extends Zend_Db_Adapter_Pdo_Abstract
     public function nextSequenceId($sequenceName)
     {
         $this->_connect();
-        $value = $this->fetchOne('SELECT '.$this->quoteIdentifier($sequenceName, true).'.NEXTVAL FROM dual');
-        return $value;
+
+        return $this->fetchOne('SELECT '.$this->quoteIdentifier($sequenceName, true).'.NEXTVAL FROM dual');
     }
 
     /**
@@ -364,7 +363,7 @@ class Zend_Db_Adapter_Pdo_Oci extends Zend_Db_Adapter_Pdo_Abstract
          * Unfortunately because we use the column wildcard "*",
          * this puts an extra column into the query result set.
          */
-        $limit_sql = "SELECT z2.*
+        return "SELECT z2.*
             FROM (
                 SELECT z1.*, ROWNUM AS \"zend_db_rownum\"
                 FROM (
@@ -372,7 +371,6 @@ class Zend_Db_Adapter_Pdo_Oci extends Zend_Db_Adapter_Pdo_Abstract
                 ) z1
             ) z2
             WHERE z2.\"zend_db_rownum\" BETWEEN " . ($offset+1) . " AND " . ($offset+$count);
-        return $limit_sql;
     }
 
 }

@@ -809,8 +809,8 @@ class Zend_Feed_Pubsubhubbub_Subscriber
     protected function _generateSubscriptionKey(array $params, $hubUrl)
     {
         $keyBase = $params['hub.topic'] . $hubUrl;
-        $key     = md5($keyBase);
-        return $key;
+
+        return md5($keyBase);
     }
 
     /**

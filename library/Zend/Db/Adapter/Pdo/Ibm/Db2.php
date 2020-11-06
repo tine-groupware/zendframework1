@@ -181,9 +181,9 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
         }
 
         if ($offset === 0 && $count > 0) {
-            $limit_sql = $sql . " FETCH FIRST $count ROWS ONLY";
-            return $limit_sql;
+            return $sql . " FETCH FIRST $count ROWS ONLY";
         }
+
         /**
          * DB2 does not implement the LIMIT clause as some RDBMS do.
          * We have to simulate it with subqueries and ROWNUM.
@@ -211,8 +211,8 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
     public function lastSequenceId($sequenceName)
     {
         $sql = 'SELECT PREVVAL FOR '.$this->_adapter->quoteIdentifier($sequenceName).' AS VAL FROM SYSIBM.SYSDUMMY1';
-        $value = $this->_adapter->fetchOne($sql);
-        return $value;
+
+        return $this->_adapter->fetchOne($sql);
     }
 
     /**
@@ -224,7 +224,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
     public function nextSequenceId($sequenceName)
     {
         $sql = 'SELECT NEXTVAL FOR '.$this->_adapter->quoteIdentifier($sequenceName).' AS VAL FROM SYSIBM.SYSDUMMY1';
-        $value = $this->_adapter->fetchOne($sql);
-        return $value;
+
+        return $this->_adapter->fetchOne($sql);
     }
 }

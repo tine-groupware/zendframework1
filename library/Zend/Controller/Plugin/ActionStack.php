@@ -163,8 +163,8 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
     public function getStack()
     {
         $registry = $this->getRegistry();
-        $stack    = $registry[$this->getRegistryKey()];
-        return $stack;
+
+        return $registry[$this->getRegistryKey()];
     }
 
     /**

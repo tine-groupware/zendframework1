@@ -79,9 +79,7 @@ class Zend_Tool_Project_Provider_View extends Zend_Tool_Project_Provider_Abstrac
             $viewControllerScriptsDirectory = $viewScriptsDirectory->createResource('viewControllerScriptsDirectory', ['forControllerName' => $controllerName]);
         }
 
-        $newViewScriptFile = $viewControllerScriptsDirectory->createResource('ViewScriptFile', ['forActionName' => $actionName]);
-
-        return $newViewScriptFile;
+        return $viewControllerScriptsDirectory->createResource('ViewScriptFile', ['forActionName' => $actionName]);
     }
 
     /**

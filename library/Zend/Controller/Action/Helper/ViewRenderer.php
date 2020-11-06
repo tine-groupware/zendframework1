@@ -358,13 +358,12 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         }
 
         $module = $this->getModule();
+
         if ('default' == $module) {
             return $default;
         }
 
-        $prefix = substr($class, 0, strpos($class, '_')) . '_View';
-
-        return $prefix;
+        return substr($class, 0, strpos($class, '_')) . '_View';
     }
 
     /**
@@ -390,8 +389,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
             'action'     => $dispatcher->formatActionName($request->getActionName())
             ];
 
-        $path = $inflector->filter($parts);
-        return $path;
+        return $inflector->filter($parts);
     }
 
     /**

@@ -92,9 +92,7 @@ class Zend_Server_Reflection_Node
      */
     public function createChild($value)
     {
-        $child = new self($value, $this);
-
-        return $child;
+        return new self($value, $this);
     }
 
     /**
