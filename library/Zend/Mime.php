@@ -467,8 +467,8 @@ class Zend_Mime
     private static function _encodeQuotedPrintable($str)
     {
         $str = str_replace(
-            ['=', self::$qpKeys],
-            ['=3D', self::$qpReplaceValues],
+            array_merge(['='], self::$qpKeys),
+            array_merge(['=3D'], self::$qpReplaceValues),
             $str);
 
         return rtrim($str);
