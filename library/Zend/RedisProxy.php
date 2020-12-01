@@ -6,7 +6,7 @@
  * @subpackage  Backend
  * @license     http://www.gnu.org/licenses/agpl.html AGPL Version 3
  * @author      Paul Mehrer <p.mehrer@metaways.de>
- * @copyright   Copyright (c) 2018-2019 Metaways Infosystems GmbH (http://www.metaways.de)
+ * @copyright   Copyright (c) 2018-2020 Metaways Infosystems GmbH (http://www.metaways.de)
  */
 
 if (defined('Redis::SERIALIZER_IGBINARY')) {
@@ -174,6 +174,10 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                 break;
 
             default:
+                // delete got deprecated, just rewrite it to del
+                if ('delete' === $_name) {
+                    $_name = 'del';
+                }
                 if (true === $this->_inMulti) {
                     // we do not retry exec as we cant be sure if Redis did execute a "failed" exec or not
                     // so exec is: either it works or not
