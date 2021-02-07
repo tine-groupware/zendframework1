@@ -521,9 +521,10 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
 	 * @param Zend_Service_WindowsAzure_Storage_QueueMessage $message Message to delete from queue. A message retrieved using "peekMessages" can NOT be deleted!
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function deleteMessage($queueName = '', Zend_Service_WindowsAzure_Storage_QueueMessage $message)
+	public function deleteMessage($queueName, Zend_Service_WindowsAzure_Storage_QueueMessage $message)
 	{
-		if ($queueName === '') {
+
+		if (empty($queueName)) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Queue name is not specified.');
 		}

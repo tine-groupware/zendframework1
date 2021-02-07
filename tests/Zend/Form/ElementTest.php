@@ -48,6 +48,11 @@ require_once 'Zend/View.php';
  */
 class Zend_Form_ElementTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Zend_Form_Element
+     */
+    private $element;
+
     public static function main()
     {
         $suite  = new PHPUnit_Framework_TestSuite('Zend_Form_ElementTest');
@@ -1760,12 +1765,12 @@ class Zend_Form_ElementTest extends PHPUnit_Framework_TestCase
 
         $options = $this->getOptions();
         $options['filters'] = [
-            ['Digits', ['bar' => 'baz']],
+            ['Alnum', ['allowWhiteSpace' => true]],
             ['Alpha', ['foo']],
         ];
         $this->element->setOptions($options);
-        $filter = $this->element->getFilter('Digits');
-        $this->assertTrue($filter instanceof Zend_Filter_Digits);
+        $filter = $this->element->getFilter('Alnum');
+        $this->assertTrue($filter instanceof Zend_Filter_Alnum);
         $filter = $this->element->getFilter('Alpha');
         $this->assertTrue($filter instanceof Zend_Filter_Alpha);
     }
