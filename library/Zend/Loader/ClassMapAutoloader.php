@@ -209,7 +209,9 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
         $parts = explode('/', str_replace(['/','\\'], '/', substr($path, 8)));
         $parts = array_values(array_filter($parts, [__CLASS__, 'concatPharParts']));
 
-        array_walk($parts, [__CLASS__, 'resolvePharParentPath'], $parts);
+        foreach ($parts as $key => $value) {
+            self::resolvePharParentPath($value, $key, $parts);
+        }
 
         if (file_exists($realPath = 'phar:///' . implode('/', $parts))) {
             return $realPath;
