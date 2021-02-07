@@ -125,10 +125,4 @@ class Zend_Tool_Project_Provider_DbAdapter
                 );
         }
     }
-
-    protected function _cleanMagicQuotesInValues(&$value, $key)
-    {
-        $value = stripslashes($value);
-    }
-
 }
