@@ -9,19 +9,7 @@
     "homepage": "http://framework.zend.com/",
     "license": "BSD-3-Clause",
     "require": {
-        "php": ">=7.0",
-        "ext-ctype": "*",
-        "ext-dom": "*",
-        "ext-gd": "*",
-        "ext-iconv": "*",
-        "ext-ldap": "*",
-        "ext-mbstring": "*",
-        "ext-reflection": "*",
-        "ext-session": "*",
-        "ext-simplexml": "*",
-        "ext-spl": "*",
-        "ext-xml": "*",
-        "ext-zlib": "*"
+        "php": ">=7.0"
     },
     "autoload": {
         "psr-0": {
