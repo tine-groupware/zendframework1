@@ -1,4 +1,5 @@
 ![zf1-future logo](https://imgur.com/S0i6qOh.png)
+<sub><sup>Thanks to [WebTigers](https://github.com/WebTigers) for the logo</sup></sub>
 ### A Community supported fork of Zend Framework 1, to allow for compatibility with the latest PHP versions.
 
 If you have any requests for tags, releases, or anything else. Feel free to raise an issue and I'll get it sorted.
