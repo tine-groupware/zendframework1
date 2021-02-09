@@ -1,4 +1,5 @@
-# Post end of life changes for zf1 to allow compatibility with the latest PHP versions.
+![zf1-future logo](https://imgur.com/S0i6qOh.png)
+### A Community supported fork of Zend Framework 1, to allow for compatibility with the latest PHP versions.
 
 If you have any requests for tags, releases, or anything else. Feel free to raise an issue and I'll get it sorted.
 
@@ -11,9 +12,10 @@ Installable through git clone or through
 Minimum PHP Version is 7.0
 
 
-## Extras
+## Related Projects
 
-Recently https://github.com/Shardj/zf1-extras-future has been created for those who need it.
+*  [ZF1 Extras Future](https://github.com/Shardj/zf1-extras-future)
+* [ZF1s](https://github.com/zf1s) - Another community supported continuation of ZF1, with a focus on splitting the frameworks original components into individual packages
 
 
 ## Known issues and solutions
