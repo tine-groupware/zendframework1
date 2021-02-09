@@ -14,7 +14,7 @@ New updated documentation coming soon!
 ### Original Docs
 The original docs can be found here: https://framework.zend.com/manual/1.12/en/manual.html
 
-## Installation
+### Installation
 
 Installable through git clone or through  
 `composer require shardj/zf1-future` https://packagist.org/packages/shardj/zf1-future  
