@@ -661,7 +661,7 @@ class Zend_Mail_Protocol_Imap
         $result = array();
         while (!$this->readLine($tokens, $tag)) {
             // ignore other responses
-            if ($tokens[1] != 'FETCH' || !is_array($tokens[2])) {
+            if (! isset($tokens[1]) || $tokens[1] != 'FETCH' || !isset($tokens[2]) || !is_array($tokens[2])) {
                 continue;
             }
 
