@@ -2,6 +2,10 @@ language: php
 php:
     - '7.2'
 
+matrix:
+  exclude:
+    - php: '7.2'
+
 services:
   - mysql
 
@@ -14,7 +18,7 @@ addons:
       - mysql-5.7-trusty
     packages:
       - mysql-server
-    
+
 before_script:
   - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS tine20 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" -uroot; fi
   - git clone https://github.com/tine20/Tine-2.0-Open-Source-Groupware-and-CRM.git tine20
