@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.com/tine20/zendframework1.svg?branch=master)](https://travis-ci.com/tine20/zendframework1)
-
+![Master branch build status](https://github.com/tine20/zendframework1/actions/workflows/php-unit-test.yml/badge.svg)
 # Zend Framework 1
 
 ## Resources
