@@ -696,7 +696,9 @@ class Zend_Mail_Protocol_Imap
             }
 
             // if we want only one message we can ignore everything else and just return
-            if ($to === null && !is_array($from) && (($uid !== true && $tokens[0] == $from) || ($uid === true && $data['UID'] == $from))) {
+            if ($to === null && !is_array($from) && (($uid !== true && $tokens[0] == $from)
+                || ($uid === true && isset($data['UID']) && $data['UID'] == $from))
+            ) {
                 // we still need to read all lines
                 while (!$this->readLine($tokens, $tag));
                 return (count($items) == 1) ? $data[$items[0]] : $data;
