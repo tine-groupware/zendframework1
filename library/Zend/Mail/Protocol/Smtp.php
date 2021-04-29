@@ -153,7 +153,7 @@ class Zend_Mail_Protocol_Smtp extends Zend_Mail_Protocol_Abstract
             }
         }
 
-        parent::__construct($host, $port);
+        parent::__construct($host, $port, $config);
     }
 
 
