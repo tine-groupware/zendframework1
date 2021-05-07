@@ -115,11 +115,8 @@ class Zend_Validate_Float extends Zend_Validate_Abstract
             return false;
         }
 
-        if (is_float($value)) {
+        if (is_int($value) || is_float($value)) {
             return true;
-        } elseif (is_int($value)) {
-            $this->_error(self::NOT_FLOAT);
-            return false;
         }
 
         $this->_setValue($value);
