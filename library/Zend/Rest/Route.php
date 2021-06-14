@@ -76,8 +76,8 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
      * @param array $responders Modules or controllers to receive RESTful routes
      */
     public function __construct(Zend_Controller_Front $front,
-        array $defaults = array(),
-        array $responders = array()
+        array $defaults = [],
+        array $responders = []
     ) {
         $this->_defaults = $defaults;
 
@@ -95,8 +95,8 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
     public static function getInstance(Zend_Config $config)
     {
         $frontController = Zend_Controller_Front::getInstance();
-        $defaultsArray = array();
-        $restfulConfigArray = array();
+        $defaultsArray = [];
+        $restfulConfigArray = [];
         foreach ($config as $key => $values) {
             if ($key == 'type') {
                 // do nothing
@@ -106,8 +106,8 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
                 $restfulConfigArray[$key] = explode(',', $values);
             }
         }
-        $instance = new self($frontController, $defaultsArray, $restfulConfigArray);
-        return $instance;
+
+        return new self($frontController, $defaultsArray, $restfulConfigArray);
     }
 
     /**
@@ -131,7 +131,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
 
         $path   = $request->getPathInfo();
         $params = $request->getParams();
-        $values = array();
+        $values = [];
         $path   = trim($path, self::URI_DELIMITER);
 
         if ($path === '') {
@@ -174,14 +174,15 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
 
         // Check for "special get" URI's
         $specialGetTarget = false;
-        if ($pathElementCount && array_search($path[0], array('index', 'new')) > -1) {
+
+        if ($pathElementCount && array_search($path[0], ['index', 'new']) > -1) {
             $specialGetTarget = array_shift($path);
         } elseif ($pathElementCount && $path[$pathElementCount-1] == 'edit') {
             $specialGetTarget = 'edit';
             $params['id'] = urldecode($path[$pathElementCount-2]);
-        } elseif ($pathElementCount == 1) {
+        } elseif ($pathElementCount === 1) {
             $params['id'] = urldecode(array_shift($path));
-        } elseif ($pathElementCount == 0 && !isset($params['id'])) {
+        } elseif ($pathElementCount === 0 && !isset($params['id'])) {
             $specialGetTarget = 'index';
         }
 
@@ -242,7 +243,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
      * @param bool $encode Weither to return urlencoded string
      * @return string Route path with user submitted parameters
      */
-    public function assemble($data = array(), $reset = false, $encode = true, $partial = false)
+    public function assemble($data = [], $reset = false, $encode = true, $partial = false)
     {
         if (!$this->_keysSet) {
             if (null === $this->_request) {
@@ -251,7 +252,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
             $this->_setRequestKeys();
         }
 
-        $params = (!$reset) ? $this->_values : array();
+        $params = (!$reset) ? $this->_values : [];
 
         foreach ($data as $key => $value) {
             if ($value !== null) {
@@ -276,7 +277,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
         unset($params[$this->_controllerKey]);
 
         // set $action if value given is 'new' or 'edit'
-        if (in_array($params[$this->_actionKey], array('new', 'edit'))) {
+        if (in_array($params[$this->_actionKey], ['new', 'edit'])) {
             $action = $params[$this->_actionKey];
         }
         unset($params[$this->_actionKey]);
