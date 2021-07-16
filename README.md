@@ -1,13 +1,13 @@
 ![zf1-future logo](https://imgur.com/S0i6qOh.png)
 <sub><sup>Thanks to [WebTigers](https://github.com/WebTigers) for the logo</sup></sub>
-# Zend Framework 1 now for PHP 7.4!
+# Zend Framework 1 now for PHP 8.0!
 
 ### Classic ZF1 Reborn
 Zend may have abandoned the original Zend Framework, but the global Zend Framework Community has not! Since Zend sentenced ZF1 to EOL, the Zend Framework community around the globe has continued to work and build on what we consider to be one of the best PHP frameworks of all time.
 
 # ZF1 is Now Version 1.20!
 ### Over 200 updates and bug fixes since 1.12!
-The ZF1 community has been hard at work updating Zend Framework with all of the latest features of PHP 7.
+The ZF1 community has been hard at work updating Zend Framework with all of the latest features of PHP 7 and 8.0.
 
 # Documentation
 New updated documentation coming soon!
@@ -20,7 +20,7 @@ Installable through git clone or through
 `composer require shardj/zf1-future` https://packagist.org/packages/shardj/zf1-future  
 
 # System Requirements
-ZF1 Future runs on any version of PHP 7. Soon ZF1 Future will be up and running on PHP 8!
+ZF1 Future runs on any version of PHP 7 as well as PHP 8.0!
 
 
 # License
