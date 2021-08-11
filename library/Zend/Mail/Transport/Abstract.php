@@ -214,7 +214,7 @@ abstract class Zend_Mail_Transport_Abstract
              * @see Zend_Mail_Transport_Exception
              */
             require_once 'Zend/Mail/Transport/Exception.php';
-            throw new Zend_Mail_Exception('At least one mail header line is too long');
+            throw new Zend_Mail_Exception('At least one mail header line is too long: ' . substr($line, 0, 60));
         }
     }
 
