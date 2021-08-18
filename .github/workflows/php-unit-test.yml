@@ -3,9 +3,11 @@ name: PHP unit test CI
 on:
   push:
     branches:
+      - main
       - master
   pull_request:
     branches:
+      - main
       - master
 
 defaults:
@@ -49,3 +51,4 @@ jobs:
       run: |
         cd tine20/tests/tine20
         ../../tine20/vendor/bin/phpunit --color GithubTests.php
+
