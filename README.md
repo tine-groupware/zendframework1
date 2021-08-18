@@ -1,16 +1,23 @@
 ![zf1-future logo](https://imgur.com/S0i6qOh.png)
 <sub><sup>Thanks to [WebTigers](https://github.com/WebTigers) for the logo</sup></sub>
 # Zend Framework 1 now for PHP 8.0!
-
 ### Classic ZF1 Reborn
 Zend may have abandoned the original Zend Framework, but the global Zend Framework Community has not! Since Zend sentenced ZF1 to EOL, the Zend Framework community around the globe has continued to work and build on what we consider to be one of the best PHP frameworks of all time.
+
+#ZF-Future Sponsors
+###Products and Projects built with ZF1-Future:
+
+<a href="https://webtigers.com"><img src="https://webtigers.s3.amazonaws.com/logos/Logo-New-1-Dark.png" width="50%" /></a>
+
+Creators of the [Tiger Development Platform](https://webtigers.com) featuring ZF1-Future
 
 # ZF1 is Now Version 1.20!
 ### Over 200 updates and bug fixes since 1.12!
 The ZF1 community has been hard at work updating Zend Framework with all of the latest features of PHP 7 and 8.0.
 
 # Documentation
-New updated documentation coming soon!
+New ZF1-Future Manual: [ZF1-Future Docs](https://zf1future.com/manual)
+
 ### Original Docs
 The original docs can be found here: https://framework.zend.com/manual/1.12/en/manual.html
 
@@ -21,7 +28,6 @@ Installable through git clone or through
 
 # System Requirements
 ZF1 Future runs on any version of PHP 7 as well as PHP 8.0!
-
 
 # License
 The files in this archive are released under the Zend Framework license. You can find a copy of this license in [LICENSE.txt](LICENSE.txt).
