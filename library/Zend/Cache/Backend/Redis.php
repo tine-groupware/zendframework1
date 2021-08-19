@@ -303,7 +303,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
                 $ids = $this->getIdsMatchingTags($tags);
 
                 if (!empty($ids)) {
-                    $values = $this->_redis->getMultiple($ids);
+                    $values = $this->_redis->mGet($ids);
 
                     $transaction = $this->_redis->multi();
 
@@ -312,7 +312,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
                         $transaction->delete($id);
 
                         // if the record also has some other tags attached, remove record from these tag lists too
-                        // $values[$i] can be null if id was not found by getMultiple
+                        // $values[$i] can be null if id was not found by mGet
                         if (is_array($values[$i]) && is_array($values[$i][3])) {
                             $allTags = array_unique(array_merge((array) $tags, $values[$i][3]));
                             // otherwise just remove from the tag lists provided
@@ -336,7 +336,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
                 $ids = $this->getIdsMatchingAnyTags($tags);
 
                 if (!empty($ids)) {
-                    $values = $this->_redis->getMultiple($ids);
+                    $values = $this->_redis->mGet($ids);
 
                     $transaction = $this->_redis->multi();
 
@@ -345,7 +345,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
                         $transaction->delete($id);
 
                         // if the record also has some other tags attached, remove record from these tag lists too
-                        // $values[$i] can be null if id was not found by getMultiple
+                        // $values[$i] can be null if id was not found by mGet
                         if (is_array($values[$i]) && is_array($values[$i][3])) {
                             $allTags = array_unique(array_merge((array) $tags, $values[$i][3]));
                             // otherwise just remove from the tag lists provided
