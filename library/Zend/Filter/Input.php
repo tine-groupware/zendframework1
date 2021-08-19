@@ -1071,9 +1071,7 @@ class Zend_Filter_Input
             $field     = reset($data);
 
             $failed = false;
-            if (!is_array($field)) {
-                $field = [$field];
-            }
+            $field = [$field];
 
             // if there is no Zend_Validate_NotEmpty instance in the rules, we will use the default
             if (!($notEmptyValidator = $this->_getNotEmptyValidatorInstance($validatorRule))) {
