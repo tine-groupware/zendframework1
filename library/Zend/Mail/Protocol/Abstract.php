@@ -434,7 +434,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
         // Save request to internal log
         if (self::$loggingEnabled) {
-            $this->_addLog($reponse);
+            $this->_addLog($response);
         }
 
         // Check meta data to ensure connection is still valid

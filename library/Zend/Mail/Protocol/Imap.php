@@ -667,32 +667,11 @@ class Zend_Mail_Protocol_Imap
             if (! isset($tokens[1]) || $tokens[1] != 'FETCH' || !isset($tokens[2]) || !is_array($tokens[2])) {
                 continue;
             }
-            // ignore other messages
-            if ($to === null && !is_array($from) && $tokens[0] != $from) {
-                continue;
-            }
-            // if we only want one item we return that one directly
-            if (count($items) === 1) {
-                if ($tokens[2][0] == $items[0]) {
-                    $data = $tokens[2][1];
-                } else {
-                    // maybe the server send an other field we didn't wanted
-                    $count = count($tokens[2]);
-                    // we start with 2, because 0 was already checked
-                    for ($i = 2; $i < $count; $i += 2) {
-                        if ($tokens[2][$i] != $items[0]) {
-                            continue;
-                        }
-                        $data = $tokens[2][$i + 1];
-                        break;
-                    }
-                }
-            } else {
-                $data = [];
-                while (key($tokens[2]) !== null) {
-                    $data[current($tokens[2])] = next($tokens[2]);
-                    next($tokens[2]);
-                }
+
+            $data = [];
+            while (key($tokens[2]) !== null) {
+                $data[current($tokens[2])] = next($tokens[2]);
+                next($tokens[2]);
             }
 
             // if we want only one message we can ignore everything else and just return
