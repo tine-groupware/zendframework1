@@ -118,10 +118,9 @@ abstract class Zend_Server_Abstract implements Zend_Server_Interface
      *
      * @deprecated
      * @param  string $string value
-     * @param  string $key
      * @return string Lower cased string
      */
-    public static function lowerCase(&$value, &$key)
+    public static function lowerCase(&$value)
     {
         trigger_error(__CLASS__ . '::' . __METHOD__ . '() is deprecated and will be removed in a future version', E_USER_NOTICE);
         return $value = strtolower($value);
