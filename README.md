@@ -11,7 +11,7 @@ Zend may have abandoned the original Zend Framework, but the global Zend Framewo
 
 Creators of the [Tiger Development Platform](https://webtigers.com) featuring ZF1-Future
 
-<a href="https://seidengroup.com"><img src="https://www.seidengroup.com/wp-content/uploads/2017/03/SeidenLogo-180.png" /></a>
+<a href="https://seidengroup.com"><img src="https://www.seidengroup.com/wp-content/uploads/2017/03/SeidenLogo-180.png" alt="Seiden Group: IBM i modernization, PHP, Python, Node.js, and modern RPG" /></a>
 
 Creators of [CommunityPlus+ PHP for IBM i](https://www.seidengroup.com/communityplus-php-for-ibm-i/) featuring ZF1-Future
 
