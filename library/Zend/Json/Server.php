@@ -424,7 +424,11 @@ class Zend_Json_Server extends Zend_Server_Abstract
             if ((isset($param['default']) || array_key_exists('default', $param))) {
                 $value = $param['default'];
             }
-            array_push($args, $value);
+            if (isset($param['name'])) {
+                $args[$param['name']] = $value;
+            } else {
+                array_push($args, $value);
+            }
         }
         return $args;
     }
