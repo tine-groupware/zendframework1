@@ -185,6 +185,14 @@ abstract class Zend_Mail_Protocol_Abstract
     public function setConnectionOptions($connectionOptions)
     {
         $this->_connectionOptions = $connectionOptions;
+        if (isset($connectionOptions['ssl'])) {
+            if (isset($connectionOptions['ssl']['verify_peer'])) {
+                $this->_verifyPeer = (bool)$connectionOptions['ssl']['verify_peer'];
+            }
+            if (isset($connectionOptions['ssl']['verify_peer_name'])) {
+                $this->_verifyPeerName = (bool)$connectionOptions['ssl']['verify_peer_name'];
+            }
+        }
     }
 
     /**
