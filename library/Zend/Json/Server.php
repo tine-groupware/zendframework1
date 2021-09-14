@@ -418,17 +418,13 @@ class Zend_Json_Server extends Zend_Server_Abstract
      */
     protected function _getDefaultParams(array $args, array $params)
     {
-        $defaultParams = array_slice($params, count($args));
+        $defaultParams = array_diff_key($params, $args);
         foreach ($defaultParams as $param) {
             $value = null;
             if ((isset($param['default']) || array_key_exists('default', $param))) {
                 $value = $param['default'];
             }
-            if (isset($param['name'])) {
-                $args[$param['name']] = $value;
-            } else {
-                array_push($args, $value);
-            }
+            $args[$param['name']] = $value;
         }
         return $args;
     }
