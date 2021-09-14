@@ -418,13 +418,13 @@ class Zend_Json_Server extends Zend_Server_Abstract
      */
     protected function _getDefaultParams(array $args, array $params)
     {
-        $defaultParams = array_diff_key($params, $args);
+        $defaultParams = array_slice($params, count($args));
         foreach ($defaultParams as $param) {
             $value = null;
             if ((isset($param['default']) || array_key_exists('default', $param))) {
                 $value = $param['default'];
             }
-            $args[$param['name']] = $value;
+            array_push($args, $value);
         }
         return $args;
     }
@@ -600,7 +600,7 @@ class Zend_Json_Server extends Zend_Server_Abstract
 //        }
 
         try {
-            $result = $this->_dispatch($invocable, $params);
+            $result = $this->_dispatch($invocable, array_values($params));
         } catch (Exception $e) {
             if ($this->autoHandleExceptions()) {
                 return $this->fault($e->getMessage(), $e->getCode());
