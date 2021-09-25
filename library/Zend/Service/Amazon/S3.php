@@ -283,7 +283,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             ];
             $objects = $this->getObjectsByBucket($bucket,$params);
         }
-        
+
         return true;
     }
 
@@ -648,7 +648,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             $pathparts = explode('?',$parts[1]);
             $endpath = $pathparts[0];
             $endpoint->setPath('/'.$endpath);
-            
+
         }
         else {
             $endpoint->setPath('/');
@@ -687,7 +687,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
                  $headers['Content-type'] = self::getMimeType($path);
              }
              $client->setRawData($data, $headers['Content-type']);
-         } 
+         }
          do {
             $retry = false;
 

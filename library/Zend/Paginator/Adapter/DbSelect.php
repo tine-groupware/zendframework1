@@ -91,14 +91,14 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
 
     /**
      * Returns the cache identifier.
-     * 
+     *
      * @return string
      */
     public function getCacheIdentifier()
     {
         return $this->_cacheIdentifier;
     }
-    
+
     /**
      * Sets the total row count, either directly or through a supplied
      * query.  Without setting this, {@link getPages()} selects the count
