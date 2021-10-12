@@ -146,7 +146,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      */
     public function __sleep()
     {
-        $this->_element = $this->saveXML();
+        $this->_element = $this->saveXml();
 
         return ['_element'];
     }

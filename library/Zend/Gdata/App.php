@@ -838,7 +838,7 @@ class Zend_Gdata_App
         $feed->setMajorProtocolVersion($majorProtocolVersion);
         $feed->setMinorProtocolVersion($minorProtocolVersion);
         $feed->transferFromXML($string);
-        $feed->setHttpClient(self::getstaticHttpClient());
+        $feed->setHttpClient(self::getStaticHttpClient());
         return $feed;
     }
 
@@ -983,7 +983,7 @@ class Zend_Gdata_App
         $response = $this->post($data, $uri, null, null, $extraHeaders);
 
         $returnEntry = new $className($response->getBody());
-        $returnEntry->setHttpClient(self::getstaticHttpClient());
+        $returnEntry->setHttpClient(self::getStaticHttpClient());
 
         $etag = $response->getHeader('ETag');
         if ($etag !== null) {
@@ -1023,7 +1023,7 @@ class Zend_Gdata_App
 
         $response = $this->put($data, $uri, null, null, $extraHeaders);
         $returnEntry = new $className($response->getBody());
-        $returnEntry->setHttpClient(self::getstaticHttpClient());
+        $returnEntry->setHttpClient(self::getStaticHttpClient());
 
         $etag = $response->getHeader('ETag');
         if ($etag !== null) {

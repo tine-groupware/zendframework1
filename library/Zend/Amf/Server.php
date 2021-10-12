@@ -547,7 +547,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
                     $e->getCode(),
                     $e->getLine()
                 );
-                $responseType = Zend_AMF_Constants::STATUS_METHOD;
+                $responseType = Zend_Amf_Constants::STATUS_METHOD;
             }
         }
 
@@ -609,11 +609,11 @@ class Zend_Amf_Server implements Zend_Server_Interface
                         }
                         break;
                 }
-                $responseType = Zend_AMF_Constants::RESULT_METHOD;
+                $responseType = Zend_Amf_Constants::RESULT_METHOD;
             } catch (Exception $e) {
                 $return = $this->_errorMessage($objectEncoding, $message,
                     $e->getMessage(), $e->getTraceAsString(),$e->getCode(),  $e->getLine());
-                $responseType = Zend_AMF_Constants::STATUS_METHOD;
+                $responseType = Zend_Amf_Constants::STATUS_METHOD;
             }
 
             $responseURI = $body->getResponseURI() . $responseType;

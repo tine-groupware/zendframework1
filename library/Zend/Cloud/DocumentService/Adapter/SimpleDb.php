@@ -185,8 +185,8 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         try {
             $this->_simpleDb->putAttributes(
                 $collectionName,
-                $document->getID(),
-                $this->_makeAttributes($document->getID(), $document->getFields())
+                $document->getId(),
+                $this->_makeAttributes($document->getId(), $document->getFields())
             );
         } catch(Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document insertion: '.$e->getMessage(), $e->getCode(), $e);
