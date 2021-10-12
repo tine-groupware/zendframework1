@@ -180,7 +180,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
                 } elseif (false === ($index = array_search($key, $this->_map))) {
                     $index = $key;
                 }
-                $return[$index] = $values[$key];
+                $return[$index] = $value;
             } elseif ($reversed) {
                 $index = $key;
                 if (!is_int($key)) {
@@ -191,7 +191,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
                     }
                 }
                 if (false !== $index) {
-                    $return[$index] = $values[$key];
+                    $return[$index] = $value;
                 }
             } elseif ($preserve) {
                 $return[$key] = $value;

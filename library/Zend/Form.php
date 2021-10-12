@@ -2247,7 +2247,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                     if (!isset($into[$key])) {
                         $into[$key] = [];
                     }
-                    $into[$key] = $this->_array_replace_recursive($into[$key], $from[$key]);
+                    $into[$key] = $this->_array_replace_recursive($into[$key], $value);
                 } else {
                     $into[$key] = $value;
                 }
