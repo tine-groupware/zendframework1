@@ -237,7 +237,7 @@ class Zend_Json_Decoder
         switch ($this->_decodeType) {
             case Zend_Json::TYPE_OBJECT:
                 // Create new StdClass and populate with $members
-                $result = new StdClass();
+                $result = new stdClass();
                 foreach ($members as $key => $value) {
                     if ($key === '') {
                         $key = '_empty_';
@@ -582,4 +582,3 @@ class Zend_Json_Decoder
         return '';
     }
 }
-

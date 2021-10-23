@@ -414,7 +414,7 @@ class Zend_OpenId
         }
 
         // 7.2.4
-        return self::normalizeURL($id);
+        return self::normalizeUrl($id);
     }
 
     /**

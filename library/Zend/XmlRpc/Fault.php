@@ -302,6 +302,6 @@ class Zend_XmlRpc_Fault
      */
     public function __toString()
     {
-        return $this->saveXML();
+        return $this->saveXml();
     }
 }

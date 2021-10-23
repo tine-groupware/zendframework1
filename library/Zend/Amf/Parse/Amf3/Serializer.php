@@ -291,7 +291,7 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
         if(is_string($xml)) {
             //nothing to do
         } else if ($xml instanceof DOMDocument) {
-            $xml = $xml->saveXml();
+            $xml = $xml->saveXML();
         } else if ($xml instanceof SimpleXMLElement) {
             $xml = $xml->asXML();
         } else {

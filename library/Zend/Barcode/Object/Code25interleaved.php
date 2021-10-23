@@ -96,6 +96,7 @@ class Zend_Barcode_Object_Code25interleaved extends Zend_Barcode_Object_Code25
         }
 
         // Start character (0000)
+        $barcodeTable = [];
         $barcodeTable[] = [1, $this->_barThinWidth, 0, 1];
         $barcodeTable[] = [0, $this->_barThinWidth, 0, 1];
         $barcodeTable[] = [1, $this->_barThinWidth, 0, 1];

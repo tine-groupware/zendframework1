@@ -368,7 +368,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
     public function fetchMetadata($path, $options = null)
     {
         try {
-            return $this->_storageClient->getBlobMetaData(
+            return $this->_storageClient->getBlobMetadata(
                 $this->_container,
                 $path
             );

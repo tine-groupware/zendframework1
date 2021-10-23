@@ -82,7 +82,7 @@ class Zend_Amf_Parse_Amf0_Deserializer extends Zend_Amf_Parse_Deserializer
 
             // string
             case Zend_Amf_Constants::AMF0_STRING:
-                return $this->_stream->readUTF();
+                return $this->_stream->readUtf();
 
             // object
             case Zend_Amf_Constants::AMF0_OBJECT:
@@ -114,7 +114,7 @@ class Zend_Amf_Parse_Amf0_Deserializer extends Zend_Amf_Parse_Deserializer
 
             // longString  strlen(string) > 2^16
             case Zend_Amf_Constants::AMF0_LONGSTRING:
-                return $this->_stream->readLongUTF();
+                return $this->_stream->readLongUtf();
 
             //internal AS object,  not supported
             case Zend_Amf_Constants::AMF0_UNSUPPORTED:
@@ -156,7 +156,7 @@ class Zend_Amf_Parse_Amf0_Deserializer extends Zend_Amf_Parse_Deserializer
         }
 
         while (true) {
-            $key        = $this->_stream->readUTF();
+            $key        = $this->_stream->readUtf();
             $typeMarker = $this->_stream->readByte();
             if ($typeMarker != Zend_Amf_Constants::AMF0_OBJECTTERM ){
                 //Recursivly call readTypeMarker to get the types of properties in the object
@@ -250,7 +250,7 @@ class Zend_Amf_Parse_Amf0_Deserializer extends Zend_Amf_Parse_Deserializer
      */
     public function readXmlString()
     {
-        $string = $this->_stream->readLongUTF();
+        $string = $this->_stream->readLongUtf();
         return Zend_Xml_Security::scan($string); //simplexml_load_string($string);
     }
 
@@ -267,7 +267,7 @@ class Zend_Amf_Parse_Amf0_Deserializer extends Zend_Amf_Parse_Deserializer
     {
          require_once 'Zend/Amf/Parse/TypeLoader.php';
         // get the remote class name
-        $className = $this->_stream->readUTF();
+        $className = $this->_stream->readUtf();
         $loader = Zend_Amf_Parse_TypeLoader::loadType($className);
         $returnObject = new $loader();
         $properties = get_object_vars($this->readObject());

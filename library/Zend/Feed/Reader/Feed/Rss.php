@@ -59,7 +59,7 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
      * @param  DOMDocument $dom
      * @param  string $type
      */
-    public function __construct(DomDocument $dom, $type = null)
+    public function __construct(DOMDocument $dom, $type = null)
     {
         parent::__construct($dom, $type);
 

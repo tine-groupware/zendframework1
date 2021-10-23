@@ -92,7 +92,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
      * @param DomDocument The DOM object for the feed's XML
      * @param string $type Feed type
      */
-    public function __construct(DomDocument $domDocument, $type = null)
+    public function __construct(DOMDocument $domDocument, $type = null)
     {
         $this->_domDocument = $domDocument;
         $this->_xpath = new DOMXPath($this->_domDocument);
@@ -190,7 +190,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
      */
     public function saveXml()
     {
-          return $this->getDomDocument()->saveXml();
+          return $this->getDomDocument()->saveXML();
     }
 
     /**

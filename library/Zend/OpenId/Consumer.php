@@ -257,7 +257,7 @@ class Zend_OpenId_Consumer
             /* Ignore query part in openid.return_to */
             $pos = strpos($params['openid_return_to'], '?');
             if ($pos === false ||
-                SUBSTR($params['openid_return_to'], 0 , $pos) != Zend_OpenId::selfUrl()) {
+                substr($params['openid_return_to'], 0 , $pos) != Zend_OpenId::selfUrl()) {
 
                 $this->_setError("Wrong openid.return_to '".
                     $params['openid_return_to']."' != '" . Zend_OpenId::selfUrl() ."'");

@@ -330,7 +330,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      */
     public function setName($name)
     {
-        $name = $this->filtername($name);
+        $name = $this->filterName($name);
         if (('0' !== $name) && empty($name)) {
             require_once 'Zend/Form/Exception.php';
             throw new Zend_Form_Exception('Invalid name provided; must contain only valid variable characters and be non-empty');

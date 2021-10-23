@@ -1308,7 +1308,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         return array_merge(
             $this->getCustomProperties(),
             [
-                'label'             => $this->getlabel(),
+                'label'             => $this->getLabel(),
                 'fragment'          => $this->getFragment(),
                 'id'                => $this->getId(),
                 'class'             => $this->getClass(),
