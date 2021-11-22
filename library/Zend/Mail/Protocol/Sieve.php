@@ -130,9 +130,13 @@ class Zend_Mail_Protocol_Sieve
                 }
                 throw new Zend_Mail_Protocol_Exception("cannot enable TLS: $message");
             }
-            if ($this->_implementation == 'Dovecot Pigeonhole') {
+            // spec says server MUST resend capabilities followed by OK here...
+            // implementation can also be "Dovecote (Ubuntu) Pigeonhole" or "Sieve" ...
+            // I remove allow list now, I would suggest to add bad servers to a deny list if required
+            // but keep the default spec conform -> read until OK!
+            //if ($this->_implementation == 'Dovecot Pigeonhole') {
                 $this->readResponse();
-            }
+            //}
         }
         
         return $this->_welcome;
