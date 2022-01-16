@@ -174,6 +174,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      *
      * @return integer Entry count.
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->_entries);
@@ -185,6 +186,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->_entryIndex = 0;
@@ -196,6 +198,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      *
      * @return mixed The current row, or null if no rows.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return new $this->_entryClassName(
@@ -209,6 +212,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      *
      * @return mixed The current row number (starts at 0), or NULL if no rows
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->_entryIndex;
@@ -220,6 +224,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      *
      * @return mixed The next row, or null if no more rows.
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         ++$this->_entryIndex;
@@ -231,6 +236,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      *
      * @return boolean Whether the iteration is valid
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return 0 <= $this->_entryIndex && $this->_entryIndex < $this->count();

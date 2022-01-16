@@ -1043,6 +1043,7 @@ class ZF12347_IteratorAggregate implements IteratorAggregate
         'baz' => 5
     ];
 
+    #[\ReturnTypeWillChange]
     public function getIterator() {
         return new ArrayIterator($this->array);
     }
