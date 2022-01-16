@@ -115,7 +115,7 @@ class Zend_Soap_TestAsset_TestFixingMultiplePrototypes
      * @param integer $a
      * @param integer $b
      * @param integer $d
-     * @return integer
+     * @return void
      */
     public function testFunc($a=100, $b=200, $d=300)
     {
@@ -205,7 +205,7 @@ class Zend_Soap_TestAsset_AutoDiscoverTestClass2
     }
 
     /**
-     * @return Zend_Soap_TestAsset_AutoDiscoverTestClass1[]
+     * @return AutoDiscoverTestClass1[]
      */
     public function fetchAll()
     {
@@ -317,14 +317,14 @@ class Zend_Soap_TestAsset_MyService
 {
     /**
      *    @param string $foo
-     *    @return Zend_Soap_TestAsset_MyResponse[]
+     *    @return void
      */
     public function foo($foo)
     {
     }
     /**
      *    @param string $bar
-     *    @return Zend_Soap_TestAsset_MyResponse[]
+     *    @return void
      */
     public function bar($bar)
     {
@@ -332,7 +332,7 @@ class Zend_Soap_TestAsset_MyService
 
     /**
      *    @param string $baz
-     *    @return Zend_Soap_TestAsset_MyResponse[]
+     *    @return void
      */
     public function baz($baz)
     {
@@ -348,14 +348,14 @@ class Zend_Soap_TestAsset_MyServiceSequence
 {
     /**
      *    @param string $foo
-     *    @return string[]
+     *    @return void
      */
     public function foo($foo)
     {
     }
     /**
      *    @param string $bar
-     *    @return string[]
+     *    @return void
      */
     public function bar($bar)
     {
@@ -363,7 +363,7 @@ class Zend_Soap_TestAsset_MyServiceSequence
 
     /**
      *    @param string $baz
-     *    @return string[]
+     *    @return void
      */
     public function baz($baz)
     {
@@ -371,7 +371,7 @@ class Zend_Soap_TestAsset_MyServiceSequence
 
     /**
      *    @param string $baz
-     *    @return string[][][]
+     *    @return void
      */
     public function bazNested($baz)
     {
@@ -404,7 +404,7 @@ class Zend_Soap_TestAsset_Recursion
     public $recursion;
 
     /**
-     * @return Zend_Soap_TestAsset_Recursion
+     * @return void
      */
     public function create() {}
 }

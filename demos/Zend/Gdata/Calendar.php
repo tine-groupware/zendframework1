@@ -522,7 +522,7 @@ function createRecurringEvent ($client, $title = 'Tennis with Beth',
  *
  * @param  Zend_Http_Client $client  The authenticated client object
  * @param  string           $eventId The event ID string
- * @return Zend_Gdata_Calendar_EventEntry|null if the event is found, null if it's not
+ * @return string|Zend_Gdata_App_Entry|null if the event is found, null if it's not
  */
 function getEvent($client, $eventId)
 {
@@ -550,7 +550,7 @@ function getEvent($client, $eventId)
  * @param  Zend_Http_Client $client   The authenticated client object
  * @param  string           $eventId  The event ID string
  * @param  string           $newTitle The new title to set on this event
- * @return Zend_Gdata_Calendar_EventEntry|null The updated entry
+ * @return string|Zend_Gdata_App_Entry|null The updated entry
  */
 function updateEvent ($client, $eventId, $newTitle)
 {
@@ -582,7 +582,7 @@ function updateEvent ($client, $eventId, $newTitle)
  * @param  string           $eventId The event ID string
  * @param  string           $name    The name of the extended property
  * @param  string           $value   The value of the extended property
- * @return Zend_Gdata_Calendar_EventEntry|null The updated entry
+ * @return Zend_Gdata_App_Entry|null The updated entry
  */
 function addExtendedProperty ($client, $eventId,
     $name='http://www.example.com/schemas/2005#mycal.id', $value='1234')
@@ -606,7 +606,7 @@ function addExtendedProperty ($client, $eventId,
  * @param  Zend_Http_Client $client  The authenticated client object
  * @param  string           $eventId The event ID string
  * @param  integer          $minutes Minutes before event to set reminder
- * @return Zend_Gdata_Calendar_EventEntry|null The updated entry
+ * @return Zend_Gdata_App_Entry|null The updated entry
  */
 function setReminder($client, $eventId, $minutes=15)
 {

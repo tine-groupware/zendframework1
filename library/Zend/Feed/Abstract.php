@@ -207,7 +207,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
     /**
      * Required by the Iterator interface.
      *
-     * @return mixed The current row number (starts at 0), or NULL if no rows
+     * @return int The current row number (starts at 0), or NULL if no rows
      */
     public function key()
     {
@@ -218,7 +218,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
     /**
      * Required by the Iterator interface.
      *
-     * @return mixed The next row, or null if no more rows.
+     * @return void The next row, or null if no more rows.
      */
     public function next()
     {

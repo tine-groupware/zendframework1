@@ -225,7 +225,7 @@ if (!is_array($this->preparedQueue)) {
         /**
          * Iterator: return current key
          *
-         * @return mixed Usually an int or string
+         * @return int Usually an int or string
          */
         public function key()
         {

@@ -102,7 +102,7 @@ abstract class Zend_Search_Lucene_Index_SegmentWriter
      * List of the index files.
      * Used for automatic compound file generation
      *
-     * @var unknown_type
+     * @var array
      */
     protected $_files = [];
 

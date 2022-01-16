@@ -748,6 +748,7 @@ class Zend_XmlRpc_Server_testClass
     /**
      * @param string $arg
      * @return struct
+     * @noinspection PhpReturnDocTypeMismatchInspection
      */
     public function test4($arg)
     {
