@@ -32,7 +32,9 @@ Installable through git clone or through
 `composer require shardj/zf1-future` https://packagist.org/packages/shardj/zf1-future  
 
 # System Requirements
-ZF1 Future runs on any version of PHP 8.0!
+ZF1 Future runs on any version of PHP 8!
+
+The latest version supporting PHP 7.1 - 7.4 was 1.20.0 (not 1.20.1)
 
 # License
 The files in this archive are released under the Zend Framework license. You can find a copy of this license in [LICENSE.txt](LICENSE.txt).
