@@ -172,7 +172,7 @@ class com_zend_framework_IntrospectorTest
      * Foobar
      *
      * @param  string|int $arg
-     * @return string|stdClass
+     * @return void
      */
     public function foobar($arg)
     {
@@ -182,7 +182,7 @@ class com_zend_framework_IntrospectorTest
      * Barbaz
      *
      * @param  com_zend_framework_IntrospectorTestCustomType $arg
-     * @return boolean
+     * @return void
      */
     public function barbaz($arg)
     {
@@ -191,7 +191,7 @@ class com_zend_framework_IntrospectorTest
     /**
      * Bazbat
      *
-     * @return com_zend_framework_IntrospectorTestExplicitType
+     * @return void
      */
     public function bazbat()
     {

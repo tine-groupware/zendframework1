@@ -101,7 +101,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      *
      * @param  string|Zend_Db_Select $sql  The SQL statement with placeholders.
      * @param  mixed                 $bind An array of data to bind to the placeholders.
-     * @return Zend_Db_Statement (may also be PDOStatement in the case of PDO)
+     * @return Zend_Db_Statement_Static (may also be PDOStatement in the case of PDO)
      */
     public function query($sql, $bind = [])
     {
@@ -225,7 +225,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      * Prepare a statement and return a PDOStatement-like object.
      *
      * @param  string|Zend_Db_Select $sql SQL query
-     * @return Zend_Db_Statment_Static
+     * @return Zend_Db_Statement_Static
      */
     public function prepare($sql)
     {
@@ -244,7 +244,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      *
      * @param string $tableName   OPTIONAL Name of table.
      * @param string $primaryKey  OPTIONAL Name of primary key column.
-     * @return integer
+     * @return integer|null
      */
     public function lastInsertId($tableName = null, $primaryKey = 'id')
     {

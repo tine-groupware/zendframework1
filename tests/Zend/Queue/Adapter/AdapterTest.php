@@ -783,7 +783,7 @@ abstract class Zend_Queue_Adapter_AdapterTest extends PHPUnit_Framework_TestCase
      *
      * @param string $func function name
      * @param array $args function arguments
-     * @return boolean - true if exception, false if not
+     * @return void - true if exception, false if not
      */
     protected function try_exception($func, $args)
     {

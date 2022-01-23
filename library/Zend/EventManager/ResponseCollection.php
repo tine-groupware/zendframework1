@@ -143,7 +143,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
         /**
          * Iterator: return key of current item in the stack
          *
-         * @return mixed
+         * @return int|string|null
          */
         #[\ReturnTypeWillChange]
         public function key()

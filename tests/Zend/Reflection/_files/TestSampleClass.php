@@ -102,7 +102,7 @@ class Zend_Reflection_TestSampleClass5
      * @param int Description for two
      * @param string $three Description for three
      *                      which spans multiple lines
-     * @return mixed Some return descr
+     * @return string Some return descr
      */
     public function doSomething($one, $two = 2, $three = 'three')
     {
@@ -116,7 +116,7 @@ class Zend_Reflection_TestSampleClass5
      * @param int Description for two
      * @param string $three Description for three
      *                      which spans multiple lines
-     * @return int
+     * @return string
      */
     public function doSomethingElse($one, $two = 2, $three = 'three')
     {
@@ -176,7 +176,7 @@ class Zend_Reflection_Docblock_Param_WithNamespace
 {
     /**
      * @param Zend\Foo\Bar $var desc
-     * @return Zend\Reflection\Docblock
+     * @return void
      */
     public function doSomething()
     {
@@ -186,7 +186,7 @@ class Zend_Reflection_Docblock_Param_WithNamespace
 
 class Zend_Reflection_TestSampleClass7
 {
-    public function bigMethodSignature($arg1, $arg2, $arg3, 
+    public function bigMethodSignature($arg1, $arg2, $arg3,
         $arg4, $arg5, $arg6)
     {
         // FUNKY SIGNATURE

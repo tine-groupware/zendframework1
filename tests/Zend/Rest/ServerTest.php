@@ -725,7 +725,7 @@ function Zend_Rest_Server_TestFunc11()
 /**
  * Return nested array
  *
- * @return struct
+ * @return array
  */
 function Zend_Rest_Server_TestFunc12()
 {
@@ -820,7 +820,7 @@ class Zend_Rest_Server_Test
     /**
      * Test structs encode correctly
      *
-     * @return struct
+     * @return string[]
      */
     public function testStructEncoding()
     {

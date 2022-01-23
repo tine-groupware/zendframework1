@@ -120,7 +120,7 @@ class Zend_Tool_DatabaseSchemaProvider extends Zend_Tool_Project_Provider_Abstra
      * @param string $env      Environment to read database conguration from
      * @param string $dir      Directory containing migration scripts
      *
-     * @return booolean
+     * @return bool
      */
     public function increment($versions=1,$env='development', $dir='./scripts/migrations')
     {

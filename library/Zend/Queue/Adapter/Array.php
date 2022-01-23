@@ -334,7 +334,7 @@ class Zend_Queue_Adapter_Array extends Zend_Queue_Adapter_AdapterAbstract
      * returns underlying _data array
      * $queue->getAdapter()->getData();
      *
-     * @return $this;
+     * @return array;
      */
     public function getData()
     {

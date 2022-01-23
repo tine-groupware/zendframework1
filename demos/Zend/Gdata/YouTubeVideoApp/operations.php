@@ -238,7 +238,7 @@ function findFlashUrl($entry)
  * Check the upload status of a video
  *
  * @param string $videoId The video to check.
- * @return string A message about the video's status.
+ * @return void A message about the video's status.
  */
 function checkUpload($videoId)
 {

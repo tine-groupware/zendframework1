@@ -244,7 +244,7 @@ class Zend_Validate_Db_RecordExistsTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return ZF-8863
+     * @return void
      */
     public function testExcludeConstructor()
     {

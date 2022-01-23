@@ -187,7 +187,7 @@ class Zend_Server_Reflection_FunctionTest extends PHPUnit_Framework_TestCase
  * @param string $var1 Some description
  * @param string|array $var2
  * @param array $var3
- * @return null|array
+ * @return void
  */
 function Zend_Server_Reflection_FunctionTest_function($var1, $var2, $var3 = null)
 {
