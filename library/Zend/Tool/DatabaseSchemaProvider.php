@@ -155,6 +155,7 @@ class Zend_Tool_DatabaseSchemaProvider extends Zend_Tool_Project_Provider_Abstra
      *
      * @return boolean
      */
+    #[\ReturnTypeWillChange]
     public function current($env='development', $dir='./migrations')
     {
         $this->_init($env);
