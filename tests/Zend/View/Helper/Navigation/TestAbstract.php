@@ -152,7 +152,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract
     /**
      * Sets up ACL
      *
-     * @return Zend_Acl
+     * @return array
      */
     protected function _getAcl()
     {

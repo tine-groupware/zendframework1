@@ -32,7 +32,7 @@ class ZendTest_Loader_TestAsset_TestPluginMap implements IteratorAggregate
 {
     /**
      * Plugin map
-     * 
+     *
      * @var array
      */
     public $map = [
@@ -43,9 +43,10 @@ class ZendTest_Loader_TestAsset_TestPluginMap implements IteratorAggregate
 
     /**
      * Return iterator
-     * 
-     * @return Traversable
+     *
+     * @return ArrayIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->map);
