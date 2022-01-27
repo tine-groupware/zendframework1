@@ -534,35 +534,6 @@ class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('/index.php', $request->getBaseUrl());
     }
 
-    public function testSetBaseUrlAutoDiscoveryUsingXRewriteUrl()
-    {
-        unset($_SERVER['REQUEST_URI']);
-        $_SERVER['HTTP_X_REWRITE_URL'] = '/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['PHP_SELF']           = '/index.php/news/3';
-        $_SERVER['SCRIPT_FILENAME']    = '/var/web/html/index.php';
-        $_GET = [
-            'var1' => 'val1',
-            'var2' => 'val2'
-        ];
-        $request = new Zend_Controller_Request_Http();
-
-        $this->assertEquals('/index.php', $request->getBaseUrl());
-    }
-
-    public function testSetBaseUrlAutoDiscoveryUsingXOriginalUrl()
-    {
-        unset($_SERVER['REQUEST_URI']);
-        $_SERVER['HTTP_X_ORIGINAL_URL'] = '/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['PHP_SELF']           = '/index.php/news/3';
-        $_SERVER['SCRIPT_FILENAME']    = '/var/web/html/index.php';
-        $_GET = [
-            'var1' => 'val1',
-            'var2' => 'val2'
-        ];
-        $request = new Zend_Controller_Request_Http();
-
-        $this->assertEquals('/index.php', $request->getBaseUrl());
-    }
 
     public function testSetBaseUrlAutoDiscoveryUsingOrigPathInfo()
     {

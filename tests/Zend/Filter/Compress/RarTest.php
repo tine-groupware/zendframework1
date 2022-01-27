@@ -329,7 +329,7 @@ class Zend_Filter_Compress_RarTest extends PHPUnit_Framework_TestCase
     /**
      * Test callback for compression
      *
-     * @return unknown
+     * @return bool
      */
     public static function rarCompress()
     {
