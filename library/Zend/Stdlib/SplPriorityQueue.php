@@ -105,8 +105,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          *
          * @return int
          */
-        #[\ReturnTypeWillChange]
-        public function count()
+        public function count(): int
         {
             return $this->count;
         }
@@ -240,8 +239,7 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return void
          */
-        #[\ReturnTypeWillChange]
-        public function next()
+        public function next(): void
         {
             $this->count--;
         }
@@ -263,8 +261,7 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return void
          */
-        #[\ReturnTypeWillChange]
-        public function rewind()
+        public function rewind(): void
         {
             if (!$this->preparedQueue) {
                 $this->prepareQueue();
@@ -333,8 +330,7 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return bool
          */
-        #[\ReturnTypeWillChange]
-        public function valid()
+        public function valid(): bool
         {
             return (bool) $this->count;
         }
@@ -472,7 +468,7 @@ class Zend_Stdlib_SplPriorityQueue extends SplPriorityQueue implements Serializa
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): ?string
     {
         $data = [];
         $this->setExtractFlags(self::EXTR_BOTH);
@@ -496,7 +492,7 @@ class Zend_Stdlib_SplPriorityQueue extends SplPriorityQueue implements Serializa
      * @param  string $data
      * @return void
      */
-    public function unserialize($data)
+    public function unserialize($data): void
     {
         foreach (unserialize($data) as $item) {
             $this->insert($item['data'], $item['priority']);

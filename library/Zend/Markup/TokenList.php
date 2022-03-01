@@ -110,8 +110,7 @@ class Zend_Markup_TokenList implements RecursiveIterator
      *
      * @return void
      */
-    #[\ReturnTypeWillChange]
-    public function rewind()
+    public function rewind(): void
     {
         reset($this->_tokens);
     }
@@ -121,8 +120,7 @@ class Zend_Markup_TokenList implements RecursiveIterator
      *
      * @return bool
      */
-    #[\ReturnTypeWillChange]
-    public function valid()
+    public function valid(): bool
     {
         return $this->current() !== false;
     }
