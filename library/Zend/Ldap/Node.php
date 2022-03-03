@@ -880,8 +880,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return null
      * @throws Zend_Ldap_Exception
      */
-    #[\ReturnTypeWillChange]
-    public function offsetSet($name, $value)
+    public function offsetSet($name, $value): void
     {
         $this->setAttribute($name, $value);
     }
@@ -898,8 +897,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return null
      * @throws Zend_Ldap_Exception
      */
-    #[\ReturnTypeWillChange]
-    public function offsetUnset($name)
+    public function offsetUnset($name): void
     {
         $this->deleteAttribute($name);
     }
@@ -1099,8 +1097,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * Move forward to next attribute.
      * Implements Iterator
      */
-    #[\ReturnTypeWillChange]
-    public function next()
+    public function next(): void
     {
         $this->_iteratorRewind = false;
     }
@@ -1109,8 +1106,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * Rewind the Iterator to the first attribute.
      * Implements Iterator
      */
-    #[\ReturnTypeWillChange]
-    public function rewind()
+    public function rewind(): void
     {
         $this->_iteratorRewind = true;
     }
@@ -1122,8 +1118,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      *
      * @return boolean
      */
-    #[\ReturnTypeWillChange]
-    public function valid()
+    public function valid(): bool
     {
         return $this->_iteratorRewind;
     }
