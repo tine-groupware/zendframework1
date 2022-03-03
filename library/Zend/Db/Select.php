@@ -677,13 +677,15 @@ class Zend_Db_Select
     /**
      * Makes the query SELECT FOR UPDATE, optionally with NOWAIT or SKIP LOCKED options
      *
-     * @param mixed $flag Whether or not the SELECT is FOR UPDATE (default true), pass the flag FU_MODE_NOWAIT or FU_MODE_SKIP to make the FOR UPDATE either NOWAIT or SKIP LOCKED
+     * @param mixed $flag Whether or not the SELECT is FOR UPDATE (default true), 
+                          pass the flag FU_MODE_NOWAIT or FU_MODE_SKIP to make 
+                          the FOR UPDATE either NOWAIT or SKIP LOCKED
      * @return Zend_Db_Select This Zend_Db_Select object.
      */
     public function forUpdate($flag = true)
     {
         $this->_parts[self::FOR_UPDATE] = (bool) $flag; //still use bool here for backwards compatibility
-        if($flag === self::FU_MODE_NOWAIT || $flag === self::FU_MODE_SKIP) {
+        if ($flag === self::FU_MODE_NOWAIT || $flag === self::FU_MODE_SKIP) {
             $this->_parts[self::FOR_UPDATE_MODE] = $flag;
         }
         return $this;
@@ -1331,7 +1333,7 @@ class Zend_Db_Select
 
         if ($this->_parts[self::FOR_UPDATE_MODE] === self::FU_MODE_NOWAIT) {
             $sql .= ' ' . self::SQL_FU_NOWAIT;
-        }elseif($this->_parts[self::FOR_UPDATE_MODE] === self::FU_MODE_SKIP) {
+        } elseif ($this->_parts[self::FOR_UPDATE_MODE] === self::FU_MODE_SKIP) {
             $sql .= ' ' . self::SQL_FU_SKIP;
         }
 
