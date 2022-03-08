@@ -283,7 +283,12 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          */
         public function serialize(): ?string
         {
-            return serialize($this->data);
+            return serialize($this->__serialize());
+        }
+
+        public function __serialize(): array
+        {
+            return $this->data;
         }
 
         /**
@@ -321,7 +326,12 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          */
         public function unserialize($serialized): void
         {
-            $this->data  = unserialize($serialized);
+            $this->__unserialize(unserialize($serialized));
+        }
+
+        public function __unserialize(array $data): void
+        {
+            $this->data = $data;
             $this->stack = false;
         }
 
