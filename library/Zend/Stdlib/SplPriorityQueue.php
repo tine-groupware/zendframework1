@@ -239,7 +239,8 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return void
          */
-        public function next(): void
+        #[\ReturnTypeWillChange]
+        public function next()
         {
             $this->count--;
         }
