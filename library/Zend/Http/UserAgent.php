@@ -171,6 +171,11 @@ class Zend_Http_UserAgent implements Serializable
      */
     public function serialize(): ?string
     {
+        return serialize($this->__serialize());
+    }
+
+    public function __serialize(): array
+    {
         $device = $this->getDevice();
         $spec = [
             'browser_type' => $this->_browserType,
@@ -180,7 +185,7 @@ class Zend_Http_UserAgent implements Serializable
             'user_agent'   => $this->getServerValue('http_user_agent'),
             'http_accept'  => $this->getServerValue('http_accept'),
         ];
-        return serialize($spec);
+        return $spec;
     }
 
     /**
@@ -191,8 +196,11 @@ class Zend_Http_UserAgent implements Serializable
      */
     public function unserialize($serialized): void
     {
-        $spec = unserialize($serialized);
+        $this->__unserialize(unserialize($serialized));
+    }
 
+    public function __unserialize(array $spec): void
+    {
         $this->setOptions($spec);
 
         // Determine device class and ensure the class is loaded

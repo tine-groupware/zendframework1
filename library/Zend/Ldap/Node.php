@@ -1012,7 +1012,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return boolean
      * @throws Zend_Ldap_Exception
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         if (!is_array($this->_children)) {
             if ($this->isAttached()) {
@@ -1033,7 +1033,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return Zend_Ldap_Node_ChildrenIterator
      * @throws Zend_Ldap_Exception
      */
-    public function getChildren()
+    public function getChildren(): ?\RecursiveIterator
     {
         if (!is_array($this->_children)) {
             $this->_children = [];
