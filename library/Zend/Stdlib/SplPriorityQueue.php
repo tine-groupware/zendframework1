@@ -239,7 +239,8 @@ if (!is_array($this->preparedQueue)) {
          *
          * @return void
          */
-        public function next(): void
+        #[\ReturnTypeWillChange]
+        public function next()
         {
             $this->count--;
         }
@@ -470,6 +471,11 @@ class Zend_Stdlib_SplPriorityQueue extends SplPriorityQueue implements Serializa
      */
     public function serialize(): ?string
     {
+        return serialize($this->__serialize());
+    }
+
+    public function __serialize(): array
+    {
         $data = [];
         $this->setExtractFlags(self::EXTR_BOTH);
         while ($this->valid()) {
@@ -483,7 +489,7 @@ class Zend_Stdlib_SplPriorityQueue extends SplPriorityQueue implements Serializa
             $this->insert($item['data'], $item['priority']);
         }
 
-        return serialize($data);
+        return $data;
     }
 
     /**
@@ -494,7 +500,12 @@ class Zend_Stdlib_SplPriorityQueue extends SplPriorityQueue implements Serializa
      */
     public function unserialize($data): void
     {
-        foreach (unserialize($data) as $item) {
+        $this->__unserialize(unserialize($data));
+    }
+
+    public function __unserialize(array $data): void
+    {
+        foreach ($data as $item) {
             $this->insert($item['data'], $item['priority']);
         }
     }

@@ -56,7 +56,7 @@ class Zend_Markup_TokenList implements RecursiveIterator
      *
      * @return Zend_Markup_TokenList
      */
-    public function getChildren()
+    public function getChildren(): ?\RecursiveIterator
     {
         return current($this->_tokens)->getChildren();
     }
@@ -78,7 +78,7 @@ class Zend_Markup_TokenList implements RecursiveIterator
      *
      * @return bool
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return current($this->_tokens)->hasChildren();
     }

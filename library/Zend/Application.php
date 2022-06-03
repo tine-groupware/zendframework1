@@ -65,9 +65,10 @@ class Zend_Application
     /**
      * For bootstrapping the config we probably need to pass configuration to the config parsers.
      * Since options are not set up yet, we use this static array to pass configurations to the config parsers.
+     *
      * @var array|null
      */
-    protected static ?array $configParserOptions = null;
+    protected static $configParserOptions = null;
 
     /**
      * Sets a configuration array to be used for the config parsers on loading the configuration from files
