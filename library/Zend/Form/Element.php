@@ -1096,7 +1096,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = strtoupper((string) $type);
         switch ($type) {
             case self::DECORATOR:
             case self::FILTER:
@@ -2275,7 +2275,9 @@ class Zend_Form_Element implements Zend_Validate_Interface
             if (null !== $translator) {
                 $message = $translator->translate($message);
             }
-            if ($this->isArray() || is_array($value)) {
+            if (is_string($value)) {
+                $messages[$key] = str_replace('%value%', $value, $message);
+            } elseif ($this->isArray() || is_array($value)) {
                 $aggregateMessages = [];
                 foreach ($value as $val) {
                     $aggregateMessages[] = str_replace('%value%', $val, $message);
