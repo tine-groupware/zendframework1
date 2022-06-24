@@ -61,12 +61,12 @@ class Zend_Service_ShortUrl_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Service_ShortUrl');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Service_ShortUrl');
 
         $suite->addTestSuite('Zend_Service_ShortUrl_IsGdTest');
         $suite->addTestSuite('Zend_Service_ShortUrl_JdemCzTest');
@@ -78,6 +78,6 @@ class Zend_Service_ShortUrl_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_ShortUrl_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Service_ShortUrl_AllTests::main') {
     Zend_Service_ShortUrl_AllTests::main();
 }

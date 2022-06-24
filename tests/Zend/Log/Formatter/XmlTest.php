@@ -35,12 +35,12 @@ require_once 'Zend/Log/Formatter/Xml.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Log
  */
-class Zend_Log_Formatter_XmlTest extends PHPUnit_Framework_TestCase
+class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testDefaultFormat()
@@ -189,6 +189,6 @@ class Zend_Log_Formatter_XmlTest_SerializableObject
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Log_Formatter_XmlTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Log_Formatter_XmlTest::main') {
     Zend_Log_Formatter_XmlTest::main();
 }

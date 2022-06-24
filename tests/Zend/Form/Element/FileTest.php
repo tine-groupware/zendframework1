@@ -43,7 +43,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Form_Element_File
@@ -62,8 +62,8 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_FileTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_FileTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -137,11 +137,9 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
         $this->assertSame($adapter, $test);
     }
 
-    /**
-     * @expectedException Zend_Form_Element_Exception
-     */
     public function testElementShouldThrowExceptionWhenAddingAdapterOfInvalidType()
     {
+        $this->expectException(\Zend_Form_Element_Exception::class);
         $this->element->setTransferAdapter(new stdClass);
     }
 
@@ -684,6 +682,6 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 }
 
 // Call Zend_Form_Element_FileTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_FileTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Form_Element_FileTest::main") {
     Zend_Form_Element_FileTest::main();
 }

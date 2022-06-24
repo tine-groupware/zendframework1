@@ -38,14 +38,14 @@ require_once 'Zend/Service/LiveDocx/MailMerge.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id: $
  */
-class Zend_Service_LiveDocX_LiveDocxTest extends PHPUnit_Framework_TestCase
+class Zend_Service_LiveDocX_LiveDocxTest extends \PHPUnit\Framework\TestCase
 {
     public $phpLiveDocx;
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -92,6 +92,6 @@ class Zend_Service_LiveDocX_LiveDocxTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_LiveDocx_LiveDocxTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Service_LiveDocx_LiveDocxTest::main') {
     Zend_Service_LiveDocx_LiveDocxTest::main();
 }

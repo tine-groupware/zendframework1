@@ -33,7 +33,7 @@ require_once 'Zend/Measure/Viscosity/Dynamic.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_Viscosity_DynamicTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_Viscosity_DynamicTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for Mass initialisation

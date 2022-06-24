@@ -32,7 +32,7 @@ require_once 'Zend/Serializer/Adapter/Wddx.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Serializer_Adapter_WddxTest extends PHPUnit_Framework_TestCase
+class Zend_Serializer_Adapter_WddxTest extends \PHPUnit\Framework\TestCase
 {
 
     private $_adapter;
@@ -203,7 +203,7 @@ class Zend_Serializer_Adapter_WddxTest extends PHPUnit_Framework_TestCase
     public function testUnserialzeInvalid()
     {
         $value = 'not a serialized string';
-        $this->setExpectedException('Zend_Serializer_Exception');
+        $this->expectException('Zend_Serializer_Exception');
         $this->_adapter->unserialize($value);
     }
 
@@ -228,10 +228,10 @@ class Zend_Serializer_Adapter_WddxTest extends PHPUnit_Framework_TestCase
         }
 
         $value = 'not a serialized string';
-        $this->setExpectedException(
-            'Zend_Serializer_Exception',
-            'Can\'t unserialize wddx string'
+        $this->expectException(
+            'Zend_Serializer_Exception'
         );
+        $this->expectExceptionMessage('Can\'t unserialize wddx string');
         $this->_adapter->unserialize($value);
     }
 
@@ -240,7 +240,7 @@ class Zend_Serializer_Adapter_WddxTest extends PHPUnit_Framework_TestCase
         $value    = '<!DOCTYPE>'
                   . '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><string>test</string></data></wddxPacket>';
-        $this->setExpectedException("Zend_Serializer_Exception");
+        $this->expectException("Zend_Serializer_Exception");
         $data = $this->_adapter->unserialize($value);
     }
 }
@@ -253,7 +253,7 @@ class Zend_Serializer_Adapter_WddxTest extends PHPUnit_Framework_TestCase
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Serializer_Adapter_WddxSkipTest extends PHPUnit_Framework_TestCase
+class Zend_Serializer_Adapter_WddxSkipTest extends \PHPUnit\Framework\TestCase
 {
     public $message = null;
 

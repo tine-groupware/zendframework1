@@ -37,7 +37,7 @@ require_once 'Zend/Navigation.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
-class Zend_NavigationTest extends PHPUnit_Framework_TestCase
+class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var     Zend_Navigation
@@ -62,8 +62,8 @@ class Zend_NavigationTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_NavigationTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_NavigationTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**

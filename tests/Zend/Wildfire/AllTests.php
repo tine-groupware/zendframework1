@@ -38,12 +38,12 @@ class Zend_Wildfire_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Wildfire');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Wildfire');
 
         $suite->addTestSuite('Zend_Wildfire_WildfireTest');
 
@@ -51,6 +51,6 @@ class Zend_Wildfire_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Wildfire_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Wildfire_AllTests::main') {
     Zend_Wildfire_AllTests::main();
 }

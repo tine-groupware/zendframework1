@@ -33,7 +33,7 @@ require_once 'Zend/Ldap/Attribute.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Ldap
  */
-class Zend_Ldap_AttributeTest extends PHPUnit_Framework_TestCase
+class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
 {
     protected function _assertLocalDateTimeString($timestamp, $value)
     {

@@ -38,7 +38,7 @@ require_once 'Zend/Text/MultiByte.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Text
  */
-class Zend_Text_MultiByteTest extends PHPUnit_Framework_TestCase
+class Zend_Text_MultiByteTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +47,8 @@ class Zend_Text_MultiByteTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Text_MultiByteTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Text_MultiByteTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -293,6 +293,6 @@ class Zend_Text_MultiByteTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Text_MultiByteTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Text_MultiByteTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Text_MultiByteTest::main") {
     Zend_Text_MultiByteTest::main();
 }

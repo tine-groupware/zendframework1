@@ -42,7 +42,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  */
-class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
+class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_front;
@@ -58,8 +58,8 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Rest_RouteTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_RouteTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -967,6 +967,6 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Rest_RouteTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Rest_RouteTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Rest_RouteTest::main") {
     Zend_Rest_RouteTest::main();
 }

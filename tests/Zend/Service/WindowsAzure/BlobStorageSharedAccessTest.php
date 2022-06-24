@@ -44,7 +44,7 @@ require_once 'Zend/Service/WindowsAzure/Credentials/SharedAccessSignature.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_WindowsAzure_BlobStorageSharedAccessTest extends PHPUnit_Framework_TestCase
+class Zend_Service_WindowsAzure_BlobStorageSharedAccessTest extends \PHPUnit\Framework\TestCase
 {
     static $path;
     
@@ -56,8 +56,8 @@ class Zend_Service_WindowsAzure_BlobStorageSharedAccessTest extends PHPUnit_Fram
     public static function main()
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_BLOB_RUNTESTS) {
-            $suite  = new PHPUnit_Framework_TestSuite("Zend_Service_WindowsAzure_BlobStorageSharedAccessTest");
-            $result = PHPUnit_TextUI_TestRunner::run($suite);
+            $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_BlobStorageSharedAccessTest");
+            $result = \PHPUnit\TextUI\TestRunner::run($suite);
         }
     }
    
@@ -217,6 +217,6 @@ class Zend_Service_WindowsAzure_BlobStorageSharedAccessTest extends PHPUnit_Fram
 }
 
 // Call Zend_Service_WindowsAzure_BlobStorageSharedAccessTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_BlobStorageSharedAccessTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_BlobStorageSharedAccessTest::main") {
     Zend_Service_WindowsAzure_BlobStorageSharedAccessTest::main();
 }

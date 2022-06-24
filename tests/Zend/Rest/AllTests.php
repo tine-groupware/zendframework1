@@ -42,12 +42,12 @@ class Zend_Rest_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Rest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Rest');
 
         $suite->addTestSuite('Zend_Rest_ControllerTest');
         $suite->addTestSuite('Zend_Rest_RouteTest');
@@ -59,6 +59,6 @@ class Zend_Rest_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Rest_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Rest_AllTests::main') {
     Zend_Rest_AllTests::main();
 }

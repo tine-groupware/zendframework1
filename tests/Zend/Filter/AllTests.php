@@ -103,17 +103,17 @@ class Zend_Filter_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Filter');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Filter');
 
         $suite->addTestSuite('Zend_Filter_AlnumTest');
         $suite->addTestSuite('Zend_Filter_AlphaTest');
@@ -178,6 +178,6 @@ class Zend_Filter_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Filter_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_AllTests::main') {
     Zend_Filter_AllTests::main();
 }

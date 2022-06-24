@@ -43,7 +43,7 @@ require_once 'Zend/ProgressBar/Adapter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_ProgressBar
  */
-class Zend_ProgressBar_ProgressBarTest extends PHPUnit_Framework_TestCase
+class Zend_ProgressBar_ProgressBarTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +52,8 @@ class Zend_ProgressBar_ProgressBarTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_ProgressBar_ProgressBarTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_ProgressBar_ProgressBarTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testGreaterMin()
@@ -230,6 +230,6 @@ class Zend_ProgressBar_Adapter_MockUp extends Zend_ProgressBar_Adapter
 }
 
 // Call Zend_ProgressBar_ProgressBarTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_ProgressBar_ProgressBarTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_ProgressBar_ProgressBarTest::main") {
     Zend_ProgressBar_ProgressBarTest::main();
 }

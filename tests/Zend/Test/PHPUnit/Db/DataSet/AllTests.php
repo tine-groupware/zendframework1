@@ -42,12 +42,12 @@ class Zend_Test_PHPUnit_Db_DataSet_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Test_PHPUnit_Db_DataSet');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Test_PHPUnit_Db_DataSet');
 
         $suite->addTestSuite('Zend_Test_PHPUnit_Db_DataSet_DbRowsetTest');
         $suite->addTestSuite('Zend_Test_PHPUnit_Db_DataSet_QueryDataSetTest');
@@ -59,6 +59,6 @@ class Zend_Test_PHPUnit_Db_DataSet_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Test_PHPUnit_Db_DataSet_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Test_PHPUnit_Db_DataSet_AllTests::main') {
     Zend_Test_PHPUnit_Db_DataSet_AllTests::main();
 }

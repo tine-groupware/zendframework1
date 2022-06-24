@@ -51,12 +51,12 @@ class AllTests
 
         // Run buffered tests as a separate suite first
         ob_start();
-        PHPUnit_TextUI_TestRunner::run(self::suiteBuffered(), $parameters);
+        \PHPUnit\TextUI\TestRunner::run(self::suiteBuffered(), $parameters);
         if (ob_get_level()) {
             ob_end_flush();
         }
 
-        PHPUnit_TextUI_TestRunner::run(self::suite(), $parameters);
+        \PHPUnit\TextUI\TestRunner::run(self::suite(), $parameters);
     }
 
     /**
@@ -65,11 +65,11 @@ class AllTests
      * These tests require no output be sent prior to running as they rely
      * on internal PHP functions.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suiteBuffered()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Buffered');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Buffered');
 
         $suite->addTest(Zend_AllTests::suiteBuffered());
 
@@ -81,11 +81,11 @@ class AllTests
      *
      * All tests except those that require output buffering.
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework');
 
         $suite->addTest(Zend_AllTests::suite());
         $suite->addTest(resources_AllTests::suite());
@@ -94,6 +94,6 @@ class AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'AllTests::main') {
     AllTests::main();
 }

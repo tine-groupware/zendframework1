@@ -36,7 +36,7 @@ require_once 'Zend/Amf/Util/BinaryStream.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Util_BinaryStreamTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_Util_BinaryStreamTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -45,23 +45,19 @@ class Zend_Amf_Util_BinaryStreamTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_Util_BinaryStreamTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Util_BinaryStreamTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    /**
-     * @expectedException Zend_Amf_Exception
-     */
     public function testConstructorShouldThrowExceptionForInvalidStream()
     {
+        $this->expectException(\Zend_Amf_Exception::class);
         $test = new Zend_Amf_Util_BinaryStream(['foo', 'bar']);
     }
 
-    /**
-     * @expectedException Zend_Amf_Exception
-     */
     public function testReadBytesShouldRaiseExceptionForBufferUnderrun()
     {
+        $this->expectException(\Zend_Amf_Exception::class);
         $string = 'this is a short stream';
         $stream = new Zend_Amf_Util_BinaryStream($string);
         $length = strlen($string);
@@ -88,6 +84,6 @@ class Zend_Amf_Util_BinaryStreamTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Amf_Util_BinaryStreamTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_Util_BinaryStreamTest::main') {
     Zend_Amf_Util_BinaryStreamTest::main();
 }

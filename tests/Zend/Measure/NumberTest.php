@@ -34,7 +34,7 @@ require_once 'Zend/Measure/Number.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_NumberTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_NumberTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for Number initialisation

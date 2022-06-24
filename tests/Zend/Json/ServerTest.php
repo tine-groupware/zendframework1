@@ -42,7 +42,7 @@ require_once 'Zend/Server/Exception.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
-class Zend_Json_ServerTest extends PHPUnit_Framework_TestCase
+class Zend_Json_ServerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +52,8 @@ class Zend_Json_ServerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Json_ServerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Json_ServerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -519,6 +519,6 @@ function Zend_Json_ServerTest_FooFunc()
 }
 
 // Call Zend_Json_ServerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Json_ServerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Json_ServerTest::main") {
     Zend_Json_ServerTest::main();
 }

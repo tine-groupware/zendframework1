@@ -42,12 +42,12 @@ require_once 'Zend/Registry.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_TemperatureTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setup()
@@ -442,6 +442,6 @@ class Zend_Measure_TemperatureTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Measure_TemperatureTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Measure_TemperatureTest::main') {
     Zend_Measure_TemperatureTest::main();
 }

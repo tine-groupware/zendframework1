@@ -39,7 +39,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Decorator_ReCaptchaTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Decorator_ReCaptchaTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +49,8 @@ class Zend_Form_Decorator_ReCaptchaTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Decorator_ReCaptchaTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ReCaptchaTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -127,7 +127,7 @@ class Zend_Form_Decorator_ReCaptchaTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Form_Decorator_ReCaptchaTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_ReCaptchaTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Form_Decorator_ReCaptchaTest::main") {
     Zend_Form_Decorator_ReCaptchaTest::main();
 }
 

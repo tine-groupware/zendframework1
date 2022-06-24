@@ -42,12 +42,12 @@ class Zend_Dojo_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Dojo');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Dojo');
 
         $suite->addTestSuite('Zend_Dojo_BuildLayerTest');
         $suite->addTestSuite('Zend_Dojo_DojoTest');
@@ -59,6 +59,6 @@ class Zend_Dojo_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Dojo_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Dojo_AllTests::main') {
     Zend_Dojo_AllTests::main();
 }

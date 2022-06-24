@@ -44,7 +44,7 @@ require_once dirname(dirname(dirname(__FILE__))) . '/_files/HelperFlashMessenger
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_FlashMessengerTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Action
@@ -79,8 +79,8 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends PHPUnit_Framework
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_FlashMessengerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_FlashMessengerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -236,6 +236,6 @@ class FlashMessengerControllerActionHelper extends Zend_Controller_Action_Helper
 }
 
 // Call Zend_Controller_Action_Helper_FlashMessengerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_FlashMessengerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_FlashMessengerTest::main") {
     Zend_Controller_Action_Helper_FlashMessengerTest::main();
 }

@@ -42,7 +42,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_FormTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_Form_FormTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +51,8 @@ class Zend_Dojo_Form_FormTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_Form_FormTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_FormTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -141,6 +141,6 @@ class Zend_Dojo_Form_FormTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Dojo_Form_FormTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_FormTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_FormTest::main") {
     Zend_Dojo_Form_FormTest::main();
 }

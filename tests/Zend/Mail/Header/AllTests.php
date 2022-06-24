@@ -39,12 +39,12 @@ class Zend_Mail_Header_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Mail_Header');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Mail_Header');
 
         $suite->addTestSuite('Zend_Mail_Header_HeaderNameTest');
         $suite->addTestSuite('Zend_Mail_Header_HeaderValueTest');
@@ -53,6 +53,6 @@ class Zend_Mail_Header_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Mail_Header_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Mail_Header_AllTests::main') {
     Zend_Mail_Header_AllTests::main();
 }

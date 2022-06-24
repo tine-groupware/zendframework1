@@ -37,7 +37,7 @@ require_once 'Zend/Controller/Response/Exception.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Response
  */
-class Zend_Controller_Response_HttpTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Http_Response
@@ -53,8 +53,8 @@ class Zend_Controller_Response_HttpTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Response_HttpTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Response_HttpTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -649,6 +649,6 @@ class Zend_Controller_Response_HttpTest_Action extends Zend_Controller_Action
 {}
 
 // Call Zend_Controller_Response_HttpTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Response_HttpTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Response_HttpTest::main") {
     Zend_Controller_Response_HttpTest::main();
 }

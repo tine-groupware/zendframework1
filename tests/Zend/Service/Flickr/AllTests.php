@@ -45,17 +45,17 @@ class Zend_Service_Flickr_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Service_Flickr');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Service_Flickr');
 
         $suite->addTestSuite('Zend_Service_Flickr_OfflineTest');
         if (defined('TESTS_ZEND_SERVICE_FLICKR_ONLINE_ENABLED') &&
@@ -69,6 +69,6 @@ class Zend_Service_Flickr_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_Flickr_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Service_Flickr_AllTests::main') {
     Zend_Service_Flickr_AllTests::main();
 }

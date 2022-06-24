@@ -49,7 +49,7 @@ require_once 'Zend/Layout.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_AutoCompleteTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_AutoCompleteTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -60,8 +60,8 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends PHPUnit_Framework_T
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_AutoCompleteTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_AutoCompleteTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -269,6 +269,6 @@ class Zend_Controller_Action_Helper_AutoCompleteTest_LayoutOverride extends Zend
 }
 
 // Call Zend_Controller_Action_Helper_AutoCompleteTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_AutoCompleteTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_AutoCompleteTest::main") {
     Zend_Controller_Action_Helper_AutoCompleteTest::main();
 }

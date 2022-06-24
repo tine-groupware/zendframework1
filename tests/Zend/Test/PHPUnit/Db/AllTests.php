@@ -45,12 +45,12 @@ class Zend_Test_PHPUnit_Db_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Test_PHPUnit_Db');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Test_PHPUnit_Db');
 
         $suite->addTestSuite('Zend_Test_PHPUnit_Db_TestCaseTest');
         $suite->addTestSuite('Zend_Test_PHPUnit_Db_ConnectionTest');
@@ -65,6 +65,6 @@ class Zend_Test_PHPUnit_Db_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Test_PHPUnit_Db_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Test_PHPUnit_Db_AllTests::main') {
     Zend_Test_PHPUnit_Db_AllTests::main();
 }

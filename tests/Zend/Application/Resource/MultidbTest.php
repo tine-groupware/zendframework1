@@ -45,15 +45,15 @@ require_once 'Zend/Db/Table.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_MultidbTest extends \PHPUnit\Framework\TestCase
 {
     protected $_dbOptions = ['db1' => ['adapter' => 'pdo_mysql','dbname' => 'db1','password' => 'XXXX','username' => 'webuser'],
                                 'db2' => ['adapter' => 'pdo_pgsql', 'dbname' => 'db2', 'password' => 'notthatpublic', 'username' => 'dba']];
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -244,6 +244,6 @@ class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_MultidbTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Resource_MultidbTest::main') {
     Zend_Application_Resource_MultidbTest::main();
 }

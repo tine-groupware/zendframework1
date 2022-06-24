@@ -41,7 +41,7 @@ require_once 'Zend/Rest/Server.php';
  * @group      Zend_Rest
  * @group      Zend_Rest_Server
  */
-class Zend_Rest_ServerTest extends PHPUnit_Framework_TestCase
+class Zend_Rest_ServerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +51,8 @@ class Zend_Rest_ServerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Rest_ServerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_ServerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -900,6 +900,6 @@ class Zend_Rest_Server_Test2
 class Zend_Rest_TestException extends Exception { }
 
 // Call Zend_Rest_ServerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Rest_ServerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Rest_ServerTest::main") {
     Zend_Rest_ServerTest::main();
 }

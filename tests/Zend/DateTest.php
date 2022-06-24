@@ -53,7 +53,7 @@ require_once 'Zend/TimeSync.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Date
  */
-class Zend_DateTest extends PHPUnit_Framework_TestCase
+class Zend_DateTest extends \PHPUnit\Framework\TestCase
 {
 
     private $_cache = null;

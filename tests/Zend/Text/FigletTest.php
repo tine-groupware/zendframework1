@@ -44,7 +44,7 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Text
  */
-class Zend_Text_FigletTest extends PHPUnit_Framework_TestCase
+class Zend_Text_FigletTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -53,8 +53,8 @@ class Zend_Text_FigletTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Text_FigletTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Text_FigletTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testStandardAlignLeft()
@@ -132,11 +132,9 @@ class Zend_Text_FigletTest extends PHPUnit_Framework_TestCase
         $this->_equalAgainstFile($figlet->render($isoText, 'ISO-8859-15'), 'CorrectEncoding.figlet');
     }
 
-    /**
-     * @expectedException Zend_Text_Figlet_Exception
-     */
     public function testIncorrectEncoding()
     {
+        $this->expectException(\Zend_Text_Figlet_Exception::class);
         $this->markTestSkipped('Test case not reproducible on all setups');
         $figlet  = new Zend_Text_Figlet();
 
@@ -292,6 +290,6 @@ class Zend_Text_FigletTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Text_FigletTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Text_FigletTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Text_FigletTest::main") {
     Zend_Text_FigletTest::main();
 }

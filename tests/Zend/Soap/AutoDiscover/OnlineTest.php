@@ -33,7 +33,7 @@ require_once 'Zend/Soap/Client.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Soap
  */
-class Zend_Soap_AutoDiscover_OnlineTest extends PHPUnit_Framework_TestCase
+class Zend_Soap_AutoDiscover_OnlineTest extends \PHPUnit\Framework\TestCase
 {
     protected $baseuri;
 

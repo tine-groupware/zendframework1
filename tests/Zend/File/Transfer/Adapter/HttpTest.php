@@ -43,7 +43,7 @@ require_once 'Zend/Validate/File/Upload.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_File
  */
-class Zend_File_Transfer_Adapter_HttpTest extends PHPUnit_Framework_TestCase
+class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +52,8 @@ class Zend_File_Transfer_Adapter_HttpTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_File_Transfer_Adapter_HttpTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_File_Transfer_Adapter_HttpTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -101,19 +101,15 @@ class Zend_File_Transfer_Adapter_HttpTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($test instanceof Zend_Validate_File_Upload);
     }
 
-    /**
-     * @expectedException Zend_File_Transfer_Exception
-     */
     public function testSendingFiles()
     {
+        $this->expectException(\Zend_File_Transfer_Exception::class);
         $this->adapter->send();
     }
 
-    /**
-     * @expectedException Zend_File_Transfer_Exception
-     */
     public function testFileIsSent()
     {
+        $this->expectException(\Zend_File_Transfer_Exception::class);
         $this->adapter->isSent();
     }
 
@@ -358,6 +354,6 @@ class Zend_File_Transfer_Adapter_HttpTest_MockAdapter extends Zend_File_Transfer
 }
 
 // Call Zend_File_Transfer_Adapter_HttpTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_File_Transfer_Adapter_HttpTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_File_Transfer_Adapter_HttpTest::main") {
     Zend_File_Transfer_Adapter_HttpTest::main();
 }

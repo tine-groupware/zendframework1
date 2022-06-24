@@ -36,7 +36,7 @@ require_once 'Zend/Service/Amazon/Ec2/Availabilityzones.php';
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_Ec2
  */
-class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends PHPUnit_Framework_TestCase
+class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

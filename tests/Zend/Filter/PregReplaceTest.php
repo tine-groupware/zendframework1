@@ -42,7 +42,7 @@ require_once 'Zend/Filter/PregReplace.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_PregReplaceTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_PregReplaceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +51,8 @@ class Zend_Filter_PregReplaceTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Filter_PregReplaceTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_PregReplaceTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -146,6 +146,6 @@ class XPregReplace extends Zend_Filter_PregReplace
 }
 
 // Call Zend_Filter_PregReplaceTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == 'Zend_Filter_PregReplaceTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_PregReplaceTest::main') {
     Zend_Filter_PregReplaceTest::main();
 }

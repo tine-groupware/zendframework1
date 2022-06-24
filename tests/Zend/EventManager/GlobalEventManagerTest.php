@@ -34,12 +34,12 @@ require_once 'Zend/EventManager/EventManager.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_EventManager_GlobalEventManagerTest extends PHPUnit_Framework_TestCase
+class Zend_EventManager_GlobalEventManagerTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -117,6 +117,6 @@ class Zend_EventManager_GlobalEventManagerTest extends PHPUnit_Framework_TestCas
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_EventManager_GlobalEventManagerTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_EventManager_GlobalEventManagerTest::main') {
     Zend_EventManager_GlobalEventManagerTest::main();
 }

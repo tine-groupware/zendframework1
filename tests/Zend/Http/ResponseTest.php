@@ -40,7 +40,7 @@ require_once __DIR__ . '/StreamObject.php';
  * @group      Zend_Http
  * @group      Zend_Http_Response
  */
-class Zend_Http_ResponseTest extends PHPUnit_Framework_TestCase
+class Zend_Http_ResponseTest extends \PHPUnit\Framework\TestCase
 {
     /** @var null|string */
     private $tempFile;
@@ -443,7 +443,8 @@ class Zend_Http_ResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testExtractHeadersRaisesExceptionWhenDetectingCRLFInjection($message)
     {
-        $this->setExpectedException('Zend_Http_Exception', 'Invalid');
+        $this->expectException('Zend_Http_Exception');
+        $this->expectExceptionMessage('Invalid');
         Zend_Http_Response::extractHeaders($message);
     }
 

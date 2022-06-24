@@ -62,8 +62,8 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     protected function setUp()
@@ -123,11 +123,11 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
     /**
      * Check that an exception is thrown when trying to set invalid config
      *
-     * @expectedException Zend_Http_Client_Adapter_Exception
      * @dataProvider invalidConfigProvider
      */
     public function testSetConfigInvalidConfig($config)
     {
+        $this->expectException(\Zend_Http_Client_Adapter_Exception::class);
         $this->_adapter->setConfig($config);
     }
 
@@ -136,11 +136,10 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
      * @link http://de2.php.net/manual/en/function.curl-setopt.php#84277
      *
      * This should throw an exception.
-     *
-     * @expectedException Zend_Http_Exception
      */
     public function testSettingInvalidCurlOption()
     {
+        $this->expectException(\Zend_Http_Exception::class);
         $config = [
             'adapter'     => 'Zend_Http_Client_Adapter_Curl',
             'curloptions' => [CURLOPT_CLOSEPOLICY => true],
@@ -175,11 +174,10 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
      *
      * Set CURLOPT_FOLLOWLOCATION = false for this type of request and let the Zend_Http_Client handle redirects
      * in his own loop.
-     *
-     * @expectedException Zend_Http_Client_Exception
      */
     public function testRedirectPostToGetWithCurlFollowLocationOptionLeadsToTimeout()
     {
+        $this->expectException(\Zend_Http_Client_Exception::class);
         $adapter = new Zend_Http_Client_Adapter_Curl();
         $this->client->setAdapter($adapter);
         $adapter->setConfig([
@@ -240,7 +238,8 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
 
     public function testWritingAndNotConnectedWithCurlHandleThrowsException()
     {
-        $this->setExpectedException("Zend_Http_Client_Adapter_Exception", "Trying to write but we are not connected");
+        $this->expectException("Zend_Http_Client_Adapter_Exception");
+        $this->expectExceptionMessage("Trying to write but we are not connected");
 
         $adapter = new Zend_Http_Client_Adapter_Curl();
         $adapter->write("GET", "someUri");
@@ -248,7 +247,7 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
 
     public function testSetConfigIsNotArray()
     {
-        $this->setExpectedException("Zend_Http_Client_Adapter_Exception");
+        $this->expectException("Zend_Http_Client_Adapter_Exception");
 
         $adapter = new Zend_Http_Client_Adapter_Curl();
         $adapter->setConfig("foo");
@@ -315,6 +314,6 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Http_Client_CurlTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Http_Client_CurlTest::main') {
     Zend_Http_Client_CurlTest::main();
 }

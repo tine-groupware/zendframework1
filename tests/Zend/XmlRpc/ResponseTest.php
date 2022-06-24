@@ -32,7 +32,7 @@ require_once 'Zend/XmlRpc/Response.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_ResponseTest extends PHPUnit_Framework_TestCase
+class Zend_XmlRpc_ResponseTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Zend_XmlRpc_Response object

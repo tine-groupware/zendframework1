@@ -49,7 +49,7 @@ require_once 'Zend/Cloud/Infrastructure/Adapter/Ec2.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cloud
  */
-class Zend_Cloud_Infrastructure_FactoryTest extends PHPUnit_Framework_TestCase
+class Zend_Cloud_Infrastructure_FactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -58,8 +58,8 @@ class Zend_Cloud_Infrastructure_FactoryTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testGetInfrastructureAdapterKey()
@@ -85,6 +85,6 @@ class Zend_Cloud_Infrastructure_FactoryTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Cloud_Infrastructure_FactoryTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Cloud_Infrastructure_FactoryTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Cloud_Infrastructure_FactoryTest::main") {
     Zend_Cloud_Infrastructure_FactoryTest::main();
 }

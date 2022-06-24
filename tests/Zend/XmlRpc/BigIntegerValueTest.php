@@ -47,7 +47,7 @@ require_once 'Zend/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_BigIntegerValueTest extends PHPUnit_Framework_TestCase
+class Zend_XmlRpc_BigIntegerValueTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -179,6 +179,6 @@ class Zend_XmlRpc_BigIntegerValueTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_XmlRpc_ValueTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_BigIntegerValueTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_BigIntegerValueTest::main") {
     Zend_XmlRpc_ValueTest::main();
 }

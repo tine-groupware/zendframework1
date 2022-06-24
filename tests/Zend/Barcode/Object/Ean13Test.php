@@ -92,11 +92,9 @@ class Zend_Barcode_Object_Ean13Test extends Zend_Barcode_Object_TestCommon
         $this->assertSame('0001234567895', $this->_object->getTextToDisplay());
     }
 
-    /**
-     * @expectedException Zend_Barcode_Object_Exception
-     */
     public function testBadTextDetectedIfChecksumWished()
     {
+        $this->expectException(\Zend_Barcode_Object_Exception::class);
         $this->_object->setText('a');
         $this->_object->setWithChecksum(true);
         $this->_object->getText();

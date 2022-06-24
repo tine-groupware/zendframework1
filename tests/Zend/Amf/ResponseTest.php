@@ -44,7 +44,7 @@ require_once 'Zend/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_ResponseTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_ResponseTest extends \PHPUnit\Framework\TestCase
 {
     // The message response status code.
     public $responseURI = "/2/onResult";
@@ -62,8 +62,8 @@ class Zend_Amf_ResponseTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_ResponseTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_ResponseTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -1060,7 +1060,7 @@ class TestObject {
     public $recursive;
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Amf_ResponseTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_ResponseTest::main') {
     Zend_Amf_ResponseTest::main();
 }
 

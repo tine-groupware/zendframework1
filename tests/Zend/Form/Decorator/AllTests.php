@@ -51,12 +51,12 @@ class Zend_Form_Decorator_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Form_Decorator');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Form_Decorator');
 
         $suite->addTestSuite('Zend_Form_Decorator_AbstractTest');
         $suite->addTestSuite('Zend_Form_Decorator_CallbackTest');
@@ -77,6 +77,6 @@ class Zend_Form_Decorator_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Form_Decorator_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Form_Decorator_AllTests::main') {
     Zend_Form_Decorator_AllTests::main();
 }

@@ -50,12 +50,12 @@ class Zend_Ldap_Node_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Ldap_Node');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Ldap_Node');
 
         $suite->addTestSuite('Zend_Ldap_Node_OfflineTest');
         $suite->addTestSuite('Zend_Ldap_Node_AttributeIterationTest');
@@ -76,7 +76,7 @@ class Zend_Ldap_Node_AllTests
     }
 }
 
-class Zend_Ldap_Node_SkipOnlineTests extends PHPUnit_Framework_TestCase
+class Zend_Ldap_Node_SkipOnlineTests extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -88,6 +88,6 @@ class Zend_Ldap_Node_SkipOnlineTests extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Ldap_Node_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Ldap_Node_AllTests::main') {
     Zend_Ldap_Node_AllTests::main();
 }

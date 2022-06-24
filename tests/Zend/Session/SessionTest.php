@@ -36,7 +36,7 @@ require_once 'Zend/Session.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Session
  */
-class Zend_SessionTest extends PHPUnit_Framework_TestCase
+class Zend_SessionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Helper script invoked via exec()
@@ -1064,7 +1064,7 @@ class Zend_SessionTest extends PHPUnit_Framework_TestCase
             Zend_Session::start();
             require_once dirname(__FILE__) . '/Validator/NoticeValidator.php';
             Zend_Session::registerValidator(new Zend_Session_Validator_NoticeValidator);
-        } catch (PHPUnit_Framework_Error_Notice $exception) {
+        } catch (\PHPUnit\Framework\Error\Notice $exception) {
             $this->fail($exception->getMessage());
         }
     }

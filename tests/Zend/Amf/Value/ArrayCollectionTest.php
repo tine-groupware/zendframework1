@@ -35,7 +35,7 @@ require_once 'Zend/Amf/Value/Messaging/ArrayCollection.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Value_ArrayCollectionTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_Value_ArrayCollectionTest extends \PHPUnit\Framework\TestCase
 {
 
 
@@ -56,8 +56,8 @@ class Zend_Amf_Value_ArrayCollectionTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_Value_ArrayCollectionTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Value_ArrayCollectionTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -213,6 +213,6 @@ class Zend_Amf_Value_ArrayCollectionTest_SerializableData
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Amf_Value_ArrayCollectionTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_Value_ArrayCollectionTest::main') {
     Zend_Amf_Value_ArrayCollectionTest::main();
 }

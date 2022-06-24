@@ -39,7 +39,7 @@ require_once 'Zend/Loader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @group ZF-11267

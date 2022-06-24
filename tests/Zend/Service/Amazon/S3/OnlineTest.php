@@ -41,7 +41,7 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_S3
  */
-class Zend_Service_Amazon_S3_OnlineTest extends PHPUnit_Framework_TestCase
+class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Reference to Amazon service consumer object
@@ -531,7 +531,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends PHPUnit_Framework_TestCase
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_S3
  */
-class Zend_Service_Amazon_S3_OnlineTest_Skip extends PHPUnit_Framework_TestCase
+class Zend_Service_Amazon_S3_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {

@@ -44,7 +44,7 @@ require_once 'Zend/Controller/Response/Http.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Action_Helper_Redirector
@@ -72,8 +72,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends PHPUnit_Framework_Tes
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_RedirectorTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_RedirectorTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -577,7 +577,7 @@ class Zend_Controller_Action_Helper_Redirector_TestController extends Zend_Contr
 }
 
 // Call Zend_Controller_Action_Helper_RedirectorTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_RedirectorTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_RedirectorTest::main") {
     Zend_Controller_Action_Helper_RedirectorTest::main();
 }
 

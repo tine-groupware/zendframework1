@@ -69,7 +69,7 @@ require_once 'Zend/Config.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_ChainTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_Route_ChainTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -80,8 +80,8 @@ class Zend_Controller_Router_Route_ChainTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Router_Route_ChainTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_ChainTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testChaining()
@@ -1094,6 +1094,6 @@ class Zend_Controller_Router_ChainTest_Dispatcher extends Zend_Controller_Dispat
     }
 }
 
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_Route_ChainTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Router_Route_ChainTest::main") {
     Zend_Controller_Router_Route_ChainTest::main();
 }

@@ -38,7 +38,7 @@ require_once 'Zend/Service/LiveDocx/MailMerge.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id: $
  */
-class Zend_Service_LiveDocx_MailMergeTest extends PHPUnit_Framework_TestCase
+class Zend_Service_LiveDocx_MailMergeTest extends \PHPUnit\Framework\TestCase
 {
     const TEST_TEMPLATE_1 = 'phpunit-template.docx';
     const TEST_TEMPLATE_2 = 'phpunit-template-block-fields.doc';
@@ -53,8 +53,8 @@ class Zend_Service_LiveDocx_MailMergeTest extends PHPUnit_Framework_TestCase
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -107,22 +107,18 @@ class Zend_Service_LiveDocx_MailMergeTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($phpLiveDocx->logIn());
     }
 
-    /**
-     * @expectedException Zend_Service_LiveDocx_Exception
-     */
     public function testLoginUsernamePasswordException()
     {
+        $this->expectException(\Zend_Service_LiveDocx_Exception::class);
         $phpLiveDocx = new Zend_Service_LiveDocx_MailMerge();
         $phpLiveDocx->setUsername('phpunitInvalidUsername');
         $phpLiveDocx->setPassword('phpunitInvalidPassword');
         $phpLiveDocx->logIn();
     }
 
-    /**
-     * @expectedException Zend_Service_LiveDocx_Exception
-     */
     public function testLoginUsernamePasswordSoapClientException()
     {
+        $this->expectException(\Zend_Service_LiveDocx_Exception::class);
         $phpLiveDocx = new Zend_Service_LiveDocx_MailMerge();
         $phpLiveDocx->setUsername('phpunitInvalidUsername');
         $phpLiveDocx->setPassword('phpunitInvalidPassword');
@@ -158,7 +154,7 @@ class Zend_Service_LiveDocx_MailMergeTest extends PHPUnit_Framework_TestCase
     public function testSetLocalTemplate()
     {
         $this->assertTrue(is_a($this->phpLiveDocx->setLocalTemplate($this->path . DIRECTORY_SEPARATOR . self::TEST_TEMPLATE_1), 'Zend_Service_LiveDocx_MailMerge'));
-        $this->setExpectedException('Zend_Service_LiveDocx_Exception');
+        $this->expectException('Zend_Service_LiveDocx_Exception');
         @$this->phpLiveDocx->setLocalTemplate('phpunit-nonexistent.doc');
     }
 
@@ -704,6 +700,6 @@ class Zend_Service_LiveDocx_MailMergeTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_LiveDocx_MailMergeTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Service_LiveDocx_MailMergeTest::main') {
     Zend_Service_LiveDocx_MailMergeTest::main();
 }

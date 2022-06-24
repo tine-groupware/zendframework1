@@ -32,7 +32,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Db
  */
-abstract class Zend_Db_Skip_CommonTest extends PHPUnit_Framework_TestCase
+abstract class Zend_Db_Skip_CommonTest extends \PHPUnit\Framework\TestCase
 {
     public $message = null;
 

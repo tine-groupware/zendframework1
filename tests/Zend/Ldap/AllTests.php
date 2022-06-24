@@ -55,12 +55,12 @@ class Zend_Ldap_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Ldap');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Ldap');
 
         $suite->addTestSuite('Zend_Ldap_OfflineTest');
         $suite->addTestSuite('Zend_Ldap_AttributeTest');
@@ -95,7 +95,7 @@ class Zend_Ldap_AllTests
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Ldap
  */
-class Zend_Ldap_SkipOnlineTests extends PHPUnit_Framework_TestCase
+class Zend_Ldap_SkipOnlineTests extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -110,7 +110,7 @@ class Zend_Ldap_SkipOnlineTests extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Ldap_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Ldap_AllTests::main') {
     Zend_Ldap_AllTests::main();
 }
 

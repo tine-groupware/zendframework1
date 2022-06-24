@@ -42,7 +42,7 @@ require_once 'Zend/Http/Client.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_ClientTest extends PHPUnit_Framework_TestCase
+class Zend_XmlRpc_ClientTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Http_Client_Adapter_Abstract
@@ -816,6 +816,6 @@ class Test_XmlRpc_Client extends Zend_XmlRpc_Client {
 }
 
 // Call Zend_XmlRpc_ClientTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_ClientTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_ClientTest::main") {
     Zend_XmlRpc_ClientTest::main();
 }

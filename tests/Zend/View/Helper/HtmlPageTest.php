@@ -37,7 +37,7 @@ require_once 'Zend/View/Helper/HtmlPage.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HtmlPageTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HtmlPageTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HtmlPage
@@ -53,8 +53,8 @@ class Zend_View_Helper_HtmlPageTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HtmlPageTest");
-        PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlPageTest");
+        \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -89,6 +89,6 @@ class Zend_View_Helper_HtmlPageTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_View_Helper_HtmlPageTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HtmlPageTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_HtmlPageTest::main") {
     Zend_View_Helper_HtmlPageTest::main();
 }

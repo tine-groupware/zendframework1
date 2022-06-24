@@ -33,7 +33,7 @@ require_once dirname(__FILE__) . '/_files/MockAssertion.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
+class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * ACL object for each test method
@@ -1180,11 +1180,11 @@ class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
 
     /**
      * Returns an array of registered roles
-     * @expectedException PHPUnit_Framework_Error
      * @group ZF-5638
      */
     public function testGetRegisteredRoles()
     {
+        $this->expectException(\PHPUnit\Framework\Error::class);
         $acl = $this->_acl;
         $acl->addRole('developer');
 
@@ -1263,7 +1263,7 @@ class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
         try {
             $this->_acl->getRegisteredRoles();
             $this->fail('getRegisteredRoles() did not throw an exception');
-        } catch(PHPUnit_Framework_Error $e) {
+        } catch(\PHPUnit\Framework\Error $e) {
             return;
         }
 

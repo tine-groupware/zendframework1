@@ -43,7 +43,7 @@ require_once 'Zend/Service/SqlAzure/Management/Client.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_SqlAzure_Management_ManagementClientTest extends PHPUnit_Framework_TestCase
+class Zend_Service_SqlAzure_Management_ManagementClientTest extends \PHPUnit\Framework\TestCase
 {
 	static $path;
 	static $debug = true;
@@ -57,8 +57,8 @@ class Zend_Service_SqlAzure_Management_ManagementClientTest extends PHPUnit_Fram
     public static function main()
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_SQLMANAGEMENT_RUNTESTS) {
-            $suite  = new PHPUnit_Framework_TestSuite("Zend_Service_SqlAzure_Management_ManagementClientTest");
-            $result = PHPUnit_TextUI_TestRunner::run($suite);
+            $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_SqlAzure_Management_ManagementClientTest");
+            $result = \PHPUnit\TextUI\TestRunner::run($suite);
         }
     }
     
@@ -132,6 +132,6 @@ class Zend_Service_SqlAzure_Management_ManagementClientTest extends PHPUnit_Fram
 }
 
 // Call Zend_Service_SqlAzure_Management_ManagementClientTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Service_SqlAzure_Management_ManagementClientTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Service_SqlAzure_Management_ManagementClientTest::main") {
     Zend_Service_SqlAzure_Management_ManagementClientTest::main();
 }

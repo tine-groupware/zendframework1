@@ -33,7 +33,7 @@ require_once 'Zend/Translate/Adapter/Gettext.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
-class Zend_Translate_Adapter_GettextTest extends PHPUnit_Framework_TestCase
+class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -42,8 +42,8 @@ class Zend_Translate_Adapter_GettextTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Translate_Adapter_GettextTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Translate_Adapter_GettextTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
         Zend_Translate_Adapter_Gettext::removeCache();
     }
 
@@ -317,6 +317,6 @@ class Zend_Translate_Adapter_GettextTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Translate_Adapter_GettextTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Translate_Adapter_GettextTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Translate_Adapter_GettextTest::main") {
     Zend_Translate_GettextTest::main();
 }

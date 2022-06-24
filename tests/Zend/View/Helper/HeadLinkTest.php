@@ -48,7 +48,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadLink
@@ -68,8 +68,8 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HeadLinkTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadLinkTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -529,6 +529,6 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_View_Helper_HeadLinkTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HeadLinkTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_HeadLinkTest::main") {
     Zend_View_Helper_HeadLinkTest::main();
 }

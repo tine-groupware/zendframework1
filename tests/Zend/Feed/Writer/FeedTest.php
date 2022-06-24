@@ -31,7 +31,7 @@ require_once 'Zend/Feed/Writer/Feed.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_FeedTest extends PHPUnit_Framework_TestCase
+class Zend_Feed_Writer_FeedTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_feedSamplePath = null;
@@ -817,31 +817,25 @@ class Zend_Feed_Writer_FeedTest extends PHPUnit_Framework_TestCase
         ], $writer->getImage());
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testSetsImageUriThrowsExceptionOnEmptyUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setImage([
             'uri' => ''
         ]);
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testSetsImageUriThrowsExceptionOnMissingUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setImage([]);
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testSetsImageUriThrowsExceptionOnInvalidUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setImage([
             'uri' => 'http://'
@@ -926,31 +920,25 @@ class Zend_Feed_Writer_FeedTest extends PHPUnit_Framework_TestCase
         ], $writer->getIcon());
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testSetsIconUriThrowsExceptionOnEmptyUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setIcon([
             'uri' => ''
         ]);
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testSetsIconUriThrowsExceptionOnMissingUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setIcon([]);
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testSetsIconUriThrowsExceptionOnInvalidUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setIcon([
             'uri' => 'http://'

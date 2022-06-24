@@ -34,7 +34,7 @@ require_once 'Zend/Measure/Angle.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_AngleTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for Angle initialisation

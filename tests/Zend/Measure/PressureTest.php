@@ -34,7 +34,7 @@ require_once 'Zend/Measure/Pressure.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_PressureTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for Pressure initialisation

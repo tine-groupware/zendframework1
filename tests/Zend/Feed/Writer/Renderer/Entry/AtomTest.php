@@ -33,7 +33,7 @@ require_once 'Zend/Version.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Renderer_Entry_AtomTest extends PHPUnit_Framework_TestCase
+class Zend_Feed_Writer_Renderer_Entry_AtomTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_validWriter = null;
@@ -103,11 +103,9 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals('This is a test entry.', $entry->getTitle());
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testFeedTitleIfMissingThrowsException()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validEntry->remove('title');
         $atomFeed->render();
@@ -132,11 +130,9 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals('<p class="xhtml:">This is test content for <em>xhtml:</em></p>', $entry->getContent());
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testFeedContentIfMissingThrowsExceptionIfThereIsNoLink()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validEntry->remove('content');
         $this->_validEntry->remove('link');
@@ -151,11 +147,9 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals(1234567890, $entry->getDateModified()->get(Zend_Date::TIMESTAMP));
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testFeedUpdatedDateIfMissingThrowsException()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validEntry->remove('dateModified');
         $atomFeed->render();
@@ -240,22 +234,18 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends PHPUnit_Framework_TestCas
         $this->assertEquals($entry->getLink(), $entry->getId());
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testFeedIdIfMissingThrowsException()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validEntry->remove('id');
         $this->_validEntry->remove('link');
         $atomFeed->render();
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testFeedIdThrowsExceptionIfNotUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validEntry->remove('id');
         $this->_validEntry->remove('link');

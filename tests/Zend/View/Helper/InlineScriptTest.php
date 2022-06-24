@@ -45,7 +45,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_InlineScriptTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_InlineScriptTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_InlineScript
@@ -65,8 +65,8 @@ class Zend_View_Helper_InlineScriptTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_InlineScriptTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_InlineScriptTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -116,6 +116,6 @@ class Zend_View_Helper_InlineScriptTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_View_Helper_InlineScriptTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_InlineScriptTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_InlineScriptTest::main") {
     Zend_View_Helper_InlineScriptTest::main();
 }

@@ -48,7 +48,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_View
  */
-class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Dojo_View_Helper_Dojo_Container
@@ -62,8 +62,8 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_View_Helper_DojoTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_DojoTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -544,11 +544,9 @@ function() {
         $this->assertEquals('dijit.form.Form', $dijit['params']['dojoType']);
     }
 
-    /**
-     * @expectedException Zend_Dojo_View_Exception
-     */
     public function testAddingDuplicateProgrammaticDijitsShouldRaiseExceptions()
     {
+        $this->expectException(\Zend_Dojo_View_Exception::class);
         $this->helper->addDijit('foo', ['dojoType' => 'dijit.form.Form']);
         $this->helper->addDijit('foo', ['dojoType' => 'dijit.form.ComboBox']);
     }
@@ -793,11 +791,9 @@ function() {
         $this->assertSame(['foo', 'bar'], $found);
     }
 
-    /**
-     * @expectedException Zend_Dojo_View_Exception
-     */
     public function testCallingMethodThatDoesNotExistInContainerShouldRaiseException()
     {
+        $this->expectException(\Zend_Dojo_View_Exception::class);
         $dojo = new Zend_Dojo_View_Helper_Dojo();
         $dojo->bogus();
     }
@@ -974,6 +970,6 @@ function() {
 }
 
 // Call Zend_Dojo_View_Helper_DojoTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_DojoTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_DojoTest::main") {
     Zend_Dojo_View_Helper_DojoTest::main();
 }

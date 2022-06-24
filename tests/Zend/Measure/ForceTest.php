@@ -34,7 +34,7 @@ require_once 'Zend/Measure/Force.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_ForceTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for Force initialisation

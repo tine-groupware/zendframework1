@@ -36,7 +36,7 @@ require_once 'Zend/Amf/Value/MessageHeader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Value_MessageHeaderTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_Value_MessageHeaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -45,8 +45,8 @@ class Zend_Amf_Value_MessageHeaderTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_Value_MessageHeaderTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Value_MessageHeaderTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testConstructorShouldSetMessageHeaderName()
@@ -93,6 +93,6 @@ class Zend_Amf_Value_MessageHeaderTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Amf_Value_MessageHeaderTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_Value_MessageHeaderTest::main') {
     Zend_Amf_Value_MessageHeaderTest::main();
 }

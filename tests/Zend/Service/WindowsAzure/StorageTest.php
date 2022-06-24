@@ -41,12 +41,12 @@ require_once 'Zend/Service/WindowsAzure/Storage.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_WindowsAzure_StorageTest extends PHPUnit_Framework_TestCase
+class Zend_Service_WindowsAzure_StorageTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Service_WindowsAzure_BlobStorageTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_BlobStorageTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -69,6 +69,6 @@ class Zend_Service_WindowsAzure_StorageTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Service_WindowsAzure_StorageTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_StorageTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_StorageTest::main") {
     Zend_Service_WindowsAzure_StorageTest::main();
 }

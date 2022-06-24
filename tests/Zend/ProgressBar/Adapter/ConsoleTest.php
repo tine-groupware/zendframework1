@@ -40,7 +40,7 @@ require_once 'MockupStream.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_ProgressBar
  */
-class Zend_ProgressBar_Adapter_ConsoleTest extends PHPUnit_Framework_TestCase
+class Zend_ProgressBar_Adapter_ConsoleTest extends \PHPUnit\Framework\TestCase
 {
 
     protected function setUp()
@@ -60,8 +60,8 @@ class Zend_ProgressBar_Adapter_ConsoleTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_ProgressBar_Adapter_ConsoleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_ProgressBar_Adapter_ConsoleTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testWindowsWidth()
@@ -358,6 +358,6 @@ class Zend_ProgressBar_Adapter_Console_Stub extends Zend_ProgressBar_Adapter_Con
 }
 
 // Call Zend_ProgressBar_Adapter_ConsoleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_ProgressBar_Adapert_ConsoleTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_ProgressBar_Adapert_ConsoleTest::main") {
     Zend_ProgressBar_Adapter_ConsoleTest::main();
 }

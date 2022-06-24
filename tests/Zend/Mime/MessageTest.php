@@ -33,7 +33,7 @@ require_once 'Zend/Mime/Message.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mime
  */
-class Zend_Mime_MessageTest extends PHPUnit_Framework_TestCase
+class Zend_Mime_MessageTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testMultiPart()

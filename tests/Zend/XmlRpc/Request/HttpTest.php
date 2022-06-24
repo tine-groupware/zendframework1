@@ -38,7 +38,7 @@ require_once 'Zend/XmlRpc/Request/Http.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_Request_HttpTest extends PHPUnit_Framework_TestCase
+class Zend_XmlRpc_Request_HttpTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +47,8 @@ class Zend_XmlRpc_Request_HttpTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_XmlRpc_Request_HttpTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_XmlRpc_Request_HttpTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -192,6 +192,6 @@ class Zend_XmlRpc_Request_HttpTest_Extension extends Zend_XmlRpc_Request_Http
 }
 
 // Call Zend_XmlRpc_Request_HttpTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_Request_HttpTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_Request_HttpTest::main") {
     Zend_XmlRpc_Request_HttpTest::main();
 }

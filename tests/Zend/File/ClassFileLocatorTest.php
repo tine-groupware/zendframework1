@@ -35,19 +35,19 @@ require_once 'Zend/File/ClassFileLocator.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_File
  */
-class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
+class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstructorThrowsInvalidArgumentExceptionForInvalidStringDirectory()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
         $locator = new Zend_File_ClassFileLocator('__foo__');
     }
 
     public function testConstructorThrowsInvalidArgumentExceptionForNonDirectoryIteratorArgument()
     {
         $iterator = new ArrayIterator([]);
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
         $locator = new Zend_File_ClassFileLocator($iterator);
     }
 
@@ -169,6 +169,6 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_File_ClassFileLocatorTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_File_ClassFileLocatorTest::main') {
     Zend_File_ClassFileLocatorTest::main();
 }

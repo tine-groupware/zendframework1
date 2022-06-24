@@ -46,7 +46,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_ElementTest extends PHPUnit_Framework_TestCase
+class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Form_Element
@@ -55,8 +55,8 @@ class Zend_Form_ElementTest extends PHPUnit_Framework_TestCase
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Form_ElementTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_ElementTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -1993,10 +1993,10 @@ class Zend_Form_ElementTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-3217
-     * @expectedException Zend_Form_Element_Exception
      */
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
+        $this->expectException(\Zend_Form_Element_Exception::class);
         $html = $this->element->bogusMethodCall();
     }
 
@@ -2280,6 +2280,6 @@ class Zend_Form_ElementTest_ArrayFilter implements Zend_Filter_Interface
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Form_ElementTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Form_ElementTest::main') {
     Zend_Form_ElementTest::main();
 }

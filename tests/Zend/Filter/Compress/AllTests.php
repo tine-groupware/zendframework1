@@ -48,17 +48,17 @@ class Zend_Filter_Compress_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Filter_Compress');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Filter_Compress');
 
         $suite->addTestSuite('Zend_Filter_Compress_Bz2Test');
         $suite->addTestSuite('Zend_Filter_Compress_GzTest');
@@ -71,6 +71,6 @@ class Zend_Filter_Compress_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Filter_Compress_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_Compress_AllTests::main') {
     Zend_Filter_Compress_AllTests::main();
 }

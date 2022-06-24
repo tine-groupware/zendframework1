@@ -40,7 +40,7 @@ require_once 'Zend/Controller/Request/Apache404.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
-class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
+class Zend_Controller_Request_Apache404Test extends \PHPUnit\Framework\TestCase
 {
     /**
      * Copy of $_SERVER
@@ -57,8 +57,8 @@ class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Request_Apache404Test");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_Apache404Test");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -99,6 +99,6 @@ class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Controller_Request_Apache404Test::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Request_Apache404Test::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Request_Apache404Test::main") {
     Zend_Controller_Request_Apache404Test::main();
 }

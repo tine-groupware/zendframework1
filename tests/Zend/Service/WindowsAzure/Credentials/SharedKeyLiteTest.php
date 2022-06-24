@@ -41,12 +41,12 @@ require_once 'Zend/Service/WindowsAzure/Credentials/SharedKeyLite.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends PHPUnit_Framework_TestCase
+class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -165,6 +165,6 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends PHPUnit_Fr
 }
 
 // Call Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest::main") {
     Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest::main();
 }

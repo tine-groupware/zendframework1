@@ -48,7 +48,7 @@ require_once 'Zend/Json/Decoder.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Json
  */
-class Zend_JsonTest extends PHPUnit_Framework_TestCase
+class Zend_JsonTest extends \PHPUnit\Framework\TestCase
 {
     private $_originalUseBuiltinEncoderDecoderValue;
 
@@ -805,10 +805,10 @@ EOB;
 
     /**
      * @group ZF-8918
-     * @expectedException Zend_Json_Exception
      */
     public function testDecodingInvalidJsonShouldRaiseAnException()
     {
+        $this->expectException(\Zend_Json_Exception::class);
         Zend_Json::decode(' some string ');
     }
 

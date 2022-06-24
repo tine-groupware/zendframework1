@@ -37,12 +37,12 @@ require_once 'Zend/Search/Lucene.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Search_Lucene
  */
-class Zend_Search_Lucene_LuceneTest extends PHPUnit_Framework_TestCase
+class Zend_Search_Lucene_LuceneTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     private function _clearDirectory($dirName)
@@ -576,6 +576,6 @@ class Zend_Search_Lucene_LuceneTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Search_Lucene_LuceneTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Search_Lucene_LuceneTest::main') {
     Zend_Search_Lucene_LuceneTest::main();
 }

@@ -33,7 +33,7 @@ require_once 'Zend/Measure/Flow/Mole.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_Flow_MoleTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_Flow_MoleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for mole initialisation

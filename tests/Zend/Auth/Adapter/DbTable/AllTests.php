@@ -44,17 +44,17 @@ class Zend_Auth_Adapter_DbTable_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Auth_Adapter_DbTable');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Auth_Adapter_DbTable');
 
         if (!defined('TESTS_ZEND_AUTH_ADAPTER_DBTABLE_PDO_SQLITE_ENABLED') ||
             constant('TESTS_ZEND_AUTH_ADAPTER_DBTABLE_PDO_SQLITE_ENABLED') === false) {
@@ -78,6 +78,6 @@ class Zend_Auth_Adapter_DbTable_AllTests
 }
 
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Auth_Adapter_DbTable_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Auth_Adapter_DbTable_AllTests::main') {
     Zend_Auth_Adapter_DbTable_AllTests::main();
 }

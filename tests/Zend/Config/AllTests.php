@@ -42,12 +42,12 @@ class Zend_Config_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Config');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Config');
 
         $suite->addTest(Zend_Config_Writer_AllTests::suite());
 
@@ -60,6 +60,6 @@ class Zend_Config_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Config_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Config_AllTests::main') {
     Zend_Config_AllTests::main();
 }

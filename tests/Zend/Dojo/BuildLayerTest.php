@@ -37,12 +37,12 @@ require_once 'Zend/Json.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dojo
  */
-class Zend_Dojo_BuildLayerTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_BuildLayerTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -68,11 +68,9 @@ class Zend_Dojo_BuildLayerTest extends PHPUnit_Framework_TestCase
         $this->assertNull($build->getView());
     }
 
-    /**
-     * @expectedException Zend_Dojo_Exception
-     */
     public function testRetrievingDojoHelperShouldRaiseExceptionWhenNoViewPresent()
     {
+        $this->expectException(\Zend_Dojo_Exception::class);
         $build = new Zend_Dojo_BuildLayer();
         $build->getDojoHelper();
     }
@@ -137,11 +135,9 @@ class Zend_Dojo_BuildLayerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('custom.main', $build->getLayerName());
     }
 
-    /**
-     * @expectedException Zend_Dojo_Exception
-     */
     public function testSettingLayerNameToInvalidFormatShouldRaiseException()
     {
+        $this->expectException(\Zend_Dojo_Exception::class);
         $build = new Zend_Dojo_BuildLayer();
         $build->setLayerName('customFoo#bar');
     }
@@ -374,6 +370,6 @@ class Zend_Dojo_BuildLayerTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Dojo_BuildLayerTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Dojo_BuildLayerTest::main') {
     Zend_Dojo_BuildLayerTest::main();
 }

@@ -40,12 +40,12 @@ class Zend_Reflection_Docblock_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Reflection_Docblock');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Reflection_Docblock');
 
         $suite->addTestSuite('Zend_Reflection_Docblock_TagTest');
         $suite->addTestSuite('Zend_Reflection_Docblock_Tag_ParamTest');
@@ -55,6 +55,6 @@ class Zend_Reflection_Docblock_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Reflection_Docblock_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Reflection_Docblock_AllTests::main') {
     Zend_Reflection_Docblock_AllTests::main();
 }

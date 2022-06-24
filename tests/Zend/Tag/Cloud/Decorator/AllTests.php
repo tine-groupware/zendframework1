@@ -40,12 +40,12 @@ class Zend_Tag_Cloud_Decorator_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Tag_Cloud_Decorator');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Tag_Cloud_Decorator');
 
         $suite->addTestSuite('Zend_Tag_Cloud_Decorator_HtmlCloudTest');
         $suite->addTestSuite('Zend_Tag_Cloud_Decorator_HtmlTagTest');
@@ -54,6 +54,6 @@ class Zend_Tag_Cloud_Decorator_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Tag_Cloud_Decorator_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Tag_Cloud_Decorator_AllTests::main') {
     Zend_Tag_Cloud_Decorator_AllTests::main();
 }

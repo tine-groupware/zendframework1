@@ -41,12 +41,12 @@ class Zend_Mobile_Push_Message_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Mobile_Push_Message');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Mobile_Push_Message');
 
         $suite->addTest(Zend_Mobile_Push_Message_Mpns_AllTests::suite());
          
@@ -58,6 +58,6 @@ class Zend_Mobile_Push_Message_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Mobile_Push_Message_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Mobile_Push_Message_AllTests::main') {
     Zend_Mobile_Push_Message_AllTests::main();
 }

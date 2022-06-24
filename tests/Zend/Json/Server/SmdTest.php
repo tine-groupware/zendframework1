@@ -40,7 +40,7 @@ require_once 'Zend/Json.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
-class Zend_Json_Server_SmdTest extends PHPUnit_Framework_TestCase
+class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,8 +50,8 @@ class Zend_Json_Server_SmdTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Json_Server_SmdTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Json_Server_SmdTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -425,6 +425,6 @@ class Zend_Json_Server_SmdTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Json_Server_SmdTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Json_Server_SmdTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Json_Server_SmdTest::main") {
     Zend_Json_Server_SmdTest::main();
 }

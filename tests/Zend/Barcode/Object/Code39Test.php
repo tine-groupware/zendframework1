@@ -93,11 +93,9 @@ class Zend_Barcode_Object_Code39Test extends Zend_Barcode_Object_TestCommon
         $this->assertSame('&', $this->_object->getRawText());
     }
 
-    /**
-     * @expectedException Zend_Barcode_Object_Exception
-     */
     public function testBadTextDetectedIfChecksumWished()
     {
+        $this->expectException(\Zend_Barcode_Object_Exception::class);
         $this->_object->setText('&');
         $this->_object->setWithChecksum(true);
         $this->_object->getText();
@@ -109,22 +107,18 @@ class Zend_Barcode_Object_Code39Test extends Zend_Barcode_Object_TestCommon
         $this->assertTrue($this->_object->checkParams());
     }
 
-    /**
-     * @expectedException Zend_Barcode_Object_Exception
-     */
     public function testCheckParamsWithLowRatio()
     {
+        $this->expectException(\Zend_Barcode_Object_Exception::class);
         $this->_object->setText('TEST');
         $this->_object->setBarThinWidth(21);
         $this->_object->setBarThickWidth(40);
         $this->_object->checkParams();
     }
 
-    /**
-     * @expectedException Zend_Barcode_Object_Exception
-     */
     public function testCheckParamsWithHighRatio()
     {
+        $this->expectException(\Zend_Barcode_Object_Exception::class);
         $this->_object->setText('TEST');
         $this->_object->setBarThinWidth(20);
         $this->_object->setBarThickWidth(61);

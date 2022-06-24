@@ -43,7 +43,7 @@ require_once 'Zend/Controller/Response/HttpTestCase.php';
  * @group      Zend_Http_Header
  * @group      ZF-4520
  */
-class Zend_Http_Header_SetCookieTest extends PHPUnit_Framework_TestCase
+class Zend_Http_Header_SetCookieTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -389,7 +389,7 @@ class Zend_Http_Header_SetCookieTest extends PHPUnit_Framework_TestCase
     public function testDoesNotAllowCRLFAttackVectorsViaSetters($setter, $value)
     {
         $cookie = new Zend_Http_Header_SetCookie();
-        $this->setExpectedException('Zend_Http_Header_Exception_InvalidArgumentException');
+        $this->expectException('Zend_Http_Header_Exception_InvalidArgumentException');
         $cookie->{$setter}($value);
     }
 }

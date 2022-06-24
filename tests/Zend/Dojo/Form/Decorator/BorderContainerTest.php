@@ -51,7 +51,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_Decorator_BorderContainerTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_Form_Decorator_BorderContainerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -60,8 +60,8 @@ class Zend_Dojo_Form_Decorator_BorderContainerTest extends PHPUnit_Framework_Tes
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_Form_Decorator_BorderContainerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Decorator_BorderContainerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -129,6 +129,6 @@ class Zend_Dojo_Form_Decorator_BorderContainerTest extends PHPUnit_Framework_Tes
 }
 
 // Call Zend_Dojo_Form_Decorator_BorderContainerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_Decorator_BorderContainerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_Decorator_BorderContainerTest::main") {
     Zend_Dojo_Form_Decorator_BorderContainerTest::main();
 }

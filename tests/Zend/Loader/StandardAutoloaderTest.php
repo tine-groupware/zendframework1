@@ -35,7 +35,7 @@ require_once 'Zend/Loader/TestAsset/StandardAutoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
-class Zend_Loader_StandardAutoloaderTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -217,6 +217,6 @@ class Zend_Loader_StandardAutoloaderTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Loader_StandardAutoloaderTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Loader_StandardAutoloaderTest::main') {
     Zend_Loader_StandardAutoloaderTest::main();
 }

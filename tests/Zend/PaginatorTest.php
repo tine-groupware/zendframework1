@@ -107,7 +107,7 @@ require_once 'Zend/Cache/Core.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
-class Zend_PaginatorTest extends PHPUnit_Framework_TestCase
+class Zend_PaginatorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -116,8 +116,8 @@ class Zend_PaginatorTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -1002,7 +1002,7 @@ class Zend_PaginatorTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidDataInConstructor_ThrowsException()
     {
-        $this->setExpectedException("Zend_Paginator_Exception");
+        $this->expectException("Zend_Paginator_Exception");
 
         $p = new Zend_Paginator([]);
     }
@@ -1158,6 +1158,6 @@ class Zend_Paginator_TestCache extends Zend_Paginator
 }
 
 // Call Zend_PaginatorTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD === 'Zend_PaginatorTest::main') {
+if (\PHPUnit\MAIN\METHOD === 'Zend_PaginatorTest::main') {
     Zend_PaginatorTest::main();
 }

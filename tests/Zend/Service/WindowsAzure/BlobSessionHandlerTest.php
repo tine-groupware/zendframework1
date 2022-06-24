@@ -52,8 +52,8 @@ class Zend_Service_WindowsAzure_BlobSessionHandlerTest extends Zend_Service_Wind
     public static function main()
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_SESSIONHANDLER_RUNTESTS) {
-            $suite  = new PHPUnit_Framework_TestSuite("Zend_Service_WindowsAzure_BlobSessionHandlerTest");
-            $result = PHPUnit_TextUI_TestRunner::run($suite);
+            $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_BlobSessionHandlerTest");
+            $result = \PHPUnit\TextUI\TestRunner::run($suite);
         }
     }
     
@@ -202,6 +202,6 @@ class Zend_Service_WindowsAzure_BlobSessionHandlerTest extends Zend_Service_Wind
 }
 
 // Call Zend_Service_WindowsAzure_BlobSessionHandlerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_BlobSessionHandlerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_BlobSessionHandlerTest::main") {
     Zend_Service_WindowsAzure_BlobSessionHandlerTest::main();
 }

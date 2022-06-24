@@ -43,12 +43,12 @@ class Zend_Service_WindowsAzure_Diagnostics_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite(__CLASS__);
+        $suite = new \PHPUnit\Framework\TestSuite(__CLASS__);
 
         $suite->addTestSuite('Zend_Service_WindowsAzure_Diagnostics_ManagerTest');
         
@@ -56,6 +56,6 @@ class Zend_Service_WindowsAzure_Diagnostics_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_WindowsAzure_Diagnostics_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Service_WindowsAzure_Diagnostics_AllTests::main') {
     Zend_Service_WindowsAzure_Diagnostics_AllTests::main();
 }

@@ -33,7 +33,7 @@ require_once 'Zend/Measure/Cooking/Weight.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_Cooking_WeightTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for Mass initialisation

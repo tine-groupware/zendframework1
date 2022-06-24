@@ -40,7 +40,7 @@ require_once 'Zend/Validate/File/MimeType.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +49,8 @@ class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_MimeTypeTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_MimeTypeTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -292,6 +292,6 @@ class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Validate_File_MimeTypeTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_MimeTypeTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Validate_File_MimeTypeTest::main") {
     Zend_Validate_File_MimeTypeTest::main();
 }

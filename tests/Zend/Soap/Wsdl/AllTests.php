@@ -41,7 +41,7 @@ class Zend_Soap_Wsdl_AllTests
 {
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Soap_Wsdl');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Soap_Wsdl');
 
         $suite->addTestSuite('Zend_Soap_Wsdl_ArrayOfTypeComplexStrategyTest');
         $suite->addTestSuite('Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest');
@@ -51,6 +51,6 @@ class Zend_Soap_Wsdl_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Soap_Wsdl_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Soap_Wsdl_AllTests::main') {
     Zend_Soap_Wsdl_AllTests::main();
 }

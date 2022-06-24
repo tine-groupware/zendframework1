@@ -32,7 +32,7 @@ require_once 'Zend/Serializer/Adapter/Igbinary.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Serializer_Adapter_IgbinaryTest extends PHPUnit_Framework_TestCase
+class Zend_Serializer_Adapter_IgbinaryTest extends \PHPUnit\Framework\TestCase
 {
 
     private $_adapter;
@@ -140,7 +140,7 @@ class Zend_Serializer_Adapter_IgbinaryTest extends PHPUnit_Framework_TestCase
     public function testUnserialzeInvalid()
     {
         $value = "\0\1\r\n";
-        $this->setExpectedException('Zend_Serializer_Exception');
+        $this->expectException('Zend_Serializer_Exception');
         $this->_adapter->unserialize($value);
     }
 
@@ -154,7 +154,7 @@ class Zend_Serializer_Adapter_IgbinaryTest extends PHPUnit_Framework_TestCase
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Serializer_Adapter_IgbinarySkipTest extends PHPUnit_Framework_TestCase
+class Zend_Serializer_Adapter_IgbinarySkipTest extends \PHPUnit\Framework\TestCase
 {
     public $message = null;
 

@@ -29,7 +29,7 @@
  * @group      Zend_Service
  * @group      Zend_Service_Flickr
  */
-class Zend_Service_Flickr_OnlineTest extends PHPUnit_Framework_TestCase
+class Zend_Service_Flickr_OnlineTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Reference to Flickr service consumer object
@@ -223,7 +223,7 @@ class Zend_Service_Flickr_OnlineTest extends PHPUnit_Framework_TestCase
  * @group      Zend_Service
  * @group      Zend_Service_Flickr
  */
-class Zend_Service_Flickr_OnlineTest_Skip extends PHPUnit_Framework_TestCase
+class Zend_Service_Flickr_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
 {
     public function testNothing()
     {

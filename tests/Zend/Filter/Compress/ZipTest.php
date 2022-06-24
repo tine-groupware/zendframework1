@@ -37,7 +37,7 @@ require_once 'Zend/Filter/Compress/Zip.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Filter_Compress_ZipTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs this test suite
@@ -46,8 +46,8 @@ class Zend_Filter_Compress_ZipTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Filter_Compress_ZipTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_ZipTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -299,10 +299,10 @@ class Zend_Filter_Compress_ZipTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group
-     * @expectedException Zend_Filter_Exception
      */
     public function testDecompressWillThrowExceptionWhenDecompressingWithNoTarget()
     {
+        $this->expectException(\Zend_Filter_Exception::class);
         $filter  = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip',
@@ -327,10 +327,10 @@ class Zend_Filter_Compress_ZipTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group RS
-     * @expectedException Zend_Filter_Exception
      */
     public function testDecompressWillThrowExceptionWhenDetectingUpwardDirectoryTraversal()
     {
+        $this->expectException(\Zend_Filter_Exception::class);
         if (version_compare(PHP_VERSION, '5.2.8', '>=')) {
             $this->markTestSkipped('This test is to run on PHP less than 5.2.8');
             return;
@@ -347,6 +347,6 @@ class Zend_Filter_Compress_ZipTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Filter_Compress_ZipTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_Compress_ZipTest::main') {
     Zend_Filter_Compress_ZipTest::main();
 }

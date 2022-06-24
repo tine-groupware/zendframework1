@@ -36,7 +36,7 @@ require_once 'Zend/Amf/Value/MessageBody.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Value_MessageBodyTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_Value_MessageBodyTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -45,8 +45,8 @@ class Zend_Amf_Value_MessageBodyTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_Value_MessageBodyTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Value_MessageBodyTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -95,6 +95,6 @@ class Zend_Amf_Value_MessageBodyTest_SerializableData
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Amf_Value_MessageBodyTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_Value_MessageBodyTest::main') {
     Zend_Amf_Value_MessageBodyTest::main();
 }

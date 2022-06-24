@@ -38,12 +38,12 @@ class Zend_Search_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Search');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Search');
 
         $suite->addTestSuite('Zend_Search_Lucene_AllTests');
 
@@ -51,7 +51,7 @@ class Zend_Search_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Search_Lucene_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Search_Lucene_AllTests::main') {
     Zend_Search_AllTests::main();
 }
 

@@ -38,12 +38,12 @@ require_once 'Zend/Loader/StandardAutoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
-class Zend_Loader_AutoloaderFactoryTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -100,11 +100,10 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit_Framework_TestCase
 
     /**
      * This tests checks if invalid autoloaders cause exceptions
-     *
-     * @expectedException Zend_Loader_Exception_InvalidArgumentException
      */
     public function testFactoryCatchesInvalidClasses()
     {
+        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
         if (!version_compare(PHP_VERSION, '5.3.7', '>=')) {
             $this->markTestSkipped('Cannot test invalid interface loader with versions less than 5.3.7');
         }
@@ -185,19 +184,19 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testGetInvalidAutoloaderThrowsException()
     {
-        $this->setExpectedException('Zend_Loader_Exception_InvalidArgumentException');
+        $this->expectException('Zend_Loader_Exception_InvalidArgumentException');
         $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader('InvalidAutoloader');
     }
 
     public function testFactoryWithInvalidArgumentThrowsException()
     {
-        $this->setExpectedException('Zend_Loader_Exception_InvalidArgumentException');
+        $this->expectException('Zend_Loader_Exception_InvalidArgumentException');
         Zend_Loader_AutoloaderFactory::factory('InvalidArgument');
     }
 
     public function testFactoryWithInvalidAutoloaderClassThrowsException()
     {
-        $this->setExpectedException('Zend_Loader_Exception_InvalidArgumentException');
+        $this->expectException('Zend_Loader_Exception_InvalidArgumentException');
         Zend_Loader_AutoloaderFactory::factory(['InvalidAutoloader' => []]);
     }
 
@@ -228,6 +227,6 @@ class Zend_Loader_AutoloaderFactoryTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Loader_AutoloaderFactoryTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Loader_AutoloaderFactoryTest::main') {
     Zend_Loader_AutoloaderFactoryTest::main();
 }

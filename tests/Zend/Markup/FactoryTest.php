@@ -34,7 +34,7 @@ require_once 'Zend/Markup.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Markup_FactoryTest extends PHPUnit_Framework_TestCase
+class Zend_Markup_FactoryTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testFactory()
@@ -48,6 +48,6 @@ class Zend_Markup_FactoryTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Markup_BbcodeTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Markup_FactoryTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Markup_FactoryTest::main") {
     Zend_Markup_BbcodeTest::main();
 }

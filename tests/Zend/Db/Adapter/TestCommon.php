@@ -1981,7 +1981,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     {
         $serialized = serialize($this->_db);
         $this->assertTrue(is_string($serialized));
-        $this->assertThat(unserialize($serialized), new PHPUnit_Framework_Constraint_IsInstanceOf('Zend_Db_Adapter_Abstract'));
+        $this->assertThat(unserialize($serialized), new \PHPUnit\Framework\Constraint\IsInstanceOf('Zend_Db_Adapter_Abstract'));
     }
 
     public function testAdapterSerializationFailsWhenNotAllowedToBeSerialized()
@@ -1991,7 +1991,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             Zend_Db::ALLOW_SERIALIZATION => false
         ];
         $db = Zend_Db::factory($this->getDriver(), $params);
-        $this->setExpectedException('Zend_Db_Adapter_Exception');
+        $this->expectException('Zend_Db_Adapter_Exception');
         $serialized = serialize($db);
     }
 

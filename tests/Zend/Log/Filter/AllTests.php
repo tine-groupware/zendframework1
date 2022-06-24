@@ -42,12 +42,12 @@ class Zend_Log_Filter_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Log_Filter');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Log_Filter');
 
         $suite->addTestSuite('Zend_Log_Filter_ChainingTest');
         $suite->addTestSuite('Zend_Log_Filter_MessageTest');
@@ -58,6 +58,6 @@ class Zend_Log_Filter_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Log_Filter_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Log_Filter_AllTests::main') {
     Zend_Log_Filter_AllTests::main();
 }

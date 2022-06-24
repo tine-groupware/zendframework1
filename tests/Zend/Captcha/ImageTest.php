@@ -36,7 +36,7 @@ require_once 'Zend/Captcha/Adapter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
-class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
+class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
 {
     protected $_tmpDir;
 
@@ -48,8 +48,8 @@ class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Captcha_ImageTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Captcha_ImageTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -407,6 +407,6 @@ class Zend_Captcha_ImageTest_SessionContainer
 }
 
 // Call Zend_Captcha_ImageTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Captcha_ImageTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Captcha_ImageTest::main") {
     Zend_Captcha_ImageTest::main();
 }

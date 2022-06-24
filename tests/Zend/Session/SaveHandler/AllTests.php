@@ -43,17 +43,17 @@ class Zend_Session_SaveHandler_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Session_SaveHandler');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Session_SaveHandler');
 
         if (!extension_loaded('pdo_sqlite')) {
             $suite->addTestSuite('Zend_Session_SaveHandler_DbTableTestSkip');
@@ -65,6 +65,6 @@ class Zend_Session_SaveHandler_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Session_SaveHandler_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Session_SaveHandler_AllTests::main') {
     Zend_Session_SaveHandler_AllTests::main();
 }

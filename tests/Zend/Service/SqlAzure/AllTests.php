@@ -43,12 +43,12 @@ class Zend_Service_SqlAzure_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite(__CLASS__);
+        $suite = new \PHPUnit\Framework\TestSuite(__CLASS__);
 
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_SQLMANAGEMENT_RUNTESTS) {
         	$suite->addTest(Zend_Service_SqlAzure_Management_AllTests::suite());
@@ -58,6 +58,6 @@ class Zend_Service_SqlAzure_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_SqlAzure_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Service_SqlAzure_AllTests::main') {
     Zend_Service_SqlAzure_AllTests::main();
 }

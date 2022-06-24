@@ -38,7 +38,7 @@ require_once 'Zend/Filter/Word/DashToCamelCase.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_Word_DashToCamelCaseTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_Word_DashToCamelCaseTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +49,8 @@ class Zend_Filter_Word_DashToCamelCaseTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Filter_Word_DashToCamelCaseTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_DashToCamelCaseTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithDashes()
@@ -65,6 +65,6 @@ class Zend_Filter_Word_DashToCamelCaseTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Filter_Word_DashToCamelCaseTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Filter_Word_DashToCamelCaseTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Filter_Word_DashToCamelCaseTest::main") {
     Zend_Filter_Word_DashToCamelCaseTest::main();
 }

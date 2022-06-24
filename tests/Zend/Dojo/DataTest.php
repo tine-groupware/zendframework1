@@ -34,14 +34,14 @@ require_once 'Zend/Dojo/Data.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dojo
  */
-class Zend_Dojo_DataTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
 {
     public $dojoData;
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_DataTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_DataTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -81,11 +81,9 @@ class Zend_Dojo_DataTest extends PHPUnit_Framework_TestCase
         $this->assertSame(2, $this->dojoData->getIdentifier());
     }
 
-    /**
-     * @expectedException Zend_Dojo_Exception
-     */
     public function testSetIdentifierShouldThrowExceptionOnInvalidType()
     {
+        $this->expectException(\Zend_Dojo_Exception::class);
         $this->dojoData->setIdentifier(true);
     }
 
@@ -287,11 +285,9 @@ class Zend_Dojo_DataTest extends PHPUnit_Framework_TestCase
         $this->assertSame($obj->items[2]->toArray(), $this->dojoData->getItem(3));
     }
 
-    /**
-     * @expectedException Zend_Dojo_Exception
-     */
     public function testAddItemsShouldThrowExceptionForInvalidItems()
     {
+        $this->expectException(\Zend_Dojo_Exception::class);
         $this->dojoData->addItems('foo');
     }
 
@@ -456,11 +452,9 @@ class Zend_Dojo_DataTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($data, $test);
     }
 
-    /**
-     * @expectedException Zend_Dojo_Exception
-     */
     public function testFromJsonShouldThrowExceptionOnInvalidData()
     {
+        $this->expectException(\Zend_Dojo_Exception::class);
         $this->dojoData->fromJson(new stdClass);
     }
 
@@ -585,6 +579,6 @@ class Zend_Dojo_DataTest_DataCollection implements Iterator
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Dojo_DataTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Dojo_DataTest::main') {
     Zend_Dojo_DataTest::main();
 }

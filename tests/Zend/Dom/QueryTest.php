@@ -38,7 +38,7 @@ require_once 'Zend/Dom/Query.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dom
  */
-class Zend_Dom_QueryTest extends PHPUnit_Framework_TestCase
+class Zend_Dom_QueryTest extends \PHPUnit\Framework\TestCase
 {
     public $html;
 
@@ -49,8 +49,8 @@ class Zend_Dom_QueryTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dom_QueryTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dom_QueryTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -379,12 +379,12 @@ EOB;
 </results>
 XML;
         $this->query->setDocumentXml($xml);
-        $this->setExpectedException("Zend_Dom_Exception");
+        $this->expectException("Zend_Dom_Exception");
         $this->query->queryXpath('/');
     }
 }
 
 // Call Zend_Dom_QueryTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dom_QueryTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Dom_QueryTest::main") {
     Zend_Dom_QueryTest::main();
 }

@@ -38,12 +38,12 @@ class Zend_File_Transfer_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_File_Transfer');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_File_Transfer');
 
         $suite->addTest(Zend_File_Transfer_Adapter_AllTests::suite());
 
@@ -51,6 +51,6 @@ class Zend_File_Transfer_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_File_Transfer_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_File_Transfer_AllTests::main') {
     Zend_File_Transfer_AllTests::main();
 }

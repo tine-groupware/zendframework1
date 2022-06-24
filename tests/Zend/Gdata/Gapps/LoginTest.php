@@ -32,7 +32,7 @@ require_once 'Zend/Gdata.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Gapps
  */
-class Zend_Gdata_Gapps_LoginTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_Gapps_LoginTest extends \PHPUnit\Framework\TestCase
 {
 
     public function setUp() {

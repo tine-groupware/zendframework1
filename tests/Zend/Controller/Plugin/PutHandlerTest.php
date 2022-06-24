@@ -41,7 +41,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
-class Zend_Controller_Plugin_PutHandlerTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Request object
@@ -64,8 +64,8 @@ class Zend_Controller_Plugin_PutHandlerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Plugin_PutHandlerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_PutHandlerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -95,7 +95,7 @@ class Zend_Controller_Plugin_PutHandlerTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Controller_Plugin_PutHandlerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_PutHandlerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Plugin_PutHandlerTest::main") {
     Zend_Controller_Plugin_PutHandlerTest::main();
 }
 

@@ -39,7 +39,7 @@ require_once 'Zend/Text/Table/Decorator/Ascii.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Text
  */
-class Zend_Text_TableTest extends PHPUnit_Framework_TestCase
+class Zend_Text_TableTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +48,8 @@ class Zend_Text_TableTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Text_TableTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Text_TableTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function tearDown()
@@ -498,6 +498,6 @@ class Zend_Text_TableTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Text_TableTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Text_TableTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Text_TableTest::main") {
     Zend_Text_TableTest::main();
 }

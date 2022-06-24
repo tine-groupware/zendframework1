@@ -34,7 +34,7 @@ require_once 'Zend/Loader/ClassMapAutoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
-class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_ClassMapAutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Loader_ClassMapAutoloader
@@ -43,8 +43,8 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit_Framework_TestCase
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -84,13 +84,13 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit_Framework_TestCase
     public function testRegisteringNonExistentAutoloadMapRaisesInvalidArgumentException()
     {
         $dir = dirname(__FILE__) . '__foobar__';
-        $this->setExpectedException('Zend_Loader_Exception_InvalidArgumentException');
+        $this->expectException('Zend_Loader_Exception_InvalidArgumentException');
         $this->loader->registerAutoloadMap($dir);
     }
 
     public function testValidMapFileNotReturningMapRaisesInvalidArgumentException()
     {
-        $this->setExpectedException('Zend_Loader_Exception_InvalidArgumentException');
+        $this->expectException('Zend_Loader_Exception_InvalidArgumentException');
         $this->loader->registerAutoloadMap(dirname(__FILE__) . '/_files/badmap.php');
     }
 
@@ -232,6 +232,6 @@ class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Loader_ClassMapAutoloaderTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Loader_ClassMapAutoloaderTest::main') {
     Zend_Loader_ClassMapAutoloaderTest::main();
 }

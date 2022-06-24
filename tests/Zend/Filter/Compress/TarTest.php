@@ -37,7 +37,7 @@ require_once 'Zend/Filter/Compress/Tar.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Filter_Compress_TarTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_Compress_TarTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs this test suite
@@ -46,8 +46,8 @@ class Zend_Filter_Compress_TarTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Filter_Compress_TarTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_TarTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -265,6 +265,6 @@ class Zend_Filter_Compress_TarTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Filter_Compress_TarTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_Compress_TarTest::main') {
     Zend_Filter_Compress_TarTest::main();
 }

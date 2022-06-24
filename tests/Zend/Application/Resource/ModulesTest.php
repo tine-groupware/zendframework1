@@ -37,12 +37,12 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -212,6 +212,6 @@ class ZendTest_Application_Resource_ModulesHalf
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_ModulesTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Resource_ModulesTest::main') {
     Zend_Application_Resource_ModulesTest::main();
 }

@@ -39,7 +39,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_FormErrorsTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +49,8 @@ class Zend_View_Helper_FormErrorsTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_FormErrorsTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormErrorsTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -193,6 +193,6 @@ class Zend_View_Helper_FormErrorsTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_View_Helper_FormErrorsTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormErrorsTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_FormErrorsTest::main") {
     Zend_View_Helper_FormErrorsTest::main();
 }

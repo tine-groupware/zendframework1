@@ -40,7 +40,7 @@ require_once 'Zend/Validate/File/Hash.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_HashTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_HashTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +49,8 @@ class Zend_Validate_File_HashTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_HashTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_HashTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -175,6 +175,6 @@ class Zend_Validate_File_HashTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Validate_File_HashTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_HashTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Validate_File_HashTest::main") {
     Zend_Validate_File_HashTest::main();
 }

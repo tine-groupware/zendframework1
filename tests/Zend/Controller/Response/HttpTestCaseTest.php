@@ -39,7 +39,7 @@ require_once 'Zend/Controller/Response/HttpTestCase.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Response
  */
-class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +48,8 @@ class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit_Framework_TestCa
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Response_HttpTestCaseTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Response_HttpTestCaseTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -126,6 +126,6 @@ class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit_Framework_TestCa
 }
 
 // Call Zend_Controller_Response_HttpTestCaseTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Response_HttpTestCaseTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Response_HttpTestCaseTest::main") {
     Zend_Controller_Response_HttpTestCaseTest::main();
 }

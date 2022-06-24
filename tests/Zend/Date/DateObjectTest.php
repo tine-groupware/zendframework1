@@ -33,7 +33,7 @@ require_once 'Zend/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Date
  */
-class Zend_Date_DateObjectTest extends PHPUnit_Framework_TestCase
+class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
 {
 
     public function setUp()

@@ -41,12 +41,12 @@ class Zend_Captcha_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Captcha');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Captcha');
 
         $suite->addTestSuite('Zend_Captcha_DumbTest');
         $suite->addTestSuite('Zend_Captcha_FigletTest');
@@ -57,6 +57,6 @@ class Zend_Captcha_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Captcha_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Captcha_AllTests::main') {
     Zend_Captcha_AllTests::main();
 }

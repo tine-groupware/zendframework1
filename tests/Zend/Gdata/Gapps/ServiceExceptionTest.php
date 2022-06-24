@@ -33,7 +33,7 @@ require_once 'Zend/Gdata/Gapps.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Gapps
  */
-class Zend_Gdata_Gapps_ServiceExceptionTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_Gapps_ServiceExceptionTest extends \PHPUnit\Framework\TestCase
 {
     protected $fixture;
     protected $data;
@@ -49,10 +49,8 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends PHPUnit_Framework_TestCase
         $this->data[4] = new Zend_Gdata_Gapps_Error(2398, "red", "kitten");
     }
 
-    /**
-     * @expectedException Zend_Gdata_Gapps_ServiceException
-     */
     public function testCanThrowServiceException() {
+        $this->expectException(\Zend_Gdata_Gapps_ServiceException::class);
         throw $this->fixture;
     }
 

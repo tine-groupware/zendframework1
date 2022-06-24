@@ -45,17 +45,17 @@ class Zend_Service_Ebay_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Service_Ebay');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Service_Ebay');
         $suite->addTestSuite('Zend_Service_Ebay_AbstractTest');
         $suite->addTest(Zend_Service_Ebay_Finding_AllTests::suite());
         return $suite;
     }
 }
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_Ebay_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Service_Ebay_AllTests::main') {
     Zend_Service_AllTests::main();
 }

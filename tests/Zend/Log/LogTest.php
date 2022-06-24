@@ -44,12 +44,12 @@ require_once 'Zend/Log/FactoryInterface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Log
  */
-class Zend_Log_LogTest extends PHPUnit_Framework_TestCase
+class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -564,11 +564,9 @@ class Zend_Log_LogTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($log instanceof ZLTest_My_Log);
     }
 
-    /**
-     * @expectedException Zend_Log_Exception
-     */
     public function testZendLogThrowsAnExceptionWhenPassingIncorrectClassToFactory()
     {
+        $this->expectException(\Zend_Log_Exception::class);
         $writer = new Zend_Log_Writer_Null();
         ZLTest_My_Log::factory(
             [
@@ -613,6 +611,6 @@ class Custom_Formatter_Mock extends Zend_Log_Formatter_Abstract
 class ZLTest_My_Log extends Zend_Log {}
 class ZLTest_My_LogNotExtending {}
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Log_LogTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Log_LogTest::main') {
     Zend_Log_LogTest::main();
 }

@@ -45,7 +45,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Server backup
@@ -797,6 +797,6 @@ class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Controller_Router_RouteTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Controller_Router_RouteTests::main') {
     Zend_Controller_Router_RouteTests::main();
 }

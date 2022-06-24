@@ -37,7 +37,7 @@ require_once 'Zend/Server/Definition.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_ServerTest extends PHPUnit_Framework_TestCase
+class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Zend_XmlRpc_Server object
@@ -306,7 +306,8 @@ class Zend_XmlRpc_ServerTest extends PHPUnit_Framework_TestCase
         $help = $this->_server->methodHelp('system.methodHelp', 'system.listMethods');
         $this->assertContains('Display help message for an XMLRPC method', $help);
 
-        $this->setExpectedException('Zend_XmlRpc_Server_Exception', 'Method "foo" does not exist');
+        $this->expectException('Zend_XmlRpc_Server_Exception');
+        $this->expectExceptionMessage('Method "foo" does not exist');
         $this->_server->methodHelp('foo');
     }
 
@@ -326,7 +327,8 @@ class Zend_XmlRpc_ServerTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($sig));
         $this->assertEquals(1, count($sig), var_export($sig, 1));
 
-        $this->setExpectedException('Zend_XmlRpc_Server_Exception', 'Method "foo" does not exist');
+        $this->expectException('Zend_XmlRpc_Server_Exception');
+        $this->expectExceptionMessage('Method "foo" does not exist');
         $this->_server->methodSignature('foo');
     }
 
@@ -634,8 +636,8 @@ class Zend_XmlRpc_ServerTest extends PHPUnit_Framework_TestCase
 
     public function testCallingUnregisteredMethod()
     {
-        $this->setExpectedException('Zend_XmlRpc_Server_Exception',
-            'Unknown instance method called on server: foobarbaz');
+        $this->expectException('Zend_XmlRpc_Server_Exception');
+        $this->expectExceptionMessage('Unknown instance method called on server: foobarbaz');
         $this->_server->foobarbaz();
     }
 
@@ -647,13 +649,15 @@ class Zend_XmlRpc_ServerTest extends PHPUnit_Framework_TestCase
 
     public function testPassingInvalidRequestClassThrowsException()
     {
-        $this->setExpectedException('Zend_XmlRpc_Server_Exception', 'Invalid request class');
+        $this->expectException('Zend_XmlRpc_Server_Exception');
+        $this->expectExceptionMessage('Invalid request class');
         $this->_server->setRequest('stdClass');
     }
 
     public function testPassingInvalidResponseClassThrowsException()
     {
-        $this->setExpectedException('Zend_XmlRpc_Server_Exception', 'Invalid response class');
+        $this->expectException('Zend_XmlRpc_Server_Exception');
+        $this->expectExceptionMessage('Invalid response class');
         $this->_server->setResponseClass('stdClass');
     }
 
@@ -776,6 +780,6 @@ class Zend_XmlRpc_Server_testRequest extends Zend_XmlRpc_Request
 }
 
 // Call Zend_XmlRpc_ServerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_ServerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_ServerTest::main") {
     Zend_XmlRpc_ServerTest::main();
 }

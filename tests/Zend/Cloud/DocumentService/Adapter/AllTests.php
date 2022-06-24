@@ -50,17 +50,17 @@ class Zend_Cloud_DocumentService_Adapter_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Cloud');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Cloud');
 
         $suite->addTestSuite('Zend_Cloud_DocumentService_Adapter_SimpleDbTest');
         $suite->addTestSuite('Zend_Cloud_DocumentService_Adapter_WindowsAzureTest');
@@ -69,6 +69,6 @@ class Zend_Cloud_DocumentService_Adapter_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_DocumentService_Adapter_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_DocumentService_Adapter_AllTests::main') {
     Zend_Cloud_DocumentService_Adapter_AllTests::main();
 }

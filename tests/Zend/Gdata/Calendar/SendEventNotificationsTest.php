@@ -32,7 +32,7 @@ require_once 'Zend/Gdata/Calendar.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Calendar
  */
-class Zend_Gdata_Calendar_SendEventNotificationsTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_Calendar_SendEventNotificationsTest extends \PHPUnit\Framework\TestCase
 {
 
     public function setUp() {

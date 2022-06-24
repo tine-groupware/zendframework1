@@ -43,12 +43,12 @@ class Zend_Memory_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Memory');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Memory');
 
         $suite->addTestSuite('Zend_Memory_MemoryTest');
         $suite->addTestSuite('Zend_Memory_ValueTest');
@@ -61,6 +61,6 @@ class Zend_Memory_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Memory_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Memory_AllTests::main') {
     Zend_Memory_AllTests::main();
 }

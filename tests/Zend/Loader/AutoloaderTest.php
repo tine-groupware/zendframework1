@@ -42,12 +42,12 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -128,11 +128,9 @@ class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
         $this->assertSame([$this, 'autoload'], $this->autoloader->getDefaultAutoloader());
     }
 
-    /**
-     * @expectedException Zend_Loader_Exception
-     */
     public function testSpecifyingInvalidDefaultAutoloaderShouldRaiseException()
     {
+        $this->expectException(\Zend_Loader_Exception::class);
         $this->autoloader->setDefaultAutoloader(uniqid());
     }
 
@@ -158,11 +156,9 @@ class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
         $this->assertContains('Solar_', $namespaces);
     }
 
-    /**
-     * @expectedException Zend_Loader_Exception
-     */
     public function testRegisteringInvalidNamespaceSpecShouldRaiseException()
     {
+        $this->expectException(\Zend_Loader_Exception::class);
         $o = new stdClass;
         $this->autoloader->registerNamespace($o);
     }
@@ -182,11 +178,9 @@ class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
         $this->assertNotContains('ZendX', $namespaces);
     }
 
-    /**
-     * @expectedException Zend_Loader_Exception
-     */
     public function testUnregisteringInvalidNamespaceSpecShouldRaiseException()
     {
+        $this->expectException(\Zend_Loader_Exception::class);
         $o = new stdClass;
         $this->autoloader->unregisterNamespace($o);
     }
@@ -458,6 +452,6 @@ class Zend_Loader_AutoloaderTest_Autoloader implements Zend_Loader_Autoloader_In
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Loader_AutoloaderTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Loader_AutoloaderTest::main') {
     Zend_Loader_AutoloaderTest::main();
 }

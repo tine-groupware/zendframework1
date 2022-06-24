@@ -47,7 +47,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_Element_NumberTextBoxTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_Form_Element_NumberTextBoxTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -56,8 +56,8 @@ class Zend_Dojo_Form_Element_NumberTextBoxTest extends PHPUnit_Framework_TestCas
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_Form_Element_NumberTextBoxTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Element_NumberTextBoxTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -138,11 +138,9 @@ class Zend_Dojo_Form_Element_NumberTextBoxTest extends PHPUnit_Framework_TestCas
         $this->assertEquals('percent', $this->element->dijitParams['constraints']['type']);
     }
 
-    /**
-     * @expectedException Zend_Form_Element_Exception
-     */
     public function testTypeMutatorShouldThrowExceptionWithInvalidType()
     {
+        $this->expectException(\Zend_Form_Element_Exception::class);
         $this->element->setType('foobar');
     }
 
@@ -174,6 +172,6 @@ class Zend_Dojo_Form_Element_NumberTextBoxTest extends PHPUnit_Framework_TestCas
 }
 
 // Call Zend_Dojo_Form_Element_NumberTextBoxTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_Element_NumberTextBoxTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_Element_NumberTextBoxTest::main") {
     Zend_Dojo_Form_Element_NumberTextBoxTest::main();
 }

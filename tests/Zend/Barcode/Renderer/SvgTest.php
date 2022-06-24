@@ -55,11 +55,9 @@ class Zend_Barcode_Renderer_SvgTest extends Zend_Barcode_Renderer_TestCommon
         $this->assertSame(0, $this->_renderer->getHeight());
     }
 
-    /**
-     * @expectedException Zend_Barcode_Renderer_Exception
-     */
     public function testBadHeight()
     {
+        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setHeight(-1);
     }
 
@@ -72,11 +70,9 @@ class Zend_Barcode_Renderer_SvgTest extends Zend_Barcode_Renderer_TestCommon
         $this->assertSame(0, $this->_renderer->getWidth());
     }
 
-    /**
-     * @expectedException Zend_Barcode_Renderer_Exception
-     */
     public function testBadWidth()
     {
+        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setWidth(-1);
     }
 
@@ -86,11 +82,9 @@ class Zend_Barcode_Renderer_SvgTest extends Zend_Barcode_Renderer_TestCommon
         $this->_renderer->setResource($svgResource, 10);
     }
 
-    /**
-     * @expectedException Zend_Barcode_Renderer_Exception
-     */
     public function testObjectSvgResource()
     {
+        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
         $svgResource = new StdClass();
         $this->_renderer->setResource($svgResource);
     }

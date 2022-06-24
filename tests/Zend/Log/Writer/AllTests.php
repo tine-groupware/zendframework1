@@ -49,12 +49,12 @@ class Zend_Log_Writer_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Log_Writer');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Log_Writer');
 
         $suite->addTestSuite('Zend_Log_Writer_AbstractTest');
         $suite->addTestSuite('Zend_Log_Writer_DbTest');
@@ -72,6 +72,6 @@ class Zend_Log_Writer_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Log_Writer_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Log_Writer_AllTests::main') {
     Zend_Log_Writer_AllTests::main();
 }

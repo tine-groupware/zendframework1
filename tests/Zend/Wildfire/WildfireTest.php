@@ -62,7 +62,7 @@ require_once 'Zend/Json/Encoder.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Wildfire
  */
-class Zend_Wildfire_WildfireTest extends PHPUnit_Framework_TestCase
+class Zend_Wildfire_WildfireTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_controller = null;
@@ -77,8 +77,8 @@ class Zend_Wildfire_WildfireTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Wildfire_WildfireTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Wildfire_WildfireTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -1205,6 +1205,6 @@ class Zend_Wildfire_WildfireTest_Response extends Zend_Controller_Response_HttpT
 
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Wildfire_WildfireTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Wildfire_WildfireTest::main') {
     Zend_Wildfire_WildfireTest::main();
 }

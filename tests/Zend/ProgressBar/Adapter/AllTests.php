@@ -40,12 +40,12 @@ class Zend_ProgressBar_Adapter_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_ProgressBar_Adapter');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_ProgressBar_Adapter');
         $suite->addTestSuite('Zend_ProgressBar_Adapter_ConsoleTest');
         $suite->addTestSuite('Zend_ProgressBar_Adapter_JsPushTest');
         $suite->addTestSuite('Zend_ProgressBar_Adapter_JsPullTest');
@@ -54,6 +54,6 @@ class Zend_ProgressBar_Adapter_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_ProgressBar_Adapter_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_ProgressBar_Adapter_AllTests::main') {
     Zend_ProgressBar_Adapter_AllTests::main();
 }

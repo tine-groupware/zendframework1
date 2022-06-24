@@ -57,12 +57,12 @@ class Zend_Dojo_Form_Element_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Dojo_Form_Element');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Dojo_Form_Element');
 
         $suite->addTestSuite('Zend_Dojo_Form_Element_CheckBoxTest');
         $suite->addTestSuite('Zend_Dojo_Form_Element_ComboBoxTest');
@@ -88,6 +88,6 @@ class Zend_Dojo_Form_Element_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Dojo_Form_Element_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Dojo_Form_Element_AllTests::main') {
     Zend_Dojo_Form_Element_AllTests::main();
 }

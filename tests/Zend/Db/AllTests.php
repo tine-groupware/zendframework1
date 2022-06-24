@@ -43,12 +43,12 @@ class Zend_Db_AllTests
 
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Db');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Db');
 
         /**
          * Static tests should always be enabled,
@@ -159,7 +159,7 @@ class Zend_Db_AllTests
         $skipTest->message = $message;
 
         if (self::$_skipTestSuite === null) {
-            self::$_skipTestSuite = new PHPUnit_Framework_TestSuite('Zend_Db skipped test suites');
+            self::$_skipTestSuite = new \PHPUnit\Framework\TestSuite('Zend_Db skipped test suites');
         }
 
         self::$_skipTestSuite->addTest($skipTest);
@@ -167,6 +167,6 @@ class Zend_Db_AllTests
 
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Db_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Db_AllTests::main') {
     Zend_Db_AllTests::main();
 }

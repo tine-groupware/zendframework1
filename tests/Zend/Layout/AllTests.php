@@ -41,12 +41,12 @@ class Zend_Layout_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Layout');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Layout');
 
         $suite->addTestSuite('Zend_Layout_LayoutTest');
         $suite->addTestSuite('Zend_Layout_HelperTest');
@@ -57,6 +57,6 @@ class Zend_Layout_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Layout_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Layout_AllTests::main') {
     Zend_Layout_AllTests::main();
 }

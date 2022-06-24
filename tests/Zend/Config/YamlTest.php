@@ -33,7 +33,7 @@ require_once 'Zend/Config/Yaml.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
-class Zend_Config_YamlTest extends PHPUnit_Framework_TestCase
+class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -242,19 +242,22 @@ class Zend_Config_YamlTest extends PHPUnit_Framework_TestCase
 
     public function testConstructorRaisesExceptionWhenUnableToLoadFile()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'file_get_contents');
+        $this->expectException('Zend_Config_Exception');
+        $this->expectExceptionMessage('file_get_contents');
         $config = new Zend_Config_Yaml('__foo__');
     }
 
     public function testBadIndentationRaisesException()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'unsupported syntax');
+        $this->expectException('Zend_Config_Exception');
+        $this->expectExceptionMessage('unsupported syntax');
         $config = new Zend_Config_Yaml($this->_badIndentationConfig, 'all');
     }
 
     public function testPassingBadYamlDecoderRaisesException()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'must be callable');
+        $this->expectException('Zend_Config_Exception');
+        $this->expectExceptionMessage('must be callable');
         $config = new Zend_Config_Yaml($this->_iniFileAllSectionsConfig, 'debug', [
             'yaml_decoder' => '__foo__',
         ]);

@@ -37,12 +37,12 @@ require_once 'Zend/Version.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Version
  */
-class Zend_VersionTest extends PHPUnit_Framework_TestCase
+class Zend_VersionTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -105,6 +105,6 @@ class Zend_VersionTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == "Zend_VersionTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_VersionTest::main") {
     Zend_VersionTest::main();
 }

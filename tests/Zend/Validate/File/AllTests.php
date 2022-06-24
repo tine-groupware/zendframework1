@@ -56,12 +56,12 @@ class Zend_Validate_File_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Validate_File');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Validate_File');
 
         $suite->addTestSuite('Zend_Validate_File_CountTest');
         $suite->addTestSuite('Zend_Validate_File_Crc32Test');
@@ -86,6 +86,6 @@ class Zend_Validate_File_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Validate_File_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Validate_File_AllTests::main') {
     Zend_Validate_File_AllTests::main();
 }

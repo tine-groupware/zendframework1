@@ -41,7 +41,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
-class Zend_Controller_Plugin_ActionStackTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 {
     public $key       = 'Zend_Controller_Plugin_ActionStack';
     public $registry;
@@ -55,8 +55,8 @@ class Zend_Controller_Plugin_ActionStackTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Plugin_ActionStackTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_ActionStackTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -395,6 +395,6 @@ class Zend_Controller_Plugin_ActionStack_Registry extends Zend_Registry
 }
 
 // Call Zend_Controller_Plugin_ActionStackTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_ActionStackTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Plugin_ActionStackTest::main") {
     Zend_Controller_Plugin_ActionStackTest::main();
 }

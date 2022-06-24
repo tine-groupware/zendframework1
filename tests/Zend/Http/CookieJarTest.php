@@ -33,7 +33,7 @@ require_once 'Zend/Http/CookieJar.php';
  * @group      Zend_Http
  * @group      Zend_Http_CookieJar
  */
-class Zend_Http_CookieJarTest extends PHPUnit_Framework_TestCase
+class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
 {
     public function loadResponse($filename)
     {
@@ -110,10 +110,10 @@ class Zend_Http_CookieJarTest extends PHPUnit_Framework_TestCase
      * Test we get an exception in case of invalid response objects
      *
      * @dataProvider invalidResponseProvider
-     * @expectedException Zend_Http_Exception
      */
     public function testExceptAddCookiesInvalidResponse($resp)
     {
+        $this->expectException(\Zend_Http_Exception::class);
         $jar = new Zend_Http_Cookiejar();
         $jar->addCookiesFromResponse($resp, 'http://www.example.com');
     }

@@ -49,7 +49,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
-class Zend_Controller_Plugin_BrokerTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
 {
     public $controller;
 
@@ -62,8 +62,8 @@ class Zend_Controller_Plugin_BrokerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Plugin_BrokerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_BrokerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -342,6 +342,6 @@ class Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin extends Zend_Control
 
 
 // Call Zend_Controller_Plugin_BrokerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_BrokerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Plugin_BrokerTest::main") {
     Zend_Controller_Plugin_BrokerTest::main();
 }

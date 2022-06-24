@@ -35,7 +35,7 @@ require_once 'Zend/Filter/StringToUpper.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Markup_BbcodeAndHtmlTest extends PHPUnit_Framework_TestCase
+class Zend_Markup_BbcodeAndHtmlTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -54,8 +54,8 @@ class Zend_Markup_BbcodeAndHtmlTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Markup_MarkupTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Markup_MarkupTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -119,7 +119,7 @@ class Zend_Markup_BbcodeAndHtmlTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionParserWrongInputType()
     {
-        $this->setExpectedException('Zend_Markup_Parser_Exception');
+        $this->expectException('Zend_Markup_Parser_Exception');
 
         $this->_markup->getParser()->parse([]);
     }
@@ -131,7 +131,7 @@ class Zend_Markup_BbcodeAndHtmlTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionParserEmptyInput()
     {
-        $this->setExpectedException('Zend_Markup_Parser_Exception');
+        $this->expectException('Zend_Markup_Parser_Exception');
 
         $this->_markup->getParser()->parse('');
     }
@@ -541,6 +541,6 @@ BBCODE;
 
 // Call Zend_Markup_BbcodeAndHtmlTest::main()
 // if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Markup_BbcodeAndHtmlTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Markup_BbcodeAndHtmlTest::main") {
     Zend_Markup_BbcodeAndHtmlTest::main();
 }

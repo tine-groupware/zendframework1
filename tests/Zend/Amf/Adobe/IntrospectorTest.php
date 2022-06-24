@@ -38,12 +38,12 @@ require_once 'Zend/Amf/Adobe/Introspector.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Adobe_IntrospectorTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_Adobe_IntrospectorTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -225,6 +225,6 @@ class com_zend_framework_IntrospectorTestExplicitType
 
 
 // Call Zend_Amf_Adobe_IntrospectorTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Amf_Adobe_IntrospectorTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Amf_Adobe_IntrospectorTest::main") {
     Zend_Amf_Adobe_IntrospectorTest::main();
 }

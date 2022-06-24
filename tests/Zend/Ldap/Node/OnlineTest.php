@@ -97,11 +97,9 @@ class Zend_Ldap_Node_OnlineTest extends Zend_Ldap_OnlineTestCase
         }
     }
 
-    /**
-     * @expectedException Zend_Ldap_Exception
-     */
     public function testLoadFromLdapIllegalEntry()
     {
+        $this->expectException(\Zend_Ldap_Exception::class);
         $dn=$this->_createDn('ou=Test99,');
         $node=Zend_Ldap_Node::fromLdap($dn, $this->_getLdap());
     }
@@ -129,11 +127,9 @@ class Zend_Ldap_Node_OnlineTest extends Zend_Ldap_OnlineTestCase
         $this->assertEquals($sdata, serialize($newObject));
     }
 
-    /**
-     * @expectedException Zend_Ldap_Exception
-     */
     public function testAttachToInvalidLdap()
     {
+        $this->expectException(\Zend_Ldap_Exception::class);
         $data=[
             'dn'          => 'ou=name,dc=example,dc=org',
             'ou'          => ['name'],
@@ -192,11 +188,9 @@ class Zend_Ldap_Node_OnlineTest extends Zend_Ldap_OnlineTestCase
         $this->assertEquals("Test1", $node->getAttribute('ou', 0));
     }
 
-    /**
-     * @expectedException Zend_Ldap_Exception
-     */
     public function testGetIllegalNode()
     {
+        $this->expectException(\Zend_Ldap_Exception::class);
         $dn=$this->_createDn('ou=Test99,');
         $node=$this->_getLdap()->getNode($dn);
     }
@@ -270,11 +264,9 @@ class Zend_Ldap_Node_OnlineTest extends Zend_Ldap_OnlineTestCase
             $pnode->getDnString(Zend_Ldap_Dn::ATTR_CASEFOLD_LOWER));
     }
 
-    /**
-     * @expectedException Zend_Ldap_Exception
-     */
     public function testGetNonexistantParent()
     {
+        $this->expectException(\Zend_Ldap_Exception::class);
         $node=$this->_getLdap()->getNode(TESTS_ZEND_LDAP_WRITEABLE_SUBTREE);
         $pnode=$node->getParent();
     }

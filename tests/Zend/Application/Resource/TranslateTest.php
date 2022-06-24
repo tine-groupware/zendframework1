@@ -37,7 +37,7 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_TranslateTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_TranslateTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var array
@@ -67,8 +67,8 @@ class Zend_Application_Resource_TranslateTest extends PHPUnit_Framework_TestCase
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -218,10 +218,10 @@ class Zend_Application_Resource_TranslateTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-10352
-     * @expectedException Zend_Application_Resource_Exception
      */
     public function testToUseTheTwoKeysContentAndDataShouldThrowsException()
     {
+        $this->expectException(\Zend_Application_Resource_Exception::class);
         $options = [
             'adapter' => 'array',
             'content' => [
@@ -264,6 +264,6 @@ class Zend_Application_Resource_TranslateTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_TranslateTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Resource_TranslateTest::main') {
     Zend_Application_Resource_TranslateTest::main();
 }

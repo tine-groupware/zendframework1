@@ -42,7 +42,7 @@ require_once 'Zend/Service/Ebay/Finding/Response/Items.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_Ebay_OfflineTest extends PHPUnit_Framework_TestCase
+class Zend_Service_Ebay_OfflineTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Service_Ebay_Finding
@@ -62,7 +62,7 @@ class Zend_Service_Ebay_OfflineTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->_finding->setClient(new ClientCustom()) instanceof Zend_Service_Ebay_Finding);
         $this->assertTrue($this->_finding->getClient() instanceof ClientCustom);
 
-        $this->setExpectedException('Zend_Service_Ebay_Finding_Exception');
+        $this->expectException('Zend_Service_Ebay_Finding_Exception');
         $this->_finding->setClient(new stdClass());
     }
 
@@ -81,7 +81,7 @@ class Zend_Service_Ebay_OfflineTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('app-id', $finding->getOption(Zend_Service_Ebay_Finding::OPTION_APP_ID));
         $this->assertEquals('bar', $finding->getOption('foo'));
 
-        $this->setExpectedException('Zend_Service_Ebay_Finding_Exception');
+        $this->expectException('Zend_Service_Ebay_Finding_Exception');
         $finding = new Zend_Service_Ebay_Finding(['foo' => 'bar']);
     }
 

@@ -73,11 +73,9 @@ class Zend_Ldap_SearchTest extends Zend_Ldap_OnlineTestCase
         $this->assertNull($entry);
     }
 
-    /**
-     * @expectedException Zend_Ldap_Exception
-     */
     public function testGetSingleIllegalEntryWithException()
     {
+        $this->expectException(\Zend_Ldap_Exception::class);
         $dn=$this->_createDn('ou=Test99,');
         $entry=$this->_getLdap()->getEntry($dn, [], true);
     }
@@ -143,11 +141,9 @@ class Zend_Ldap_SearchTest extends Zend_Ldap_OnlineTestCase
         $this->assertEquals(9, count($entries));
     }
 
-    /**
-     * @expectedException Zend_Ldap_Exception
-     */
     public function testIllegalSearch()
     {
+        $this->expectException(\Zend_Ldap_Exception::class);
         $dn=$this->_createDn('ou=Node2,');
         $items=$this->_getLdap()->search('(objectClass=account)', $dn, Zend_Ldap::SEARCH_SCOPE_SUB);
     }

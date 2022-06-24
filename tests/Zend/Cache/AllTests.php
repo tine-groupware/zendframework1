@@ -58,12 +58,12 @@ class Zend_Cache_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Cache');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Cache');
 
         $suite->addTestSuite('Zend_Cache_FactoryTest');
         $suite->addTestSuite('Zend_Cache_CoreTest');
@@ -259,6 +259,6 @@ class Zend_Cache_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Cache_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Cache_AllTests::main') {
     Zend_Cache_AllTests::main();
 }

@@ -33,7 +33,7 @@ require_once 'Zend/Measure/Viscosity/Kinematic.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_Viscosity_KinematicTest extends PHPUnit_Framework_TestCase
+class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * test for Mass initialisation

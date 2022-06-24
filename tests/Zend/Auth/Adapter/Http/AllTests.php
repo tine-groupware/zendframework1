@@ -46,17 +46,17 @@ class Zend_Auth_Adapter_Http_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return \PHPUnit\Framework\TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Auth_Adapter_Http');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Auth_Adapter_Http');
 
         $suite->addTestSuite('Zend_Auth_Adapter_Http_AuthTest');
         $suite->addTestSuite('Zend_Auth_Adapter_Http_ObjectTest');
@@ -67,6 +67,6 @@ class Zend_Auth_Adapter_Http_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Auth_Adapter_Http_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Auth_Adapter_Http_AllTests::main') {
     Zend_Auth_Adapter_Http_AllTests::main();
 }

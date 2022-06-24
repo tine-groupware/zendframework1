@@ -40,7 +40,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_ModuleTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_request;
@@ -56,8 +56,8 @@ class Zend_Controller_Router_Route_ModuleTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Router_Route_ModuleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_ModuleTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -486,6 +486,6 @@ class Zend_Controller_Router_Route_ModuleTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Controller_Router_Route_ModuleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_Route_ModuleTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Router_Route_ModuleTest::main") {
     Zend_Controller_Router_Route_ModuleTest::main();
 }

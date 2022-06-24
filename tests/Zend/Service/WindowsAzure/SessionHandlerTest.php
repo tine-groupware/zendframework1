@@ -34,7 +34,7 @@ require_once 'Zend/Service/WindowsAzure/Storage/Table.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_WindowsAzure_SessionHandlerTest extends PHPUnit_Framework_TestCase
+class Zend_Service_WindowsAzure_SessionHandlerTest extends \PHPUnit\Framework\TestCase
 {
 
     protected static $uniqId = 0;
@@ -58,7 +58,7 @@ class Zend_Service_WindowsAzure_SessionHandlerTest extends PHPUnit_Framework_Tes
      */
     protected function tearDown()
     {
-        if ($this->status == PHPUnit_Runner_BaseTestRunner::STATUS_SKIPPED) {
+        if ($this->status == \PHPUnit\Runner\BaseTestRunner::STATUS_SKIPPED) {
             return;
         }
         $storageClient = $this->createStorageInstance();

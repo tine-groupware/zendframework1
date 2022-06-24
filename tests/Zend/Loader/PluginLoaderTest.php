@@ -37,7 +37,7 @@ require_once 'Zend/Loader/PluginLoader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_Loader_PluginLoaderTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
 {
     protected $_includeCache;
 
@@ -49,8 +49,8 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Loader_PluginLoaderTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Loader_PluginLoaderTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -405,10 +405,10 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-4670
-     * @expectedException Zend_Loader_PluginLoader_Exception
      */
     public function testPluginLoaderShouldThrowExceptionWhenPathDoesNotExist()
     {
+        $this->expectException(\Zend_Loader_PluginLoader_Exception::class);
         $cacheFile = dirname(__FILE__) . '/_filesDoNotExist/includeCache.inc.php';
         $this->testIncludeCacheShouldBeNullByDefault();
         Zend_Loader_PluginLoader::setIncludeFileCache($cacheFile);
@@ -554,6 +554,6 @@ class Zend_Loader_PluginLoaderTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Loader_PluginLoaderTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD === 'Zend_Loader_PluginLoaderTest::main') {
+if (\PHPUnit\MAIN\METHOD === 'Zend_Loader_PluginLoaderTest::main') {
     Zend_Loader_PluginLoaderTest::main();
 }

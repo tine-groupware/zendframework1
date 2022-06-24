@@ -32,7 +32,7 @@ require_once 'Zend/Gdata/Gapps/EmailListRecipientFeed.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Gapps
  */
-class Zend_Gdata_Gapps_EmailListRecipientFeedTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_Gapps_EmailListRecipientFeedTest extends \PHPUnit\Framework\TestCase
 {
     protected $emailListRecipientFeed = null;
 

@@ -39,7 +39,7 @@ require_once 'Zend/View/Helper/Placeholder/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Placeholder_Registry
@@ -54,8 +54,8 @@ class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit_Framework_TestCa
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_Placeholder_RegistryTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_RegistryTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -237,6 +237,6 @@ class Zend_View_Helper_Placeholder_RegistryTest_BogusContainer
 }
 
 // Call Zend_View_Helper_Placeholder_RegistryTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_Placeholder_RegistryTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_Placeholder_RegistryTest::main") {
     Zend_View_Helper_Placeholder_RegistryTest::main();
 }

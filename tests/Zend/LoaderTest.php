@@ -43,7 +43,7 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_LoaderTest extends PHPUnit_Framework_TestCase
+class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -53,8 +53,8 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_LoaderTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_LoaderTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -573,6 +573,6 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_LoaderTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD === 'Zend_LoaderTest::main') {
+if (\PHPUnit\MAIN\METHOD === 'Zend_LoaderTest::main') {
     Zend_LoaderTest::main();
 }

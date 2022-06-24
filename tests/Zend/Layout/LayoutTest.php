@@ -44,7 +44,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Layout
  */
-class Zend_Layout_LayoutTest extends PHPUnit_Framework_TestCase
+class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -54,8 +54,8 @@ class Zend_Layout_LayoutTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Layout_LayoutTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Layout_LayoutTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -577,6 +577,6 @@ class Zend_Layout_LayoutTest_Controller_Action_Helper_Layout extends Zend_Layout
 }
 
 // Call Zend_Layout_LayoutTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Layout_LayoutTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Layout_LayoutTest::main") {
     Zend_Layout_LayoutTest::main();
 }

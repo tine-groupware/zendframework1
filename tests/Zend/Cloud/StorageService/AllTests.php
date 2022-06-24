@@ -42,12 +42,12 @@ class Zend_Cloud_StorageService_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Cloud_StorageService');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Cloud_StorageService');
 
         $suite->addTestSuite('Zend_Cloud_StorageService_FactoryTest');
         $suite->addTest(Zend_Cloud_StorageService_Adapter_AllTests::suite());
@@ -56,6 +56,6 @@ class Zend_Cloud_StorageService_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_StorageService_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_StorageService_AllTests::main') {
     Zend_Cloud_StorageService_AllTests::main();
 }

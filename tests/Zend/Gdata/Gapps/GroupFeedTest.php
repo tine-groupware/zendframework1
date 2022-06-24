@@ -32,7 +32,7 @@ require_once 'Zend/Gdata/Gapps/GroupFeed.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Gapps
  */
-class Zend_Gdata_Gapps_GroupFeedTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_Gapps_GroupFeedTest extends \PHPUnit\Framework\TestCase
 {
     protected $groupFeed = null;
 

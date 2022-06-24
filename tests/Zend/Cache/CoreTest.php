@@ -38,7 +38,7 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_CoreTest extends PHPUnit_Framework_TestCase
+class Zend_Cache_CoreTest extends \PHPUnit\Framework\TestCase
 {
     private $_instance;
 

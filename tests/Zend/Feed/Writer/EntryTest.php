@@ -31,7 +31,7 @@ require_once 'Zend/Feed/Writer/Entry.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_EntryTest extends PHPUnit_Framework_TestCase
+class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_feedSamplePath = null;
@@ -183,11 +183,9 @@ class Zend_Feed_Writer_EntryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $entry->getEnclosure());
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testAddsEnclosureThrowsExceptionOnMissingUri()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $entry = new Zend_Feed_Writer_Entry;
         $entry->setEnclosure([
             'type' => 'audio/mpeg',
@@ -195,11 +193,9 @@ class Zend_Feed_Writer_EntryTest extends PHPUnit_Framework_TestCase
         ]);
     }
 
-    /**
-     * @expectedException Zend_Feed_Exception
-     */
     public function testAddsEnclosureThrowsExceptionWhenUriIsInvalid()
     {
+        $this->expectException(\Zend_Feed_Exception::class);
         $entry = new Zend_Feed_Writer_Entry;
         $entry->setEnclosure([
             'type' => 'audio/mpeg',

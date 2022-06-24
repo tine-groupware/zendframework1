@@ -55,12 +55,12 @@ class Zend_Cloud_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Cloud');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Cloud');
 
         $suite->addTest(Zend_Cloud_DocumentService_AllTests::suite());
         $suite->addTest(Zend_Cloud_QueueService_AllTests::suite());
@@ -71,6 +71,6 @@ class Zend_Cloud_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_AllTests::main') {
     Zend_Cloud_AllTests::main();
 }

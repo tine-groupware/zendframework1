@@ -45,7 +45,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_PartialLoopTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_PartialLoop
@@ -65,8 +65,8 @@ class Zend_View_Helper_PartialLoopTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_PartialLoopTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PartialLoopTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -574,6 +574,6 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTestContainer
 }
 
 // Call Zend_View_Helper_PartialLoopTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_PartialLoopTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_PartialLoopTest::main") {
     Zend_View_Helper_PartialLoopTest::main();
 }

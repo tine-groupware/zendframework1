@@ -40,12 +40,12 @@ class Zend_Json_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Json');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Json');
 
         $suite->addTestSuite('Zend_Json_JsonXMLTest');
         $suite->addTestSuite('Zend_Json_ServerTest');
@@ -55,6 +55,6 @@ class Zend_Json_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Json_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Json_AllTests::main') {
     Zend_Json_AllTests::main();
 }

@@ -76,12 +76,12 @@ class Zend_Feed_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Feed');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Feed');
 
         $suite->addTestSuite('Zend_Feed_ArrayAccessTest');
         $suite->addTestSuite('Zend_Feed_AtomEntryOnlyTest');
@@ -138,6 +138,6 @@ class Zend_Feed_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Feed_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Feed_AllTests::main') {
     Zend_Feed_AllTests::main();
 }

@@ -40,7 +40,7 @@ require_once 'Zend/Cache.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Locale
  */
-class Zend_LocaleTest extends PHPUnit_Framework_TestCase
+class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +49,8 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_LocaleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_LocaleTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     private $_cache  = null;
@@ -983,6 +983,6 @@ class Zend_LocaleTestHelper extends Zend_Locale
 }
 
 // Call Zend_LocaleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_LocaleTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_LocaleTest::main") {
     Zend_LocaleTest::main();
 }

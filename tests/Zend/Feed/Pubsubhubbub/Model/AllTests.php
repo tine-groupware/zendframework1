@@ -38,17 +38,17 @@ class Zend_Feed_Pubsubhubbub_Model_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend');
         $suite->addTestSuite('Zend_Feed_Pubsubhubbub_Model_SubscriptionTest');
         return $suite;
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Feed_Pubsubhubbub_Model_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Feed_Pubsubhubbub_Model_AllTests::main') {
     Zend_Feed_Pubsubhubbub_AllTests::main();
 }

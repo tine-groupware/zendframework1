@@ -32,7 +32,7 @@ require_once 'Zend/Controller/Router/Route/Static.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_StaticTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testStaticMatch()

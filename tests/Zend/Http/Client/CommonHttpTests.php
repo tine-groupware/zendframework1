@@ -52,7 +52,7 @@ require_once 'Zend/Uri/Http.php';
  * @group      Zend_Http
  * @group      Zend_Http_Client
  */
-abstract class Zend_Http_Client_CommonHttpTests extends PHPUnit_Framework_TestCase
+abstract class Zend_Http_Client_CommonHttpTests extends \PHPUnit\Framework\TestCase
 {
     /**
      * The bast URI for this test, containing all files in the _files directory

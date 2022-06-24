@@ -48,7 +48,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_View
  */
-class Zend_Dojo_View_Helper_AccordionPaneTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_View_Helper_AccordionPaneTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -57,8 +57,8 @@ class Zend_Dojo_View_Helper_AccordionPaneTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_View_Helper_AccordionPaneTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_AccordionPaneTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -116,6 +116,6 @@ class Zend_Dojo_View_Helper_AccordionPaneTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Dojo_View_Helper_AccordionPaneTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_AccordionPaneTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_AccordionPaneTest::main") {
     Zend_Dojo_View_Helper_AccordionPaneTest::main();
 }

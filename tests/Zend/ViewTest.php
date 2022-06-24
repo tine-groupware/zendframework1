@@ -47,12 +47,12 @@ require_once 'Zend/Loader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  */
-class Zend_ViewTest extends PHPUnit_Framework_TestCase
+class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_ViewTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_ViewTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -1105,20 +1105,20 @@ class Zend_ViewTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-8177
-     * @expectedException Zend_View_Exception
      */
     public function testRegisterHelperShouldThrowExceptionIfNotProvidedAnObject()
     {
+        $this->expectException(\Zend_View_Exception::class);
         $view = new Zend_View();
         $view->registerHelper('Foo', 'foo');
     }
 
     /**
      * @group ZF-8177
-     * @expectedException Zend_View_Exception
      */
     public function testRegisterHelperShouldThrowExceptionIfProvidedANonHelperObject()
     {
+        $this->expectException(\Zend_View_Exception::class);
         $view   = new Zend_View();
         $helper = new stdClass;
         $view->registerHelper($helper, 'foo');
@@ -1176,6 +1176,6 @@ class Zend_ViewTest_Extension extends Zend_View
 }
 
 // Call Zend_ViewTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_ViewTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_ViewTest::main") {
     Zend_ViewTest::main();
 }

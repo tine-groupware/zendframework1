@@ -46,12 +46,12 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
+class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Form_DisplayGroupTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -757,10 +757,10 @@ class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-3217
-     * @expectedException Zend_Form_Exception
      */
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
+        $this->expectException(\Zend_Form_Exception::class);
         $html = $this->group->bogusMethodCall();
     }
 
@@ -839,6 +839,6 @@ class Zend_Form_DisplayGroupTest_DisplayGroup extends Zend_Form_DisplayGroup
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Form_DisplayGroupTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Form_DisplayGroupTest::main') {
     Zend_Form_DisplayGroupTest::main();
 }

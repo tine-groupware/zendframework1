@@ -62,7 +62,7 @@ require_once 'Zend/Debug.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Auth
  */
-class Zend_Auth_Adapter_Http_ObjectTest extends PHPUnit_Framework_TestCase
+class Zend_Auth_Adapter_Http_ObjectTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files

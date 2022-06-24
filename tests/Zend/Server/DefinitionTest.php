@@ -47,7 +47,7 @@ require_once 'Zend/Server/Method/Prototype.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Server
  */
-class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
+class Zend_Server_DefinitionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -56,8 +56,8 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Server_DefinitionTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Server_DefinitionTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -208,6 +208,6 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Server_DefinitionTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Server_DefinitionTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Server_DefinitionTest::main") {
     Zend_Server_DefinitionTest::main();
 }

@@ -42,7 +42,7 @@ require_once 'Zend/Controller/Request/Simple.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_ActionStackTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -64,8 +64,8 @@ class Zend_Controller_Action_Helper_ActionStackTest extends PHPUnit_Framework_Te
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_ActionStackTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ActionStackTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -197,6 +197,6 @@ class Zend_Controller_Action_Helper_ActionStackTest extends PHPUnit_Framework_Te
 }
 
 // Call Zend_Controller_Action_Helper_ActionStackTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_ActionStackTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_ActionStackTest::main") {
     Zend_Controller_Action_Helper_ActionStackTest::main();
 }

@@ -47,7 +47,7 @@ require_once dirname(__FILE__) . '/../../_files/modules/bar/controllers/IndexCon
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Base path to controllers, views
@@ -87,8 +87,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framework_T
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -978,7 +978,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framework_T
 }
 
 // Call Zend_Controller_Action_Helper_ViewRendererTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_ViewRendererTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_ViewRendererTest::main") {
     Zend_Controller_Action_Helper_ViewRendererTest::main();
 }
 

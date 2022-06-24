@@ -41,7 +41,7 @@ require_once 'Zend/Service/WindowsAzure/RetryPolicy/RetryPolicyAbstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_WindowsAzure_RetryPolicyTest extends PHPUnit_Framework_TestCase
+class Zend_Service_WindowsAzure_RetryPolicyTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Helper variable for counting retries
@@ -59,8 +59,8 @@ class Zend_Service_WindowsAzure_RetryPolicyTest extends PHPUnit_Framework_TestCa
     
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Service_WindowsAzure_RetryPolicyTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_RetryPolicyTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -113,6 +113,6 @@ class Zend_Service_WindowsAzure_RetryPolicyTest extends PHPUnit_Framework_TestCa
 }
 
 // Call Zend_Service_WindowsAzure_RetryPolicyTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_RetryPolicyTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_RetryPolicyTest::main") {
     Zend_Service_WindowsAzure_RetryPolicyTest::main();
 }

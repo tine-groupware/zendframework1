@@ -66,7 +66,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Auth
  */
-class Zend_Auth_Adapter_OpenIdTest extends PHPUnit_Framework_TestCase
+class Zend_Auth_Adapter_OpenIdTest extends \PHPUnit\Framework\TestCase
 {
     const ID       = "http://id.myopenid.com/";
     const REAL_ID  = "http://real_id.myopenid.com/";

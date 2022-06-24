@@ -41,7 +41,7 @@ require_once 'Zend/Controller/Action/HelperBroker.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_LayoutTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_LayoutTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +51,8 @@ class Zend_View_Helper_LayoutTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_LayoutTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_LayoutTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -133,6 +133,6 @@ class Zend_View_Helper_LayoutTest_Layout extends Zend_Layout
 }
 
 // Call Zend_View_Helper_LayoutTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_LayoutTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_LayoutTest::main") {
     Zend_View_Helper_LayoutTest::main();
 }

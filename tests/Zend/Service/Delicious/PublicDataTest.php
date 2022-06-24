@@ -36,7 +36,7 @@ require_once 'Zend/Service/Delicious.php';
  * @group      Zend_Service
  * @group      Zend_Service_Delicious
  */
-class Zend_Service_Delicious_PublicDataTest extends PHPUnit_Framework_TestCase
+class Zend_Service_Delicious_PublicDataTest extends \PHPUnit\Framework\TestCase
 {
     const TEST_UNAME = 'zfTestUser';
     const TEST_PASS  = 'zfuser';

@@ -42,12 +42,12 @@ class Zend_Dojo_Form_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Dojo_Form');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Dojo_Form');
 
         $suite->addTest(Zend_Dojo_Form_Decorator_AllTests::suite());
         $suite->addTest(Zend_Dojo_Form_Element_AllTests::suite());
@@ -58,6 +58,6 @@ class Zend_Dojo_Form_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Dojo_Form_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Dojo_Form_AllTests::main') {
     Zend_Dojo_Form_AllTests::main();
 }

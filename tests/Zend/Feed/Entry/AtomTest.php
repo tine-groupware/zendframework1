@@ -32,7 +32,7 @@ require_once 'Zend/Feed.php';
  * @group      Zend_Feed
  */
 
-class AtomTest extends PHPUnit_Framework_TestCase
+class AtomTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstructorElementException()
     {

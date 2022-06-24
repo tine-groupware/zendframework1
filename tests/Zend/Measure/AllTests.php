@@ -72,12 +72,12 @@ class Zend_Measure_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Measure');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Measure');
 
         $suite->addTestSuite('Zend_Measure_Cooking_VolumeTest');
         $suite->addTestSuite('Zend_Measure_Cooking_WeightTest');
@@ -116,6 +116,6 @@ class Zend_Measure_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Measure_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Measure_AllTests::main') {
     Zend_Measure_AllTests::main();
 }

@@ -29,7 +29,7 @@ require_once 'Zend/Feed/Pubsubhubbub/Model/Subscription.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Pubsubhubbub_Model_SubscriptionTest extends PHPUnit_Framework_TestCase
+class Zend_Feed_Pubsubhubbub_Model_SubscriptionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @group ZF-10069

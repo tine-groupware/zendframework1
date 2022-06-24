@@ -42,13 +42,13 @@ require_once 'Zend/Captcha/ReCaptcha.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_CaptchaTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_CaptchaTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Form_Element_CaptchaTest');
-        PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_CaptchaTest');
+        \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -72,11 +72,9 @@ class Zend_Form_Element_CaptchaTest extends PHPUnit_Framework_TestCase
         return $captcha;
     }
 
-    /**
-     * @expectedException Zend_Form_Exception
-     */
     public function testConstructionShouldRequireCaptchaDetails()
     {
+        $this->expectException(\Zend_Form_Exception::class);
         $this->element = new Zend_Form_Element_Captcha('foo');
     }
 
@@ -494,6 +492,6 @@ class Zend_Form_Element_CaptchaTest_SessionContainer
 }
 
 // Call Zend_Form_Element_CaptchaTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_CaptchaTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Form_Element_CaptchaTest::main") {
     Zend_Form_Element_CaptchaTest::main();
 }

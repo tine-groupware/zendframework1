@@ -34,7 +34,7 @@ require_once 'Zend/Ldap/Dn.php';
  * @group      Zend_Ldap
  * @group      Zend_Ldap_Dn
  */
-class Zend_Ldap_Dn_ExplodingTest extends PHPUnit_Framework_TestCase
+class Zend_Ldap_Dn_ExplodingTest extends \PHPUnit\Framework\TestCase
 {
     public static function explodeDnOperationProvider()
     {
@@ -208,11 +208,9 @@ class Zend_Ldap_Dn_ExplodingTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $dnArray);
     }
 
-    /**
-     * @expectedException Zend_Ldap_Exception
-     */
     public function testCreateDnArrayIllegalDn()
     {
+        $this->expectException(\Zend_Ldap_Exception::class);
         $dn='name1,cn=name2,dc=example,dc=org';
         $dnArray=Zend_Ldap_Dn::explodeDn($dn);
     }

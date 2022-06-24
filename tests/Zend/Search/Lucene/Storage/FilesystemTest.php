@@ -28,7 +28,7 @@
  * @group      Zend_Search_Lucene
  */
 
-class FilesystemTest extends PHPUnit_Framework_TestCase
+class FilesystemTest extends \PHPUnit\Framework\TestCase
 {
     private $testFile;
 

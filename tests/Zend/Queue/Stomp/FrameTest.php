@@ -39,7 +39,7 @@ require_once 'Zend/Queue/Stomp/Frame.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Queue
  */
-class Zend_Queue_Stomp_FrameTest extends PHPUnit_Framework_TestCase
+class Zend_Queue_Stomp_FrameTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $body = 'hello world'; // 11 characters

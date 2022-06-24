@@ -43,7 +43,7 @@ require_once 'Zend/Controller/Action/Helper/Redirector.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_HelperBrokerTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Front
@@ -59,8 +59,8 @@ class Zend_Controller_Action_HelperBrokerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_HelperBrokerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_HelperBrokerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -379,6 +379,6 @@ class Zend_Controller_Action_HelperBrokerController extends Zend_Controller_Acti
 }
 
 // Call Zend_Controller_Action_HelperBrokerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_HelperBrokerTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_HelperBrokerTest::main") {
     Zend_Controller_Action_HelperBrokerTest::main();
 }

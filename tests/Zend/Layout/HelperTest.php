@@ -40,7 +40,7 @@ require_once 'Zend/Controller/Action/HelperBroker.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Layout
  */
-class Zend_Layout_HelperTest extends PHPUnit_Framework_TestCase
+class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,8 +50,8 @@ class Zend_Layout_HelperTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Layout_HelperTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Layout_HelperTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -153,6 +153,6 @@ class Zend_Layout_HelperTest_Layout extends Zend_Layout
 }
 
 // Call Zend_Layout_HelperTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Layout_HelperTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Layout_HelperTest::main") {
     Zend_Layout_HelperTest::main();
 }

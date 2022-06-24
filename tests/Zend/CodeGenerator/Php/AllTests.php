@@ -48,12 +48,12 @@ class Zend_CodeGenerator_Php_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_CodeGenerator_Php');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_CodeGenerator_Php');
 
         $suite->addTestSuite('Zend_CodeGenerator_Php_ClassTest');
         $suite->addTestSuite('Zend_CodeGenerator_Php_DocblockTest');
@@ -70,6 +70,6 @@ class Zend_CodeGenerator_Php_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_CodeGenerator_Php_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_CodeGenerator_Php_AllTests::main') {
     Zend_CodeGenerator_Php_AllTests::main();
 }

@@ -186,12 +186,12 @@ class Zend_Gdata_AllTests
 
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Gdata');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Gdata');
 
         /**
          * Tests of the authentication URL generator
@@ -381,6 +381,6 @@ class Zend_Gdata_AllTests
 
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Gdata_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Gdata_AllTests::main') {
     Zend_Gdata_AllTests::main();
 }

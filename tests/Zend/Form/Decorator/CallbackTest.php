@@ -38,7 +38,7 @@ require_once 'Zend/Form/Element.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Decorator_CallbackTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +48,8 @@ class Zend_Form_Decorator_CallbackTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Decorator_CallbackTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_CallbackTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -218,6 +218,6 @@ EOH;
 }
 
 // Call Zend_Form_Decorator_CallbackTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_CallbackTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Form_Decorator_CallbackTest::main") {
     Zend_Form_Decorator_CallbackTest::main();
 }

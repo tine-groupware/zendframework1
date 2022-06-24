@@ -45,7 +45,7 @@ require_once 'Zend/Db/Adapter/Static.php';
  * @group      Zend_Db
  * @group      Zend_Db_Adapter
  */
-class Zend_Db_Adapter_StaticTest extends PHPUnit_Framework_TestCase
+class Zend_Db_Adapter_StaticTest extends \PHPUnit\Framework\TestCase
 {
 
     protected static $_isCaseSensitiveFileSystem = null;

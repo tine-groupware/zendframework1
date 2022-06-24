@@ -40,7 +40,7 @@ require_once 'Contact.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_RequestTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_RequestTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Amf_Request object
@@ -55,8 +55,8 @@ class Zend_Amf_RequestTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_RequestTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_RequestTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -663,7 +663,7 @@ class Zend_Amf_RequestTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Amf_RequestTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_RequestTest::main') {
     Zend_Amf_RequestTest::main();
 }
 

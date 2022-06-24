@@ -40,12 +40,12 @@ require_once dirname(__FILE__) . '/_classes/TagDummy.php';
  * @group      Zend_Tag
  * @group      Zend_Tag_Cloud
  */
-class Zend_Tag_Cloud_CloudTest extends PHPUnit_Framework_TestCase
+class Zend_Tag_Cloud_CloudTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testGetAndSetItemList()
@@ -340,6 +340,6 @@ class Zend_Tag_Cloud_CloudTest extends PHPUnit_Framework_TestCase
 
 class Zend_Tag_ItemListDummy extends Zend_Tag_ItemList {}
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Tag_Cloud_CloudTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Tag_Cloud_CloudTest::main') {
     Zend_Tag_Cloud_CloudTest::main();
 }

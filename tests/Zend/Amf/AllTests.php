@@ -48,12 +48,12 @@ class Zend_Amf_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Amf');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Amf');
 
         $suite->addTestSuite('Zend_Amf_Adobe_IntrospectorTest');
         $suite->addTestSuite('Zend_Amf_RequestTest');
@@ -72,7 +72,7 @@ class Zend_Amf_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Amf_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_AllTests::main') {
     Zend_Amf_AllTests::main();
 }
 

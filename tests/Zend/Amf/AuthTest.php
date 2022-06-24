@@ -43,7 +43,7 @@ require_once 'Zend/Acl/Role.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_AuthTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_AuthTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -55,8 +55,8 @@ class Zend_Amf_AuthTest extends PHPUnit_Framework_TestCase
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_AuthTest");
-        PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_AuthTest");
+        \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -341,7 +341,7 @@ class Zend_Amf_Auth_testclass_NoAcl {
     }
 }
 
-if (PHPUnit_MAIN_METHOD == "Zend_Amf_AuthTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Amf_AuthTest::main") {
     Zend_Amf_AuthTest::main();
 }
 

@@ -41,7 +41,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Dispatcher
  */
-class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCase
 {
     protected $_dispatcher;
 
@@ -53,8 +53,8 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Dispatcher_StandardTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Dispatcher_StandardTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -705,6 +705,6 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Controller_Dispatcher_StandardTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Dispatcher_StandardTest::main") {
+if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Dispatcher_StandardTest::main") {
     Zend_Controller_Dispatcher_StandardTest::main();
 }

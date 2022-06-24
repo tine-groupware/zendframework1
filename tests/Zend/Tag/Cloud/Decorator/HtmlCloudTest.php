@@ -36,12 +36,12 @@ require_once 'Zend/Tag/Cloud/Decorator/HtmlCloud.php';
  * @group      Zend_Tag
  * @group      Zend_Tag_Cloud
  */
-class Zend_Tag_Cloud_Decorator_HtmlCloudTest extends PHPUnit_Framework_TestCase
+class Zend_Tag_Cloud_Decorator_HtmlCloudTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testDefaultOutput()
@@ -96,7 +96,7 @@ class Zend_Tag_Cloud_Decorator_HtmlCloudTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Tag_Cloud_Decorator_HtmlCloudTest::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Tag_Cloud_Decorator_HtmlCloudTest::main') {
     Zend_Tag_Cloud_Decorator_HtmlCloudTest::main();
 }
 /**

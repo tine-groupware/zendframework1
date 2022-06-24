@@ -32,7 +32,7 @@ require_once 'Zend/Gdata.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_OpenSearch
  */
-class Zend_Gdata_OpenSearchItemsPerPageTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_OpenSearchItemsPerPageTest extends \PHPUnit\Framework\TestCase
 {
 
     public function setUp() {

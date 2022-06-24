@@ -33,7 +33,7 @@ require_once 'Zend/Mime/Part.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mime
  */
-class Zend_Mime_PartTest extends PHPUnit_Framework_TestCase
+class Zend_Mime_PartTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * MIME part test object

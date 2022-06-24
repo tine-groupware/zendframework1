@@ -44,12 +44,12 @@ class Zend_Ldap_Dn_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        \PHPUnit\TextUI\TestRunner::run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Ldap_Dn');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Ldap_Dn');
 
         $suite->addTestSuite('Zend_Ldap_Dn_EscapingTest');
         $suite->addTestSuite('Zend_Ldap_Dn_ExplodingTest');
@@ -62,6 +62,6 @@ class Zend_Ldap_Dn_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Ldap_Dn_AllTests::main') {
+if (\PHPUnit\MAIN\METHOD == 'Zend_Ldap_Dn_AllTests::main') {
     Zend_Ldap_Dn_AllTests::main();
 }

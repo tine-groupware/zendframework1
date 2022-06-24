@@ -35,7 +35,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Service_Rackspace_Files
  */
 class Zend_Service_Rackspace_Files_OfflineTest
-    extends PHPUnit_Framework_TestCase
+    extends \PHPUnit\Framework\TestCase
 {
     /**
      * Reference to RackspaceFiles
