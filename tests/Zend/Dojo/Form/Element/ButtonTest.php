@@ -126,7 +126,7 @@ class Zend_Dojo_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $decorator = $this->element->getDecorator('DijitElement');
         $decorator->setElement($this->element);
         $html = $decorator->render('');
-        $this->assertRegexp('/<(input|button)[^>]*?>Submit Button/', $html, 'Label: ' . $this->element->getLabel() . "\nHTML: " . $html);
+        $this->assertMatchesRegularExpression('/<(input|button)[^>]*?>Submit Button/', $html, 'Label: ' . $this->element->getLabel() . "\nHTML: " . $html);
     }
 
     public function testConstructorSetsLabelToNameIfNoLabelProvided()

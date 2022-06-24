@@ -150,7 +150,7 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
         $this->assertEquals('zfproducts',   $desc['product_name']['TABLE_NAME']);
         $this->assertEquals('product_name', $desc['product_name']['COLUMN_NAME']);
         $this->assertEquals(2,              $desc['product_name']['COLUMN_POSITION']);
-        $this->assertRegExp('/varchar/i',   $desc['product_name']['DATA_TYPE']);
+        $this->assertMatchesRegularExpression('/varchar/i',   $desc['product_name']['DATA_TYPE']);
         $this->assertEquals('',             $desc['product_name']['DEFAULT']);
         $this->assertTrue($desc['product_name']['NULLABLE'], 'Expected product_name to be nullable');
         $this->assertNull($desc['product_name']['SCALE'], 'scale is not 0');

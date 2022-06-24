@@ -155,25 +155,25 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $html = $this->element->render($this->getView());
         $expect = sprintf('type="hidden" name="%s\[id\]" value="%s"', $this->element->getName(), $this->captcha->getId());
-        $this->assertRegexp("/<input[^>]*?$expect/", $html, $html);
+        $this->assertMatchesRegularExpression("/<input[^>]*?$expect/", $html, $html);
         $expect = sprintf('type="text" name="%s\[input\]"', $this->element->getName());
-        $this->assertRegexp("/<input[^>]*?$expect/", $html, $html);
+        $this->assertMatchesRegularExpression("/<input[^>]*?$expect/", $html, $html);
     }
 
     public function testCaptchaHasImage()
     {
         $html = $this->element->render($this->getView());
         $id = $this->captcha->getId();
-        $this->assertRegexp("|<img[^>]*?src=\"/images/captcha/$id.png\"|", $html, "Expected $id in HTML:\n" . $html);
+        $this->assertMatchesRegularExpression("|<img[^>]*?src=\"/images/captcha/$id.png\"|", $html, "Expected $id in HTML:\n" . $html);
     }
 
     public function testCaptchaHasAlt()
     {
         $html = $this->element->render($this->getView());
-        $this->assertRegexp('|<img[^>]*? alt=""|', $html, "Expected alt= in HTML:\n" . $html);
+        $this->assertMatchesRegularExpression('|<img[^>]*? alt=""|', $html, "Expected alt= in HTML:\n" . $html);
         $this->captcha->setImgAlt("Test Image");
         $html = $this->element->render($this->getView());
-        $this->assertRegexp('|<img[^>]*? alt="Test Image"|', $html, "Wrong alt in HTML:\n" . $html);
+        $this->assertMatchesRegularExpression('|<img[^>]*? alt="Test Image"|', $html, "Wrong alt in HTML:\n" . $html);
     }
 
     public function testCaptchaSetSuffix()
@@ -356,10 +356,10 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         
         $view->doctype('XHTML1_STRICT');        
-        $this->assertRegExp('#/>$#', $this->captcha->render($view));
+        $this->assertMatchesRegularExpression('#/>$#', $this->captcha->render($view));
         
         $view->doctype('HTML4_STRICT');        
-        $this->assertRegExp('#[^/]>$#', $this->captcha->render($view));
+        $this->assertMatchesRegularExpression('#[^/]>$#', $this->captcha->render($view));
     }
 }
 

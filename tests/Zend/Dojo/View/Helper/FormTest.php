@@ -103,14 +103,14 @@ class Zend_Dojo_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testShouldAllowDeclarativeDijitCreation()
     {
         $html = $this->getForm();
-        $this->assertRegexp('/<form[^>]*(dojoType="dijit.form.Form")/', $html, $html);
+        $this->assertMatchesRegularExpression('/<form[^>]*(dojoType="dijit.form.Form")/', $html, $html);
     }
 
     public function testShouldAllowProgrammaticDijitCreation()
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $html = $this->getForm();
-        $this->assertNotRegexp('/<form[^>]*(dojoType="dijit.form.Form")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(dojoType="dijit.form.Form")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('myForm'));
     }
 
@@ -118,20 +118,20 @@ class Zend_Dojo_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     {
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
         $html = $this->view->form('foo');
-        $this->assertRegexp('/<form[^>]*(dojoType="dijit.form.Form")/', $html, $html);
-        $this->assertRegexp('/<form[^>]*(id="foo")/', $html, $html);
+        $this->assertMatchesRegularExpression('/<form[^>]*(dojoType="dijit.form.Form")/', $html, $html);
+        $this->assertMatchesRegularExpression('/<form[^>]*(id="foo")/', $html, $html);
     }
 
     public function testShouldNotRenderIdAsHtmlIdWhenIdPassedAsAttrib()
     {
         $html = $this->helper->form('foo', ['id' => 'bar']);
-        $this->assertRegexp('/<form[^>]*(id="bar")/', $html);
+        $this->assertMatchesRegularExpression('/<form[^>]*(id="bar")/', $html);
     }
     
     public function testShouldNotRenderClosingTagIfContentIsFalse()
     {
         $html = $this->helper->form('foo');
-        $this->assertNotRegexp('/<\/form>/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<\/form>/', $html);
     }
 }
 

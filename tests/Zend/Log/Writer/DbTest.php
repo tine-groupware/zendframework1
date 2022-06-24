@@ -59,7 +59,7 @@ class Zend_Log_Writer_DbTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegExp('/does not support formatting/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/does not support formatting/i', $e->getMessage());
         }
     }
 

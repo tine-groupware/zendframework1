@@ -50,7 +50,7 @@ class Zend_Log_Formatter_SimpleTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegExp('/must be a string/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/must be a string/i', $e->getMessage());
         }
     }
 

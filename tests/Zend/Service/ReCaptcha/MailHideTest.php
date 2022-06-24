@@ -98,7 +98,7 @@ class Zend_Service_ReCaptcha_MailHideTest extends \PHPUnit\Framework\TestCase
 
         $html = $this->_mailHide->getHtml();
 
-        $this->assertRegExp('#^m<a href=".*?">\.\.\.</a>@example\.com$#', $html);
+        $this->assertMatchesRegularExpression('#^m<a href=".*?">\.\.\.</a>@example\.com$#', $html);
     }
 
     public function testGetHtmlWithNoEmail() {
@@ -137,6 +137,6 @@ class Zend_Service_ReCaptcha_MailHideTest extends \PHPUnit\Framework\TestCase
 
         $html = $this->_mailHide->getHtml($mail);
 
-        $this->assertRegExp('#m<a href=".*?">\.\.\.</a>@example\.com$#', $html);
+        $this->assertMatchesRegularExpression('#m<a href=".*?">\.\.\.</a>@example\.com$#', $html);
     }
 }

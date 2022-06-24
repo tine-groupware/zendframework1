@@ -119,18 +119,18 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
             ])
             ->setAttrib('disable', ['baz', 'test']);
         $html = $this->element->render($this->getView());
-        $this->assertNotRegexp('/<select[^>]*?(disabled="disabled")/', $html, $html);
+        $this->assertDoesNotMatchRegularExpression('/<select[^>]*?(disabled="disabled")/', $html, $html);
         foreach (['baz', 'test'] as $test) {
             if (!preg_match('/(<option[^>]*?(value="' . $test . '")[^>]*>)/', $html, $m)) {
                 $this->fail('Unable to find matching disabled option for ' . $test);
             }
-            $this->assertRegexp('/<option[^>]*?(disabled="disabled")/', $m[1]);
+            $this->assertMatchesRegularExpression('/<option[^>]*?(disabled="disabled")/', $m[1]);
         }
         foreach (['foo', 'bat'] as $test) {
             if (!preg_match('/(<option[^>]*?(value="' . $test . '")[^>]*>)/', $html, $m)) {
                 $this->fail('Unable to find matching option for ' . $test);
             }
-            $this->assertNotRegexp('/<option[^>]*?(disabled="disabled")/', $m[1], var_export($m, 1));
+            $this->assertDoesNotMatchRegularExpression('/<option[^>]*?(disabled="disabled")/', $m[1], var_export($m, 1));
         }
     }
 

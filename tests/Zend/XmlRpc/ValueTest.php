@@ -841,7 +841,7 @@ class Zend_XmlRpc_ValueTest extends \PHPUnit\Framework\TestCase
             Zend_XmlRpc_Value::getXmlRpcValue('', 'bad type here');
             $this->fail();
         } catch (Exception $e) {
-            $this->assertRegexp('/given type is not/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/given type is not/i', $e->getMessage());
         }
     }
 

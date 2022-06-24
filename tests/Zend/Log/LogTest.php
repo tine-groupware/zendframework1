@@ -115,7 +115,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
             $logger->log('message', Zend_Log::INFO);
             $this->fail();
         } catch (Zend_Log_Exception $e) {
-            $this->assertRegexp('/no writer/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/no writer/i', $e->getMessage());
         }
     }
 
@@ -147,7 +147,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegExp('/bad log priority/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/bad log priority/i', $e->getMessage());
         }
     }
 
@@ -159,7 +159,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegExp('/bad log priority/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/bad log priority/i', $e->getMessage());
         }
     }
 
@@ -171,7 +171,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegExp('/existing priorities/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/existing priorities/i', $e->getMessage());
         }
 
     }
@@ -390,7 +390,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
             $logger->addWriter($writer);
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegExp('#^(Zend_Log_Writer_NotExtendedWriterAbstract|The\sspecified\swriter)#', $e->getMessage());
+            $this->assertMatchesRegularExpression('#^(Zend_Log_Writer_NotExtendedWriterAbstract|The\sspecified\swriter)#', $e->getMessage());
         }
     }
 
@@ -405,7 +405,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
             $logger->addFilter($filter);
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegExp('#^(Zend_Log_Filter_NotImplementsFilterInterface|The\sspecified\sfilter)#', $e->getMessage());
+            $this->assertMatchesRegularExpression('#^(Zend_Log_Filter_NotImplementsFilterInterface|The\sspecified\sfilter)#', $e->getMessage());
         }
     }
 

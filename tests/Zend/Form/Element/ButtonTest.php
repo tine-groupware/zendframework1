@@ -135,7 +135,7 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $decorator = $this->element->getDecorator('ViewHelper');
         $decorator->setElement($this->element);
         $html = $decorator->render('');
-        $this->assertRegexp('/<(input|button)[^>]*?>Submit Button/', $html, $html);
+        $this->assertMatchesRegularExpression('/<(input|button)[^>]*?>Submit Button/', $html, $html);
     }
 
     /**

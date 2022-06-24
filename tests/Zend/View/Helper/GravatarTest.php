@@ -93,7 +93,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
      */
     public function testGravataXHTMLDoctype()
     {
-        $this->assertRegExp('/\/>$/',
+        $this->assertMatchesRegularExpression('/\/>$/',
             $this->_object->gravatar('example@example.com')->__toString());
     }
 
@@ -107,7 +107,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
         $view->doctype()->setDoctype(strtoupper("HTML5"));
         $object->setView($view);
 
-        $this->assertRegExp('/[^\/]>$/',
+        $this->assertMatchesRegularExpression('/[^\/]>$/',
             $this->_object->gravatar('example@example.com')->__toString());
     }
 
@@ -188,7 +188,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
      */
     public function testHttpsSource()
     {
-        $this->assertRegExp('/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+        $this->assertMatchesRegularExpression('/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
                 $this->_object->gravatar("example@example.com", ['secure' => true])->__toString());
     }
 
@@ -197,7 +197,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
      */
     public function testImgAttribs()
     {
-        $this->assertRegExp('/class="gravatar" title="Gravatar"/',
+        $this->assertMatchesRegularExpression('/class="gravatar" title="Gravatar"/',
                 $this->_object->gravatar("example@example.com", [],
                         ['class' => 'gravatar', 'title' => 'Gravatar'])
                      ->__toString()
@@ -209,7 +209,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
      */
     public function testGravatarOptions()
     {
-        $this->assertRegExp('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}\?s=125&amp;d=wavatar&amp;r=pg"/',
+        $this->assertMatchesRegularExpression('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}\?s=125&amp;d=wavatar&amp;r=pg"/',
                 $this->_object->gravatar("example@example.com",
                         ['rating' => 'pg', 'imgSize' => 125, 'defaultImg' => 'wavatar',
                             'secure' => false])
@@ -227,7 +227,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
 
         foreach ($values as $value) {
             $_SERVER['HTTPS'] = $value;
-            $this->assertRegExp('/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+            $this->assertMatchesRegularExpression('/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
                     $this->_object->gravatar("example@example.com")->__toString());
         }
     }
@@ -239,7 +239,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
     {
         $_SERVER['HTTPS'] = "off";
 
-        $this->assertRegExp('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+        $this->assertMatchesRegularExpression('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
                 $this->_object->gravatar("example@example.com")->__toString());
     }
 
@@ -253,19 +253,19 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
             'id'    => 'gravatarID',
         ]);
 
-        $this->assertRegExp('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+        $this->assertMatchesRegularExpression('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
                             $this->_object->getImgTag());
     }
 
     public function testForgottenEmailParameter()
     {
-        $this->assertRegExp('/(src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+")/',
+        $this->assertMatchesRegularExpression('/(src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+")/',
                             $this->_object->getImgTag());
     }
 
     public function testReturnImgTag()
     {
-        $this->assertRegExp("/^<img\s.+/",
+        $this->assertMatchesRegularExpression("/^<img\s.+/",
         $this->_object->gravatar("example@example.com")->__toString());
     }
 

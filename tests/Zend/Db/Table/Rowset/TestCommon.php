@@ -135,7 +135,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
             $this->fail('An exception should have been thrown here');
         }catch(Zend_Db_Table_Rowset_Exception $e){
             // has the exception correctly been overwritten by getRow() ?
-            $this->assertRegExp('#No row could be found at position \d+#',$e->getMessage());
+            $this->assertMatchesRegularExpression('#No row could be found at position \d+#',$e->getMessage());
         }
     }
 

@@ -535,7 +535,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
     public function testJoinLeftTableAliasesColumnOrderPreserve()
     {
         $select = $this->_selectJoinLeftTableAliasesColumnOrderPreserve();
-        $this->assertRegExp('/^.*b.*bug_id.*,.*bp.*product_id.*,.*b.*bug_description.*$/s', $select->assemble());
+        $this->assertMatchesRegularExpression('/^.*b.*bug_id.*,.*bp.*product_id.*,.*b.*bug_description.*$/s', $select->assemble());
     }
 
     /**
@@ -1740,7 +1740,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
 
         $select = $this->_db->select();
         $select->from('table1')->joinUsing('table2', $colname);
-        $this->assertRegexp("/ON {$table2}.{$colname}/s", $select->assemble());
+        $this->assertMatchesRegularExpression("/ON {$table2}.{$colname}/s", $select->assemble());
     }
 
     /**
@@ -1754,7 +1754,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
 
         $select = $this->_db->select();
         $select->from('table1')->joinUsing(['t2'=>'table2'], $colname);
-        $this->assertRegexp("/ON {$table2_alias}.{$colname}/s", $select->assemble());
+        $this->assertMatchesRegularExpression("/ON {$table2_alias}.{$colname}/s", $select->assemble());
     }
 
     public function testSqlInjectionWithOrder()

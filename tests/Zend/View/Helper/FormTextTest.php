@@ -110,7 +110,7 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
             'attribs' => ['disable' => true]
         ]);
 
-        $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
     /**
@@ -124,7 +124,7 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
             'attribs' => ['disable' => true]
         ]);
 
-        $this->assertNotRegexp('/<input[^>]*?(type="hidden")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<input[^>]*?(type="hidden")/', $html);
     }
 
     public function testRendersAsHtmlByDefault()

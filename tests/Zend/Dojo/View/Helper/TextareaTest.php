@@ -108,14 +108,14 @@ class Zend_Dojo_View_Helper_TextareaTest extends \PHPUnit\Framework\TestCase
     public function testShouldAllowDeclarativeDijitCreation()
     {
         $html = $this->getElement();
-        $this->assertRegexp('/<textarea[^>]*(dojoType="dijit.form.Textarea")/', $html, $html);
+        $this->assertMatchesRegularExpression('/<textarea[^>]*(dojoType="dijit.form.Textarea")/', $html, $html);
     }
 
     public function testShouldAllowProgrammaticDijitCreation()
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $html = $this->getElement();
-        $this->assertNotRegexp('/<textarea[^>]*(dojoType="dijit.form.Textarea")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<textarea[^>]*(dojoType="dijit.form.Textarea")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('elementId'));
     }
 
@@ -128,7 +128,7 @@ class Zend_Dojo_View_Helper_TextareaTest extends \PHPUnit\Framework\TestCase
     public function testGeneratedMarkupShouldNotIncludeTypeAttribute()
     {
         $html = $this->getElement();
-        $this->assertNotRegexp('/type="text/', $html, $html);
+        $this->assertDoesNotMatchRegularExpression('/type="text/', $html, $html);
     }
 }
 

@@ -187,7 +187,7 @@ class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
             $registry = @Zend_Registry::setClassName('classdoesnotexist');
             $this->fail('Expected exception, because we cannot initialize the registry using a non-existent class.');
         } catch (Zend_Exception $e) {
-            $this->assertRegExp('/file .* does not exist or .*/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/file .* does not exist or .*/i', $e->getMessage());
         }
     }
 

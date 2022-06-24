@@ -80,9 +80,9 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testFormWithSaneInput()
     {
         $form = $this->helper->form('foo', ['action' => '/foo', 'method' => 'get']);
-        $this->assertRegexp('/<form[^>]*(id="foo")/', $form);
-        $this->assertRegexp('/<form[^>]*(action="\/foo")/', $form);
-        $this->assertRegexp('/<form[^>]*(method="get")/', $form);
+        $this->assertMatchesRegularExpression('/<form[^>]*(id="foo")/', $form);
+        $this->assertMatchesRegularExpression('/<form[^>]*(action="\/foo")/', $form);
+        $this->assertMatchesRegularExpression('/<form[^>]*(method="get")/', $form);
     }
 
     public function testFormWithInputNeedingEscapesUsesViewEscaping()
@@ -97,9 +97,9 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testEmptyIdShouldNotRenderIdAttribute()
     {
         $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get']);
-        $this->assertNotRegexp('/<form[^>]*(id="")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(id="")/', $form);
         $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get', 'id' => null]);
-        $this->assertNotRegexp('/<form[^>]*(id="")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(id="")/', $form);
     }
     
     /**
@@ -108,8 +108,8 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testPassingNameAsAttributeShouldOverrideFormName()
     {
         $form = $this->helper->form('OrigName', ['action' => '/foo', 'method' => 'get', 'name' => 'SomeNameAttr']);
-        $this->assertNotRegexp('/<form[^>]*(name="OrigName")/', $form);
-        $this->assertRegexp('/<form[^>]*(name="SomeNameAttr")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name="OrigName")/', $form);
+        $this->assertMatchesRegularExpression('/<form[^>]*(name="SomeNameAttr")/', $form);
     }
     
     /**
@@ -118,7 +118,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testNotSpecifyingFormNameShouldNotRenderNameAttrib()
     {
         $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get']);
-        $this->assertNotRegexp('/<form[^>]*(name=".*")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name=".*")/', $form);
     }
     
     /**
@@ -127,7 +127,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testSpecifyingFormNameShouldRenderNameAttrib()
     {
         $form = $this->helper->form('FormName', ['action' => '/foo', 'method' => 'get']);
-        $this->assertRegexp('/<form[^>]*(name="FormName")/', $form);
+        $this->assertMatchesRegularExpression('/<form[^>]*(name="FormName")/', $form);
     }
     
     /**
@@ -136,7 +136,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testPassingEmptyNameAttributeToUnnamedFormShouldNotRenderNameAttrib()
     {
         $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get', 'name' => NULL]);
-        $this->assertNotRegexp('/<form[^>]*(name=".*")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name=".*")/', $form);
     }
     
     /**
@@ -145,7 +145,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testPassingEmptyNameAttributeToNamedFormShouldNotOverrideNameAttrib()
     {
         $form = $this->helper->form('RealName', ['action' => '/foo', 'method' => 'get', 'name' => NULL]);
-        $this->assertRegexp('/<form[^>]*(name="RealName")/', $form);
+        $this->assertMatchesRegularExpression('/<form[^>]*(name="RealName")/', $form);
     }
         
     /**
@@ -155,7 +155,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     {
         $this->view->doctype('XHTML1_STRICT');
         $form = $this->helper->form('FormName', ['action' => '/foo', 'method' => 'get']);
-        $this->assertNotRegexp('/<form[^>]*(name="FormName")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name="FormName")/', $form);
     }
         
     /**
@@ -165,18 +165,18 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     {
         $this->view->doctype('XHTML11');
         $form = $this->helper->form('FormName', ['action' => '/foo', 'method' => 'get']);
-        $this->assertNotRegexp('/<form[^>]*(name="FormName")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name="FormName")/', $form);
     }    
 
     public function testEmptyActionShouldNotRenderActionAttributeInHTML5()
     {
         $this->view->doctype(Zend_View_Helper_Doctype::HTML5);
         $form = $this->helper->form('', ['action' => '']);
-        $this->assertNotRegexp('/<form[^>]*(action="")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(action="")/', $form);
         $form = $this->helper->form('', ['action' => null]);
-        $this->assertNotRegexp('/<form[^>]*(action="")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(action="")/', $form);
         $form = $this->helper->form('');
-        $this->assertNotRegexp('/<form[^>]*(action="")/', $form);
+        $this->assertDoesNotMatchRegularExpression('/<form[^>]*(action="")/', $form);
     }
 }
 

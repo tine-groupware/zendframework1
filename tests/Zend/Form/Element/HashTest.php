@@ -138,7 +138,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
     {
         $this->testGetHashReturnsHashValue();
         $this->assertEquals(32, strlen($this->hash));
-        $this->assertRegexp('/^[a-f0-9]{32}$/', $this->hash);
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{32}$/', $this->hash);
     }
 
     public function testLabelIsNull()
@@ -192,7 +192,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
     public function testHiddenInputRenderedByDefault()
     {
         $html = $this->element->render($this->getView());
-        $this->assertRegexp('/<input[^>]*?type="hidden"/', $html, $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?type="hidden"/', $html, $html);
     }
 
     /**

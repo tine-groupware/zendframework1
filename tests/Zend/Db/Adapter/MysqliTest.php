@@ -232,7 +232,7 @@ class Zend_Db_Adapter_MysqliTest extends Zend_Db_Adapter_TestCommon
     {
         $desc = $this->_db->describeTable('zfprice');
         $this->assertEquals('zfprice',  $desc['price']['TABLE_NAME']);
-        $this->assertRegExp('/float/i', $desc['price']['DATA_TYPE']);
+        $this->assertMatchesRegularExpression('/float/i', $desc['price']['DATA_TYPE']);
     }
 
     /**

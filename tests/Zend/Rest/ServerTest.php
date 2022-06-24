@@ -533,7 +533,7 @@ class Zend_Rest_ServerTest extends \PHPUnit\Framework\TestCase
         ob_start();
         $server->handle(['method' => 'testFunc6', 'arg1' => 'Davey']);
         $result = ob_get_clean();
-        $this->assertRegexp('#<message>Invalid Method Call to(.*?)(Missing argument\(s\): ).*?(</message>)#', $result);
+        $this->assertMatchesRegularExpression('#<message>Invalid Method Call to(.*?)(Missing argument\(s\): ).*?(</message>)#', $result);
         $this->assertStringContainsString('<status>failed</status>', $result);
     }
 

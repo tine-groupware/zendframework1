@@ -103,14 +103,14 @@ class Zend_Dojo_View_Helper_AccordionPaneTest extends \PHPUnit\Framework\TestCas
     public function testShouldAllowDeclarativeDijitCreation()
     {
         $html = $this->getContainer();
-        $this->assertRegexp('/<div[^>]*(dojoType="dijit.layout.AccordionPane")/', $html, $html);
+        $this->assertMatchesRegularExpression('/<div[^>]*(dojoType="dijit.layout.AccordionPane")/', $html, $html);
     }
 
     public function testShouldAllowProgrammaticDijitCreation()
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $html = $this->getContainer();
-        $this->assertNotRegexp('/<div[^>]*(dojoType="dijit.layout.AccordionPane")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<div[^>]*(dojoType="dijit.layout.AccordionPane")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('pane1'));
     }
 }

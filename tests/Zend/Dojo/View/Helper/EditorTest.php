@@ -199,7 +199,7 @@ class Zend_Dojo_View_Helper_EditorTest extends \PHPUnit\Framework\TestCase
     public function testHelperShouldUseDivByDefault()
     {
         $html = $this->helper->editor('foo');
-        $this->assertRegexp('#</?div[^>]*>#', $html, $html);
+        $this->assertMatchesRegularExpression('#</?div[^>]*>#', $html, $html);
     }
 
     /**
@@ -209,7 +209,7 @@ class Zend_Dojo_View_Helper_EditorTest extends \PHPUnit\Framework\TestCase
     public function testHelperShouldOnlyUseTextareaInNoscriptTag()
     {
         $html = $this->helper->editor('foo');
-        $this->assertRegexp('#<noscript><textarea[^>]*>#', $html, $html);
+        $this->assertMatchesRegularExpression('#<noscript><textarea[^>]*>#', $html, $html);
     }
 
     /**
@@ -218,7 +218,7 @@ class Zend_Dojo_View_Helper_EditorTest extends \PHPUnit\Framework\TestCase
     public function testHiddenInputShouldBeRenderedLast()
     {
         $html = $this->helper->editor('foo');
-        $this->assertRegexp('#</noscript><input#', $html, $html);
+        $this->assertMatchesRegularExpression('#</noscript><input#', $html, $html);
     }
 
     /** @group ZF-5711 */

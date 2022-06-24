@@ -143,7 +143,7 @@ class Zend_Dojo_Form_Decorator_DijitFormTest extends \PHPUnit\Framework\TestCase
         $decorator->setElement($element);
 
         $html = $decorator->render('');
-        $this->assertRegexp('/id=".{1,}"/', $html, $html);
+        $this->assertMatchesRegularExpression('/id=".{1,}"/', $html, $html);
     }
 }
 

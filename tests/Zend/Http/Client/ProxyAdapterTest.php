@@ -138,7 +138,7 @@ class Zend_Http_Client_ProxyAdapterTest extends Zend_Http_Client_SocketTest
         // Perform the request
         $this->client->request();
 
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             "/\r\nUser-Agent: {$this->config['useragent']}\r\n/i",
             $this->client->getAdapter()->getLastConnectHandshakeRequest()
         );
@@ -163,7 +163,7 @@ class Zend_Http_Client_ProxyAdapterTest extends Zend_Http_Client_SocketTest
         // Perform the request
         $this->client->request();
         print_r($this->client->getAdapter()->getLastConnectHandshakeRequest());
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             "/\r\nUser-Agent: ZendTest\r\n/i",
             $this->client->getAdapter()->getLastConnectHandshakeRequest()
         );

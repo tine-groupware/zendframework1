@@ -535,7 +535,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
 
             $expected = trim($expected);
             $got = trim($got);
-            $this->assertRegExp("/^$expected$/", $got);
+            $this->assertMatchesRegularExpression("/^$expected$/", $got);
         }
     }
 
@@ -558,7 +558,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
 
             $expected = trim($expected);
             $got = trim($got);
-            $this->assertRegExp("/^$expected$/", $got);
+            $this->assertMatchesRegularExpression("/^$expected$/", $got);
         }
     }
 
@@ -583,7 +583,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
 
             $expected = trim($expected);
             $got = trim($got);
-            $this->assertRegExp("/^$expected$/", $got);
+            $this->assertMatchesRegularExpression("/^$expected$/", $got);
         }
     }
 

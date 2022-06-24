@@ -133,7 +133,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
         $decorator = $this->element->getDecorator('ViewHelper');
         $decorator->setElement($this->element);
         $html = $decorator->render('');
-        $this->assertRegexp('/<(input|button)[^>]*?value="Submit Button"/', $html);
+        $this->assertMatchesRegularExpression('/<(input|button)[^>]*?value="Submit Button"/', $html);
     }
 
     public function testConstructorSetsLabelToNameIfNoLabelProvided()

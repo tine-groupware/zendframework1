@@ -294,8 +294,8 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
         file_put_contents($pathFile, '<strong>foo</strong>');
 
         $this->_instance->removeRecursively($id);
-        $this->assertFileNotExists($pathFile);
-        $this->assertFileNotExists(dirname($pathFile));
+        $this->assertFileDoesNotExist($pathFile);
+        $this->assertFileDoesNotExist(dirname($pathFile));
         rmdir($this->_cache_dir . '/issues/');
     }
 

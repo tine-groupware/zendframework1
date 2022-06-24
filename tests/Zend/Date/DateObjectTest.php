@@ -551,7 +551,7 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
                 $this->fail("exception expected");
             }
         } catch (Zend_Date_Exception $e) {
-            $this->assertRegexp('/not a known timezone/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/not a known timezone/i', $e->getMessage());
             $this->assertSame('Unknown', $e->getOperand());
         }
         $this->assertSame('Indian/Maldives', $date->getTimezone());

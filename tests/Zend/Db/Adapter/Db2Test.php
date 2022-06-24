@@ -69,7 +69,7 @@ class Zend_Db_Adapter_Db2Test extends Zend_Db_Adapter_TestCommon
         $this->assertEquals('zfproducts',        $desc['product_name']['TABLE_NAME'], 'Expected table name to be zfproducts');
         $this->assertEquals('product_name',      $desc['product_name']['COLUMN_NAME'], 'Expected column name to be product_name');
         $this->assertEquals(2,                   $desc['product_name']['COLUMN_POSITION'], 'Expected column position to be 2');
-        $this->assertRegExp('/varchar/i',        $desc['product_name']['DATA_TYPE'], 'Expected data type to be VARCHAR');
+        $this->assertMatchesRegularExpression('/varchar/i',        $desc['product_name']['DATA_TYPE'], 'Expected data type to be VARCHAR');
         $this->assertEquals('',                  $desc['product_name']['DEFAULT'], 'Expected default to be empty string');
         $this->assertTrue(                       $desc['product_name']['NULLABLE'], 'Expected product_name to be nullable');
         if (!$this->_db->isI5()) {

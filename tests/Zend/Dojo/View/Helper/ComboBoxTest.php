@@ -135,14 +135,14 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends \PHPUnit\Framework\TestCase
     public function testShouldAllowDeclarativeDijitCreationAsSelect()
     {
         $html = $this->getElementAsSelect();
-        $this->assertRegexp('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html, $html);
+        $this->assertMatchesRegularExpression('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html, $html);
     }
 
     public function testShouldAllowProgrammaticDijitCreationAsSelect()
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $html = $this->getElementAsSelect();
-        $this->assertNotRegexp('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('elementId'));
     }
 
@@ -159,8 +159,8 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends \PHPUnit\Framework\TestCase
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $html = $this->getElementAsRemoter();
-        $this->assertNotRegexp('/<input[^>]*(dojoType="dijit.form.ComboBox")/', $html);
-        $this->assertRegexp('/<input[^>]*(type="text")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<input[^>]*(dojoType="dijit.form.ComboBox")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*(type="text")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('elementId'));
 
         $found = false;

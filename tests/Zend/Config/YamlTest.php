@@ -196,7 +196,7 @@ class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml($this->_iniFileInvalid);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertRegexp('/(Error parsing|syntax error, unexpected)/', $expected->getMessage());
+            $this->assertMatchesRegularExpression('/(Error parsing|syntax error, unexpected)/', $expected->getMessage());
         }
 
     }

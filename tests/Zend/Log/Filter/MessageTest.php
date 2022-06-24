@@ -53,7 +53,7 @@ class Zend_Log_Filter_MessageTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertRegexp('/invalid reg/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/invalid reg/i', $e->getMessage());
         }
     }
 

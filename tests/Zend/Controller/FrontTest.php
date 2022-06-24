@@ -614,7 +614,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $this->fail('Exception expected but not thrown');
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Exception);
-            $this->assertRegExp(
+            $this->assertMatchesRegularExpression(
                 '/Directory \w+ not readable/', $e->getMessage()
             );
         }

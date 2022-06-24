@@ -174,7 +174,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
         try {
             $uri = Zend_Uri::factory($uri);
         } catch (Zend_Uri_Exception $e) {
-            $this->assertRegExp($regex, $e->getMessage());
+            $this->assertMatchesRegularExpression($regex, $e->getMessage());
             return;
         }
         $this->fail('Zend_Uri_Exception was expected but not thrown');

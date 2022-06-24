@@ -154,7 +154,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
             Zend_Loader::loadClass('ClassNonexistent', $dir);
             $this->fail('Zend_Exception was expected but never thrown.');
         } catch (Zend_Exception $e) {
-            $this->assertRegExp('/file(.*)does not exist or class(.*)not found/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/file(.*)does not exist or class(.*)not found/i', $e->getMessage());
         }
     }
 
@@ -210,7 +210,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
             Zend_Loader::loadClass('/path/:to/@danger');
             $this->fail('Zend_Exception was expected but never thrown.');
         } catch (Zend_Exception $e) {
-            $this->assertRegExp('/security(.*)filename/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/security(.*)filename/i', $e->getMessage());
         }
     }
 

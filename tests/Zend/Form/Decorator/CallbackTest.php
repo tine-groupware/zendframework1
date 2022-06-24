@@ -167,7 +167,7 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('foo bar', $content);
         $this->assertContains($element->getName(), $content);
         $this->assertContains($element->getLabel(), $content);
-        $this->assertRegexp('/foo bar$/s', $content);
+        $this->assertMatchesRegularExpression('/foo bar$/s', $content);
     }
 
     public function testRenderCanReplaceContent()

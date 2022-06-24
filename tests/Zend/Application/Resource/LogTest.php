@@ -181,7 +181,7 @@ class Zend_Application_Resource_LogTest extends \PHPUnit\Framework\TestCase
         $contents = stream_get_contents($stream);
 
         $this->assertStringEndsWith($message, $contents);
-        $this->assertRegexp('/\d\d:\d\d:\d\d/', $contents);
+        $this->assertMatchesRegularExpression('/\d\d:\d\d:\d\d/', $contents);
     }
 }
 

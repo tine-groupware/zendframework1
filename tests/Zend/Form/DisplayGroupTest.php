@@ -399,7 +399,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
         $this->group->addElements([$foo, $bar]);
         $html = $this->group->render($this->getView());
-        $this->assertRegexp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
+        $this->assertMatchesRegularExpression('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
         $this->assertContains('<input', $html, $html);
         $this->assertContains('"foo"', $html);
         $this->assertContains('"bar"', $html);
@@ -413,7 +413,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->addElements([$foo, $bar])
                     ->setView($this->getView());
         $html = $this->group->__toString();
-        $this->assertRegexp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
+        $this->assertMatchesRegularExpression('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
         $this->assertContains('<input', $html);
         $this->assertContains('"foo"', $html);
         $this->assertContains('"bar"', $html);
