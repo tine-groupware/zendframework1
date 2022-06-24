@@ -51,7 +51,7 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_SimpleTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testSimpleRequestIsOfAbstractRequestType()
@@ -85,6 +85,6 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Controller_Request_SimpleTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Request_SimpleTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Request_SimpleTest::main") {
     Zend_Controller_Request_SimpleTest::main();
 }

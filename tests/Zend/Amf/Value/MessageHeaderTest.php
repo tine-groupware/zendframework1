@@ -46,7 +46,7 @@ class Zend_Amf_Value_MessageHeaderTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Value_MessageHeaderTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testConstructorShouldSetMessageHeaderName()
@@ -93,6 +93,6 @@ class Zend_Amf_Value_MessageHeaderTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_Value_MessageHeaderTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Amf_Value_MessageHeaderTest::main') {
     Zend_Amf_Value_MessageHeaderTest::main();
 }

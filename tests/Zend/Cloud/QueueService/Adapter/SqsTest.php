@@ -61,7 +61,7 @@ class Zend_Cloud_QueueService_Adapter_SqsTest extends Zend_Cloud_QueueService_Te
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -148,6 +148,6 @@ class Zend_Cloud_QueueService_Adapter_SqsTest extends Zend_Cloud_QueueService_Te
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_QueueService_Adapter_SqsTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_QueueService_Adapter_SqsTest::main') {
     Zend_Cloud_QueueService_Adapter_SqsTest::main();
 }

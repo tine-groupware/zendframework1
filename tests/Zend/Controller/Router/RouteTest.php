@@ -797,6 +797,6 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Controller_Router_RouteTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Controller_Router_RouteTests::main') {
     Zend_Controller_Router_RouteTests::main();
 }

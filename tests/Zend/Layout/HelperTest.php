@@ -51,7 +51,7 @@ class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Layout_HelperTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -153,6 +153,6 @@ class Zend_Layout_HelperTest_Layout extends Zend_Layout
 }
 
 // Call Zend_Layout_HelperTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Layout_HelperTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Layout_HelperTest::main") {
     Zend_Layout_HelperTest::main();
 }

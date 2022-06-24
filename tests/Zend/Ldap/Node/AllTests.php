@@ -50,7 +50,7 @@ class Zend_Ldap_Node_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     public static function suite()
@@ -88,6 +88,6 @@ class Zend_Ldap_Node_SkipOnlineTests extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Ldap_Node_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Ldap_Node_AllTests::main') {
     Zend_Ldap_Node_AllTests::main();
 }

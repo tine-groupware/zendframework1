@@ -56,7 +56,7 @@ class Zend_Amf_AuthTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_AuthTest");
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -341,7 +341,7 @@ class Zend_Amf_Auth_testclass_NoAcl {
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == "Zend_Amf_AuthTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Amf_AuthTest::main") {
     Zend_Amf_AuthTest::main();
 }
 

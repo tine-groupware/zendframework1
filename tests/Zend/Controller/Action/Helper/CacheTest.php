@@ -29,7 +29,7 @@ class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCas
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_CacheTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -292,6 +292,6 @@ class Mock_Zend_Cache_Page_TestingEncodedCacheId extends Zend_Cache_Core
     public function end() {$this->res = 'verified';}
 }**/
 
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_CacheTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_CacheTest::main") {
     Zend_Controller_Action_Helper_CacheTest::main();
 }

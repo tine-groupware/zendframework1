@@ -35,7 +35,7 @@
     "require-dev": {
         "php-parallel-lint/php-parallel-lint": "1.0.0",
         "rector/rector": "^0.13.6",
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^9"
     },
     "archive": {
         "exclude": ["/demos", "/documentation", "/tests"]
@@ -46,5 +46,11 @@
     "scripts": {
         "lint": "parallel-lint --exclude vendor --exclude tests/Zend/Loader/_files/ParseError.php .",
         "test": "phpunit"
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Zend_": "tests/",
+            "resources_": "tests/"
+        }
     }
 }

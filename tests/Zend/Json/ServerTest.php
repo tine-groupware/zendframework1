@@ -53,7 +53,7 @@ class Zend_Json_ServerTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Json_ServerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -519,6 +519,6 @@ function Zend_Json_ServerTest_FooFunc()
 }
 
 // Call Zend_Json_ServerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Json_ServerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Json_ServerTest::main") {
     Zend_Json_ServerTest::main();
 }

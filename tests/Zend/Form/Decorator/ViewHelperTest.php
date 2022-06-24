@@ -52,7 +52,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ViewHelperTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -300,6 +300,6 @@ class Zend_Form_Decorator_ViewHelperTest_Textarea extends Zend_Form_Element
 }
 
 // Call Zend_Form_Decorator_ViewHelperTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Form_Decorator_ViewHelperTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_ViewHelperTest::main") {
     Zend_Form_Decorator_ViewHelperTest::main();
 }

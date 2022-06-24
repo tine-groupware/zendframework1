@@ -45,7 +45,7 @@ class Zend_Service_LiveDocX_LiveDocxTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -92,6 +92,6 @@ class Zend_Service_LiveDocX_LiveDocxTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Service_LiveDocx_LiveDocxTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Service_LiveDocx_LiveDocxTest::main') {
     Zend_Service_LiveDocx_LiveDocxTest::main();
 }

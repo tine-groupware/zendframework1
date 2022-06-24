@@ -64,7 +64,7 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends \PHPUnit\Framework\Tes
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Decorator_DijitContainerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -246,6 +246,6 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest_Example extends Zend_Dojo_Form
 }
 
 // Call Zend_Dojo_Form_Decorator_DijitContainerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_Decorator_DijitContainerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_Decorator_DijitContainerTest::main") {
     Zend_Dojo_Form_Decorator_DijitContainerTest::main();
 }

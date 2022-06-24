@@ -957,6 +957,6 @@ class Zend_XmlRpc_SerializableTestClass
 }
 
 // Call Zend_XmlRpc_ValueTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_ValueTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_ValueTest::main") {
     Zend_XmlRpc_ValueTest::main();
 }

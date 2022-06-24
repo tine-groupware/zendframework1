@@ -246,6 +246,6 @@ class Zend_Cloud_Infrastructure_Adapter_Ec2Test extends \PHPUnit\Framework\TestC
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_Infrastructure_Adapter_Ec2Test::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_Infrastructure_Adapter_Ec2Test::main') {
     Zend_Cloud_Infrastructure_Adapter_Ec2Test::main();
 }

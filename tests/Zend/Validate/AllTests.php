@@ -72,7 +72,7 @@ class Zend_Validate_AllTests
      */
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     /**
@@ -119,6 +119,6 @@ class Zend_Validate_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Validate_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Validate_AllTests::main') {
     Zend_Validate_AllTests::main();
 }

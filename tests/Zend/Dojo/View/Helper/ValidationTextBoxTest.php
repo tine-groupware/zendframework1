@@ -58,7 +58,7 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends \PHPUnit\Framework\Tes
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_ValidationTextBoxTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -156,6 +156,6 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends \PHPUnit\Framework\Tes
 }
 
 // Call Zend_Dojo_View_Helper_ValidationTextBoxTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_ValidationTextBoxTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_ValidationTextBoxTest::main") {
     Zend_Dojo_View_Helper_ValidationTextBoxTest::main();
 }

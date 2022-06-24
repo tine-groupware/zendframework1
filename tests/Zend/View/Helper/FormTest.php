@@ -51,7 +51,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -181,6 +181,6 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_View_Helper_FormTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_FormTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormTest::main") {
     Zend_View_Helper_FormTest::main();
 }

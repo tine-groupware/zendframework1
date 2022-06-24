@@ -57,7 +57,7 @@ class Zend_Amf_Value_ArrayCollectionTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Value_ArrayCollectionTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -213,6 +213,6 @@ class Zend_Amf_Value_ArrayCollectionTest_SerializableData
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_Value_ArrayCollectionTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Amf_Value_ArrayCollectionTest::main') {
     Zend_Amf_Value_ArrayCollectionTest::main();
 }

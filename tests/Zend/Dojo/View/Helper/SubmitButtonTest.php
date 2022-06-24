@@ -58,7 +58,7 @@ class Zend_Dojo_View_Helper_SubmitButtonTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_SubmitButtonTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -132,6 +132,6 @@ class Zend_Dojo_View_Helper_SubmitButtonTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Dojo_View_Helper_SubmitButtonTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_SubmitButtonTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_SubmitButtonTest::main") {
     Zend_Dojo_View_Helper_SubmitButtonTest::main();
 }

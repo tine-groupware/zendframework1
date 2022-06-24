@@ -169,6 +169,6 @@ class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_File_ClassFileLocatorTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_File_ClassFileLocatorTest::main') {
     Zend_File_ClassFileLocatorTest::main();
 }

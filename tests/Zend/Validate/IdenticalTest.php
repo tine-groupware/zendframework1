@@ -49,7 +49,7 @@ class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -147,6 +147,6 @@ class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Validate_IdenticalTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == 'Zend_Validate_IdenticalTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Validate_IdenticalTest::main') {
     Zend_Validate_IdenticalTest::main();
 }

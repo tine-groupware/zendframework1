@@ -42,7 +42,7 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -208,6 +208,6 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Bootstrap_BootstrapTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Application_Bootstrap_BootstrapTest::main') {
     Zend_Application_Bootstrap_BootstrapTest::main();
 }

@@ -86,7 +86,7 @@ class Zend_View_Helper_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     public static function suite()
@@ -146,6 +146,6 @@ class Zend_View_Helper_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_View_Helper_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_View_Helper_AllTests::main') {
     Zend_View_Helper_AllTests::main();
 }

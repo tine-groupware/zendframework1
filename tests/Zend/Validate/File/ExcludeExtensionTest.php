@@ -50,7 +50,7 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_ExcludeExtensionTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -186,6 +186,6 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
 }
 
 // Call Zend_Validate_File_ExcludeExtensionTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Validate_File_ExcludeExtensionTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_ExcludeExtensionTest::main") {
     Zend_Validate_File_ExtensionTest::main();
 }

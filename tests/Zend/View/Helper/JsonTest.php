@@ -53,7 +53,7 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_JsonTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -195,6 +195,6 @@ class Zend_View_Helper_JsonTest_Layout extends Zend_Layout
 }
 
 // Call Zend_View_Helper_JsonTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_JsonTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_JsonTest::main") {
     Zend_View_Helper_JsonTest::main();
 }

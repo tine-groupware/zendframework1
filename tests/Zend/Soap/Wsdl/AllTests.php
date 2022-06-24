@@ -51,6 +51,6 @@ class Zend_Soap_Wsdl_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Soap_Wsdl_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Soap_Wsdl_AllTests::main') {
     Zend_Soap_Wsdl_AllTests::main();
 }

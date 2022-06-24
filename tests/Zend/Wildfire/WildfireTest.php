@@ -78,7 +78,7 @@ class Zend_Wildfire_WildfireTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Wildfire_WildfireTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -1205,6 +1205,6 @@ class Zend_Wildfire_WildfireTest_Response extends Zend_Controller_Response_HttpT
 
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Wildfire_WildfireTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Wildfire_WildfireTest::main') {
     Zend_Wildfire_WildfireTest::main();
 }

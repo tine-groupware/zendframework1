@@ -53,7 +53,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -148,6 +148,6 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_StorageService_Adapter_FileSystemTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_StorageService_Adapter_FileSystemTest::main') {
     Zend_Cloud_StorageService_Adapter_FileSystemTest::main();
 }

@@ -54,7 +54,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_LoaderTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -573,6 +573,6 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_LoaderTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD === 'Zend_LoaderTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_LoaderTest::main') {
     Zend_LoaderTest::main();
 }

@@ -61,7 +61,7 @@ class Zend_ProgressBar_Adapter_ConsoleTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_ProgressBar_Adapter_ConsoleTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testWindowsWidth()
@@ -358,6 +358,6 @@ class Zend_ProgressBar_Adapter_Console_Stub extends Zend_ProgressBar_Adapter_Con
 }
 
 // Call Zend_ProgressBar_Adapter_ConsoleTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_ProgressBar_Adapert_ConsoleTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_ProgressBar_Adapert_ConsoleTest::main") {
     Zend_ProgressBar_Adapter_ConsoleTest::main();
 }

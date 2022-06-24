@@ -131,6 +131,6 @@ class Zend_Cloud_StorageService_Adapter_RackspaceTest extends Zend_Cloud_Storage
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_StorageService_Adapter_RackspaceTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_StorageService_Adapter_RackspaceTest::main') {
     Zend_Cloud_StorageService_Adapter_RackspaceTest::main();
 }

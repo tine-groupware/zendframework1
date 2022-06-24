@@ -57,7 +57,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_FormTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function clearRegistry()
@@ -4906,6 +4906,6 @@ class MyTestView extends Zend_View
 
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Form_FormTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Form_FormTest::main') {
     Zend_Form_FormTest::main();
 }

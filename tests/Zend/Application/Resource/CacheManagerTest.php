@@ -62,7 +62,7 @@ class Zend_Application_Resource_CacheManagerTest extends \PHPUnit\Framework\Test
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -280,6 +280,6 @@ class Zend_Cache_Frontend_CustomNaming extends Zend_Cache_Core
 {
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Resource_CacheManagerTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_CacheManagerTest::main') {
     Zend_Application_Resource_CacheManagerTest::main();
 }

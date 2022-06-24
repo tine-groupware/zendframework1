@@ -480,9 +480,8 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testLoadFunctionsReadsMethodsFromServerDefinitionObjects()
     {
-        $mockedMethod = $this->getMock('Zend_Server_Method_Definition', [], [], '', false,
-            false);
-        $mockedDefinition = $this->getMock('Zend_Server_Definition', [], [], '', false, false);
+        $mockedMethod = $this->createMock('Zend_Server_Method_Definition');
+        $mockedDefinition = $this->createMock('Zend_Server_Definition');
         $mockedDefinition->expects($this->once())
                          ->method('getMethods')
                          ->will($this->returnValue(['bar' => $mockedMethod]));
@@ -780,6 +779,6 @@ class Zend_XmlRpc_Server_testRequest extends Zend_XmlRpc_Request
 }
 
 // Call Zend_XmlRpc_ServerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_ServerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_ServerTest::main") {
     Zend_XmlRpc_ServerTest::main();
 }

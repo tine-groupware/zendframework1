@@ -41,7 +41,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_DataTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -579,6 +579,6 @@ class Zend_Dojo_DataTest_DataCollection implements Iterator
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Dojo_DataTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Dojo_DataTest::main') {
     Zend_Dojo_DataTest::main();
 }

@@ -45,7 +45,7 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends \PHPUnit\Framework\TestC
     {
         $dataSet = new \PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
 
-        $testAdapter = $this->getMock('Zend_Test_DbAdapter');
+        $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->at(0))
                     ->method('insert')
                     ->with('foo', ['foo' => 'foo', 'bar' => 'bar', 'baz' => 'baz']);
@@ -67,7 +67,7 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends \PHPUnit\Framework\TestC
 
         $dataSet = new \PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
 
-        $testAdapter = $this->getMock('Zend_Test_DbAdapter');
+        $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())->method('insert')->will($this->throwException(new Exception()));
 
         $connection = new Zend_Test_PHPUnit_Db_Connection($testAdapter, "schema");
@@ -78,8 +78,8 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends \PHPUnit\Framework\TestC
     {
         $this->expectException("Zend_Test_PHPUnit_Db_Exception");
 
-        $dataSet = $this->getMock('PHPUnit_Extensions_Database_DataSet_IDataSet');
-        $connection = $this->getMock('PHPUnit_Extensions_Database_DB_IDatabaseConnection');
+        $dataSet = $this->createMock('PHPUnit_Extensions_Database_DataSet_IDataSet');
+        $connection = $this->createMock('PHPUnit_Extensions_Database_DB_IDatabaseConnection');
 
         $this->operation->execute($connection, $dataSet);
     }

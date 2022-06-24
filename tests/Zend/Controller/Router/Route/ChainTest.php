@@ -81,7 +81,7 @@ class Zend_Controller_Router_Route_ChainTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_ChainTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testChaining()
@@ -1094,6 +1094,6 @@ class Zend_Controller_Router_ChainTest_Dispatcher extends Zend_Controller_Dispat
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Router_Route_ChainTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_Route_ChainTest::main") {
     Zend_Controller_Router_Route_ChainTest::main();
 }

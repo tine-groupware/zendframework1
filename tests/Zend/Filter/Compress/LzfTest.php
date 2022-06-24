@@ -47,7 +47,7 @@ class Zend_Filter_Compress_LzfTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_LzfTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -86,6 +86,6 @@ class Zend_Filter_Compress_LzfTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_Compress_LzfTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Filter_Compress_LzfTest::main') {
     Zend_Filter_Compress_LzfTest::main();
 }

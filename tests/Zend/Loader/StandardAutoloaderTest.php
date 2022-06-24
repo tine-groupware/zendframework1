@@ -217,6 +217,6 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Loader_StandardAutoloaderTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Loader_StandardAutoloaderTest::main') {
     Zend_Loader_StandardAutoloaderTest::main();
 }

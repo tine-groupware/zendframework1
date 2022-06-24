@@ -51,7 +51,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_HostnameTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testCorrectStaticHostMatch()
@@ -263,6 +263,6 @@ class Zend_Controller_Router_RewriteTest_Request_Stub extends Zend_Controller_Re
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Router_Route_HostnameTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_Route_HostnameTest::main") {
     Zend_Controller_Router_Route_HostnameTest::main();
 }

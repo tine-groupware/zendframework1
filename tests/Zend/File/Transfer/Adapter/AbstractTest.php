@@ -58,7 +58,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_File_Transfer_Adapter_AbstractTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -999,6 +999,6 @@ class Zend_File_Transfer_Adapter_AbstractTest_MockAdapter extends Zend_File_Tran
 }
 
 // Call Zend_File_Transfer_Adapter_AbstractTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_File_Transfer_Adapter_AbstractTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_File_Transfer_Adapter_AbstractTest::main") {
     Zend_File_Transfer_Adapter_AbstractTest::main();
 }

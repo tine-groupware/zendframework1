@@ -53,7 +53,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_UrlTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -181,6 +181,6 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Controller_Action_Helper_UrlTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_UrlTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_UrlTest::main") {
     Zend_Controller_Action_Helper_UrlTest::main();
 }

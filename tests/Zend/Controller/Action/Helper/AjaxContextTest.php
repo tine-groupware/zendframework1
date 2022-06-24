@@ -62,7 +62,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_AjaxContextTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -260,6 +260,6 @@ class Zend_Controller_Action_Helper_AjaxContextTest_LayoutOverride extends Zend_
 }
 
 // Call Zend_Controller_Action_Helper_AjaxContextTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_AjaxContextTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_AjaxContextTest::main") {
     Zend_Controller_Action_Helper_AjaxContextTest::main();
 }

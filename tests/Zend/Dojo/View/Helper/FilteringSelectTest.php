@@ -58,7 +58,7 @@ class Zend_Dojo_View_Helper_FilteringSelectTest extends \PHPUnit\Framework\TestC
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_FilteringSelectTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -178,6 +178,6 @@ class Zend_Dojo_View_Helper_FilteringSelectTest extends \PHPUnit\Framework\TestC
 }
 
 // Call Zend_Dojo_View_Helper_FilteringSelectTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_FilteringSelectTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_FilteringSelectTest::main") {
     Zend_Dojo_View_Helper_FilteringSelectTest::main();
 }

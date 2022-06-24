@@ -40,7 +40,7 @@ class Zend_Test_PHPUnit_Db_Operation_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     static public function suite()
@@ -55,6 +55,6 @@ class Zend_Test_PHPUnit_Db_Operation_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Test_PHPUnit_Db_Operation_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Test_PHPUnit_Db_Operation_AllTests::main') {
     Zend_Test_PHPUnit_Db_Operation_AllTests::main();
 }

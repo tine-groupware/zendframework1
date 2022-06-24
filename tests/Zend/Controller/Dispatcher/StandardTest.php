@@ -54,7 +54,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Dispatcher_StandardTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -705,6 +705,6 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
 }
 
 // Call Zend_Controller_Dispatcher_StandardTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Dispatcher_StandardTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Dispatcher_StandardTest::main") {
     Zend_Controller_Dispatcher_StandardTest::main();
 }

@@ -52,7 +52,7 @@ class Zend_XmlRpc_Server_FaultTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_XmlRpc_Server_FaultTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -289,6 +289,6 @@ class zxrs_fault_observer
 }
 
 // Call Zend_XmlRpc_Server_FaultTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_Server_FaultTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_Server_FaultTest::main") {
     Zend_XmlRpc_Server_FaultTest::main();
 }

@@ -52,7 +52,7 @@ class Zend_Dojo_Form_FormTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_FormTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -141,6 +141,6 @@ class Zend_Dojo_Form_FormTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Dojo_Form_FormTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_FormTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_FormTest::main") {
     Zend_Dojo_Form_FormTest::main();
 }

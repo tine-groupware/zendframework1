@@ -53,7 +53,7 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormCheckboxTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -345,7 +345,7 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_View_Helper_FormCheckboxTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_FormCheckboxTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormCheckboxTest::main") {
     Zend_View_Helper_FormCheckboxTest::main();
 }
 

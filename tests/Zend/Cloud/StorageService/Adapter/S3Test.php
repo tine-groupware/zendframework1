@@ -54,7 +54,7 @@ class Zend_Cloud_StorageService_Adapter_S3Test
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -138,6 +138,6 @@ class Zend_Cloud_StorageService_Adapter_S3Test
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_StorageService_Adapter_S3Test::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_StorageService_Adapter_S3Test::main') {
     Zend_Cloud_StorageService_Adapter_S3Test::main();
 }

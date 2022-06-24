@@ -58,7 +58,7 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends \PHPUnit\Fram
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_StandaloneContainerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -118,6 +118,6 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo extends Zend_View
 }
 
 // Call Zend_View_Helper_Placeholder_StandaloneContainerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_Placeholder_StandaloneContainerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_Placeholder_StandaloneContainerTest::main") {
     Zend_View_Helper_Placeholder_StandaloneContainerTest::main();
 }

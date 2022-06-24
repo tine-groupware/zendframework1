@@ -56,7 +56,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_ElementTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -2280,6 +2280,6 @@ class Zend_Form_ElementTest_ArrayFilter implements Zend_Filter_Interface
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Form_ElementTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Form_ElementTest::main') {
     Zend_Form_ElementTest::main();
 }

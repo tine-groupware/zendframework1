@@ -48,7 +48,7 @@ class Zend_ProgressBar_Adapter_JsPullTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_ProgressBar_Adapter_JsPullTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testJson()
@@ -92,6 +92,6 @@ class Zend_ProgressBar_Adapter_JsPull_Stub extends Zend_ProgressBar_Adapter_JsPu
 }
 
 // Call Zend_ProgressBar_Adapter_JsPullTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_ProgressBar_Adapter_JsPullTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_ProgressBar_Adapter_JsPullTest::main") {
     Zend_ProgressBar_Adapter_JsPullTest::main();
 }

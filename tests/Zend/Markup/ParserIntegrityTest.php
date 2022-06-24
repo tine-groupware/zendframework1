@@ -46,7 +46,7 @@ class Zend_Markup_ParserIntegrityTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Markup_MarkupTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testBbcodeParser()
@@ -79,6 +79,6 @@ class Zend_Markup_ParserIntegrityTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Markup_BbcodeTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Markup_ParserIntegrityTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Markup_ParserIntegrityTest::main") {
     Zend_Markup_BbcodeTest::main();
 }

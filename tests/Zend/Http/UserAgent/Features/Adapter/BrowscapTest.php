@@ -37,7 +37,7 @@ class Zend_Http_UserAgent_Features_Adapter_BrowscapTest extends \PHPUnit\Framewo
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -68,6 +68,6 @@ class Zend_Http_UserAgent_Features_Adapter_BrowscapTest extends \PHPUnit\Framewo
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Http_UserAgent_Features_Adapter_Browscap::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Http_UserAgent_Features_Adapter_Browscap::main') {
     Zend_Http_UserAgent_Features_Adapter_Browscap::main();
 }

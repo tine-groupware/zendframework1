@@ -88,7 +88,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -978,7 +978,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
 }
 
 // Call Zend_Controller_Action_Helper_ViewRendererTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_ViewRendererTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_ViewRendererTest::main") {
     Zend_Controller_Action_Helper_ViewRendererTest::main();
 }
 

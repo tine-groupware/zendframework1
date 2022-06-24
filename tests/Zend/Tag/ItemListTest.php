@@ -40,7 +40,7 @@ class Zend_Tag_ItemListTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testArrayAccessAndCount()
@@ -155,6 +155,6 @@ class Zend_Tag_ItemListTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Tag_ItemListTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Tag_ItemListTest::main') {
     Zend_Tag_ItemListTest::main();
 }

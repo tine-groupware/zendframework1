@@ -73,7 +73,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_RedirectorTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -577,7 +577,7 @@ class Zend_Controller_Action_Helper_Redirector_TestController extends Zend_Contr
 }
 
 // Call Zend_Controller_Action_Helper_RedirectorTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_RedirectorTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_RedirectorTest::main") {
     Zend_Controller_Action_Helper_RedirectorTest::main();
 }
 

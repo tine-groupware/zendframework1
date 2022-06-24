@@ -53,7 +53,7 @@ class Zend_Application_Resource_MultidbTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -244,6 +244,6 @@ class Zend_Application_Resource_MultidbTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Resource_MultidbTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_MultidbTest::main') {
     Zend_Application_Resource_MultidbTest::main();
 }

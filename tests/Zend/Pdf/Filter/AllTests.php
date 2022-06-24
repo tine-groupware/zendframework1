@@ -39,7 +39,7 @@ class Zend_Pdf_Filter_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     public static function suite()
@@ -53,7 +53,7 @@ class Zend_Pdf_Filter_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Pdf_Filter_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Pdf_Filter_AllTests::main') {
     Zend_Pdf_Filter_AllTests::main();
 }
 

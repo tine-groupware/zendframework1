@@ -50,7 +50,7 @@ class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormImageTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -120,6 +120,6 @@ class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_View_Helper_FormImageTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_FormImageTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormImageTest::main") {
     Zend_View_Helper_FormImageTest::main();
 }

@@ -66,7 +66,7 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PartialTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -292,6 +292,6 @@ class Zend_View_Helper_PartialTest_Aggregate
 }
 
 // Call Zend_View_Helper_PartialTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_PartialTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_PartialTest::main") {
     Zend_View_Helper_PartialTest::main();
 }

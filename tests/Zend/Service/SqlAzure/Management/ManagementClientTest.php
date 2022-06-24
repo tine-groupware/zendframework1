@@ -58,7 +58,7 @@ class Zend_Service_SqlAzure_Management_ManagementClientTest extends \PHPUnit\Fra
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_SQLMANAGEMENT_RUNTESTS) {
             $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_SqlAzure_Management_ManagementClientTest");
-            $result = \PHPUnit\TextUI\TestRunner::run($suite);
+            $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
         }
     }
     
@@ -132,6 +132,6 @@ class Zend_Service_SqlAzure_Management_ManagementClientTest extends \PHPUnit\Fra
 }
 
 // Call Zend_Service_SqlAzure_Management_ManagementClientTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_SqlAzure_Management_ManagementClientTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_SqlAzure_Management_ManagementClientTest::main") {
     Zend_Service_SqlAzure_Management_ManagementClientTest::main();
 }

@@ -60,7 +60,7 @@ class Zend_Cloud_StorageService_Adapter_AllTests
      */
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     /**
@@ -81,6 +81,6 @@ class Zend_Cloud_StorageService_Adapter_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_StorageService_Adapter_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_StorageService_Adapter_AllTests::main') {
     Zend_Cloud_StorageService_Adapter_AllTests::main();
 }

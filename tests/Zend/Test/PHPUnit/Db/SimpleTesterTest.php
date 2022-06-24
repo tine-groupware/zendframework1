@@ -37,7 +37,7 @@ class Zend_Test_PHPUnit_Db_SimpleTesterTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetConnection()
     {
-        $testAdapter = $this->getMock('Zend_Test_DbAdapter');
+        $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())
                     ->method('delete')
                     ->will($this->throwException(new Exception));
@@ -51,7 +51,7 @@ class Zend_Test_PHPUnit_Db_SimpleTesterTest extends \PHPUnit\Framework\TestCase
 
     public function testSetupDatabase()
     {
-        $testAdapter = $this->getMock('Zend_Test_DbAdapter');
+        $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())
                     ->method('delete')
                     ->will($this->throwException(new Exception));
@@ -60,13 +60,13 @@ class Zend_Test_PHPUnit_Db_SimpleTesterTest extends \PHPUnit\Framework\TestCase
 
         $databaseTester = new Zend_Test_PHPUnit_Db_SimpleTester($connection);
 
-        $dataSet = $this->getMock('PHPUnit_Extensions_Database_DataSet_IDataSet');
+        $dataSet = $this->createMock('PHPUnit_Extensions_Database_DataSet_IDataSet');
         $dataSet->expects($this->any())
                 ->method('getIterator')
-                ->will($this->returnValue($this->getMock('Iterator')));
+                ->will($this->returnValue($this->createMock('Iterator')));
         $dataSet->expects($this->any())
                 ->method('getReverseIterator')
-                ->will($this->returnValue($this->getMock('Iterator')));
+                ->will($this->returnValue($this->createMock('Iterator')));
         $databaseTester->setUpDatabase($dataSet);
     }
 
@@ -74,7 +74,7 @@ class Zend_Test_PHPUnit_Db_SimpleTesterTest extends \PHPUnit\Framework\TestCase
     {
         $this->expectException("Zend_Test_PHPUnit_Db_Exception");
 
-        $connection = $this->getMock('PHPUnit_Extensions_Database_DB_IDatabaseConnection');
+        $connection = $this->createMock('PHPUnit_Extensions_Database_DB_IDatabaseConnection');
 
         $databaseTester = new Zend_Test_PHPUnit_Db_SimpleTester($connection);
     }

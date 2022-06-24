@@ -49,7 +49,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -611,6 +611,6 @@ class Custom_Formatter_Mock extends Zend_Log_Formatter_Abstract
 class ZLTest_My_Log extends Zend_Log {}
 class ZLTest_My_LogNotExtending {}
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Log_LogTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Log_LogTest::main') {
     Zend_Log_LogTest::main();
 }

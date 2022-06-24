@@ -117,7 +117,7 @@ class Zend_PaginatorTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -1062,7 +1062,7 @@ class Zend_PaginatorTest extends \PHPUnit\Framework\TestCase
     	$paginator       = new Zend_Paginator_TestCache($paginatorAdapter);
     	$expectedCacheId = md5($paginator->getCacheInternalId() . '_itemCount');
     
-    	$cache = $this->getMock('Zend_Cache_Core', ['load'], [], '', false);
+    	$cache = $this->createMock('Zend_Cache_Core');
     	$cache->expects($this->once())
     	       ->method('load')
     	       ->with($expectedCacheId)
@@ -1158,6 +1158,6 @@ class Zend_Paginator_TestCache extends Zend_Paginator
 }
 
 // Call Zend_PaginatorTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD === 'Zend_PaginatorTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_PaginatorTest::main') {
     Zend_PaginatorTest::main();
 }

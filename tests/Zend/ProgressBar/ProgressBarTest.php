@@ -53,7 +53,7 @@ class Zend_ProgressBar_ProgressBarTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_ProgressBar_ProgressBarTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testGreaterMin()
@@ -230,6 +230,6 @@ class Zend_ProgressBar_Adapter_MockUp extends Zend_ProgressBar_Adapter
 }
 
 // Call Zend_ProgressBar_ProgressBarTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_ProgressBar_ProgressBarTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_ProgressBar_ProgressBarTest::main") {
     Zend_ProgressBar_ProgressBarTest::main();
 }

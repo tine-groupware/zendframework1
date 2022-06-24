@@ -58,7 +58,7 @@ class Zend_Dojo_Form_Element_CurrencyTextBoxTest extends \PHPUnit\Framework\Test
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Element_CurrencyTextBoxTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -162,6 +162,6 @@ class Zend_Dojo_Form_Element_CurrencyTextBoxTest extends \PHPUnit\Framework\Test
 }
 
 // Call Zend_Dojo_Form_Element_CurrencyTextBoxTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_Element_CurrencyTextBoxTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_Element_CurrencyTextBoxTest::main") {
     Zend_Dojo_Form_Element_CurrencyTextBoxTest::main();
 }

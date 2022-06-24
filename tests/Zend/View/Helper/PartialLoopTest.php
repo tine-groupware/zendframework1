@@ -66,7 +66,7 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PartialLoopTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -574,6 +574,6 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTestContainer
 }
 
 // Call Zend_View_Helper_PartialLoopTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_PartialLoopTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_PartialLoopTest::main") {
     Zend_View_Helper_PartialLoopTest::main();
 }

@@ -84,7 +84,7 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends \PHPUnit\Framework\TestCas
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_ErrorHandlerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -276,7 +276,7 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends \PHPUnit\Framework\TestCas
 }
 
 // Call Zend_Controller_Plugin_ErrorHandlerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Plugin_ErrorHandlerTest::main")
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_ErrorHandlerTest::main")
 {
     Zend_Controller_Plugin_ErrorHandlerTest::main();
 }

@@ -48,7 +48,7 @@ class Zend_Form_Element_CaptchaTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_CaptchaTest');
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -492,6 +492,6 @@ class Zend_Form_Element_CaptchaTest_SessionContainer
 }
 
 // Call Zend_Form_Element_CaptchaTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Form_Element_CaptchaTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_CaptchaTest::main") {
     Zend_Form_Element_CaptchaTest::main();
 }

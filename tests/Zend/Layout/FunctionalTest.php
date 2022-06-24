@@ -48,7 +48,7 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp()
@@ -88,6 +88,6 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
 }
 
 // Call Zend_Layout_FunctionalTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Layout_FunctionalTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Layout_FunctionalTest::main") {
     Zend_Layout_FunctionalTest::main();
 }

@@ -61,7 +61,7 @@ class Zend_Dojo_Form_Decorator_BorderContainerTest extends \PHPUnit\Framework\Te
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Decorator_BorderContainerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -129,6 +129,6 @@ class Zend_Dojo_Form_Decorator_BorderContainerTest extends \PHPUnit\Framework\Te
 }
 
 // Call Zend_Dojo_Form_Decorator_BorderContainerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_Decorator_BorderContainerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_Decorator_BorderContainerTest::main") {
     Zend_Dojo_Form_Decorator_BorderContainerTest::main();
 }

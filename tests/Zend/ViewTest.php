@@ -52,7 +52,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_ViewTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -1176,6 +1176,6 @@ class Zend_ViewTest_Extension extends Zend_View
 }
 
 // Call Zend_ViewTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_ViewTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_ViewTest::main") {
     Zend_ViewTest::main();
 }

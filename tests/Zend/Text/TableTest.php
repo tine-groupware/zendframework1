@@ -49,7 +49,7 @@ class Zend_Text_TableTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Text_TableTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function tearDown(): void
@@ -498,6 +498,6 @@ class Zend_Text_TableTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Text_TableTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Text_TableTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Text_TableTest::main") {
     Zend_Text_TableTest::main();
 }

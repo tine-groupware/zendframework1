@@ -56,7 +56,7 @@ class Zend_Amf_RequestTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_RequestTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -663,7 +663,7 @@ class Zend_Amf_RequestTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Amf_RequestTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Amf_RequestTest::main') {
     Zend_Amf_RequestTest::main();
 }
 

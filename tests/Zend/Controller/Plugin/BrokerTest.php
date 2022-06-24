@@ -63,7 +63,7 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_BrokerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -342,6 +342,6 @@ class Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin extends Zend_Control
 
 
 // Call Zend_Controller_Plugin_BrokerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Plugin_BrokerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_BrokerTest::main") {
     Zend_Controller_Plugin_BrokerTest::main();
 }

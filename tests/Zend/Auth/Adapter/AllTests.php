@@ -47,7 +47,7 @@ class Zend_Auth_Adapter_AllTests
      */
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     /**
@@ -69,6 +69,6 @@ class Zend_Auth_Adapter_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Auth_Adapter_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Auth_Adapter_AllTests::main') {
     Zend_Auth_Adapter_AllTests::main();
 }

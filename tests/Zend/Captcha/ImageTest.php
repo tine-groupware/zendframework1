@@ -49,7 +49,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Captcha_ImageTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -407,6 +407,6 @@ class Zend_Captcha_ImageTest_SessionContainer
 }
 
 // Call Zend_Captcha_ImageTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Captcha_ImageTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Captcha_ImageTest::main") {
     Zend_Captcha_ImageTest::main();
 }

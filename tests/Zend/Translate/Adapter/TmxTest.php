@@ -43,7 +43,7 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Translate_Adapter_TmxTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testCreate()
@@ -277,6 +277,6 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Translate_Adapter_TmxTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Translate_Adapter_TmxTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Translate_Adapter_TmxTest::main") {
     Zend_Translate_Adapter_TmxTest::main();
 }

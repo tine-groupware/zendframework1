@@ -48,6 +48,6 @@ class Zend_Markup_FactoryTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Markup_BbcodeTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Markup_FactoryTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Markup_FactoryTest::main") {
     Zend_Markup_BbcodeTest::main();
 }

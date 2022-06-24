@@ -43,7 +43,7 @@ class Zend_Service_LiveDocx_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     public static function suite()
@@ -57,6 +57,6 @@ class Zend_Service_LiveDocx_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Service_LiveDocx_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Service_LiveDocx_AllTests::main') {
     Zend_Service_LiveDocx_AllTests::main();
 }

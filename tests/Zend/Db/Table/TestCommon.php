@@ -1837,7 +1837,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
                 );
 
         $metadata = ['id' => ['PRIMARY' => true]];
-        $cacheBackend = $this->getMock('Zend_Cache_Backend_BlackHole');
+        $cacheBackend = $this->createMock('Zend_Cache_Backend_BlackHole');
         $cacheBackend->expects($this->any())
                      ->method('load')
                      ->with($this->equalTo($cacheId))

@@ -58,7 +58,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Test_PHPUnit_ControllerTestCaseTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -876,6 +876,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete extends Zend_Test_PHPUni
 }
 
 // Call Zend_Test_PHPUnit_ControllerTestCaseTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Test_PHPUnit_ControllerTestCaseTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Test_PHPUnit_ControllerTestCaseTest::main") {
     Zend_Test_PHPUnit_ControllerTestCaseTest::main();
 }

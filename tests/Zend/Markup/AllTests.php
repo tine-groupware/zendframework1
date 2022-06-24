@@ -46,7 +46,7 @@ class Zend_Markup_AllTests
             $parameters['reportDirectory'] = TESTS_GENERATE_REPORT_TARGET;
         }
 
-        \PHPUnit\TextUI\TestRunner::run(self::suite(), $parameters);
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), $parameters);
     }
 
     public static function suite()
@@ -61,6 +61,6 @@ class Zend_Markup_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Markup_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Markup_AllTests::main') {
     Zend_Markup_AllTests::main();
 }

@@ -61,7 +61,7 @@ class Zend_Dojo_View_Helper_SimpleTextareaTest extends \PHPUnit\Framework\TestCa
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_SimpleTextareaTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -130,6 +130,6 @@ class Zend_Dojo_View_Helper_SimpleTextareaTest extends \PHPUnit\Framework\TestCa
 }
 
 // Call Zend_Dojo_View_Helper_SimpleTextareaTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_SimpleTextareaTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_SimpleTextareaTest::main") {
     Zend_Dojo_View_Helper_SimpleTextareaTest::main();
 }

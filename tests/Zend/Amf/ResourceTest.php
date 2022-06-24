@@ -51,7 +51,7 @@ class Zend_Amf_ResourceTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_ResourceTest");
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -190,7 +190,7 @@ class Zend_Amf_TestResourceLoader implements Zend_Loader_PluginLoader_Interface 
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == "Zend_Amf_ResourceTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Amf_ResourceTest::main") {
     Zend_Amf_ResourceTest::main();
 }
 

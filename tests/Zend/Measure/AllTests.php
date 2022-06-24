@@ -72,7 +72,7 @@ class Zend_Measure_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     public static function suite()
@@ -116,6 +116,6 @@ class Zend_Measure_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Measure_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Measure_AllTests::main') {
     Zend_Measure_AllTests::main();
 }

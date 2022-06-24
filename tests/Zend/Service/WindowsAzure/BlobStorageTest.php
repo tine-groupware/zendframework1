@@ -54,7 +54,7 @@ class Zend_Service_WindowsAzure_BlobStorageTest extends \PHPUnit\Framework\TestC
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_BLOB_RUNTESTS) {
             $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_BlobStorageTest");
-            $result = \PHPUnit\TextUI\TestRunner::run($suite);
+            $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
         }
     }
    
@@ -861,6 +861,6 @@ class Zend_Service_WindowsAzure_BlobStorageTest extends \PHPUnit\Framework\TestC
 }
 
 // Call Zend_Service_WindowsAzure_BlobStorageTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_BlobStorageTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_BlobStorageTest::main") {
     Zend_Service_WindowsAzure_BlobStorageTest::main();
 }

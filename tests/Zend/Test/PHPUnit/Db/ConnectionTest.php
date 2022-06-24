@@ -37,7 +37,7 @@ class Zend_Test_PHPUnit_Db_ConnectionTest extends \PHPUnit\Framework\TestCase
 
     public function setUp(): void
     {
-        $this->adapterMock = $this->getMock('Zend_Test_DbAdapter');
+        $this->adapterMock = $this->createMock('Zend_Test_DbAdapter');
     }
 
     /**

@@ -54,7 +54,7 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlObjectTest");
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -148,6 +148,6 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_View_Helper_HtmlObjectTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_HtmlObjectTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HtmlObjectTest::main") {
     Zend_View_Helper_HtmlObjectTest::main();
 }

@@ -55,7 +55,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -465,6 +465,6 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
 }
 
 // Call Zend_View_Helper_Placeholder_ContainerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_Placeholder_ContainerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_Placeholder_ContainerTest::main") {
     Zend_View_Helper_Placeholder_ContainerTest::main();
 }

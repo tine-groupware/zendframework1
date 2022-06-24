@@ -49,7 +49,7 @@ class Zend_Filter_Word_CamelCaseToUnderscoreTest extends \PHPUnit\Framework\Test
     public static function main() {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_CamelCaseToUnderscoreTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithUnderscores()
@@ -88,6 +88,6 @@ class Zend_Filter_Word_CamelCaseToUnderscoreTest extends \PHPUnit\Framework\Test
 }
 
 // Call Zend_Filter_Word_CamelCaseToUnderscoreTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Filter_Word_CamelCaseToUnderscoreTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Filter_Word_CamelCaseToUnderscoreTest::main") {
     Zend_Filter_Word_CamelCaseToUnderscoreTest::main();
 }

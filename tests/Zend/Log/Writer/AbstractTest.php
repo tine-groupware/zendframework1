@@ -45,7 +45,7 @@ class Zend_Log_Writer_AbstractTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -101,6 +101,6 @@ class Zend_Log_Writer_AbstractTest_Concrete extends Zend_Log_Writer_Abstract
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Log_Writer_AbstractTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Log_Writer_AbstractTest::main') {
     Zend_Log_Writer_AbstractTest::main();
 }

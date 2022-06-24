@@ -57,7 +57,7 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_ModuleTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -486,6 +486,6 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
 }
 
 // Call Zend_Controller_Router_Route_ModuleTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Router_Route_ModuleTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_Route_ModuleTest::main") {
     Zend_Controller_Router_Route_ModuleTest::main();
 }

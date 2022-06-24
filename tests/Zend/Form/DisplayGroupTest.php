@@ -51,7 +51,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -839,6 +839,6 @@ class Zend_Form_DisplayGroupTest_DisplayGroup extends Zend_Form_DisplayGroup
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Form_DisplayGroupTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Form_DisplayGroupTest::main') {
     Zend_Form_DisplayGroupTest::main();
 }

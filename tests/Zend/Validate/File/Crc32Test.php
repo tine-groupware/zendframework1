@@ -50,7 +50,7 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_Crc32Test");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -203,6 +203,6 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Validate_File_Crc32Test::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Validate_File_Crc32Test::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_Crc32Test::main") {
     Zend_Validate_File_Crc32Test::main();
 }

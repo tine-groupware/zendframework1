@@ -43,7 +43,7 @@ class Zend_Session_SaveHandler_AllTests
      */
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     /**
@@ -65,6 +65,6 @@ class Zend_Session_SaveHandler_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Session_SaveHandler_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Session_SaveHandler_AllTests::main') {
     Zend_Session_SaveHandler_AllTests::main();
 }

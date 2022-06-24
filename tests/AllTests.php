@@ -51,12 +51,12 @@ class AllTests
 
         // Run buffered tests as a separate suite first
         ob_start();
-        \PHPUnit\TextUI\TestRunner::run(self::suiteBuffered(), $parameters);
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suiteBuffered(), $parameters);
         if (ob_get_level()) {
             ob_end_flush();
         }
 
-        \PHPUnit\TextUI\TestRunner::run(self::suite(), $parameters);
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), $parameters);
     }
 
     /**
@@ -94,6 +94,6 @@ class AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'AllTests::main') {
     AllTests::main();
 }

@@ -89,7 +89,7 @@ class Zend_Filter_File_RenameTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_File_RenameTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -468,6 +468,6 @@ class Zend_Filter_File_RenameTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == "Zend_Filter_File_RenameTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Filter_File_RenameTest::main") {
     Zend_Filter_File_RenameTest::main();
 }

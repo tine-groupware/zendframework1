@@ -52,7 +52,7 @@ class Zend_Service_WindowsAzure_Diagnostics_ManagerTest extends \PHPUnit\Framewo
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_Diagnostics_ManagerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -186,6 +186,6 @@ class Zend_Service_WindowsAzure_Diagnostics_ManagerTest extends \PHPUnit\Framewo
 }
 
 // Call Zend_Service_WindowsAzure_Credentials_SharedKeyTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_Diagnostics_ManagerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_Diagnostics_ManagerTest::main") {
     Zend_Service_WindowsAzure_Diagnostics_ManagerTest::main();
 }

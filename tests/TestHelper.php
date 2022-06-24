@@ -59,7 +59,7 @@ $path = [
     get_include_path()
     ];
 set_include_path(implode(PATH_SEPARATOR, $path));
-
+require_once __DIR__ . "/../vendor/autoload.php";
 /*
  * Load the user-defined test configuration file, if it exists; otherwise, load
  * the default configuration.

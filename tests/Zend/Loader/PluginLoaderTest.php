@@ -50,7 +50,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Loader_PluginLoaderTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -554,6 +554,6 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Loader_PluginLoaderTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD === 'Zend_Loader_PluginLoaderTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Loader_PluginLoaderTest::main') {
     Zend_Loader_PluginLoaderTest::main();
 }

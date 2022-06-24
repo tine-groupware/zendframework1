@@ -775,20 +775,15 @@ class Zend_XmlRpc_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function mockIntrospector()
     {
-        $this->mockedIntrospector = $this->getMock(
-            'Zend_XmlRpc_Client_ServerIntrospection',
-            [],
-            [],
-            '',
-            false,
-            false
+        $this->mockedIntrospector = $this->createMock(
+            'Zend_XmlRpc_Client_ServerIntrospection'
         );
         $this->xmlrpcClient->setIntrospector($this->mockedIntrospector);
     }
 
     public function mockHttpClient()
     {
-        $this->mockedHttpClient = $this->getMock('Zend_Http_Client');
+        $this->mockedHttpClient = $this->createMock('Zend_Http_Client');
         $this->xmlrpcClient->setHttpClient($this->mockedHttpClient);
     }
 }
@@ -816,6 +811,6 @@ class Test_XmlRpc_Client extends Zend_XmlRpc_Client {
 }
 
 // Call Zend_XmlRpc_ClientTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_XmlRpc_ClientTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_ClientTest::main") {
     Zend_XmlRpc_ClientTest::main();
 }

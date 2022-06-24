@@ -50,7 +50,7 @@ class Zend_Dom_QueryTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dom_QueryTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -385,6 +385,6 @@ XML;
 }
 
 // Call Zend_Dom_QueryTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dom_QueryTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dom_QueryTest::main") {
     Zend_Dom_QueryTest::main();
 }

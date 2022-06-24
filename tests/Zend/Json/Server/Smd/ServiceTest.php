@@ -51,7 +51,7 @@ class Zend_Json_Server_Smd_ServiceTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Json_Server_Smd_ServiceTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -376,6 +376,6 @@ class Zend_Json_Server_Smd_ServiceTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Json_Server_Smd_ServiceTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Json_Server_Smd_ServiceTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Json_Server_Smd_ServiceTest::main") {
     Zend_Json_Server_Smd_ServiceTest::main();
 }

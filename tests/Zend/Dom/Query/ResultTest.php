@@ -52,6 +52,6 @@ class Zend_Dom_Query_ResultTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Dom_Query_Css2XpathTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dom_Query_Css2XpathTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dom_Query_Css2XpathTest::main") {
     Zend_Dom_Query_Css2XpathTest::main();
 }

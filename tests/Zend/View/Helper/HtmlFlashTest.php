@@ -54,7 +54,7 @@ class Zend_View_Helper_HtmlFlashTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlFlashTest");
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -87,6 +87,6 @@ class Zend_View_Helper_HtmlFlashTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_View_Helper_HtmlFlashTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_HtmlFlashTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HtmlFlashTest::main") {
     Zend_View_Helper_HtmlFlashTest::main();
 }

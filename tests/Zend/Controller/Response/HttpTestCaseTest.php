@@ -49,7 +49,7 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Response_HttpTestCaseTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -126,6 +126,6 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
 }
 
 // Call Zend_Controller_Response_HttpTestCaseTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Response_HttpTestCaseTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Response_HttpTestCaseTest::main") {
     Zend_Controller_Response_HttpTestCaseTest::main();
 }

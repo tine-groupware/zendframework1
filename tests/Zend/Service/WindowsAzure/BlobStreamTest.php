@@ -54,7 +54,7 @@ class Zend_Service_WindowsAzure_BlobStreamTest extends \PHPUnit\Framework\TestCa
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_BLOB_RUNTESTS) {
             $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_BlobStreamTest");
-            $result = \PHPUnit\TextUI\TestRunner::run($suite);
+            $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
         }
     }
    
@@ -308,6 +308,6 @@ class Zend_Service_WindowsAzure_BlobStreamTest extends \PHPUnit\Framework\TestCa
 }
 
 // Call Zend_Service_WindowsAzure_BlobStreamTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_BlobStreamTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_BlobStreamTest::main") {
     Zend_Service_WindowsAzure_BlobStreamTest::main();
 }

@@ -47,7 +47,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -413,6 +413,6 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
 require_once 'Zend/Controller/Dispatcher/Standard.php';
 class ZF9724_Dispatcher extends Zend_Controller_Dispatcher_Standard {}
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Resource_FrontcontrollerTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_FrontcontrollerTest::main') {
     Zend_Application_Resource_FrontcontrollerTest::main();
 }

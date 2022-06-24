@@ -56,7 +56,7 @@ class Zend_Cloud_QueueService_FactoryTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testGetQueueAdapterKey()
@@ -96,6 +96,6 @@ class Zend_Cloud_QueueService_FactoryTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Cloud_QueueService_FactoryTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Cloud_QueueService_FactoryTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Cloud_QueueService_FactoryTest::main") {
     Zend_Cloud_QueueService_FactoryTest::main();
 }

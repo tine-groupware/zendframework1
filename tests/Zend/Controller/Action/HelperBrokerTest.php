@@ -60,7 +60,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_HelperBrokerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -379,6 +379,6 @@ class Zend_Controller_Action_HelperBrokerController extends Zend_Controller_Acti
 }
 
 // Call Zend_Controller_Action_HelperBrokerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_HelperBrokerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_HelperBrokerTest::main") {
     Zend_Controller_Action_HelperBrokerTest::main();
 }

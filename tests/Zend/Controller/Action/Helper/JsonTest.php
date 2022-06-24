@@ -57,7 +57,7 @@ class Zend_Controller_Action_Helper_JsonTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_JsonTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -242,6 +242,6 @@ class Zend_Controller_Action_Helper_JsonTest_Layout extends Zend_Layout
 }
 
 // Call Zend_Controller_Action_Helper_JsonTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_JsonTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_JsonTest::main") {
     Zend_Controller_Action_Helper_JsonTest::main();
 }

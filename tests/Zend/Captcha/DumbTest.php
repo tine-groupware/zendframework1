@@ -46,7 +46,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Captcha_DumbTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -166,6 +166,6 @@ class Zend_Captcha_DumbTest_SessionContainer
 }
 
 // Call Zend_Captcha_DumbTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Captcha_DumbTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Captcha_DumbTest::main") {
     Zend_Captcha_DumbTest::main();
 }

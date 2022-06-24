@@ -72,7 +72,7 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_RewriteTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void {
@@ -868,6 +868,6 @@ class Zend_Controller_Router_Route_Interface_Mockup implements Zend_Controller_R
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Router_RewriteTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_RewriteTest::main") {
     Zend_Controller_Router_RewriteTest::main();
 }

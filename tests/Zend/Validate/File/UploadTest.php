@@ -48,7 +48,7 @@ class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_UploadTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -303,6 +303,6 @@ class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Validate_File_UploadTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Validate_File_UploadTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_UploadTest::main") {
     Zend_Validate_File_UploadTest::main();
 }

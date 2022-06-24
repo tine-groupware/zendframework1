@@ -60,7 +60,7 @@ class Zend_Service_WindowsAzure_RetryPolicyTest extends \PHPUnit\Framework\TestC
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_RetryPolicyTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -113,6 +113,6 @@ class Zend_Service_WindowsAzure_RetryPolicyTest extends \PHPUnit\Framework\TestC
 }
 
 // Call Zend_Service_WindowsAzure_RetryPolicyTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_RetryPolicyTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_RetryPolicyTest::main") {
     Zend_Service_WindowsAzure_RetryPolicyTest::main();
 }

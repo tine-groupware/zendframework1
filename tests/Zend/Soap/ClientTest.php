@@ -50,7 +50,7 @@ class Zend_Soap_ClientTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -533,7 +533,7 @@ class Zend_Soap_ClientTest extends \PHPUnit\Framework\TestCase
         $fixtureCookieKey = "foo";
         $fixtureCookieValue = "bar";
 
-        $clientMock = $this->getMock('SoapClient', ['__setCookie'], [null, ['uri' => 'http://www.zend.com', 'location' => 'http://www.zend.com']]);
+        $clientMock = $this->createMock('SoapClient');
         $clientMock->expects($this->once())
                    ->method('__setCookie')
                    ->with($fixtureCookieKey, $fixtureCookieValue);
@@ -546,7 +546,7 @@ class Zend_Soap_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSoapClient()
     {
-        $clientMock = $this->getMock('SoapClient', ['__setCookie'], [null, ['uri' => 'http://www.zend.com', 'location' => 'http://www.zend.com']]);
+        $clientMock = $this->createMock('SoapClient');
 
         $soap = new Zend_Soap_Client();
         $soap->setSoapClient($clientMock);
@@ -698,6 +698,6 @@ function Zend_Soap_Client_TestFunc6()
     return "string";
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Soap_ClientTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Soap_ClientTest::main') {
     Zend_Soap_ClientTest::main();
 }

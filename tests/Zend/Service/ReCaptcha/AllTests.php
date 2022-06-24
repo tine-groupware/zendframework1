@@ -46,7 +46,7 @@ class Zend_Service_ReCaptcha_AllTests
      */
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     /**
@@ -79,6 +79,6 @@ class Zend_Service_ReCaptcha_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Service_ReCaptcha_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Service_ReCaptcha_AllTests::main') {
     Zend_Service_ReCaptcha_AllTests::main();
 }

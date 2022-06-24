@@ -52,7 +52,7 @@ class Zend_Filter_PregReplaceTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_PregReplaceTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -146,6 +146,6 @@ class XPregReplace extends Zend_Filter_PregReplace
 }
 
 // Call Zend_Filter_PregReplaceTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_PregReplaceTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Filter_PregReplaceTest::main') {
     Zend_Filter_PregReplaceTest::main();
 }

@@ -59,7 +59,7 @@ class Zend_Controller_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     public static function suite()
@@ -93,6 +93,6 @@ class Zend_Controller_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Controller_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Controller_AllTests::main') {
     Zend_Controller_AllTests::main();
 }

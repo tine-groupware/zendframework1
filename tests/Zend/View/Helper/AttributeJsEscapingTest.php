@@ -50,7 +50,7 @@ class Zend_View_Helper_AttributeJsEscapingTest extends \PHPUnit\Framework\TestCa
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormSubmitTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -97,6 +97,6 @@ class Zend_View_Helper_AttributeJsEscapingTest extends \PHPUnit\Framework\TestCa
 }
 
 // Call Zend_View_Helper_FormSubmitTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_FormSubmitTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormSubmitTest::main") {
     Zend_View_Helper_FormSubmitTest::main();
 }

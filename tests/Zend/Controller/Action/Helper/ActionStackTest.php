@@ -65,7 +65,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ActionStackTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -197,6 +197,6 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
 }
 
 // Call Zend_Controller_Action_Helper_ActionStackTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_ActionStackTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_ActionStackTest::main") {
     Zend_Controller_Action_Helper_ActionStackTest::main();
 }

@@ -80,7 +80,7 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_FlashMessengerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -236,6 +236,6 @@ class FlashMessengerControllerActionHelper extends Zend_Controller_Action_Helper
 }
 
 // Call Zend_Controller_Action_Helper_FlashMessengerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_FlashMessengerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_FlashMessengerTest::main") {
     Zend_Controller_Action_Helper_FlashMessengerTest::main();
 }

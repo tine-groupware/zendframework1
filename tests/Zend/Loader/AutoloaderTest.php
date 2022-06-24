@@ -47,7 +47,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -452,6 +452,6 @@ class Zend_Loader_AutoloaderTest_Autoloader implements Zend_Loader_Autoloader_In
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Loader_AutoloaderTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Loader_AutoloaderTest::main') {
     Zend_Loader_AutoloaderTest::main();
 }

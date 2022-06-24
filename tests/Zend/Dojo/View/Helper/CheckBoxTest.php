@@ -58,7 +58,7 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_CheckBoxTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -168,6 +168,6 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Dojo_View_Helper_CheckBoxTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_CheckBoxTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_CheckBoxTest::main") {
     Zend_Dojo_View_Helper_CheckBoxTest::main();
 }

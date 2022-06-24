@@ -124,12 +124,8 @@ class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends \PHPUnit\Framework\TestC
                 $stubMethods[] = $method->getName();
             }
         }
-        $mocked = $this->getMock(
-            $className,
-            $stubMethods,
-            [],
-            $className . '_SubscriberHttpTestMock_' . uniqid(),
-            false
+        $mocked = $this->createMock(
+            $className
         );
         return $mocked;
     }

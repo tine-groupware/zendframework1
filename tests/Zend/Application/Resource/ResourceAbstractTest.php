@@ -42,7 +42,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -191,6 +191,6 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Application_Resource_ResourceAbstractTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_ResourceAbstractTest::main') {
     Zend_Application_Resource_ResourceAbstractTest::main();
 }

@@ -67,7 +67,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testUpdateDocumentMergeAll()
@@ -187,6 +187,6 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
 
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Cloud_DocumentService_Adapter_SimpleDbTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_DocumentService_Adapter_SimpleDbTest::main') {
     Zend_Cloud_DocumentService_Adapter_SimpleDbTest::main();
 }

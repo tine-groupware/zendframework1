@@ -55,7 +55,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_RegistryTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -237,6 +237,6 @@ class Zend_View_Helper_Placeholder_RegistryTest_BogusContainer
 }
 
 // Call Zend_View_Helper_Placeholder_RegistryTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_Placeholder_RegistryTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_Placeholder_RegistryTest::main") {
     Zend_View_Helper_Placeholder_RegistryTest::main();
 }

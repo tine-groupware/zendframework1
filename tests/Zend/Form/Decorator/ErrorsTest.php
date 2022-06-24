@@ -52,7 +52,7 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ErrorsTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -217,6 +217,6 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Form_Decorator_ErrorsTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Form_Decorator_ErrorsTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_ErrorsTest::main") {
     Zend_Form_Decorator_ErrorsTest::main();
 }

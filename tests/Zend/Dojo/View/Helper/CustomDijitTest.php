@@ -58,7 +58,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -181,6 +181,6 @@ class Zend_Dojo_View_Helper_CustomDijitTest_FooContentPane
 }
 
 // Call Zend_Dojo_View_Helper_CustomDijitTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_CustomDijitTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_CustomDijitTest::main") {
     Zend_Dojo_View_Helper_CustomDijitTest::main();
 }

@@ -47,7 +47,7 @@ class Zend_Validate_CallbackTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_CallbackTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -126,6 +126,6 @@ class Zend_Validate_CallbackTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Validate_CallbackTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Validate_CallbackTest::main') {
     Zend_Validate_CallbackTest::main();
 }

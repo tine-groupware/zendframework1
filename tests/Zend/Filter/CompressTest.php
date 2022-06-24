@@ -47,7 +47,7 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_CompressTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -268,6 +268,6 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_CompressTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Filter_CompressTest::main') {
     Zend_Filter_CompressTest::main();
 }

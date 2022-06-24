@@ -57,7 +57,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_InflectorTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -544,6 +544,6 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Filter_InflectorTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == 'Zend_Filter_InflectorTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Filter_InflectorTest::main') {
     Zend_Filter_InflectorTest::main();
 }

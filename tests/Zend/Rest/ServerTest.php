@@ -52,7 +52,7 @@ class Zend_Rest_ServerTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_ServerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -900,6 +900,6 @@ class Zend_Rest_Server_Test2
 class Zend_Rest_TestException extends Exception { }
 
 // Call Zend_Rest_ServerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Rest_ServerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Rest_ServerTest::main") {
     Zend_Rest_ServerTest::main();
 }

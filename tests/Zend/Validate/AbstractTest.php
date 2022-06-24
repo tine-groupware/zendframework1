@@ -51,7 +51,7 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_AbstractTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function clearRegistry()
@@ -308,6 +308,6 @@ class Zend_Validate_AbstractTest_Concrete extends Zend_Validate_Abstract
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Validate_AbstractTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Validate_AbstractTest::main') {
     Zend_Validate_AbstractTest::main();
 }

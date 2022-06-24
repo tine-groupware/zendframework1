@@ -63,7 +63,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_FileTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -682,6 +682,6 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 }
 
 // Call Zend_Form_Element_FileTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Form_Element_FileTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_FileTest::main") {
     Zend_Form_Element_FileTest::main();
 }

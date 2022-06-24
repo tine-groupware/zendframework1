@@ -61,7 +61,7 @@ class Zend_View_Helper_CurrencyTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_CurrencyTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function clearRegistry()
@@ -195,6 +195,6 @@ class Zend_View_Helper_CurrencyTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_View_Helper_TranslateTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_TranslateTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_TranslateTest::main") {
     Zend_View_Helper_TranslateTest::main();
 }

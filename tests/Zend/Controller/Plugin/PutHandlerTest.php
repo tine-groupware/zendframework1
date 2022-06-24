@@ -65,7 +65,7 @@ class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_PutHandlerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -95,7 +95,7 @@ class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Controller_Plugin_PutHandlerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Plugin_PutHandlerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_PutHandlerTest::main") {
     Zend_Controller_Plugin_PutHandlerTest::main();
 }
 

@@ -50,7 +50,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_LocaleTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     private $_cache  = null;
@@ -983,6 +983,6 @@ class Zend_LocaleTestHelper extends Zend_Locale
 }
 
 // Call Zend_LocaleTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_LocaleTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_LocaleTest::main") {
     Zend_LocaleTest::main();
 }

@@ -51,7 +51,7 @@ class Zend_Service_WindowsAzure_TableStorageTest extends \PHPUnit\Framework\Test
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_TABLE_RUNTESTS) {
             $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_TableStorageTest");
-            $result = \PHPUnit\TextUI\TestRunner::run($suite);
+            $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
         }
     }
     
@@ -928,6 +928,6 @@ class TSTest_TestEntity2 extends Zend_Service_WindowsAzure_Storage_TableEntity
 }
 
 // Call Zend_Service_WindowsAzure_TableStorageTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_TableStorageTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_TableStorageTest::main") {
     Zend_Service_WindowsAzure_TableStorageTest::main();
 }

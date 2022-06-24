@@ -40,7 +40,7 @@ class Zend_Log_Writer_MockTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testWrite()
@@ -65,6 +65,6 @@ class Zend_Log_Writer_MockTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Log_Writer_MockTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Log_Writer_MockTest::main') {
     Zend_Log_Writer_MockTest::main();
 }

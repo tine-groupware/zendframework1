@@ -122,12 +122,12 @@ class Zend_AllTests
     {
         // Run buffered tests as a separate suite first
         ob_start();
-        \PHPUnit\TextUI\TestRunner::run(self::suiteBuffered());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suiteBuffered());
         if (ob_get_level()) {
             ob_end_flush();
         }
 
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     /**
@@ -250,6 +250,6 @@ class Zend_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_AllTests::main') {
     Zend_AllTests::main();
 }

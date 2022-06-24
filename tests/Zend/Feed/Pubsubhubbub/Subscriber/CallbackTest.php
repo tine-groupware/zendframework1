@@ -153,7 +153,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends \PHPUnit\Framework\
     public function testValidatesValidHttpGetData()
     {
 
-        $mockReturnValue = $this->getMock('Result', ['toArray']);
+        $mockReturnValue = $this->createMock('Result');
         $mockReturnValue->expects($this->any())->method('toArray')->will($this->returnValue([
                 'verify_token' => hash('sha256', 'cba')
             ]));
@@ -205,7 +205,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends \PHPUnit\Framework\
     public function testReturnsTrueIfModeSetAsUnsubscribeFromHttpGetData()
     {
 
-        $mockReturnValue = $this->getMock('Result', ['toArray']);
+        $mockReturnValue = $this->createMock('Result');
         $mockReturnValue->expects($this->any())->method('toArray')->will($this->returnValue([
                 'verify_token' => hash('sha256', 'cba')
             ]));
@@ -496,12 +496,8 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends \PHPUnit\Framework\
             $stubMethods[] = $method->getName();
             }
         }
-        $mocked = $this->getMock(
-            $className,
-            $stubMethods,
-            [],
-            $className . '_PubsubSubscriberMock_' . uniqid(),
-            false
+        $mocked = $this->createMock(
+            $className
         );
         return $mocked;
     }

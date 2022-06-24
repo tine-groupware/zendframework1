@@ -50,7 +50,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_PrepareElementsTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -150,6 +150,6 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
 }
 
 // Call Zend_Form_Decorator_PrepareElementsTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Form_Decorator_PrepareElementsTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_PrepareElementsTest::main") {
     Zend_Form_Decorator_PrepareElementsTest::main();
 }

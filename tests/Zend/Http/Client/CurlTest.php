@@ -63,7 +63,7 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -314,6 +314,6 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Http_Client_CurlTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Http_Client_CurlTest::main') {
     Zend_Http_Client_CurlTest::main();
 }

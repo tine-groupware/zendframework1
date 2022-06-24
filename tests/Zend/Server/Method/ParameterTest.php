@@ -48,7 +48,7 @@ class Zend_Server_Method_ParameterTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Server_Method_ParameterTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -194,6 +194,6 @@ class Zend_Server_Method_ParameterTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Server_Method_ParameterTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Server_Method_ParameterTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Server_Method_ParameterTest::main") {
     Zend_Server_Method_ParameterTest::main();
 }

@@ -63,7 +63,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ContextSwitchTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -1001,6 +1001,6 @@ class Zend_Controller_Action_Helper_ContextSwitchText_CustomView implements Zend
 }
 
 // Call Zend_Controller_Action_Helper_ContextSwitchTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_Action_Helper_ContextSwitchTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_ContextSwitchTest::main") {
     Zend_Controller_Action_Helper_ContextSwitchTest::main();
 }

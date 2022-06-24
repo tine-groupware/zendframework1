@@ -43,7 +43,7 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_SubFormTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -167,6 +167,6 @@ class Zend_Form_SubFormTest_SubForm extends Zend_Form_SubForm
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Form_SubFormTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Form_SubFormTest::main') {
     Zend_Form_SubFormTest::main();
 }

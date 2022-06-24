@@ -55,7 +55,7 @@ class Zend_Markup_BbcodeAndHtmlTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Markup_MarkupTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -541,6 +541,6 @@ BBCODE;
 
 // Call Zend_Markup_BbcodeAndHtmlTest::main()
 // if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Markup_BbcodeAndHtmlTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Markup_BbcodeAndHtmlTest::main") {
     Zend_Markup_BbcodeAndHtmlTest::main();
 }

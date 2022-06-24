@@ -46,7 +46,7 @@ class Zend_Service_WindowsAzure_TableEntityQueryTest extends \PHPUnit\Framework\
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_TableEntityQueryTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
     
     /**
@@ -183,6 +183,6 @@ class Zend_Service_WindowsAzure_TableEntityQueryTest extends \PHPUnit\Framework\
 }
 
 // Call Zend_Service_WindowsAzure_TableEntityQueryTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_TableEntityQueryTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_TableEntityQueryTest::main") {
     Zend_Service_WindowsAzure_TableEntityQueryTest::main();
 }

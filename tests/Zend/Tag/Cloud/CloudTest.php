@@ -45,7 +45,7 @@ class Zend_Tag_Cloud_CloudTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testGetAndSetItemList()
@@ -340,6 +340,6 @@ class Zend_Tag_Cloud_CloudTest extends \PHPUnit\Framework\TestCase
 
 class Zend_Tag_ItemListDummy extends Zend_Tag_ItemList {}
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Tag_Cloud_CloudTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Tag_Cloud_CloudTest::main') {
     Zend_Tag_Cloud_CloudTest::main();
 }

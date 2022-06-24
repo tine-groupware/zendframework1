@@ -65,7 +65,7 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadScriptTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -537,6 +537,6 @@ document.write(bar.strlen());');
 }
 
 // Call Zend_View_Helper_HeadScriptTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_HeadScriptTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HeadScriptTest::main") {
     Zend_View_Helper_HeadScriptTest::main();
 }

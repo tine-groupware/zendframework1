@@ -50,7 +50,7 @@ class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\Test
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_UnderscoreToSeparatorTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsDefaultSeparator()
@@ -76,6 +76,6 @@ class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\Test
 }
 
 // Call Zend_Filter_Word_UnderscoreToSeparatorTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Filter_Word_UnderscoreToSeparatorTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Filter_Word_UnderscoreToSeparatorTest::main") {
     Zend_Filter_Word_UnderscoreToSeparatorTest::main();
 }

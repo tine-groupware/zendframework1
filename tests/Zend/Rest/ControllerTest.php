@@ -98,7 +98,7 @@ class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_ControllerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -126,6 +126,6 @@ class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Rest_ControllerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Rest_ControllerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Rest_ControllerTest::main") {
     Zend_Rest_ControllerTest::main();
 }

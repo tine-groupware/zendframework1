@@ -50,7 +50,7 @@ class Zend_Filter_Word_DashToCamelCaseTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_DashToCamelCaseTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithDashes()
@@ -65,6 +65,6 @@ class Zend_Filter_Word_DashToCamelCaseTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Filter_Word_DashToCamelCaseTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Filter_Word_DashToCamelCaseTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Filter_Word_DashToCamelCaseTest::main") {
     Zend_Filter_Word_DashToCamelCaseTest::main();
 }

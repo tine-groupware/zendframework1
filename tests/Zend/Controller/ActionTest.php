@@ -53,7 +53,7 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_ActionTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function setUp(): void
@@ -548,6 +548,6 @@ class Zend_Controller_ActionTest_TestController extends Zend_Controller_Action
 }
 
 // Call Zend_Controller_ActionTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Controller_ActionTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Controller_ActionTest::main") {
     Zend_Controller_ActionTest::main();
 }

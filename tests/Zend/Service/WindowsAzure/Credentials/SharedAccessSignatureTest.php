@@ -46,7 +46,7 @@ class Zend_Service_WindowsAzure_Credentials_SharedAccessSignatureTest extends \P
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_Credentials_SharedAccessSignatureTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
     
     /**
@@ -137,6 +137,6 @@ class Zend_Service_WindowsAzure_Credentials_SharedAccessSignatureTest extends \P
 }
 
 // Call Zend_Service_WindowsAzure_Credentials_SharedAccessSignatureTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_Credentials_SharedAccessSignatureTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_Credentials_SharedAccessSignatureTest::main") {
     Zend_Service_WindowsAzure_Credentials_SharedAccessSignatureTest::main();
 }

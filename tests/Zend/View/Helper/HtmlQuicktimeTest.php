@@ -54,7 +54,7 @@ class Zend_View_Helper_HtmlQuicktimeTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlQuicktimeTest");
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -90,6 +90,6 @@ class Zend_View_Helper_HtmlQuicktimeTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_View_Helper_HtmlQuicktimeTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_View_Helper_HtmlQuicktimeTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HtmlQuicktimeTest::main") {
     Zend_View_Helper_HtmlQuicktimeTest::main();
 }

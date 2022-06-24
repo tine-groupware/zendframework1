@@ -46,7 +46,7 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyTest extends \PHPUnit\Frame
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_Credentials_SharedKeyTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -165,6 +165,6 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyTest extends \PHPUnit\Frame
 }
 
 // Call Zend_Service_WindowsAzure_Credentials_SharedKeyTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Service_WindowsAzure_Credentials_SharedKeyTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Service_WindowsAzure_Credentials_SharedKeyTest::main") {
     Zend_Service_WindowsAzure_Credentials_SharedKeyTest::main();
 }

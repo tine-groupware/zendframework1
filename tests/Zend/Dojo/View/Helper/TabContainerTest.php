@@ -58,7 +58,7 @@ class Zend_Dojo_View_Helper_TabContainerTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_TabContainerTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -122,6 +122,6 @@ class Zend_Dojo_View_Helper_TabContainerTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Dojo_View_Helper_TabContainerTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_View_Helper_TabContainerTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_TabContainerTest::main") {
     Zend_Dojo_View_Helper_TabContainerTest::main();
 }

@@ -58,7 +58,7 @@ class Zend_Dojo_Form_Element_VerticalSliderTest extends \PHPUnit\Framework\TestC
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Element_VerticalSliderTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -284,6 +284,6 @@ class Zend_Dojo_Form_Element_VerticalSliderTest extends \PHPUnit\Framework\TestC
 }
 
 // Call Zend_Dojo_Form_Element_VerticalSliderTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Dojo_Form_Element_VerticalSliderTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_Element_VerticalSliderTest::main") {
     Zend_Dojo_Form_Element_VerticalSliderTest::main();
 }

@@ -39,7 +39,7 @@ class Zend_Dojo_View_AllTests
 {
     public static function main()
     {
-        \PHPUnit\TextUI\TestRunner::run(self::suite());
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
     }
 
     public static function suite()
@@ -52,6 +52,6 @@ class Zend_Dojo_View_AllTests
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Dojo_View_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Dojo_View_AllTests::main') {
     Zend_Dojo_View_AllTests::main();
 }

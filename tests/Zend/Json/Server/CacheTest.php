@@ -50,7 +50,7 @@ class Zend_Json_Server_CacheTest extends \PHPUnit\Framework\TestCase
     {
 
         $suite  = new \PHPUnit\Framework\TestSuite("Zend_Json_Server_CacheTest");
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     /**
@@ -149,6 +149,6 @@ class Zend_Json_Server_CacheTest_Foo
 
 
 // Call Zend_Json_Server_CacheTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Json_Server_CacheTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Json_Server_CacheTest::main") {
     Zend_Json_Server_CacheTest::main();
 }

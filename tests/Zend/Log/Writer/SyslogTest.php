@@ -40,7 +40,7 @@ class Zend_Log_Writer_SyslogTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     public function testWrite()
@@ -140,6 +140,6 @@ class WriterSyslogCustom extends Zend_Log_Writer_Syslog
     }
 }
 
-if (\PHPUnit\MAIN\METHOD == 'Zend_Log_Writer_SyslogTest::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Log_Writer_SyslogTest::main') {
     Zend_Log_Writer_SyslogTest::main();
 }

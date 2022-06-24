@@ -72,7 +72,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -352,7 +352,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
      */
     public function testFactoryShouldAcceptCustomMailClass()
     {
-        $this->getMock('Zend_Mail', [], [], 'Zend_Stub_Mail_Custom');
+        $this->createMock('Zend_Mail');
         $config = [
             'class' => 'Zend_Stub_Mail_Custom'
     	];
@@ -452,7 +452,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
      */
     public function testFactoryWithCustomLayoutClass()
     {
-        $this->getMock('Zend_Layout', null, [], 'Zend_Stub_Layout_Custom');
+        $this->createMock('Zend_Layout');
     	$config = [
     	    'layout' => 'Zend_Stub_Layout_Custom'
     	];
@@ -475,7 +475,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
     {
         // Get a mock object for Zend_Mail so that no emails are actually
         // sent.
-        $mail = $this->getMock('Zend_Mail', ['send']);
+        $mail = $this->createMock('Zend_Mail');
 
         // The send() method can be called any number of times.
         $mail->expects($this->any())
@@ -487,7 +487,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
         // Setup a mock object for Zend_Layout because we can't rely on any
         // layout files being in place.
         if ($useLayout) {
-            $layout = $this->getMock('Zend_Layout', ['render']);
+            $layout = $this->createMock('Zend_Layout');
             $writer = new Zend_Log_Writer_Mail($mail, $layout);
         } else {
             $writer = new Zend_Log_Writer_Mail($mail);
@@ -517,6 +517,6 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
 }
 
 // Call Zend_Log_Writer_MailTest::main() if this source file is executed directly.
-if (\PHPUnit\MAIN\METHOD == "Zend_Log_Writer_MailTest::main") {
+if (PHPUnit_MAIN_METHOD == "Zend_Log_Writer_MailTest::main") {
     Zend_Log_Writer_MailTest::main();
 }
