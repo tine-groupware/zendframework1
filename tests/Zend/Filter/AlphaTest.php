@@ -70,7 +70,7 @@ class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filter = new Zend_Filter_Alpha();
         if (null === self::$_unicodeEnabled) {

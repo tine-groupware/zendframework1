@@ -212,7 +212,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             $this->fail("Expected to catch $exceptionClass");
         } catch (Zend_Exception $e) {
             $this->assertTrue($e instanceof $exceptionClass, "Expected to catch $exceptionClass, got ".get_class($e));
-            $this->assertContains("Configuration array must have a key for '$param'", $e->getMessage());
+            $this->assertStringContainsString("Configuration array must have a key for '$param'", $e->getMessage());
         }
     }
 

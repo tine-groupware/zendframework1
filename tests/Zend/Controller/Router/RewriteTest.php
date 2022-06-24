@@ -75,7 +75,7 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp() {
+    public function setUp(): void {
         $this->_router = new Zend_Controller_Router_Rewrite();
         $front = Zend_Controller_Front::getInstance();
         $front->resetInstance();
@@ -84,7 +84,7 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
         $this->_router->setFrontController($front);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         unset($this->_router);
     }
 

@@ -36,7 +36,7 @@ class Zend_Feed_Reader_Integration_WordpressRss2DcAtomTest extends \PHPUnit\Fram
 
     protected $_feedSamplePath = null;
 
-    public function setup()
+    public function setup(): void
     {
         Zend_Feed_Reader::reset();
         $this->_feedSamplePath = dirname(__FILE__) . '/_files/wordpress-rss2-dc-atom.xml';

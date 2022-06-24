@@ -60,7 +60,7 @@ class Zend_View_Helper_FormButtonTest extends \PHPUnit\Framework\TestCase
      *
      * @access protected
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormButton();
@@ -73,7 +73,7 @@ class Zend_View_Helper_FormButtonTest extends \PHPUnit\Framework\TestCase
      *
      * @access protected
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

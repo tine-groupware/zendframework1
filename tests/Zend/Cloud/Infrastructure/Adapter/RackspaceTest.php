@@ -53,7 +53,7 @@ class Zend_Cloud_Infrastructure_Adapter_RackspaceTest extends \PHPUnit\Framework
     /**
      * Setup for each test
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->infrastructure = Zend_Cloud_Infrastructure_Factory::getAdapter([ 
             Zend_Cloud_Infrastructure_Factory::INFRASTRUCTURE_ADAPTER_KEY => 'Zend_Cloud_Infrastructure_Adapter_Rackspace', 

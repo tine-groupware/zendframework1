@@ -71,7 +71,7 @@ class Zend_Log_Writer_SyslogTest extends \PHPUnit\Framework\TestCase
             $writer->setFacility(LOG_USER * 1000);
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertContains('Invalid log facility provided', $e->getMessage());
+            $this->assertStringContainsString('Invalid log facility provided', $e->getMessage());
         }
     }
 
@@ -88,7 +88,7 @@ class Zend_Log_Writer_SyslogTest extends \PHPUnit\Framework\TestCase
             $writer->setFacility(LOG_AUTH);
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
-            $this->assertContains('Only LOG_USER is a valid', $e->getMessage());
+            $this->assertStringContainsString('Only LOG_USER is a valid', $e->getMessage());
         }
     }
 

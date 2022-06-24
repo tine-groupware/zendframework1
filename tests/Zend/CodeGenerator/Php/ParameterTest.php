@@ -44,12 +44,12 @@ class Zend_CodeGenerator_Php_ParameterTest extends \PHPUnit\Framework\TestCase
      */
     protected $_parameter = null;
 
-    public function setup()
+    public function setup(): void
     {
         $this->_parameter = new Zend_CodeGenerator_Php_Parameter();
     }
 
-    public function teardown()
+    public function teardown(): void
     {
         $this->_parameter = null;
     }

@@ -44,7 +44,7 @@ class Zend_EventManager_StaticIntegrationTest extends \PHPUnit\Framework\TestCas
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         Zend_EventManager_StaticEventManager::resetInstance();
     }

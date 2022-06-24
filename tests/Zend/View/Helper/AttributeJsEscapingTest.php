@@ -59,7 +59,7 @@ class Zend_View_Helper_AttributeJsEscapingTest extends \PHPUnit\Framework\TestCa
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (Zend_Registry::isRegistered('Zend_View_Helper_Doctype')) {
             $registry = Zend_Registry::getInstance();
@@ -76,7 +76,7 @@ class Zend_View_Helper_AttributeJsEscapingTest extends \PHPUnit\Framework\TestCa
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper, $this->view);
     }

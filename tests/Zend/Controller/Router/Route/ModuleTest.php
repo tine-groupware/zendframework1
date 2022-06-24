@@ -60,7 +60,7 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $front = Zend_Controller_Front::getInstance();
         $front->resetInstance();

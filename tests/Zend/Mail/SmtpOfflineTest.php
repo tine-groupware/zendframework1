@@ -48,7 +48,7 @@ class Zend_Mail_SmtpOfflineTest extends \PHPUnit\Framework\TestCase
 {
     protected $_params;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_params = ['host'     => TESTS_ZEND_MAIL_SMTP_HOST,
                                'port'     => TESTS_ZEND_MAIL_SMTP_PORT,

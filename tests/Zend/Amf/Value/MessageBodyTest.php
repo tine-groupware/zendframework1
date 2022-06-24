@@ -49,7 +49,7 @@ class Zend_Amf_Value_MessageBodyTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->body = new Zend_Amf_Value_MessageBody('/foo', '/bar', 'data');
     }

@@ -59,7 +59,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Form::setDefaultTranslator(null);
@@ -72,7 +72,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         Zend_Controller_Action_HelperBroker::resetHelpers();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -170,7 +170,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->setName('%\^&*)\(%$#@!.}{;-,');
             $this->fail('Empty names should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid name provided', $e->getMessage());
+            $this->assertStringContainsString('Invalid name provided', $e->getMessage());
         }
     }
 
@@ -194,7 +194,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
                 $this->element->setName($name);
                 $this->fail('setName() should not allow empty string');
             } catch (Zend_Form_Exception $e) {
-                $this->assertContains('Invalid name', $e->getMessage());
+                $this->assertStringContainsString('Invalid name', $e->getMessage());
             }
         }
     }
@@ -257,9 +257,9 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($test));
         require_once 'Zend/Json.php';
         $test = Zend_Json::encode($test);
-        $this->assertNotContains('foo', $test);
+        $this->assertStringNotContainsString('foo', $test);
         foreach (['bar', 'baz', 'bat'] as $value) {
-            $this->assertContains($value, $test);
+            $this->assertStringContainsString($value, $test);
         }
     }
 
@@ -429,7 +429,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->setAttrib('_foo', 'bar');
             $this->fail('setAttrib() should throw an exception for invalid keys');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid attribute', $e->getMessage());
+            $this->assertStringContainsString('Invalid attribute', $e->getMessage());
         }
     }
 
@@ -495,7 +495,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $name = $this->element->_name;
             $this->fail('Overloading should not return protected or private members');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Cannot retrieve value for protected/private', $e->getMessage());
+            $this->assertStringContainsString('Cannot retrieve value for protected/private', $e->getMessage());
         }
     }
 
@@ -550,7 +550,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->setPluginLoader($loader, 'foo');
             $this->fail('Invalid loader type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid type', $e->getMessage());
+            $this->assertStringContainsString('Invalid type', $e->getMessage());
         }
     }
 
@@ -560,7 +560,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->getPluginLoader('foo');
             $this->fail('Invalid loader type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid type', $e->getMessage());
+            $this->assertStringContainsString('Invalid type', $e->getMessage());
         }
     }
 
@@ -586,7 +586,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->addPrefixPath('Zend_Foo', 'Zend/Foo/', 'foo');
             $this->fail('Invalid loader type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid type', $e->getMessage());
+            $this->assertStringContainsString('Invalid type', $e->getMessage());
         }
     }
 
@@ -676,7 +676,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->addValidator(123);
             $this->fail('Invalid validator should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid validator', $e->getMessage());
+            $this->assertStringContainsString('Invalid validator', $e->getMessage());
         }
     }
 
@@ -990,7 +990,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $errors = Zend_Json::encode($errors);
         foreach (['foo', 'bar', 'baz'] as $value) {
             $message = 'error with value ' . $value;
-            $this->assertContains($message, $errors);
+            $this->assertStringContainsString($message, $errors);
         }
     }
 
@@ -1141,7 +1141,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->addFilter(123);
             $this->fail('Invalid filter type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid filter', $e->getMessage());
+            $this->assertStringContainsString('Invalid filter', $e->getMessage());
         }
     }
 
@@ -1368,7 +1368,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->element->addDecorator(123);
             $this->fail('Invalid decorator type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid decorator', $e->getMessage());
+            $this->assertStringContainsString('Invalid decorator', $e->getMessage());
         }
     }
 
@@ -1554,8 +1554,8 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->render($this->getView());
         $this->assertTrue(is_string($html));
         $this->assertFalse(empty($html));
-        $this->assertContains('<input', $html);
-        $this->assertContains('"foo"', $html);
+        $this->assertStringContainsString('<input', $html);
+        $this->assertStringContainsString('"foo"', $html);
     }
 
     public function testRenderElementRendersLabelWhenProvided()
@@ -1566,9 +1566,9 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->render();
         $this->assertTrue(is_string($html));
         $this->assertFalse(empty($html));
-        $this->assertContains('<label', $html);
-        $this->assertContains('Foo', $html);
-        $this->assertContains('</label>', $html);
+        $this->assertStringContainsString('<label', $html);
+        $this->assertStringContainsString('Foo', $html);
+        $this->assertStringContainsString('</label>', $html);
     }
 
     public function testRenderElementRendersValueWhenProvided()
@@ -1579,9 +1579,9 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->render();
         $this->assertTrue(is_string($html));
         $this->assertFalse(empty($html));
-        $this->assertContains('<input', $html);
-        $this->assertContains('"foo"', $html);
-        $this->assertContains('"bar"', $html);
+        $this->assertStringContainsString('<input', $html);
+        $this->assertStringContainsString('"foo"', $html);
+        $this->assertStringContainsString('"bar"', $html);
     }
 
     public function testRenderElementRendersErrorsWhenProvided()
@@ -1597,7 +1597,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->render();
         $this->assertTrue(is_string($html));
         $this->assertFalse(empty($html));
-        $this->assertContains('error', $html);
+        $this->assertStringContainsString('error', $html);
         $this->assertRegexp('/empty/i', $html);
     }
 
@@ -1608,8 +1608,8 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->__toString();
         $this->assertTrue(is_string($html));
         $this->assertFalse(empty($html));
-        $this->assertContains('<input', $html);
-        $this->assertContains('"foo"', $html);
+        $this->assertStringContainsString('<input', $html);
+        $this->assertStringContainsString('"foo"', $html);
     }
 
     public function raiseDecoratorException($content, $element, $options)

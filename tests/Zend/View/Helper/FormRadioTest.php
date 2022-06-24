@@ -56,7 +56,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->view   = new Zend_View();
         $this->view->doctype('HTML4_LOOSE'); // Set default doctype

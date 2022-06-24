@@ -149,7 +149,7 @@ class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
         $cobjects = $jar->getAllCookies();
 
         foreach ($cobjects as $id => $cookie) {
-            $this->assertContains((string) $cookie, $cookies[$id]);
+            $this->assertStringContainsString((string) $cookie, $cookies[$id]);
         }
     }
 

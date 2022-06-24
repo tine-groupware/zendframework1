@@ -48,7 +48,7 @@ class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validator = new Zend_Validate_Int();
     }

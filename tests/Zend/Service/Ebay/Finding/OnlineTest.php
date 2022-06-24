@@ -41,14 +41,14 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
 
     protected $_httpClientOriginal;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_finding = new Zend_Service_Ebay_Finding(constant('TESTS_ZEND_SERVICE_EBAY_ONLINE_APPID'));
         $this->_httpClientOriginal = Zend_Rest_Client::getHttpClient();
         Zend_Rest_Client::setHttpClient(new Zend_Http_Client());
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_Rest_Client::setHttpClient($this->_httpClientOriginal);
     }
@@ -63,7 +63,7 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->fail('No exception found');
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Service_Ebay_Finding_Exception);
-            $this->assertContains('eBay error', $e->getMessage());
+            $this->assertStringContainsString('eBay error', $e->getMessage());
         }
     }
 
@@ -135,7 +135,7 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->fail('No exception found for page #0');
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Service_Ebay_Finding_Exception);
-            $this->assertContains('Page number ', $e->getMessage());
+            $this->assertStringContainsString('Page number ', $e->getMessage());
         }
 
         // out of range, one page after last one
@@ -145,7 +145,7 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->fail("No exception found for page out of range #$number");
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Service_Ebay_Finding_Exception);
-            $this->assertContains('Page number ', $e->getMessage());
+            $this->assertStringContainsString('Page number ', $e->getMessage());
         }
 
         // page next
@@ -182,7 +182,7 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
  */
 class Zend_Service_Ebay_Finding_OnlineSkipTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped('Zend_Service_Ebay online tests not enabled with an APPID in TestConfiguration.php');
     }

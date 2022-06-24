@@ -70,7 +70,7 @@ class Zend_Db_Profiler_FirebugTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!extension_loaded('pdo_sqlite')) {
             $this->markTestSkipped('Requires PDO_Sqlite extension');
@@ -95,7 +95,7 @@ class Zend_Db_Profiler_FirebugTest extends \PHPUnit\Framework\TestCase
                                             )');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if (extension_loaded('pdo_sqlite')) {
             $this->_db->getConnection()->exec('DROP TABLE foo');

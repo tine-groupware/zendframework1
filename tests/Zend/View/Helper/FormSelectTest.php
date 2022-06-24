@@ -58,7 +58,7 @@ class Zend_View_Helper_FormSelectTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->view   = new Zend_View();
         $this->helper = new Zend_View_Helper_FormSelect();
@@ -71,7 +71,7 @@ class Zend_View_Helper_FormSelectTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper, $this->view);
     }

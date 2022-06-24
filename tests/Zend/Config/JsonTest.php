@@ -38,7 +38,7 @@ class Zend_Config_JsonTest extends \PHPUnit\Framework\TestCase
     protected $_iniFileAllSectionsConfig;
     protected $_iniFileCircularConfig;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_iniFileConfig = dirname(__FILE__) . '/_files/config.json';
         $this->_iniFileAllSectionsConfig = dirname(__FILE__) . '/_files/allsections.json';
@@ -168,14 +168,14 @@ class Zend_Config_JsonTest extends \PHPUnit\Framework\TestCase
             $config = new Zend_Config_Json($this->_iniFileConfig,['all', 'notthere']);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
 
         try {
             $config = new Zend_Config_Json($this->_iniFileConfig,'notthere');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
     }
 

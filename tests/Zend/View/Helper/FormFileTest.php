@@ -72,7 +72,7 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
      *
      * @access protected
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         if (Zend_Registry::isRegistered('Zend_View_Helper_Doctype')) {
             $registry = Zend_Registry::getInstance();
@@ -115,7 +115,7 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formFile([
             'name' => 'foo',
         ]);
-        $this->assertNotContains(' />', $test);
+        $this->assertStringNotContainsString(' />', $test);
     }
 
     public function testCanRendersAsXHtml()
@@ -124,7 +124,7 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formFile([
             'name' => 'foo',
         ]);
-        $this->assertContains(' />', $test);
+        $this->assertStringContainsString(' />', $test);
     }
 
     /**

@@ -36,7 +36,7 @@ class Zend_Test_PHPUnit_Db_Operation_DeleteAllTest extends \PHPUnit\Framework\Te
 {
     private $operation = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->operation = new Zend_Test_PHPUnit_Db_Operation_DeleteAll();
     }

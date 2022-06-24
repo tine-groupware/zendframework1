@@ -73,7 +73,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
@@ -89,7 +89,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -305,9 +305,9 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
         $form->addSubForm($sliderForm, 'slidertab')
              ->setView($this->getView());
         $html = $form->render();
-        $this->assertContains('id="slidertab-slide1-slider"', $html);
-        $this->assertContains('id="slidertab-slide1-slider-topDecoration"', $html);
-        $this->assertContains('id="slidertab-slide1-slider-topDecoration-labels"', $html);
+        $this->assertStringContainsString('id="slidertab-slide1-slider"', $html);
+        $this->assertStringContainsString('id="slidertab-slide1-slider-topDecoration"', $html);
+        $this->assertStringContainsString('id="slidertab-slide1-slider-topDecoration-labels"', $html);
     }
 
     /**

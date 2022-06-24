@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/Books.php';
 class Zend_Gdata_Books_VolumeFeedTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->feedText = file_get_contents(
                 'Zend/Gdata/Books/_files/VolumeFeedDataSample1.xml',
                 true);

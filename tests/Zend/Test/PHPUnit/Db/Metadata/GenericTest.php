@@ -37,7 +37,7 @@ class Zend_Test_PHPUnit_Db_Metadata_GenericTest extends \PHPUnit\Framework\TestC
 
     private $metadata = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->adapterMock = $this->getMock('Zend_Test_DbAdapter');
         $this->metadata = new Zend_Test_PHPUnit_Db_Metadata_Generic($this->adapterMock, "schema");

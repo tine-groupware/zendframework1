@@ -47,7 +47,7 @@ class Zend_Http_Client_TestAdapterTest extends \PHPUnit\Framework\TestCase
      * Set up the test adapter before running the test
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->adapter = new Zend_Http_Client_Adapter_Test();
     }
@@ -56,7 +56,7 @@ class Zend_Http_Client_TestAdapterTest extends \PHPUnit\Framework\TestCase
      * Tear down the test adapter after running the test
      *
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->adapter = null;
     }

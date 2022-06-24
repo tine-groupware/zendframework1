@@ -34,7 +34,7 @@ require_once 'Zend/Gdata.php';
 class Zend_Gdata_VisibilityTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->visibilityText = file_get_contents(
                 'Zend/Gdata/_files/VisibilityElementSample1.xml',
                 true);

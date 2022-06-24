@@ -41,7 +41,7 @@ class Zend_Ldap_Node_SchemaTest extends Zend_Ldap_OnlineTestCase
      */
     private $_schema;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_schema=$this->_getLdap()->getSchema();

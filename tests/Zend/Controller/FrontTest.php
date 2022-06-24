@@ -71,7 +71,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_controller = Zend_Controller_Front::getInstance();
         $this->_controller->resetInstance();
@@ -83,7 +83,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         Zend_Controller_Action_HelperBroker::resetHelpers();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_controller);
     }
@@ -442,7 +442,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = new Zend_Controller_Response_Cli();
         $response = $this->_controller->dispatch($request, $response);
 
-        $this->assertContains('index.php', $request->getBaseUrl());
+        $this->assertStringContainsString('index.php', $request->getBaseUrl());
     }
 
     /**
@@ -513,7 +513,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $body = ob_get_clean();
 
         $actual = $this->_controller->getResponse()->getBody();
-        $this->assertContains($actual, $body);
+        $this->assertStringContainsString($actual, $body);
     }
 
     public function testRunStatically()
@@ -681,7 +681,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertNotSame($response, $responsePost);
 
         $this->assertContains('Reset action called', $responsePost->getBody());
-        $this->assertNotContains('Reset action called', $response->getBody());
+        $this->assertStringNotContainsString('Reset action called', $response->getBody());
     }
 
     public function testViewRendererHelperRegisteredWhenDispatched()

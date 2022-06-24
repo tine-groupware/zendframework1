@@ -45,10 +45,10 @@ class Zend_Http_ResponseTest extends \PHPUnit\Framework\TestCase
     /** @var null|string */
     private $tempFile;
 
-    public function setUp()
+    public function setUp(): void
     { }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->tempFile !== null && file_exists($this->tempFile)) {
             unlink($this->tempFile);

@@ -51,13 +51,13 @@ class Zend_Dojo_BuildLayerTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->view = new Zend_View();
         Zend_Dojo::enableView($this->view);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->view);
     }

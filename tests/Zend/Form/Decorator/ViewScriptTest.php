@@ -60,7 +60,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_ViewScript();
     }
@@ -71,7 +71,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -97,7 +97,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
         try {
             $this->decorator->render('');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('script', $e->getMessage());
+            $this->assertStringContainsString('script', $e->getMessage());
         }
     }
 

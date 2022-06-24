@@ -110,7 +110,7 @@ class Zend_Log_Writer_StreamTest extends \PHPUnit\Framework\TestCase
         $contents = stream_get_contents($stream);
         fclose($stream);
 
-        $this->assertContains($fields['message'], $contents);
+        $this->assertStringContainsString($fields['message'], $contents);
     }
 
     public function testWriteThrowsWhenStreamWriteFails()
@@ -164,7 +164,7 @@ class Zend_Log_Writer_StreamTest extends \PHPUnit\Framework\TestCase
         $contents = stream_get_contents($stream);
         fclose($stream);
 
-        $this->assertContains($expected, $contents);
+        $this->assertStringContainsString($expected, $contents);
     }
 
     public function testFactoryStream()

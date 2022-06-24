@@ -469,8 +469,8 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         } catch (Zend_Exception $e) {
             $this->assertTrue($e instanceof Zend_Db_Table_Exception,
                 'Expecting object of type Zend_Db_Table_Exception, got '.get_class($e));
-            $this->assertContains("Primary key column(s)", $e->getMessage());
-            $this->assertContains("are not columns in this table", $e->getMessage());
+            $this->assertStringContainsString("Primary key column(s)", $e->getMessage());
+            $this->assertStringContainsString("are not columns in this table", $e->getMessage());
         }
     }
 
@@ -483,8 +483,8 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         } catch (Zend_Exception $e) {
             $this->assertTrue($e instanceof Zend_Db_Table_Exception,
                 'Expecting object of type Zend_Db_Table_Exception, got '.get_class($e));
-            $this->assertContains("Primary key column(s)", $e->getMessage());
-            $this->assertContains("are not columns in this table", $e->getMessage());
+            $this->assertStringContainsString("Primary key column(s)", $e->getMessage());
+            $this->assertStringContainsString("are not columns in this table", $e->getMessage());
         }
     }
 
@@ -724,7 +724,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
 
         $qp = $this->_db->getProfiler()->getLastQueryProfile();
         $tableSpec = $this->_db->quoteIdentifier($identifier, true);
-        $this->assertContains("INSERT INTO $tableSpec ", $qp->getQuery());
+        $this->assertStringContainsString("INSERT INTO $tableSpec ", $qp->getQuery());
     }
 
     public function testTableInsertSequence()
@@ -933,7 +933,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertEquals(1, $result);
         $qp = $this->_db->getProfiler()->getLastQueryProfile();
         $tableSpec = $this->_db->quoteIdentifier($identifier, true);
-        $this->assertContains("UPDATE $tableSpec ", $qp->getQuery());
+        $this->assertStringContainsString("UPDATE $tableSpec ", $qp->getQuery());
     }
 
     public function testTableUpdateWhereArray()
@@ -993,7 +993,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
 
         $qp = $this->_db->getProfiler()->getLastQueryProfile();
         $tableSpec = $this->_db->quoteIdentifier($identifier, true);
-        $this->assertContains("DELETE FROM $tableSpec ", $qp->getQuery());
+        $this->assertStringContainsString("DELETE FROM $tableSpec ", $qp->getQuery());
     }
 
     public function testTableDeleteWhereArray()

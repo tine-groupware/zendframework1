@@ -48,7 +48,7 @@ class Zend_Service_LiveDocX_LiveDocxTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!constant('TESTS_ZEND_SERVICE_LIVEDOCX_USERNAME')
             || !constant('TESTS_ZEND_SERVICE_LIVEDOCX_PASSWORD')
@@ -66,7 +66,7 @@ class Zend_Service_LiveDocX_LiveDocxTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown ()
+    public function tearDown (): void
     {
 	if (isset($this->phpLiveDocx)) {
 	    foreach ($this->phpLiveDocx->listTemplates() as $template) {

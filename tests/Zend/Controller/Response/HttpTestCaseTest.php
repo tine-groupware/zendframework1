@@ -58,7 +58,7 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->response = new Zend_Controller_Response_HttpTestCase();
     }
@@ -69,7 +69,7 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

@@ -35,7 +35,7 @@ require_once 'Zend/Http/Client.php';
 class Zend_Gdata_Docs_DocumentListFeedTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->docFeed = new Zend_Gdata_Docs_DocumentListFeed(
                 file_get_contents(dirname(__FILE__) . '/_files/TestDataDocumentListFeedSample.xml'),

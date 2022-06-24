@@ -40,13 +40,13 @@ require_once 'Zend/Ldap/Node.php';
  */
 class Zend_Ldap_Node_UpdateTest extends Zend_Ldap_OnlineTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_prepareLdapServer();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         foreach ($this->_getLdap()->getBaseNode()->searchChildren('objectClass=*') as $child) {
             $this->_getLdap()->delete($child->getDn(), true);

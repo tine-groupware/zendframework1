@@ -62,7 +62,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Controller_Front::getInstance()->resetInstance();
 
@@ -82,7 +82,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_Layout::resetMvcInstance();
     }
@@ -143,8 +143,8 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
         $plugin->postDispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('Application content', $body, $body);
-        $this->assertContains('Site Layout', $body, $body);
+        $this->assertStringContainsString('Application content', $body, $body);
+        $this->assertStringContainsString('Site Layout', $body, $body);
     }
 
     public function testPostDispatchDoesNotRenderLayoutWhenForwardDetected()
@@ -168,8 +168,8 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
         $plugin->postDispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('Application content', $body);
-        $this->assertNotContains('Site Layout', $body);
+        $this->assertStringContainsString('Application content', $body);
+        $this->assertStringNotContainsString('Site Layout', $body);
     }
 
     public function testPostDispatchDoesNotRenderLayoutWhenLayoutDisabled()
@@ -194,8 +194,8 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
         $plugin->postDispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('Application content', $body);
-        $this->assertNotContains('Site Layout', $body);
+        $this->assertStringContainsString('Application content', $body);
+        $this->assertStringNotContainsString('Site Layout', $body);
     }
 
     /**
@@ -224,8 +224,8 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
         $plugin->postDispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('Application content', $body);
-        $this->assertNotContains('Site Layout', $body);
+        $this->assertStringContainsString('Application content', $body);
+        $this->assertStringNotContainsString('Site Layout', $body);
     }
 }
 

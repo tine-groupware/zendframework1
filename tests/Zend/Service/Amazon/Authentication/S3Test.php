@@ -42,7 +42,7 @@ class Zend_Service_Amazon_Authentication_S3Test extends \PHPUnit\Framework\TestC
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -56,7 +56,7 @@ class Zend_Service_Amazon_Authentication_S3Test extends \PHPUnit\Framework\TestC
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         // TODO Auto-generated Zend_Service_Amazon_Authentication_S3Test::tearDown()
 

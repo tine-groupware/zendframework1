@@ -40,7 +40,7 @@ abstract class Zend_Cache_BackendTest_SkipTests extends \PHPUnit\Framework\TestC
 
     public $message = 'Skipped for unspecified reason';
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped($this->message);
     }

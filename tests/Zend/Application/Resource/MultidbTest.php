@@ -56,7 +56,7 @@ class Zend_Application_Resource_MultidbTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -74,7 +74,7 @@ class Zend_Application_Resource_MultidbTest extends \PHPUnit\Framework\TestCase
         Zend_Controller_Front::getInstance()->resetInstance();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_Db_Table::setDefaultAdapter(null);
         Zend_Db_Table::setDefaultMetadataCache();

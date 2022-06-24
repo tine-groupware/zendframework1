@@ -37,7 +37,7 @@ class Zend_Http_Client_ClientTest extends \PHPUnit\Framework\TestCase
      * Set up the test case
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->client = new Zend_Http_Client();
     }

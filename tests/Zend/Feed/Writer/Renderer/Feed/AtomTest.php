@@ -38,7 +38,7 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
 
     protected $_validWriter = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validWriter = new Zend_Feed_Writer_Feed;
         $this->_validWriter->setTitle('This is a test feed.');
@@ -51,7 +51,7 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
         $this->_validWriter->setType('atom');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->_validWriter = null;
     }

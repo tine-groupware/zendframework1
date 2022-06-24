@@ -57,7 +57,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (isset($this->hash)) {
             unset($this->hash);
@@ -77,7 +77,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

@@ -48,15 +48,15 @@ class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
         $f = new Zend_Log_Formatter_Xml();
         $line = $f->format(['message' => 'foo', 'priority' => 42]);
 
-        $this->assertContains('foo', $line);
-        $this->assertContains((string)42, $line);
+        $this->assertStringContainsString('foo', $line);
+        $this->assertStringContainsString((string)42, $line);
     }
 
     public function testConfiguringElementMapping()
     {
         $f = new Zend_Log_Formatter_Xml('log', ['foo' => 'bar']);
         $line = $f->format(['bar' => 'baz']);
-        $this->assertContains('<log><foo>baz</foo></log>', $line);
+        $this->assertStringContainsString('<log><foo>baz</foo></log>', $line);
     }
 
     public function testXmlDeclarationIsStripped()
@@ -64,7 +64,7 @@ class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
         $f = new Zend_Log_Formatter_Xml();
         $line = $f->format(['message' => 'foo', 'priority' => 42]);
 
-        $this->assertNotContains('<\?xml version=', $line);
+        $this->assertStringNotContainsString('<\?xml version=', $line);
     }
 
     public function testXmlValidates()
@@ -85,7 +85,7 @@ class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
         $f = new Zend_Log_Formatter_Xml();
         $line = $f->format(['message' => '&key1=value1&key2=value2', 'priority' => 42]);
 
-        $this->assertContains("&amp;", $line);
+        $this->assertStringContainsString("&amp;", $line);
         $this->assertTrue(substr_count($line, "&amp;") == 2);
     }
 
@@ -98,7 +98,7 @@ class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
         $f = new Zend_Log_Formatter_Xml();
         $line = $f->format(['message' => '&amp', 'priority' => 42]);
 
-        $this->assertContains('&amp;amp', $line);
+        $this->assertStringContainsString('&amp;amp', $line);
     }
 
     public function testConstructorWithArray()
@@ -118,7 +118,7 @@ class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
 
         $formatter = new Zend_Log_Formatter_Xml($options);
         $output = $formatter->format($event);
-        $this->assertContains($expected, $output);
+        $this->assertStringContainsString($expected, $output);
         $this->assertEquals('UTF-8', $formatter->getEncoding());
     }
 
@@ -156,7 +156,7 @@ class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
 
         $formatter = new Zend_Log_Formatter_Xml($options);
         $output = $formatter->format($event);
-        $this->assertContains($expected, $output);
+        $this->assertStringContainsString($expected, $output);
     }
     
     /**
@@ -177,7 +177,7 @@ class Zend_Log_Formatter_XmlTest extends \PHPUnit\Framework\TestCase
 
         $formatter = new Zend_Log_Formatter_Xml($options);
         $output = $formatter->format($event);
-        $this->assertContains($expected, $output);
+        $this->assertStringContainsString($expected, $output);
     }
 }
 

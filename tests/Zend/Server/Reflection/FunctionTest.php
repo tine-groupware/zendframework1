@@ -84,7 +84,7 @@ class Zend_Server_Reflection_FunctionTest extends \PHPUnit\Framework\TestCase
     {
         $function = new ReflectionFunction('Zend_Server_Reflection_FunctionTest_function');
         $r = new Zend_Server_Reflection_Function($function);
-        $this->assertContains('function for reflection', $r->getDescription());
+        $this->assertStringContainsString('function for reflection', $r->getDescription());
         $r->setDescription('Testing setting descriptions');
         $this->assertEquals('Testing setting descriptions', $r->getDescription());
     }

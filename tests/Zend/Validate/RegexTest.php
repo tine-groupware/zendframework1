@@ -95,7 +95,7 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
             $validator->isValid('anything');
             $this->fail('Expected Zend_Validate_Exception not thrown for bad pattern');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('Internal error while', $e->getMessage());
+            $this->assertStringContainsString('Internal error while', $e->getMessage());
         }
     }
 

@@ -35,7 +35,7 @@ require_once 'Zend/Config/Yaml.php';
  */
 class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->_iniFileConfig             = dirname(__FILE__) . '/_files/config.yaml';
         $this->_iniFileAllSectionsConfig  = dirname(__FILE__) . '/_files/allsections.yaml';
@@ -117,7 +117,7 @@ class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml($this->_iniFileConfig, 'extendserror');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
     }
 
@@ -158,7 +158,7 @@ class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml($this->_iniFileCircularConfig, null);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('circular inheritance', $expected->getMessage());
+            $this->assertStringContainsString('circular inheritance', $expected->getMessage());
         }
     }
 
@@ -168,7 +168,7 @@ class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml('','');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('Filename is not set', $expected->getMessage());
+            $this->assertStringContainsString('Filename is not set', $expected->getMessage());
         }
     }
 
@@ -178,14 +178,14 @@ class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
             $config = new Zend_Config_Yaml($this->_iniFileConfig,['all', 'notthere']);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
 
         try {
             $config = new Zend_Config_Yaml($this->_iniFileConfig,'notthere');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('cannot be found', $expected->getMessage());
+            $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
 
     }

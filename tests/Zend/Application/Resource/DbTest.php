@@ -45,7 +45,7 @@ class Zend_Application_Resource_DbTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -64,7 +64,7 @@ class Zend_Application_Resource_DbTest extends \PHPUnit\Framework\TestCase
         $this->bootstrap = new ZfAppBootstrap($this->application);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     	Zend_Db_Table::setDefaultMetadataCache();
 

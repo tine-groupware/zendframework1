@@ -34,7 +34,7 @@ require_once 'Zend/Gdata.php';
 class Zend_Gdata_FeedLinkTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->feedLinkText = file_get_contents(
                 'Zend/Gdata/_files/FeedLinkElementSample1.xml',
                 true);

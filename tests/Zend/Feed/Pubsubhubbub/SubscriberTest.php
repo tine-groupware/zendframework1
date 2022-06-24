@@ -41,7 +41,7 @@ class Zend_Feed_Pubsubhubbub_SubscriberTest extends \PHPUnit\Framework\TestCase
 
     protected $_tableGateway = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $client = new Zend_Http_Client;
         Zend_Feed_Pubsubhubbub::setHttpClient($client);

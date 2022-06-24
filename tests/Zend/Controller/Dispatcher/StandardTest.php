@@ -57,7 +57,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (isset($this->error)) {
             unset($this->error);
@@ -72,7 +72,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         ]);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_dispatcher);
     }
@@ -577,7 +577,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $response = new Zend_Controller_Response_Cli();
         $dispatcher->dispatch($request, $response);
         $body = $dispatcher->getResponse()->getBody();
-        $this->assertContains("BazBat_FooController::indexAction() called", $body, $body);
+        $this->assertStringContainsString("BazBat_FooController::indexAction() called", $body, $body);
     }
 
     public function testLoadClassLoadsControllerInDefaultModuleWithModulePrefixWhenRequested()
@@ -627,7 +627,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
             $this->_dispatcher->dispatch($request, $response);
             $this->fail('Invalid camelCased action should raise exception');
         } catch (Zend_Controller_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
     }
 
@@ -699,7 +699,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         try {
             $class = $this->_dispatcher->getControllerClass($request);
         } catch (Zend_Controller_Exception $e) {
-            $this->assertContains('No default module', $e->getMessage());
+            $this->assertStringContainsString('No default module', $e->getMessage());
         }
     }
 }

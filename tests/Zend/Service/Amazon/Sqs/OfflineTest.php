@@ -50,7 +50,7 @@ class Zend_Service_Amazon_Sqs_OfflineTest extends \PHPUnit\Framework\TestCase
      */
     protected $_httpClientAdapterTest;
     
-    public function setUp()
+    public function setUp(): void
     {
         //$this->markTestSkipped('No offline tests for Zend_Service_Amazon_Sqs');
         

@@ -60,7 +60,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->smd = new Zend_Json_Server_Smd();
     }
@@ -71,7 +71,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -93,7 +93,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
                 $this->smd->setTransport($transport);
                 $this->fail('Invalid transport should throw exception');
             } catch (Zend_Json_Server_Exception $e) {
-                $this->assertContains('Invalid transport', $e->getMessage());
+                $this->assertStringContainsString('Invalid transport', $e->getMessage());
             }
         }
     }
@@ -119,7 +119,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
                 $this->smd->setEnvelope($env);
                 $this->fail('Invalid envelope type should throw exception');
             } catch (Zend_Json_Server_Exception $e) {
-                $this->assertContains('Invalid envelope', $e->getMessage());
+                $this->assertStringContainsString('Invalid envelope', $e->getMessage());
             }
         }
     }
@@ -144,7 +144,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
                 $this->smd->setContentType($type);
                 $this->fail('Invalid content type should raise exception');
             } catch (Zend_Json_Server_Exception $e) {
-                $this->assertContains('Invalid content type', $e->getMessage());
+                $this->assertStringContainsString('Invalid content type', $e->getMessage());
             }
         }
     }
@@ -233,7 +233,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
             $this->smd->addService($test);
             $this->fail('Adding service with existing service name should throw exception');
         } catch (Zend_Json_Server_Exception $e) {
-            $this->assertContains('already register', $e->getMessage());
+            $this->assertStringContainsString('already register', $e->getMessage());
         }
     }
 
@@ -244,7 +244,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
                 $this->smd->addService($service);
                 $this->fail('Attempt to register invalid service should throw exception');
             } catch (Zend_Json_Server_Exception $e) {
-                $this->assertContains('Invalid service', $e->getMessage());
+                $this->assertStringContainsString('Invalid service', $e->getMessage());
             }
         }
     }

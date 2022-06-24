@@ -49,7 +49,7 @@ class Zend_Service_Ebay_OfflineTest extends \PHPUnit\Framework\TestCase
      */
     protected $_finding;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_finding = new Zend_Service_Ebay_Finding('foo');
     }

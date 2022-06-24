@@ -50,14 +50,14 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!extension_loaded('bz2')) {
             $this->markTestSkipped('This filter is tested with the bz2 extension');
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if (file_exists(dirname(__FILE__) . '/../_files/compressed.bz2')) {
             unlink(dirname(__FILE__) . '/../_files/compressed.bz2');
@@ -143,7 +143,7 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
             $filter->setBlocksize(15);
             $this->fail('Exception expected');
         } catch(Zend_Filter_Exception $e) {
-            $this->assertContains('must be between', $e->getMessage());
+            $this->assertStringContainsString('must be between', $e->getMessage());
         }
     }
 
@@ -228,7 +228,7 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
             $adapter = $filter->getAdapter();
             $this->fail('Invalid adapter should fail when retrieved');
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('does not implement', $e->getMessage());
+            $this->assertStringContainsString('does not implement', $e->getMessage());
         }
     }
 
@@ -263,7 +263,7 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
             $filter->invalidMethod();
             $this->fail('Exception expected');
         } catch (Zend_Exception $e) {
-            $this->assertContains('Unknown method', $e->getMessage());
+            $this->assertStringContainsString('Unknown method', $e->getMessage());
         }
     }
 }

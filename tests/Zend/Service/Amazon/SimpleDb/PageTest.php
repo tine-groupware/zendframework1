@@ -37,7 +37,7 @@ class Zend_Service_Amazon_SimpleDb_PageTest extends \PHPUnit\Framework\TestCase
      */
     protected $page;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->page = new Zend_Service_Amazon_SimpleDb_Page('foobar');
     }

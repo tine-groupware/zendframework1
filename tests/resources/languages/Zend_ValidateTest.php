@@ -40,7 +40,7 @@ class resources_languages_Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     protected $_languages    = [];
     protected $_translations = [];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_langDir = dirname(dirname(dirname(dirname(__FILE__))))
                         . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'languages';

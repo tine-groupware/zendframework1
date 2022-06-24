@@ -54,7 +54,7 @@ class Zend_Auth_Adapter_Ldap_OfflineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_adapter = new Zend_Auth_Adapter_Ldap();
     }

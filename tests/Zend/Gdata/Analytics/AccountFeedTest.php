@@ -37,7 +37,7 @@ class Zend_Gdata_Analytics_AccountFeedTest extends \PHPUnit\Framework\TestCase
     /** @var AccountFeed */
     public $accountFeed;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->accountFeed = new Zend_Gdata_Analytics_AccountFeed(
             file_get_contents(dirname(__FILE__) . '/_files/TestAccountFeed.xml')

@@ -47,7 +47,7 @@ class Zend_Validate_IpTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validator = new Zend_Validate_Ip();
     }
@@ -102,7 +102,7 @@ class Zend_Validate_IpTest extends \PHPUnit\Framework\TestCase
             $this->_validator->setOptions(['allowipv4' => false, 'allowipv6' => false]);
             $this->fail();
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('Nothing to validate', $e->getMessage());
+            $this->assertStringContainsString('Nothing to validate', $e->getMessage());
         }
     }
 

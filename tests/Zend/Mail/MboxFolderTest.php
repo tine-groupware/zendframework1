@@ -46,7 +46,7 @@ class Zend_Mail_MboxFolderTest extends \PHPUnit\Framework\TestCase
     protected $_tmpdir;
     protected $_subdirs = ['.', 'subfolder'];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_originalDir = dirname(__FILE__) . '/_files/test.mbox/';
 
@@ -91,7 +91,7 @@ class Zend_Mail_MboxFolderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         foreach (array_reverse($this->_subdirs) as $dir) {
             $dh = opendir($this->_tmpdir . $dir);

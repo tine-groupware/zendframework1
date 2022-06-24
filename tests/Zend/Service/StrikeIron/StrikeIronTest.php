@@ -36,7 +36,7 @@ require_once 'Zend/Service/StrikeIron.php';
  */
 class Zend_Service_StrikeIron_StrikeIronTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         // stub out SOAPClient instance
         $this->soapClient = new stdclass();

@@ -36,7 +36,7 @@ require_once 'Zend/Gdata/ClientLogin.php';
 class Zend_Gdata_SpreadsheetsOnlineTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');
         $pass = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_PASSWORD');

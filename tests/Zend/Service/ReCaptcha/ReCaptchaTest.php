@@ -44,7 +44,7 @@ class Zend_Service_ReCaptcha_ReCaptchaTest extends \PHPUnit\Framework\TestCase
     protected $_privateKey = TESTS_ZEND_SERVICE_RECAPTCHA_PRIVATE_KEY;
     protected $_reCaptcha = null;
 
-    public function setUp()  {
+    public function setUp(): void  {
         $this->_reCaptcha = new Zend_Service_ReCaptcha();
     }
 

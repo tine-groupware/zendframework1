@@ -42,7 +42,7 @@ class Zend_Locale_MathTest extends \PHPUnit\Framework\TestCase
     /**
      * setup for tests (BCMath is not designed to normalize localized numbers)
      */
-    public function setUp()
+    public function setUp(): void
     {
         self::$savedLocale = setlocale(LC_NUMERIC, '0');
         if (self::$savedLocale != 'C') {
@@ -53,7 +53,7 @@ class Zend_Locale_MathTest extends \PHPUnit\Framework\TestCase
     /**
      * teardown for tests (restore whatever setlocale was previously in place)
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         if (self::$savedLocale != 'C') {
             setlocale(LC_NUMERIC, self::$savedLocale);
@@ -79,14 +79,14 @@ class Zend_Locale_MathTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(        round(3.6), Zend_Locale_Math::round('3.6'));
         $this->assertEquals(               '4', Zend_Locale_Math::round('3.6', 0));
         $this->assertEquals(      round(3.6,0), Zend_Locale_Math::round('3.6', 0));
-        $this->assertEquals(            '1.96', Zend_Locale_Math::round('1.95583', 2), '', 0.02);
-        $this->assertEquals(  round(1.95583,2), Zend_Locale_Math::round('1.95583', 2), '', 0.02);
-        $this->assertEquals(           1242000, Zend_Locale_Math::round('1241757', -3), '', 250);
-        $this->assertEquals(round(1241757, -3), Zend_Locale_Math::round('1241757', -3), '', 250);
-        $this->assertEquals(              5.05, Zend_Locale_Math::round('5.045', 2), '', 0.02);
-        $this->assertEquals(   round(5.045, 2), Zend_Locale_Math::round('5.045', 2), '', 0.02);
-        $this->assertEquals(              5.06, Zend_Locale_Math::round('5.055', 2), '', 0.02);
-        $this->assertEquals(   round(5.055, 2), Zend_Locale_Math::round('5.055', 2), '', 0.02);
+        $this->assertEqualsWithDelta('1.96', Zend_Locale_Math::round('1.95583', 2), 0.02);
+        $this->assertEqualsWithDelta(round(1.95583,2), Zend_Locale_Math::round('1.95583', 2), 0.02);
+        $this->assertEqualsWithDelta(1242000, Zend_Locale_Math::round('1241757', -3), 250);
+        $this->assertEqualsWithDelta(round(1241757, -3), Zend_Locale_Math::round('1241757', -3), 250);
+        $this->assertEqualsWithDelta(5.05, Zend_Locale_Math::round('5.045', 2), 0.02);
+        $this->assertEqualsWithDelta(round(5.045, 2), Zend_Locale_Math::round('5.045', 2), 0.02);
+        $this->assertEqualsWithDelta(5.06, Zend_Locale_Math::round('5.055', 2), 0.02);
+        $this->assertEqualsWithDelta(round(5.055, 2), Zend_Locale_Math::round('5.055', 2), 0.02);
     }
 
     /**
@@ -1645,13 +1645,13 @@ class Zend_Locale_MathTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(        round(-3.6), Zend_Locale_Math::round('-3.6'));
         $this->assertEquals(               '-4', Zend_Locale_Math::round('-3.6', 0));
         $this->assertEquals(      round(-3.6,0), Zend_Locale_Math::round('-3.6', 0));
-        $this->assertEquals(            '-1.96', Zend_Locale_Math::round('-1.95583', 2), '', 0.02);
-        $this->assertEquals(  round(-1.95583,2), Zend_Locale_Math::round('-1.95583', 2), '', 0.02);
-        $this->assertEquals(           -1242000, Zend_Locale_Math::round('-1241757', -3), '', 250);
-        $this->assertEquals(round(-1241757, -3), Zend_Locale_Math::round('-1241757', -3), '', 250);
-        $this->assertEquals(              -5.05, Zend_Locale_Math::round('-5.045', 2), '', 0.02);
-        $this->assertEquals(   round(-5.045, 2), Zend_Locale_Math::round('-5.045', 2), '', 0.02);
-        $this->assertEquals(              -5.06, Zend_Locale_Math::round('-5.055', 2), '', 0.02);
-        $this->assertEquals(   round(-5.055, 2), Zend_Locale_Math::round('-5.055', 2), '', 0.02);
+        $this->assertEqualsWithDelta('-1.96', Zend_Locale_Math::round('-1.95583', 2), 0.02);
+        $this->assertEqualsWithDelta(round(-1.95583,2), Zend_Locale_Math::round('-1.95583', 2), 0.02);
+        $this->assertEqualsWithDelta(-1242000, Zend_Locale_Math::round('-1241757', -3), 250);
+        $this->assertEqualsWithDelta(round(-1241757, -3), Zend_Locale_Math::round('-1241757', -3), 250);
+        $this->assertEqualsWithDelta(-5.05, Zend_Locale_Math::round('-5.045', 2), 0.02);
+        $this->assertEqualsWithDelta(round(-5.045, 2), Zend_Locale_Math::round('-5.045', 2), 0.02);
+        $this->assertEqualsWithDelta(-5.06, Zend_Locale_Math::round('-5.055', 2), 0.02);
+        $this->assertEqualsWithDelta(round(-5.055, 2), Zend_Locale_Math::round('-5.055', 2), 0.02);
     }
 }

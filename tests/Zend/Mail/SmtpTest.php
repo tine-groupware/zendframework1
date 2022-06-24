@@ -45,7 +45,7 @@ class Zend_Mail_SmtpTest extends \PHPUnit\Framework\TestCase
     protected $_transport;
     protected $_connection;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_params = ['host'     => TESTS_ZEND_MAIL_SMTP_HOST,
                                'port'     => TESTS_ZEND_MAIL_SMTP_PORT,

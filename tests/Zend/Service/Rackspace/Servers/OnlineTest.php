@@ -92,7 +92,7 @@ class Zend_Service_Rackspace_Servers_OnlineTest extends \PHPUnit\Framework\TestC
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (!constant('TESTS_ZEND_SERVICE_RACKSPACE_ONLINE_ENABLED')) {
             $this->markTestSkipped('Zend_Service_Rackspace_Servers_OnlineTest tests are not enabled');

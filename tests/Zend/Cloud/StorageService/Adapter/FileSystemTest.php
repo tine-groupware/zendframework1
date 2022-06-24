@@ -61,7 +61,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         // No need to wait
@@ -106,7 +106,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $path = $this->_config->local_directory;
 

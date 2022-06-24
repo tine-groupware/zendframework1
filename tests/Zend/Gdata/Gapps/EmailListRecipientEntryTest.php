@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/Gapps.php';
 class Zend_Gdata_Gapps_EmailListRecipientEntryTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->entryText = file_get_contents(
                 'Zend/Gdata/Gapps/_files/EmailListRecipientEntryDataSample1.xml',
                 true);

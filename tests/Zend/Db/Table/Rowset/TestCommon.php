@@ -276,7 +276,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Db_Table_Rowset_Exception);
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
 
         $this->assertTrue($rowset[0] instanceof Zend_Db_Table_Row);
@@ -286,7 +286,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Db_Table_Rowset_Exception);
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
         $this->assertEquals(0, $rowset->key());
     }

@@ -89,7 +89,7 @@ class Zend_Service_Rackspace_Servers_OfflineTest extends \PHPUnit\Framework\Test
     /**
      * SetUpBerofeClass
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->rackspace= new Zend_Service_Rackspace_Servers('foo','bar');
         

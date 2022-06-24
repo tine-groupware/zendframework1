@@ -39,7 +39,7 @@ class Zend_Gdata_GdataOnlineTest extends \PHPUnit\Framework\TestCase
 {
     private $blog = null; // blog ID from config
 
-    public function setUp()
+    public function setUp(): void
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');
         $pass = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_PASSWORD');

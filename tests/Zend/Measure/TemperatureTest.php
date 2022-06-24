@@ -50,7 +50,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setup()
+    public function setup(): void
     {
         if (Zend_Registry::isRegistered('Zend_Locale')) {
             $registry = Zend_Registry::getInstance();
@@ -62,7 +62,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
         setlocale(LC_ALL, 'de');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if (is_string($this->_locale) && strpos($this->_locale, ';')) {
             $locales = [];

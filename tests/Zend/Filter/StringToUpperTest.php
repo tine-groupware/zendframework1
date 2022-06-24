@@ -48,7 +48,7 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filter = new Zend_Filter_StringToUpper();
     }
@@ -91,7 +91,7 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
                 $this->assertEquals($output, $this->_filter->filter($input));
             }
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('mbstring is required', $e->getMessage());
+            $this->assertStringContainsString('mbstring is required', $e->getMessage());
         }
     }
 
@@ -108,7 +108,7 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
             $this->_filter->setEncoding('aaaaa');
             $this->fail();
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('is not supported', $e->getMessage());
+            $this->assertStringContainsString('is not supported', $e->getMessage());
         }
     }
 
@@ -129,7 +129,7 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
                 $this->assertEquals($output, $filter->filter($input));
             }
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('mbstring is required', $e->getMessage());
+            $this->assertStringContainsString('mbstring is required', $e->getMessage());
         }
     }
 
@@ -160,7 +160,7 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
                 $this->assertEquals($output, $this->_filter->filter($input));
             }
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('mbstring is required', $e->getMessage());
+            $this->assertStringContainsString('mbstring is required', $e->getMessage());
         }
     }
 

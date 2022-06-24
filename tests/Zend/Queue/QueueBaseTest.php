@@ -50,7 +50,7 @@ require_once 'Zend/Queue/Adapter/Array.php';
  */
 abstract class Zend_Queue_QueueBaseTest extends \PHPUnit\Framework\TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         // Test Zend_Config
         $this->config = [
@@ -60,7 +60,7 @@ abstract class Zend_Queue_QueueBaseTest extends \PHPUnit\Framework\TestCase
         $this->queue = new Zend_Queue('Null', $this->config);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -190,7 +190,7 @@ abstract class Zend_Queue_QueueBaseTest extends \PHPUnit\Framework\TestCase
             $this->assertTrue(true);
         } catch (Error $e) {
             $this->assertTrue($e instanceof TypeError);
-            $this->assertContains('must be of type string', $e->getMessage());
+            $this->assertStringContainsString('must be of type string', $e->getMessage());
         }
 
         $message = 'Hello world'; // never gets boring!

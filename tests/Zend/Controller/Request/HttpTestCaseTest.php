@@ -58,7 +58,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCa
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->request = new Zend_Controller_Request_HttpTestCase();
         $_GET    = [];
@@ -72,7 +72,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCa
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

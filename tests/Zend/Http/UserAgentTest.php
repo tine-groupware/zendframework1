@@ -42,7 +42,7 @@ require_once dirname(__FILE__) . '/TestAsset/PopulatedStorage.php';
 class Zend_Http_UserAgentTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->server                         = [];
         $this->server['os']                   = 'Windows_NT';

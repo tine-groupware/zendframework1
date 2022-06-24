@@ -77,7 +77,7 @@ class Zend_Service_Rackspace_Files_OfflineTest
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->rackspace = new Zend_Service_Rackspace_Files('foo', 'bar');
 
@@ -212,7 +212,7 @@ class Zend_Service_Rackspace_Files_OfflineTest
             'zf-object-test' . '-copy'
         );
         $this->assertTrue($result);
-        $this->assertNotContains('application/x-www-form-urlencoded', $this->rackspace->getHttpClient()->getLastRequest());
+        $this->assertStringNotContainsString('application/x-www-form-urlencoded', $this->rackspace->getHttpClient()->getLastRequest());
     }
 
     public function testGetObjects()

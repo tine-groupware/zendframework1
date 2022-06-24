@@ -1499,7 +1499,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Exception $e) {
             $this->assertTrue($e instanceof Zend_Loader_PluginLoader_Exception,
                 'Expected object of type Zend_Filter_Exception, got '.get_class($e));
-            $this->assertContains("not found in the registry", $e->getMessage());
+            $this->assertStringContainsString("not found in the registry", $e->getMessage());
         }
     }
 

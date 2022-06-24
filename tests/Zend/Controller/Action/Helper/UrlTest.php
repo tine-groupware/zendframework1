@@ -62,7 +62,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
@@ -76,7 +76,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper);
     }

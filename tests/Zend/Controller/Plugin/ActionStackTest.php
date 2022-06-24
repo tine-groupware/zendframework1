@@ -65,7 +65,7 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->removeRegistryEntry();
         $this->registry = Zend_Registry::getInstance();
@@ -77,7 +77,7 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->removeRegistryEntry();
     }

@@ -65,7 +65,7 @@ class Zend_Service_SqlAzure_Management_ManagementClientTest extends \PHPUnit\Fra
     /**
      * Test teardown
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         // Clean up server
         $managementClient = $this->createManagementClient();

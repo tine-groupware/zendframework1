@@ -36,7 +36,7 @@ class Zend_Feed_Writer_FeedTest extends \PHPUnit\Framework\TestCase
 
     protected $_feedSamplePath = null;
 
-    public function setup()
+    public function setup(): void
     {
         $this->_feedSamplePath = dirname(__FILE__) . '/Writer/_files';
     }

@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/Calendar.php';
 class Zend_Gdata_Calendar_QuickAddTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->quickAddText = file_get_contents(
                 'Zend/Gdata/Calendar/_files/QuickAddElementSample1.xml',
                 true);

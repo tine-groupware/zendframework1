@@ -63,14 +63,14 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
      *
      * @access protected
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_HtmlList();
         $this->helper->setView($this->view);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper);
     }
@@ -81,10 +81,10 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items);
 
-        $this->assertContains('<ul>', $list);
-        $this->assertContains('</ul>', $list);
+        $this->assertStringContainsString('<ul>', $list);
+        $this->assertStringContainsString('</ul>', $list);
         foreach ($items as $item) {
-            $this->assertContains('<li>' . $item . '</li>', $list);
+            $this->assertStringContainsString('<li>' . $item . '</li>', $list);
         }
     }
 
@@ -94,10 +94,10 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items, true);
 
-        $this->assertContains('<ol>', $list);
-        $this->assertContains('</ol>', $list);
+        $this->assertStringContainsString('<ol>', $list);
+        $this->assertStringContainsString('</ol>', $list);
         foreach ($items as $item) {
-            $this->assertContains('<li>' . $item . '</li>', $list);
+            $this->assertStringContainsString('<li>' . $item . '</li>', $list);
         }
     }
 
@@ -108,12 +108,12 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items, false, $attribs);
 
-        $this->assertContains('<ul', $list);
-        $this->assertContains('class="selected"', $list);
-        $this->assertContains('name="list"', $list);
-        $this->assertContains('</ul>', $list);
+        $this->assertStringContainsString('<ul', $list);
+        $this->assertStringContainsString('class="selected"', $list);
+        $this->assertStringContainsString('name="list"', $list);
+        $this->assertStringContainsString('</ul>', $list);
         foreach ($items as $item) {
-            $this->assertContains('<li>' . $item . '</li>', $list);
+            $this->assertStringContainsString('<li>' . $item . '</li>', $list);
         }
     }
 
@@ -124,12 +124,12 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items, true, $attribs);
 
-        $this->assertContains('<ol', $list);
-        $this->assertContains('class="selected"', $list);
-        $this->assertContains('name="list"', $list);
-        $this->assertContains('</ol>', $list);
+        $this->assertStringContainsString('<ol', $list);
+        $this->assertStringContainsString('class="selected"', $list);
+        $this->assertStringContainsString('name="list"', $list);
+        $this->assertStringContainsString('</ol>', $list);
         foreach ($items as $item) {
-            $this->assertContains('<li>' . $item . '</li>', $list);
+            $this->assertStringContainsString('<li>' . $item . '</li>', $list);
         }
     }
 
@@ -142,10 +142,10 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items);
 
-        $this->assertContains('<ul>' . Zend_View_Helper_HtmlList::EOL, $list);
-        $this->assertContains('</ul>' . Zend_View_Helper_HtmlList::EOL, $list);
-        $this->assertContains('one<ul>' . Zend_View_Helper_HtmlList::EOL.'<li>four', $list);
-        $this->assertContains('<li>six</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>' .
+        $this->assertStringContainsString('<ul>' . Zend_View_Helper_HtmlList::EOL, $list);
+        $this->assertStringContainsString('</ul>' . Zend_View_Helper_HtmlList::EOL, $list);
+        $this->assertStringContainsString('one<ul>' . Zend_View_Helper_HtmlList::EOL.'<li>four', $list);
+        $this->assertStringContainsString('<li>six</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>' .
             Zend_View_Helper_HtmlList::EOL . '</li>' . Zend_View_Helper_HtmlList::EOL . '<li>two', $list);
     }
 
@@ -158,11 +158,11 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items);
 
-        $this->assertContains('<ul>' . Zend_View_Helper_HtmlList::EOL, $list);
-        $this->assertContains('</ul>' . Zend_View_Helper_HtmlList::EOL, $list);
-        $this->assertContains('one<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>four', $list);
-        $this->assertContains('<li>four<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>six', $list);
-        $this->assertContains('<li>five</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>' .
+        $this->assertStringContainsString('<ul>' . Zend_View_Helper_HtmlList::EOL, $list);
+        $this->assertStringContainsString('</ul>' . Zend_View_Helper_HtmlList::EOL, $list);
+        $this->assertStringContainsString('one<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>four', $list);
+        $this->assertStringContainsString('<li>four<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>six', $list);
+        $this->assertStringContainsString('<li>five</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>' .
             Zend_View_Helper_HtmlList::EOL . '</li>' . Zend_View_Helper_HtmlList::EOL . '<li>two', $list);
     }
 
@@ -172,12 +172,12 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items);
 
-        $this->assertContains('<ul>', $list);
-        $this->assertContains('</ul>', $list);
+        $this->assertStringContainsString('<ul>', $list);
+        $this->assertStringContainsString('</ul>', $list);
 
-        $this->assertContains('<li>one &lt;small&gt; test</li>', $list);
-        $this->assertContains('<li>second &amp; third</li>', $list);
-        $this->assertContains('<li>And \'some\' &quot;final&quot; test</li>', $list);
+        $this->assertStringContainsString('<li>one &lt;small&gt; test</li>', $list);
+        $this->assertStringContainsString('<li>second &amp; third</li>', $list);
+        $this->assertStringContainsString('<li>And \'some\' &quot;final&quot; test</li>', $list);
     }
 
     public function testListEscapeSwitchedOffForZF2283()
@@ -186,10 +186,10 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items, false, false, false);
 
-        $this->assertContains('<ul>', $list);
-        $this->assertContains('</ul>', $list);
+        $this->assertStringContainsString('<ul>', $list);
+        $this->assertStringContainsString('</ul>', $list);
 
-        $this->assertContains('<li>one <b>small</b> test</li>', $list);
+        $this->assertStringContainsString('<li>one <b>small</b> test</li>', $list);
     }
 
     /**
@@ -202,7 +202,7 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
         $list = $this->helper->htmlList($items, false, false, false);
 
         foreach ($items[1] as $item) {
-            $this->assertContains($item, $list);
+            $this->assertStringContainsString($item, $list);
         }
     }
 

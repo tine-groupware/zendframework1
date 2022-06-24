@@ -46,7 +46,7 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
     protected $_tmpdir;
     protected $_subdirs = ['.', '.subfolder', '.subfolder.test'];
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_originalDir = dirname(__FILE__) . '/_files/test.maildir/';
 
@@ -106,7 +106,7 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         foreach (array_reverse($this->_subdirs) as $dir) {
             foreach (['cur', 'new'] as $subdir) {

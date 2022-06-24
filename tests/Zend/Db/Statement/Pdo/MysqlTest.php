@@ -84,7 +84,7 @@ class Zend_Db_Statement_Pdo_MysqlTest extends Zend_Db_Statement_Pdo_TestCommon
             $stmt = $this->_db->query($sql);
         } catch (Zend_Db_Statement_Exception $e) {
             $message = $e->getMessage();
-            $this->assertContains($sql, $message);
+            $this->assertStringContainsString($sql, $message);
             return;
         }
         $this->fail('Expected exception');

@@ -63,14 +63,14 @@ class Zend_View_Helper_HtmlPageTest extends \PHPUnit\Framework\TestCase
      *
      * @access protected
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_HtmlPage();
         $this->helper->setView($this->view);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper);
     }
@@ -83,8 +83,8 @@ class Zend_View_Helper_HtmlPageTest extends \PHPUnit\Framework\TestCase
                             . ' type="text/html"'
                             . ' classid="clsid:25336920-03F9-11CF-8FD0-00AA00686F13">';
 
-        $this->assertContains($objectStartElement, $htmlPage);
-        $this->assertContains('</object>', $htmlPage);
+        $this->assertStringContainsString($objectStartElement, $htmlPage);
+        $this->assertStringContainsString('</object>', $htmlPage);
     }
 }
 

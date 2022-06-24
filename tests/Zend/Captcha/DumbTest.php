@@ -55,7 +55,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (isset($this->word)) {
             unset($this->word);
@@ -79,7 +79,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

@@ -71,13 +71,13 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends \PHPUnit\Framework\TestC
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_setupDbAdapter();
         $this->_setupAuthAdapter();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->_adapter = null;
         $this->_db->query('DROP TABLE [users]');
@@ -346,7 +346,7 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends \PHPUnit\Framework\TestC
         try {
             $this->_adapter = new Zend_Auth_Adapter_DbTable();
         } catch (Exception $e) {
-            $this->assertContains('No database adapter present', $e->getMessage());
+            $this->assertStringContainsString('No database adapter present', $e->getMessage());
             throw $e;
         }
 
@@ -478,7 +478,7 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends \PHPUnit\Framework\TestC
 
 class Zend_Auth_Adapter_DbTable_BasicSqliteTest_Skip extends Zend_Auth_Adapter_DbTable_BasicSqliteTest
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped('Zend_Auth_Adapter_DbTable Sqlite tests are not enabled in TestConfiguration.php');
     }

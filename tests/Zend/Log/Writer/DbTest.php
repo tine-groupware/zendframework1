@@ -43,7 +43,7 @@ class Zend_Log_Writer_DbTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->tableName = 'db-table-name';
 
@@ -146,7 +146,7 @@ class Zend_Log_Writer_DbTest extends \PHPUnit\Framework\TestCase
             $this->writer->setFormatter(new StdClass());
         } catch (Exception $e) {
             $this->assertTrue($e instanceof \PHPUnit\Framework\Error);
-            $this->assertContains('must implement interface', $e->getMessage());
+            $this->assertStringContainsString('must implement interface', $e->getMessage());
         }
     }
 

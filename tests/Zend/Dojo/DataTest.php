@@ -50,7 +50,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->dojoData = new Zend_Dojo_Data;
     }
@@ -117,7 +117,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
             $this->dojoData->addItem($item);
             $this->fail('Should throw exception if no identifier present');
         } catch (Zend_Dojo_Exception $e) {
-            $this->assertContains('identifier', $e->getMessage());
+            $this->assertStringContainsString('identifier', $e->getMessage());
         }
     }
 
@@ -132,7 +132,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
             $this->dojoData->addItem($item);
             $this->fail('Should throw exception if no identifier present');
         } catch (Zend_Dojo_Exception $e) {
-            $this->assertContains('identifier', $e->getMessage());
+            $this->assertStringContainsString('identifier', $e->getMessage());
         }
     }
 
@@ -179,7 +179,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
             $this->dojoData->addItem('foo');
             $this->fail('Invalid item should throw error');
         } catch (Zend_Dojo_Exception $e) {
-            $this->assertContains('Only arrays and objects', $e->getMessage());
+            $this->assertStringContainsString('Only arrays and objects', $e->getMessage());
         }
     }
 
@@ -213,7 +213,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
             $this->dojoData->addItem($item);
             $this->fail('Overwriting items via addItem() should throw error');
         } catch (Zend_Dojo_Exception $e) {
-            $this->assertContains('not allowed', $e->getMessage());
+            $this->assertStringContainsString('not allowed', $e->getMessage());
         }
     }
 
@@ -384,7 +384,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
             $array = $this->dojoData->toArray();
             $this->fail('Serialization to array should throw error when no identifier is present in object');
         } catch (Zend_Dojo_Exception $e) {
-            $this->assertContains('present', $e->getMessage());
+            $this->assertStringContainsString('present', $e->getMessage());
         }
     }
 

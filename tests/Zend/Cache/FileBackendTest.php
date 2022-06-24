@@ -56,7 +56,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         parent::__construct('Zend_Cache_Backend_File', $data, $dataName);
     }
 
-    public function setUp($notag = false)
+    public function setUp($notag = false): void
     {
         $this->mkdir();
         $this->_cache_dir = $this->getTmpDir() . DIRECTORY_SEPARATOR;
@@ -70,7 +70,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         parent::setUp($notag);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);
@@ -89,7 +89,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
                 throw $e;
             }
 
-            $this->assertContains('hashed_directory_umask', $e->getMessage());
+            $this->assertStringContainsString('hashed_directory_umask', $e->getMessage());
         }
     }
 
@@ -106,7 +106,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
                 throw $e;
             }
 
-            $this->assertContains('cache_file_umask', $e->getMessage());
+            $this->assertStringContainsString('cache_file_umask', $e->getMessage());
         }
     }
 

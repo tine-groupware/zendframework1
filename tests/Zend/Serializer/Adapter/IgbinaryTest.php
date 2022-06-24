@@ -37,12 +37,12 @@ class Zend_Serializer_Adapter_IgbinaryTest extends \PHPUnit\Framework\TestCase
 
     private $_adapter;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_adapter = new Zend_Serializer_Adapter_Igbinary();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->_adapter = null;
     }
@@ -158,7 +158,7 @@ class Zend_Serializer_Adapter_IgbinarySkipTest extends \PHPUnit\Framework\TestCa
 {
     public $message = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $message = 'Skipped Zend_Serializer_Adapter_IgbinaryTest';
         if ($this->message) {

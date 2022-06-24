@@ -69,7 +69,7 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzureTest extends Zend_Cloud_QueueS
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->_wait();

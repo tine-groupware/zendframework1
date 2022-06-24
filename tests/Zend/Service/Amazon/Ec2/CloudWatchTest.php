@@ -47,7 +47,7 @@ class Zend_Service_Amazon_Ec2_CloudWatchTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->Zend_Service_Amazon_Ec2_CloudWatch = new Zend_Service_Amazon_Ec2_CloudWatch('access_key', 'secret_access_key');
@@ -62,7 +62,7 @@ class Zend_Service_Amazon_Ec2_CloudWatchTest extends \PHPUnit\Framework\TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->adapter);
         $this->Zend_Service_Amazon_Ec2_CloudWatch = null;

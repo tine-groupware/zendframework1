@@ -39,7 +39,7 @@ class Zend_Cache_OutputFrontendTest extends \PHPUnit\Framework\TestCase {
 
     private $_instance;
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!$this->_instance) {
             $this->_instance = new Zend_Cache_Frontend_Output([]);
@@ -48,7 +48,7 @@ class Zend_Cache_OutputFrontendTest extends \PHPUnit\Framework\TestCase {
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_instance);
     }

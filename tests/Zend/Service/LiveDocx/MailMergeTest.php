@@ -57,7 +57,7 @@ class Zend_Service_LiveDocx_MailMergeTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!constant('TESTS_ZEND_SERVICE_LIVEDOCX_USERNAME')
             || !constant('TESTS_ZEND_SERVICE_LIVEDOCX_PASSWORD')
@@ -77,7 +77,7 @@ class Zend_Service_LiveDocx_MailMergeTest extends \PHPUnit\Framework\TestCase
         $this->path = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'MailMerge');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
 	if (isset($this->phpLiveDocx)) {
 	    foreach($this->phpLiveDocx->listTemplates() as $template) {

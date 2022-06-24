@@ -37,7 +37,7 @@ class Zend_Mail_InterfaceTest extends \PHPUnit\Framework\TestCase
 {
     protected $_mboxFile;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_mboxFile = dirname(__FILE__) . '/_files/test.mbox/INBOX';
     }

@@ -55,7 +55,7 @@ class Zend_Filter_DigitsTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filter = new Zend_Filter_Digits();
         if (null === self::$_unicodeEnabled) {

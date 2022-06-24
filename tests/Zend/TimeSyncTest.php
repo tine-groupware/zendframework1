@@ -247,7 +247,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
             $result = $server->getDate();
             $this->assertTrue($result instanceof Zend_Date);
         } catch (Zend_TimeSync_Exception $e) {
-            $this->assertContains('all timeservers are bogus', $e->getMessage());
+            $this->assertStringContainsString('all timeservers are bogus', $e->getMessage());
         }
     }
 
@@ -264,7 +264,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
             $result = $server->getDate();
             $this->assertTrue($result instanceof Zend_Date);
         } catch (Zend_TimeSync_Exception $e) {
-            $this->assertContains('all timeservers are bogus', $e->getMessage());
+            $this->assertStringContainsString('all timeservers are bogus', $e->getMessage());
         }
     }
 
@@ -281,7 +281,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
             $result = $server->getDate();
             $this->assertTrue($result instanceof Zend_Date);
         } catch (Zend_TimeSync_Exception $e) {
-            $this->assertContains('all timeservers are bogus', $e->getMessage());
+            $this->assertStringContainsString('all timeservers are bogus', $e->getMessage());
         }
     }
 

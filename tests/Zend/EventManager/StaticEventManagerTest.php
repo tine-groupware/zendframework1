@@ -42,12 +42,12 @@ class Zend_EventManager_StaticEventManagerTest extends \PHPUnit\Framework\TestCa
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         Zend_EventManager_StaticEventManager::resetInstance();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_EventManager_StaticEventManager::resetInstance();
     }

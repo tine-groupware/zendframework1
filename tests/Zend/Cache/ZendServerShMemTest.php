@@ -48,13 +48,13 @@ class Zend_Cache_ZendServerShMemTest extends Zend_Cache_CommonBackendTest {
         parent::__construct('Zend_Cache_Backend_ZendServer_Disk', $data, $dataName);
     }
 
-    public function setUp($notag = true)
+    public function setUp($notag = true): void
     {
         $this->_instance = new Zend_Cache_Backend_ZendServer_ShMem();
         parent::setUp(true);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);

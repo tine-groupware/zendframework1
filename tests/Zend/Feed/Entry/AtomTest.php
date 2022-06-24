@@ -40,7 +40,7 @@ class AtomTest extends \PHPUnit\Framework\TestCase
             new Zend_Feed_Entry_Rss(null, 'foo');
         } catch (Exception $e) {
             self::assertInstanceOf('Zend_Feed_Exception', $e);
-            self::assertContains('message not available', $e->getMessage());
+            self::assertStringContainsString('message not available', $e->getMessage());
 
             return;
         }

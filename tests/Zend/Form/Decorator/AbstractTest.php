@@ -65,7 +65,7 @@ class Zend_Form_Decorator_AbstractTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_Errors();
     }
@@ -76,7 +76,7 @@ class Zend_Form_Decorator_AbstractTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -133,7 +133,7 @@ class Zend_Form_Decorator_AbstractTest extends \PHPUnit\Framework\TestCase
             $this->decorator->setElement($config);
             $this->fail('Invalid element type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid element', $e->getMessage());
+            $this->assertStringContainsString('Invalid element', $e->getMessage());
         }
     }
 

@@ -45,11 +45,11 @@ class FooBarTestFrontend extends Zend_Cache_Core { }
 class Zend_Cache_FactoryTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

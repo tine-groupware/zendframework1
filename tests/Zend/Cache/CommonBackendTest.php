@@ -45,7 +45,7 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         parent::__construct($name, $data, $dataName);
     }
 
-    public function setUp($notag = false)
+    public function setUp($notag = false): void
     {
         $this->mkdir();
         $this->_instance->setDirectives(['logging' => true]);
@@ -90,7 +90,7 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->_instance) {
             $this->_instance->clean();

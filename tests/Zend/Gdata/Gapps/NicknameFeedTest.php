@@ -39,7 +39,7 @@ class Zend_Gdata_Gapps_NicknameFeedTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp()
+    public function setUp(): void
     {
         $nicknameFeedText = file_get_contents(
                 'Zend/Gdata/Gapps/_files/NicknameFeedDataSample1.xml',

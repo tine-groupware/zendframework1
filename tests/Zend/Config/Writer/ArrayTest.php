@@ -42,12 +42,12 @@ class Zend_Config_Writer_ArrayTest extends \PHPUnit\Framework\TestCase
 {
     protected $_tempName;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_tempName = tempnam(dirname(__FILE__) . '/temp', 'tmp');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         @unlink($this->_tempName);
     }
@@ -60,7 +60,7 @@ class Zend_Config_Writer_ArrayTest extends \PHPUnit\Framework\TestCase
             $writer->write();
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('No filename was set', $expected->getMessage());
+            $this->assertStringContainsString('No filename was set', $expected->getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ class Zend_Config_Writer_ArrayTest extends \PHPUnit\Framework\TestCase
             $writer->write();
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('No config was set', $expected->getMessage());
+            $this->assertStringContainsString('No config was set', $expected->getMessage());
         }
     }
 
@@ -84,7 +84,7 @@ class Zend_Config_Writer_ArrayTest extends \PHPUnit\Framework\TestCase
             $writer->write();
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('Could not write to file', $expected->getMessage());
+            $this->assertStringContainsString('Could not write to file', $expected->getMessage());
         }
     }
 

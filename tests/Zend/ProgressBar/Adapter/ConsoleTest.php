@@ -43,12 +43,12 @@ require_once 'MockupStream.php';
 class Zend_ProgressBar_Adapter_ConsoleTest extends \PHPUnit\Framework\TestCase
 {
 
-    protected function setUp()
+    protected function setUp(): void
     {
         stream_wrapper_register("zendprogressbaradapterconsole", "Zend_ProgressBar_Adapter_Console_MockupStream");
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         stream_wrapper_unregister('zendprogressbaradapterconsole');
     }
@@ -121,7 +121,7 @@ class Zend_ProgressBar_Adapter_ConsoleTest extends \PHPUnit\Framework\TestCase
 
             $this->fail('An expected Zend_ProgressBar_Adapter_Exception has not been raised');
         } catch (Zend_ProgressBar_Adapter_Exception $expected) {
-            $this->assertContains('Invalid element found in $elements array', $expected->getMessage());
+            $this->assertStringContainsString('Invalid element found in $elements array', $expected->getMessage());
         }
     }
 
@@ -268,7 +268,7 @@ class Zend_ProgressBar_Adapter_ConsoleTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_ProgressBar_Adapter_Exception $e) {
         } catch (Error $e) {
             $this->assertTrue($e instanceof ValueError);
-            $this->assertContains('cannot be empty', $e->getMessage());
+            $this->assertStringContainsString('cannot be empty', $e->getMessage());
         }
     }
 

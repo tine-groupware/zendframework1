@@ -58,7 +58,7 @@ class Zend_Service_WindowsAzure_Diagnostics_ManagerTest extends \PHPUnit\Framewo
     /**
      * Test teardown
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $storageClient = $this->createStorageInstance();
         for ($i = 1; $i <= self::$uniqId; $i++)

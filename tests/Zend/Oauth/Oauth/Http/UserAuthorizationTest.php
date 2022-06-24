@@ -36,7 +36,7 @@ class Zend_Oauth_Http_UserAuthorizationTest extends \PHPUnit\Framework\TestCase
 
     protected $stubConsumer = null;
 
-    public function setup()
+    public function setup(): void
     {
         $this->stubConsumer = new Test_Consumer_34879;
     }

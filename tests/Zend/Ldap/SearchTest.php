@@ -44,13 +44,13 @@ require_once 'Zend/Ldap/Filter.php';
  */
 class Zend_Ldap_SearchTest extends Zend_Ldap_OnlineTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_prepareLdapServer();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->_cleanupLdapServer();
         parent::tearDown();
@@ -307,7 +307,7 @@ class Zend_Ldap_SearchTest extends Zend_Ldap_OnlineTestCase
                 'This_Class_Does_Not_Exist');
             $this->fail('Expected exception not thrown');
         } catch (Zend_Ldap_Exception $zle) {
-            $this->assertContains("Class 'This_Class_Does_Not_Exist' can not be found",
+            $this->assertStringContainsString("Class 'This_Class_Does_Not_Exist' can not be found",
                 $zle->getMessage());
         }
     }
@@ -320,7 +320,7 @@ class Zend_Ldap_SearchTest extends Zend_Ldap_OnlineTestCase
                 'Zend_Ldap_SearchTest_CollectionClassNotSubclassingZendLdapCollection');
             $this->fail('Expected exception not thrown');
         } catch (Zend_Ldap_Exception $zle) {
-            $this->assertContains(
+            $this->assertStringContainsString(
                 "Class 'Zend_Ldap_SearchTest_CollectionClassNotSubclassingZendLdapCollection' must subclass 'Zend_Ldap_Collection'",
                 $zle->getMessage());
         }

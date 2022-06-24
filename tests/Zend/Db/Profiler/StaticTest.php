@@ -264,7 +264,7 @@ class Zend_Db_Profiler_StaticTest extends Zend_Db_TestSetup
                 );
             $this->fail('Expected Zend_Db_Profiler_Exception not thrown');
         } catch (Zend_Db_Profiler_Exception $e) {
-            $this->assertContains('Profiler argument must be an instance of', $e->getMessage());
+            $this->assertStringContainsString('Profiler argument must be an instance of', $e->getMessage());
         }
     }
 
@@ -518,7 +518,7 @@ class Zend_Db_Profiler_StaticTest extends Zend_Db_TestSetup
             $prof->queryEnd('invalid');
             $this->fail('Expected Zend_Db_Profiler_Exception not thrown');
         } catch (Zend_Db_Profiler_Exception $e) {
-            $this->assertContains('no query with handle', $e->getMessage());
+            $this->assertStringContainsString('no query with handle', $e->getMessage());
         }
     }
 
@@ -540,7 +540,7 @@ class Zend_Db_Profiler_StaticTest extends Zend_Db_TestSetup
             $prof->queryEnd($queryId);
             $this->fail('Expected Zend_Db_Profiler_Exception not thrown');
         } catch (Zend_Db_Profiler_Exception $e) {
-            $this->assertContains('has already ended', $e->getMessage());
+            $this->assertStringContainsString('has already ended', $e->getMessage());
         }
     }
 
@@ -608,7 +608,7 @@ class Zend_Db_Profiler_StaticTest extends Zend_Db_TestSetup
             $this->_db->getProfiler()->getQueryProfile('invalid');
             $this->fail('Expected Zend_Db_Profiler_Exception not thrown');
         } catch (Zend_Db_Profiler_Exception $e) {
-            $this->assertContains('not found', $e->getMessage());
+            $this->assertStringContainsString('not found', $e->getMessage());
         }
     }
 

@@ -50,7 +50,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!extension_loaded('rar')) {
             $this->markTestSkipped('This adapter needs the rar extension');
@@ -86,7 +86,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $files = [
             dirname(__FILE__) . '/../_files/zipextracted.txt',
@@ -219,7 +219,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
             $filter->setTarget('/unknown/path/to/file.txt');
             $this->fails('Exception expected');
         } catch(Zend_Filter_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
     }
 
@@ -236,14 +236,14 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
             $filter->compress('test.txt');
             $this->fails('Exception expected');
         } catch (Exception $e) {
-            $this->assertContains('No compression callback', $e->getMessage());
+            $this->assertStringContainsString('No compression callback', $e->getMessage());
         }
 
         try {
             $filter->setCallback('invalidCallback');
             $this->fails('Exception expected');
         } catch (Exception $e) {
-            $this->assertContains('Callback can not be accessed', $e->getMessage());
+            $this->assertStringContainsString('Callback can not be accessed', $e->getMessage());
         }
 
         $callback = ['Zend_Filter_Compress_RarTest', 'rarCompress'];

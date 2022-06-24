@@ -148,7 +148,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
             $barcode->setAdapter('MyBarcode5');
             $this->fails('Exception expected');
         } catch (Exception $e) {
-            $this->assertContains('does not implement', $e->getMessage());
+            $this->assertStringContainsString('does not implement', $e->getMessage());
         }
     }
 
@@ -165,7 +165,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
             $barcode = new Zend_Validate_Barcode(['options' => 'unknown', 'checksum' => false]);
             $this->fails('Exception expected');
         } catch (Exception $e) {
-            $this->assertContains('Missing option', $e->getMessage());
+            $this->assertStringContainsString('Missing option', $e->getMessage());
         }
     }
 

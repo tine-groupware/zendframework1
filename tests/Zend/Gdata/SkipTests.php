@@ -30,7 +30,7 @@
  */
 class Zend_Gdata_SkipOnlineTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped("Zend_Gdata online tests are not enabled in TestConfiguration.php");
     }
@@ -43,7 +43,7 @@ class Zend_Gdata_SkipOnlineTest extends \PHPUnit\Framework\TestCase
 
 class Zend_Gdata_SkipClientLoginTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped("Zend_Gdata authenticated tests are not enabled in TestConfiguration.php");
     }

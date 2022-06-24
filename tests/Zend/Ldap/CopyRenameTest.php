@@ -66,7 +66,7 @@ class Zend_Ldap_CopyRenameTest extends Zend_Ldap_OnlineTestCase
      */
     private $_nodes;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_prepareLdapServer();
@@ -101,7 +101,7 @@ class Zend_Ldap_CopyRenameTest extends Zend_Ldap_OnlineTestCase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if ($this->_getLdap()->exists($this->_newDn))
             $this->_getLdap()->delete($this->_newDn, false);

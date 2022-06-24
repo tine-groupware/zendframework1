@@ -36,7 +36,7 @@ class Zend_Feed_Reader_Integration_WordpressAtom10Test extends \PHPUnit\Framewor
 
     protected $_feedSamplePath = null;
 
-    public function setup()
+    public function setup(): void
     {
         Zend_Feed_Reader::reset();
         $this->_feedSamplePath = dirname(__FILE__) . '/_files/wordpress-atom10.xml';
@@ -49,7 +49,7 @@ class Zend_Feed_Reader_Integration_WordpressAtom10Test extends \PHPUnit\Framewor
         Zend_Date::setOptions(['format_type'=>'iso']);
     }
     
-    public function teardown()
+    public function teardown(): void
     {
         Zend_Date::setOptions($this->_options);
     }

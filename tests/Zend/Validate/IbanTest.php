@@ -62,7 +62,7 @@ class Zend_Validate_IbanTest extends \PHPUnit\Framework\TestCase
             $validator->setLocale('de_QA');
             $this->fail();
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('IBAN validation', $e->getMessage());
+            $this->assertStringContainsString('IBAN validation', $e->getMessage());
         }
 
         $validator->setLocale('de_DE');

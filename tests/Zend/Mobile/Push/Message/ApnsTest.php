@@ -34,7 +34,7 @@ require_once 'Zend/Mobile/Push/Message/Apns.php';
  */
 class Zend_Mobile_Push_Message_ApnsTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->message = new Zend_Mobile_Push_Message_Apns();
     }

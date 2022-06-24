@@ -62,7 +62,7 @@ class Zend_ProgressBar_ProgressBarTest extends \PHPUnit\Framework\TestCase
             $progressBar = $this->_getProgressBar(1, 0);
             $this->fail('An expected Zend_Console_Exception has not been raised');
         } catch (Zend_ProgressBar_Exception $expected) {
-            $this->assertContains('$max must be greater than $min', $expected->getMessage());
+            $this->assertStringContainsString('$max must be greater than $min', $expected->getMessage());
         }
     }
 

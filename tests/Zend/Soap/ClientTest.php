@@ -53,7 +53,7 @@ class Zend_Soap_ClientTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!extension_loaded('soap')) {
            $this->markTestSkipped('SOAP Extension is not loaded');

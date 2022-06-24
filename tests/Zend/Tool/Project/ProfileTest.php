@@ -44,7 +44,7 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
      */
     protected $_standardProfileFromData = null;
 
-    public function setup()
+    public function setup(): void
     {
         $this->_projectDirectory   = dirname(__FILE__) . '/_files/project1/';
         $this->_projectProfileFile = dirname(__FILE__) . '/_files/.zfproject.xml.orig';
@@ -61,7 +61,7 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
         $this->_standardProfileFromData->setAttribute('projectDirectory', $this->_projectDirectory);
     }
 
-    public function teardown()
+    public function teardown(): void
     {
         $this->_removeProjectFiles();
     }

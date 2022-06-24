@@ -51,7 +51,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      * Set up the test suite before each test
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_client = new Zend_Http_Client_StaticTest_Mock('http://www.example.com');
     }
@@ -60,7 +60,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      * Clean up after running a test
      *
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->_client = null;
     }
@@ -143,7 +143,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
         $this->_client->setAdapter('Zend_Http_Client_Adapter_Test');
 
         $res = $this->_client->request('GET');
-        $this->assertContains($qstr, $this->_client->getLastRequest(),
+        $this->assertStringContainsString($qstr, $this->_client->getLastRequest(),
             'Request is expected to contain the entire query string');
     }
 

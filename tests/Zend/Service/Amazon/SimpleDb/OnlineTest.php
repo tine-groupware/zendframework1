@@ -90,7 +90,7 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends \PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_amazon = new Zend_Service_Amazon_SimpleDb(
             constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID'),
@@ -394,7 +394,7 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends \PHPUnit\Framework\TestCas
                     $this->request('domainMetadata', [$tokenDomainName]);
                     $this->fail('listDomains call with 3 domain maximum did not return last page');
                   } catch (Exception $e) {
-                    $this->assertContains('The specified domain does not exist', $e->getMessage());
+                    $this->assertStringContainsString('The specified domain does not exist', $e->getMessage());
                   }
                 }
               }
@@ -501,7 +501,7 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends \PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
 
         // $this->request('deleteDomain', array($this->_testDomainNamePrefix));

@@ -61,7 +61,7 @@ class Zend_Dojo_Form_SubFormTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->form = new Zend_Dojo_Form_SubForm();
         $this->form->addElement('TextBox', 'foo')
@@ -75,7 +75,7 @@ class Zend_Dojo_Form_SubFormTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

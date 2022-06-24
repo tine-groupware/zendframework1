@@ -49,7 +49,7 @@ class Zend_Ldap_OriginalOfflineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_ldap = new Zend_Ldap();
     }

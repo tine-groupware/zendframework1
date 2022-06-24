@@ -69,7 +69,7 @@ class Zend_OpenId_Provider_Storage_FileTest extends \PHPUnit\Framework\TestCase
         }
         $this->assertTrue( $ex instanceof Zend_OpenId_Exception );
         $this->assertSame( Zend_OpenId_Exception::ERROR_STORAGE, $ex->getCode() );
-        $this->assertContains( 'Cannot access storage directory', $ex->getMessage() );
+        $this->assertStringContainsString( 'Cannot access storage directory', $ex->getMessage() );
         chmod($dir, 0777);
         $this->assertFalse( is_dir($dir2) );
         @rmdir($dir);

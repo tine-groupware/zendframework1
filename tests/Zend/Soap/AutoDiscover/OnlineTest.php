@@ -37,7 +37,7 @@ class Zend_Soap_AutoDiscover_OnlineTest extends \PHPUnit\Framework\TestCase
 {
     protected $baseuri;
 
-    public function setUp()
+    public function setUp(): void
     {
         if(!defined('TESTS_ZEND_SOAP_AUTODISCOVER_ONLINE_SERVER_BASEURI') || constant('TESTS_ZEND_SOAP_AUTODISCOVER_ONLINE_SERVER_BASEURI') == false) {
             $this->markTestSkipped('The constant TESTS_ZEND_SOAP_AUTODISCOVER_ONLINE_SERVER_BASEURI has to be defined to allow the Online test to work.');

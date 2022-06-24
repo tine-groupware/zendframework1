@@ -36,7 +36,7 @@ require_once 'Zend/Gdata/App.php';
 class Zend_Gdata_App_ControlTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->controlText = file_get_contents(
                 'Zend/Gdata/App/_files/ControlElementSample1.xml',
                 true);

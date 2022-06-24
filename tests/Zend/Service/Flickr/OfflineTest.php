@@ -77,7 +77,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_flickr      = new Zend_Service_Flickr(constant('TESTS_ZEND_SERVICE_FLICKR_ONLINE_APIKEY'));
         $this->_flickrProxy = new Zend_Service_Flickr_OfflineTest_FlickrProtectedMethodProxy(
@@ -131,7 +131,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $resultSet->seek(-1);
             $this->fail('Expected OutOfBoundsException not thrown');
         } catch (OutOfBoundsException $e) {
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
 
         $resultSet->seek(9);
@@ -140,7 +140,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $resultSet->seek(10);
             $this->fail('Expected OutOfBoundsException not thrown');
         } catch (OutOfBoundsException $e) {
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
 
         $resultSet->rewind();
@@ -187,7 +187,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->userSearch('2e38a9d9425d7e2c9d0788455e9ccc61');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('User not found', $e->getMessage());
+            $this->assertStringContainsString('User not found', $e->getMessage());
         }
     }
 
@@ -208,7 +208,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->userSearch('2e38a9d9425d7e2c9d0788455e9ccc61@example.com');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('User not found', $e->getMessage());
+            $this->assertStringContainsString('User not found', $e->getMessage());
         }
     }
 
@@ -223,7 +223,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->getIdByUsername('0');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('supply a username', $e->getMessage());
+            $this->assertStringContainsString('supply a username', $e->getMessage());
         }
     }
 
@@ -238,7 +238,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->getIdByEmail('0');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('supply an e-mail address', $e->getMessage());
+            $this->assertStringContainsString('supply an e-mail address', $e->getMessage());
         }
     }
 
@@ -253,7 +253,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->getImageDetails('0');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('supply a photo ID', $e->getMessage());
+            $this->assertStringContainsString('supply a photo ID', $e->getMessage());
         }
     }
 
@@ -268,7 +268,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickrProxy->proxyValidateUserSearch(['per_page' => -1]);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('"per_page" option', $e->getMessage());
+            $this->assertStringContainsString('"per_page" option', $e->getMessage());
         }
     }
 
@@ -283,7 +283,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickrProxy->proxyValidateUserSearch(['per_page' => 10, 'page' => 1.23]);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('"page" option', $e->getMessage());
+            $this->assertStringContainsString('"page" option', $e->getMessage());
         }
     }
 
@@ -298,7 +298,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickrProxy->proxyValidateTagSearch(['per_page' => -1]);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('"per_page" option', $e->getMessage());
+            $this->assertStringContainsString('"per_page" option', $e->getMessage());
         }
     }
 
@@ -313,7 +313,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickrProxy->proxyValidateTagSearch(['per_page' => 10, 'page' => 1.23]);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('"page" option', $e->getMessage());
+            $this->assertStringContainsString('"page" option', $e->getMessage());
         }
     }
 
@@ -328,7 +328,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickrProxy->proxyCompareOptions(['unexpected' => null], []);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('parameters are invalid', $e->getMessage());
+            $this->assertStringContainsString('parameters are invalid', $e->getMessage());
         }
     }
 
@@ -343,7 +343,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->tagSearch('irrelevant', ['unexpected' => null]);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('parameters are invalid', $e->getMessage());
+            $this->assertStringContainsString('parameters are invalid', $e->getMessage());
         }
     }
 
@@ -379,7 +379,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $resultSet->seek(-1);
             $this->fail('Expected OutOfBoundsException not thrown');
         } catch (OutOfBoundsException $e) {
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
 
         $resultSet->seek(9);
@@ -388,7 +388,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $resultSet->seek(10);
             $this->fail('Expected OutOfBoundsException not thrown');
         } catch (OutOfBoundsException $e) {
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
 
         $resultSet->rewind();
@@ -429,7 +429,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
           $this->_flickr->groupPoolGetPhotos('irrelevant', ['unexpected' => null]);
           $this->fail('Expected Zend_Service_Exception not thrown');
       } catch (Zend_Service_Exception $e) {
-          $this->assertContains('parameters are invalid', $e->getMessage());
+          $this->assertStringContainsString('parameters are invalid', $e->getMessage());
       }
     }
 
@@ -444,7 +444,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
           $this->_flickrProxy->proxyValidateGroupPoolGetPhotos(['per_page' => -1]);
           $this->fail('Expected Zend_Service_Exception not thrown');
       } catch (Zend_Service_Exception $e) {
-          $this->assertContains('"per_page" option', $e->getMessage());
+          $this->assertStringContainsString('"per_page" option', $e->getMessage());
       }
     }
 
@@ -459,7 +459,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
           $this->_flickrProxy->proxyValidateGroupPoolGetPhotos(['per_page' => 10, 'page' => 1.23]);
           $this->fail('Expected Zend_Service_Exception not thrown');
       } catch (Zend_Service_Exception $e) {
-          $this->assertContains('"page" option', $e->getMessage());
+          $this->assertStringContainsString('"page" option', $e->getMessage());
       }
     }
 
@@ -480,7 +480,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->groupPoolGetPhotos('2e38a9d9425d7e2c9d0788455e9ccc61');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('Group not found', $e->getMessage());
+            $this->assertStringContainsString('Group not found', $e->getMessage());
         }
     }
 
@@ -495,7 +495,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->groupPoolGetPhotos('0');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('supply a group id', $e->getMessage());
+            $this->assertStringContainsString('supply a group id', $e->getMessage());
         }
     }
 
@@ -510,7 +510,7 @@ class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
             $this->_flickr->groupPoolGetPhotos([]);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('supply a group id', $e->getMessage());
+            $this->assertStringContainsString('supply a group id', $e->getMessage());
         }
     }
 

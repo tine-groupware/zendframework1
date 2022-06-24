@@ -63,7 +63,7 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_Button('foo');
     }
@@ -74,7 +74,7 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -146,8 +146,8 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $this->element->setLabel('Button Label')
                       ->setView($this->getView());
         $html = $this->element->render();
-        $this->assertContains('Button Label', $html, $html);
-        $this->assertNotContains('value="', $html);
+        $this->assertStringContainsString('Button Label', $html, $html);
+        $this->assertStringNotContainsString('value="', $html);
     }
 
     public function testSetDefaultIgnoredToTrueWhenNotDefined()

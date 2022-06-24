@@ -55,14 +55,14 @@ class Zend_Translate_Adapter_XliffTest extends \PHPUnit\Framework\TestCase
             $adapter = new Zend_Translate_Adapter_Xliff(dirname(__FILE__) . '/_files/nofile.xliff', 'en');
             $this->fail("exception expected");
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('is not readable', $e->getMessage());
+            $this->assertStringContainsString('is not readable', $e->getMessage());
         }
 
         try {
             $adapter = new Zend_Translate_Adapter_Xliff(dirname(__FILE__) . '/_files/failed.xliff', 'en');
             $this->fail("exception expected");
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('Mismatched tag at line', $e->getMessage());
+            $this->assertStringContainsString('Mismatched tag at line', $e->getMessage());
         }
     }
     
@@ -75,7 +75,7 @@ class Zend_Translate_Adapter_XliffTest extends \PHPUnit\Framework\TestCase
             $adapter = new Zend_Translate_Adapter_Xliff(dirname(__FILE__) . '/_files/nofile.xliff', 'en');
             $this->fail("exception expected");
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('nofile.xliff', $e->getMessage());
+            $this->assertStringContainsString('nofile.xliff', $e->getMessage());
         }
     }
 
@@ -118,7 +118,7 @@ class Zend_Translate_Adapter_XliffTest extends \PHPUnit\Framework\TestCase
             $adapter->addTranslation(dirname(__FILE__) . '/_files/translation_en.xliff', 'xx');
             $this->fail("exception expected");
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
 
         $adapter->addTranslation(dirname(__FILE__) . '/_files/translation_en2.xliff', 'de', ['clear' => true]);
@@ -176,7 +176,7 @@ class Zend_Translate_Adapter_XliffTest extends \PHPUnit\Framework\TestCase
             $adapter->setLocale('nolocale');
             $this->fail("exception expected");
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
 
         set_error_handler([$this, 'errorHandlerIgnore']);

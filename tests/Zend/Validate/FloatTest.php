@@ -47,7 +47,7 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_locale = setlocale(LC_ALL, 0); //backup locale
 
@@ -59,7 +59,7 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
         $this->_validator = new Zend_Validate_Float();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         //restore locale
         if (is_string($this->_locale) && strpos($this->_locale, ';')) {

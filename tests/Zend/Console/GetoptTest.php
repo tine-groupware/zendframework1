@@ -35,7 +35,7 @@ require_once 'Zend/Console/Getopt.php';
  */
 class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         if(ini_get('register_argc_argv') == false) {
             $this->markTestSkipped("Cannot Test Zend_Console_Getopt without 'register_argc_argv' ini option true.");
@@ -576,7 +576,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
             $opts = new Zend_Console_GetOpt('abp:');
             $this->fail();
         } catch(Zend_Console_GetOpt_Exception $e) {
-            $this->assertContains('$_SERVER["argv"]', $e->getMessage());
+            $this->assertStringContainsString('$_SERVER["argv"]', $e->getMessage());
         }
 
         $_SERVER['argv'] = $argv;

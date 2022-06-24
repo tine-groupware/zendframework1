@@ -74,7 +74,7 @@ class Zend_Db_Table_Pdo_OciTest extends Zend_Db_Table_TestCommon
 
         $qp = $this->_db->getProfiler()->getLastQueryProfile();
         $tableSpec = $this->_db->quoteIdentifier($identifier, true);
-        $this->assertContains("INSERT INTO $tableSpec ", $qp->getQuery());
+        $this->assertStringContainsString("INSERT INTO $tableSpec ", $qp->getQuery());
     }
 
     public function testTableInsertSequence()

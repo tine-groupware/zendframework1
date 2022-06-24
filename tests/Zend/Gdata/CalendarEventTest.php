@@ -41,7 +41,7 @@ class Zend_Gdata_CalendarEventTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp()
+    public function setUp(): void
     {
         $eventFeedText = file_get_contents(
                 'Zend/Gdata/Calendar/_files/TestDataEventFeedSample1.xml',

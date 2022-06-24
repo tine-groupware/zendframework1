@@ -45,7 +45,7 @@ class Zend_Mail_SmtpProtocolTest extends \PHPUnit\Framework\TestCase
      */
     protected $_protocol;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_protocol = new ProtocolMock();
     }

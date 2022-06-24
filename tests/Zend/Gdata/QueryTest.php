@@ -33,7 +33,7 @@ require_once 'Zend/Gdata/Query.php';
  */
 class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
     }
 
@@ -42,7 +42,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setAlt('rss');
         $this->assertEquals('rss', $query->alt);
-        $this->assertContains('alt=rss', $query->getQueryUrl());
+        $this->assertStringContainsString('alt=rss', $query->getQueryUrl());
     }
 
     public function testSetAndGetUpdatedMax()
@@ -50,7 +50,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setUpdatedMax('2007-01-01');
         $this->assertEquals('2007-01-01', $query->getUpdatedMax());
-        $this->assertContains('updated-max=2007-01-01', $query->getQueryUrl());
+        $this->assertStringContainsString('updated-max=2007-01-01', $query->getQueryUrl());
     }
 
     public function testSetAndGetUpdatedMin()
@@ -58,7 +58,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setUpdatedMin('2007-01-01');
         $this->assertEquals('2007-01-01', $query->getUpdatedMin());
-        $this->assertContains('updated-min=2007-01-01', $query->getQueryUrl());
+        $this->assertStringContainsString('updated-min=2007-01-01', $query->getQueryUrl());
     }
 
     public function testSetAndGetPublishedMax()
@@ -66,7 +66,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setPublishedMax('2007-01-01');
         $this->assertEquals('2007-01-01', $query->getPublishedMax());
-        $this->assertContains('published-max=2007-01-01',
+        $this->assertStringContainsString('published-max=2007-01-01',
             $query->getQueryUrl());
     }
 
@@ -75,7 +75,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setPublishedMin('2007-01-01');
         $this->assertEquals('2007-01-01', $query->getPublishedMin());
-        $this->assertContains('published-min=2007-01-01',
+        $this->assertStringContainsString('published-min=2007-01-01',
                 $query->getQueryUrl());
     }
 
@@ -84,7 +84,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setAuthor('My Name');
         $this->assertEquals('My Name', $query->getAuthor());
-        $this->assertContains('author=My+Name', $query->getQueryUrl());
+        $this->assertStringContainsString('author=My+Name', $query->getQueryUrl());
     }
 
     public function testSetAndGetMaxResults()
@@ -92,7 +92,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setMaxResults('300');
         $this->assertEquals('300', $query->getMaxResults());
-        $this->assertContains('max-results=300', $query->getQueryUrl());
+        $this->assertStringContainsString('max-results=300', $query->getQueryUrl());
     }
 
     public function testSetAndGetGenericParam()
@@ -100,7 +100,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setParam('fw', 'zend');
         $this->assertEquals('zend', $query->getParam('fw'));
-        $this->assertContains('fw=zend', $query->getQueryUrl());
+        $this->assertStringContainsString('fw=zend', $query->getQueryUrl());
     }
 
     public function testSetAndGetFullTextQuery()
@@ -108,7 +108,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setQuery('geek events');
         $this->assertEquals('geek events', $query->getQuery());
-        $this->assertContains('q=geek+events', $query->getQueryUrl());
+        $this->assertStringContainsString('q=geek+events', $query->getQueryUrl());
     }
 
     public function testSetAndGetStartIndex()
@@ -116,7 +116,7 @@ class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
         $query = new Zend_Gdata_Query();
         $query->setStartIndex(12);
         $this->assertEquals(12, $query->getStartIndex());
-        $this->assertContains('start-index=12', $query->getQueryUrl());
+        $this->assertStringContainsString('start-index=12', $query->getQueryUrl());
     }
 
 }

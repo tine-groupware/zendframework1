@@ -72,7 +72,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         if(!defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID') || !defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_SECRETKEY')) {
             $this->markTestSkipped('Constants AccessKeyId and SecretKey have to be set.');
@@ -122,7 +122,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
             $resultSet->seek(-1);
             $this->fail('Expected OutOfBoundsException not thrown');
         } catch (OutOfBoundsException $e) {
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
 
         $resultSet->seek(9);
@@ -131,7 +131,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
             $resultSet->seek(10);
             $this->fail('Expected OutOfBoundsException not thrown');
         } catch (OutOfBoundsException $e) {
-            $this->assertContains('Illegal index', $e->getMessage());
+            $this->assertStringContainsString('Illegal index', $e->getMessage());
         }
 
         foreach ($resultSet as $item) {
@@ -235,7 +235,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->_amazon->itemLookup('oops');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('not a valid value for ItemId', $e->getMessage());
+            $this->assertStringContainsString('not a valid value for ItemId', $e->getMessage());
         }
     }
 
@@ -268,7 +268,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->_amazon->itemLookup('oops', ['SearchIndex' => 'Books']);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('restricted parameter combination', $e->getMessage());
+            $this->assertStringContainsString('restricted parameter combination', $e->getMessage());
         }
     }
 
@@ -297,7 +297,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->_query->Keywords('php');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('set a category', $e->getMessage());
+            $this->assertStringContainsString('set a category', $e->getMessage());
         }
     }
 
@@ -312,7 +312,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->_query->category('oops')->search();
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('SearchIndex is invalid', $e->getMessage());
+            $this->assertStringContainsString('SearchIndex is invalid', $e->getMessage());
         }
     }
 
@@ -340,7 +340,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
  */
 class Zend_Service_Amazon_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped('Zend_Service_Amazon online tests not enabled with an access key ID in '
                              . 'TestConfiguration.php');

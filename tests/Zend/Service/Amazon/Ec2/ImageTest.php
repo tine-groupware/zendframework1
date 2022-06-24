@@ -48,7 +48,7 @@ class Zend_Service_Amazon_Ec2_ImageTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -62,7 +62,7 @@ class Zend_Service_Amazon_Ec2_ImageTest extends \PHPUnit\Framework\TestCase
         Zend_Service_Amazon_Ec2_Image::setHttpClient($client);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->Zend_Service_Amazon_Ec2_Image = null;
 

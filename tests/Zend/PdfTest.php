@@ -44,7 +44,7 @@ class Zend_PdfTest extends \PHPUnit\Framework\TestCase
      */
     private $_pdf;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_pdf = Zend_Pdf::load(dirname(__FILE__) . '/Pdf/_files/PdfWithFields.pdf');
     }

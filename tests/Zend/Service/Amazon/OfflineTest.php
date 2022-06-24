@@ -77,7 +77,7 @@ class Zend_Service_Amazon_OfflineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_amazon = new Zend_Service_Amazon(constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID'));
 
@@ -95,7 +95,7 @@ class Zend_Service_Amazon_OfflineTest extends \PHPUnit\Framework\TestCase
             $amazon = new Zend_Service_Amazon(constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID'), 'oops');
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {
-            $this->assertContains('Unknown country code', $e->getMessage());
+            $this->assertStringContainsString('Unknown country code', $e->getMessage());
         }
     }
 

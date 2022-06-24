@@ -60,7 +60,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_FormErrors();
     }
@@ -71,7 +71,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

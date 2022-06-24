@@ -51,7 +51,7 @@ class Zend_Form_Element_CaptchaTest extends \PHPUnit\Framework\TestCase
         \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_Captcha(
             'foo',
@@ -136,8 +136,8 @@ class Zend_Form_Element_CaptchaTest extends \PHPUnit\Framework\TestCase
         $form->addElement($this->element)
              ->setElementsBelongTo('bar');
         $html = $form->render(new Zend_View);
-        $this->assertContains('name="bar[foo', $html, $html);
-        $this->assertContains('id="bar-foo-', $html, $html);
+        $this->assertStringContainsString('name="bar[foo', $html, $html);
+        $this->assertStringContainsString('id="bar-foo-', $html, $html);
         $this->form = $form;
     }
 

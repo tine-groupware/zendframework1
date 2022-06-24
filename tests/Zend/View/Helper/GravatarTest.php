@@ -68,7 +68,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_object = new Zend_View_Helper_Gravatar();
         $this->_view   = new Zend_View();
@@ -83,7 +83,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->_object, $this->_view);
     }

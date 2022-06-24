@@ -59,7 +59,7 @@ class Zend_Amf_AuthTest extends \PHPUnit\Framework\TestCase
         \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_server = new Zend_Amf_Server();
         $this->_server->setProduction(false);
@@ -67,7 +67,7 @@ class Zend_Amf_AuthTest extends \PHPUnit\Framework\TestCase
         $this->_acl = new Zend_Acl();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->_server);
     }

@@ -39,7 +39,7 @@ class Zend_Gdata_Gapps_UserFeedTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp()
+    public function setUp(): void
     {
         $userFeedText = file_get_contents(
                 'Zend/Gdata/Gapps/_files/UserFeedDataSample1.xml',

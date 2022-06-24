@@ -50,7 +50,7 @@ class Zend_Memory_Container_AccessControllerTest extends \PHPUnit\Framework\Test
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $tmpDir = sys_get_temp_dir() . '/zend_memory';
         $this->_removeCacheDir($tmpDir);

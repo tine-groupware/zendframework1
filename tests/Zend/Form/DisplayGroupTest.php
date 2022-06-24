@@ -54,7 +54,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Form::setDefaultTranslator(null);
@@ -73,7 +73,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -101,7 +101,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             $this->group->setName('%\^&*)\(%$#@!.}{;-,');
             $this->fail('Empty names should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid name provided', $e->getMessage());
+            $this->assertStringContainsString('Invalid name provided', $e->getMessage());
         }
     }
 
@@ -149,7 +149,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             $this->group->addElements($elements);
             $this->fail('Invalid elements should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('must be Zend_Form_Elements only', $e->getMessage());
+            $this->assertStringContainsString('must be Zend_Form_Elements only', $e->getMessage());
         }
     }
 
@@ -238,7 +238,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             $this->group->addDecorator(123);
             $this->fail('Invalid decorator should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid decorator', $e->getMessage());
+            $this->assertStringContainsString('Invalid decorator', $e->getMessage());
         }
     }
 

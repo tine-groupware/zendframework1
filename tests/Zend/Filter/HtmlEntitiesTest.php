@@ -47,7 +47,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filter = new Zend_Filter_HtmlEntities();
     }
@@ -246,7 +246,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
         $result = $this->_filter->filter($string);
         restore_error_handler();
 
-        $this->assertContains('&quot;&quot;', $result);
+        $this->assertStringContainsString('&quot;&quot;', $result);
     }
 
     /**

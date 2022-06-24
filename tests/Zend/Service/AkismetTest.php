@@ -41,7 +41,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Service_AkismetTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->akismet = new Zend_Service_Akismet('somebogusapikey', 'http://framework.zend.com/wiki/');
         $adapter = new Zend_Http_Client_Adapter_Test();

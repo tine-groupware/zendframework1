@@ -72,7 +72,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         $this->view   = $this->getView();
@@ -88,7 +88,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -143,7 +143,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
             $this->helper->requireModule('foo#$!bar');
             $this->fail('Invalid module name should throw exception during registration');
         } catch (Zend_Dojo_View_Exception $e) {
-            $this->assertContains('invalid character', $e->getMessage());
+            $this->assertStringContainsString('invalid character', $e->getMessage());
         }
     }
 
@@ -306,8 +306,8 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->setDjConfigOption('parseOnLoad', true)
                      ->enable();
         $html = $this->helper->__toString();
-        $this->assertContains('var djConfig = ', $html, var_export($html, 1));
-        $this->assertContains('"parseOnLoad":', $html, $html);
+        $this->assertStringContainsString('var djConfig = ', $html, var_export($html, 1));
+        $this->assertStringContainsString('"parseOnLoad":', $html, $html);
     }
 
     public function testShouldAllowSpecifyingStylesheetByModuleName()
@@ -345,7 +345,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
             $this->helper->addStylesheetModule('foo/bar/baz');
             $this->fail('invalid module designation should throw exception');
         } catch (Zend_Dojo_View_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
     }
 
@@ -354,7 +354,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->enable()
                      ->addStylesheetModule('dijit.themes.tundra');
         $html = $this->helper->__toString();
-        $this->assertContains('dijit/themes/tundra/tundra.css', $html);
+        $this->assertStringContainsString('dijit/themes/tundra/tundra.css', $html);
     }
 
     public function testShouldAllowSpecifyingLocalStylesheet()
@@ -448,18 +448,18 @@ function() {
             $script = $doc->saveXML($results->item($i));
             switch ($i) {
                 case 0:
-                    $this->assertContains('var djConfig = ', $script);
-                    $this->assertContains('parseOnLoad', $script);
+                    $this->assertStringContainsString('var djConfig = ', $script);
+                    $this->assertStringContainsString('parseOnLoad', $script);
                     break;
                 case 1:
                     $this->assertRegexp('#src="http://.+/dojo/[0-9.]+/dojo/dojo.xd.js"#', $script);
-                    $this->assertContains('/>', $script);
+                    $this->assertStringContainsString('/>', $script);
                     break;
                 case 2:
-                    $this->assertContains('dojo.registerModulePath("custom", "../custom")', $script, $script);
-                    $this->assertContains('dojo.require("dijit.layout.ContentPane")', $script, $script);
-                    $this->assertContains('dojo.require("custom.foo")', $script, $script);
-                    $this->assertContains('dojo.addOnLoad(foo)', $script, $script);
+                    $this->assertStringContainsString('dojo.registerModulePath("custom", "../custom")', $script, $script);
+                    $this->assertStringContainsString('dojo.require("dijit.layout.ContentPane")', $script, $script);
+                    $this->assertStringContainsString('dojo.require("custom.foo")', $script, $script);
+                    $this->assertStringContainsString('dojo.addOnLoad(foo)', $script, $script);
                     break;
             }
         }
@@ -467,11 +467,11 @@ function() {
         $results = $xPath->query('//style');
         $this->assertEquals(1, $results->length, $html);
         $style = $doc->saveXML($results->item(0));
-        $this->assertContains('@import', $style);
+        $this->assertStringContainsString('@import', $style);
         $this->assertEquals(2, substr_count($style, '@import'));
         $this->assertEquals(1, substr_count($style, 'http://ajax.googleapis.com/ajax/libs/dojo/'), $style);
-        $this->assertContains('css/custom.css', $style);
-        $this->assertContains('dijit/themes/tundra/tundra.css', $style);
+        $this->assertStringContainsString('css/custom.css', $style);
+        $this->assertStringContainsString('dijit/themes/tundra/tundra.css', $style);
     }
 
     public function testStringSerializationShouldBeDoctypeAware()
@@ -658,7 +658,7 @@ function() {
         $this->testShouldAllowAddingMultipleDijitsAtOnce();
         $json = $this->helper->dijitsToJson();
         $html = $this->helper->__toString();
-        $this->assertContains($json, $html, $html);
+        $this->assertStringContainsString($json, $html, $html);
 
         $found = false;
         foreach ($this->helper->_getZendLoadActions() as $action) {
@@ -668,7 +668,7 @@ function() {
             }
         }
         $this->assertTrue($found, 'Dijit onload action not created');
-        $this->assertContains($action, $html);
+        $this->assertStringContainsString($action, $html);
     }
 
     public function testShouldAllowAddingArbitraryJsToPrimaryDojoScriptTag()

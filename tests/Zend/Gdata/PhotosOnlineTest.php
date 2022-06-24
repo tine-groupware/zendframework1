@@ -40,7 +40,7 @@ class Zend_Gdata_PhotosOnlineTest extends \PHPUnit\Framework\TestCase
 
     protected $photos = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');
         $pass = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_PASSWORD');

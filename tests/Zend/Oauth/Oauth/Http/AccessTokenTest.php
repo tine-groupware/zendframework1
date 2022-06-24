@@ -36,14 +36,14 @@ class Zend_Oauth_Http_AccessTokenTest extends \PHPUnit\Framework\TestCase
 
     protected $stubConsumer = null;
 
-    public function setup()
+    public function setup(): void
     {
         $this->stubConsumer = new Test_Consumer_39745;
         $this->stubHttpUtility = new Test_Http_Utility_39745;
         Zend_Oauth::setHttpClient(new Test_Client_39745);
     }
 
-    public function teardown()
+    public function teardown(): void
     {
         Zend_Oauth::clearHttpClient();
     }

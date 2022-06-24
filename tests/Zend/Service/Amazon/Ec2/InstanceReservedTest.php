@@ -49,7 +49,7 @@ class InstanceReservedTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->Zend_Service_Amazon_Ec2_Instance_Reserved = new Zend_Service_Amazon_Ec2_Instance_Reserved('access_key', 'secret_access_key');
@@ -66,7 +66,7 @@ class InstanceReservedTest extends \PHPUnit\Framework\TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->adapter);
         $this->Zend_Service_Amazon_Ec2_Instance_Reserved = null;

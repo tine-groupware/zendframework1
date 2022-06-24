@@ -46,14 +46,14 @@ class Zend_Log_Filter_ChainingTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->log = fopen('php://memory', 'w');
         $this->logger = new Zend_Log();
         $this->logger->addWriter(new Zend_Log_Writer_Stream($this->log));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         fclose($this->log);
     }
@@ -69,8 +69,8 @@ class Zend_Log_Filter_ChainingTest extends \PHPUnit\Framework\TestCase
         rewind($this->log);
         $logdata = stream_get_contents($this->log);
 
-        $this->assertNotContains($ignored, $logdata);
-        $this->assertContains($logged, $logdata);
+        $this->assertStringNotContainsString($ignored, $logdata);
+        $this->assertStringContainsString($logged, $logdata);
     }
 
     public function testFilterOnSpecificWriter()
@@ -86,13 +86,13 @@ class Zend_Log_Filter_ChainingTest extends \PHPUnit\Framework\TestCase
 
         rewind($this->log);
         $logdata = stream_get_contents($this->log);
-        $this->assertContains($warn, $logdata);
-        $this->assertContains($err, $logdata);
+        $this->assertStringContainsString($warn, $logdata);
+        $this->assertStringContainsString($err, $logdata);
 
         rewind($log2);
         $logdata = stream_get_contents($log2);
-        $this->assertContains($err, $logdata);
-        $this->assertNotContains($warn, $logdata);
+        $this->assertStringContainsString($err, $logdata);
+        $this->assertStringNotContainsString($warn, $logdata);
     }
 }
 

@@ -44,12 +44,12 @@ class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends \PHPUnit\Framewor
      */
     protected $_registry = null;
 
-    public function setUp()
+    public function setUp(): void
     {
 
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_Tool_Framework_Registry::resetInstance();
     }

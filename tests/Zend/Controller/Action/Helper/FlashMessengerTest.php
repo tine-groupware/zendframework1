@@ -83,7 +83,7 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $savePath = ini_get('session.save_path');
         if (strpos($savePath, ';')) {

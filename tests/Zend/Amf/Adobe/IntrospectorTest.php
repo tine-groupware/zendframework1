@@ -46,7 +46,7 @@ class Zend_Amf_Adobe_IntrospectorTest extends \PHPUnit\Framework\TestCase
         \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->introspector = new Zend_Amf_Adobe_Introspector();
     }

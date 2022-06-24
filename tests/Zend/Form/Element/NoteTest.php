@@ -58,7 +58,7 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_Note('foo');
     }
@@ -69,7 +69,7 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

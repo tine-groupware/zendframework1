@@ -61,7 +61,7 @@ class Zend_View_Helper_FormLabelTest extends \PHPUnit\Framework\TestCase
      *
      * @access protected
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormLabel();
@@ -74,7 +74,7 @@ class Zend_View_Helper_FormLabelTest extends \PHPUnit\Framework\TestCase
      *
      * @access protected
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

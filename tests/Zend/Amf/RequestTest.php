@@ -62,7 +62,7 @@ class Zend_Amf_RequestTest extends \PHPUnit\Framework\TestCase
     /**
      * Setup environment
      */
-    public function setUp()
+    public function setUp(): void
     {
         date_default_timezone_set("America/Chicago");
         Zend_Locale::setDefault('en');
@@ -73,7 +73,7 @@ class Zend_Amf_RequestTest extends \PHPUnit\Framework\TestCase
     /**
      * Teardown environment
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_request);
     }

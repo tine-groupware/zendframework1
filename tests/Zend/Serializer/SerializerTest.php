@@ -35,12 +35,12 @@ require_once 'Zend/Serializer.php';
 class Zend_Serializer_SerializerTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Serializer::resetAdapterLoader();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

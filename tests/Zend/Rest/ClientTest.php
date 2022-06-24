@@ -39,7 +39,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->path = dirname(__FILE__) . '/responses/';
 
@@ -145,7 +145,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
         $response = $rest->restGet('rest');
         $this->assertTrue($response instanceof Zend_Http_Response);
-        $this->assertContains($expXml, $response->getBody());
+        $this->assertStringContainsString($expXml, $response->getBody());
     }
 
     public function testRestGet()
@@ -188,7 +188,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertContains($expXml, $response->getBody());
 
         $request = Zend_Rest_Client::getHttpClient()->getLastRequest();
-        $this->assertContains($reqXml, $request, $request);
+        $this->assertStringContainsString($reqXml, $request, $request);
     }
 
     public function testRestPostWithArrayData()
@@ -211,7 +211,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertContains($expXml, $response->getBody());
 
         $request = Zend_Rest_Client::getHttpClient()->getLastRequest();
-        $this->assertContains('foo=bar&baz=bat', $request, $request);
+        $this->assertStringContainsString('foo=bar&baz=bat', $request, $request);
     }
 
     public function testRestPut()
@@ -235,7 +235,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertContains($expXml, $response->getBody());
 
         $request = Zend_Rest_Client::getHttpClient()->getLastRequest();
-        $this->assertContains($reqXml, $request, $request);
+        $this->assertStringContainsString($reqXml, $request, $request);
     }
 
     public function testRestDelete()
@@ -259,7 +259,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertContains($expXml, $response->getBody());
         
         $request = Zend_Rest_Client::getHttpClient()->getLastRequest();
-        $this->assertContains($reqXml, $request, $request);
+        $this->assertStringContainsString($reqXml, $request, $request);
     }
 
     public function testCallWithHttpMethod()

@@ -116,7 +116,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
             $route->assemble();
             $this->fail('An expected Zend_Controller_Router_Exception has not been raised');
         } catch (Zend_Controller_Router_Exception $expected) {
-            $this->assertContains('subdomain is not specified', $expected->getMessage());
+            $this->assertStringContainsString('subdomain is not specified', $expected->getMessage());
         }
     }
 

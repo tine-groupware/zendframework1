@@ -73,7 +73,7 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends \PHPUnit\Framework\Tes
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
@@ -92,7 +92,7 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends \PHPUnit\Framework\Tes
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

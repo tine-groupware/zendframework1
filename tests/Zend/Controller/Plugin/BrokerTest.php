@@ -66,7 +66,7 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->controller = Zend_Controller_Front::getInstance();
         $this->controller->resetInstance();
@@ -83,7 +83,7 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
             $broker->registerPlugin($plugin);
             $this->fail('Duplicate registry of plugin object should be disallowed');
         } catch (Exception $expected) {
-            $this->assertContains('already', $expected->getMessage());
+            $this->assertStringContainsString('already', $expected->getMessage());
         }
     }
 

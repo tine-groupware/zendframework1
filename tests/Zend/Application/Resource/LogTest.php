@@ -45,7 +45,7 @@ class Zend_Application_Resource_LogTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -63,7 +63,7 @@ class Zend_Application_Resource_LogTest extends \PHPUnit\Framework\TestCase
         Zend_Controller_Front::getInstance()->resetInstance();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();
@@ -120,7 +120,7 @@ class Zend_Application_Resource_LogTest extends \PHPUnit\Framework\TestCase
 
         $log->log($message = 'logged-message', Zend_Log::INFO);
         rewind($stream);
-        $this->assertContains($message, stream_get_contents($stream));
+        $this->assertStringContainsString($message, stream_get_contents($stream));
     }
 
     /**

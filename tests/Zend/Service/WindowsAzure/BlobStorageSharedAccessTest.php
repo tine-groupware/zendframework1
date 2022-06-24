@@ -64,14 +64,14 @@ class Zend_Service_WindowsAzure_BlobStorageSharedAccessTest extends \PHPUnit\Fra
     /**
      * Test setup
      */
-    protected function setUp()
+    protected function setUp(): void
     {
     }
     
     /**
      * Test teardown
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $storageClient = $this->createAdministrativeStorageInstance();
         for ($i = 1; $i <= self::$uniqId; $i++)

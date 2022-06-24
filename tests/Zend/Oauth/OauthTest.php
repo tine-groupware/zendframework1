@@ -35,7 +35,7 @@ class Test_Http_Client_19485876 extends Zend_Http_Client {}
 class Zend_OauthTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function teardown()
+    public function teardown(): void
     {
         Zend_Oauth::clearHttpClient();
     }
@@ -180,8 +180,8 @@ class Zend_OauthTest extends \PHPUnit\Framework\TestCase
         $client->setUri('http://oauth.example.com');
         $client->prepareOauth();
 
-        $this->assertNotContains('realm=""',$client->getHeader('Authorization'));
-        $this->assertContains('realm="someRealm"',$client->getHeader('Authorization'));
+        $this->assertStringNotContainsString('realm=""',$client->getHeader('Authorization'));
+        $this->assertStringContainsString('realm="someRealm"',$client->getHeader('Authorization'));
     }
     
     /**
@@ -217,9 +217,9 @@ class Zend_OauthTest extends \PHPUnit\Framework\TestCase
         
         // Ensure that parameter 'test' is unchanged, as URI parameters
         // should take precedence over ones set with setParameterGet
-        $this->assertContains('test=FooBar', $queryString);
+        $this->assertStringContainsString('test=FooBar', $queryString);
         
         // Ensure that new parameter was added
-        $this->assertContains('second=TestTest', $queryString);
+        $this->assertStringContainsString('second=TestTest', $queryString);
     }
 }

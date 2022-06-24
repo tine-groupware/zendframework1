@@ -50,7 +50,7 @@ class Zend_Filter_Compress_LzfTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!extension_loaded('lzf')) {
             $this->markTestSkipped('This adapter needs the lzf extension');

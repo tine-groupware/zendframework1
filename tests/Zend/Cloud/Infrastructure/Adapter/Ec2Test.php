@@ -55,7 +55,7 @@ class Zend_Cloud_Infrastructure_Adapter_Ec2Test extends \PHPUnit\Framework\TestC
     /**
      * Setup for each test
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->infrastructure = Zend_Cloud_Infrastructure_Factory::getAdapter([ 
             Zend_Cloud_Infrastructure_Factory::INFRASTRUCTURE_ADAPTER_KEY => 'Zend_Cloud_Infrastructure_Adapter_Ec2', 

@@ -39,7 +39,7 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends \PHPUnit\Framework\TestCa
     protected $_validWriter = null;
     protected $_validEntry = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validWriter = new Zend_Feed_Writer_Feed;
 
@@ -62,7 +62,7 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends \PHPUnit\Framework\TestCa
         $this->_validWriter->addEntry($this->_validEntry);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->_validWriter = null;
         $this->_validEntry = null;

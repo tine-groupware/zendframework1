@@ -58,7 +58,7 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_Callback();
     }
@@ -69,7 +69,7 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -97,7 +97,7 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             $this->decorator->setCallback(true);
             $this->fail('Only string or array callbacks should be allowed');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
 
         try {
@@ -105,21 +105,21 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             $this->decorator->setCallback($o);
             $this->fail('Only string or array callbacks should be allowed');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
 
         try {
             $this->decorator->setCallback(['foo', 'bar', 'baz']);
             $this->fail('Only arrays of two elements should be allowed as callbacks');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
 
         try {
             $this->decorator->setCallback(['foo']);
             $this->fail('Only arrays of two elements should be allowed as callbacks');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
     }
 

@@ -54,14 +54,14 @@ class Zend_Amf_ResourceTest extends \PHPUnit\Framework\TestCase
         \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_server = new Zend_Amf_Server();
         $this->_server->setProduction(false);
         Zend_Amf_Parse_TypeLoader::resetMap();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->_server);
     }
@@ -95,7 +95,7 @@ class Zend_Amf_ResourceTest extends \PHPUnit\Framework\TestCase
         try {
             $this->_callService("returnCtx");
         } catch(Zend_Amf_Server_Exception $e) {
-            $this->assertContains("serialize resource type", $e->getMessage());
+            $this->assertStringContainsString("serialize resource type", $e->getMessage());
             return;
         }
         $this->fail("Failed to throw exception on unknown resource");
@@ -135,7 +135,7 @@ class Zend_Amf_ResourceTest extends \PHPUnit\Framework\TestCase
         try {
             $resp = $this->_callService("returnCtx");
         } catch(Zend_Amf_Server_Exception $e) {
-            $this->assertContains("Could not call parse()", $e->getMessage());
+            $this->assertStringContainsString("Could not call parse()", $e->getMessage());
             return;
         }
         $this->fail("Failed to throw exception on unknown resource");

@@ -62,7 +62,7 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_front = Zend_Controller_Front::getInstance();
         $this->_front->resetInstance();

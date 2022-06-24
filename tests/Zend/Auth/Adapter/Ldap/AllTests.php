@@ -73,7 +73,7 @@ class Zend_Auth_Adapter_Ldap_AllTests
  */
 class Zend_Auth_Adapter_Ldap_SkipOnlineTests extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped('Zend_Auth_Adapter_Ldap online tests not enabled in TestConfiguration.php');
     }

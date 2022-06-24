@@ -81,14 +81,14 @@ class Zend_Wildfire_WildfireTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         date_default_timezone_set('America/Los_Angeles');
         Zend_Wildfire_Channel_HttpHeaders::destroyInstance();
         Zend_Wildfire_Plugin_FirePhp::destroyInstance();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_Controller_Front::getInstance()->resetInstance();
         Zend_Wildfire_Channel_HttpHeaders::destroyInstance();

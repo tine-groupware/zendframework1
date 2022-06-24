@@ -66,7 +66,7 @@ class Zend_Server_DefinitionTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->definition = new Zend_Server_Definition();
     }
@@ -77,7 +77,7 @@ class Zend_Server_DefinitionTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

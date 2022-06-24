@@ -170,7 +170,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         try {
             $validator->setMagicFile('/unknown/magic/file');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('can not be', $e->getMessage());
+            $this->assertStringContainsString('can not be', $e->getMessage());
         }
     }
 

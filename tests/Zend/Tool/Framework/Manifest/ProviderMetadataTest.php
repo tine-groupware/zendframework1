@@ -44,12 +44,12 @@ class Zend_Tool_Framework_Manifest_ProviderMetadataTest extends \PHPUnit\Framewo
      */
     protected $_metadata = null;
 
-    public function setup()
+    public function setup(): void
     {
         $this->_metadata = new Zend_Tool_Framework_Manifest_ProviderMetadata();
     }
 
-    public function teardown()
+    public function teardown(): void
     {
         $this->_metadata = null;
     }

@@ -42,7 +42,7 @@ class Zend_Cache_CoreTest extends \PHPUnit\Framework\TestCase
 {
     private $_instance;
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!$this->_instance) {
             $this->_instance = new Zend_Cache_Core([]);
@@ -51,7 +51,7 @@ class Zend_Cache_CoreTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_instance);
     }

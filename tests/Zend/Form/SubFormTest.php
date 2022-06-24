@@ -46,14 +46,14 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Form::setDefaultTranslator(null);
 
         $this->form = new Zend_Form_SubForm();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
@@ -107,8 +107,8 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
         $form->addSubForm($this->form, 'attributes');
         $html = $form->render(new Zend_View());
 
-        $this->assertContains('name="attributes[foo]"', $html);
-        $this->assertContains('name="attributes[bar]"', $html);
+        $this->assertStringContainsString('name="attributes[foo]"', $html);
+        $this->assertStringContainsString('name="attributes[bar]"', $html);
     }
 
     /**
@@ -126,7 +126,7 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
         $form->addSubForm($subForm, 'foobar')
              ->setView(new Zend_View);
         $html = $form->render();
-        $this->assertContains('>&#160;</dt>', $html  );
+        $this->assertStringContainsString('>&#160;</dt>', $html  );
     }
 
     /**

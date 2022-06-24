@@ -56,7 +56,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_Checkbox('foo');
     }
@@ -67,7 +67,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

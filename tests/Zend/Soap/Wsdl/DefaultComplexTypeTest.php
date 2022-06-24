@@ -44,7 +44,7 @@ class Zend_Soap_Wsdl_DefaultComplexTypeTest extends \PHPUnit\Framework\TestCase
      */
     private $strategy;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->strategy = new Zend_Soap_Wsdl_Strategy_DefaultComplexType();
         $this->wsdl = new Zend_Soap_Wsdl("TestService", "http://framework.zend.com/soap/unittests");
@@ -60,8 +60,8 @@ class Zend_Soap_Wsdl_DefaultComplexTypeTest extends \PHPUnit\Framework\TestCase
         $this->strategy->addComplexType("Zend_Soap_Wsdl_DefaultComplexTypeTest_PublicPrivateProtected");
 
         $xml = $this->wsdl->toXML();
-        $this->assertNotContains( Zend_Soap_Wsdl_DefaultComplexTypeTest_PublicPrivateProtected::PROTECTED_VAR_NAME, $xml);
-        $this->assertNotContains( Zend_Soap_Wsdl_DefaultComplexTypeTest_PublicPrivateProtected::PRIVATE_VAR_NAME, $xml);
+        $this->assertStringNotContainsString( Zend_Soap_Wsdl_DefaultComplexTypeTest_PublicPrivateProtected::PROTECTED_VAR_NAME, $xml);
+        $this->assertStringNotContainsString( Zend_Soap_Wsdl_DefaultComplexTypeTest_PublicPrivateProtected::PRIVATE_VAR_NAME, $xml);
     }
 }
 

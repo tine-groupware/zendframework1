@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/TestUtility/MockHttpClient.php';
  */
 class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->fileName = 'Zend/Gdata/App/_files/FeedSample1.xml';
         $this->expectedEtag = 'W/"CkcHQH8_fCp7ImA9WxRTGEw."';
@@ -619,7 +619,7 @@ class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
             // but the extension was not found in any directory
             // (Expected since we didn't load the Calendar extension dir)
             restore_error_handler();
-            $this->assertContains('EventQuery', $ex->getMessage());
+            $this->assertStringContainsString('EventQuery', $ex->getMessage());
         } catch ( ErrorException $ex ) {
             restore_error_handler();
             $this->fail('Did not expect ErrorException');
@@ -639,7 +639,7 @@ class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
             false
         );
 
-        $this->assertContains('<id>12345678901234567890</id>', $feed);
+        $this->assertStringContainsString('<id>12345678901234567890</id>', $feed);
     }
 
     public function testImportStringException()
@@ -648,7 +648,7 @@ class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
             Zend_Gdata_App::importString('foo');
         } catch (Exception $e) {
             self::assertInstanceOf('Zend_Gdata_App_Exception', $e);
-            self::assertContains('DOMDocument', $e->getMessage());
+            self::assertStringContainsString('DOMDocument', $e->getMessage());
 
             return;
         }
@@ -662,7 +662,7 @@ class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
             Zend_Gdata_App::importFile('foo');
         } catch (Exception $e) {
             self::assertInstanceOf('Zend_Gdata_App_Exception', $e);
-            self::assertContains('could not be loaded', $e->getMessage());
+            self::assertStringContainsString('could not be loaded', $e->getMessage());
 
             return;
         }

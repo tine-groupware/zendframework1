@@ -77,7 +77,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->error = false;
         foreach ([Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, 'Zend_View_Helper_Doctype'] as $key) {
@@ -99,7 +99,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper);
     }
@@ -297,13 +297,13 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $metas = substr_count($string, 'http-equiv="');
         $this->assertEquals(1, $metas);
 
-        $this->assertContains('http-equiv="screen" content="projection"', $string);
-        $this->assertContains('name="keywords" content="foo bar"', $string);
-        $this->assertContains('lang="us_en"', $string);
-        $this->assertContains('scheme="foo"', $string);
-        $this->assertNotContains('bogus', $string);
-        $this->assertNotContains('unused', $string);
-        $this->assertContains('name="title" content="boo bah"', $string);
+        $this->assertStringContainsString('http-equiv="screen" content="projection"', $string);
+        $this->assertStringContainsString('name="keywords" content="foo bar"', $string);
+        $this->assertStringContainsString('lang="us_en"', $string);
+        $this->assertStringContainsString('scheme="foo"', $string);
+        $this->assertStringNotContainsString('bogus', $string);
+        $this->assertStringNotContainsString('unused', $string);
+        $this->assertStringContainsString('name="title" content="boo bah"', $string);
     }
 
     /**
@@ -357,9 +357,9 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->view->doctype('HTML4_STRICT');
         $this->helper->headMeta('some content', 'foo');
         $test = $this->helper->toString();
-        $this->assertNotContains('/>', $test);
-        $this->assertContains('some content', $test);
-        $this->assertContains('foo', $test);
+        $this->assertStringNotContainsString('/>', $test);
+        $this->assertStringContainsString('some content', $test);
+        $this->assertStringContainsString('foo', $test);
     }
 
     /**
@@ -383,7 +383,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
             $this->helper->headMeta('foo', 'og:title', 'property');
             $this->fail('meta property attribute should not be supported on default doctype');
         } catch (Zend_View_Exception $e) {
-            $this->assertContains('Invalid value passed', $e->getMessage());
+            $this->assertStringContainsString('Invalid value passed', $e->getMessage());
         }
     }
 
@@ -550,8 +550,8 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     public function testConditionalNoIE()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', ['conditional' => '!IE'])->toString();
-        $this->assertContains('<!--[if !IE]><!--><', $html);
-        $this->assertContains('<!--<![endif]-->', $html);
+        $this->assertStringContainsString('<!--[if !IE]><!--><', $html);
+        $this->assertStringContainsString('<!--<![endif]-->', $html);
     }
 
     /**
@@ -560,8 +560,8 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     public function testConditionalNoIEWidthSpace()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', ['conditional' => '! IE'])->toString();
-        $this->assertContains('<!--[if ! IE]><!--><', $html);
-        $this->assertContains('<!--<![endif]-->', $html);
+        $this->assertStringContainsString('<!--[if ! IE]><!--><', $html);
+        $this->assertStringContainsString('<!--<![endif]-->', $html);
     }
 }
 

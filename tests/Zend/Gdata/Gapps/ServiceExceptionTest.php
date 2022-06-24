@@ -38,7 +38,7 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends \PHPUnit\Framework\TestCase
     protected $fixture;
     protected $data;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->xmlSample = file_get_contents(
                 'Zend/Gdata/Gapps/_files/AppsForYourDomainElementSample1.xml',
                 true);
@@ -116,7 +116,7 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends \PHPUnit\Framework\TestCase
             $this->fixture->importFromString('foo');
         } catch (Zend_Gdata_App_Exception $e) {
             self::assertInstanceOf('Zend_Gdata_App_Exception', $e);
-            self::assertContains('cannot parse', $e->getMessage());
+            self::assertStringContainsString('cannot parse', $e->getMessage());
 
             return;
         }

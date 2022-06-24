@@ -59,7 +59,7 @@ class Zend_Json_Server_CacheTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->server = new Zend_Json_Server();
         $this->server->setClass('Zend_Json_Server_CacheTest_Foo', 'foo');
@@ -81,7 +81,7 @@ class Zend_Json_Server_CacheTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         if (file_exists($this->cacheFile)) {
             unlink($this->cacheFile);

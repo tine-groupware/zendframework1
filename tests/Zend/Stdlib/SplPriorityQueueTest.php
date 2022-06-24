@@ -42,7 +42,7 @@ class Zend_Stdlib_SplPriorityQueueTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->queue = new Zend_Stdlib_SplPriorityQueue();
         $this->queue->insert('foo', 3);

@@ -62,7 +62,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_amazon = new Zend_Service_Amazon_S3(constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID'),
                                                     constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_SECRETKEY')
@@ -279,8 +279,8 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->_amazon->putFile($filedir."nosuchfile", $this->_bucket."/zftestfile");
             $this->fail("Expected exception not thrown");
         } catch(Zend_Service_Amazon_S3_Exception $e) {
-            $this->assertContains("Cannot read", $e->getMessage());
-            $this->assertContains("nosuchfile", $e->getMessage());
+            $this->assertStringContainsString("Cannot read", $e->getMessage());
+            $this->assertStringContainsString("nosuchfile", $e->getMessage());
         }
         $this->assertFalse($this->_amazon->isObjectAvailable($this->_bucket."/zftestfile"));
     }
@@ -342,31 +342,31 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->_amazon->createBucket("This is a Very Bad Name");
             $this->fail("Expected exception not thrown");
         } catch(Zend_Service_Amazon_S3_Exception $e) {
-            $this->assertContains("contains invalid characters", $e->getMessage());
+            $this->assertStringContainsString("contains invalid characters", $e->getMessage());
         }
         try {
             $this->_amazon->isBucketAvailable("This is a Very Bad Name");
             $this->fail("Expected exception not thrown");
         } catch(Zend_Uri_Exception $e) {
-            $this->assertContains("not a valid HTTP host", $e->getMessage());
+            $this->assertStringContainsString("not a valid HTTP host", $e->getMessage());
         }
         try {
             $this->_amazon->putObject("This is a Very Bad Name/And It Gets Worse", "testdata");
             $this->fail("Expected exception not thrown");
         } catch(Zend_Service_Amazon_S3_Exception $e) {
-            $this->assertContains("contains invalid characters", $e->getMessage());
+            $this->assertStringContainsString("contains invalid characters", $e->getMessage());
         }
         try {
             $this->_amazon->getObject("This is a Very Bad Name/And It Gets Worse");
             $this->fail("Expected exception not thrown");
         } catch(Zend_Service_Amazon_S3_Exception $e) {
-            $this->assertContains("contains invalid characters", $e->getMessage());
+            $this->assertStringContainsString("contains invalid characters", $e->getMessage());
         }
         try {
             $this->_amazon->getInfo("This is a Very Bad Name/And It Gets Worse");
             $this->fail("Expected exception not thrown");
         } catch(Zend_Service_Amazon_S3_Exception $e) {
-            $this->assertContains("contains invalid characters", $e->getMessage());
+            $this->assertStringContainsString("contains invalid characters", $e->getMessage());
         }
     }
 
@@ -461,7 +461,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
             $this->_amazon->createBucket("127.0.0.1");
             $this->fail("Failed to throw expected exception");
         } catch(Zend_Service_Amazon_S3_Exception $e) {
-            $this->assertContains("cannot be an IP address", $e->getMessage());
+            $this->assertStringContainsString("cannot be an IP address", $e->getMessage());
         }
         $this->_amazon->createBucket("123-456-789-123");
         $this->assertTrue($this->_amazon->isBucketAvailable("123-456-789-123"));
@@ -511,7 +511,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($response['objects'][0],'test-folder/test1');
         $this->assertEquals($response['prefixes'][0],'test-folder/test2-folder/');
     }
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_amazon->debug);
         $this->_amazon->cleanBucket($this->_bucket);
@@ -533,7 +533,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
  */
 class Zend_Service_Amazon_S3_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->markTestSkipped('Zend_Service_Amazon_S3 online tests not enabled with an access key ID in '
                              . 'TestConfiguration.php');

@@ -58,7 +58,7 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends \PHPUnit\Framework\Tes
      */
     protected $_repository = null;
 
-    public function setup()
+    public function setup(): void
     {
         $this->_repository = new Zend_Tool_Framework_Manifest_Repository();
 
@@ -69,7 +69,7 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends \PHPUnit\Framework\Tes
         $this->_registry->setManifestRepository($this->_repository);
     }
 
-    public function teardown()
+    public function teardown(): void
     {
         $this->_registry->reset();
         $this->_repository = null;

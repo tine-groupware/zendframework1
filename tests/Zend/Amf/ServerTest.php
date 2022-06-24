@@ -55,14 +55,14 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_server = new Zend_Amf_Server();
         $this->_server->setProduction(false);
         Zend_Amf_Parse_TypeLoader::resetMap();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_server);
         //Zend_Amf_Parse_TypeLoader::resetMap();
@@ -711,7 +711,7 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($request instanceof Zend_Amf_Request_Http);
         $bodies  = $request->getAmfBodies();
         $this->assertEquals(0, count($bodies));
-        $this->assertContains('Endpoint', $content);
+        $this->assertStringContainsString('Endpoint', $content);
     }
 
     public function testSetRequestShouldAllowValidStringClassNames()

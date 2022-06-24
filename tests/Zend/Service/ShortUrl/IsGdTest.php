@@ -40,7 +40,7 @@ class Zend_Service_ShortUrl_IsGdTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp ()
+    public function setUp (): void
     {
         if (!defined('TESTS_ZEND_SERVICE_SHORTURL_ISGD_ENABLED')
             || !constant('TESTS_ZEND_SERVICE_SHORTURL_ISGD_ENABLED')

@@ -71,7 +71,7 @@ class Zend_Application_Resource_TranslateTest extends \PHPUnit\Framework\TestCas
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -91,7 +91,7 @@ class Zend_Application_Resource_TranslateTest extends \PHPUnit\Framework\TestCas
         Zend_Registry::_unsetInstance();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();

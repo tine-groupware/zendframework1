@@ -40,7 +40,7 @@ class Zend_Http_UserAgent_Features_Adapter_BrowscapTest extends \PHPUnit\Framewo
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $browscap = ini_get('browscap');
         if (empty($browscap) || !file_exists($browscap)) {

@@ -40,7 +40,7 @@ class Zend_Server_Reflection_MethodTest extends \PHPUnit\Framework\TestCase
     protected $_class;
     protected $_method;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->_classRaw = new ReflectionClass('Zend_Server_Reflection');
         $this->_method   = $this->_classRaw->getMethod('reflectClass');

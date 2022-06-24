@@ -44,7 +44,7 @@ class Zend_Mail_MaildirTest extends \PHPUnit\Framework\TestCase
     protected $_maildir;
     protected $_tmpdir;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_originalMaildir = dirname(__FILE__) . '/_files/test.maildir/';
         if (!is_dir($this->_originalMaildir . '/cur/')) {
@@ -94,7 +94,7 @@ class Zend_Mail_MaildirTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         foreach (['cur', 'new'] as $dir) {
             $dh = opendir($this->_tmpdir . $dir);

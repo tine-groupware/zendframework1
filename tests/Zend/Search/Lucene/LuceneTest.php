@@ -61,7 +61,7 @@ class Zend_Search_Lucene_LuceneTest extends \PHPUnit\Framework\TestCase
         closedir($dir);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_clearDirectory(dirname(__FILE__) . '/_index/_files');
     }

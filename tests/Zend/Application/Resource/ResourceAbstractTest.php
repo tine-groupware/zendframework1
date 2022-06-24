@@ -45,7 +45,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -64,7 +64,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
         $this->bootstrap = new ZfAppBootstrap($this->application);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();

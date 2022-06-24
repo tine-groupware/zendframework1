@@ -38,7 +38,7 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
     /**
      * teardown / cleanup
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         // if the setlocale option is enabled, then don't change the setlocale below
         if (defined('TESTS_ZEND_LOCALE_FORMAT_SETLOCALE') && TESTS_ZEND_LOCALE_FORMAT_SETLOCALE === false) {

@@ -56,7 +56,7 @@ class Zend_Paginator_ScrollingStyle_ElasticTest extends \PHPUnit\Framework\TestC
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_scrollingStyle = new Zend_Paginator_ScrollingStyle_Elastic();
@@ -67,7 +67,7 @@ class Zend_Paginator_ScrollingStyle_ElasticTest extends \PHPUnit\Framework\TestC
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->_scrollingStyle = null;
         $this->_paginator = null;

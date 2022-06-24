@@ -59,7 +59,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->form = new Zend_Form();
         $this->form->setDecorators(['PrepareElements']);
@@ -72,7 +72,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

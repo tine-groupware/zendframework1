@@ -38,7 +38,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 {
     public $resource;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->resource = new Zend_Application_Resource_Session();
     }
