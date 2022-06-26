@@ -196,7 +196,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
     {
         $html = $this->getElement();
         // Note that ' is converted to &#39; in Zend_View_Helper_HtmlElement::_htmlAttribs() (line 116)
-        $this->assertContains('onChange="dojo.byId(&#39;elementId&#39;).value = arguments[0];"', $html, $html);
+        $this->assertStringContainsString('onChange="dojo.byId(&#39;elementId&#39;).value = arguments[0];"', $html, $html);
     }
 
     public function testShouldCreateHiddenElementWithValue()
@@ -205,8 +205,8 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
         if (!preg_match('/(<input[^>]*(type="hidden")[^>]*>)/', $html, $m)) {
             $this->fail('No hidden element found');
         }
-        $this->assertContains('id="elementId"', $m[1]);
-        $this->assertContains('value="', $m[1]);
+        $this->assertStringContainsString('id="elementId"', $m[1]);
+        $this->assertStringContainsString('value="', $m[1]);
     }
 
     public function testShouldCreateTopAndBottomDecorationsWhenRequested()
@@ -214,15 +214,15 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
         $html = $this->getElement();
         $this->assertMatchesRegularExpression('/<div[^>]*(dojoType="dijit.form.HorizontalRule")/', $html, $html);
         $this->assertMatchesRegularExpression('/<ol[^>]*(dojoType="dijit.form.HorizontalRuleLabels")/', $html, $html);
-        $this->assertContains('topDecoration', $html);
-        $this->assertContains('bottomDecoration', $html);
+        $this->assertStringContainsString('topDecoration', $html);
+        $this->assertStringContainsString('bottomDecoration', $html);
     }
 
     public function testShouldIgnoreLeftAndRightDecorationsWhenPassed()
     {
         $html = $this->getElement();
-        $this->assertNotContains('leftDecoration', $html);
-        $this->assertNotContains('rightDecoration', $html);
+        $this->assertStringNotContainsString('leftDecoration', $html);
+        $this->assertStringNotContainsString('rightDecoration', $html);
     }
 
     public function testSliderShouldRaiseExceptionIfMissingRequiredParameters()
@@ -259,8 +259,8 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
                 ],
             ]
         );
-        $this->assertContains('required="', $html);
-        $this->assertContains('minimum="', $html);
+        $this->assertStringContainsString('required="', $html);
+        $this->assertStringContainsString('minimum="', $html);
     }
 
     /**

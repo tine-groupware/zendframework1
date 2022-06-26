@@ -184,7 +184,7 @@ class Zend_Dojo_Form_Element_NumberSpinnerTest extends \PHPUnit\Framework\TestCa
     public function testShouldRenderNumberSpinnerDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.NumberSpinner"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.NumberSpinner"', $html);
     }
 
     /**

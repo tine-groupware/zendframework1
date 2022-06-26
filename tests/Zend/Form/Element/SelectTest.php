@@ -177,7 +177,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
         if (!preg_match('#(<option[^>]*(?:value="somewhat")[^>]*>)#s', $html, $matches)) {
             $this->fail('Could not find option: ' . $html);
         }
-        $this->assertNotContains('selected', $matches[1]);
+        $this->assertStringNotContainsString('selected', $matches[1]);
     }
 
     /**
@@ -193,8 +193,8 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
         ]);
         $this->element->setView($this->getView());
         $html = $this->element->render();
-        $this->assertNotContains('unused', $html, $html);
-        $this->assertContains('bar', $html, $html);
+        $this->assertStringNotContainsString('unused', $html, $html);
+        $this->assertStringContainsString('bar', $html, $html);
     }
 
     /**
@@ -247,7 +247,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
     {
         $this->element->addMultiOption('1', '£' . number_format(1));
         $html = $this->element->render($this->getView());
-        $this->assertContains('>£', $html);
+        $this->assertStringContainsString('>£', $html);
     }
 
     /**

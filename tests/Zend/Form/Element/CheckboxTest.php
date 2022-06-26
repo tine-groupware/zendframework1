@@ -108,7 +108,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/View.php';
         $view = new Zend_View();
         $html = $this->element->render($view);
-        $this->assertNotContains('checked="checked"', $html);
+        $this->assertStringNotContainsString('checked="checked"', $html);
     }
 
     public function testCheckedAttributeRenderedWhenCheckedFlagTrue()
@@ -117,7 +117,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $this->element->checked = true;
         $html = $this->element->render($view);
-        $this->assertContains('checked="checked"', $html);
+        $this->assertStringContainsString('checked="checked"', $html);
     }
 
     public function testCheckedValueDefaultsToOne()
@@ -235,9 +235,9 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(2, count($matches[1]));
         foreach ($matches[1] as $element) {
             if (strstr($element, 'hidden')) {
-                $this->assertContains($this->element->getUncheckedValue(), $element);
+                $this->assertStringContainsString($this->element->getUncheckedValue(), $element);
             } else {
-                $this->assertContains($this->element->getCheckedValue(), $element);
+                $this->assertStringContainsString($this->element->getCheckedValue(), $element);
             }
         }
     }

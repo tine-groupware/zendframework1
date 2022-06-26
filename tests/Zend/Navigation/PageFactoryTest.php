@@ -80,7 +80,7 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
             ]),
         ];
 
-        $this->assertContainsOnly('Zend_Navigation_Page_Mvc', $pages);
+        $this->assertStringContainsStringOnly('Zend_Navigation_Page_Mvc', $pages);
     }
 
     public function testDetectUriPage()

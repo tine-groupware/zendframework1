@@ -62,7 +62,7 @@ class Zend_DebugTest extends \PHPUnit\Framework\TestCase
         $result = Zend_Debug::Dump($data, null, false);
 
         // Has to check for two strings, because xdebug internally handles CLI vs Web
-        $this->assertContains($result,
+        $this->assertStringContainsString($result,
             [
                 "<pre>string(6) \"string\"\n</pre>",
                 "<pre>string(6) &quot;string&quot;\n</pre>",

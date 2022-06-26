@@ -45,6 +45,9 @@ abstract class Zend_Cache_BackendTest_SkipTests extends \PHPUnit\Framework\TestC
         $this->markTestSkipped($this->message);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCacheBackend()
     {
         // this is here only so we have at least one test

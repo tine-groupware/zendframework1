@@ -53,6 +53,9 @@ class Zend_Cache_OutputFrontendTest extends \PHPUnit\Framework\TestCase {
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Frontend_Output(['lifetime' => 3600, 'caching' => true]);

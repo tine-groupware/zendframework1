@@ -224,6 +224,9 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest
         $this->assertEquals($expected, $this->_helper->render());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRenderingPartialShouldFailOnInvalidPartialArray()
     {
         $this->_helper->setPartial(['bc.phtml']);

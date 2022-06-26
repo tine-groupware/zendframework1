@@ -1184,13 +1184,13 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetRegisteredRoles()
     {
-        $this->expectException(\PHPUnit\Framework\Error::class);
+        $this->expectNotice();
         $acl = $this->_acl;
         $acl->addRole('developer');
 
         $roles = $acl->getRegisteredRoles();
-        $this->assertTrue(is_array($roles));
-        $this->assertFalse(empty($roles));
+        $this->assertIsArray($roles);
+        $this->assertEmpty($roles);
     }
 
     /**
@@ -1218,6 +1218,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8039
+     * @doesNotPerformAssertions
      *
      * Meant to test for the (in)existance of this notice:
      * "Notice: Undefined index: allPrivileges in lib/Zend/Acl.php on line 682"
@@ -1258,12 +1259,13 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8468
+     * @doesNotPerformAssertions
      */
     public function testGetRegisteredRolesIsDeprecated() {
         try {
             $this->_acl->getRegisteredRoles();
             $this->fail('getRegisteredRoles() did not throw an exception');
-        } catch(\PHPUnit\Framework\Error $e) {
+        } catch(\PHPUnit\Framework\Error\Notice $e) {
             return;
         }
 

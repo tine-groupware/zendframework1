@@ -248,8 +248,8 @@ class Zend_Service_ReCaptcha_ReCaptchaTest extends \PHPUnit\Framework\TestCase
     {
         $this->_reCaptcha->setPublicKey($this->_publicKey);
         $html = $this->_reCaptcha->getHtml('contact');
-        $this->assertContains('contact[recaptcha_challenge_field]', $html);
-        $this->assertContains('contact[recaptcha_response_field]', $html);
+        $this->assertStringContainsString('contact[recaptcha_challenge_field]', $html);
+        $this->assertStringContainsString('contact[recaptcha_response_field]', $html);
     }
 
     public function testVerifyWithMissingPrivateKey() {

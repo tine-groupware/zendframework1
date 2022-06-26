@@ -121,7 +121,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
     {
         $this->helper->requireModule('foo.bar');
         $modules = $this->helper->getModules();
-        $this->assertContains('foo.bar', $modules);
+        $this->assertStringContainsString('foo.bar', $modules);
     }
 
     /**
@@ -161,7 +161,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->requireModule('foo.bar');
         $this->helper->requireModule('foo.bar');
         $modules = $this->helper->getModules();
-        $this->assertContains('foo.bar', $modules);
+        $this->assertStringContainsString('foo.bar', $modules);
         $this->assertEquals(1, count($modules));
     }
 
@@ -176,7 +176,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->registerModulePath('custom', '../custom');
         $paths = $this->helper->getModulePaths();
         $this->assertTrue(array_key_exists('custom', $paths), var_export($paths, 1));
-        $this->assertContains('../custom', $paths);
+        $this->assertStringContainsString('../custom', $paths);
     }
 
     public function testShouldNotBeAbleToRegisterDuplicateModulePaths()
@@ -186,7 +186,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $paths = $this->helper->getModulePaths();
         $this->assertEquals(1, count($paths));
         $this->assertTrue(array_key_exists('custom', $paths));
-        $this->assertContains('../custom', $paths);
+        $this->assertStringContainsString('../custom', $paths);
     }
 
     public function testShouldBeDisabledByDefault()
@@ -314,19 +314,19 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
     {
         $this->helper->addStylesheetModule('dijit.themes.tundra');
         $stylesheets = $this->helper->getStylesheetModules();
-        $this->assertContains('dijit.themes.tundra', $stylesheets);
+        $this->assertStringContainsString('dijit.themes.tundra', $stylesheets);
     }
 
     public function testDuplicateStylesheetModulesShouldNotBeAllowed()
     {
         $this->helper->addStylesheetModule('dijit.themes.tundra');
         $stylesheets = $this->helper->getStylesheetModules();
-        $this->assertContains('dijit.themes.tundra', $stylesheets);
+        $this->assertStringContainsString('dijit.themes.tundra', $stylesheets);
 
         $this->helper->addStylesheetModule('dijit.themes.tundra');
         $stylesheets = $this->helper->getStylesheetModules();
         $this->assertEquals(1, count($stylesheets));
-        $this->assertContains('dijit.themes.tundra', $stylesheets);
+        $this->assertStringContainsString('dijit.themes.tundra', $stylesheets);
     }
 
     /**
@@ -362,7 +362,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->addStylesheet('/css/foo.css');
         $css = $this->helper->getStylesheets();
         $this->assertTrue(is_array($css));
-        $this->assertContains('/css/foo.css', $css);
+        $this->assertStringContainsString('/css/foo.css', $css);
     }
 
     public function testShouldNotAllowSpecifyingDuplicateLocalStylesheets()
@@ -372,7 +372,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $css = $this->helper->getStylesheets();
         $this->assertTrue(is_array($css));
         $this->assertEquals(1, count($css));
-        $this->assertContains('/css/foo.css', $css);
+        $this->assertStringContainsString('/css/foo.css', $css);
     }
 
     public function testShouldAllowSpecifyingOnLoadFunctionPointer()
@@ -399,9 +399,9 @@ function() {
         $this->assertEquals(1, count($onLoad));
         $action = array_shift($onLoad);
         $this->assertTrue(is_string($action));
-        $this->assertContains('function() {', $action);
-        $this->assertContains('bar();', $action);
-        $this->assertContains('baz();', $action);
+        $this->assertStringContainsString('function() {', $action);
+        $this->assertStringContainsString('bar();', $action);
+        $this->assertStringContainsString('baz();', $action);
     }
 
     public function testShouldNotAllowSpecifyingDuplicateOnLoadActions()
@@ -714,7 +714,7 @@ function() {
         $this->helper->javascriptCaptureEnd();
         $js = $this->helper->getJavascript();
         $this->assertEquals(1, count($js));
-        $this->assertContains('var foo = "bar";', $js[0]);
+        $this->assertStringContainsString('var foo = "bar";', $js[0]);
     }
 
     public function testNoLayersShouldBeRegisteredByDefault()
@@ -830,7 +830,7 @@ function() {
         if (!preg_match('/(var djConfig = .*?(?:};))/s', $html, $matches)) {
             $this->fail('Failed to find djConfig settings: ' . $html);
         }
-        $this->assertNotContains('"parseOnLoad":true', $matches[1]);
+        $this->assertStringNotContainsString('"parseOnLoad":true', $matches[1]);
     }
 
     /**

@@ -100,7 +100,7 @@ class Zend_Captcha_FigletTest extends \PHPUnit\Framework\TestCase
     public function testCaptchaIsRendered()
     {
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getName(), $html);
+        $this->assertStringContainsString($this->element->getName(), $html);
     }
 
     public function testCaptchaHasIdAndInput()
@@ -251,6 +251,9 @@ class Zend_Captcha_FigletTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($options, $test);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testShouldAllowFigletsLargerThanFourteenCharacters()
     {
         $this->captcha->setName('foo')

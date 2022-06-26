@@ -95,7 +95,7 @@ class Zend_Validate_Sitemap_LocTest extends \PHPUnit\Framework\TestCase
         foreach ($values as $value) {
             $this->assertSame(false, $this->_validator->isValid($value));
             $messages = $this->_validator->getMessages();
-            $this->assertContains('is not a valid', current($messages));
+            $this->assertStringContainsString('is not a valid', current($messages));
         }
     }
 
@@ -112,7 +112,7 @@ class Zend_Validate_Sitemap_LocTest extends \PHPUnit\Framework\TestCase
         foreach ($values as $value) {
             $this->assertSame(false, $this->_validator->isValid($value));
             $messages = $this->_validator->getMessages();
-            $this->assertContains('String expected', current($messages));
+            $this->assertStringContainsString('String expected', current($messages));
         }
     }
 

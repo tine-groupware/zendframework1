@@ -77,7 +77,7 @@ class Zend_Filter_RealPathTest extends \PHPUnit\Framework\TestCase
     public function testFileExists()
     {
         $filename = 'file.1';
-        $this->assertContains($filename, $this->_filter->filter($this->_filesPath . DIRECTORY_SEPARATOR . $filename));
+        $this->assertStringContainsString($filename, $this->_filter->filter($this->_filesPath . DIRECTORY_SEPARATOR . $filename));
     }
 
     /**

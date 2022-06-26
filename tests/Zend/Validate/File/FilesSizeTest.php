@@ -204,16 +204,16 @@ class Zend_Validate_File_FilesSizeTest extends \PHPUnit\Framework\TestCase
             dirname(__FILE__) . '/_files/testsize.mo',
             dirname(__FILE__) . '/_files/testsize.mo',
             dirname(__FILE__) . '/_files/testsize2.mo']));
-        $this->assertContains('9.76kB', current($validator->getMessages()));
-        $this->assertContains('1.55kB', current($validator->getMessages()));
+        $this->assertStringContainsString('9.76kB', current($validator->getMessages()));
+        $this->assertStringContainsString('1.55kB', current($validator->getMessages()));
 
         $validator = new Zend_Validate_File_FilesSize(['min' => 9999, 'max' => 10000, 'bytestring' => false]);
         $this->assertFalse($validator->isValid([
             dirname(__FILE__) . '/_files/testsize.mo',
             dirname(__FILE__) . '/_files/testsize.mo',
             dirname(__FILE__) . '/_files/testsize2.mo']));
-        $this->assertContains('9999', current($validator->getMessages()));
-        $this->assertContains('1588', current($validator->getMessages()));
+        $this->assertStringContainsString('9999', current($validator->getMessages()));
+        $this->assertStringContainsString('1588', current($validator->getMessages()));
     }
 
     public function errorHandler($errno, $errstr)

@@ -162,14 +162,14 @@ class Zend_Dojo_Form_Element_RadioButtonTest extends \PHPUnit\Framework\TestCase
 
         $html = $this->element->render();
         foreach ($translations as $string) {
-            $this->assertContains($string, $html, $html);
+            $this->assertStringContainsString($string, $html, $html);
         }
     }
 
     public function testShouldRenderRadioButtonDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.RadioButton"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.RadioButton"', $html);
     }
 
     public function testPassingValueShouldMarkThatValueCheckedWhenRendering()
@@ -178,7 +178,7 @@ class Zend_Dojo_Form_Element_RadioButtonTest extends \PHPUnit\Framework\TestCase
         if (!preg_match('/(<input[^>]*(id="foo-bar")[^>]*>)/', $html, $matches)) {
             $this->fail('Did not find radio option matching bar');
         }
-        $this->assertContains('checked="checked"', $matches[1]);
+        $this->assertStringContainsString('checked="checked"', $matches[1]);
     }
 
     /**#+

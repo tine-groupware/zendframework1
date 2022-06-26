@@ -112,7 +112,7 @@ class Zend_Dojo_Form_Element_EditorTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderEditorDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.Editor"', $html, $html);
+        $this->assertStringContainsString('dojoType="dijit.Editor"', $html, $html);
     }
 
     public function testShouldNotHaveCaptureEventsByDefault()
@@ -131,7 +131,7 @@ class Zend_Dojo_Form_Element_EditorTest extends \PHPUnit\Framework\TestCase
         $this->element->removeCaptureEvent('bar.baz');
         $this->assertFalse($this->element->hasCaptureEvent('bar.baz'), var_export($this->element->getCaptureEvents(), 1));
         $events = $this->element->getDijitParam('captureEvents');
-        $this->assertNotContains('bar.baz', $events, var_export($events, 1));
+        $this->assertStringNotContainsString('bar.baz', $events, var_export($events, 1));
     }
 
     public function testShouldNotHaveEventsByDefault()
@@ -150,7 +150,7 @@ class Zend_Dojo_Form_Element_EditorTest extends \PHPUnit\Framework\TestCase
         $this->element->removeEvent('onKeyUp');
         $this->assertFalse($this->element->hasEvent('onKeyUp'), var_export($this->element->getEvents(), 1));
         $events = $this->element->getDijitParam('events');
-        $this->assertNotContains('onKeyUp', $events, var_export($events, 1));
+        $this->assertStringNotContainsString('onKeyUp', $events, var_export($events, 1));
     }
 
     public function testShouldNotHavePluginsByDefault()
@@ -169,7 +169,7 @@ class Zend_Dojo_Form_Element_EditorTest extends \PHPUnit\Framework\TestCase
         $this->element->removePlugin('bold');
         $this->assertFalse($this->element->hasPlugin('bold'), var_export($this->element->getPlugins(), 1));
         $plugins = $this->element->getDijitParam('plugins');
-        $this->assertNotContains('bold', $plugins, var_export($plugins, 1));
+        $this->assertStringNotContainsString('bold', $plugins, var_export($plugins, 1));
     }
 
     public function testEditActionIntervalShouldDefaultToThree()
@@ -248,7 +248,7 @@ class Zend_Dojo_Form_Element_EditorTest extends \PHPUnit\Framework\TestCase
         $this->element->removeStyleSheet('/js/custom/styles.css');
         $this->assertFalse($this->element->hasStyleSheet('/js/custom/styles.css'), var_export($this->element->getStyleSheets(), 1));
         $styleSheets = $this->element->getDijitParam('styleSheets');
-        $this->assertNotContains('/js/custom/styles.css', $styleSheets, var_export($styleSheets, 1));
+        $this->assertStringNotContainsString('/js/custom/styles.css', $styleSheets, var_export($styleSheets, 1));
     }
 
     public function testUpdateIntervalShouldHaveDefaultValue()
@@ -310,7 +310,7 @@ class Zend_Dojo_Form_Element_EditorTest extends \PHPUnit\Framework\TestCase
         $this->element->removeExtraPlugin('bold');
         $this->assertFalse($this->element->hasExtraPlugin('bold'), var_export($this->element->getExtraPlugins(), 1));
         $extraPlugins = $this->element->getDijitParam('extraPlugins');
-        $this->assertNotContains('bold', $extraPlugins, var_export($extraPlugins, 1));
+        $this->assertStringNotContainsString('bold', $extraPlugins, var_export($extraPlugins, 1));
     }
 }
 

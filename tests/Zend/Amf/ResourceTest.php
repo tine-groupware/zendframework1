@@ -81,7 +81,7 @@ class Zend_Amf_ResourceTest extends \PHPUnit\Framework\TestCase
     public function testFile()
     {
         $resp = $this->_callService("returnFile");
-        $this->assertContains("test data", $resp->getResponse());
+        $this->assertStringContainsString("test data", $resp->getResponse());
     }
 
     /**
@@ -109,8 +109,8 @@ class Zend_Amf_ResourceTest extends \PHPUnit\Framework\TestCase
     {
         Zend_Amf_Parse_TypeLoader::addResourceDirectory("Test_Resource", dirname(__FILE__)."/Resources");
         $resp = $this->_callService("returnCtx");
-        $this->assertContains("Accept-language:", $resp->getResponse());
-        $this->assertContains("foo=bar", $resp->getResponse());
+        $this->assertStringContainsString("Accept-language:", $resp->getResponse());
+        $this->assertStringContainsString("foo=bar", $resp->getResponse());
     }
 
     /**
@@ -121,8 +121,8 @@ class Zend_Amf_ResourceTest extends \PHPUnit\Framework\TestCase
     {
         Zend_Amf_Parse_TypeLoader::setResourceLoader(new Zend_Amf_TestResourceLoader("2"));
         $resp = $this->_callService("returnCtx");
-        $this->assertContains("Accept-language:", $resp->getResponse());
-        $this->assertContains("foo=bar", $resp->getResponse());
+        $this->assertStringContainsString("Accept-language:", $resp->getResponse());
+        $this->assertStringContainsString("foo=bar", $resp->getResponse());
     }
 
     /**

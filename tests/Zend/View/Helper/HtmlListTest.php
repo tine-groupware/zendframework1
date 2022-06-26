@@ -242,8 +242,8 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $list = $this->helper->htmlList($items, false, false, false);
 
-        $this->assertContains('<ul>', $list);
-        $this->assertContains('</ul>', $list);
+        $this->assertStringContainsString('<ul>', $list);
+        $this->assertStringContainsString('</ul>', $list);
 
         $this->markTestSkipped('Wrong array_walk_recursive behavior.');
 
@@ -252,7 +252,7 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
     public function validateItems($value, $key, $userdata)
     {
-        $this->assertContains('<li>' . $value, $userdata);
+        $this->assertStringContainsString('<li>' . $value, $userdata);
     }
 }
 

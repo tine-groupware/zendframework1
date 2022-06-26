@@ -124,7 +124,7 @@ class Zend_Dojo_Form_Decorator_DijitFormTest extends \PHPUnit\Framework\TestCase
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.form.Form"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.Form"', $html);
     }
 
     public function testRenderingShouldEnforceFormName()

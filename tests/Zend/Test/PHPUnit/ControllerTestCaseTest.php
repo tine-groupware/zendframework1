@@ -290,7 +290,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $content  = $response->getBody();
         $this->assertEquals('zend-test-php-unit-foo', $request->getControllerName(), $content);
         $this->assertEquals('bar', $request->getActionName());
-        $this->assertContains('FooController::barAction', $content, $content);
+        $this->assertStringContainsString('FooController::barAction', $content, $content);
     }
 
     public function testAssertQueryShouldDoNothingForValidResponseContent()

@@ -95,7 +95,7 @@ class Zend_Service_AkismetTest extends \PHPUnit\Framework\TestCase
 
     public function testUserAgentDefaultMatchesFrameworkVersion()
     {
-        $this->assertContains('Zend Framework/' . Zend_Version::VERSION, $this->akismet->getUserAgent());
+        $this->assertStringContainsString('Zend Framework/' . Zend_Version::VERSION, $this->akismet->getUserAgent());
     }
 
     public function testVerifyKey()

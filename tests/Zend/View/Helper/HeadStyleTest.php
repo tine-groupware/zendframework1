@@ -114,6 +114,9 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($placeholder instanceof Zend_View_Helper_HeadStyle);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAppendPrependAndSetThrowExceptionsWhenNonStyleValueProvided()
     {
         try {
@@ -291,7 +294,7 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $values = $this->helper->getArrayCopy();
         $this->assertEquals(1, count($values));
         $item = array_shift($values);
-        $this->assertContains('foobar', $item->content);
+        $this->assertStringContainsString('foobar', $item->content);
     }
 
     public function testOverloadingOffsetSetWritesToSpecifiedIndex()
@@ -301,9 +304,12 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(1, count($values));
         $this->assertTrue(isset($values[100]));
         $item = $values[100];
-        $this->assertContains('foobar', $item->content);
+        $this->assertStringContainsString('foobar', $item->content);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testInvalidMethodRaisesException()
     {
         try {
@@ -312,6 +318,9 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_View_Exception $e) { }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testTooFewArgumentsRaisesException()
     {
         try {
@@ -343,6 +352,9 @@ h1 {
         $this->assertStringContainsString('    }', $string);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSerialCapturingWorks()
     {
         $this->helper->headStyle()->captureStart();

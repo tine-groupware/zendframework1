@@ -167,7 +167,7 @@ class Zend_Dojo_Form_Element_NumberTextBoxTest extends \PHPUnit\Framework\TestCa
     public function testShouldRenderNumberTextBoxDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.NumberTextBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.NumberTextBox"', $html);
     }
 }
 

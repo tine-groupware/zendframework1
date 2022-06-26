@@ -60,11 +60,17 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Apc();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeOld() {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('old');
@@ -72,6 +78,9 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeMatchingTags() {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('matchingTag', ['tag1']);
@@ -79,6 +88,9 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags() {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('notMatchingTag', ['tag1']);
@@ -87,19 +99,58 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
     }
 
     // Because of limitations of this backend...
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetWithAnExpiredCacheId() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeMatchingTags2() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags2() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags3() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags2() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags3() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags4() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsNotMatchingTags() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsNotMatchingTags2() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsNotMatchingTags3() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetTags() {}
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -107,6 +158,9 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveWithNullLifeTime()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -114,6 +168,9 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveWithSpecificLifeTime()
     {
 
@@ -122,6 +179,9 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetMetadatas($notag = true)
     {
         parent::testGetMetadatas($notag);

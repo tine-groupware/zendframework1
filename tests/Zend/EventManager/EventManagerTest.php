@@ -67,7 +67,7 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $listener  = $this->events->attach('test', [$this, __METHOD__]);
         $listeners = $this->events->getListeners('test');
         $this->assertEquals(1, count($listeners));
-        $this->assertContains($listener, $listeners);
+        $this->assertStringContainsString($listener, $listeners);
     }
 
     public function testAttachShouldAddEventIfItDoesNotExist()
@@ -77,7 +77,7 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $listener = $this->events->attach('test', [$this, __METHOD__]);
         $events = $this->events->getEvents();
         $this->assertFalse(empty($events));
-        $this->assertContains('test', $events);
+        $this->assertStringContainsString('test', $events);
     }
 
     public function testAllowsPassingArrayOfEventNamesWhenAttaching()
@@ -111,10 +111,10 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
     {
         $listener  = $this->events->attach('test', [$this, __METHOD__]);
         $listeners = $this->events->getListeners('test');
-        $this->assertContains($listener, $listeners);
+        $this->assertStringContainsString($listener, $listeners);
         $this->events->detach($listener);
         $listeners = $this->events->getListeners('test');
-        $this->assertNotContains($listener, $listeners);
+        $this->assertStringNotContainsString($listener, $listeners);
     }
 
     public function testDetachShouldReturnFalseIfEventDoesNotExist()
@@ -237,7 +237,7 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->events->attachAggregate($aggregate);
         $events = $this->events->getEvents();
         foreach (['foo.bar', 'foo.baz'] as $event) {
-            $this->assertContains($event, $events);
+            $this->assertStringContainsString($event, $events);
         }
     }
 
@@ -247,7 +247,7 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->events->attach($aggregate);
         $events = $this->events->getEvents();
         foreach (['foo.bar', 'foo.baz'] as $event) {
-            $this->assertContains($event, $events);
+            $this->assertStringContainsString($event, $events);
         }
     }
 
@@ -271,21 +271,21 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->events->detachAggregate($aggregate);
         $events = $this->events->getEvents();
         foreach (['foo.bar', 'foo.baz', 'other'] as $event) {
-            $this->assertContains($event, $events);
+            $this->assertStringContainsString($event, $events);
         }
 
         $listeners = $this->events->getListeners('foo.bar');
         $this->assertEquals(2, count($listeners));
-        $this->assertContains($listenerFooBar1, $listeners);
-        $this->assertContains($listenerFooBar2, $listeners);
+        $this->assertStringContainsString($listenerFooBar1, $listeners);
+        $this->assertStringContainsString($listenerFooBar2, $listeners);
 
         $listeners = $this->events->getListeners('foo.baz');
         $this->assertEquals(1, count($listeners));
-        $this->assertContains($listenerFooBaz1, $listeners);
+        $this->assertStringContainsString($listenerFooBaz1, $listeners);
 
         $listeners = $this->events->getListeners('other');
         $this->assertEquals(1, count($listeners));
-        $this->assertContains($listenerOther, $listeners);
+        $this->assertStringContainsString($listenerOther, $listeners);
     }
 
     public function testCanDetachListenerAggregatesViaDetach()
@@ -301,21 +301,21 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->events->detach($aggregate);
         $events = $this->events->getEvents();
         foreach (['foo.bar', 'foo.baz', 'other'] as $event) {
-            $this->assertContains($event, $events);
+            $this->assertStringContainsString($event, $events);
         }
 
         $listeners = $this->events->getListeners('foo.bar');
         $this->assertEquals(2, count($listeners));
-        $this->assertContains($listenerFooBar1, $listeners);
-        $this->assertContains($listenerFooBar2, $listeners);
+        $this->assertStringContainsString($listenerFooBar1, $listeners);
+        $this->assertStringContainsString($listenerFooBar2, $listeners);
 
         $listeners = $this->events->getListeners('foo.baz');
         $this->assertEquals(1, count($listeners));
-        $this->assertContains($listenerFooBaz1, $listeners);
+        $this->assertStringContainsString($listenerFooBaz1, $listeners);
 
         $listeners = $this->events->getListeners('other');
         $this->assertEquals(1, count($listeners));
-        $this->assertContains($listenerOther, $listeners);
+        $this->assertStringContainsString($listenerOther, $listeners);
     }
 
     public function testDetachAggregateReturnsDetachOfListenerAggregate()
@@ -559,7 +559,7 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $this->events->attach('*', $callback);
         foreach (['foo', 'bar', 'baz'] as $event) {
             $this->events->trigger($event);
-            $this->assertContains($event, $this->test->events);
+            $this->assertStringContainsString($event, $this->test->events);
         }
     }
 

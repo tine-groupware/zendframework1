@@ -72,7 +72,7 @@ class Zend_Log_Writer_DbTest extends \PHPUnit\Framework\TestCase
         $this->writer->write($fields);
 
         // insert should be called once...
-        $this->assertContains('insert', array_keys($this->db->calls));
+        $this->assertStringContainsString('insert', array_keys($this->db->calls));
         $this->assertEquals(1, count($this->db->calls['insert']));
 
         // ...with the correct table and binds for the database
@@ -94,7 +94,7 @@ class Zend_Log_Writer_DbTest extends \PHPUnit\Framework\TestCase
         $this->writer->write(['message' => $message, 'priority' => $priority]);
 
         // insert should be called once...
-        $this->assertContains('insert', array_keys($this->db->calls));
+        $this->assertStringContainsString('insert', array_keys($this->db->calls));
         $this->assertEquals(1, count($this->db->calls['insert']));
 
         // ...with the correct table and binds for the database

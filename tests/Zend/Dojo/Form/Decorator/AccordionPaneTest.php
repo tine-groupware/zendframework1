@@ -124,7 +124,7 @@ class Zend_Dojo_Form_Decorator_AccordionPaneTest extends \PHPUnit\Framework\Test
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.layout.AccordionPane"', $html);
+        $this->assertStringContainsString('dojoType="dijit.layout.AccordionPane"', $html);
     }
 }
 

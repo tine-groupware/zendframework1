@@ -304,7 +304,7 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
     public function testMethodHelp()
     {
         $help = $this->_server->methodHelp('system.methodHelp', 'system.listMethods');
-        $this->assertContains('Display help message for an XMLRPC method', $help);
+        $this->assertStringContainsString('Display help message for an XMLRPC method', $help);
 
         $this->expectException('Zend_XmlRpc_Server_Exception');
         $this->expectExceptionMessage('Method "foo" does not exist');
@@ -438,7 +438,7 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
     {
         $this->_server->addFunction('Zend_XmlRpc_Server_testFunction', 'test', 'arg1');
         $methods = $this->_server->listMethods();
-        $this->assertContains('test.Zend_XmlRpc_Server_testFunction', $methods);
+        $this->assertStringContainsString('test.Zend_XmlRpc_Server_testFunction', $methods);
     }
 
     public function testAddFunctionThrowsExceptionWithBadData()

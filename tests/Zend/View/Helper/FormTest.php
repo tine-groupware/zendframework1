@@ -88,7 +88,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
     public function testFormWithInputNeedingEscapesUsesViewEscaping()
     {
         $form = $this->helper->form('<&foo');
-        $this->assertContains($this->view->escape('<&foo'), $form);
+        $this->assertStringContainsString($this->view->escape('<&foo'), $form);
     }
 
     /**

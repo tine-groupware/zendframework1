@@ -137,6 +137,7 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testPartialThrowsExceptionWithInvalidModule()
     {

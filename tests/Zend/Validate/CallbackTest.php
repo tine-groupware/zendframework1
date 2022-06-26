@@ -121,7 +121,7 @@ class Zend_Validate_CallbackTest extends \PHPUnit\Framework\TestCase
     public function optionsCallback($value)
     {
         $args = func_get_args();
-        $this->assertContains('something', $args);
+        $this->assertStringContainsString('something', $args);
         return $args;
     }
 }

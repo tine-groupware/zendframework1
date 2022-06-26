@@ -171,7 +171,7 @@ class Zend_Auth_Adapter_Ldap_OnlineTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($result->isValid());
         $this->assertThat($result->getCode(), $this->lessThanOrEqual(Zend_Auth_Result::FAILURE));
         $messages = $result->getMessages();
-        $this->assertContains('not found', $messages[0]);
+        $this->assertStringContainsString('not found', $messages[0]);
     }
 
     public function testAccountObjectRetrieval()

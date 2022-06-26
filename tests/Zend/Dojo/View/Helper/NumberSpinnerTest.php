@@ -158,7 +158,7 @@ class Zend_Dojo_View_Helper_NumberSpinnerTest extends \PHPUnit\Framework\TestCas
                 'constraints' => 'bogus',
             ]
         );
-        $this->assertNotContains('constraints="', $html);
+        $this->assertStringNotContainsString('constraints="', $html);
     }
 }
 

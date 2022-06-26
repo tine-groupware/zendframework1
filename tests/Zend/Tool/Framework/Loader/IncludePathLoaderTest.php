@@ -66,7 +66,7 @@ class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends \PHPUnit\Framewor
         foreach ($files as $index => $file) {
             $files[$index] = substr($file, strpos($file, 'Zend'));
         }
-        $this->assertContains('Zend/Tool/Framework/System/Manifest.php', $files);
+        $this->assertStringContainsString('Zend/Tool/Framework/System/Manifest.php', $files);
     }
 
     public function testLoaderFindsIncludePathFilesAreLoaded()
@@ -74,7 +74,7 @@ class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends \PHPUnit\Framewor
         $loader = new Zend_Tool_Framework_Loader_IncludePathLoader();
         $loader->load();
         $classes = $loader->getLoadLoadedClasses();
-        $this->assertContains('Zend_Tool_Framework_System_Manifest', $classes);
+        $this->assertStringContainsString('Zend_Tool_Framework_System_Manifest', $classes);
     }
 
     */

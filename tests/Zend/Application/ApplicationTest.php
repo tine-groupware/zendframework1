@@ -472,7 +472,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
         ]);
         $autoloader = $application->getAutoloader();
         $actual     = $autoloader->getZfPath();
-        $this->assertContains($latest, $actual);
+        $this->assertStringContainsString($latest, $actual);
     }
 
     /**

@@ -279,7 +279,7 @@ class Zend_Dojo_Form_Element_VerticalSliderTest extends \PHPUnit\Framework\TestC
                       ->setMaximum(10)
                       ->setDiscreteValues(11);
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.VerticalSlider"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.VerticalSlider"', $html);
     }
 }
 

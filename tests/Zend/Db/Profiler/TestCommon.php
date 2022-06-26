@@ -122,7 +122,7 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 
         // analyze query in the profile
         $sql = $qp->getQuery();
-        $this->assertContains(" = ?", $sql);
+        $this->assertStringContainsString(" = ?", $sql);
         $params = $qp->getQueryParams();
         $this->assertTrue(is_array($params));
         $this->assertEquals([1 => 2, 2 => 'VERIFIED'], $params);
@@ -144,7 +144,7 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 
         // analyze query in the profile
         $sql = $qp->getQuery();
-        $this->assertContains(" = ?", $sql);
+        $this->assertStringContainsString(" = ?", $sql);
         $params = $qp->getQueryParams();
         $this->assertTrue(is_array($params));
         $this->assertEquals([1 => 3, 2 => 'FIXED'], $params);
@@ -185,7 +185,7 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 
         // analyze query in the profile
         $sql = $qp->getQuery();
-        $this->assertContains(" = ?", $sql);
+        $this->assertStringContainsString(" = ?", $sql);
         $params = $qp->getQueryParams();
         $this->assertTrue(is_array($params));
         $this->assertEquals([1 => 2, 2 => 'VERIFIED'], $params);
@@ -207,7 +207,7 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 
         // analyze query in the profile
         $sql = $qp->getQuery();
-        $this->assertContains(" = ?", $sql);
+        $this->assertStringContainsString(" = ?", $sql);
         $params = $qp->getQueryParams();
         $this->assertTrue(is_array($params));
         $this->assertEquals([1 => 3, 2 => 'FIXED'], $params);

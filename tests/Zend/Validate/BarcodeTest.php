@@ -437,6 +437,6 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($barcode->isValid('123'));
         $message = $barcode->getMessages();
         $this->assertTrue(array_key_exists('barcodeInvalidLength', $message));
-        $this->assertContains("length of 7/8 characters", $message['barcodeInvalidLength']);
+        $this->assertStringContainsString("length of 7/8 characters", $message['barcodeInvalidLength']);
     }
 }

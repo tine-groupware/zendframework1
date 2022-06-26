@@ -77,12 +77,12 @@ class Zend_Soap_Wsdl_ArrayOfTypeComplexStrategyTest extends \PHPUnit\Framework\T
 
         $wsdl = $this->wsdl->toXML();
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfZend_Soap_Wsdl_ComplexTest"><xsd:complexContent><xsd:restriction base="soap-enc:Array"><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:Zend_Soap_Wsdl_ComplexTest[]"/></xsd:restriction></xsd:complexContent></xsd:complexType>',
             $wsdl
         );
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="Zend_Soap_Wsdl_ComplexTest"><xsd:all><xsd:element name="var" type="xsd:int"/></xsd:all></xsd:complexType>',
             $wsdl
         );
@@ -107,12 +107,12 @@ class Zend_Soap_Wsdl_ArrayOfTypeComplexStrategyTest extends \PHPUnit\Framework\T
 
         $wsdl = $this->wsdl->toXML();
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfZend_Soap_Wsdl_ComplexObjectStructure"><xsd:complexContent><xsd:restriction base="soap-enc:Array"><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:Zend_Soap_Wsdl_ComplexObjectStructure[]"/></xsd:restriction></xsd:complexContent></xsd:complexType>',
             $wsdl
         );
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="Zend_Soap_Wsdl_ComplexObjectStructure"><xsd:all><xsd:element name="boolean" type="xsd:boolean"/><xsd:element name="string" type="xsd:string"/><xsd:element name="int" type="xsd:int"/><xsd:element name="array" type="soap-enc:Array"/></xsd:all></xsd:complexType>',
             $wsdl
         );
@@ -125,17 +125,17 @@ class Zend_Soap_Wsdl_ArrayOfTypeComplexStrategyTest extends \PHPUnit\Framework\T
 
         $wsdl = $this->wsdl->toXML();
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfZend_Soap_Wsdl_ComplexObjectWithObjectStructure"><xsd:complexContent><xsd:restriction base="soap-enc:Array"><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:Zend_Soap_Wsdl_ComplexObjectWithObjectStructure[]"/></xsd:restriction></xsd:complexContent></xsd:complexType>',
             $wsdl
         );
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="Zend_Soap_Wsdl_ComplexObjectWithObjectStructure"><xsd:all><xsd:element name="object" type="tns:Zend_Soap_Wsdl_ComplexTest" nillable="true"/></xsd:all></xsd:complexType>',
             $wsdl
         );
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="Zend_Soap_Wsdl_ComplexTest"><xsd:all><xsd:element name="var" type="xsd:int"/></xsd:all></xsd:complexType>',
             $wsdl
         );

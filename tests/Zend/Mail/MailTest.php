@@ -622,7 +622,7 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
         $to  = $this->_getHeader($mock);
         $bcc = $this->_getHeader($mock, 'Bcc');
         // Remove the following line due to fixes by Simon
-        // $this->assertNotContains('to.address@email.com', $to, $mock->header);
+        // $this->assertStringNotContainsString('to.address@email.com', $to, $mock->header);
         $this->assertStringNotContainsString('second.bcc@email.com', $to, $bcc);
     }
 

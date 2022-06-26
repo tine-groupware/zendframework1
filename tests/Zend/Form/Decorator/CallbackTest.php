@@ -133,9 +133,9 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
                         ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertContains('foo bar', $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
+        $this->assertStringContainsString('foo bar', $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
     }
 
     public function testRenderCallsMethodCallback()
@@ -148,10 +148,10 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
                         ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertContains('foo bar', $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
-        $this->assertContains('Item ', $content);
+        $this->assertStringContainsString('foo bar', $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
+        $this->assertStringContainsString('Item ', $content);
     }
 
     public function testRenderCanPrepend()
@@ -164,9 +164,9 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
                         ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertContains('foo bar', $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
+        $this->assertStringContainsString('foo bar', $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
         $this->assertMatchesRegularExpression('/foo bar$/s', $content);
     }
 
@@ -180,9 +180,9 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
                         ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertNotContains('foo bar', $content, $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
+        $this->assertStringNotContainsString('foo bar', $content, $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
     }
 }
 

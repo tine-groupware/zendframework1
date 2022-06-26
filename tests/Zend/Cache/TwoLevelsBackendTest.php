@@ -76,6 +76,9 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $slowBackend = 'File';

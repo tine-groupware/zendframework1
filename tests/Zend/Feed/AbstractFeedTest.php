@@ -58,7 +58,8 @@ class Zend_Feed_AbstractFeedTest extends \PHPUnit\Framework\TestCase
     public function tearDown(): void
     {
         if (!$this->baseUri) {
-            return parent::tearDown();
+            parent::tearDown();
+            return;
         }
 
         $basePath = dirname(__FILE__) . '/_files/';

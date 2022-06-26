@@ -124,7 +124,7 @@ class Zend_Dojo_Form_Decorator_AccordionContainerTest extends \PHPUnit\Framework
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.layout.AccordionContainer"', $html);
+        $this->assertStringContainsString('dojoType="dijit.layout.AccordionContainer"', $html);
     }
 }
 

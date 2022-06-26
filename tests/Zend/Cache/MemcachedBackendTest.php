@@ -80,11 +80,17 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         sleep(1);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Memcached();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeOld()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -93,6 +99,9 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeMatchingTags()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -101,6 +110,9 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -130,10 +142,25 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
     }
 
     // Because of limitations of this backend...
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetWithAnExpiredCacheId() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeMatchingTags2() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags2() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags3() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -141,6 +168,9 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveWithNullLifeTime()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -148,6 +178,9 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveWithSpecificLifeTime()
     {
 
@@ -156,17 +189,26 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetMetadatas($notag = false)
     {
         parent::testGetMetadatas(true);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetFillingPercentage()
     {
         $this->_instance->setDirectives(['logging' => false]);
         parent::testGetFillingPercentage();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetFillingPercentageOnEmptyBackend()
     {
         $this->_instance->setDirectives(['logging' => false]);

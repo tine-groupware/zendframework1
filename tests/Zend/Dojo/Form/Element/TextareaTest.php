@@ -112,7 +112,7 @@ class Zend_Dojo_Form_Element_TextareaTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderTextareaDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.Textarea"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.Textarea"', $html);
     }
 }
 

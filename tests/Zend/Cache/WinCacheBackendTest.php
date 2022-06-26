@@ -60,11 +60,17 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_WinCache();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeOld() {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('old');
@@ -72,6 +78,9 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeMatchingTags() {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('matchingTag', ['tag1']);
@@ -79,6 +88,9 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags() {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('notMatchingTag', ['tag1']);
@@ -87,54 +99,93 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
     }
 
     // Because of limitations of this backend...
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetWithAnExpiredCacheId() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeMatchingTags2() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags2() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags3() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags2() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags3() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsMatchingTags4() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsNotMatchingTags() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsNotMatchingTags2() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetIdsNotMatchingTags3() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
     
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetTags() {
     	$this->markTestSkipped('This test skipped due to limitations in this adapter.');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -142,6 +193,9 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveWithNullLifeTime()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -149,6 +203,9 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSaveWithSpecificLifeTime()
     {
 
@@ -157,6 +214,9 @@ class Zend_Cache_WinCacheBackendTest extends Zend_Cache_CommonExtendedBackendTes
         $this->_instance->setDirectives(['logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetMetadatas($notag = true)
     {
         parent::testGetMetadatas($notag);

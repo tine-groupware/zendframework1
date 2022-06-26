@@ -151,7 +151,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
             ])
             ->setSeparator('--FooBarFunSep--');
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getSeparator(), $html);
+        $this->assertStringContainsString($this->element->getSeparator(), $html);
         $count = substr_count($html, $this->element->getSeparator());
         $this->assertEquals(4, $count);
     }
@@ -164,7 +164,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
         $this->element->addMultiOption(1, 'A');
         $this->element->addMultiOption(2, 'B');
         $html = $this->element->render($this->getView());
-        $this->assertContains('name="foo[]"', $html, $html);
+        $this->assertStringContainsString('name="foo[]"', $html, $html);
         $count = substr_count($html, 'name="foo[]"');
         $this->assertEquals(2, $count);
     }
@@ -201,7 +201,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
             if (!preg_match('#(<input[^>]*' . $key . '[^>]*>)#', $html, $m)) {
                 $this->fail('Missing input for a given multi option: ' . $html);
             }
-            $this->assertContains('checked="checked"', $m[1]);
+            $this->assertStringContainsString('checked="checked"', $m[1]);
         }
     }
 

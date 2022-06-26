@@ -141,11 +141,17 @@ class Zend_Cache_FileFrontendTest extends \PHPUnit\Framework\TestCase {
         return '/tmp';
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Frontend_File(['master_file' => $this->_masterFile, 'lifetime' => 3600, 'caching' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorBadCall1()
     {
         # no masterfile
@@ -157,6 +163,9 @@ class Zend_Cache_FileFrontendTest extends \PHPUnit\Framework\TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorBadCall2()
     {
         # incorrect option
@@ -208,6 +217,9 @@ class Zend_Cache_FileFrontendTest extends \PHPUnit\Framework\TestCase {
         $this->assertFalse($this->_instance2->load('cache_id'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithABadMasterFile()
     {
         try {

@@ -2085,17 +2085,17 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $filter = new Zend_Filter_Input($filters, $validators, ['street' => '']);
         $this->assertFalse($filter->isValid());
         $message = $filter->getMessages();
-        $this->assertContains('Bitte geben Sie Ihre Straße ein.', $message['street']['isEmpty']);
+        $this->assertStringContainsString('Bitte geben Sie Ihre Straße ein.', $message['street']['isEmpty']);
 
         $filter2 = new Zend_Filter_Input($filters, $validators, ['street' => 'Str!!']);
         $this->assertFalse($filter2->isValid());
         $message = $filter2->getMessages();
-        $this->assertContains('Verwenden Sie bitte keine Sonderzeichen', $message['street']['regexNotMatch']);
+        $this->assertStringContainsString('Verwenden Sie bitte keine Sonderzeichen', $message['street']['regexNotMatch']);
 
         $filter3 = new Zend_Filter_Input($filters, $validators, ['street' => 'Str1234567890']);
         $this->assertFalse($filter3->isValid());
         $message = $filter3->getMessages();
-        $this->assertContains('Bitte beschränken Sie sich auf', $message['street']['stringLengthTooLong']);
+        $this->assertStringContainsString('Bitte beschränken Sie sich auf', $message['street']['stringLengthTooLong']);
     }
 
     /**
@@ -2124,9 +2124,9 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $filter = new Zend_Filter_Input($filters, $validators, $data);
         $this->assertFalse($filter->isValid());
         $message = $filter->getMessages();
-        $this->assertContains('Please enter your name', $message['name']['isEmpty']);
-        $this->assertContains('Please enter a subject', $message['subject']['isEmpty']);
-        $this->assertContains('Please enter message contents', $message['content']['isEmpty']);
+        $this->assertStringContainsString('Please enter your name', $message['name']['isEmpty']);
+        $this->assertStringContainsString('Please enter a subject', $message['subject']['isEmpty']);
+        $this->assertStringContainsString('Please enter message contents', $message['content']['isEmpty']);
     }
 
     /**

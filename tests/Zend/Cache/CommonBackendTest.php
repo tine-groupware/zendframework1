@@ -98,11 +98,17 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         $this->rmdir();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $this->fail('PLEASE IMPLEMENT A testConstructorCorrectCall !!!');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorBadOption()
     {
         try {
@@ -114,11 +120,17 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDirectivesCorrectCall()
     {
         $this->_instance->setDirectives(['lifetime' => 3600, 'logging' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDirectivesBadArgument()
     {
         try {
@@ -129,6 +141,9 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDirectivesBadDirective()
     {
         // A bad directive (not known by a specific backend) is possible
@@ -136,6 +151,9 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         $this->_instance->setDirectives(['foo' => true, 'lifetime' => 3600]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDirectivesBadDirective2()
     {
         try {
@@ -174,6 +192,9 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         $this->assertFalse($this->_instance->test('barbar'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testTestWithAnExistingCacheId()
     {
         $res = $this->_instance->test('bar');
@@ -191,6 +212,9 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         $this->assertFalse($this->_instance->test('barbar'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testTestWithAnExistingCacheIdAndANullLifeTime()
     {
         $this->_instance->setDirectives(['lifetime' => null]);

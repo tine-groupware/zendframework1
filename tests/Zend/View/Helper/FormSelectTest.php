@@ -106,15 +106,15 @@ class Zend_View_Helper_FormSelectTest extends \PHPUnit\Framework\TestCase
     {
         $html = $this->helper->formSelect('foo');
         $this->assertMatchesRegularExpression('#<select[^>]+name="foo"#', $html);
-        $this->assertContains('</select>', $html);
-        $this->assertNotContains('<option', $html);
+        $this->assertStringContainsString('</select>', $html);
+        $this->assertStringNotContainsString('<option', $html);
     }
 
     public function testFormSelectWithOptionsCreatesPopulatedSelect()
     {
         $html = $this->helper->formSelect('foo', null, null, ['foo' => 'Foobar', 'baz' => 'Bazbat']);
         $this->assertMatchesRegularExpression('#<select[^>]+name="foo"#', $html);
-        $this->assertContains('</select>', $html);
+        $this->assertStringContainsString('</select>', $html);
         $this->assertMatchesRegularExpression('#<option[^>]+value="foo".*?>Foobar</option>#', $html);
         $this->assertMatchesRegularExpression('#<option[^>]+value="baz".*?>Bazbat</option>#', $html);
         $this->assertEquals(2, substr_count($html, '<option'));

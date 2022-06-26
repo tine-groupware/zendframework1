@@ -175,7 +175,7 @@ class Zend_Dojo_Form_Element_TimeTextBoxTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderTimeTextBoxDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.TimeTextBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.TimeTextBox"', $html);
     }
 
     /**
@@ -187,7 +187,7 @@ class Zend_Dojo_Form_Element_TimeTextBoxTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->render();
         
         $this->assertSame('T08:00', $this->element->getValue());
-        $this->assertContains('value="T08:00"', $html);
+        $this->assertStringContainsString('value="T08:00"', $html);
     }
 }
 

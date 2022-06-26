@@ -78,43 +78,37 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
 
     public function testSetDeprecatedHashedDirectoryUmask()
     {
-        try {
-            $cache = new Zend_Cache_Backend_File([
-                'cache_dir'              => $this->_cache_dir,
-                'hashed_directory_umask' => 0700,
-            ]);
-            $this->fail("Missing expected E_USER_NOTICE error");
-        } catch (\PHPUnit\Framework\Error $e) {
-            if ($e->getCode() != E_USER_NOTICE) {
-                throw $e;
-            }
-
-            $this->assertStringContainsString('hashed_directory_umask', $e->getMessage());
-        }
+        $this->expectNotice();
+        $this->expectNoticeMessage("'hashed_directory_umask' is deprecated -> please use 'hashed_directory_perm' instead");
+        $cache = new Zend_Cache_Backend_File([
+            'cache_dir'              => $this->_cache_dir,
+            'hashed_directory_umask' => 0700,
+        ]);
+    
     }
 
     public function testSetDeprecatedCacheFileUmask()
     {
-        try {
-            $cache = new Zend_Cache_Backend_File([
-                    'cache_dir'        => $this->_cache_dir,
-                    'cache_file_umask' => 0700,
-            ]);
-            $this->fail("Missing expected E_USER_NOTICE error");
-        } catch (\PHPUnit\Framework\Error $e) {
-            if ($e->getCode() != E_USER_NOTICE) {
-                throw $e;
-            }
-
-            $this->assertStringContainsString('cache_file_umask', $e->getMessage());
-        }
+        # https://phpunit.readthedocs.io/en/9.5/writing-tests-for-phpunit.html?highlight=Error#testing-php-errors-warnings-and-notices
+        $this->expectNotice();
+        $this->expectNoticeMessage("'cache_file_umask' is deprecated -> please use 'cache_file_perm' instead");
+        $cache = new Zend_Cache_Backend_File([
+                'cache_dir'        => $this->_cache_dir,
+                'cache_file_umask' => 0700,
+        ]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_File([]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithABadFileNamePrefix()
     {
         try {

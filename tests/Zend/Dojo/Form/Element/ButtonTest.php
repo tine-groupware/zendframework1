@@ -174,7 +174,7 @@ class Zend_Dojo_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderButtonDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.Button"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.Button"', $html);
     }
 
     /**
@@ -185,8 +185,8 @@ class Zend_Dojo_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $this->element->setLabel('Button Label')
                       ->setView($this->getView());
         $html = $this->element->render();
-        $this->assertContains('Button Label', $html, $html);
-        $this->assertNotContains('value="', $html);
+        $this->assertStringContainsString('Button Label', $html, $html);
+        $this->assertStringNotContainsString('value="', $html);
     }
 }
 

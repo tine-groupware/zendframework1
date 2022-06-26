@@ -257,15 +257,15 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
     {
         $config = new Zend_Config($this->_leadingdot);
         $array = $config->toArray();
-        $this->assertContains('dot-test', $array['.test']);
+        $this->assertStringContainsString('dot-test', $array['.test']);
     }
 
     public function testZF1019_EmptyKeys()
     {
         $config = new Zend_Config($this->_invalidkey);
         $array = $config->toArray();
-        $this->assertContains('test', $array[' ']);
-        $this->assertContains('test', $array['']);
+        $this->assertStringContainsString('test', $array[' ']);
+        $this->assertStringContainsString('test', $array['']);
     }
 
     public function testZF1417_DefaultValues()

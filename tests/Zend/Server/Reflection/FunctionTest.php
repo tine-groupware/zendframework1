@@ -175,7 +175,7 @@ class Zend_Server_Reflection_FunctionTest extends \PHPUnit\Framework\TestCase
         $prototype  = $prototypes[0];
         $params = $prototype->getParameters();
         $param  = $params[0];
-        $this->assertContains('Some description', $param->getDescription(), var_export($param, 1));
+        $this->assertStringContainsString('Some description', $param->getDescription(), var_export($param, 1));
     }
 }
 

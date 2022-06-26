@@ -25,6 +25,10 @@
  */
 require_once 'Zend/TimeSync.php';
 
+if (!defined('PHPUnit_MAIN_METHOD')) {
+    define('PHPUnit_MAIN_METHOD', 'Zend_TranslateTest::main');
+}
+
 /**
  * @category   Zend
  * @package    Zend_TimeSync

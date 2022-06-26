@@ -103,7 +103,7 @@ class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formImage([
             'name' => 'foo',
         ]);
-        $this->assertNotContains(' />', $test);
+        $this->assertStringNotContainsString(' />', $test);
     }
 
     /**
@@ -115,7 +115,7 @@ class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formImage([
             'name' => 'foo',
         ]);
-        $this->assertContains(' />', $test);
+        $this->assertStringContainsString(' />', $test);
     }
 }
 

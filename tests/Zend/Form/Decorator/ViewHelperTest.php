@@ -149,7 +149,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $element->setView($this->getView());
         $content = 'test content';
         $test = $this->decorator->render($content);
-        $this->assertContains($content, $test);
+        $this->assertStringContainsString($content, $test);
         $this->assertMatchesRegularExpression('#<input.*?name="foo"#s', $test);
     }
 

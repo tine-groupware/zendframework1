@@ -73,6 +73,9 @@ class Zend_Cache_FunctionFrontendTest extends \PHPUnit\Framework\TestCase {
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $options = [
@@ -82,6 +85,9 @@ class Zend_Cache_FunctionFrontendTest extends \PHPUnit\Framework\TestCase {
         $test = new Zend_Cache_Frontend_Function($options);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorBadCall()
     {
         $options = [
@@ -204,6 +210,9 @@ class Zend_Cache_FunctionFrontendTest extends \PHPUnit\Framework\TestCase {
         $this->_instance->call($closure);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCallWithABadSyntax1()
     {
         try {

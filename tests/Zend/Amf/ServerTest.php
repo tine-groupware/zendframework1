@@ -1093,7 +1093,7 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
         $this->_server->handle($request);
         $response = $this->_server->getResponse()->getAMFBodies();
         $this->assertTrue($response[0]->getData() instanceof Zend_Amf_Value_Messaging_ErrorMessage);
-        $this->assertContains("Oops, exception!", $response[0]->getData()->faultString);
+        $this->assertStringContainsString("Oops, exception!", $response[0]->getData()->faultString);
     }
 
 

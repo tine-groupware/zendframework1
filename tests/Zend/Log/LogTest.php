@@ -223,7 +223,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
         $logger = new Zend_Log($mock = new Zend_Log_Writer_Mock);
         $logger->info('foo', ['content' => 'nonesuch']);
         $event = array_shift($mock->events);
-        $this->assertContains('content', array_keys($event));
+        $this->assertStringContainsString('content', array_keys($event));
         $this->assertEquals('nonesuch', $event['content']);
     }
 
@@ -235,9 +235,9 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
         $logger = new Zend_Log($mock = new Zend_Log_Writer_Mock);
         $logger->info('foo', ['content' => 'nonesuch', 'bar']);
         $event = array_shift($mock->events);
-        $this->assertContains('content', array_keys($event));
-        $this->assertContains('info', array_keys($event));
-        $this->assertContains('bar', $event['info']);
+        $this->assertStringContainsString('content', array_keys($event));
+        $this->assertStringContainsString('info', array_keys($event));
+        $this->assertStringContainsString('bar', $event['info']);
     }
 
     /**
@@ -248,9 +248,9 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
         $logger = new Zend_Log($mock = new Zend_Log_Writer_Mock);
         $logger->info('foo', 'nonesuch');
         $event = array_shift($mock->events);
-        $this->assertContains('info', array_keys($event));
+        $this->assertStringContainsString('info', array_keys($event));
         $info = $event['info'];
-        $this->assertContains('nonesuch', $info);
+        $this->assertStringContainsString('nonesuch', $info);
     }
 
     // Factory

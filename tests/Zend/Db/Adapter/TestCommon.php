@@ -788,7 +788,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     public function testAdapterListTables()
     {
         $tables = $this->_db->listTables();
-        $this->assertContains('zfproducts', $tables);
+        $this->assertStringContainsString('zfproducts', $tables);
     }
 
     /**

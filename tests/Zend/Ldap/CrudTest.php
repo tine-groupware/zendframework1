@@ -337,8 +337,8 @@ class Zend_Ldap_CrudTest extends Zend_Ldap_OnlineTestCase
             $this->_getLdap()->delete($dn);
 
             $this->assertEquals('domain', $entry['associateddomain'][0]);
-            $this->assertContains('organizationalUnit', $entry['objectclass']);
-            $this->assertContains('domainRelatedObject', $entry['objectclass']);
+            $this->assertStringContainsString('organizationalUnit', $entry['objectclass']);
+            $this->assertStringContainsString('domainRelatedObject', $entry['objectclass']);
         } catch (Zend_Ldap_Exception $e) {
             if ($this->_getLdap()->exists($dn)) {
                 $this->_getLdap()->delete($dn);
@@ -366,8 +366,8 @@ class Zend_Ldap_CrudTest extends Zend_Ldap_OnlineTestCase
             $this->_getLdap()->delete($dn);
 
             $this->assertArrayNotHasKey('associateddomain', $entry);
-            $this->assertContains('organizationalUnit', $entry['objectclass']);
-            $this->assertNotContains('domainRelatedObject', $entry['objectclass']);
+            $this->assertStringContainsString('organizationalUnit', $entry['objectclass']);
+            $this->assertStringNotContainsString('domainRelatedObject', $entry['objectclass']);
         } catch (Zend_Ldap_Exception $e) {
             if ($this->_getLdap()->exists($dn)) {
                 $this->_getLdap()->delete($dn);

@@ -200,14 +200,14 @@ class Zend_Dojo_Form_Decorator_DijitElementTest extends \PHPUnit\Framework\TestC
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.form.TextBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.TextBox"', $html);
     }
 
     public function testRenderingShouldSetRequiredDijitParamWhenElementIsRequired()
     {
         $this->element->setRequired(true);
         $html = $this->decorator->render('');
-        $this->assertContains('required="', $html);
+        $this->assertStringContainsString('required="', $html);
     }
 
     /**
@@ -217,7 +217,7 @@ class Zend_Dojo_Form_Decorator_DijitElementTest extends \PHPUnit\Framework\TestC
     {
         $this->element->setRequired(false);
         $html = $this->decorator->render('');
-        $this->assertContains('required="false"', $html, $html);
+        $this->assertStringContainsString('required="false"', $html, $html);
     }
 }
 

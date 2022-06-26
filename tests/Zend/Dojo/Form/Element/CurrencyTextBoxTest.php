@@ -157,7 +157,7 @@ class Zend_Dojo_Form_Element_CurrencyTextBoxTest extends \PHPUnit\Framework\Test
     public function testShouldRenderCurrencyTextBoxDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.CurrencyTextBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.CurrencyTextBox"', $html);
     }
 }
 

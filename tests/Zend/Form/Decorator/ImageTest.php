@@ -124,10 +124,10 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
         $this->decorator->setElement($element);
 
         $image = $this->decorator->render('');
-        $this->assertContains('<input', $image, $image);
-        $this->assertContains('src="foobar"', $image);
-        $this->assertContains('name="foo"', $image);
-        $this->assertContains('type="image"', $image);
+        $this->assertStringContainsString('<input', $image, $image);
+        $this->assertStringContainsString('src="foobar"', $image);
+        $this->assertStringContainsString('name="foo"', $image);
+        $this->assertStringContainsString('type="image"', $image);
     }
 
     public function testCanRenderImageWithinAdditionalTag()
@@ -168,9 +168,9 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
                         ->setOption('class', 'imageclass');
 
         $image = $this->decorator->render('');
-        $this->assertContains('class="imageclass"', $image);
-        $this->assertContains('onClick="foo()"', $image);
-        $this->assertContains('id="foo-element"', $image);
+        $this->assertStringContainsString('class="imageclass"', $image);
+        $this->assertStringContainsString('onClick="foo()"', $image);
+        $this->assertStringContainsString('id="foo-element"', $image);
     }
 }
 

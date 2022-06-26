@@ -325,10 +325,10 @@ class Zend_Soap_AutoDiscoverTest extends \PHPUnit\Framework\TestCase
         $dom->loadXML(ob_get_clean());
 
         $dom->save(dirname(__FILE__).'/_files/setclass.wsdl');
-        $this->assertContains('<message name="testFunc1Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
-        $this->assertContains('<message name="testFunc2Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
-        $this->assertContains('<message name="testFunc3Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
-        $this->assertContains('<message name="testFunc4Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
+        $this->assertStringContainsString('<message name="testFunc1Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
+        $this->assertStringContainsString('<message name="testFunc2Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
+        $this->assertStringContainsString('<message name="testFunc3Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
+        $this->assertStringContainsString('<message name="testFunc4Out"><part name="return"', $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML()));
 
         unlink(dirname(__FILE__).'/_files/setclass.wsdl');
     }
@@ -446,8 +446,8 @@ class Zend_Soap_AutoDiscoverTest extends \PHPUnit\Framework\TestCase
         $name = $parts[0];
 
         $wsdl = $this->sanitizeWsdlXmlOutputForOsCompability($dom->saveXML());
-        $this->assertContains('<message name="Zend_Soap_AutoDiscover_TestFuncOut"><part name="return" type="xsd:string"/>', $wsdl);
-        $this->assertNotContains('<message name="Zend_Soap_AutoDiscover_TestFuncOut"><part name="Zend_Soap_AutoDiscover_TestFuncReturn"', $wsdl);
+        $this->assertStringContainsString('<message name="Zend_Soap_AutoDiscover_TestFuncOut"><part name="return" type="xsd:string"/>', $wsdl);
+        $this->assertStringNotContainsString('<message name="Zend_Soap_AutoDiscover_TestFuncOut"><part name="Zend_Soap_AutoDiscover_TestFuncReturn"', $wsdl);
         $this->assertTrue($dom->schemaValidate(dirname(__FILE__) .'/schemas/wsdl.xsd'), "WSDL Did not validate");
 
         unlink(dirname(__FILE__).'/_files/addfunction.wsdl');

@@ -120,6 +120,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($placeholder instanceof Zend_View_Helper_HeadLink);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testPrependThrowsExceptionWithoutArrayArgument()
     {
         try {
@@ -129,6 +132,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAppendThrowsExceptionWithoutArrayArgument()
     {
         try {
@@ -138,6 +144,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetThrowsExceptionWithoutArrayArgument()
     {
         try {
@@ -147,6 +156,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOffsetSetThrowsExceptionWithoutArrayArgument()
     {
         try {
@@ -269,6 +281,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $order);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOverloadingThrowsExceptionWithNoArguments()
     {
         try {
@@ -284,6 +299,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('/styles.css', $link->href);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOverloadingUsingSingleArrayArgumentWithInvalidValuesThrowsException()
     {
         try {
@@ -301,6 +319,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('/styles.css', $link->href);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOverloadingThrowsExceptionWithInvalidMethod()
     {
         try {
@@ -347,6 +368,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<![endif]-->', $string);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSettingAlternateWithTooFewArgsRaisesException()
     {
         try {

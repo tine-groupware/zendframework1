@@ -465,7 +465,7 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends \PHPUnit\Framework\TestCas
         $this->request('createDomain', [$domainName]);
         try {
             $domainListPage = $this->request('listDomains');
-            $this->assertContains($domainName, $domainListPage->getData());
+            $this->assertStringContainsString($domainName, $domainListPage->getData());
             // Delete the domain
             $this->request('deleteDomain', [$domainName]);
         } catch(Exception $e) {
@@ -480,12 +480,12 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends \PHPUnit\Framework\TestCas
         $this->request('createDomain', [$domainName]);
         try {
             $domainListPage = $this->request('listDomains');
-            $this->assertContains($domainName, $domainListPage->getData());
+            $this->assertStringContainsString($domainName, $domainListPage->getData());
             $this->assertNull($domainListPage->getToken());
             // Delete the domain
             $this->request('deleteDomain', [$domainName]);
             $domainListPage = $this->request('listDomains');
-            $this->assertNotContains($domainName, $domainListPage->getData());
+            $this->assertStringNotContainsString($domainName, $domainListPage->getData());
         } catch(Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;

@@ -173,7 +173,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
 
         $scriptPaths = $this->helper->view->getScriptPaths();
         $this->assertEquals($count, count($scriptPaths), var_export($scriptPaths, 1));
-        $this->assertContains($module, $scriptPaths[0]);
+        $this->assertStringContainsString($module, $scriptPaths[0]);
 
         $helperPaths = $this->helper->view->getHelperPaths();
         $test        = ucfirst($module) . '_View_Helper_';
@@ -276,7 +276,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
 
         $scriptPaths = $this->helper->view->getScriptPaths();
         $scriptPath  = $scriptPaths[0];
-        $this->assertContains(
+        $this->assertStringContainsString(
             $this->_normalizePath($viewDir),
             $this->_normalizePath($scriptPath)
             );

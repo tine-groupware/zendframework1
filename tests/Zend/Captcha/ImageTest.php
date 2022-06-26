@@ -148,7 +148,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     public function testCaptchaIsRendered()
     {
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getName(), $html);
+        $this->assertStringContainsString($this->element->getName(), $html);
     }
 
     public function testCaptchaHasIdAndInput()
@@ -180,14 +180,14 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $this->captcha->setSuffix(".jpeg");
         $html = $this->element->render($this->getView());
-        $this->assertContains(".jpeg", $html, $html);
+        $this->assertStringContainsString(".jpeg", $html, $html);
     }
 
     public function testCaptchaSetImgURL()
     {
         $this->captcha->setImgURL("/some/other/URL/");
         $html = $this->element->render($this->getView());
-        $this->assertContains("/some/other/URL/", $html, $html);
+        $this->assertStringContainsString("/some/other/URL/", $html, $html);
     }
 
     public function testCaptchaCreatesImage()

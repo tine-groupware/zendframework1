@@ -53,7 +53,7 @@ class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\
     {
         $this->wsdl->addComplexType('int[]');
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfInt">'.
                 '<xsd:sequence><xsd:element name="item" type="xsd:int" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence>'.
             '</xsd:complexType>',
@@ -65,7 +65,7 @@ class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\
     {
         $this->wsdl->addComplexType('string[]');
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfString">'.
                 '<xsd:sequence><xsd:element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence>'.
             '</xsd:complexType>',
@@ -81,12 +81,12 @@ class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\
         $wsdl = $this->wsdl->toXML();
 
         // Check for ArrayOfArrayOfString
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfArrayOfString"><xsd:sequence><xsd:element name="item" type="tns:ArrayOfString" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence></xsd:complexType>',
             $wsdl
         );
         // Check for ArrayOfString
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfString"><xsd:sequence><xsd:element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence></xsd:complexType>',
             $wsdl
         );
@@ -100,17 +100,17 @@ class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\
         $wsdl = $this->wsdl->toXML();
 
         // Check for ArrayOfArrayOfArrayOfString
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfArrayOfArrayOfString"><xsd:sequence><xsd:element name="item" type="tns:ArrayOfArrayOfString" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence></xsd:complexType>',
             $wsdl
         );
         // Check for ArrayOfArrayOfString
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfArrayOfString"><xsd:sequence><xsd:element name="item" type="tns:ArrayOfString" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence></xsd:complexType>',
             $wsdl
         );
         // Check for ArrayOfString
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfString"><xsd:sequence><xsd:element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence></xsd:complexType>',
             $wsdl
         );
@@ -125,7 +125,7 @@ class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\
 
         $wsdl = $this->wsdl->toXML();
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<xsd:complexType name="Zend_Soap_Wsdl_SequenceTest"><xsd:all><xsd:element name="var" type="xsd:int"/></xsd:all></xsd:complexType>',
             $wsdl
         );
@@ -140,12 +140,12 @@ class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\
 
          $wsdl = $this->wsdl->toXML();
 
-         $this->assertContains(
+         $this->assertStringContainsString(
             '<xsd:complexType name="Zend_Soap_Wsdl_SequenceTest"><xsd:all><xsd:element name="var" type="xsd:int"/></xsd:all></xsd:complexType>',
             $wsdl
          );
 
-         $this->assertContains(
+         $this->assertStringContainsString(
             '<xsd:complexType name="ArrayOfZend_soap_wsdl_sequencetest"><xsd:sequence><xsd:element name="item" type="tns:Zend_Soap_Wsdl_SequenceTest" minOccurs="0" maxOccurs="unbounded"/></xsd:sequence></xsd:complexType>',
             $wsdl
          );

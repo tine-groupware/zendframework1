@@ -125,7 +125,7 @@ class Zend_Dojo_View_Helper_SimpleTextareaTest extends \PHPUnit\Framework\TestCa
     public function testPassingIdAsAttributeShouldOverrideUsingNameAsId()
     {
         $html = $this->helper->simpleTextarea('foo[bar]', '', [], ['id' => 'foo-bar']);
-        $this->assertContains('id="foo-bar"', $html);
+        $this->assertStringContainsString('id="foo-bar"', $html);
     }
 }
 

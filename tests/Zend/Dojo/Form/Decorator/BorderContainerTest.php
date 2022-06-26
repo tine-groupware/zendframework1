@@ -124,7 +124,7 @@ class Zend_Dojo_Form_Decorator_BorderContainerTest extends \PHPUnit\Framework\Te
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.layout.BorderContainer"', $html);
+        $this->assertStringContainsString('dojoType="dijit.layout.BorderContainer"', $html);
     }
 }
 

@@ -149,7 +149,7 @@ class Zend_Http_UserAgentTest extends \PHPUnit\Framework\TestCase
         $userAgent = new Zend_Http_UserAgent($config);
 
         $config = $userAgent->getConfig();
-        $this->assertContains('Device/Browser/Features/Adapter.php', $config['mobile']['features']['path']);
+        $this->assertStringContainsString('Device/Browser/Features/Adapter.php', $config['mobile']['features']['path']);
     }
 
     public function testSetDefaultConfigAlone()

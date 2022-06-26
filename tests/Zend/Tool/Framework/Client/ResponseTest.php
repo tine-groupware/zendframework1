@@ -111,7 +111,7 @@ class Zend_Tool_Framework_Client_ResponseTest extends \PHPUnit\Framework\TestCas
         $this->_response->addContentDecorator($separator);
         $decorators = $this->_response->getContentDecorators();
         $this->assertArrayHasKey('separator', $decorators);
-        $this->assertContains($separator, $decorators);
+        $this->assertStringContainsString($separator, $decorators);
     }
 
     public function testResponseWillApplyDecorator()

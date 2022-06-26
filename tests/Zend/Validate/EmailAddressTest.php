@@ -128,7 +128,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_validator->isValid('@example.com'));
         $messages = $this->_validator->getMessages();
         $this->assertEquals(1, count($messages));
-        $this->assertContains('local-part@hostname', current($messages));
+        $this->assertStringContainsString('local-part@hostname', current($messages));
     }
 
     /**
@@ -144,14 +144,14 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(3, count($messages));
 
-        $this->assertContains('Some User', current($messages));
-        $this->assertContains('dot-atom', current($messages));
+        $this->assertStringContainsString('Some User', current($messages));
+        $this->assertStringContainsString('dot-atom', current($messages));
 
-        $this->assertContains('Some User', next($messages));
-        $this->assertContains('quoted-string', current($messages));
+        $this->assertStringContainsString('Some User', next($messages));
+        $this->assertStringContainsString('quoted-string', current($messages));
 
-        $this->assertContains('Some User', next($messages));
-        $this->assertContains('not a valid local part', current($messages));
+        $this->assertStringContainsString('Some User', next($messages));
+        $this->assertStringContainsString('not a valid local part', current($messages));
     }
 
     /**
@@ -179,7 +179,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_validator->isValid('username@ example . com'));
         $messages = $this->_validator->getMessages();
         $this->assertThat(count($messages), $this->greaterThanOrEqual(1));
-        $this->assertContains('not a valid hostname', current($messages));
+        $this->assertStringContainsString('not a valid hostname', current($messages));
     }
 
     /**
@@ -250,9 +250,9 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_validator->isValid('User Name <username@example.com>'));
         $messages = $this->_validator->getMessages();
         $this->assertThat(count($messages), $this->greaterThanOrEqual(3));
-        $this->assertContains('not a valid hostname', current($messages));
-        $this->assertContains('cannot match TLD', next($messages));
-        $this->assertContains('does not appear to be a valid local network name', next($messages));
+        $this->assertStringContainsString('not a valid hostname', current($messages));
+        $this->assertStringContainsString('cannot match TLD', next($messages));
+        $this->assertStringContainsString('does not appear to be a valid local network name', next($messages));
     }
 
     /**

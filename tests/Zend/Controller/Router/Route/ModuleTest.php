@@ -481,7 +481,7 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
             'module' => 'default',
         ];
         $url = $this->route->assemble($params);
-        $this->assertNotContains('"><script>alert(11639)<', $url);
+        $this->assertStringNotContainsString('"><script>alert(11639)<', $url);
     }
 }
 

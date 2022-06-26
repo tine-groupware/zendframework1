@@ -74,8 +74,8 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
         $profile->setAttribute('boof', 'foob');
 
         $this->assertEquals('foob', $profile->getAttribute('boof'));
-        $this->assertContains('bar', $profile->getAttributes());
-        $this->assertContains('BAZ', $profile->getAttributes());
+        $this->assertStringContainsString('bar', $profile->getAttributes());
+        $this->assertStringContainsString('BAZ', $profile->getAttributes());
 
     }
 

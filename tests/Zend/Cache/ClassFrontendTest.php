@@ -109,6 +109,9 @@ class Zend_Cache_ClassFrontendTest extends \PHPUnit\Framework\TestCase
         unset($this->_instance2);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall1()
     {
         $options = [
@@ -118,6 +121,9 @@ class Zend_Cache_ClassFrontendTest extends \PHPUnit\Framework\TestCase
         $test = new Zend_Cache_Frontend_Class($options);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall2()
     {
         $options = [
@@ -127,6 +133,9 @@ class Zend_Cache_ClassFrontendTest extends \PHPUnit\Framework\TestCase
         $test = new Zend_Cache_Frontend_Class($options);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorBadCall()
     {
         $options = [
@@ -246,6 +255,9 @@ class Zend_Cache_ClassFrontendTest extends \PHPUnit\Framework\TestCase
       
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithABadCachedEntity()
     {
         try {
@@ -261,6 +273,7 @@ class Zend_Cache_ClassFrontendTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-5034
+     * @doesNotPerformAssertions
      */
     public function testCallingConstructorWithInvalidOptionShouldNotRaiseException()
     {

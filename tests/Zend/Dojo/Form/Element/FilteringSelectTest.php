@@ -112,7 +112,7 @@ class Zend_Dojo_Form_Element_FilteringSelectTest extends \PHPUnit\Framework\Test
     public function testShouldRenderFilteringSelectDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.FilteringSelect"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.FilteringSelect"', $html);
     }
 
     /**#@+

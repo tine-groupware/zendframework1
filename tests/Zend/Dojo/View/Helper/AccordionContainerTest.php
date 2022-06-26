@@ -137,9 +137,9 @@ class Zend_Dojo_View_Helper_AccordionContainerTest extends \PHPUnit\Framework\Te
         $this->assertMatchesRegularExpression('/<div[^>]*(id="foo")/', $html);
         $this->assertEquals(2, substr_count($html, 'dijit.layout.AccordionPane'));
         $this->assertEquals(1, substr_count($html, 'dijit.layout.AccordionContainer'));
-        $this->assertContains('started', $html);
-        $this->assertContains('ended', $html);
-        $this->assertContains('Nested Content', $html);
+        $this->assertStringContainsString('started', $html);
+        $this->assertStringContainsString('ended', $html);
+        $this->assertStringContainsString('Nested Content', $html);
     }
 
     public function testCapturingShouldRaiseErrorWhenDuplicateIdDiscovered()

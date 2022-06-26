@@ -125,21 +125,21 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testSetSuffixModifiesContextSuffix()
     {
         $this->helper->setSuffix('xml', 'foobar');
-        $this->assertContains('foobar', $this->helper->getSuffix('xml'));
+        $this->assertStringContainsString('foobar', $this->helper->getSuffix('xml'));
     }
 
     public function testSetSuffixPrependsToViewRendererSuffixByDefault()
     {
         $this->helper->setSuffix('xml', 'foobar');
         $expected = 'foobar.' . $this->viewRenderer->getViewSuffix();
-        $this->assertContains($expected, $this->helper->getSuffix('xml'));
+        $this->assertStringContainsString($expected, $this->helper->getSuffix('xml'));
     }
 
     public function testCanSetSuffixWithoutViewRendererSuffix()
     {
         $this->helper->setSuffix('xml', 'foobar', false);
         $expected = 'foobar';
-        $this->assertContains($expected, $this->helper->getSuffix('xml'));
+        $this->assertStringContainsString($expected, $this->helper->getSuffix('xml'));
     }
 
     public function testSuffixAccessorsThrowExceptionOnInvalidContextType()
@@ -333,7 +333,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->assertTrue(isset($context['headers']));
         $this->assertTrue(isset($context['callbacks']));
 
-        $this->assertContains('foo.bar', $context['suffix']);
+        $this->assertStringContainsString('foo.bar', $context['suffix']);
         $this->assertEquals('application/x-foobar', $context['headers']['Content-Type']);
         $this->assertEquals('Bar', $context['headers']['X-Foo']);
     }
@@ -394,9 +394,9 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->assertTrue($this->helper->hasContext('barbaz'));
         $this->assertEquals('xml', $this->helper->getSuffix('xml'));
         $this->assertNotEquals('foo.bar', $this->helper->getSuffix('foobar'));
-        $this->assertContains('foo.bar', $this->helper->getSuffix('foobar'));
+        $this->assertStringContainsString('foo.bar', $this->helper->getSuffix('foobar'));
         $this->assertNotEquals('bar.baz', $this->helper->getSuffix('barbaz'));
-        $this->assertContains('bar.baz', $this->helper->getSuffix('barbaz'));
+        $this->assertStringContainsString('bar.baz', $this->helper->getSuffix('barbaz'));
     }
 
     public function testCanRemoveSingleContext()
@@ -505,13 +505,13 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
                       ->setActionName('all');
         $this->helper->initContext();
         $this->assertEquals('json', $this->helper->getCurrentContext());
-        $this->assertContains('json', $this->viewRenderer->getViewSuffix());
+        $this->assertStringContainsString('json', $this->viewRenderer->getViewSuffix());
 
         $this->request->setParam('format', 'xml')
                       ->setActionName('all');
         $this->helper->initContext();
         $this->assertEquals('xml', $this->helper->getCurrentContext());
-        $this->assertContains('xml', $this->viewRenderer->getViewSuffix());
+        $this->assertStringContainsString('xml', $this->viewRenderer->getViewSuffix());
     }
 
     public function testInitContextDoesNothingIfActionDoesNotHaveContextAndPassedFormatInvalid()
@@ -527,7 +527,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->request->setParam('format', 'xml')
                       ->setActionName('foo');
         $this->helper->initContext();
-        $this->assertContains('xml', $this->viewRenderer->getViewSuffix());
+        $this->assertStringContainsString('xml', $this->viewRenderer->getViewSuffix());
     }
 
     public function testInitContextSetsAppropriateResponseHeader()
@@ -554,7 +554,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
                       ->setActionName('foo');
         $this->helper->initContext('json');
 
-        $this->assertContains('json', $this->viewRenderer->getViewSuffix());
+        $this->assertStringContainsString('json', $this->viewRenderer->getViewSuffix());
 
         $headers = $this->response->getHeaders();
 
@@ -574,7 +574,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->request->setActionName('foo');
         $this->helper->initContext('xml');
 
-        $this->assertContains('xml', $this->viewRenderer->getViewSuffix());
+        $this->assertStringContainsString('xml', $this->viewRenderer->getViewSuffix());
 
         $headers = $this->response->getHeaders();
 
@@ -879,7 +879,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->helper->init();
         $this->helper->initContext();
         $suffix = $this->viewRenderer->getViewSuffix();
-        $this->assertNotContains('xml', $suffix, $suffix);
+        $this->assertStringNotContainsString('xml', $suffix, $suffix);
     }
 
     /**
@@ -895,15 +895,15 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->helper->initContext();
         $this->assertEquals('foo', $this->helper->getCurrentContext());
         $suffix = $this->viewRenderer->getViewSuffix();
-        $this->assertContains('foo', $suffix, $suffix);
+        $this->assertStringContainsString('foo', $suffix, $suffix);
 
         $this->request->setActionName('bar');
         $this->helper->init();
         $this->helper->initContext();
         $this->assertEquals('foo', $this->helper->getCurrentContext());
         $suffix = $this->viewRenderer->getViewSuffix();
-        $this->assertContains('foo', $suffix, $suffix);
-        $this->assertNotContains('foo.foo', $suffix, $suffix);
+        $this->assertStringContainsString('foo', $suffix, $suffix);
+        $this->assertStringNotContainsString('foo.foo', $suffix, $suffix);
     }
 
     /**

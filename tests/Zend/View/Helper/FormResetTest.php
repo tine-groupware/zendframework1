@@ -106,14 +106,14 @@ class Zend_View_Helper_FormResetTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderAsHtmlByDefault()
     {
         $test = $this->helper->formReset('foo', 'bar');
-        $this->assertNotContains(' />', $test);
+        $this->assertStringNotContainsString(' />', $test);
     }
 
     public function testShouldAllowRenderingAsXHtml()
     {
         $this->view->doctype('XHTML1_STRICT');
         $test = $this->helper->formReset('foo', 'bar');
-        $this->assertContains(' />', $test);
+        $this->assertStringContainsString(' />', $test);
     }
 }
 

@@ -150,6 +150,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
 
     /**
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testSetContainerClassThrowsExceptionWithInvalidContainerClass()
     {

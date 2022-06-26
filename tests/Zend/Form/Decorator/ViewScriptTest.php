@@ -152,7 +152,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
     {
         $this->testCanSetViewScriptViaElementAttribute();
         $test = $this->decorator->render('');
-        $this->assertContains('This is content from the view script', $test);
+        $this->assertStringContainsString('This is content from the view script', $test);
     }
 
     public function testRenderingRendersViewScriptWithModule()
@@ -167,7 +167,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
 
         $this->getElement()->setAttrib('viewModule', $module);
         $test = $this->decorator->render('');
-        $this->assertContains('This is content from the view script', $test);
+        $this->assertStringContainsString('This is content from the view script', $test);
     }
 
     public function testOptionsArePassedToPartialAsVariables()
@@ -182,7 +182,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
         $this->getElement();
         $test = $this->decorator->render('');
         foreach ($this->decorator->getOptions() as $key => $value) {
-            $this->assertContains("$key: $value", $test);
+            $this->assertStringContainsString("$key: $value", $test);
         }
     }
 
@@ -192,8 +192,8 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
              ->setOption('placement', false)
              ->setElement($this->getElement());
         $test = $this->decorator->render('content to decorate');
-        $this->assertNotContains('content to decorate', $test, $test);
-        $this->assertContains('This is content from the view script', $test);
+        $this->assertStringNotContainsString('content to decorate', $test, $test);
+        $this->assertStringContainsString('This is content from the view script', $test);
     }
 
     public function testContentCanBeRenderedWithinViewScript()
@@ -203,9 +203,9 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
              ->setElement($this->getElement());
 
         $test = $this->decorator->render('content to decorate');
-        $this->assertContains('content to decorate', $test, $test);
-        $this->assertContains('This text prefixes the content', $test);
-        $this->assertContains('This text appends the content', $test);
+        $this->assertStringContainsString('content to decorate', $test, $test);
+        $this->assertStringContainsString('This text prefixes the content', $test);
+        $this->assertStringContainsString('This text appends the content', $test);
     }
 
     public function testDecoratorCanControlPlacementFromWithinViewScript()
@@ -214,13 +214,13 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
              ->setElement($this->getElement());
 
         $test = $this->decorator->render('content to decorate');
-        $this->assertContains('content to decorate', $test, $test);
+        $this->assertStringContainsString('content to decorate', $test, $test);
 
         $count = substr_count($test, 'content to decorate');
         $this->assertEquals(1, $count);
 
-        $this->assertContains('This text prefixes the content', $test);
-        $this->assertContains('This text appends the content', $test);
+        $this->assertStringContainsString('This text prefixes the content', $test);
+        $this->assertStringContainsString('This text appends the content', $test);
     }
 
     /**

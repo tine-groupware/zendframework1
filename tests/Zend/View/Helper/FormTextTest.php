@@ -75,28 +75,28 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
     public function testIdSetFromName()
     {
         $element = $this->helper->formText('foo');
-        $this->assertContains('name="foo"', $element);
-        $this->assertContains('id="foo"', $element);
+        $this->assertStringContainsString('name="foo"', $element);
+        $this->assertStringContainsString('id="foo"', $element);
     }
 
     public function testSetIdFromAttribs()
     {
         $element = $this->helper->formText('foo', null, ['id' => 'bar']);
-        $this->assertContains('name="foo"', $element);
-        $this->assertContains('id="bar"', $element);
+        $this->assertStringContainsString('name="foo"', $element);
+        $this->assertStringContainsString('id="bar"', $element);
     }
 
     public function testSetValue()
     {
         $element = $this->helper->formText('foo', 'bar');
-        $this->assertContains('name="foo"', $element);
-        $this->assertContains('value="bar"', $element);
+        $this->assertStringContainsString('name="foo"', $element);
+        $this->assertStringContainsString('value="bar"', $element);
     }
 
     public function testReadOnlyAttribute()
     {
         $element = $this->helper->formText('foo', null, ['readonly' => 'readonly']);
-        $this->assertContains('readonly="readonly"', $element);
+        $this->assertStringContainsString('readonly="readonly"', $element);
     }
 
     /**
@@ -130,14 +130,14 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
     public function testRendersAsHtmlByDefault()
     {
         $test = $this->helper->formText('foo', 'bar');
-        $this->assertNotContains(' />', $test);
+        $this->assertStringNotContainsString(' />', $test);
     }
 
     public function testCanRendersAsXHtml()
     {
         $this->view->doctype('XHTML1_STRICT');
         $test = $this->helper->formText('foo', 'bar');
-        $this->assertContains(' />', $test);
+        $this->assertStringContainsString(' />', $test);
     }
 }
 

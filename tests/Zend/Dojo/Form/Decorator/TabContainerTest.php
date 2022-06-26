@@ -124,7 +124,7 @@ class Zend_Dojo_Form_Decorator_TabContainerTest extends \PHPUnit\Framework\TestC
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.layout.TabContainer"', $html);
+        $this->assertStringContainsString('dojoType="dijit.layout.TabContainer"', $html);
     }
 }
 

@@ -82,6 +82,12 @@ class Zend_Cache_FactoryTest extends \PHPUnit\Framework\TestCase
         $generated_frontend = Zend_Cache::factory('FooBarTestFrontend', 'File', [], [], true, false, true);
         $this->assertEquals('FooBarTestFrontend', get_class($generated_frontend));
     }
+
+    /**
+     * @doesNotPerformAssertions
+     *
+     * @return void
+     */
     public function testFactoryLoadsPlatformBackend()
     {
         try {
@@ -94,6 +100,11 @@ class Zend_Cache_FactoryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     *
+     * @return void
+     */
     public function testBadFrontend()
     {
         try {
@@ -104,6 +115,11 @@ class Zend_Cache_FactoryTest extends \PHPUnit\Framework\TestCase
         $this->fail('Zend_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     *
+     * @return void
+     */
     public function testBadBackend()
     {
         try {

@@ -78,8 +78,8 @@ class Zend_Form_Decorator_ReCaptchaTest extends \PHPUnit\Framework\TestCase
     public function testDecoratorCreatesHiddenFieldsForChallengeAndResponse()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('type="hidden" name="recaptcha_challenge_field" value="" id="captcha-challenge"', $html, $html);
-        $this->assertContains('type="hidden" name="recaptcha_response_field" value="" id="captcha-response"', $html, $html);
+        $this->assertStringContainsString('type="hidden" name="recaptcha_challenge_field" value="" id="captcha-challenge"', $html, $html);
+        $this->assertStringContainsString('type="hidden" name="recaptcha_response_field" value="" id="captcha-response"', $html, $html);
     }
 
     /** @group ZF-10991 */
@@ -87,23 +87,23 @@ class Zend_Form_Decorator_ReCaptchaTest extends \PHPUnit\Framework\TestCase
     {
         $html = $this->decorator->render('');
         // Test that we have script tags
-        $this->assertContains('<script type="text/javascript" language="JavaScript">', $html);
-        $this->assertContains('</script>', $html);
+        $this->assertStringContainsString('<script type="text/javascript" language="JavaScript">', $html);
+        $this->assertStringContainsString('</script>', $html);
 
         // Test that we create a DOM window.onload event, and trigger any previous
-        $this->assertContains('function windowOnLoad', $html);
-        $this->assertContains('old = window.onload', $html);
-        $this->assertContains('if (old)', $html);
+        $this->assertStringContainsString('function windowOnLoad', $html);
+        $this->assertStringContainsString('old = window.onload', $html);
+        $this->assertStringContainsString('if (old)', $html);
 
         //Test that we create IE/Mozilla zendBindEvent mediator
-        $this->assertContains('function zendBindEvent', $html);
+        $this->assertStringContainsString('function zendBindEvent', $html);
 
         // Test that we add an event listener for the form submit event
-        $this->assertContains('document.getElementById("captcha-challenge").form,', $html);
+        $this->assertStringContainsString('document.getElementById("captcha-challenge").form,', $html);
 
         // Test that we reset the hidden fields with the global recaptcha values
-        $this->assertContains('document.getElementById("captcha-challenge").value = document.getElementById("recaptcha_challenge_field").value', $html);
-        $this->assertContains('document.getElementById("captcha-response").value = document.getElementById("recaptcha_response_field").value', $html);
+        $this->assertStringContainsString('document.getElementById("captcha-challenge").value = document.getElementById("recaptcha_challenge_field").value', $html);
+        $this->assertStringContainsString('document.getElementById("captcha-response").value = document.getElementById("recaptcha_response_field").value', $html);
     }
 
     /** @group ZF-10991 */
@@ -111,8 +111,8 @@ class Zend_Form_Decorator_ReCaptchaTest extends \PHPUnit\Framework\TestCase
     {
         $this->element->setBelongsTo('contact');
         $html = $this->decorator->render('');
-        $this->assertContains('type="hidden" name="contact[recaptcha_challenge_field]" value="" id="contact-captcha-challenge"', $html, $html);
-        $this->assertContains('type="hidden" name="contact[recaptcha_response_field]" value="" id="contact-captcha-response"', $html, $html);
+        $this->assertStringContainsString('type="hidden" name="contact[recaptcha_challenge_field]" value="" id="contact-captcha-challenge"', $html, $html);
+        $this->assertStringContainsString('type="hidden" name="contact[recaptcha_response_field]" value="" id="contact-captcha-response"', $html, $html);
     }
 
     /** @group ZF-10991 */
@@ -120,9 +120,9 @@ class Zend_Form_Decorator_ReCaptchaTest extends \PHPUnit\Framework\TestCase
     {
         $this->element->setBelongsTo('contact');
         $html = $this->decorator->render('');
-        $this->assertContains('document.getElementById("contact-captcha-challenge").form,', $html);
-        $this->assertContains('document.getElementById("contact-captcha-challenge").value = document.getElementById("recaptcha_challenge_field").value', $html);
-        $this->assertContains('document.getElementById("contact-captcha-response").value = document.getElementById("recaptcha_response_field").value', $html);
+        $this->assertStringContainsString('document.getElementById("contact-captcha-challenge").form,', $html);
+        $this->assertStringContainsString('document.getElementById("contact-captcha-challenge").value = document.getElementById("recaptcha_challenge_field").value', $html);
+        $this->assertStringContainsString('document.getElementById("contact-captcha-response").value = document.getElementById("recaptcha_response_field").value', $html);
     }
 }
 

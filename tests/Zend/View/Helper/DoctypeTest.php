@@ -200,6 +200,9 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($doctype->isXhtml());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testMalformedCustomDoctypeRaisesException()
     {
         try {

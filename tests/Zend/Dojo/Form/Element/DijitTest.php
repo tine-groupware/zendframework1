@@ -145,7 +145,7 @@ class Zend_Dojo_Form_Element_DijitTest extends \PHPUnit\Framework\TestCase
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.TextBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.TextBox"', $html);
     }
 
     public function testElementShouldDojoEnableViewObject()

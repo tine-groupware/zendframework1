@@ -90,21 +90,21 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
     public function testPreRun()
     {
         $this->_controller->preDispatch();
-        $this->assertNotContains('Prerun ran', $this->_controller->getResponse()->getBody());
+        $this->assertStringNotContainsString('Prerun ran', $this->_controller->getResponse()->getBody());
 
         $this->_controller->getRequest()->setParam('prerun', true);
         $this->_controller->preDispatch();
-        $this->assertContains('Prerun ran', $this->_controller->getResponse()->getBody());
+        $this->assertStringContainsString('Prerun ran', $this->_controller->getResponse()->getBody());
     }
 
     public function testPostRun()
     {
         $this->_controller->postDispatch();
-        $this->assertNotContains('Postrun ran', $this->_controller->getResponse()->getBody());
+        $this->assertStringNotContainsString('Postrun ran', $this->_controller->getResponse()->getBody());
 
         $this->_controller->getRequest()->setParam('postrun', true);
         $this->_controller->postDispatch();
-        $this->assertContains('Postrun ran', $this->_controller->getResponse()->getBody());
+        $this->assertStringContainsString('Postrun ran', $this->_controller->getResponse()->getBody());
     }
 
     public function testGetRequest()
@@ -187,8 +187,8 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
     {
         $response = $this->_controller->run();
         $body     = $response->getBody();
-        $this->assertContains('In the index action', $body, var_export($this->_controller->getRequest(), 1));
-        $this->assertNotContains('Prerun ran', $body, $body);
+        $this->assertStringContainsString('In the index action', $body, var_export($this->_controller->getRequest(), 1));
+        $this->assertStringNotContainsString('Prerun ran', $body, $body);
     }
 
     public function testRun2()
@@ -206,8 +206,8 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
     {
         $this->_controller->getRequest()->setActionName('foo');
         $response = $this->_controller->run();
-        $this->assertContains('In the foo action', $response->getBody());
-        $this->assertNotContains('Prerun ran', $this->_controller->getResponse()->getBody());
+        $this->assertStringContainsString('In the foo action', $response->getBody());
+        $this->assertStringNotContainsString('Prerun ran', $this->_controller->getResponse()->getBody());
     }
 
     public function testHasParam()
@@ -280,7 +280,7 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
             }
         }
         $this->assertEquals(1, $found);
-        $this->assertContains('/foo/bar', $url);
+        $this->assertStringContainsString('/foo/bar', $url);
     }
 
     public function testInitView()

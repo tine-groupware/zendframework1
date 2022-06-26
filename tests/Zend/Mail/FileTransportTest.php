@@ -177,9 +177,9 @@ class Zend_Mail_FileTransportTest extends \PHPUnit\Framework\TestCase
         }
 
         // file name should now contain recipient email address
-        $this->assertContains('oleg@example.com', $entry);
+        $this->assertStringContainsString('oleg@example.com', $entry);
         // and default callback part
-        $this->assertContains('ZendMail', $entry);
+        $this->assertStringContainsString('ZendMail', $entry);
     }
 
     public function directoryNotExisting($transport)

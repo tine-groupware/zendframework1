@@ -231,8 +231,8 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
         $helpers = Zend_Controller_Action_HelperBroker::getExistingHelpers();
         $this->assertTrue(is_array($helpers));
         $this->assertEquals(2, count($helpers));
-        $this->assertContains('ViewRenderer', array_keys($helpers));
-        $this->assertContains('Redirector', array_keys($helpers));
+        $this->assertStringContainsString('ViewRenderer', array_keys($helpers));
+        $this->assertStringContainsString('Redirector', array_keys($helpers));
     }
 
     public function testGetHelperStatically()

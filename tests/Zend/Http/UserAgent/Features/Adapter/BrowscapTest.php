@@ -56,7 +56,7 @@ class Zend_Http_UserAgent_Features_Adapter_BrowscapTest extends \PHPUnit\Framewo
         $this->assertEquals(1,                           $adapter['javascript']);
         $this->assertEquals(3,                           $adapter['cssversion']);
         $this->assertEquals('iPhone',                    $adapter['mobile_browser']);
-        $this->assertContains('^mozilla/.\\..*(iphone;.*cpu', $adapter['browser_name_regex']);
+        $this->assertStringContainsString('^mozilla/.\\..*(iphone;.*cpu', $adapter['browser_name_regex']);
 
         $request['http_user_agent'] = 'SonyEricssonK700i/R2AC SEMC-Browser/4.0.2 Profile/MIDP-2.0 Configuration/CLDC-1.1';
         $adapter = Zend_Http_UserAgent_Features_Adapter_Browscap::getFromRequest($request, []);

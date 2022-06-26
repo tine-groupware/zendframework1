@@ -124,7 +124,7 @@ class Zend_Dojo_Form_Decorator_SplitContainerTest extends \PHPUnit\Framework\Tes
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.layout.SplitContainer"', $html);
+        $this->assertStringContainsString('dojoType="dijit.layout.SplitContainer"', $html);
     }
 }
 

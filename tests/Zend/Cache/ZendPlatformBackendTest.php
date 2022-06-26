@@ -64,6 +64,9 @@ class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTest {
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_ZendPlatform();
@@ -87,9 +90,21 @@ class Zend_Cache_ZendPlatformBackendTest extends Zend_Cache_CommonBackendTest {
     }
 
     // Because of limitations of this backend...
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags2() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags3() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeOld() {}
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeNotMatchingTags() {}
 }
 

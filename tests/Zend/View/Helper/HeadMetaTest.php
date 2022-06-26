@@ -126,6 +126,9 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($placeholder instanceof Zend_View_Helper_HeadMeta);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAppendPrependAndSetThrowExceptionsWhenNonMetaValueProvided()
     {
         try {
@@ -250,6 +253,9 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->_testOverloadSet('http-equiv');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOverloadingThrowsExceptionWithFewerThanTwoArgs()
     {
         try {
@@ -259,6 +265,9 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOverloadingThrowsExceptionWithInvalidMethodType()
     {
         try {
@@ -490,9 +499,10 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     }
 
 	/**
-	 * @group ZF-7722
-	 */
-	public function testCharsetValidateFail()
+  * @group ZF-7722
+  * @doesNotPerformAssertions
+  */
+ public function testCharsetValidateFail()
 	{
 		$view = new Zend_View();
 		$view->doctype('HTML4_STRICT');

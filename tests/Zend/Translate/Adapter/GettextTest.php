@@ -219,7 +219,7 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
         $adapter = new Zend_Translate_Adapter_Gettext(dirname(__FILE__) . '/_files/translation_en.mo');
         $this->assertEquals('', $adapter->translate(''));
         $info = $adapter->getAdapterInfo();
-        $this->assertContains('Last-Translator: Thomas Weidner <thomas.weidner@voxtronic.com>', $info[dirname(__FILE__) . '/_files/translation_en.mo']);
+        $this->assertStringContainsString('Last-Translator: Thomas Weidner <thomas.weidner@voxtronic.com>', $info[dirname(__FILE__) . '/_files/translation_en.mo']);
     }
 
     public function testOtherEncoding()
@@ -251,7 +251,7 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
     public function testMissingAdapterInfo()
     {
         $adapter = new Zend_Translate_Adapter_Gettext(dirname(__FILE__) . '/_files/failed3.mo', 'en');
-        $this->assertContains('No adapter information available', current($adapter->getAdapterInfo()));
+        $this->assertStringContainsString('No adapter information available', current($adapter->getAdapterInfo()));
     }
 
     /**

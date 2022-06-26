@@ -1009,7 +1009,7 @@ class Zend_Soap_ServerTest extends \PHPUnit\Framework\TestCase
           .     '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
         $response = $server->handle($request);
-        $this->assertContains('Invalid XML', $response->getMessage());
+        $this->assertStringContainsString('Invalid XML', $response->getMessage());
     }
     */
 }

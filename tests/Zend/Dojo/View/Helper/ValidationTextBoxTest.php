@@ -134,7 +134,7 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends \PHPUnit\Framework\Tes
     public function testTrueRequiredParameterShouldBeRenderedAsStringValue()
     {
         $html = $this->getElement();
-        $this->assertContains('required="true"', $html);
+        $this->assertStringContainsString('required="true"', $html);
     }
 
     /**
@@ -151,7 +151,7 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends \PHPUnit\Framework\Tes
             ],
             []
         );
-        $this->assertContains('required="false"', $html);
+        $this->assertStringContainsString('required="false"', $html);
     }
 }
 

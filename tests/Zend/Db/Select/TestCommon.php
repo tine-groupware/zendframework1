@@ -313,24 +313,24 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
             ->columns('product_name');
         $stmt = $this->_db->query($select);
         $result = $stmt->fetchAll();
-        $this->assertContains('product_name', array_keys($result[0]));
-        $this->assertNotContains('product_id', array_keys($result[0]));
+        $this->assertStringContainsString('product_name', array_keys($result[0]));
+        $this->assertStringNotContainsString('product_id', array_keys($result[0]));
 
         $select = $this->_selectColumnsReset()
             ->reset(Zend_Db_Select::COLUMNS)
             ->columns('p.product_name');
         $stmt = $this->_db->query($select);
         $result = $stmt->fetchAll();
-        $this->assertContains('product_name', array_keys($result[0]));
-        $this->assertNotContains('product_id', array_keys($result[0]));
+        $this->assertStringContainsString('product_name', array_keys($result[0]));
+        $this->assertStringNotContainsString('product_id', array_keys($result[0]));
 
         $select = $this->_selectColumnsReset()
             ->reset(Zend_Db_Select::COLUMNS)
             ->columns('product_name', 'p');
         $stmt = $this->_db->query($select);
         $result = $stmt->fetchAll();
-        $this->assertContains('product_name', array_keys($result[0]));
-        $this->assertNotContains('product_id', array_keys($result[0]));
+        $this->assertStringContainsString('product_name', array_keys($result[0]));
+        $this->assertStringNotContainsString('product_id', array_keys($result[0]));
     }
 
     public function testSelectColumnsResetBeforeFrom()
@@ -1708,7 +1708,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $colname = $this->_db->quoteIdentifier('colname');
 
         $s = $this->_db->select()->from('A')->joinUsing('B', $colname);
-        $this->assertContains("JOIN {$table_B} ON {$table_B}.{$colname} = {$table_A}.{$colname}", $s->assemble());
+        $this->assertStringContainsString("JOIN {$table_B} ON {$table_B}.{$colname} = {$table_A}.{$colname}", $s->assemble());
     }
 
     /**
@@ -1722,7 +1722,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $colTwo  = $this->_db->quoteIdentifier('colTwo');
 
         $s = $this->_db->select()->from('A')->joinUsing('B', [$colOne,$colTwo]);
-        $this->assertContains(
+        $this->assertStringContainsString(
             "JOIN {$table_B} ON {$table_B}.{$colOne} = {$table_A}.{$colOne}"
             . " AND {$table_B}.{$colTwo} = {$table_A}.{$colTwo}",
             $s->assemble()

@@ -53,11 +53,17 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Frontend_Page(['lifetime' => 3600, 'caching' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorUnimplementedOption()
     {
         try {
@@ -68,6 +74,9 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithBadDefaultOptions()
     {
         try {
@@ -81,6 +90,7 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
     /**
      * The only bad default options are non-string keys
      * @group ZF-5034
+     * @doesNotPerformAssertions
      */
     public function testConstructorWithBadDefaultOptions2()
     {
@@ -92,6 +102,9 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithBadRegexps()
     {
         try {
@@ -102,6 +115,9 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithBadRegexps2()
     {
         try {
@@ -115,6 +131,7 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
     /**
      * Only non-string keys should raise exceptions
      * @group ZF-5034
+     * @doesNotPerformAssertions
      */
     public function testConstructorWithBadRegexps3()
     {
@@ -136,6 +153,9 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithGoodRegexps()
     {
         $array = [
@@ -151,6 +171,9 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
         $test = new Zend_Cache_Frontend_Page(['regexps' => $array]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithGoodDefaultOptions()
     {
         $test = new Zend_Cache_Frontend_Page(['default_options' => ['cache' => true]]);
@@ -198,6 +221,7 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @group ZF-10952
+     * @doesNotPerformAssertions
      */
     public function testNootice()
     {

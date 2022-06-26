@@ -117,7 +117,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
     {
         $this->autoloader->setZfPath($this->path, 'latest');
         $actual = $this->autoloader->getZfPath();
-        $this->assertContains($this->latest, $actual);
+        $this->assertStringContainsString($this->latest, $actual);
     }
 
     public function testAutoloadLatestIncludesLibraryInPath()
@@ -138,7 +138,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
     {
         $this->autoloader->setZfPath($this->path, $this->_getVersion($this->latestMajor, 'major'));
         $actual = $this->autoloader->getZfPath();
-        $this->assertContains($this->latestMajor, $actual);
+        $this->assertStringContainsString($this->latestMajor, $actual);
     }
 
     public function testAutoloadMajorRevisionIncludesLibraryInPath()
@@ -159,7 +159,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
     {
         $this->autoloader->setZfPath($this->path, $this->_getVersion($this->latestMinor, 'minor'));
         $actual = $this->autoloader->getZfPath();
-        $this->assertContains($this->latestMinor, $actual);
+        $this->assertStringContainsString($this->latestMinor, $actual);
     }
 
     public function testAutoloadMinorRevisionIncludesLibraryInPath()
@@ -180,7 +180,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
     {
         $this->autoloader->setZfPath($this->path, $this->specific);
         $actual = $this->autoloader->getZfPath();
-        $this->assertContains($this->specific, $actual);
+        $this->assertStringContainsString($this->specific, $actual);
     }
 
     public function testAutoloadSpecificRevisionIncludesLibraryInPath()

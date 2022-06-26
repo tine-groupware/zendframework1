@@ -67,11 +67,17 @@ class Zend_Cache_sqliteBackendTest extends Zend_Cache_CommonExtendedBackendTest 
         $this->rmdir();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Sqlite(['cache_db_complete_path' => $this->_cache_dir . 'cache.db']);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithABadDBPath()
     {
         try {

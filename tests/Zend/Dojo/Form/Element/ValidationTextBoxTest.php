@@ -176,7 +176,7 @@ class Zend_Dojo_Form_Element_ValidationTextBoxTest extends \PHPUnit\Framework\Te
     public function testShouldRenderValidationTextBoxDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.ValidationTextBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.ValidationTextBox"', $html);
     }
     
     public function testSettingMultipleConstraintsShouldNotOverridePreviousConstraints()

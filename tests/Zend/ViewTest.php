@@ -405,14 +405,10 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
      */
     public function testNoPath()
     {
+        $this->expectException(Zend_View_Exception::class);
+        $this->expectExceptionMessage('no view script directory set; unable to determine location for view script');
         $view = new Zend_View();
-        try {
-            $view->render('somefootemplate.phtml');
-            $this->fail('Rendering a template when no script path is set should raise an exception');
-        } catch (Exception $e) {
-            // success...
-            // @todo  assert something?
-        }
+        $view->render('somefootemplate.phtml');
     }
 
     /**
@@ -539,6 +535,11 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('My_View_Filter_', $prefix);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     *
+     * @return void
+     */
     public function testUnset()
     {
         $view = new Zend_View();
@@ -548,14 +549,10 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 
     public function testSetProtectedThrowsException()
     {
+        $this->expectException(Zend_View_Exception::class);
+        $this->expectExceptionMessage('Setting private or protected class members is not allowed');
         $view = new Zend_View();
-        try {
-            $view->_path = 'bar';
-            $this->fail('Should not be able to set protected properties');
-        } catch (Exception $e) {
-            // success
-            // @todo  assert something?
-        }
+        $view->_path = 'bar';
     }
 
     public function testHelperPathWithPrefix()
@@ -582,7 +579,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($view, $status);
         $helperPaths = $view->getHelperPaths();
         $this->assertTrue(array_key_exists('My_View_Helper_', $helperPaths));
-        $this->assertContains($this->_filterPath('Zend/View/_stubs/HelperDir1/'), $this->_filterPath(current($helperPaths['My_View_Helper_'])));
+        $this->assertStringContainsString($this->_filterPath('Zend/View/_stubs/HelperDir1/'), $this->_filterPath(current($helperPaths['My_View_Helper_'])));
     }
 
     public function testFilterPathWithPrefix()
@@ -602,30 +599,18 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 
     public function testAssignThrowsExceptionsOnBadValues()
     {
+        $this->expectException(Zend_View_Exception::class);
+        $this->expectExceptionMessage('Setting private or protected class members is not allowed');
         $view = new Zend_View();
-        try {
-            $view->assign('_path', dirname(__FILE__) . '/View/_stubs/HelperDir2/');
-            $this->fail('Protected/private properties cannot be assigned');
-        } catch (Exception $e) {
-            // success
-            // @todo  assert something?
-        }
+        $view->assign('_path', dirname(__FILE__) . '/View/ /HelperDir2/');
+    }
 
-        try {
-            $view->assign(['_path' => dirname(__FILE__) . '/View/_stubs/HelperDir2/']);
-            $this->fail('Protected/private properties cannot be assigned');
-        } catch (Exception $e) {
-            // success
-            // @todo  assert something?
-        }
-
-        try {
-            $view->assign($this);
-            $this->fail('Assign spec requires string or array');
-        } catch (Exception $e) {
-            // success
-            // @todo  assert something?
-        }
+    public function testAssignRequiresStringOrArray(): void
+    {
+        $this->expectException(Zend_View_Exception::class);
+        $this->expectExceptionMessage('assign() expects a string or array, received object');
+        $view = new Zend_View();
+        $view->assign($this);;
     }
 
     public function testEscape()
@@ -927,10 +912,10 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<input type="hidden"', $hidden);
 
         $hidden = $view->getHelper('formHidden')->formHidden('foo', 'bar');
-        $this->assertContains('<input type="hidden"', $hidden);
+        $this->assertStringContainsString('<input type="hidden"', $hidden);
 
         $hidden = $view->getHelper('FormHidden')->formHidden('foo', 'bar');
-        $this->assertContains('<input type="hidden"', $hidden);
+        $this->assertStringContainsString('<input type="hidden"', $hidden);
     }
 
     public function testGetHelperUsingDifferentCasesReturnsSameInstance()

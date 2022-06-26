@@ -151,7 +151,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
             ])
             ->setSeparator('--FooBarFunSep--');
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getSeparator(), $html);
+        $this->assertStringContainsString($this->element->getSeparator(), $html);
         $count = substr_count($html, $this->element->getSeparator());
         $this->assertEquals(4, $count);
     }
@@ -197,7 +197,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
              ])
              ->setLabel('Foo');
         $html = $this->element->render($this->getView());
-        $this->assertNotContains('for="foo"', $html);
+        $this->assertStringNotContainsString('for="foo"', $html);
     }
 
     /**

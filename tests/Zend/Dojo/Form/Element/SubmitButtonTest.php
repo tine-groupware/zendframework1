@@ -174,13 +174,13 @@ class Zend_Dojo_Form_Element_SubmitButtonTest extends \PHPUnit\Framework\TestCas
     public function testShouldRenderButtonDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.Button"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.Button"', $html);
     }
 
     public function testShouldRenderSubmitInput()
     {
         $html = $this->element->render();
-        $this->assertContains('type="submit"', $html);
+        $this->assertStringContainsString('type="submit"', $html);
     }
 
     /**

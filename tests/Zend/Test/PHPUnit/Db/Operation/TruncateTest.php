@@ -104,7 +104,7 @@ class Zend_Test_PHPUnit_Db_Operation_TruncateTest extends \PHPUnit\Framework\Tes
         $queries = $profiler->getQueryProfiles();
 
         $this->assertEquals(2, count($queries));
-        $this->assertContains('bar', $queries[0]->getQuery());
-        $this->assertContains('foo', $queries[1]->getQuery());
+        $this->assertStringContainsString('bar', $queries[0]->getQuery());
+        $this->assertStringContainsString('foo', $queries[1]->getQuery());
     }
 }

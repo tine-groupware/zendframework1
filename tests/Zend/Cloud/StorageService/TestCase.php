@@ -362,7 +362,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends \PHPUnit\Framework\Tes
 
             $this->assertEquals(2, sizeof($objects));
 
-            // PHPUnit does an identical comparison for assertContains(), so we just
+            // PHPUnit does an identical comparison for assertStringContainsString(), so we just
             // use assertTrue and in_array()
             $this->assertTrue(in_array($dummyName1, $objects));
             $this->assertTrue(in_array($dummyName2, $objects));

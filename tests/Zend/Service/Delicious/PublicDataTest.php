@@ -138,7 +138,7 @@ class Zend_Service_Delicious_PublicDataTest extends \PHPUnit\Framework\TestCase
 
         foreach ($filterPostList as $post) {
             $this->assertTrue(is_array($post->getTags()));
-            $this->assertContains('zfSite', $post->getTags());
+            $this->assertStringContainsString('zfSite', $post->getTags());
         }
     }
 

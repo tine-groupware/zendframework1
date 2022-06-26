@@ -165,7 +165,7 @@ class Zend_Dojo_Form_Element_ComboBoxTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderComboBoxDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.ComboBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.ComboBox"', $html);
     }
 
     /**
@@ -186,7 +186,7 @@ class Zend_Dojo_Form_Element_ComboBoxTest extends \PHPUnit\Framework\TestCase
         $subform->addElement($this->element);
         $html = $this->element->render();
         $dojo = $this->view->dojo()->__toString();
-        $this->assertContains('"store":"foo"', $dojo, $dojo);
+        $this->assertStringContainsString('"store":"foo"', $dojo, $dojo);
     }
 }
 

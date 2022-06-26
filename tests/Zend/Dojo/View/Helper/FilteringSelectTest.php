@@ -152,7 +152,7 @@ class Zend_Dojo_View_Helper_FilteringSelectTest extends \PHPUnit\Framework\TestC
         if (!preg_match('/(<input[^>]*(dojoType="dijit.form.FilteringSelect"))/', $html, $m)) {
             $this->fail('Did not create text input as remoter: ' . $html);
         }
-        $this->assertContains('type="text"', $m[1]);
+        $this->assertStringContainsString('type="text"', $m[1]);
     }
 
     public function testShouldAllowProgrammaticDijitCreationAsRemoter()
@@ -163,7 +163,7 @@ class Zend_Dojo_View_Helper_FilteringSelectTest extends \PHPUnit\Framework\TestC
         $this->assertMatchesRegularExpression('/<input[^>]*(type="text")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('elementId'));
 
-        $this->assertContains('var stateStore;', $this->view->dojo()->getJavascript());
+        $this->assertStringContainsString('var stateStore;', $this->view->dojo()->getJavascript());
 
         $found = false;
         $scripts = $this->view->dojo()->_getZendLoadActions();

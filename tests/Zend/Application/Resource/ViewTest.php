@@ -110,7 +110,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $resource->init();
         $view  = $resource->getView();
         $paths = $view->getScriptPaths();
-        $this->assertContains(dirname(__FILE__) . '/', $paths, var_export($paths, 1));
+        $this->assertStringContainsString(dirname(__FILE__) . '/', $paths, var_export($paths, 1));
     }
 
     public function testDoctypeIsSet()

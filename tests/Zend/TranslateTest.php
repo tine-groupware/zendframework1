@@ -20,6 +20,10 @@
  * @version    $Id $
  */
 
+if (!defined('PHPUnit_MAIN_METHOD')) {
+    define('PHPUnit_MAIN_METHOD', 'Zend_TranslateTest::main');
+}
+
 /**
  * Zend_Translate
  */
@@ -637,7 +641,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     public function testEmptyTranslation()
     {
         $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, null, null, ['disableNotices' => true]);
-        $this->assertEquals(0, count($lang->getList()));
+        $this->assertEquals(0, count($lang->getList() ?? []));
     }
 
     /**

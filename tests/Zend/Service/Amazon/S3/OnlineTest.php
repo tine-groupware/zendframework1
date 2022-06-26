@@ -90,7 +90,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
         $this->_amazon->createBucket($this->_bucket);
         $this->assertTrue($this->_amazon->isBucketAvailable($this->_bucket));
         $list = $this->_amazon->getBuckets();
-        $this->assertContains($this->_bucket, $list);
+        $this->assertStringContainsString($this->_bucket, $list);
     }
 
     /**
@@ -226,7 +226,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_amazon->isObjectAvailable($this->_bucket."/zftest"));
         $this->assertFalse((boolean)$this->_amazon->getObjectsByBucket($this->_bucket));
         $list = $this->_amazon->getBuckets();
-        $this->assertNotContains($this->_bucket, $list);
+        $this->assertStringNotContainsString($this->_bucket, $list);
     }
 
     protected function _fileTest($filename, $object, $type, $exp_type, $stream = false)
@@ -398,7 +398,7 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
         $this->_amazon->createBucket($this->_bucketEu, 'EU');
         $this->assertTrue($this->_amazon->isBucketAvailable($this->_bucketEu));
         $list = $this->_amazon->getBuckets();
-        $this->assertContains($this->_bucketEu, $list);
+        $this->assertStringContainsString($this->_bucketEu, $list);
         $this->_amazon->cleanBucket($this->_bucketEu);
         $this->_amazon->removeBucket($this->_bucketEu);
     }

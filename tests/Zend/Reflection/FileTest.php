@@ -146,7 +146,7 @@ class Zend_Reflection_FileTest extends \PHPUnit\Framework\TestCase
         $reflectionFile = new Zend_Reflection_File($fileToRequire);
         $functions = $reflectionFile->getFunctions();
         $this->assertEquals(2, count($functions));
-        $this->assertContainsOnly('Zend_Reflection_Function', $functions);
+        $this->assertStringContainsStringOnly('Zend_Reflection_Function', $functions);
         $this->assertEquals('firstOne', $functions[0]->getName());
         $this->assertEquals('secondOne', $functions[1]->getName());
     }

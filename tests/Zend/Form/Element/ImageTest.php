@@ -116,14 +116,14 @@ class Zend_Form_Element_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $this->testCanSetImageSourceViaAccessors();
         $html = $this->element->render(new Zend_View());
-        $this->assertContains('src="foo.gif"', $html);
+        $this->assertStringContainsString('src="foo.gif"', $html);
     }
 
     public function testHelperAttributeNotRenderedWhenRenderingImage()
     {
         $this->testCanSetImageSourceViaAccessors();
         $html = $this->element->render(new Zend_View());
-        $this->assertNotContains('helper="', $html);
+        $this->assertStringNotContainsString('helper="', $html);
     }
 
     public function testValueEmptyWhenRenderingImageByDefault()
@@ -133,7 +133,7 @@ class Zend_Form_Element_ImageTest extends \PHPUnit\Framework\TestCase
         if (!strstr($html, 'value="')) {
             return;
         }
-        $this->assertContains('value=""', $html);
+        $this->assertStringContainsString('value=""', $html);
     }
 
     public function testLabelUsedAsAltAttribute()
@@ -173,9 +173,9 @@ class Zend_Form_Element_ImageTest extends \PHPUnit\Framework\TestCase
         $translator = new Zend_Translate_Adapter_Array(["bar" => "baz"], 'de');
         $this->element->setTranslator($translator);
         $html = $this->element->render(new Zend_View());
-        $this->assertContains('title', $html);
-        $this->assertContains('baz', $html);
-        $this->assertNotContains('bar', $html);
+        $this->assertStringContainsString('title', $html);
+        $this->assertStringContainsString('baz', $html);
+        $this->assertStringNotContainsString('bar', $html);
     }
 
     public function testTitleAttributeDoesNotGetTranslatedIfTranslatorIsDisabled()
@@ -186,9 +186,9 @@ class Zend_Form_Element_ImageTest extends \PHPUnit\Framework\TestCase
         // now disable translator and see if that works
         $this->element->setDisableTranslator(true);
         $html = $this->element->render(new Zend_View());
-        $this->assertContains('title', $html);
-        $this->assertContains('bar', $html);
-        $this->assertNotContains('baz', $html);
+        $this->assertStringContainsString('title', $html);
+        $this->assertStringContainsString('bar', $html);
+        $this->assertStringNotContainsString('baz', $html);
     }
 
     /**

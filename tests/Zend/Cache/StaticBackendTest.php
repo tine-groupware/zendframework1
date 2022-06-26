@@ -74,6 +74,9 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
         $this->rmdir();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Static([]);
@@ -158,15 +161,9 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
      */
     public function testDirectoryUmaskTriggersError()
     {
-        try {
-            $this->_instance->setOption('cache_directory_umask', '777');
-            $this->fail();
-        } catch (\PHPUnit\Framework\Error $e) {
-            $this->assertEquals(
-                "'cache_directory_umask' is deprecated -> please use 'cache_directory_perm' instead",
-                $e->getMessage()
-            );
-        }
+        $this->expectNotice();
+        $this->expectNoticeMessage("'cache_directory_umask' is deprecated -> please use 'cache_directory_perm' instead");
+        $this->_instance->setOption('cache_directory_umask', '777');
     }
 
     /**
@@ -174,15 +171,9 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
      */
     public function testFileUmaskTriggersError()
     {
-        try {
-            $this->_instance->setOption('cache_file_umask', '777');
-            $this->fail();
-        } catch (\PHPUnit\Framework\Error $e) {
-            $this->assertEquals(
-                "'cache_file_umask' is deprecated -> please use 'cache_file_perm' instead",
-                $e->getMessage()
-            );
-        }
+        $this->expectNotice();
+        $this->expectNoticeMessage("'cache_file_umask' is deprecated -> please use 'cache_file_perm' instead");
+        $this->_instance->setOption('cache_file_umask', '777');
     }
 
     public function testSaveWithSpecificExtensionWithTag()
@@ -200,6 +191,9 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
         $this->assertFalse($this->_instance->test(bin2hex('/foo3')));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testTestWithAnExistingCacheId()
     {
         $res = $this->_instance->test(bin2hex('/bar'));
@@ -214,6 +208,9 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
         $this->assertFalse($this->_instance->test(bin2hex('/barbar')));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testTestWithAnExistingCacheIdAndANullLifeTime()
     {
         $this->_instance->setDirectives(['lifetime' => null]);
@@ -301,12 +298,17 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
 
 
     // Irrelevant Tests (from common tests)
-
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetWithAnExpiredCacheId()
     {
         $this->markTestSkipped('Irrelevant Test');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCleanModeOld()
     {
         $this->markTestSkipped('Irrelevant Test');

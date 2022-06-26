@@ -115,7 +115,7 @@ class Zend_Auth_Adapter_DigestTest extends \PHPUnit\Framework\TestCase
         $messages = $result->getMessages();
         $this->assertEquals(1, count($messages));
         $this->assertEquals($result->getCode(), Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND);
-        $this->assertContains('combination not found', $messages[0]);
+        $this->assertStringContainsString('combination not found', $messages[0]);
 
         $identity = $result->getIdentity();
         $this->assertEquals($identity['realm'], $realm);
@@ -143,7 +143,7 @@ class Zend_Auth_Adapter_DigestTest extends \PHPUnit\Framework\TestCase
 
         $messages = $result->getMessages();
         $this->assertEquals(1, count($messages));
-        $this->assertContains('combination not found', $messages[0]);
+        $this->assertStringContainsString('combination not found', $messages[0]);
 
         $identity = $result->getIdentity();
         $this->assertEquals($identity['realm'], $realm);
@@ -171,7 +171,7 @@ class Zend_Auth_Adapter_DigestTest extends \PHPUnit\Framework\TestCase
 
         $messages = $result->getMessages();
         $this->assertEquals(1, count($messages));
-        $this->assertContains('Password incorrect', $messages[0]);
+        $this->assertStringContainsString('Password incorrect', $messages[0]);
 
         $identity = $result->getIdentity();
         $this->assertEquals($identity['realm'], $realm);

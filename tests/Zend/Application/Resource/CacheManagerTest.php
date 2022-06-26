@@ -267,7 +267,7 @@ class Zend_Application_Resource_CacheManagerTest extends \PHPUnit\Framework\Test
 
         $this->assertTrue(is_array($event));
         $this->assertTrue(array_key_exists('message', $event));
-        $this->assertContains('Zend_Cache_Backend_Static', $event['message']);
+        $this->assertStringContainsString('Zend_Cache_Backend_Static', $event['message']);
     }
 }
 

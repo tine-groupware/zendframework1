@@ -115,7 +115,7 @@ class Zend_Dojo_Form_Element_SimpleTextareaTest extends \PHPUnit\Framework\TestC
     public function testShouldRenderSimpleTextareaDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.SimpleTextarea"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.SimpleTextarea"', $html);
     }
 }
 

@@ -122,7 +122,7 @@ class Zend_Dojo_View_Helper_TextareaTest extends \PHPUnit\Framework\TestCase
     public function testPassingIdAsAttributeShouldOverrideUsingNameAsId()
     {
         $html = $this->helper->textarea('foo[bar]', '', [], ['id' => 'foo-bar']);
-        $this->assertContains('id="foo-bar"', $html);
+        $this->assertStringContainsString('id="foo-bar"', $html);
     }
 
     public function testGeneratedMarkupShouldNotIncludeTypeAttribute()

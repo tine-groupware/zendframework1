@@ -112,7 +112,7 @@ class Zend_Dojo_Form_Element_PasswordTextBoxTest extends \PHPUnit\Framework\Test
     public function testShouldRenderValidationTextBoxDijit()
     {
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.ValidationTextBox"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.ValidationTextBox"', $html);
     }
 
     public function testShouldRenderPasswordInput()

@@ -98,7 +98,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that Zend_Uri::setConfig() allows Zend_Config
-     *
+     * @doesNotPerformAssertions
      * @group ZF-5578
      */
     public function testSetConfigWithArray()
@@ -108,7 +108,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that Zend_Uri::setConfig() allows Array
-     *
+     * @doesNotPerformAssertions
      * @group ZF-5578
      */
     public function testSetConfigWithZendConfig()
@@ -147,7 +147,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue(empty($text));
         $this->assertTrue(isset($this->error));
-        $this->assertContains('Exception in getUri()', $this->error);
+        $this->assertStringContainsString('Exception in getUri()', $this->error);
 
     }
 

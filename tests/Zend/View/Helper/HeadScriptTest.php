@@ -113,6 +113,9 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($placeholder instanceof Zend_View_Helper_HeadScript);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetPrependAppendAndOffsetSetThrowExceptionsOnInvalidItems()
     {
         try {
@@ -249,6 +252,9 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
         $this->_testOverloadOffsetSet('script');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOverloadingThrowsExceptionWithInvalidMethod()
     {
         try {
@@ -258,6 +264,9 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testOverloadingWithTooFewArgumentsRaisesException()
     {
         try {
@@ -332,7 +341,7 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
         $values = $this->helper->getArrayCopy();
         $this->assertEquals(1, count($values), var_export($values, 1));
         $item = array_shift($values);
-        $this->assertContains('foobar', $item->source);
+        $this->assertStringContainsString('foobar', $item->source);
     }
 
     public function testIndentationIsHonored()
@@ -376,6 +385,9 @@ document.write(bar.strlen());');
         $this->assertStringContainsString('bogus="deferred"', $test);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCanPerformMultipleSerialCaptures()
     {
         $this->helper->headScript()->captureStart();

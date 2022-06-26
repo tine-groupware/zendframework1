@@ -209,7 +209,7 @@ class Zend_Service_Amazon_S3_StreamTest extends \PHPUnit\Framework\TestCase
 
         // Check that each bucket is in our original list
         foreach ($buckets as $bucket) {
-            $this->assertContains($bucket, $online_buckets);
+            $this->assertStringContainsString($bucket, $online_buckets);
         }
 
         // Remove the buckets

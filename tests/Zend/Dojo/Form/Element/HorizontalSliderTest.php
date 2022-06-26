@@ -342,7 +342,7 @@ class Zend_Dojo_Form_Element_HorizontalSliderTest extends \PHPUnit\Framework\Tes
                       ->setMaximum(10)
                       ->setDiscreteValues(11);
         $html = $this->element->render();
-        $this->assertContains('dojoType="dijit.form.HorizontalSlider"', $html);
+        $this->assertStringContainsString('dojoType="dijit.form.HorizontalSlider"', $html);
     }
 }
 

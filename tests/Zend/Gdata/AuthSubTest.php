@@ -224,9 +224,9 @@ class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
         
         $respBody = Zend_Gdata_AuthSub::getAuthSubTokenInfo($this->token, $client);
         
-        $this->assertContains("Target=http://example.com", $respBody);
-        $this->assertContains("Scope=http://example.com", $respBody);
-        $this->assertContains("Secure=false", $respBody);
+        $this->assertStringContainsString("Target=http://example.com", $respBody);
+        $this->assertStringContainsString("Scope=http://example.com", $respBody);
+        $this->assertStringContainsString("Secure=false", $respBody);
     }
     
     public function testGetAuthSubTokenInfoCatchesHttpClientException()

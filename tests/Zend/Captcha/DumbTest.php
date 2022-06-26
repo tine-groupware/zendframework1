@@ -88,8 +88,8 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
         $id   = $this->captcha->generate('test');
         $word = $this->captcha->getWord();
         $html = $this->captcha->render(new Zend_View);
-        $this->assertContains(strrev($word), $html);
-        $this->assertNotContains($word, $html);
+        $this->assertStringContainsString(strrev($word), $html);
+        $this->assertStringNotContainsString($word, $html);
     }
 
     /**
@@ -118,7 +118,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
 
         $id   = $this->captcha->generate('test');
         $html = $this->captcha->render(new Zend_View);
-        $this->assertContains('Testing 123', $html);
+        $this->assertStringContainsString('Testing 123', $html);
     }
 }
 

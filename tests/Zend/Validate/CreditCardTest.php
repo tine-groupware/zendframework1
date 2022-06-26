@@ -255,7 +255,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
         $validator      = new Zend_Validate_CreditCard(['type' => Zend_Validate_CreditCard::MASTERCARD]);
         $this->assertFalse($validator->isValid('4111111111111111'));
         $message = $validator->getMessages();
-        $this->assertContains('not from an allowed institute', current($message));
+        $this->assertStringContainsString('not from an allowed institute', current($message));
     }
 
     public static function staticCallback($value)

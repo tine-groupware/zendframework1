@@ -749,7 +749,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
         $this->adapter->addValidator('Count', false, ['min' => 5, 'max' => 5, 'messages' => [Zend_Validate_File_Count::TOO_FEW => 'Zu wenige']]);
         $this->assertFalse($this->adapter->isValid('foo'));
         $message = $this->adapter->getMessages();
-        $this->assertContains('Zu wenige', $message);
+        $this->assertStringContainsString('Zu wenige', $message);
 
         try {
             $this->assertEquals('image/jpeg', $this->adapter->getMimeType());
