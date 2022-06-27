@@ -164,7 +164,7 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends \PHPUnit\Framework\TestCase
         $this->assertNotNull($this->view->dojo()->getDijit('elementId'));
 
         $found = false;
-        $this->assertStringContainsString('var stateStore;', $this->view->dojo()->getJavascript());
+        $this->assertContains('var stateStore;', $this->view->dojo()->getJavascript());
 
         $scripts = $this->view->dojo()->_getZendLoadActions();
         foreach ($scripts as $js) {
@@ -208,7 +208,7 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends \PHPUnit\Framework\TestCase
         $html = $this->getElementAsRemoter();
 
         $js   = $this->view->dojo()->getJavascript();
-        $this->assertStringContainsString('var stateStore;', $js);
+        $this->assertContains('var stateStore;', $js);
 
         $onLoad = $this->view->dojo()->_getZendLoadActions();
         $storeDeclarationFound = false;

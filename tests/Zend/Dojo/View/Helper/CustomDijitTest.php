@@ -110,7 +110,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends \PHPUnit\Framework\TestCase
         $content = $this->view->customDijit('foo', 'content', ['dojoType' => 'custom.Dijit']);
         $dojo    = $this->view->dojo();
         $modules = $dojo->getModules();
-        $this->assertStringContainsString('custom.Dijit', $modules);
+        $this->assertContains('custom.Dijit', $modules);
     }
 
     public function testHelperInProgrammaticModeShouldRegisterDojoTypeAsModule()
@@ -119,7 +119,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends \PHPUnit\Framework\TestCase
         $content = $this->view->customDijit('foo', 'content', ['dojoType' => 'custom.Dijit']);
         $dojo    = $this->view->dojo();
         $modules = $dojo->getModules();
-        $this->assertStringContainsString('custom.Dijit', $modules);
+        $this->assertContains('custom.Dijit', $modules);
     }
 
     public function testHelperInProgrammaticModeShouldGenerateDivWithoutPassedDojoType()

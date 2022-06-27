@@ -121,7 +121,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
     {
         $this->helper->requireModule('foo.bar');
         $modules = $this->helper->getModules();
-        $this->assertStringContainsString('foo.bar', $modules);
+        $this->assertContains('foo.bar', $modules);
     }
 
     /**
@@ -149,6 +149,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3916
+     * @doesNotPerformAssertions
      */
     public function testRequireModuleShouldAllowDashAndUnderscoreCharacters()
     {
@@ -161,7 +162,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->requireModule('foo.bar');
         $this->helper->requireModule('foo.bar');
         $modules = $this->helper->getModules();
-        $this->assertStringContainsString('foo.bar', $modules);
+        $this->assertContains('foo.bar', $modules);
         $this->assertEquals(1, count($modules));
     }
 
@@ -176,7 +177,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->registerModulePath('custom', '../custom');
         $paths = $this->helper->getModulePaths();
         $this->assertTrue(array_key_exists('custom', $paths), var_export($paths, 1));
-        $this->assertStringContainsString('../custom', $paths);
+        $this->assertContains('../custom', $paths);
     }
 
     public function testShouldNotBeAbleToRegisterDuplicateModulePaths()
@@ -186,7 +187,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $paths = $this->helper->getModulePaths();
         $this->assertEquals(1, count($paths));
         $this->assertTrue(array_key_exists('custom', $paths));
-        $this->assertStringContainsString('../custom', $paths);
+        $this->assertContains('../custom', $paths);
     }
 
     public function testShouldBeDisabledByDefault()
@@ -314,23 +315,24 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
     {
         $this->helper->addStylesheetModule('dijit.themes.tundra');
         $stylesheets = $this->helper->getStylesheetModules();
-        $this->assertStringContainsString('dijit.themes.tundra', $stylesheets);
+        $this->assertContains('dijit.themes.tundra', $stylesheets);
     }
 
     public function testDuplicateStylesheetModulesShouldNotBeAllowed()
     {
         $this->helper->addStylesheetModule('dijit.themes.tundra');
         $stylesheets = $this->helper->getStylesheetModules();
-        $this->assertStringContainsString('dijit.themes.tundra', $stylesheets);
+        $this->assertContains('dijit.themes.tundra', $stylesheets);
 
         $this->helper->addStylesheetModule('dijit.themes.tundra');
         $stylesheets = $this->helper->getStylesheetModules();
         $this->assertEquals(1, count($stylesheets));
-        $this->assertStringContainsString('dijit.themes.tundra', $stylesheets);
+        $this->assertContains('dijit.themes.tundra', $stylesheets);
     }
 
     /**
      * @group ZF-3916
+     * @doesNotPerformAssertions
      */
     public function testAddingStylesheetModuleShouldAllowDashAndUnderscoreCharacters()
     {
@@ -362,7 +364,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $this->helper->addStylesheet('/css/foo.css');
         $css = $this->helper->getStylesheets();
         $this->assertTrue(is_array($css));
-        $this->assertStringContainsString('/css/foo.css', $css);
+        $this->assertContains('/css/foo.css', $css);
     }
 
     public function testShouldNotAllowSpecifyingDuplicateLocalStylesheets()
@@ -372,7 +374,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
         $css = $this->helper->getStylesheets();
         $this->assertTrue(is_array($css));
         $this->assertEquals(1, count($css));
-        $this->assertStringContainsString('/css/foo.css', $css);
+        $this->assertContains('/css/foo.css', $css);
     }
 
     public function testShouldAllowSpecifyingOnLoadFunctionPointer()
