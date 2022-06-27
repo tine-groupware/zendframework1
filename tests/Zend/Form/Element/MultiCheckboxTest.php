@@ -261,11 +261,11 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('test'));
     }
     /**#@-*/
-
     /**
      * No assertion; just making sure no error occurs
      *
      * @group ZF-4915
+     * @doesNotPerformAssertions
      */
     public function testRetrievingErrorMessagesShouldNotResultInError()
     {

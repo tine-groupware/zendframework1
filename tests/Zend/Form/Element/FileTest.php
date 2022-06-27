@@ -428,7 +428,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($element->hasErrors());
         $messages = $element->getMessages();
-        $this->assertStringContainsString('TestError3', $messages);
+        $this->assertContains('TestError3', $messages);
     }
 
     public function testGetTranslatorRetrievesGlobalDefaultWhenAvailable()

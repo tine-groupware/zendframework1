@@ -199,7 +199,6 @@ class Zend_Form_Decorator_DescriptionTest extends \PHPUnit\Framework\TestCase
                  'locale'  => 'en'
             ]
         );
-
         // Create element
         $element = new Zend_Form_Element('foo');
         $element->setView($this->getView())

@@ -307,7 +307,7 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
                         ->setOptions(['tag' => 'dt']);
         $this->decorator->setTag('');
         $tag = $this->decorator->getTag();
-        $this->assertTrue( NULL === $tag, $tag );
+        $this->assertNull($tag);
     }
     
 
@@ -321,7 +321,7 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
                         ->setOptions(['tag' => 'dt']);
         $this->decorator->setTagClass('');
         $tagClass = $this->decorator->getTagClass();
-        $this->assertTrue( NULL === $tagClass, $tagClass );
+        $this->assertNull($tagClass);
     }
 
     /**

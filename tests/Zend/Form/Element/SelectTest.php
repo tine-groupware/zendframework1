@@ -138,6 +138,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
      * No explicit assertions; just checking for error conditions
      *
      * @group ZF-2847
+     * @doesNotPerformAssertions
      */
     public function testTranslationShouldNotRaiseWarningsWithNestedGroups()
     {

@@ -124,6 +124,9 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('put', $form->getMethod());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetOptionsSkipsCallsToSetOptionsAndSetConfig()
     {
         $options = $this->getOptions();
@@ -133,6 +136,9 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form->setOptions($options);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetOptionsSkipsSettingAccessorsRequiringObjectsWhenNonObjectPassed()
     {
         $options = $this->getOptions();
@@ -382,6 +388,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3250
+     * @doesNotPerformAssertions
      */
     public function testDisplayGroupOrderInConfigShouldNotMatter()
     {
@@ -2485,6 +2492,9 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array_keys($data), array_keys($return), var_export($return, 1));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testPersistDataStoresDataInSession()
     {
         $this->markTestIncomplete('Zend_Form does not implement session storage at this time');
@@ -2915,7 +2925,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(5, count($messages));
         foreach (range(1, 5) as $id) {
             $message = 'Error ' . $id;
-            $this->assertStringContainsString($message, $messages);
+            $this->assertContains($message, $messages);
         }
     }
 
@@ -3487,6 +3497,9 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $received);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemovingFormItemsShouldNotRaiseExceptionsDuringIteration()
     {
         $this->setupElements();
@@ -3524,6 +3537,9 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testClearingAttachedItemsShouldNotCauseIterationToRaiseExceptions()
     {
         $form = new Zend_Form();
