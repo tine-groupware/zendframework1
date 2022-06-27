@@ -148,6 +148,7 @@ class Zend_Config_Writer_XmlTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-6773
+     * @doesNotPerformAssertions
      */
     public function testWriteMultidimensionalArrayWithNumericKeys()
     {
