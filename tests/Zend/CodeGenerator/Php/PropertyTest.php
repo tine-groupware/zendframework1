@@ -47,7 +47,7 @@ class Zend_CodeGenerator_Php_PropertyTest extends \PHPUnit\Framework\TestCase
     public function testPropertyConstructor()
     {
         $codeGenProperty = new Zend_CodeGenerator_Php_Property();
-        $this->isInstanceOf($codeGenProperty, 'Zend_CodeGenerator_Php_Property');
+        $this->assertInstanceOf('Zend_CodeGenerator_Php_Property', $codeGenProperty);
     }
 
     public function testPropertyReturnsSimpleValue()
@@ -219,6 +219,7 @@ EOS;
     public function testSetBogusTypeSetValueGenerateUseAutoDetection($type, $value, $code)
     {
         if($type == 'constant') {
+            $this->expectNotToPerformAssertions();
             return; // constant can only be detected explicitly
         }
 

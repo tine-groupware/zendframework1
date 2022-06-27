@@ -41,7 +41,7 @@ class Zend_CodeGenerator_Php_ClassTest extends \PHPUnit\Framework\TestCase
     public function testConstruction()
     {
         $class = new Zend_CodeGenerator_Php_Class();
-        $this->isInstanceOf($class, 'Zend_CodeGenerator_Php_Class');
+        $this->assertInstanceOf('Zend_CodeGenerator_Php_Class', $class);
     }
 
     public function testNameAccessors()

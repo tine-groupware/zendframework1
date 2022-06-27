@@ -142,7 +142,7 @@ class Zend_Reflection_TestSampleSingleClass
     /**
      * Enter description here...
      *
-     * @return bool
+     * @return void
      */
     public function someMethod()
     {
@@ -197,7 +197,7 @@ class Zend_Reflection_TestClassWithCodeInMethod
     /**
      * Enter description here...
      *
-     * @return bool
+     * @return void
      */
     public function someMethod()
     {
@@ -247,7 +247,7 @@ class Zend_Reflection_TestClassWithCodeInMethod
     /**
      * Enter description here...
      *
-     * @return bool
+     * @return void
      */
     public function someMethod()
     {

@@ -60,7 +60,7 @@ class Zend_CodeGenerator_Php_MethodTest extends \PHPUnit\Framework\TestCase
     public function testMethodConstructor()
     {
         $codeGenMethod = new Zend_CodeGenerator_Php_Method();
-        $this->isInstanceOf($codeGenMethod, 'Zend_CodeGenerator_Php_Method');
+        $this->assertInstanceOf('Zend_CodeGenerator_Php_Method', $codeGenMethod);
     }
 
     public function testMethodParameterAccessors()
@@ -98,7 +98,7 @@ class Zend_CodeGenerator_Php_MethodTest extends \PHPUnit\Framework\TestCase
     /**
      * Enter description here...
      *
-     * @return bool
+     * @return void
      */
     public function someMethod()
     {
