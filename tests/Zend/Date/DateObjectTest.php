@@ -92,20 +92,10 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
      */
     public function testCreationFailed()
     {
-        // look if locale is detectable
-        try {
-            $locale = new Zend_Locale();
-        } catch (Zend_Locale_Exception $e) {
-            $this->markTestSkipped('Autodetection of locale failed');
-            return;
-        }
-
-        try {
-            $date = new Zend_Date("notimestamp");
-            $this->fail("exception expected");
-        } catch (Zend_Date_Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_Date_Exception::class);
+        $this->expectExceptionMessage("No date part in 'notimestamp' found.");
+        $locale = new Zend_Locale();
+        $date = new Zend_Date("notimestamp");
     }
 
     /**
@@ -131,13 +121,10 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
      */
     public function testsetUnixTimestampFailed()
     {
-        try {
-            $date = new Zend_Date_DateObjectTestHelper(Zend_Date::now());
-            $date->setUnixTimestamp("notimestamp");
-            $this->fail("exception expected");
-        } catch (Zend_Date_Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_Date_Exception::class);
+        $this->expectExceptionMessage("'notimestamp' is not a valid UNIX timestamp");
+        $date = new Zend_Date_DateObjectTestHelper(Zend_Date::now());
+        $date->setUnixTimestamp("notimestamp");
     }
 
     /**

@@ -311,22 +311,21 @@ CERT;
         if (!$test) {
             $this->markTestSkipped('Cannot generate a private key with openssl_pkey_new()');
         }
-
+        $this->expectException(Zend_Crypt_Exception::class);
         $config = [
             'privateKeyBits' => 512,
             'passPhrase' => '0987654321'
         ];
         $keys = $rsa->generateKeys($config);
-        try {
-            $rsa = new Zend_Crypt_Rsa([
-                'passPhrase'=>'1234567890',
-                'pemString'=>$keys->privateKey->toString()
-            ]);
-            $this->fail('Expected exception not thrown');
-        } catch (Zend_Crypt_Exception $e) {
-        }
+        $rsa = new Zend_Crypt_Rsa([
+            'passPhrase'=>'1234567890',
+            'pemString'=>$keys->privateKey->toString()
+        ]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorLoadsPassphrasedKeys()
     {
         $rsa = new Zend_Crypt_Rsa;
@@ -353,6 +352,7 @@ CERT;
 
     /**
      * @group ZF-8846
+     * @doesNotPerformAssertions
      */
     public function testLoadsPublicKeyFromPEMWithoutPrivateKeyAndThrowsNoException()
     {
