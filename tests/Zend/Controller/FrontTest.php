@@ -128,6 +128,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($request instanceof Zend_Controller_Request_Http);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetRequestThrowsExceptionWithBadRequest()
     {
         try {
@@ -150,6 +153,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($response instanceof Zend_Controller_Response_Cli);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetResponseThrowsExceptionWithBadResponse()
     {
         try {
@@ -172,6 +178,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($router instanceof Zend_Controller_Router_Rewrite);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetRouterThrowsExceptionWithBadRouter()
     {
         try {
@@ -421,6 +430,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($request->getBaseUrl(), $this->_controller->getBaseUrl());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetBaseUrlThrowsExceptionOnNonString()
     {
         try {
@@ -464,6 +476,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test that with throwExceptions() set, an exception is thrown
+     * @doesNotPerformAssertions
      */
     public function testThrowExceptionsThrows()
     {
@@ -516,6 +529,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString($actual, $body);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRunStatically()
     {
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
@@ -523,6 +539,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         Zend_Controller_Front::run(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRunDynamically()
     {
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
@@ -721,8 +740,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
 
         $body = $this->_controller->getResponse()->getBody();
         $this->assertStringNotContainsString('Type error action called', $body);
-        $this->assertStringContainsString('EXCEPTION_OTHER', $body);
-        $this->assertStringContainsString('Return value of IndexController::produceTypeError() must be an instance of IndexController, instance of stdClass returned', $body);
+        $this->assertEquals("EXCEPTION_OTHER\nIndexController::produceTypeError(): Return value must be of type IndexController, stdClass returned", $body);
         $this->assertSame(500, $this->_controller->getResponse()->getHttpResponseCode());
     }
 
@@ -757,7 +775,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $this->fail('Should have thrown');
         } catch (\Throwable $e) {
             $this->assertSame(
-                'Return value of IndexController::produceTypeError() must be an instance of IndexController, instance of stdClass returned',
+                'IndexController::produceTypeError(): Return value must be of type IndexController, stdClass returned',
                 $e->getMessage()
             );
         }
@@ -776,13 +794,12 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->_controller->dispatch($request, $response);
 
         $body = $this->_controller->getResponse()->getBody();
-        $this->assertStringContainsString('EXCEPTION_OTHER', $body);
-        $this->assertStringContainsString('Return value of MyApp\Controller\Plugin\ThrowingPlugin::produceTypeError() must be an instance of MyApp\Controller\Plugin\ThrowingPlugin, instance of stdClass returned', $body);
+        $this->assertEquals("EXCEPTION_OTHER\nMyApp\Controller\Plugin\ThrowingPlugin::produceTypeError(): Return value must be of type MyApp\Controller\Plugin\ThrowingPlugin, stdClass returned", $body);
         $this->assertSame(500, $this->_controller->getResponse()->getHttpResponseCode());
     }
 }
 
 // Call Zend_Controller_FrontTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_FrontTest::main") {
-    Zend_Controller_FrontTest::main();
-}
+// if (PHPUnit_MAIN_METHOD == "Zend_Controller_FrontTest::main") {
+//     Zend_Controller_FrontTest::main();
+// }

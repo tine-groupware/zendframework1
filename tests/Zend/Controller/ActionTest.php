@@ -191,6 +191,9 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('Prerun ran', $body, $body);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRun2()
     {
         $this->_controller->getRequest()->setActionName('bar');

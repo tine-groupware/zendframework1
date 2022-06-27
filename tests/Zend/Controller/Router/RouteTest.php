@@ -329,6 +329,9 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('authors/martel', $url);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAssembleWithoutValue()
     {
         $route = new Zend_Controller_Router_Route('authors/:name');

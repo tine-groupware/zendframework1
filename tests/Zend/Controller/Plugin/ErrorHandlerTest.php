@@ -218,6 +218,9 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends \PHPUnit\Framework\TestCas
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testPostDispatchDoesNothingWhenCalledRepeatedlyWithoutNewExceptions()
     {
         $this->response->setException(new Exception('Testing other exception'));

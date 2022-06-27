@@ -136,14 +136,14 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
     {
         $this->_response->setRawHeader('HTTP/1.0 404 Not Found');
         $headers = $this->_response->getRawHeaders();
-        $this->assertStringContainsString('HTTP/1.0 404 Not Found', $headers);
+        $this->assertContains('HTTP/1.0 404 Not Found', $headers);
     }
 
     public function testClearRawHeaders()
     {
         $this->_response->setRawHeader('HTTP/1.0 404 Not Found');
         $headers = $this->_response->getRawHeaders();
-        $this->assertStringContainsString('HTTP/1.0 404 Not Found', $headers);
+        $this->assertContains('HTTP/1.0 404 Not Found', $headers);
 
         $this->_response->clearRawHeaders();
         $headers = $this->_response->getRawHeaders();
@@ -303,6 +303,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Test exception rendering', $string);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetResponseCodeThrowsExceptionWithBadCode()
     {
         try {

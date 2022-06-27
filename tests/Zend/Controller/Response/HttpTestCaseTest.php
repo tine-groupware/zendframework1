@@ -113,10 +113,10 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
         $test = $this->response->sendHeaders();
         $this->assertTrue(is_array($test));
         $this->assertEquals(3, count($test));
-        $this->assertStringNotContainsString('Content-Type: text/xml', $test);
-        $this->assertStringContainsString('Content-Type: text/html', $test);
-        $this->assertStringContainsString('X-Foo-Bar: baz', $test);
-        $this->assertStringContainsString('200 OK', $test);
+        $this->assertNotContains('Content-Type: text/xml', $test);
+        $this->assertContains('Content-Type: text/html', $test);
+        $this->assertContains('X-Foo-Bar: baz', $test);
+        $this->assertContains('200 OK', $test);
     }
 
     public function testCanSendHeadersShouldAlwaysReturnTrue()

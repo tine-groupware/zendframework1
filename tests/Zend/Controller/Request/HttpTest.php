@@ -146,6 +146,9 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('val1', $this->_request->get('var1'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetIsAlias()
     {
         try {
@@ -186,6 +189,9 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->_request->has('var1'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function test__SetThrowsException()
     {
         try {
@@ -649,13 +655,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testGetHeaderThrowsExceptionWithNoInput()
     {
-        try {
-            // Suppressing warning
-            $header = @$this->_request->getHeader();
-            $this->fail('getHeader() should fail with no arguments)');
-        } catch (Exception $e) {
-            // success
-        }
+        $this->expectException(Zend_Controller_Request_Exception::class);
+        $this->expectExceptionMessage('An HTTP header name is required');
+        // Suppressing warning
+        $header = @$this->_request->getHeader(null);
     }
 
     public function testIsXmlHttpRequest()

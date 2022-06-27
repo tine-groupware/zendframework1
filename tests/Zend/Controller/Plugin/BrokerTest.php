@@ -222,6 +222,9 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $plugins);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRegisterPluginThrowsExceptionOnDuplicateStackIndex()
     {
         $broker   = new Zend_Controller_Plugin_Broker();

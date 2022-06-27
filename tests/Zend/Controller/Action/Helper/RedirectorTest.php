@@ -160,6 +160,9 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRedirectorShouldOnlyAllowValidHttpRedirectCodes()
     {
         try {
@@ -327,6 +330,9 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals('/blog/list/error', $this->redirector->getRedirectUrl());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGotoAndExit()
     {
         $this->markTestSkipped(
@@ -355,6 +361,9 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals('/blog/archive/281', $this->redirector->getRedirectUrl());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGotoRouteAndExit()
     {
         $this->markTestSkipped(
@@ -371,6 +380,9 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals('/foo/bar', $this->redirector->getRedirectUrl());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGotoUrlAndExit()
     {
         $this->markTestSkipped(
@@ -378,6 +390,9 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         );
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRedirectAndExit()
     {
         $this->markTestSkipped(

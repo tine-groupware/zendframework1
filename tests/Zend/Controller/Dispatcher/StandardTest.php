@@ -211,6 +211,9 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $this->assertStringContainsString('Index action called', $this->_dispatcher->getResponse()->getBody());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testDispatchValidControllerWithInvalidAction()
     {
         $request = new Zend_Controller_Request_Http();
@@ -226,6 +229,9 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testDispatchInvalidController()
     {
         $request = new Zend_Controller_Request_Http();

@@ -136,8 +136,8 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends \PHPUnit\Framework\
         $data = ['foo', 'bar', 'baz'];
         $encoded = $dojo->direct($data, false);
         $decoded = Zend_Json::decode($encoded);
-        $this->assertStringContainsString('items', array_keys($decoded));
-        $this->assertStringContainsString('identifier', array_keys($decoded));
+        $this->assertContains('items', array_keys($decoded));
+        $this->assertContains('identifier', array_keys($decoded));
         $this->assertEquals('name', $decoded['identifier']);
 
         $test = [];

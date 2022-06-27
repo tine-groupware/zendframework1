@@ -316,6 +316,9 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('users/vicki', $url);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAssembleWithoutMatch()
     {
         $route = new Zend_Controller_Router_Route_Regex('users/(.+)', null, null, 'users/%s');

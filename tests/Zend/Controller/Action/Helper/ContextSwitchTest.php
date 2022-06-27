@@ -838,6 +838,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
 
     /**
      * @group ZF-3279
+     * @doesNotPerformAssertions
      */
     public function testPostJsonContextDoesntThrowExceptionWhenGetVarsMethodsExists()
     {
@@ -851,6 +852,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
 
     /**
      * @group ZF-3279
+     * @doesNotPerformAssertions
      */
     public function testPostJsonContextThrowsExceptionWhenGetVarsMethodsDoesntExist()
     {
