@@ -608,6 +608,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-2064
+     * @doesNotPerformAssertions
      */
     public function testAddRulesDoesNotThrowWarnings()
     {
