@@ -125,6 +125,7 @@ class Zend_Application_Resource_LogTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8602
+     * @doesNotPerformAssertions
      */
     public function testNumericLogStreamFilterParamsPriorityDoesNotFail()
     {

@@ -230,7 +230,7 @@ class Zend_Barcode_FactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testBarcodeObjectFactoryWithUnexistantBarcode()
     {
-        $this->expectException(\PHPUnit\Framework\Error::class);
+        $this->expectException(Zend_Exception::class);
         $barcode = Zend_Barcode::makeBarcode('zf123', []);
     }
 
@@ -321,7 +321,7 @@ class Zend_Barcode_FactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testBarcodeRendererFactoryWithUnexistantRenderer()
     {
-        $this->expectException(\PHPUnit\Framework\Error::class);
+        $this->expectException(Zend_Exception::class);
         $renderer = Zend_Barcode::makeRenderer('zend', []);
     }
 

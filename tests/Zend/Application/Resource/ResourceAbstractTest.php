@@ -171,7 +171,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
         ]);
         $this->assertSame($this->bootstrap, $resource->getBootstrap());
         $options = $resource->getOptions();
-        $this->assertStringNotContainsString('bootstrap', array_keys($options));
+        $this->assertNotContains('bootstrap', array_keys($options));
     }
 
     /**
