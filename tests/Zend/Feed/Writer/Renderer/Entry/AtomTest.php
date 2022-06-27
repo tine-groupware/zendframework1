@@ -68,6 +68,9 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends \PHPUnit\Framework\TestCa
         $this->_validEntry = null;
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRenderMethodRunsMinimalWriterContainerProperlyBeforeICheckAtomCompliance()
     {
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);

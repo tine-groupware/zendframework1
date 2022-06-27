@@ -92,28 +92,22 @@ class Zend_Feed_Pubsubhubbub_PublisherTest extends \PHPUnit\Framework\TestCase
 
     public function testThrowsExceptionOnSettingEmptyHubServerUrl()
     {
-        try {
-            $this->_publisher->addHubUrl('');
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_publisher->addHubUrl('');
     }
 
 
     public function testThrowsExceptionOnSettingNonStringHubServerUrl()
     {
-        try {
-            $this->_publisher->addHubUrl(123);
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_publisher->addHubUrl(123);
     }
 
 
     public function testThrowsExceptionOnSettingInvalidHubServerUrl()
     {
-        try {
-            $this->_publisher->addHubUrl('http://');
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_publisher->addHubUrl('http://');
     }
 
     public function testAddsUpdatedTopicUrl()
@@ -166,28 +160,22 @@ class Zend_Feed_Pubsubhubbub_PublisherTest extends \PHPUnit\Framework\TestCase
 
     public function testThrowsExceptionOnSettingEmptyUpdatedTopicUrl()
     {
-        try {
-            $this->_publisher->addUpdatedTopicUrl('');
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_publisher->addUpdatedTopicUrl('');
     }
 
 
     public function testThrowsExceptionOnSettingNonStringUpdatedTopicUrl()
     {
-        try {
-            $this->_publisher->addUpdatedTopicUrl(123);
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_publisher->addUpdatedTopicUrl(123);
     }
 
 
     public function testThrowsExceptionOnSettingInvalidUpdatedTopicUrl()
     {
-        try {
-            $this->_publisher->addUpdatedTopicUrl('http://');
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_publisher->addUpdatedTopicUrl('http://');
     }
 
     public function testAddsParameter()

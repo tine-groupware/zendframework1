@@ -63,12 +63,9 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
 
     public function testRenderMethodRunsMinimalWriterContainerProperlyBeforeICheckAtomCompliance()
     {
+        $this->expectException(Zend_Feed_Exception::class);
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
-        try {
-            $renderer->render();
-        } catch (Zend_Feed_Exception $e) {
-            $this->fail('Valid Writer object caused an exception when building which should never happen');
-        }
+        $renderer->render();
     }
 
     public function testEntryEncodingHasBeenSet()

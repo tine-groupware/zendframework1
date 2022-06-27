@@ -93,18 +93,14 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends \PHPUnit\Framework\
 
     public function testThrowsExceptionOnInvalidHttpResponseObjectSet()
     {
-        try {
-            $this->_callback->setHttpResponse(new stdClass);
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_callback->setHttpResponse(new stdClass);
     }
 
     public function testThrowsExceptionIfNonObjectSetAsHttpResponseObject()
     {
-        try {
-            $this->_callback->setHttpResponse('');
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_callback->setHttpResponse('');
     }
 
     public function testCanSetSubscriberCount()
@@ -120,26 +116,20 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends \PHPUnit\Framework\
 
     public function testThrowsExceptionOnSettingZeroAsSubscriberCount()
     {
-        try {
-            $this->_callback->setSubscriberCount(0);
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_callback->setSubscriberCount(0);
     }
 
     public function testThrowsExceptionOnSettingLessThanZeroAsSubscriberCount()
     {
-        try {
-            $this->_callback->setSubscriberCount(-1);
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_callback->setSubscriberCount(-1);
     }
 
     public function testThrowsExceptionOnSettingAnyScalarTypeCastToAZeroOrLessIntegerAsSubscriberCount()
     {
-        try {
-            $this->_callback->setSubscriberCount('0aa');
-            $this->fail('Should not fail as an Exception would be raised and caught');
-        } catch (Zend_Feed_Pubsubhubbub_Exception $e) {}
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->_callback->setSubscriberCount('0aa');
     }
 
 

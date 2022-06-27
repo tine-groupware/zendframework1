@@ -65,6 +65,7 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
 
     public function testBuildMethodRunsMinimalWriterContainerProperlyBeforeICheckAtomCompliance()
     {
+        // $this->expectException(Zend_Feed_Exception::class);
         $feed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         try {
             $feed->render();
