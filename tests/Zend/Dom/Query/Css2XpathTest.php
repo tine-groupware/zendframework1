@@ -102,7 +102,7 @@ class Zend_Dom_Query_Css2XpathTest extends \PHPUnit\Framework\TestCase
         ];
         $this->assertEquals(count($expected), count($actual));
         foreach ($actual as $path) {
-            $this->assertStringContainsString($path, $expected);
+            $this->assertContains($path, $expected);
         }
     }
 

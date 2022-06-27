@@ -78,7 +78,7 @@ class Zend_EventManager_StaticEventManagerTest extends \PHPUnit\Framework\TestCa
     {
         $events = Zend_EventManager_StaticEventManager::getInstance();
         $events->attach('foo', 'bar', [$this, __FUNCTION__]);
-        $this->assertStringContainsString('bar', $events->getEvents('foo'));
+        $this->assertContains('bar', $events->getEvents('foo'));
         $expected  = [$this, __FUNCTION__];
         $found     = false;
         $listeners = $events->getListeners('foo', 'bar');
@@ -97,8 +97,8 @@ class Zend_EventManager_StaticEventManagerTest extends \PHPUnit\Framework\TestCa
     {
         $events = Zend_EventManager_StaticEventManager::getInstance();
         $events->attach('bar', ['foo', 'test'], [$this, __FUNCTION__]);
-        $this->assertStringContainsString('foo', $events->getEvents('bar'));
-        $this->assertStringContainsString('test', $events->getEvents('bar'));
+        $this->assertContains('foo', $events->getEvents('bar'));
+        $this->assertContains('test', $events->getEvents('bar'));
         $expected = [$this, __FUNCTION__];
         foreach (['foo', 'test'] as $event) {
             $found     = false;
@@ -119,8 +119,8 @@ class Zend_EventManager_StaticEventManagerTest extends \PHPUnit\Framework\TestCa
     {
         $events = Zend_EventManager_StaticEventManager::getInstance();
         $events->attach(['foo', 'test'], 'bar', [$this, __FUNCTION__]);
-        $this->assertStringContainsString('bar', $events->getEvents('foo'));
-        $this->assertStringContainsString('bar', $events->getEvents('test'));
+        $this->assertContains('bar', $events->getEvents('foo'));
+        $this->assertContains('bar', $events->getEvents('test'));
         $expected = [$this, __FUNCTION__];
         foreach (['foo', 'test'] as $id) {
             $found     = false;
@@ -141,8 +141,8 @@ class Zend_EventManager_StaticEventManagerTest extends \PHPUnit\Framework\TestCa
     {
         $events = Zend_EventManager_StaticEventManager::getInstance();
         $events->attach(['bar', 'baz'], ['foo', 'test'], [$this, __FUNCTION__]);
-        $this->assertStringContainsString('foo', $events->getEvents('bar'));
-        $this->assertStringContainsString('test', $events->getEvents('bar'));
+        $this->assertContains('foo', $events->getEvents('bar'));
+        $this->assertContains('test', $events->getEvents('bar'));
         $expected = [$this, __FUNCTION__];
         foreach (['bar', 'baz'] as $resource) {
             foreach (['foo', 'test'] as $event) {
@@ -174,7 +174,7 @@ class Zend_EventManager_StaticEventManagerTest extends \PHPUnit\Framework\TestCa
 
         foreach (['foo', 'bar', 'baz'] as $event) {
             $events->trigger($event);
-            $this->assertStringContainsString($event, $this->test->events);
+            $this->assertContains($event, $this->test->events);
         }
     }
 
@@ -231,6 +231,9 @@ class Zend_EventManager_StaticEventManagerTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals(1, count($events->getListeners('foo', 'bat')));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCanPassArrayOfIdentifiersToConstructor()
     {
         $identifiers = ['foo', 'bar'];
