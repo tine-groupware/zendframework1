@@ -141,7 +141,7 @@ class Zend_Mobile_Push_MpnsTest extends \PHPUnit\Framework\TestCase
         $this->adapter->setResponse('HTTP/1.1 503 Service Unavailable' . "\r\n\r\n");
         $this->mpns->send($this->getMessage('raw'));
     }
-
+    /** @doesNotPerformAssertions */
     public function testAllOk()
     {
         $this->adapter->setResponse('HTTP/1.1 200 OK' . "\r\n\r\n");
