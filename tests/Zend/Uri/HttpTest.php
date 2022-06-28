@@ -143,21 +143,33 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_testValidUri('http://a_.!~*\'(-)n0123Di%25%26:pass;:&=+$,word@www.zend.com');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testUsernameInvalidCharacter()
     {
         $this->_testInvalidUri('http://an`di:password@www.zend.com');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoUsernamePassword()
     {
         $this->_testInvalidUri('http://:password@www.zend.com');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testPasswordInvalidCharacter()
     {
         $this->_testInvalidUri('http://andi:pass%word@www.zend.com');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testMissingDomainParts()
     {
         $this->_testInvalidUri('https://www.zend..com');
@@ -272,6 +284,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
      *
      * @group ZF-3712
      * @group ZF-7840
+     * @doesNotPerformAssertions
      */
     public function testVeryLongUriZF3712()
     {
