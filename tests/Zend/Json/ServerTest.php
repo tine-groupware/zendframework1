@@ -311,18 +311,15 @@ class Zend_Json_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testHandleValidMethodWithMissingParamsShouldThrowException()
     {
+        $this->expectException(Zend_Server_Exception::class);
+        $this->expectExceptionMessage('Method bar is missing required parameter: one');
         $this->server->setClass('Zend_Json_ServerTest_Foo')
             ->setAutoEmitResponse(false);
         $request = $this->server->getRequest();
         $request->setMethod('bar')
-            ->setParams(['one' => null])
+            ->setParams(['two' => 'two'])
             ->setId('foo');
-        try {
-            $response = $this->server->handle();
-        } catch (Exception $e) {
-            $this->assertTrue($e instanceof Zend_Server_Exception);
-            $this->assertEquals('Method bar is missing required parameter: one', $e->getMessage());
-        }
+        $response = $this->server->handle();
     }
 
     public function testHandleValidMethodWithTooManyParamsShouldWork()

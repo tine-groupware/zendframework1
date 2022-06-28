@@ -255,7 +255,7 @@ EOT;
         // Test if it is not a NULL object.
         $this->assertNotNull($phpArray, "JSON result for XML input 3 is NULL");
         // Test for one of the expected fields in the JSON result.
-        $this->assertStringContainsString("Homestyle Breakfast", $phpArray['breakfast_menu']['food'][4], "The last breakfast item name converted from XML input 3 is not correct");
+        $this->assertContains("Homestyle Breakfast", $phpArray['breakfast_menu']['food'][4], "The last breakfast item name converted from XML input 3 is not correct");
     } // End of function testUsingXML3
 
     /**
@@ -368,11 +368,11 @@ EOT;
         // Test if it is not a NULL object.
         $this->assertNotNull($phpArray, "JSON result for XML input 4 is NULL");
         // Test for one of the expected fields in the JSON result.
-        $this->assertStringContainsString("98-765-4321", $phpArray['PurchaseRequisition']['Item']['Vendor'], "The vendor id converted from XML input 4 is not correct");
+        $this->assertContains("98-765-4321", $phpArray['PurchaseRequisition']['Item']['Vendor'], "The vendor id converted from XML input 4 is not correct");
         // Test for the presence of multiple XML attributes present that were carried over in the JSON result.
-        $this->assertStringContainsString("UNSPSC", $phpArray['PurchaseRequisition']['Item']['Specification']['Category']['@attributes'], "The type attribute converted from XML input 4 is not correct");
-        $this->assertStringContainsString("32121501", $phpArray['PurchaseRequisition']['Item']['Specification']['Category']['@attributes'], "The value attribute converted from XML input 4 is not correct");
-        $this->assertStringContainsString("Fixed capacitors", $phpArray['PurchaseRequisition']['Item']['Specification']['Category']['@attributes'], "The name attribute converted from XML input 4 is not correct");
+        $this->assertContains("UNSPSC", $phpArray['PurchaseRequisition']['Item']['Specification']['Category']['@attributes'], "The type attribute converted from XML input 4 is not correct");
+        $this->assertContains("32121501", $phpArray['PurchaseRequisition']['Item']['Specification']['Category']['@attributes'], "The value attribute converted from XML input 4 is not correct");
+        $this->assertContains("Fixed capacitors", $phpArray['PurchaseRequisition']['Item']['Specification']['Category']['@attributes'], "The name attribute converted from XML input 4 is not correct");
     } // End of function testUsingXML4
 
     /**
