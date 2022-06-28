@@ -78,7 +78,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
     {
         unlink($this->_mboxFile);
     }
-
+    /** @doesNotPerformAssertions */
     public function testLoadOk()
     {
         try {
@@ -87,7 +87,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
             $this->fail('exception raised while loading mbox file');
         }
     }
-
+    /** @doesNotPerformAssertions */
     public function testLoadConfig()
     {
         try {
@@ -96,7 +96,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
             $this->fail('exception raised while loading mbox folder');
         }
     }
-
+    /** @doesNotPerformAssertions */
     public function testNoParams()
     {
         try {
@@ -107,7 +107,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
 
         $this->fail('no exception raised with empty params');
     }
-
+    /** @doesNotPerformAssertions */
     public function testLoadFailure()
     {
         try {
@@ -118,7 +118,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
 
         $this->fail('no exception raised while loading unknown file');
     }
-
+    /** @doesNotPerformAssertions */
     public function testLoadInvalid()
     {
         try {
@@ -129,7 +129,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
 
         $this->fail('no exception while loading invalid file');
     }
-
+    /** @doesNotPerformAssertions */
     public function testClose()
     {
         $mail = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);
@@ -154,7 +154,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
 
         $this->assertFalse($mail->hasCreate);
     }
-
+    /** @doesNotPerformAssertions */
     public function testNoop()
     {
         $mail = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);
@@ -226,7 +226,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
         list($content, ) = explode("\n", $content, 2);
         $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
     }
-
+    /** @doesNotPerformAssertions */
     public function testFailedRemove()
     {
         $mail = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);
@@ -256,7 +256,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($mail->valid());
     }
 
-
+    /** @doesNotPerformAssertions */
     public function testOutOfBounds()
     {
         $mail = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);
@@ -288,7 +288,7 @@ class Zend_Mail_MboxTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($mail->countMessages(), $count);
         $this->assertEquals($mail->getMessage(1)->getContent(), $content);
     }
-
+    /** @doesNotPerformAssertions */
     public function testSleepWakeRemoved()
     {
         $mail = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);

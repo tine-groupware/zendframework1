@@ -150,6 +150,7 @@ class Zend_MimeTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-1688
+     * @doesNotPerformAssertions
      */
     public function testLineLengthInQuotedPrintableHeaderEncoding()
     {

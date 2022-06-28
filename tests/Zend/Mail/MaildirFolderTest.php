@@ -130,6 +130,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLoadOk()
     {
         try {
@@ -139,6 +142,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLoadConfig()
     {
         try {
@@ -148,6 +154,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoParams()
     {
         try {
@@ -159,6 +168,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         $this->fail('no exception raised with empty params');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLoadFailure()
     {
         try {
@@ -170,6 +182,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         $this->fail('no exception raised while loading unknown dirname');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLoadUnknownFolder()
     {
         $this->_params['folder'] = 'UnknownFolder';
@@ -194,6 +209,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($mail->getCurrentFolder(), 'subfolder.test');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testUnknownFolder()
     {
         $mail = new Zend_Mail_Storage_Folder_Maildir($this->_params);
@@ -339,6 +357,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Message in subfolder', $subject);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNotReadableFolder()
     {
         $stat = stat($this->_params['dirname'] . '.subfolder');
@@ -366,6 +387,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNotReadableMaildir()
     {
         $stat = stat($this->_params['dirname']);
@@ -393,6 +417,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetInvalidFolder()
     {
         $mail = new Zend_Mail_Storage_Folder_Maildir($this->_params);
@@ -408,6 +435,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         $this->fail('no error while getting invalid folder');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetVanishedFolder()
     {
         $mail = new Zend_Mail_Storage_Folder_Maildir($this->_params);
@@ -423,6 +453,9 @@ class Zend_Mail_MaildirFolderTest extends \PHPUnit\Framework\TestCase
         $this->fail('no error while getting vanished folder');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetNotSelectableFolder()
     {
         $mail = new Zend_Mail_Storage_Folder_Maildir($this->_params);

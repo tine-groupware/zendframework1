@@ -62,6 +62,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testInvalidFile()
     {
         try {
@@ -129,6 +132,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
     }
 
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetWrongPart()
     {
         $message = new Zend_Mail_Message(['file' => $this->_file]);
@@ -179,6 +185,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Zend_Mime_Decode::splitMessageStruct('', 'xxx'), null);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSplitInvalidMessage()
     {
         try {
@@ -190,6 +199,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->fail('no exception raised while decoding invalid message');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testInvalidMailHandler()
     {
         try {
@@ -202,6 +214,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
 
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testMissingId()
     {
         $mail = new Zend_Mail_Storage_Mbox(['filename' => dirname(__FILE__) . '/_files/test.mbox/INBOX']);
@@ -246,6 +261,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Zend_Mime_Decode::splitHeaderField($header, 'foo'), null);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSplitInvalidHeader()
     {
         $header = '';
@@ -280,6 +298,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(strpos($message->getToplines(), 'multipart message') === 0);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoContent()
     {
         $message = new Zend_Mail_Message(['raw' => 'Subject: test']);
@@ -341,6 +362,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($message->headerExists('From'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWrongMultipart()
     {
         $message = new Zend_Mail_Message(['raw' => "Content-Type: multipart/mixed\r\n\r\ncontent"]);
@@ -428,6 +452,9 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($message->getHeaderField('content-type', 'foo'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetHeaderFieldInvalid()
     {
         $message = new Zend_Mail_Message(['file' => $this->_file]);
@@ -481,7 +508,7 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
     public function testBackwardsCompatibilityMaintainedWhenPartClassNotSpecified()
     {
         $message = new Zend_Mail_Message(['file' => $this->_file]);
-        $this->assertGreaterThan(0, count($message));
+        $this->assertGreaterThan(0, iterator_count($message));
         foreach ( $message as $part ) {
             $this->assertEquals('Zend_Mail_Part', get_class($part));
         }
@@ -499,7 +526,7 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('ZF3745_Mail_Part', $message->getPartClass());
         
         // Ensure message parts use the specified part class
-        $this->assertGreaterThan(0, count($message));
+        $this->assertGreaterThan(0, iterator_count($message));
         foreach ( $message as $part ) {
             $this->assertEquals('ZF3745_Mail_Part', get_class($part));
         }
@@ -515,7 +542,7 @@ class Zend_Mail_MessageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('ZF3745_Mail_Part', $message->getPartClass());
         
         // Ensure message parts use the specified part class
-        $this->assertGreaterThan(0, count($message));
+        $this->assertGreaterThan(0, iterator_count($message));
         foreach ( $message as $part ) {
             $this->assertEquals('ZF3745_Mail_Part', get_class($part));
         }

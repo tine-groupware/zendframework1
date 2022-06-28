@@ -764,6 +764,9 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(strpos(implode('', $mock->headers['Date']), 'Mon, 29 Jun 1981') === 0);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDateInvalidString()
     {
         $mail = new Zend_Mail();
@@ -775,6 +778,9 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDateInvalidType()
     {
         $mail = new Zend_Mail();
@@ -786,6 +792,9 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDateInvalidObject()
     {
         $mail = new Zend_Mail();
@@ -797,6 +806,9 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDateTwice()
     {
         $mail = new Zend_Mail();
@@ -836,6 +848,9 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(strlen($mock->headers['Message-Id'][0]) > 0);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetMessageIdTwice()
     {
         $mail = new Zend_Mail();
@@ -884,6 +899,7 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-1688
      * @dataProvider dataSubjects
+     * @doesNotPerformAssertions
      */
     public function testIfLongSubjectsHaveCorrectLineBreaksAndEncodingMarks($subject)
     {
@@ -993,6 +1009,7 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-9011
      *
+     * @doesNotPerformAssertions
      */
     public function testSendmailTransportThrowsExceptionWithInvalidParams()
     {

@@ -71,7 +71,7 @@ class Zend_Mail_InterfaceTest extends \PHPUnit\Framework\TestCase
         $subject = $list[1]->subject;
         $this->assertEquals('Simple Message', $subject);
     }
-
+    /** @doesNotPerformAssertions */
     public function testArraySetFail()
     {
         $list = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);
@@ -152,7 +152,7 @@ class Zend_Mail_InterfaceTest extends \PHPUnit\Framework\TestCase
             $this->fail('exception raised while calling noop thru fallback');
         }
     }
-
+    /** @doesNotPerformAssertions */
     public function testWrongVariable()
     {
         $list = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);
@@ -172,7 +172,7 @@ class Zend_Mail_InterfaceTest extends \PHPUnit\Framework\TestCase
         $headers = $list[1]->getHeaders();
         $this->assertTrue(count($headers) > 0);
     }
-
+    /** @doesNotPerformAssertions */
     public function testWrongHeader()
     {
         $list = new Zend_Mail_Storage_Mbox(['filename' => $this->_mboxFile]);

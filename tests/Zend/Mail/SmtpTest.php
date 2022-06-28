@@ -54,6 +54,9 @@ class Zend_Mail_SmtpTest extends \PHPUnit\Framework\TestCase
                                'auth'     => TESTS_ZEND_MAIL_SMTP_AUTH];
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testTransportSetup()
     {
         try {

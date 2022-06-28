@@ -105,6 +105,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         closedir($dh);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConnectOk()
     {
         try {
@@ -114,6 +117,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConnectConfig()
     {
         try {
@@ -124,6 +130,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
     }
 
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConnectFailure()
     {
         $this->_params['host'] = 'example.example';
@@ -137,6 +146,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         $this->fail('no exception raised while connecting to example.example');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoParams()
     {
         try {
@@ -148,6 +160,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         $this->fail('no exception raised with empty params');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConnectSSL()
     {
         if (!TESTS_ZEND_MAIL_POP3_SSL) {
@@ -162,6 +177,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConnectTLS()
     {
         if (!TESTS_ZEND_MAIL_POP3_TLS) {
@@ -176,6 +194,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testInvalidService()
     {
         $this->_params['port'] = TESTS_ZEND_MAIL_POP3_INVALID_PORT;
@@ -189,6 +210,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         $this->fail('no exception while connection to invalid port');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWrongService()
     {
         $this->_params['port'] = TESTS_ZEND_MAIL_POP3_WRONG_PORT;
@@ -202,6 +226,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         $this->fail('no exception while connection to wrong port');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testClose()
     {
         $mail = new Zend_Mail_Storage_Pop3($this->_params);
@@ -227,6 +254,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         $this->assertFalse($mail->hasCreate);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoop()
     {
         $mail = new Zend_Mail_Storage_Pop3($this->_params);
@@ -300,20 +330,22 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
     }
 
 /*
-    public function testFailedRemove()
-    {
-        $mail = new Zend_Mail_Storage_Pop3($this->_params);
-
-        try {
-            $mail->removeMessage(1);
-        } catch (Exception $e) {
-            return; // test ok
+        public function testFailedRemove()
+        {
+            $mail = new Zend_Mail_Storage_Pop3($this->_params);
+    
+            try {
+                $mail->removeMessage(1);
+            } catch (Exception $e) {
+                return; // test ok
+            }
+    
+            $this->fail('no exception raised while deleting message (mbox is read-only)');
         }
-
-        $this->fail('no exception raised while deleting message (mbox is read-only)');
-    }
-*/
-
+    */
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWithInstanceConstruction()
     {
         $protocol = new Zend_Mail_Protocol_Pop3($this->_params['host']);
@@ -328,6 +360,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         $this->fail('no exception raised while fetching with wrong transport');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRequestAfterClose()
     {
         $mail = new Zend_Mail_Storage_Pop3($this->_params);
@@ -389,6 +424,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWrongUniqueId()
     {
         $mail = new Zend_Mail_Storage_Pop3($this->_params);
@@ -401,6 +439,9 @@ class Zend_Mail_Pop3Test extends \PHPUnit\Framework\TestCase
         $this->fail('no exception while getting number for invalid id');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testReadAfterClose()
     {
         $protocol = new Zend_Mail_Protocol_Pop3($this->_params['host']);

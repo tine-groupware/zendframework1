@@ -126,6 +126,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         @unlink($this->_tmpdir . 'maildirsize');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCreateFolder()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -151,6 +154,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->_subdirs[] = '.foo.bar';
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCreateFolderEmtpyPart()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -163,6 +169,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('no exception while creating folder with empty part name');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCreateFolderSlash()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -175,6 +184,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('no exception while creating folder with slash');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCreateFolderDirectorySeparator()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -187,6 +199,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('no exception while creating folder with DIRECTORY_SEPARATOR');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCreateFolderExistingDir()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -201,6 +216,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('should not be able to create existing folder');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCreateExistingFolder()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -214,6 +232,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('should not be able to create existing folder');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemoveFolderName()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -227,6 +248,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('folder still exists');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemoveFolderInstance()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -240,6 +264,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('folder still exists');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemoveFolderWithChildren()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -253,6 +280,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('should not be able to remove a folder with children');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemoveSelectedFolder()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -266,6 +296,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('no error while removing selected folder');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemoveInvalidFolder()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -278,6 +311,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('no error while removing invalid folder');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRenameFolder()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -296,6 +332,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('no error while renaming INBOX');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRenameSelectedFolder()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -309,6 +348,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('no error while renaming selected folder');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRenameToChild()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -389,6 +431,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->fail('should not be able to set recent flag');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetFlagsRemovedFile()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
@@ -415,6 +460,9 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($mail->countMessages(), --$count);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testRemoveRemovedFile()
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
