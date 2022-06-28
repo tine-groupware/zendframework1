@@ -105,6 +105,8 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestGetThrowsExceptionWithNoUri()
     {
+        $this->expectException(Zend_Rest_Client_Exception::class);
+        $this->expectExceptionMessage('URI object must be set before performing call');
         $expXml   = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
@@ -116,15 +118,8 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
                   . "\r\n"
                   . $expXml;
         $this->adapter->setResponse($response);
-
         $rest = new Zend_Rest_Client();
-
-        try {
-            $response = $rest->restGet('/rest/');
-            $this->fail('Should throw exception if no URI in object');
-        } catch (Exception $e) {
-            // success
-        }
+        $response = $rest->restGet('/rest/');
     }
 
     public function testRestFixesPathWithMissingSlashes()
@@ -326,12 +321,9 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidXmlInClientResultLeadsToException()
     {
-        try {
-            $result = new Zend_Rest_Client_Result("invalidxml");
-            $this->fail();
-        } catch(Zend_Rest_Client_Result_Exception $e) {
-
-        }
+        $this->expectException(Zend_Rest_Client_Result_Exception::class);
+        $this->expectExceptionMessage('An error occured while parsing the REST response with simplexml');
+        $result = new Zend_Rest_Client_Result("invalidxml");
     }
     
     /**

@@ -425,7 +425,7 @@ class Zend_Rest_ServerTest extends \PHPUnit\Framework\TestCase
         $server->handle(['method' => 'test2ThrowException']);
         $result = ob_get_clean();
         $headers = $server->getHeaders();
-        $this->assertStringContainsString('HTTP/1.0 400 Bad Request', $headers);
+        $this->assertContains('HTTP/1.0 400 Bad Request', $headers);
     }
 
     public function testReturnResponse()

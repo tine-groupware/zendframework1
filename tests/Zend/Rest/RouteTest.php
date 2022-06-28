@@ -68,7 +68,8 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
         $this->_front->resetInstance();
         $this->_front->setParam('noErrorHandler', true)
         ->setParam('noViewRenderer', true);
-
+        $_GET = [];
+        $_POST = [];
         $this->_dispatcher = $this->_front->getDispatcher();
 
         $this->_dispatcher->setControllerDirectory([
@@ -122,12 +123,7 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->_buildRequest('GET', '/');
         $values = $this->_invokeRouteMatch($request);
-
-        $this->assertTrue(is_array($values));
-        $this->assertTrue(isset($values['module']));
-        $this->assertEquals('default', $values['module']);
-        $this->assertEquals('index', $values['controller']);
-        $this->assertEquals('index', $values['action']);
+        $this->assertFalse($values);
     }
 
     /*
