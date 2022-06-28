@@ -48,6 +48,7 @@ class Zend_Measure_BinaryTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testBinaryUnknownType()
     {
@@ -62,6 +63,7 @@ class Zend_Measure_BinaryTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testBinaryUnknownValue()
     {
@@ -76,6 +78,7 @@ class Zend_Measure_BinaryTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testBinaryUnknownLocale()
     {
@@ -217,6 +220,7 @@ class Zend_Measure_BinaryTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testBinarySetUnknownType()
     {
@@ -232,6 +236,7 @@ class Zend_Measure_BinaryTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testBinarySetUnknownValue()
     {
@@ -247,6 +252,7 @@ class Zend_Measure_BinaryTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testBinarySetUnknownLocale()
     {
@@ -306,6 +312,7 @@ class Zend_Measure_BinaryTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testBinarySetTypeFailed()
     {

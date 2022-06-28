@@ -48,6 +48,7 @@ class Zend_Measure_TimeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTimeUnknownType()
     {
@@ -62,6 +63,7 @@ class Zend_Measure_TimeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTimeUnknownValue()
     {
@@ -76,6 +78,7 @@ class Zend_Measure_TimeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testTimeUnknownLocale()
     {
@@ -240,6 +243,7 @@ class Zend_Measure_TimeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTimeSetUnknownType()
     {
@@ -256,6 +260,7 @@ class Zend_Measure_TimeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTimeSetUnknownValue()
     {
@@ -272,6 +277,7 @@ class Zend_Measure_TimeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTimeSetUnknownLocale()
     {
@@ -336,6 +342,7 @@ class Zend_Measure_TimeTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testTimeSetTypeFailed()
     {

@@ -49,6 +49,7 @@ class Zend_Measure_CurrentTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCurrentUnknownType()
     {
@@ -64,6 +65,7 @@ class Zend_Measure_CurrentTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCurrentUnknownValue()
     {
@@ -79,6 +81,7 @@ class Zend_Measure_CurrentTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testCurrentUnknownLocale()
     {
@@ -244,6 +247,7 @@ class Zend_Measure_CurrentTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCurrentSetUnknownType()
     {
@@ -260,6 +264,7 @@ class Zend_Measure_CurrentTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCurrentSetUnknownValue()
     {
@@ -276,6 +281,7 @@ class Zend_Measure_CurrentTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCurrentSetUnknownLocale()
     {
@@ -316,6 +322,7 @@ class Zend_Measure_CurrentTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testCurrentSetTypeFailed()
     {

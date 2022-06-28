@@ -49,6 +49,7 @@ class Zend_Measure_Flow_VolumeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_VolumeUnknownType()
     {
@@ -64,6 +65,7 @@ class Zend_Measure_Flow_VolumeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_VolumeUnknownValue()
     {
@@ -79,6 +81,7 @@ class Zend_Measure_Flow_VolumeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testFlow_VolumeUnknownLocale()
     {
@@ -244,6 +247,7 @@ class Zend_Measure_Flow_VolumeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_VolumeSetUnknownType()
     {
@@ -260,6 +264,7 @@ class Zend_Measure_Flow_VolumeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_VolumeSetUnknownValue()
     {
@@ -276,6 +281,7 @@ class Zend_Measure_Flow_VolumeTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_VolumeSetUnknownLocale()
     {
@@ -340,6 +346,7 @@ class Zend_Measure_Flow_VolumeTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testFlow_VolumeSetTypeFailed()
     {

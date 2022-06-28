@@ -50,6 +50,7 @@ class Zend_Measure_IlluminationTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testIlluminationUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_IlluminationTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testIlluminationUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_IlluminationTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testIlluminationUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_IlluminationTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testIlluminationSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_IlluminationTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testIlluminationSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_IlluminationTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testIlluminationSetUnknownLocale()
     {
@@ -317,6 +323,7 @@ class Zend_Measure_IlluminationTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testIlluminationSetTypeFailed()
     {

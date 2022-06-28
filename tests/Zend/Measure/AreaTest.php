@@ -48,6 +48,7 @@ class Zend_Measure_AreaTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAreaUnknownType()
     {
@@ -62,6 +63,7 @@ class Zend_Measure_AreaTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAreaUnknownValue()
     {
@@ -76,6 +78,7 @@ class Zend_Measure_AreaTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testAreaUnknownLocale()
     {
@@ -227,6 +230,7 @@ class Zend_Measure_AreaTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAreaSetUnknownType()
     {
@@ -242,6 +246,7 @@ class Zend_Measure_AreaTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAreaSetUnknownValue()
     {
@@ -257,6 +262,7 @@ class Zend_Measure_AreaTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAreaSetUnknownLocale()
     {
@@ -316,6 +322,7 @@ class Zend_Measure_AreaTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testAreaSetTypeFailed()
     {

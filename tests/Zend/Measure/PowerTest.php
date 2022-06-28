@@ -50,6 +50,7 @@ class Zend_Measure_PowerTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPowerUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_PowerTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPowerUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_PowerTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testPowerUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_PowerTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPowerSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_PowerTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPowerSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_PowerTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPowerSetUnknownLocale()
     {
@@ -353,6 +359,7 @@ class Zend_Measure_PowerTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testPowerSetTypeFailed()
     {

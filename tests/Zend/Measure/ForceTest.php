@@ -50,6 +50,7 @@ class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testForceUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testForceUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testForceUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testForceSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testForceSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testForceSetUnknownLocale()
     {
@@ -317,6 +323,7 @@ class Zend_Measure_ForceTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testForceSetTypeFailed()
     {

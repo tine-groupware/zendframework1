@@ -49,6 +49,7 @@ class Zend_Measure_Flow_MassTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_MassUnknownType()
     {
@@ -64,6 +65,7 @@ class Zend_Measure_Flow_MassTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_MassUnknownValue()
     {
@@ -79,6 +81,7 @@ class Zend_Measure_Flow_MassTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testFlow_MassUnknownLocale()
     {
@@ -244,6 +247,7 @@ class Zend_Measure_Flow_MassTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_MassSetUnknownType()
     {
@@ -260,6 +264,7 @@ class Zend_Measure_Flow_MassTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_MassSetUnknownValue()
     {
@@ -276,6 +281,7 @@ class Zend_Measure_Flow_MassTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testFlow_MassSetUnknownLocale()
     {
@@ -340,6 +346,7 @@ class Zend_Measure_Flow_MassTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testFlow_MassSetTypeFailed()
     {

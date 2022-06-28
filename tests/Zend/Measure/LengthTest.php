@@ -50,6 +50,7 @@ class Zend_Measure_LengthTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLengthUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_LengthTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLengthUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_LengthTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testLengthUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_LengthTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLengthSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_LengthTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLengthSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_LengthTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLengthSetUnknownLocale()
     {
@@ -341,6 +347,7 @@ class Zend_Measure_LengthTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testLengthSetTypeFailed()
     {

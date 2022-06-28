@@ -90,6 +90,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTemperatureUnknownType()
     {
@@ -105,6 +106,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTemperatureUnknownValue()
     {
@@ -120,6 +122,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testTemperatureUnknownLocale()
     {
@@ -285,6 +288,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTemperatureSetUnknownType()
     {
@@ -301,6 +305,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTemperatureSetUnknownValue()
     {
@@ -317,6 +322,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testTemperatureSetUnknownLocale()
     {
@@ -381,6 +387,7 @@ class Zend_Measure_TemperatureTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testTemperatureSetTypeFailed()
     {

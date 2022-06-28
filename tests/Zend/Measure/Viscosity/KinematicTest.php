@@ -49,6 +49,7 @@ class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testViscosity_KinematicUnknownType()
     {
@@ -64,6 +65,7 @@ class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testViscosity_KinematicUnknownValue()
     {
@@ -79,6 +81,7 @@ class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testViscosity_KinematicUnknownLocale()
     {
@@ -244,6 +247,7 @@ class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testViscosity_KinematicSetUnknownType()
     {
@@ -260,6 +264,7 @@ class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testViscosity_KinematicSetUnknownValue()
     {
@@ -276,6 +281,7 @@ class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testViscosity_KinematicSetUnknownLocale()
     {
@@ -340,6 +346,7 @@ class Zend_Measure_Viscosity_KinematicTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testViscosity_KinematicSetTypeFailed()
     {

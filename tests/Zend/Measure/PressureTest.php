@@ -50,6 +50,7 @@ class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPressureUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPressureUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testPressureUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPressureSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPressureSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testPressureSetUnknownLocale()
     {
@@ -353,6 +359,7 @@ class Zend_Measure_PressureTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testPressureSetTypeFailed()
     {

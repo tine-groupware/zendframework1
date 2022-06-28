@@ -50,6 +50,7 @@ class Zend_Measure_SpeedTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testSpeedUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_SpeedTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testSpeedUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_SpeedTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testSpeedUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_SpeedTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testSpeedSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_SpeedTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testSpeedSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_SpeedTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testSpeedSetUnknownLocale()
     {
@@ -341,6 +347,7 @@ class Zend_Measure_SpeedTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testSpeedSetTypeFailed()
     {

@@ -50,6 +50,7 @@ class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLightnessUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLightnessUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testLightnessUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLightnessSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLightnessSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testLightnessSetUnknownLocale()
     {
@@ -317,6 +323,7 @@ class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testLightnessSetTypeFailed()
     {

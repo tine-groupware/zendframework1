@@ -50,6 +50,7 @@ class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAngleUnknownType()
     {
@@ -65,6 +66,7 @@ class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAngleUnknownValue()
     {
@@ -80,6 +82,7 @@ class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testAngleUnknownLocale()
     {
@@ -245,6 +248,7 @@ class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAngleSetUnknownType()
     {
@@ -261,6 +265,7 @@ class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAngleSetUnknownValue()
     {
@@ -277,6 +282,7 @@ class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testAngleSetUnknownLocale()
     {
@@ -341,6 +347,7 @@ class Zend_Measure_AngleTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testAngleSetTypeFailed()
     {

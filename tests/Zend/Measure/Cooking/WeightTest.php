@@ -49,6 +49,7 @@ class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCooking_WeightUnknownType()
     {
@@ -64,6 +65,7 @@ class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCooking_WeightUnknownValue()
     {
@@ -79,6 +81,7 @@ class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected root value
+     * @doesNotPerformAssertions
      */
     public function testCooking_WeightUnknownLocale()
     {
@@ -244,6 +247,7 @@ class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown type
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCooking_WeightSetUnknownType()
     {
@@ -260,6 +264,7 @@ class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown value
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCooking_WeightSetUnknownValue()
     {
@@ -276,6 +281,7 @@ class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
     /**
      * test for exception unknown locale
      * expected exception
+     * @doesNotPerformAssertions
      */
     public function testCooking_WeightSetUnknownLocale()
     {
@@ -339,6 +345,7 @@ class Zend_Measure_Cooking_WeightTest extends \PHPUnit\Framework\TestCase
     /**
      * test setting unknown type
      * expected new type
+     * @doesNotPerformAssertions
      */
     public function testCooking_WeightSetTypeFailed()
     {
