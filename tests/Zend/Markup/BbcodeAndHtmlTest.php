@@ -187,6 +187,9 @@ class Zend_Markup_BbcodeAndHtmlTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $this->_markup->render($value));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAttributeNotEndingValueDoesNotThrowNotice()
     {
         // Notice: Uninitialized string offset: 13
@@ -195,6 +198,9 @@ class Zend_Markup_BbcodeAndHtmlTest extends \PHPUnit\Framework\TestCase
         $this->_markup->render('[url=http://framework.zend.com/ title="');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAttributeFollowingValueDoesNotThrowNotice()
     {
         // Notice: Uninitialized string offset: 38
@@ -380,6 +386,9 @@ class Zend_Markup_BbcodeAndHtmlTest extends \PHPUnit\Framework\TestCase
                             $m->render('[b class=\'">xss\']foobar[/b]'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWrongNestedLists()
     {
         $m = $this->_markup;

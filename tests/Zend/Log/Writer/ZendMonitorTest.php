@@ -45,6 +45,7 @@ class Zend_Log_Writer_ZendMonitorTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-10081
+     * @doesNotPerformAssertions
      */
     public function testWrite()
     {

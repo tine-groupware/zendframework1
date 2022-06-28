@@ -43,6 +43,9 @@ class Zend_Log_Writer_SyslogTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWrite()
     {
         $fields = ['message' => 'foo', 'priority' => LOG_NOTICE];
@@ -115,6 +118,7 @@ class Zend_Log_Writer_SyslogTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8382
+     * @doesNotPerformAssertions
      */
     public function testWriteWithFormatter()
     {

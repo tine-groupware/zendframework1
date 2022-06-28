@@ -43,6 +43,9 @@ class Zend_Log_Writer_NullTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testWrite()
     {
         $writer = new Zend_Log_Writer_Null();

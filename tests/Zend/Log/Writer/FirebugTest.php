@@ -108,7 +108,7 @@ class Zend_Log_Writer_FirebugTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test for ZF-3960
-     *
+     * @doesNotPerformAssertions
      * Zend_Log_Writer_Firebug should be automatically disabled when
      * run from the command line
      */
@@ -295,6 +295,7 @@ class Zend_Log_Writer_FirebugTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-10537
+     * @doesNotPerformAssertions
      */
     public function testFileLineOffsets()
     {

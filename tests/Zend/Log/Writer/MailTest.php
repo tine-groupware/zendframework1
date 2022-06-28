@@ -91,7 +91,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests normal logging, but with multiple messages for a level.
-     *
+     * @doesNotPerformAssertions
      * @return void
      */
     public function testNormalLoggingMultiplePerLevel()
@@ -103,7 +103,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests normal logging without use of Zend_Layout.
-     *
+     * @doesNotPerformAssertions
      * @return void
      */
     public function testNormalLoggingNoLayout()
@@ -115,7 +115,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests normal logging with Zend_Layout usage.
-     *
+     * @doesNotPerformAssertions
      * @return void
      */
     public function testNormalLoggingWithLayout()
@@ -127,8 +127,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests normal logging with Zend_Layout and a custom formatter for it.
-     *
-     * @return void
+     * @doesNotPerformAssertions
      */
     public function testNormalLoggingWithLayoutAndItsFormatter()
     {

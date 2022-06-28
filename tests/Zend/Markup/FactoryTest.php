@@ -37,6 +37,9 @@ require_once 'Zend/Markup.php';
 class Zend_Markup_FactoryTest extends \PHPUnit\Framework\TestCase
 {
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFactory()
     {
         Zend_Markup::addParserPath('Zend_Markup_Test_Parser', 'Zend/Markup/Test/Parser');

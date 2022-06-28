@@ -223,7 +223,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
         $logger = new Zend_Log($mock = new Zend_Log_Writer_Mock);
         $logger->info('foo', ['content' => 'nonesuch']);
         $event = array_shift($mock->events);
-        $this->assertStringContainsString('content', array_keys($event));
+        $this->assertContains('content', array_keys($event));
         $this->assertEquals('nonesuch', $event['content']);
     }
 
@@ -235,9 +235,9 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
         $logger = new Zend_Log($mock = new Zend_Log_Writer_Mock);
         $logger->info('foo', ['content' => 'nonesuch', 'bar']);
         $event = array_shift($mock->events);
-        $this->assertStringContainsString('content', array_keys($event));
-        $this->assertStringContainsString('info', array_keys($event));
-        $this->assertStringContainsString('bar', $event['info']);
+        $this->assertContains('content', array_keys($event));
+        $this->assertContains('info', array_keys($event));
+        $this->assertContains('bar', $event['info']);
     }
 
     /**
@@ -248,7 +248,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
         $logger = new Zend_Log($mock = new Zend_Log_Writer_Mock);
         $logger->info('foo', 'nonesuch');
         $event = array_shift($mock->events);
-        $this->assertStringContainsString('info', array_keys($event));
+        $this->assertContains('info', array_keys($event));
         $info = $event['info'];
         $this->assertStringContainsString('nonesuch', $info);
     }
@@ -454,6 +454,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-9176
+     * @doesNotPerformAssertions
      */
     public function testLogConstructFromConfigFormatter()
     {
@@ -475,6 +476,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
 
 	/**
      * @group ZF-9176
+     * @doesNotPerformAssertions
      */
     public function testLogConstructFromConfigCustomFormatter()
     {
@@ -523,7 +525,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('c', $logger->getTimestampFormat());
     }
-
+    /** @doesNotPerformAssertions */
     public function testFactorySupportsPHP53Namespaces()
     {
         if (version_compare(PHP_VERSION, '5.3.0') < 0) {
