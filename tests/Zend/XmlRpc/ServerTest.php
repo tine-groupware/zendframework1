@@ -438,9 +438,9 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
     {
         $this->_server->addFunction('Zend_XmlRpc_Server_testFunction', 'test', 'arg1');
         $methods = $this->_server->listMethods();
-        $this->assertStringContainsString('test.Zend_XmlRpc_Server_testFunction', $methods);
+        $this->assertContains('test.Zend_XmlRpc_Server_testFunction', $methods);
     }
-
+    /** @doesNotPerformAssertions */
     public function testAddFunctionThrowsExceptionWithBadData()
     {
         $o = new stdClass();
@@ -487,7 +487,7 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
                          ->will($this->returnValue(['bar' => $mockedMethod]));
         $this->_server->loadFunctions($mockedDefinition);
     }
-
+    /** @doesNotPerformAssertions */
     public function testSetClassThrowsExceptionWithInvalidClass()
     {
         try {
@@ -503,7 +503,7 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
         $req = $this->_server->getRequest();
         $this->assertTrue($req instanceof Zend_XmlRpc_Server_testRequest);
     }
-
+    /** @doesNotPerformAssertions */
     public function testSetRequestThrowsExceptionOnBadClass()
     {
         try {

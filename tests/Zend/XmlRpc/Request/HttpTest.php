@@ -142,7 +142,7 @@ EOT;
 
         $this->assertEquals($expected, $this->request->getFullRequest());
     }
-
+    /** @doesNotPerformAssertions */
     public function testCanPassInMethodAndParams()
     {
         try {
