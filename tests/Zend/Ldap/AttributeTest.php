@@ -95,7 +95,7 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $value=Zend_Ldap_Attribute::getAttribute($data, 'uid');
         $this->assertTrue(is_array($value));
         $this->assertEquals(1, count($value));
-        $this->assertStringContainsString('value', $value);
+        $this->assertContains('value', $value);
     }
 
     public function testSimpleSetAttribute()
@@ -105,7 +105,7 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('uid', $data);
         $this->assertTrue(is_array($data['uid']));
         $this->assertEquals(1, count($data['uid']));
-        $this->assertStringContainsString('new', $data['uid']);
+        $this->assertContains('new', $data['uid']);
     }
 
     public function testSimpleOverwriteAttribute()
@@ -115,7 +115,7 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('uid', $data);
         $this->assertTrue(is_array($data['uid']));
         $this->assertEquals(1, count($data['uid']));
-        $this->assertStringContainsString('new', $data['uid']);
+        $this->assertContains('new', $data['uid']);
     }
 
     public function testSimpleAppendAttribute()
@@ -125,8 +125,8 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('uid', $data);
         $this->assertTrue(is_array($data['uid']));
         $this->assertEquals(2, count($data['uid']));
-        $this->assertStringContainsString('old', $data['uid']);
-        $this->assertStringContainsString('new', $data['uid']);
+        $this->assertContains('old', $data['uid']);
+        $this->assertContains('new', $data['uid']);
         $this->assertEquals('old', $data['uid'][0]);
         $this->assertEquals('new', $data['uid'][1]);
     }
@@ -152,8 +152,8 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('uid', $data);
         $this->assertTrue(is_array($data['uid']));
         $this->assertEquals(2, count($data['uid']));
-        $this->assertStringContainsString('new1', $data['uid']);
-        $this->assertStringContainsString('new2', $data['uid']);
+        $this->assertContains('new1', $data['uid']);
+        $this->assertContains('new2', $data['uid']);
         $this->assertEquals('new1', $data['uid'][0]);
         $this->assertEquals('new2', $data['uid'][1]);
     }
@@ -165,8 +165,8 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('uid', $data);
         $this->assertTrue(is_array($data['uid']));
         $this->assertEquals(2, count($data['uid']));
-        $this->assertStringContainsString('new1', $data['uid']);
-        $this->assertStringContainsString('new2', $data['uid']);
+        $this->assertContains('new1', $data['uid']);
+        $this->assertContains('new2', $data['uid']);
         $this->assertEquals('new1', $data['uid'][0]);
         $this->assertEquals('new2', $data['uid'][1]);
     }
@@ -178,9 +178,9 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('uid', $data);
         $this->assertTrue(is_array($data['uid']));
         $this->assertEquals(3, count($data['uid']));
-        $this->assertStringContainsString('old', $data['uid']);
-        $this->assertStringContainsString('new1', $data['uid']);
-        $this->assertStringContainsString('new2', $data['uid']);
+        $this->assertContains('old', $data['uid']);
+        $this->assertContains('new1', $data['uid']);
+        $this->assertContains('new2', $data['uid']);
         $this->assertEquals('old', $data['uid'][0]);
         $this->assertEquals('new1', $data['uid'][1]);
         $this->assertEquals('new2', $data['uid'][2]);
@@ -338,9 +338,9 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('test', $data);
         $this->assertTrue(is_array($data['test']));
         $this->assertEquals(3, count($data['test']));
-        $this->assertStringContainsString('value1', $data['test']);
-        $this->assertStringContainsString('value3', $data['test']);
-        $this->assertStringNotContainsString('value2', $data['test']);
+        $this->assertContains('value1', $data['test']);
+        $this->assertContains('value3', $data['test']);
+        $this->assertNotContains('value2', $data['test']);
     }
 
     public function testRemoveAttributeValueArray()
@@ -350,9 +350,9 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('test', $data);
         $this->assertTrue(is_array($data['test']));
         $this->assertEquals(2, count($data['test']));
-        $this->assertStringContainsString('value3', $data['test']);
-        $this->assertStringNotContainsString('value1', $data['test']);
-        $this->assertStringNotContainsString('value2', $data['test']);
+        $this->assertContains('value3', $data['test']);
+        $this->assertNotContains('value1', $data['test']);
+        $this->assertNotContains('value2', $data['test']);
     }
 
     public function testRemoveAttributeMultipleValueSimple()
@@ -362,9 +362,9 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('test', $data);
         $this->assertTrue(is_array($data['test']));
         $this->assertEquals(2, count($data['test']));
-        $this->assertStringContainsString('value1', $data['test']);
-        $this->assertStringContainsString('value2', $data['test']);
-        $this->assertStringNotContainsString('value3', $data['test']);
+        $this->assertContains('value1', $data['test']);
+        $this->assertContains('value2', $data['test']);
+        $this->assertNotContains('value3', $data['test']);
     }
 
     public function testRemoveAttributeMultipleValueArray()
@@ -374,9 +374,9 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('test', $data);
         $this->assertTrue(is_array($data['test']));
         $this->assertEquals(1, count($data['test']));
-        $this->assertStringContainsString('value2', $data['test']);
-        $this->assertStringNotContainsString('value1', $data['test']);
-        $this->assertStringNotContainsString('value3', $data['test']);
+        $this->assertContains('value2', $data['test']);
+        $this->assertNotContains('value1', $data['test']);
+        $this->assertNotContains('value3', $data['test']);
     }
 
     public function testRemoveAttributeValueBoolean()
@@ -386,8 +386,8 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('test', $data);
         $this->assertTrue(is_array($data['test']));
         $this->assertEquals(2, count($data['test']));
-        $this->assertStringContainsString('TRUE', $data['test']);
-        $this->assertStringNotContainsString('FALSE', $data['test']);
+        $this->assertContains('TRUE', $data['test']);
+        $this->assertNotContains('FALSE', $data['test']);
     }
 
     public function testRemoveAttributeValueInteger()
@@ -397,10 +397,10 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('test', $data);
         $this->assertTrue(is_array($data['test']));
         $this->assertEquals(2, count($data['test']));
-        $this->assertStringContainsString('1', $data['test']);
-        $this->assertStringContainsString('3', $data['test']);
-        $this->assertStringNotContainsString('2', $data['test']);
-        $this->assertStringNotContainsString('4', $data['test']);
+        $this->assertContains('1', $data['test']);
+        $this->assertContains('3', $data['test']);
+        $this->assertNotContains('2', $data['test']);
+        $this->assertNotContains('4', $data['test']);
     }
 
     public function testConvertFromLdapValue()
