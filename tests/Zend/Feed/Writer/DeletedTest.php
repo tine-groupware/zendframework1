@@ -41,6 +41,9 @@ class Zend_Feed_Writer_DeletedTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('http://www.example.com/id', $entry->getReference());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetReferenceThrowsExceptionOnInvalidParameter()
     {
         $entry = new Zend_Feed_Writer_Deleted;
@@ -103,6 +106,9 @@ class Zend_Feed_Writer_DeletedTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($myDate->equals($entry->getWhen()));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetWhenThrowsExceptionOnInvalidParameter()
     {
         $entry = new Zend_Feed_Writer_Deleted;
@@ -140,6 +146,9 @@ class Zend_Feed_Writer_DeletedTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(['name'=>'Joe', 'uri' => 'http://www.example.com'], $entry->getBy());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddByThrowsExceptionOnInvalidNameFromArray()
     {
         $entry = new Zend_Feed_Writer_Deleted;
@@ -150,6 +159,9 @@ class Zend_Feed_Writer_DeletedTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddByThrowsExceptionOnInvalidEmailFromArray()
     {
         $entry = new Zend_Feed_Writer_Deleted;
@@ -160,6 +172,9 @@ class Zend_Feed_Writer_DeletedTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddByThrowsExceptionOnInvalidUriFromArray()
     {
         $entry = new Zend_Feed_Writer_Deleted;
@@ -170,6 +185,9 @@ class Zend_Feed_Writer_DeletedTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddByThrowsExceptionIfNameOmittedFromArray()
     {
         $entry = new Zend_Feed_Writer_Deleted;

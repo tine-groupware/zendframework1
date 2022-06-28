@@ -139,6 +139,9 @@ class Zend_Feed_ReaderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('utf-8', $feed->current()->getEncoding());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testImportsFile()
     {
         try {
@@ -150,6 +153,9 @@ class Zend_Feed_ReaderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testImportsUri()
     {
         if (!defined('TESTS_ZEND_FEED_READER_ONLINE_ENABLED')

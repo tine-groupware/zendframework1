@@ -63,6 +63,9 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
         $this->assertTrue($feed->getDataContainer() instanceof Zend_Feed_Writer_Feed);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testBuildMethodRunsMinimalWriterContainerProperlyBeforeICheckAtomCompliance()
     {
         // $this->expectException(Zend_Feed_Exception::class);
@@ -127,6 +130,9 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals('This is a test description.', $feed->getDescription());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFeedSubtitleThrowsNoExceptionIfMissing()
     {
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
@@ -171,6 +177,9 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals('FooFeedBuilder', $feed->getGenerator());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFeedGeneratorIfMissingThrowsNoException()
     {
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
@@ -207,6 +216,9 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals('fr', $feed->getLanguage());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFeedLanguageIfMissingThrowsNoException()
     {
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
@@ -230,6 +242,9 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals('http://www.example.com', $feed->getLink());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFeedLinkToHtmlVersionOfFeedIfMissingThrowsNoExceptionIfIdSet()
     {
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
@@ -294,11 +309,17 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
             'uri'=>'http://www.example.com/joe'], $feed->getAuthor());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFeedAuthorIfNotSetThrowsExceptionIfAnyEntriesAlsoAreMissingAuthors()
     {
         $this->markTestIncomplete('Not yet implemented...');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFeedAuthorIfNotSetThrowsNoExceptionIfAllEntriesIncludeAtLeastOneAuthor()
     {
         $this->markTestIncomplete('Not yet implemented...');

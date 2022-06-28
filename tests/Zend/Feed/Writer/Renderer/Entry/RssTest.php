@@ -272,6 +272,9 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals('urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6', $entry->getId());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testEntryIdHasBeenSetWithPermaLinkAsFalseWhenNotUri()
     {
         $this->markTestIncomplete('Untest due to ZFR potential bug');

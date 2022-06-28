@@ -230,6 +230,7 @@ class Zend_Feed_ImportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test the import of a RSS feed from an array
+     * @doesNotPerformAssertions
      */
     public function testAtomImportFullArray()
     {
@@ -266,6 +267,7 @@ class Zend_Feed_ImportTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test the import of an Atom feed from a builder
+     * @doesNotPerformAssertions
      */
     public function testAtomImportFullBuilder()
     {
@@ -488,6 +490,9 @@ class Zend_Feed_ImportTest extends \PHPUnit\Framework\TestCase
         self::fail('This test should create a mangled object that throws when deserialized');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFindFeedsMissingLinkException()
     {
         self::markTestSkipped('Not yet implemented. Currently the only way to reliably test this is to spawn a server process');

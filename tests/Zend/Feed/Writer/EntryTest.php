@@ -62,6 +62,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([['name'=>'Joe', 'uri' => 'http://www.example.com']], $entry->getAuthors());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddAuthorThrowsExceptionOnInvalidName()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -72,6 +75,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddAuthorThrowsExceptionOnInvalidEmail()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -82,6 +88,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddAuthorThrowsExceptionOnInvalidUri()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -113,6 +122,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([['name'=>'Joe', 'uri' => 'http://www.example.com']], $entry->getAuthors());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddAuthorThrowsExceptionOnInvalidNameFromArray()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -123,6 +135,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddAuthorThrowsExceptionOnInvalidEmailFromArray()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -133,6 +148,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddAuthorThrowsExceptionOnInvalidUriFromArray()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -143,6 +161,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAddAuthorThrowsExceptionIfNameOmittedFromArray()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -211,6 +232,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Copyright (c) 2009 Paddy Brady', $entry->getCopyright());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCopyrightThrowsExceptionOnInvalidParam()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -228,6 +252,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("I'm content.", $entry->getContent());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetContentThrowsExceptionOnInvalidParam()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -330,6 +357,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($myDate->equals($entry->getDateModified()));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDateCreatedThrowsExceptionOnInvalidParameter()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -340,6 +370,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDateModifiedThrowsExceptionOnInvalidParameter()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -381,6 +414,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('abc', $entry->getDescription());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetDescriptionThrowsExceptionOnInvalidParameter()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -404,6 +440,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('http://www.example.com/id', $entry->getId());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetIdThrowsExceptionOnInvalidParameter()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -427,6 +466,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('http://www.example.com/id', $entry->getLink());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetLinkThrowsExceptionOnEmptyString()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -437,6 +479,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetLinkThrowsExceptionOnInvalidUri()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -460,6 +505,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('http://www.example.com/id/comments', $entry->getCommentLink());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCommentLinkThrowsExceptionOnEmptyString()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -470,6 +518,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCommentLinkThrowsExceptionOnInvalidUri()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -494,6 +545,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([['uri'=>'http://www.example.com/id/comments', 'type'=>'rdf']], $entry->getCommentFeedLinks());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCommentFeedLinkThrowsExceptionOnEmptyString()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -504,6 +558,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCommentFeedLinkThrowsExceptionOnInvalidUri()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -514,6 +571,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCommentFeedLinkThrowsExceptionOnInvalidType()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -537,6 +597,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('abc', $entry->getTitle());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetTitleThrowsExceptionOnInvalidParameter()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -570,6 +633,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, $entry->getCommentCount());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCommentCountThrowsExceptionOnInvalidEmptyParameter()
     {
         $entry = new Zend_Feed_Writer_Entry;
@@ -580,6 +646,9 @@ class Zend_Feed_Writer_EntryTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetCommentCountThrowsExceptionOnInvalidNonIntegerParameter()
     {
         $entry = new Zend_Feed_Writer_Entry;
