@@ -41,7 +41,9 @@ class Zend_Search_Lucene_PriorityQueueTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($queue instanceof Zend_Search_Lucene_PriorityQueue);
     }
-
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testPut()
     {
         $queue = new Zend_Search_Lucene_PriorityQueue_testClass();
