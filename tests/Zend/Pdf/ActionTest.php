@@ -441,15 +441,9 @@ class Zend_Pdf_ActionTest extends \PHPUnit\Framework\TestCase
      */
     public function testPhpVersionBug()
     {
-        try {
-            $file = dirname(__FILE__) . '/_files/ZF-8462.pdf';
-            $pdf = Zend_Pdf::load($file);
-        } catch (Zend_Pdf_Exception $e) {
-            if (strpos($e->getMessage(), 'Cross-reference streams are not supported yet.') !== false) {
-                // Skip expected exception
-                return;
-            }
-            throw $e;
-        }
+        $this->expectException(Zend_Pdf_Exception::class);
+        $this->expectExceptionMessage('Cross-reference streams are not supported yet');
+        $file = dirname(__FILE__) . '/_files/ZF-8462.pdf';
+        $pdf = Zend_Pdf::load($file);
     }
 }
