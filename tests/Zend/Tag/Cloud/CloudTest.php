@@ -293,7 +293,9 @@ class Zend_Tag_Cloud_CloudTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('foo', $list[0]->getTitle());
     }
-
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSkipOptions()
     {
         $cloud = $this->_getCloud(['options' => 'foobar']);

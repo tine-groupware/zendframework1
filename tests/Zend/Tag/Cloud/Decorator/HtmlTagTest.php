@@ -180,7 +180,7 @@ class Zend_Tag_Cloud_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(10, $decorator->getMaxFontSize());
         $this->assertEquals('pt', $decorator->getFontSizeUnit());
     }
-
+    /** @doesNotPerformAssertions */
     public function testSkipOptions()
     {
         $decorator = new Zend_Tag_Cloud_Decorator_HtmlTag(['options' => 'foobar']);

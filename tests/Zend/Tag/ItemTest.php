@@ -118,7 +118,9 @@ class Zend_Tag_ItemTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals($e->getMessage(), 'Weight must be numeric');
         }
     }
-
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSkipOptions()
     {
         $tag = new Zend_Tag_Item(['title' => 'foo', 'weight' => 1, 'param' => 'foobar']);

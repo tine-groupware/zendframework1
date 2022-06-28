@@ -88,7 +88,7 @@ class Zend_Tag_Cloud_Decorator_HtmlCloudTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('<div>foo bar</div>', $decorator->render(['foo', 'bar']));
     }
-
+    /** @doesNotPerformAssertions */
     public function testSkipOptions()
     {
         $decorator = new Zend_Tag_Cloud_Decorator_HtmlCloud(['options' => 'foobar']);
