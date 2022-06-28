@@ -51,7 +51,7 @@ class Zend_Translate_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Translate_Adapter_AllTests::main') {
+if (PHPUnit_MAIN_METHOD == 'Zend_Translate_AllTests::main') {
     Zend_Translate_AllTests::main();
 }
 
