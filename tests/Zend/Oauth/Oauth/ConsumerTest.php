@@ -126,79 +126,65 @@ class Zend_Oauth_ConsumerTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSignatureMethodThrowsExceptionForInvalidMethod()
     {
+        $this->expectException(Zend_Oauth_Exception::class);
+        $this->expectExceptionMessage("Unsupported signature method: BUCKYBALL. Supported are HMAC-SHA1, RSA-SHA1, PLAINTEXT and HMAC-SHA256");
         $config = ['consumerKey'=>'12345','consumerSecret'=>'54321'];
         $consumer = new Zend_Oauth_Consumer($config);
-        try {
-            $consumer->setSignatureMethod('buckyball');
-            $this->fail('Invalid signature method accepted by setSignatureMethod');
-        } catch (Zend_Oauth_Exception $e) {
-        }
+        $consumer->setSignatureMethod('buckyball');
     }
 
     public function testSetRequestMethodThrowsExceptionForInvalidMethod()
     {
+        $this->expectException(Zend_Oauth_Exception::class);
+        $this->expectExceptionMessage("Invalid method: BUCKYBALL");
         $config = ['consumerKey'=>'12345','consumerSecret'=>'54321'];
         $consumer = new Zend_Oauth_Consumer($config);
-        try {
-            $consumer->setRequestMethod('buckyball');
-            $this->fail('Invalid request method accepted by setRequestMethod');
-        } catch (Zend_Oauth_Exception $e) {
-        }
+        $consumer->setRequestMethod('buckyball');
     }
 
     public function testSetRequestSchemeThrowsExceptionForInvalidMethod()
     {
+        $this->expectException(Zend_Oauth_Exception::class);
+        $this->expectExceptionMessage("'buckyball' is an unsupported request scheme");
         $config = ['consumerKey'=>'12345','consumerSecret'=>'54321'];
         $consumer = new Zend_Oauth_Consumer($config);
-        try {
-            $consumer->setRequestScheme('buckyball');
-            $this->fail('Invalid request scheme accepted by setRequestScheme');
-        } catch (Zend_Oauth_Exception $e) {
-        }
+        $consumer->setRequestScheme('buckyball');
     }
 
     public function testSetLocalUrlThrowsExceptionForInvalidUrl()
     {
+        $this->expectException(Zend_Oauth_Exception::class);
+        $this->expectExceptionMessage("Method does not exist: setLocalUrl");
         $config = ['consumerKey'=>'12345','consumerSecret'=>'54321'];
         $consumer = new Zend_Oauth_Consumer($config);
-        try {
-            $consumer->setLocalUrl('buckyball');
-            $this->fail('Invalid url accepted by setLocalUrl');
-        } catch (Zend_Oauth_Exception $e) {
-        }
+        $consumer->setLocalUrl('buckyball');
     }
 
     public function testSetRequestTokenUrlThrowsExceptionForInvalidUrl()
     {
+        $this->expectException(Zend_Oauth_Exception::class);
+        $this->expectExceptionMessage("'buckyball' is not a valid URI");
         $config = ['consumerKey'=>'12345','consumerSecret'=>'54321'];
         $consumer = new Zend_Oauth_Consumer($config);
-        try {
-            $consumer->setRequestTokenUrl('buckyball');
-            $this->fail('Invalid url accepted by setRequestUrl');
-        } catch (Zend_Oauth_Exception $e) {
-        }
+        $consumer->setRequestTokenUrl('buckyball');
     }
 
     public function testSetUserAuthorizationUrlThrowsExceptionForInvalidUrl()
     {
+        $this->expectException(Zend_Oauth_Exception::class);
+        $this->expectExceptionMessage("'buckyball' is not a valid URI");
         $config = ['consumerKey'=>'12345','consumerSecret'=>'54321'];
         $consumer = new Zend_Oauth_Consumer($config);
-        try {
-            $consumer->setUserAuthorizationUrl('buckyball');
-            $this->fail('Invalid url accepted by setUserAuthorizationUrl');
-        } catch (Zend_Oauth_Exception $e) {
-        }
+        $consumer->setUserAuthorizationUrl('buckyball');
     }
 
     public function testSetAccessTokenUrlThrowsExceptionForInvalidUrl()
     {
+        $this->expectException(Zend_Oauth_Exception::class);
+        $this->expectExceptionMessage("'buckyball' is not a valid URI");
         $config = ['consumerKey'=>'12345','consumerSecret'=>'54321'];
         $consumer = new Zend_Oauth_Consumer($config);
-        try {
-            $consumer->setAccessTokenUrl('buckyball');
-            $this->fail('Invalid url accepted by setAccessTokenUrl');
-        } catch (Zend_Oauth_Exception $e) {
-        }
+        $consumer->setAccessTokenUrl('buckyball');
     }
 
     public function testGetRequestTokenReturnsInstanceOfOauthTokenRequest()
