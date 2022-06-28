@@ -131,6 +131,7 @@ class Zend_Service_Amazon_OfflineTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-2749
+     * @doesNotPerformAssertions
      */
     public function testSimilarProductConstructorMissingAttributeDoesNotThrowNotice()
     {
@@ -353,6 +354,7 @@ class Zend_Service_Amazon_OfflineTest extends \PHPUnit\Framework\TestCase
      * item-list is empty (no results found)
      *
      * @group ZF-9547
+     * @doesNotPerformAssertions
      */
     public function testAmazonComponentHandlesEmptyBookResults()
     {

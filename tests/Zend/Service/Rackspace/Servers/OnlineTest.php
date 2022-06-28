@@ -255,6 +255,7 @@ class Zend_Service_Rackspace_Servers_OnlineTest extends \PHPUnit\Framework\TestC
     }
     /**
      * Test resize server
+     * @doesNotPerformAssertions
      */
     public function testResizeServer()
     {
@@ -262,6 +263,7 @@ class Zend_Service_Rackspace_Servers_OnlineTest extends \PHPUnit\Framework\TestC
     }
     /**
      * Test confirm resize server
+     * @doesNotPerformAssertions
      */
     public function testConfirmResizeServer()
     {
@@ -269,6 +271,7 @@ class Zend_Service_Rackspace_Servers_OnlineTest extends \PHPUnit\Framework\TestC
     }
     /**
      * Test revert resize server
+     * @doesNotPerformAssertions
      */
     public function testRevertResizeServer()
     {
@@ -346,6 +349,7 @@ class Zend_Service_Rackspace_Servers_OnlineTest extends \PHPUnit\Framework\TestC
     }
     /**
      * Test get backup schedule
+     * @doesNotPerformAssertions
      */
     public function testGetBackupSchedule()
     {
@@ -353,6 +357,7 @@ class Zend_Service_Rackspace_Servers_OnlineTest extends \PHPUnit\Framework\TestC
     }
     /**
      * Test change backup schedule
+     * @doesNotPerformAssertions
      */
     public function testChangeBackupSchedule()
     {
@@ -360,6 +365,7 @@ class Zend_Service_Rackspace_Servers_OnlineTest extends \PHPUnit\Framework\TestC
     }
     /**
      * Test disable backup schedule
+     * @doesNotPerformAssertions
      */
     public function testDisableBackupSchedule()
     {

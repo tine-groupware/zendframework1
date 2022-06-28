@@ -271,6 +271,9 @@ class Zend_Service_Amazon_S3_StreamTest_Skip extends \PHPUnit\Framework\TestCase
                              . ' secret key ID in TestConfiguration.php');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

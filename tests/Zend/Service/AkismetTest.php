@@ -123,6 +123,9 @@ class Zend_Service_AkismetTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->akismet->verifyKey());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testIsSpamThrowsExceptionOnInvalidKey()
     {
         $response = "HTTP/1.0 200 OK\r\n"
@@ -173,6 +176,9 @@ class Zend_Service_AkismetTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->akismet->isSpam($this->comment));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSubmitSpamThrowsExceptionOnInvalidKey()
     {
         $response = "HTTP/1.0 200 OK\r\n"
@@ -194,6 +200,9 @@ class Zend_Service_AkismetTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSubmitSpam()
     {
         $response = "HTTP/1.0 200 OK\r\n"
@@ -213,6 +222,9 @@ class Zend_Service_AkismetTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSubmitHam()
     {
         $response = "HTTP/1.0 200 OK\r\n"

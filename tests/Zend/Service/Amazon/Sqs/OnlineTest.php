@@ -126,6 +126,9 @@ class Zend_Service_Amazon_Sqs_OnlineTest_Skip extends \PHPUnit\Framework\TestCas
         );
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

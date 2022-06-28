@@ -34,6 +34,9 @@ class Zend_Service_Amazon_SimpleDb_OfflineTest extends \PHPUnit\Framework\TestCa
         $this->markTestSkipped('No offline tests for Zend_Service_Amazon_SimpleDb');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

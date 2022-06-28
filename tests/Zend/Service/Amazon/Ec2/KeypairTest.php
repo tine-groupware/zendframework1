@@ -75,6 +75,9 @@ class Zend_Service_Amazon_Ec2_KeypairTest extends \PHPUnit\Framework\TestCase
         parent::tearDown();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCreateKeyPairNoNameThrowsException()
     {
         try {
@@ -206,6 +209,9 @@ class Zend_Service_Amazon_Ec2_KeypairTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testDeleteKeyPairNoNameThrowsException()
     {
         try {

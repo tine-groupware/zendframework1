@@ -535,6 +535,7 @@ class Zend_Service_Yahoo_OfflineTest extends \PHPUnit\Framework\TestCase
      * WebResult should check if the result has a Cache section or not
      *
      * @group ZF-3636
+     * @doesNotPerformAssertions
      */
     public function testWebResultCache(){
         // create empty result eg. without cache section

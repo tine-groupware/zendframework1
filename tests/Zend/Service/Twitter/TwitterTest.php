@@ -527,7 +527,7 @@ class Zend_Service_Twitter_TwitterTest extends \PHPUnit\Framework\TestCase
         ));
         $response = $twitter->blocks->ids();
         $this->assertTrue($response instanceof Zend_Service_Twitter_Response);
-        $this->assertStringContainsString('23836616', $response->ids);
+        $this->assertContains('23836616', $response->ids);
     }
 
     public function testBlockingDestroy()

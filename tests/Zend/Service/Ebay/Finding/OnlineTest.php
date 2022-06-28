@@ -187,6 +187,9 @@ class Zend_Service_Ebay_Finding_OnlineSkipTest extends \PHPUnit\Framework\TestCa
         $this->markTestSkipped('Zend_Service_Ebay online tests not enabled with an APPID in TestConfiguration.php');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

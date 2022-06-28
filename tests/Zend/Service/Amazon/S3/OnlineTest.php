@@ -249,6 +249,9 @@ class Zend_Service_Amazon_S3_OnlineTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($data, $fdata);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testPutFile()
     {
         $filedir = dirname(__FILE__)."/_files/";
@@ -539,6 +542,9 @@ class Zend_Service_Amazon_S3_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
                              . 'TestConfiguration.php');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

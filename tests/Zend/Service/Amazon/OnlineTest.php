@@ -199,6 +199,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
      * Ensures that itemSearch() throws an exception when provided an invalid city
      *
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testItemSearchExceptionCityInvalid()
     {
@@ -346,6 +347,9 @@ class Zend_Service_Amazon_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
                              . 'TestConfiguration.php');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

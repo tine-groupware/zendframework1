@@ -52,6 +52,9 @@ class Zend_Service_Amazon_Ec2_AbstractTest extends \PHPUnit\Framework\TestCase
         parent::tearDown();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoKeysThrowException()
     {
         try {
@@ -68,6 +71,9 @@ class Zend_Service_Amazon_Ec2_AbstractTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('eu-west-1', $class->returnRegion());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetInvalidRegionThrowsException()
     {
         try {

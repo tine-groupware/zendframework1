@@ -51,6 +51,9 @@ class AmamzonAbstract extends \PHPUnit\Framework\TestCase
         parent::tearDown();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoKeysThrowException()
     {
         try {
@@ -59,6 +62,9 @@ class AmamzonAbstract extends \PHPUnit\Framework\TestCase
         } catch(Zend_Service_Amazon_Exception $zsae) {}
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithKeysDoesNotThrowException()
     {
         try {

@@ -378,6 +378,9 @@ class Zend_Service_Yahoo_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
         $this->markTestSkipped('Zend_Service_Yahoo online tests not enabled with an APPID in TestConfiguration.php');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

@@ -542,6 +542,9 @@ class Zend_Service_Amazon_Ec2_ImageTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($return);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testModifyAttributeThrowsExceptionOnInvalidAttribute()
     {
         try {
