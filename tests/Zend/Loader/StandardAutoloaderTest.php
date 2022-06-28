@@ -203,8 +203,11 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
     public function testZendFrameworkPrefixIsNotLoadedByDefault()
     {
         $loader = new Zend_Loader_StandardAutoloader();
+        $reflection = new ReflectionClass($loader);
+        $prefixes = $reflection->getProperty('prefixes');
+        $prefixes->setAccessible(true);
         $expected = [];
-        $this->assertAttributeEquals($expected, 'prefixes', $loader);
+        $this->assertEquals($expected, $prefixes->getValue($loader));
     }
 
     public function testCanTellAutoloaderToRegisterZfPrefixAtInstantiation()
@@ -213,7 +216,9 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
         $r      = new ReflectionClass($loader);
         $file   = $r->getFileName();
         $expected = ['Zend_' => dirname(dirname($file)) . DIRECTORY_SEPARATOR];
-        $this->assertAttributeEquals($expected, 'prefixes', $loader);
+        $prefixes = $r->getProperty('prefixes');
+        $prefixes->setAccessible(true);
+        $this->assertEquals($expected, $prefixes->getValue($loader));
     }
 }
 

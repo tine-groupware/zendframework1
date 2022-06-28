@@ -135,22 +135,18 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
 
     public function testAddPrefixPathThrowsExceptionWithNonStringPrefix()
     {
+        $this->expectException(Zend_Loader_PluginLoader_Exception::class);
+        $this->expectExceptionMessage('Zend_Loader_PluginLoader::addPrefixPath() method only takes strings for prefix and path.');
         $loader = new Zend_Loader_PluginLoader();
-        try {
-            $loader->addPrefixPath([], $this->libPath);
-            $this->fail('addPrefixPath() should throw exception with non-string prefix');
-        } catch (Exception $e) {
-        }
+        $loader->addPrefixPath([], $this->libPath);
     }
 
     public function testAddPrefixPathThrowsExceptionWithNonStringPath()
     {
+        $this->expectException(Zend_Loader_PluginLoader_Exception::class);
+        $this->expectExceptionMessage('Zend_Loader_PluginLoader::addPrefixPath() method only takes strings for prefix and path.');
         $loader = new Zend_Loader_PluginLoader();
-        try {
-            $loader->addPrefixPath('Foo_Bar', []);
-            $this->fail('addPrefixPath() should throw exception with non-string path');
-        } catch (Exception $e) {
-        }
+        $loader->addPrefixPath('Foo_Bar', []);
     }
 
     public function testRemoveAllPathsForGivenPrefixNonStatically()
@@ -180,12 +176,10 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
 
     public function testRemovePrefixPathThrowsExceptionIfPrefixNotRegistered()
     {
+        $this->expectException(Zend_Loader_PluginLoader_Exception::class);
+        $this->expectExceptionMessage('Prefix Foo_Bar_ was not found in the PluginLoader.');
         $loader = new Zend_Loader_PluginLoader();
-        try {
-            $loader->removePrefixPath('Foo_Bar');
-            $this->fail('Removing non-existent prefix should throw an exception');
-        } catch (Exception $e) {
-        }
+        $loader->removePrefixPath('Foo_Bar');
     }
 
     public function testRemovePrefixPathThrowsExceptionIfPrefixPathPairNotRegistered()
@@ -303,24 +297,20 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
 
     public function testLoadThrowsExceptionIfFileFoundInPrefixButClassNotLoaded()
     {
+        $this->expectException(Zend_Loader_PluginLoader_Exception::class);
+        $this->expectExceptionMessage("Plugin by name 'Doctype' was not found in the registry; used paths:");
         $loader = new Zend_Loader_PluginLoader();
         $loader->addPrefixPath('Foo_Helper', $this->libPath . '/Zend/View/Helper');
-        try {
-            $className = $loader->load('Doctype');
-            $this->fail('Invalid prefix for a path should throw an exception');
-        } catch (Exception $e) {
-        }
+        $className = $loader->load('Doctype');
     }
 
     public function testLoadThrowsExceptionIfNoHelperClassLoaded()
     {
+        $this->expectException(Zend_Loader_PluginLoader_Exception::class);
+        $this->expectExceptionMessage("Plugin by name 'FooBarBazBat' was not found in the registry; used paths");
         $loader = new Zend_Loader_PluginLoader();
         $loader->addPrefixPath('Foo_Helper', $this->libPath . '/Zend/View/Helper');
-        try {
-            $className = $loader->load('FooBarBazBat');
-            $this->fail('Not finding a helper should throw an exception');
-        } catch (Exception $e) {
-        }
+        $className = $loader->load('FooBarBazBat');
     }
 
     public function testGetClassAfterNonStaticLoadReturnsResolvedClassName()

@@ -204,7 +204,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $reflection = new ReflectionClass('Zend_Loader_AutoloaderFactory');
         $constructor = $reflection->getConstructor();
-        $this->assertNull($constructor);
+        $this->assertEquals(null, $constructor);
     }
 
     public function testPassingNoArgumentsToFactoryInstantiatesAndRegistersStandardAutoloader()

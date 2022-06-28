@@ -340,7 +340,7 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(3, count($data['test']));
         $this->assertContains('value1', $data['test']);
         $this->assertContains('value3', $data['test']);
-        $this->assertNotContains('value2', $data['test']);
+        $this->assertStringNotContainsString('value2', $data['test']);
     }
 
     public function testRemoveAttributeValueArray()
@@ -351,8 +351,8 @@ class Zend_Ldap_AttributeTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($data['test']));
         $this->assertEquals(2, count($data['test']));
         $this->assertContains('value3', $data['test']);
-        $this->assertNotContains('value1', $data['test']);
-        $this->assertNotContains('value2', $data['test']);
+        $this->assertStringNotContainsString('value1', $data['test']);
+        $this->assertStringNotContainsString('value2', $data['test']);
     }
 
     public function testRemoveAttributeMultipleValueSimple()

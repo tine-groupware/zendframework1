@@ -120,6 +120,9 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
         $loader = new Zend_Loader_Autoloader_Resource('foo');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAutoloaderConstructorShouldAcceptZendConfigObject()
     {
         $config = new Zend_Config(['namespace' => 'Foo', 'basePath' => dirname(__FILE__)]);
@@ -180,8 +183,8 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
             'form'  => ['path' => 'forms', 'namespace' => 'Form'],
         ]);
         $resources = $this->loader->getResourceTypes();
-        $this->assertStringContainsString('model', array_keys($resources));
-        $this->assertStringContainsString('form', array_keys($resources));
+        $this->assertContains('model', array_keys($resources));
+        $this->assertContains('form', array_keys($resources));
     }
 
     public function testAddingMultipleResourceTypesShouldRaiseExceptionWhenReceivingNonArrayItem()
@@ -209,10 +212,10 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $resources = $this->loader->getResourceTypes();
-        $this->assertStringNotContainsString('model', array_keys($resources));
-        $this->assertStringNotContainsString('form', array_keys($resources));
-        $this->assertStringContainsString('view', array_keys($resources));
-        $this->assertStringContainsString('layout', array_keys($resources));
+        $this->assertNotContains('model', array_keys($resources));
+        $this->assertNotContains('form', array_keys($resources));
+        $this->assertContains('view', array_keys($resources));
+        $this->assertContains('layout', array_keys($resources));
     }
 
     public function testHasResourceTypeShouldReturnFalseWhenTypeNotDefined()
@@ -237,8 +240,8 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
         $this->loader->removeResourceType('form');
 
         $resources = $this->loader->getResourceTypes();
-        $this->assertStringContainsString('model', array_keys($resources));
-        $this->assertStringNotContainsString('form', array_keys($resources));
+        $this->assertContains('model', array_keys($resources));
+        $this->assertNotContains('form', array_keys($resources));
     }
 
     public function testAutoloaderShouldAllowSettingDefaultResourceType()
