@@ -60,7 +60,7 @@ XML;
         $this->expectException('Zend_Xml_Exception');
         $result = Zend_Xml_Security::scan($xml);
     }
-
+    /** @doesNotPerformAssertions */
     public function testScanForXXE()
     {
         $file = tempnam(sys_get_temp_dir(), 'Zend_XML_Security');
