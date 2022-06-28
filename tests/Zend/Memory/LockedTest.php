@@ -89,6 +89,7 @@ class Zend_Memory_Container_LockedTest extends \PHPUnit\Framework\TestCase
 
     /**
      * tests the touch() method
+     * @doesNotPerformAssertions
      */
     public function testTouch()
     {

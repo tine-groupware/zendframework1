@@ -86,7 +86,7 @@ class Zend_Memory_MemoryManagerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * tests the Memory Manager backends naming processing
-     *
+     * @doesNotPerformAssertions
      * @group ZF-9023
      */
     public function testBackendNamingProcessing()
