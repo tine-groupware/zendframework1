@@ -124,6 +124,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
      * cause the default scheme to be used (ntp)
      *
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testInitUnknownScheme()
     {
@@ -173,6 +174,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
      * Test getting an option that is not set
      *
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testGetInvalidOptionKey()
     {
@@ -190,6 +192,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
      * Test marking a none existing timeserver as current
      *
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testSetUnknownCurrent()
     {
@@ -207,6 +210,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
      * Test getting the current timeserver when none is set
      *
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testGetUnknownCurrent()
     {
@@ -224,6 +228,7 @@ class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
      * Test getting a none existing timeserver
      *
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testGetUnknownServer()
     {
