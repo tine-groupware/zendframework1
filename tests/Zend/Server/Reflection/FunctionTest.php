@@ -97,7 +97,7 @@ class Zend_Server_Reflection_FunctionTest extends \PHPUnit\Framework\TestCase
         $prototypes = $r->getPrototypes();
         $this->assertTrue(is_array($prototypes));
         $this->assertTrue(0 < count($prototypes));
-        $this->assertEquals(8, count($prototypes));
+        $this->assertEquals(4, count($prototypes));
 
         foreach ($prototypes as $p) {
             $this->assertTrue($p instanceof Zend_Server_Reflection_Prototype);
@@ -138,6 +138,9 @@ class Zend_Server_Reflection_FunctionTest extends \PHPUnit\Framework\TestCase
 
     public function test__wakeup()
     {
+        if (version_compare(phpversion(), '7', '>=')) {
+            $this->markTestSkipped("Serialization of 'ReflectionFunction' is not allowed since PHP7+");
+        }
         $function = new ReflectionFunction('Zend_Server_Reflection_FunctionTest_function');
         $r = new Zend_Server_Reflection_Function($function);
         $s = serialize($r);

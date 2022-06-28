@@ -130,6 +130,10 @@ class Zend_Server_Reflection_ClassTest extends \PHPUnit\Framework\TestCase
      */
     public function test__wakeup()
     {
+        if (version_compare(phpversion(), '7', '>=')) {
+            $this->markTestSkipped("Serialization of 'ReflectionFunction' is not allowed since PHP7+");
+            return;
+        }
         $r = new Zend_Server_Reflection_Class(new ReflectionClass('Zend_Server_Reflection'));
         $s = serialize($r);
         $u = unserialize($s);
