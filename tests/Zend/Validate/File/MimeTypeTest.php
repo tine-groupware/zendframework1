@@ -174,6 +174,9 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetMagicFileWithinConstructor()
     {
         require_once 'Zend/Validate/Exception.php';

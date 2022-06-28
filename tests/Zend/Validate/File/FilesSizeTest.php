@@ -185,6 +185,9 @@ class Zend_Validate_File_FilesSizeTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('976.56kB', $validator->getMax());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorShouldRaiseErrorWhenPassedMultipleOptions()
     {
         $handler = set_error_handler([$this, 'errorHandler'], E_USER_NOTICE);

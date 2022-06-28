@@ -169,6 +169,7 @@ class Zend_Validate_Db_RecordExistsTest extends \PHPUnit\Framework\TestCase
      * and no default is set.
      *
      * @return void
+     * @doesNotPerformAssertions
      */
     public function testThrowsExceptionWithNoAdapter()
     {
