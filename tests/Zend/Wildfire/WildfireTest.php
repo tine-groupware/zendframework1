@@ -185,6 +185,9 @@ class Zend_Wildfire_WildfireTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($channel->isReady());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFirePhpPluginInstanciation()
     {
         $this->_setupWithoutFrontController();
@@ -737,6 +740,9 @@ class Zend_Wildfire_WildfireTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($protocol->getMessages());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testChannelInstanciation()
     {
         $this->_setupWithoutFrontController();
@@ -1043,6 +1049,7 @@ class Zend_Wildfire_WildfireTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-10537
+     * @doesNotPerformAssertions
      */
     public function testFileLineOffsets()
     {
