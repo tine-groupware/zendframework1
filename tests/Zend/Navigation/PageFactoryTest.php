@@ -80,7 +80,7 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
             ]),
         ];
 
-        $this->assertStringContainsStringOnly('Zend_Navigation_Page_Mvc', $pages);
+        $this->assertContainsOnly('Zend_Navigation_Page_Mvc', $pages);
     }
 
     public function testDetectUriPage()
@@ -128,38 +128,24 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testShouldFailForInvalidType()
     {
-        try {
-            $page = Zend_Navigation_Page::factory([
-                'type'  => 'My_InvalidPage',
-                'label' => 'My Invalid Page'
-            ]);
-        } catch(Zend_Navigation_Exception $e) {
-            return;
-        }
-
-        $this->fail('An exception has not been thrown for invalid page type');
+        $this->expectException(Zend_Navigation_Exception::class);
+        $this->expectExceptionMessage('Invalid argument: Detected type "My_InvalidPage", which is not an instance of Zend_Navigation_Page');
+        $page = Zend_Navigation_Page::factory([
+            'type'  => 'My_InvalidPage',
+            'label' => 'My Invalid Page'
+        ]);
     }
 
     public function testShouldFailForNonExistantType()
     {
+        $this->expectException(Zend_Exception::class);
+        $this->expectExceptionMessage('File "My' . DIRECTORY_SEPARATOR . 'NonExistant' . DIRECTORY_SEPARATOR . 'Page.php" does not exist or class '
+        . '"My_NonExistant_Page" was not found in the file');
         $pageConfig = [
             'type'  => 'My_NonExistant_Page',
             'label' => 'My non-existant Page'
         ];
-
-        try {
-            $page = Zend_Navigation_Page::factory($pageConfig);
-
-            $this->fail(
-                'A Zend_Exception has not been thrown for non-existant class'
-            );
-        } catch(Zend_Exception $e) {
-            $this->assertEquals(
-                'File "My' . DIRECTORY_SEPARATOR . 'NonExistant' . DIRECTORY_SEPARATOR . 'Page.php" does not exist or class '
-                . '"My_NonExistant_Page" was not found in the file',
-                $e->getMessage()
-            );
-        }
+        $page = Zend_Navigation_Page::factory($pageConfig);
     }
 
     public function testShouldFailIfUnableToDetermineType()

@@ -480,7 +480,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertEquals($expected, $actual);
-        $this->assertStringContainsStringOnly('Zend_Navigation_Page_Uri', $pages, false);
+        $this->assertContainsOnly('Zend_Navigation_Page_Uri', $pages, false);
     }
 
     public function testGetPagesShouldReturnUnorderedPages()
@@ -866,7 +866,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllBy('id', 'page_2_and_3');
-        $this->assertStringContainsStringOnly('Zend_Navigation_Page', $found, false);
+        $this->assertContainsOnly('Zend_Navigation_Page', $found, false);
 
         $expected = ['Page 2', 'Page 3'];
         $actual = [];
@@ -989,7 +989,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllById('page_2_and_3');
-        $this->assertStringContainsStringOnly('Zend_Navigation_Page', $found, false);
+        $this->assertContainsOnly('Zend_Navigation_Page', $found, false);
 
         $expected = ['Page 2', 'Page 3'];
         $actual = [];
@@ -1005,7 +1005,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllByAction('about');
-        $this->assertStringContainsStringOnly('Zend_Navigation_Page', $found, false);
+        $this->assertContainsOnly('Zend_Navigation_Page', $found, false);
 
         $expected = ['Page 3'];
         $actual = [];
@@ -1021,7 +1021,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllByaction('about');
-        $this->assertStringContainsStringOnly('Zend_Navigation_Page', $found, false);
+        $this->assertContainsOnly('Zend_Navigation_Page', $found, false);
 
         $expected = ['Page 1.3', 'Page 3'];
         $actual = [];
@@ -1080,7 +1080,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         
         // Find all
         $found = $nav->findAllById('/page_2_/', true);
-        $this->assertStringContainsStringOnly('Zend_Navigation_Page', $found, false);
+        $this->assertContainsOnly('Zend_Navigation_Page', $found, false);
 
         $expected = ['Page 2', 'Page 3'];
         $actual = [];
