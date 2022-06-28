@@ -121,7 +121,7 @@ class Zend_Reflection_ClassTest extends \PHPUnit\Framework\TestCase
     #[\ReturnTypeWillChange]
     public function getIterator()
     {
-        return array();
+        return [];
     }
 
 }
@@ -134,8 +134,8 @@ EOS;
     {
         $reflectionClass = new Zend_Reflection_Class('Zend_Reflection_TestSampleClass5');
 
-        $this->assertEquals(87, $reflectionClass->getStartLine());
-        $this->assertEquals(76, $reflectionClass->getStartLine(true));
+        $this->assertEquals(88, $reflectionClass->getStartLine());
+        $this->assertEquals(77, $reflectionClass->getStartLine(true));
     }
 
 

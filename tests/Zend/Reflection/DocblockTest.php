@@ -81,7 +81,7 @@ EOS;
 
         $returnTag = $classReflection->getMethod('doSomething')->getDocblock()->getTag('return');
         $this->assertEquals(get_class($returnTag), 'Zend_Reflection_Docblock_Tag_Return');
-        $this->assertEquals($returnTag->getType(), 'mixed');
+        $this->assertEquals('string', $returnTag->getType());
     }
 
     public function testDocblockLines()
@@ -90,8 +90,8 @@ EOS;
 
         $classDocblock = $classReflection->getDocblock();
 
-        $this->assertEquals($classDocblock->getStartLine(), 76);
-        $this->assertEquals($classDocblock->getEndLine(), 86);
+        $this->assertEquals($classDocblock->getStartLine(), 77);
+        $this->assertEquals($classDocblock->getEndLine(), 87);
 
     }
 
