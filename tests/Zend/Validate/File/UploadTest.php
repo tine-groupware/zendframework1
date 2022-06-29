@@ -270,7 +270,7 @@ class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
     public function testGetFilesReturnsEmptyArrayAfterSetFilesIsCalledWithNull()
     {
         $validator = new Zend_Validate_File_Upload();
-        $validator->setFiles(NULL);
+        $validator->setFiles([]);
         $this->assertEquals([], $validator->getFiles());
     }
 

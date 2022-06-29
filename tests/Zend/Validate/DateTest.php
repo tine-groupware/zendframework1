@@ -143,7 +143,7 @@ class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
         $result = $this->_validator->setFormat('s')->isValid(0);
         restore_error_handler();
         if (!$this->_errorOccurred) {
-            $this->assertTrue($result);
+            $this->assertFalse($result);
         } else {
             $this->markTestSkipped('Affected by bug described in ZF-2789');
         }
