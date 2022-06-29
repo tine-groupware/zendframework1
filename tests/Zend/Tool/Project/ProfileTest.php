@@ -268,6 +268,7 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
 
             $basename = $dirIteratorItem->getBasename();
             if (stristr($dirIteratorItem->getPathname(), '.svn')
+                || stristr($dirIteratorItem->getPathname(), '.gitignore')
                 || '.' === $basename
                 || '..' === $basename)
             {

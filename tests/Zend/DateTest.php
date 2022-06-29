@@ -345,6 +345,7 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test for subTimestamp
+     * @doesNotPerformAssertions
      */
     public function testSubTimestamp2()
     {

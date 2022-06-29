@@ -395,6 +395,7 @@ EOB;
      * Tests for ZF-461
      *
      * Check to see that cycling detection works properly
+     * @doesNotPerformAssertions
      */
     public function testZf461()
     {
