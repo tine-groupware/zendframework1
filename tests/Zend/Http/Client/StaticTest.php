@@ -115,6 +115,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
     /**
      * Test that passing an invalid URI object throws an exception
      *
+     * @doesNotPerformAssertions
      */
     public function testInvalidUriObjectException()
     {
@@ -162,6 +163,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
     /**
      * Make sure non-strict mode disables header name validation
      *
+     * @doesNotPerformAssertions
      */
     public function testInvalidHeaderNonStrictMode()
     {
@@ -480,6 +482,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      * Check that we can set methods which are not documented in the RFC.
      *
      * @dataProvider validMethodProvider
+     * @doesNotPerformAssertions
      */
     public function testSettingExtendedMethod($method)
     {
@@ -616,6 +619,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8057
+     * @doesNotPerformAssertions
      */
     public function testSetDisabledAuthBeforSettingUriBug()
     {
@@ -628,6 +632,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      * Testing if the connection isn't closed
      *
      * @group ZF-9685
+     * @doesNotPerformAssertions
      */
     public function testOpenTempStreamWithValidFileDoesntThrowsException()
     {
@@ -650,6 +655,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      * Testing if the connection can be closed
      *
      * @group ZF-9685
+     * @doesNotPerformAssertions
      */
     public function testOpenTempStreamWithBogusFileClosesTheConnection()
     {
@@ -707,6 +713,9 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
     }
     /*
      * @group ZF-9206
+     */
+    /**
+     * @doesNotPerformAssertions
      */
     function testStreamWarningRewind()
     {

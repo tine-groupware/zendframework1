@@ -110,6 +110,9 @@ class Zend_Http_Client_ProxyAdapterTest extends Zend_Http_Client_SocketTest
         $this->assertEquals($this->client->getLastRequest(), $res->getBody(), 'Response body should be exactly like the last request');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGetLastRequest()
     {
         /**

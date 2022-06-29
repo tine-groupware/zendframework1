@@ -70,21 +70,33 @@ class Zend_Http_Client_TestAdapterTest extends \PHPUnit\Framework\TestCase
         $this->adapter->setConfig('foo');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSetConfigReturnsQuietly()
     {
         $this->adapter->setConfig(['foo' => 'bar']);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConnectReturnsQuietly()
     {
         $this->adapter->connect('http://foo');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testCloseReturnsQuietly()
     {
         $this->adapter->close();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testFailRequestOnDemand()
     {
         $this->adapter->setNextRequestWillFail(true);

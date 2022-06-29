@@ -66,6 +66,7 @@ class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
     /**
      * Check we get an expection if a non-valid cookie is passed to addCookie
      *
+     * @doesNotPerformAssertions
      */
     public function testExceptAddInvalidCookie()
     {
@@ -257,6 +258,7 @@ class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test we get a proper exception when an invalid URI is passed
+     * @doesNotPerformAssertions
      */
     public function testExceptGetCookieInvalidUri()
     {
@@ -282,6 +284,7 @@ class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
     /**
      * Test we get a proper exception when an invalid return constant is passed
      *
+     * @doesNotPerformAssertions
      */
     public function testExceptGetCookieInvalidReturnType()
     {
@@ -428,6 +431,7 @@ class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test we get a proper exception when an invalid URI is passed
+     * @doesNotPerformAssertions
      */
     public function testExceptGetMatchingCookiesInvalidUri()
     {

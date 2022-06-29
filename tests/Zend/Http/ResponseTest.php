@@ -214,6 +214,9 @@ class Zend_Http_ResponseTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($response->isRedirect(), 'Response is OK, but isRedirect() returned true');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function test100Continue()
     {
         $this->markTestIncomplete();
@@ -306,6 +309,9 @@ class Zend_Http_ResponseTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('text/html; charset=iso-8859-1', $response->getHeader('content-type'));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testExceptInvalidChunkedBody()
     {
         try {

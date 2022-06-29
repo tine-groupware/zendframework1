@@ -36,6 +36,9 @@ class Zend_Http_Client_Skip_SocketTest extends \PHPUnit\Framework\TestCase
         $this->markTestSkipped("Zend_Http_Client dynamic tests are not enabled in TestConfiguration.php");
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSocket()
     {
         // this is here only so we have at least one test
@@ -58,6 +61,9 @@ class Zend_Http_Client_Skip_ProxyAdapterTest extends \PHPUnit\Framework\TestCase
         $this->markTestSkipped("Zend_Http_Client proxy server tests are not enabled in TestConfiguration.php");
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testProxyAdapter()
     {
         // this is here only so we have at least one test

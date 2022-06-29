@@ -44,6 +44,7 @@ class Zend_Http_UserAgentTest extends \PHPUnit\Framework\TestCase
 
     public function setUp(): void
     {
+        Zend_Session::$_unitTestEnabled = true;
         $this->server                         = [];
         $this->server['os']                   = 'Windows_NT';
         $this->server['http_accept']          = '*/*';
@@ -567,6 +568,7 @@ class Zend_Http_UserAgentTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-10595
+     * @doesNotPerformAssertions
      */
     public function testAGroupDefinedAndSerialized()
     {
@@ -581,6 +583,7 @@ class Zend_Http_UserAgentTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-10665
+     * @doesNotPerformAssertions
      */
     public function testDontDieOnSerialization()
     {

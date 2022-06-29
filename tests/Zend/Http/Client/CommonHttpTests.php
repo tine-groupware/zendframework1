@@ -320,6 +320,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends \PHPUnit\Framework\TestC
      * multipart/form-data content type
      *
      * @dataProvider parameterArrayProvider
+     * @doesNotPerformAssertions
      */
     public function testPutDataMultipart($params)
     {
@@ -337,6 +338,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends \PHPUnit\Framework\TestC
      * multipart/form-data content type
      *
      * @dataProvider parameterArrayProvider
+     * @doesNotPerformAssertions
      */
     public function testPatchDataMultipart($params)
     {
@@ -354,6 +356,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends \PHPUnit\Framework\TestC
      * multipart/form-data content type
      *
      * @dataProvider parameterArrayProvider
+     * @doesNotPerformAssertions
      */
     public function testOptionsDataMultipart($params)
     {
@@ -431,6 +434,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends \PHPUnit\Framework\TestC
      * multipart/form-data content type
      *
      * @dataProvider parameterArrayProvider
+     * @doesNotPerformAssertions
      */
     public function testDeleteDataMultipart($params)
     {
