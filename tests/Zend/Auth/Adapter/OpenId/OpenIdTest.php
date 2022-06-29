@@ -76,6 +76,11 @@ class Zend_Auth_Adapter_OpenIdTest extends \PHPUnit\Framework\TestCase
     const MAC_FUNC = "sha1";
     const SECRET   = "\x83\x82\xae\xa9\x22\x56\x0e\xce\x83\x3b\xa5\x5f\xa5\x3b\x7a\x97\x5f\x59\x73\x70";
 
+    protected function setUp(): void
+    {
+        Zend_Session::$_unitTestEnabled = true;
+    }
+
     public function testAuthenticateInvalid()
     {
         $adapter = new Zend_Auth_Adapter_OpenId(null, new Zend_OpenId_Consumer_Storage_File(dirname(__FILE__)."/_files"));

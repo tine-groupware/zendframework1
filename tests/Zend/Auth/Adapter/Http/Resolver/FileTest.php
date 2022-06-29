@@ -76,7 +76,7 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends \PHPUnit\Framework\TestCa
      *
      * @return void
      */
-    public function __construct()
+    protected function setUp(): void
     {
         $this->_filesPath = dirname(dirname(__FILE__)) . '/_files';
         $this->_validPath = "$this->_filesPath/htdigest.3";

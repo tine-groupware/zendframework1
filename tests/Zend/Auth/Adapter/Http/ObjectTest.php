@@ -111,7 +111,7 @@ class Zend_Auth_Adapter_Http_ObjectTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function __construct()
+    protected function setUp(): void
     {
         $this->_filesPath      = dirname(__FILE__) . '/_files';
         $this->_basicResolver  = new Zend_Auth_Adapter_Http_Resolver_File("$this->_filesPath/htbasic.1");
@@ -164,6 +164,9 @@ class Zend_Auth_Adapter_Http_ObjectTest extends \PHPUnit\Framework\TestCase
         unset($t);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testInvalidConfigs()
     {
         $badConfigs = [
@@ -202,6 +205,9 @@ class Zend_Auth_Adapter_Http_ObjectTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testAuthenticateArgs()
     {
         $a = new Zend_Auth_Adapter_Http($this->_basicConfig);
@@ -222,6 +228,9 @@ class Zend_Auth_Adapter_Http_ObjectTest extends \PHPUnit\Framework\TestCase
           ->authenticate();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoResolvers()
     {
         $request  = $this->createMock('Zend_Controller_Request_Http');

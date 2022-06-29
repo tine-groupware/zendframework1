@@ -61,7 +61,7 @@ class Zend_Auth_Adapter_Http_ProxyTest extends \PHPUnit\Framework\TestCase
      */
     protected $_filesPath;
 
-    /**
+    /**OB`
      * HTTP Basic configuration
      *
      * @var array
@@ -101,7 +101,7 @@ class Zend_Auth_Adapter_Http_ProxyTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function __construct()
+    protected function setUp(): void
     {
         $this->_filesPath      = dirname(__FILE__) . '/_files';
         $this->_basicResolver  = new Zend_Auth_Adapter_Http_Resolver_File("{$this->_filesPath}/htbasic.1");
