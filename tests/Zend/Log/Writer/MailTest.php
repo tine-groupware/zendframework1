@@ -78,7 +78,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
     protected function setUp(): void
     {
         $this->_transport = $this->getMockForAbstractClass(
-            'Zend_Mail_Transport_Abstract',
+            Zend_Mail_Transport_Abstract::class,
             []
         );
         Zend_Mail::setDefaultTransport($this->_transport);
@@ -184,16 +184,11 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetSubjectPrependTextPreExisting()
     {
+        $this->expectException(Zend_Log_Exception::class);
+        $this->expectExceptionMessage('subject already set on mail; cannot set subject prepend text');
+
         list($mail, $writer, $log) = $this->_getSimpleLogger();
-
-        // Expect a Zend_Log_Exception because the subject prepend text cannot
-        // be set of the Zend_Mail object already has a subject line set.
-        $this->expectException('Zend_Log_Exception');
-
-        // Set a subject line so the setSubjectPrependText() call triggers an
-        // exception.
-        $mail->setSubject('a pre-existing subject line');
-
+        $mail->method('getSubject')->willReturn('a pre-existing subject line');
         $writer->setSubjectPrependText('foo');
     }
 
@@ -239,7 +234,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
         list(, $writer) = $this->_getSimpleLogger();
 
         // If Zend_Layout is not being used, a formatter cannot be set for it.
-        $this->expectException('Zend_Log_Exception');
+        $this->expectException(Zend_Log_Exception::class);
         $writer->setLayoutFormatter(new Zend_Log_Formatter_Simple());
     }
 
@@ -252,6 +247,8 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
      */
     public function testDestructorMailError()
     {
+        $this->expectError();
+        $this->expectErrorMessage('unable to send log entries via email;');
         list($mail, $writer, $log) = $this->_getSimpleLogger(false);
 
         // Force the send() method to throw the same exception that would be
@@ -263,7 +260,6 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
         // Log an error message so that there's something to send via email.
         $log->err('a bogus error message to force mail sending');
 
-        $this->expectException('PHPUnit_Framework_Error');
         unset($log);
     }
 
@@ -276,6 +272,9 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
      */
     public function testDestructorLayoutError()
     {
+        $this->expectError();
+        $this->expectErrorMessage('exception occurred when rendering layout; unable to set html body for message; message = bogus message');
+
         list($mail, $writer, $log, $layout) = $this->_getSimpleLogger(true);
 
         // Force the render() method to throw the same exception that would
@@ -287,7 +286,6 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
         // Log an error message so that there's something to send via email.
         $log->err('a bogus error message to force mail sending');
 
-        $this->expectException('PHPUnit_Framework_Error');
         unset($log);
     }
 
@@ -351,9 +349,8 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
      */
     public function testFactoryShouldAcceptCustomMailClass()
     {
-        $this->createMock('Zend_Mail');
         $config = [
-            'class' => 'Zend_Stub_Mail_Custom'
+            'class' => get_class($this->createMock('Zend_Mail'))
     	];
 
     	$writer = Zend_Log_Writer_Mail::factory($config);
@@ -451,9 +448,9 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
      */
     public function testFactoryWithCustomLayoutClass()
     {
-        $this->createMock('Zend_Layout');
+        $layout = $this->createMock(Zend_Layout::class);
     	$config = [
-    	    'layout' => 'Zend_Stub_Layout_Custom'
+    	    'layout' => get_class($layout)
     	];
 
     	$writer = Zend_Log_Writer_Mail::factory($config);
@@ -474,7 +471,7 @@ class Zend_Log_Writer_MailTest extends \PHPUnit\Framework\TestCase
     {
         // Get a mock object for Zend_Mail so that no emails are actually
         // sent.
-        $mail = $this->createMock('Zend_Mail');
+        $mail = $this->createMock(Zend_Mail::class);
 
         // The send() method can be called any number of times.
         $mail->expects($this->any())
