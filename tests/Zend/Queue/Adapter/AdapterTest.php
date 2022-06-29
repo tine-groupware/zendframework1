@@ -790,7 +790,7 @@ abstract class Zend_Queue_Adapter_AdapterTest extends \PHPUnit\Framework\TestCas
         $return = false;
 
     }
-    /** @doesNotPerformAssertions */
+
     public function testIsSupportException()
     {
         if (!$queue = $this->createQueue(__FUNCTION__)) {

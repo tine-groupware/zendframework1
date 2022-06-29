@@ -86,6 +86,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
     /**
      * test for reading without type
      * expected empty array
+     * @doesNotPerformAssertions
      */
     public function testNoType()
     {
@@ -7233,6 +7234,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group GH-465
+     * @doesNotPerformAssertions
      */
     public function testCreateValidCacheIdsInGetContentMethod()
     {
@@ -7245,6 +7247,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group GH-465
+     * @doesNotPerformAssertions
      */
     public function testCreateValidCacheIdsInGetListMethod()
     {
