@@ -115,14 +115,18 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that a class can be loaded from a well-formed PHP file
+     * @doesNotPerformAssertions
      */
     public function testLoaderClassValid()
     {
-        $dir = implode([dirname(__FILE__), '_files', '_testDir1'], DIRECTORY_SEPARATOR);
+        $dir = implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '_files', '_testDir1']);
 
         Zend_Loader::loadClass('Class1', $dir);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLoaderInterfaceViaLoadClass()
     {
         try {
@@ -132,6 +136,9 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLoaderLoadClassWithDotDir()
     {
         $dirs = ['.'];
@@ -148,7 +155,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
      */
     public function testLoaderClassNonexistent()
     {
-        $dir = implode([dirname(__FILE__), '_files', '_testDir1'], DIRECTORY_SEPARATOR);
+        $dir = implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '_files', '_testDir1']);
 
         try {
             Zend_Loader::loadClass('ClassNonexistent', $dir);
@@ -174,12 +181,13 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that a class can be loaded from the search directories.
+     * @doesNotPerformAssertions
      */
     public function testLoaderClassSearchDirs()
     {
         $dirs = [];
         foreach (['_testDir1', '_testDir2'] as $dir) {
-            $dirs[] = implode([dirname(__FILE__), '_files', $dir], DIRECTORY_SEPARATOR);
+            $dirs[] = implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '_files', $dir]);
         }
 
         // throws exception on failure
@@ -189,12 +197,13 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that a class locatedin a subdirectory can be loaded from the search directories
+     * @doesNotPerformAssertions
      */
     public function testLoaderClassSearchSubDirs()
     {
         $dirs = [];
         foreach (['_testDir1', '_testDir2'] as $dir) {
-            $dirs[] = implode([dirname(__FILE__), '_files', $dir], DIRECTORY_SEPARATOR);
+            $dirs[] = implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '_files', $dir]);
         }
 
         // throws exception on failure
@@ -220,7 +229,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderFileIncludePathEmptyDirs()
     {
         $saveIncludePath = get_include_path();
-        set_include_path(implode([$saveIncludePath, implode([dirname(__FILE__), '_files', '_testDir1'], DIRECTORY_SEPARATOR)], PATH_SEPARATOR));
+        set_include_path(implode(PATH_SEPARATOR, [$saveIncludePath, implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '_files', '_testDir1'])]));
 
         $this->assertTrue(Zend_Loader::loadFile('Class3.php', null));
 
@@ -234,7 +243,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderFileIncludePathNonEmptyDirs()
     {
         $saveIncludePath = get_include_path();
-        set_include_path(implode([$saveIncludePath, implode([dirname(__FILE__), '_files', '_testDir1'], DIRECTORY_SEPARATOR)], PATH_SEPARATOR));
+        set_include_path(implode(PATH_SEPARATOR, [$saveIncludePath, implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), '_files', '_testDir1'])]));
 
         $this->assertTrue(Zend_Loader::loadFile('Class4.php', implode(PATH_SEPARATOR, ['foo', 'bar'])));
 
@@ -367,6 +376,9 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         spl_autoload_unregister($function);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testLoaderRegisterAutoloadFailsWithoutSplAutoload()
     {
         if (function_exists('spl_autoload_register')) {
@@ -454,6 +466,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8200
+     * @doesNotPerformAssertions
      */
     public function testLoadClassShouldAllowLoadingPhpNamespacedClasses()
     {
