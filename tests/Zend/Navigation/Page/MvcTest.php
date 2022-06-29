@@ -69,6 +69,7 @@ class Zend_Navigation_Page_MvcTest extends \PHPUnit\Framework\TestCase
 
     protected function tearDown(): void
     {
+        unset($_SERVER['HTTP_HOST']);
         if (null !== $this->_oldRequest) {
             $this->_front->setRequest($this->_oldRequest);
         } else {
