@@ -107,7 +107,7 @@ class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
             $exceptionCaught = true;
         }
         $this->assertTrue($exceptionCaught, 'Expected exception not caught: '
-                + 'Zend_Gdata_App_InvalidArgumentException');
+                . 'Zend_Gdata_App_InvalidArgumentException');
     }
 
     public function testMajorProtocolVersionCannotBeNull()
@@ -119,7 +119,7 @@ class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
             $exceptionCaught = true;
         }
         $this->assertTrue($exceptionCaught, 'Expected exception not caught: '
-                + 'Zend_Gdata_App_InvalidArgumentException');
+                . 'Zend_Gdata_App_InvalidArgumentException');
     }
 
     public function testMinorProtocolVersionCannotBeLessThanZero()
@@ -131,7 +131,7 @@ class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
             $exceptionCaught = true;
         }
         $this->assertTrue($exceptionCaught, 'Expected exception not caught: '
-                + 'Zend_Gdata_App_InvalidArgumentException');
+                . 'Zend_Gdata_App_InvalidArgumentException');
     }
 
     public function testNoGdataVersionHeaderSentWhenUsingV1()
