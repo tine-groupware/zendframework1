@@ -75,7 +75,7 @@ class Zend_Barcode_Renderer_SvgTest extends Zend_Barcode_Renderer_TestCommon
         $this->expectException(\Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setWidth(-1);
     }
-
+    /** @doesNotPerformAssertions */
     public function testGoodSvgResource()
     {
         $svgResource = new DOMDocument();

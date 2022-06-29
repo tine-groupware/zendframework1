@@ -78,7 +78,7 @@ class Zend_Gdata_App_EntryTest extends \PHPUnit\Framework\TestCase
         $newEntryXml = $newEntry->saveXML();
         $this->assertTrue($enryXml == $newEntryXml);
     }
-
+    /** @doesNotPerformAssertions */
     public function testConvertEntryToAndFromString()
     {
         $this->enry->transferFromXML($this->enryText);

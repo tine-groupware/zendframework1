@@ -114,7 +114,7 @@ class Zend_Filter_PregReplaceTest extends \PHPUnit\Framework\TestCase
         $this->assertNotEquals($string, $filtered);
         $this->assertEquals('foo/bar', $filtered);
     }
-
+    /** @doesNotPerformAssertions */
     public function testFilterThrowsExceptionWhenNoMatchPatternPresent()
     {
         $string = 'controller/action';

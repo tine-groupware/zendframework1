@@ -34,6 +34,7 @@ require_once 'Zend/Dom/Query/Css2Xpath.php';
  */
 class Zend_Dom_Query_Css2XpathTest extends \PHPUnit\Framework\TestCase
 {
+    /** @doesNotPerformAssertions */
     public function testTransformShouldBeCalledStatically()
     {
         Zend_Dom_Query_Css2Xpath::transform('');

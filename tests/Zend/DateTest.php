@@ -281,6 +281,7 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test for setTimestamp
+     * @doesNotPerformAssertions
      */
     public function testSetTimestamp2()
     {
@@ -317,6 +318,7 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test for addTimestamp
+     * @doesNotPerformAssertions
      */
     public function testAddTimestamp2()
     {

@@ -54,6 +54,9 @@ class Zend_Barcode_Renderer_ImageTest extends Zend_Barcode_Renderer_TestCommon
         $this->assertSame('image', $this->_renderer->getType());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testGoodImageResource()
     {
         $imageResource = imagecreatetruecolor(1, 1);

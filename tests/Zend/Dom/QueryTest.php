@@ -91,7 +91,7 @@ class Zend_Dom_QueryTest extends \PHPUnit\Framework\TestCase
     {
         $this->error = $msg;
     }
-
+    /** @doesNotPerformAssertions */
     public function testConstructorShouldNotRequireArguments()
     {
         $query = new Zend_Dom_Query();

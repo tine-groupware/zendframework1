@@ -47,6 +47,7 @@ class Zend_Barcode_Renderer_PdfTest extends Zend_Barcode_Renderer_TestCommon
         $this->assertSame('pdf', $this->_renderer->getType());
     }
 
+    /** @doesNotPerformAssertions */
     public function testGoodPdfResource()
     {
         $pdfResource = new Zend_Pdf();
