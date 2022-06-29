@@ -41,7 +41,7 @@ class Zend_Service_ReCaptcha_MailHideTest extends \PHPUnit\Framework\TestCase
     protected $_privateKey = TESTS_ZEND_SERVICE_RECAPTCHA_MAILHIDE_PRIVATE_KEY;
     protected $_mailHide = null;
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->_mailHide = new Zend_Service_ReCaptcha_MailHide();
     }
 

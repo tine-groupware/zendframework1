@@ -35,7 +35,7 @@ class Test_Http_Client_19485876 extends Zend_Http_Client {}
 class Zend_OauthTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function teardown(): void
+    protected function tearDown(): void
     {
         Zend_Oauth::clearHttpClient();
     }

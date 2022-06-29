@@ -50,7 +50,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('rar')) {
             $this->markTestSkipped('This adapter needs the rar extension');
@@ -86,7 +86,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $files = [
             dirname(__FILE__) . '/../_files/zipextracted.txt',

@@ -42,7 +42,7 @@ class Zend_Gdata_Photos_PhotosUserEntryTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $userEntryText = file_get_contents(
                 '_files/TestUserEntry.xml',

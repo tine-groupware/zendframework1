@@ -61,7 +61,7 @@ class Zend_View_Helper_LayoutTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_Controller_Front::getInstance()->resetInstance();
         if (Zend_Controller_Action_HelperBroker::hasHelper('Layout')) {
@@ -80,7 +80,7 @@ class Zend_View_Helper_LayoutTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

@@ -44,7 +44,7 @@ class Zend_Feed_AbstractFeedTest extends \PHPUnit\Framework\TestCase
 
     public $remoteFeedNames = [];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!defined('TESTS_ZEND_FEED_IMPORT_ONLINE_BASEURI')
             || !constant('TESTS_ZEND_FEED_IMPORT_ONLINE_BASEURI')
@@ -55,7 +55,7 @@ class Zend_Feed_AbstractFeedTest extends \PHPUnit\Framework\TestCase
         Zend_Feed::setHttpClient(new Zend_Http_Client());
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         if (!$this->baseUri) {
             parent::tearDown();

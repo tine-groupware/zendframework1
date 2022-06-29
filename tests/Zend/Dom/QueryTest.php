@@ -59,7 +59,7 @@ class Zend_Dom_QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->query = new Zend_Dom_Query();
     }
@@ -70,7 +70,7 @@ class Zend_Dom_QueryTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

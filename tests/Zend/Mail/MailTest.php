@@ -122,7 +122,7 @@ class Zend_Mail_MailTest extends \PHPUnit\Framework\TestCase
 {
     protected $numAssertions;
 
-    public function tearDown(): void {
+    protected function tearDown(): void {
         Zend_Mail::clearDefaultFrom();
         Zend_Mail::clearDefaultReplyTo();
     }

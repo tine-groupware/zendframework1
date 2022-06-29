@@ -65,7 +65,7 @@ class Zend_Application_Resource_CacheManagerTest extends \PHPUnit\Framework\Test
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -84,7 +84,7 @@ class Zend_Application_Resource_CacheManagerTest extends \PHPUnit\Framework\Test
         $this->bootstrap = new ZfAppBootstrap($this->application);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();

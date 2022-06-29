@@ -78,7 +78,7 @@ class Zend_Ldap_Node_AllTests
 
 class Zend_Ldap_Node_SkipOnlineTests extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->markTestSkipped('Zend_Ldap_Node online tests not enabled in TestConfiguration.php');
     }

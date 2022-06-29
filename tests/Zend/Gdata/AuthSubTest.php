@@ -41,7 +41,7 @@ class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
     protected $token = 'DQAAFPHOW7DCTN';
     
     
-    public function setUp(): void
+    protected function setUp(): void
     {
     }
 

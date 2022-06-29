@@ -52,7 +52,7 @@ class Zend_Text_TableTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Text_Table::setInputCharset('utf-8');
         Zend_Text_Table::setOutputCharset('utf-8');

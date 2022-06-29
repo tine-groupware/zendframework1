@@ -33,7 +33,7 @@ require_once 'Zend/Crypt/Math/BigInteger.php';
  */
 class Zend_Crypt_DiffieHellmanTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         try {
             $math = new Zend_Crypt_Math_BigInteger();

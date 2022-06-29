@@ -60,7 +60,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->smd = new Zend_Json_Server_Smd();
     }
@@ -71,7 +71,7 @@ class Zend_Json_Server_SmdTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

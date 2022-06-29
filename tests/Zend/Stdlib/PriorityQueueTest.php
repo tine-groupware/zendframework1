@@ -41,7 +41,7 @@ class Zend_Stdlib_PriorityQueueTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->queue = new Zend_Stdlib_PriorityQueue();
         $this->queue->insert('foo', 3);

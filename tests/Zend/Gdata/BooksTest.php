@@ -35,7 +35,7 @@ require_once 'Zend/Http/Client.php';
 class Zend_Gdata_BooksTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->gdata = new Zend_Gdata_Books(new Zend_Http_Client());
     }

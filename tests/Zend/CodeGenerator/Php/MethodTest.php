@@ -47,12 +47,12 @@ class Zend_CodeGenerator_Php_MethodTest extends \PHPUnit\Framework\TestCase
      */
     protected $_method = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         $this->_method = new Zend_CodeGenerator_Php_Method();
     }
 
-    public function teardown(): void
+    protected function tearDown(): void
     {
         $this->_method = null;
     }

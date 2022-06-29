@@ -279,7 +279,7 @@ abstract class Zend_Cloud_Infrastructure_TestCase extends \PHPUnit\Framework\Tes
         $this->assertEquals('ZendTest\Cloud\Infrastructure\TestAsset\MockAdapter::deployInstance',$this->_commonInfrastructure->deploy('foo','bar'));
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_config = $this->_getConfig();
         $this->_commonInfrastructure = Zend_Cloud_Infrastructure_Factory::getAdapter($this->_config);

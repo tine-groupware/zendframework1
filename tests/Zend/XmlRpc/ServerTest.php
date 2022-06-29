@@ -48,7 +48,7 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
     /**
      * Setup environment
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_server = new Zend_XmlRpc_Server();
     }
@@ -56,7 +56,7 @@ class Zend_XmlRpc_ServerTest extends \PHPUnit\Framework\TestCase
     /**
      * Teardown environment
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_server);
     }

@@ -60,7 +60,7 @@ class Zend_Json_Server_Smd_ServiceTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->service = new Zend_Json_Server_Smd_Service('foo');
     }
@@ -71,7 +71,7 @@ class Zend_Json_Server_Smd_ServiceTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

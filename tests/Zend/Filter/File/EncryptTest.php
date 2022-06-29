@@ -36,7 +36,7 @@ require_once 'Zend/Filter/File/Decrypt.php';
  */
 class Zend_Filter_File_EncryptTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('mcrypt')) {
             $this->markTestSkipped('This filter needs the mcrypt extension');
@@ -47,7 +47,7 @@ class Zend_Filter_File_EncryptTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         if (file_exists(dirname(__FILE__).'/../_files/newencryption.txt')) {
             unlink(dirname(__FILE__).'/../_files/newencryption.txt');

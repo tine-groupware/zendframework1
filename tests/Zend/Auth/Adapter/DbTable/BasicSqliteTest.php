@@ -71,13 +71,13 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends \PHPUnit\Framework\TestC
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_setupDbAdapter();
         $this->_setupAuthAdapter();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_adapter = null;
         $this->_db->query('DROP TABLE [users]');
@@ -478,7 +478,7 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends \PHPUnit\Framework\TestC
 
 class Zend_Auth_Adapter_DbTable_BasicSqliteTest_Skip extends Zend_Auth_Adapter_DbTable_BasicSqliteTest
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->markTestSkipped('Zend_Auth_Adapter_DbTable Sqlite tests are not enabled in TestConfiguration.php');
     }

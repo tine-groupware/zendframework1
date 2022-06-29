@@ -51,7 +51,7 @@ class Zend_Form_Element_CaptchaTest extends \PHPUnit\Framework\TestCase
         (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->element = new Zend_Form_Element_Captcha(
             'foo',

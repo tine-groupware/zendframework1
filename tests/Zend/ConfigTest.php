@@ -38,7 +38,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
     protected $_iniFileConfig;
     protected $_iniFileNested;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         // Arrays representing common config configurations
         $this->_all = [

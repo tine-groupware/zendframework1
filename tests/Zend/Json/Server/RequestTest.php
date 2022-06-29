@@ -57,7 +57,7 @@ class Zend_Json_Server_RequestTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->request = new Zend_Json_Server_Request();
     }
@@ -68,7 +68,7 @@ class Zend_Json_Server_RequestTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

@@ -44,7 +44,7 @@ require_once "_files/commontypes.php";
  */
 class Zend_Soap_AutoDiscoverTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         // This has to be done because some CLI setups don't have $_SERVER variables
         // to simuulate that we have an actual webserver.

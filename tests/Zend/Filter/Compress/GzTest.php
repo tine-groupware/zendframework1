@@ -50,14 +50,14 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('zlib')) {
             $this->markTestSkipped('This adapter needs the zlib extension');
         }
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         if (file_exists(dirname(__FILE__) . '/../_files/compressed.gz')) {
             unlink(dirname(__FILE__) . '/../_files/compressed.gz');

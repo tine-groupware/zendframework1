@@ -59,7 +59,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (file_exists($this->_includeCache)) {
             unlink($this->_includeCache);
@@ -76,7 +76,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->clearStaticPaths();
         Zend_Loader_PluginLoader::setIncludeFileCache(null);

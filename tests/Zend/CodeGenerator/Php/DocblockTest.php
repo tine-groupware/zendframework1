@@ -43,12 +43,12 @@ class Zend_CodeGenerator_Php_DocblockTest extends \PHPUnit\Framework\TestCase
      */
     protected $_docblock = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         $this->_docblock = new Zend_CodeGenerator_Php_Docblock();
     }
 
-    public function teardown(): void
+    protected function tearDown(): void
     {
         $this->_docblock = null;
     }

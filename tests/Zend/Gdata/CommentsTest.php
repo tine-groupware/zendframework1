@@ -34,7 +34,7 @@ require_once 'Zend/Gdata.php';
 class Zend_Gdata_CommentsTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->commentsText = file_get_contents(
                 'Zend/Gdata/_files/CommentsElementSample1.xml',
                 true);

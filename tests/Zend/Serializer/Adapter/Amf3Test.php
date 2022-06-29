@@ -37,12 +37,12 @@ class Zend_Serializer_Adapter_Amf3Test extends \PHPUnit\Framework\TestCase
 
     private $_adapter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_adapter = new Zend_Serializer_Adapter_Amf3();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_adapter = null;
     }

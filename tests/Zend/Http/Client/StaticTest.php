@@ -51,7 +51,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      * Set up the test suite before each test
      *
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_client = new Zend_Http_Client_StaticTest_Mock('http://www.example.com');
     }
@@ -60,7 +60,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      * Clean up after running a test
      *
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_client = null;
     }

@@ -55,7 +55,7 @@ require_once 'Zend/Config.php';
  */
 abstract class Zend_Queue_Adapter_AdapterTest extends \PHPUnit\Framework\TestCase
 {
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->error = false;
     }
@@ -791,6 +791,9 @@ abstract class Zend_Queue_Adapter_AdapterTest extends \PHPUnit\Framework\TestCas
 
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testIsSupportException()
     {
         if (!$queue = $this->createQueue(__FUNCTION__)) {

@@ -73,7 +73,7 @@ class Zend_Log_Writer_FirebugTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         date_default_timezone_set('America/Los_Angeles');
 
@@ -99,7 +99,7 @@ class Zend_Log_Writer_FirebugTest extends \PHPUnit\Framework\TestCase
         Zend_Wildfire_Plugin_FirePhp::getInstance()->setOption('includeLineNumbers', false);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Wildfire_Channel_HttpHeaders::destroyInstance();
         Zend_Wildfire_Plugin_FirePhp::destroyInstance();

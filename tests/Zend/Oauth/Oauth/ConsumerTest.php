@@ -33,7 +33,7 @@ require_once 'Zend/Oauth/Consumer.php';
 class Zend_Oauth_ConsumerTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function teardown(): void
+    protected function tearDown(): void
     {
         Zend_Oauth::clearHttpClient();
     }

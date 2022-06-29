@@ -77,7 +77,7 @@ class Zend_Service_Rackspace_Files_OfflineTest
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->rackspace = new Zend_Service_Rackspace_Files('foo', 'bar');
 

@@ -59,7 +59,7 @@ class Zend_Server_Reflection_PrototypeTest extends \PHPUnit\Framework\TestCase
     /**
      * Setup environment
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $class = new ReflectionClass('Zend_Server_Reflection');
         $method = $class->getMethod('reflectClass');
@@ -78,7 +78,7 @@ class Zend_Server_Reflection_PrototypeTest extends \PHPUnit\Framework\TestCase
     /**
      * Teardown environment
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_r);
         unset($this->_parameters);

@@ -51,7 +51,7 @@ class Zend_Validate_File_FilesSizeTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->multipleOptionsDetected = false;
     }

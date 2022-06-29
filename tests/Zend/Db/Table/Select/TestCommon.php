@@ -47,7 +47,7 @@ abstract class Zend_Db_Table_Select_TestCommon extends Zend_Db_Select_TestCommon
      */
     protected $_table = [];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -57,7 +57,7 @@ abstract class Zend_Db_Table_Select_TestCommon extends Zend_Db_Select_TestCommon
         $this->_table['products']      = $this->_getTable('My_ZendDbTable_TableProducts');
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         if ($this->_runtimeIncludePath) {
             $this->_restoreIncludePath();

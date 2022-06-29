@@ -34,7 +34,7 @@ require_once 'Zend/Gdata.php';
 class Zend_Gdata_OriginalEventTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->originalEventText = file_get_contents(
                 'Zend/Gdata/_files/OriginalEventElementSample1.xml',
                 true);

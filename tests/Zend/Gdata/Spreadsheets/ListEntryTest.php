@@ -35,7 +35,7 @@ require_once 'Zend/Http/Client.php';
 class Zend_Gdata_Spreadsheets_ListEntryTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->listEntry = new Zend_Gdata_Spreadsheets_ListEntry();
         $this->rowData = [];

@@ -72,7 +72,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         if(!defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID') || !defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_SECRETKEY')) {
             $this->markTestSkipped('Constants AccessKeyId and SecretKey have to be set.');
@@ -341,7 +341,7 @@ class Zend_Service_Amazon_OnlineTest extends \PHPUnit\Framework\TestCase
  */
 class Zend_Service_Amazon_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->markTestSkipped('Zend_Service_Amazon online tests not enabled with an access key ID in '
                              . 'TestConfiguration.php');

@@ -35,7 +35,7 @@ require_once 'Zend/Http/Client.php';
 class Zend_Gdata_Spreadsheets_ListFeedTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->listFeed = new Zend_Gdata_Spreadsheets_ListFeed(
                 file_get_contents(dirname(__FILE__) . '/_files/TestDataListFeedSample1.xml'),

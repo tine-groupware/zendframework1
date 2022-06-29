@@ -57,7 +57,7 @@ class Zend_Server_Method_CallbackTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->callback = new Zend_Server_Method_Callback();
     }
@@ -68,7 +68,7 @@ class Zend_Server_Method_CallbackTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

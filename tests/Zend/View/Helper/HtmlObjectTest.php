@@ -70,7 +70,7 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
         $this->helper->setView($this->view);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->helper);
     }

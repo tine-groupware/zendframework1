@@ -39,7 +39,7 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
 
     private $_instance;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!$this->_instance) {
             $this->_instance = new Zend_Cache_Frontend_Page([]);
@@ -48,7 +48,7 @@ class Zend_Cache_PageFrontendTest extends \PHPUnit\Framework\TestCase {
         }
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_instance);
     }

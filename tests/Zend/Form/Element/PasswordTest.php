@@ -58,7 +58,7 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->errors = [];
         $this->element = new Zend_Form_Element_Password('foo');
@@ -70,7 +70,7 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

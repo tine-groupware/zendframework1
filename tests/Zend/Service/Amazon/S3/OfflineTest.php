@@ -33,7 +33,7 @@
  */
 class Zend_Service_Amazon_S3_OfflineTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->markTestSkipped('No offline tests for Zend_Service_Amazon_S3');
     }

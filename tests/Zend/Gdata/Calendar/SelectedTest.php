@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/Calendar.php';
 class Zend_Gdata_Calendar_SelectedTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->selectedText = file_get_contents(
                 'Zend/Gdata/Calendar/_files/SelectedElementSample1.xml',
                 true);

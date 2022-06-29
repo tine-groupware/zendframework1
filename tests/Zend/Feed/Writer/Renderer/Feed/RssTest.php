@@ -38,7 +38,7 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends \PHPUnit\Framework\TestCase
 
     protected $_validWriter = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_validWriter = new Zend_Feed_Writer_Feed;
         $this->_validWriter->setTitle('This is a test feed.');
@@ -48,7 +48,7 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends \PHPUnit\Framework\TestCase
         $this->_validWriter->setType('rss');
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_validWriter = null;
     }

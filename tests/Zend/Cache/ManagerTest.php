@@ -32,7 +32,7 @@ require_once 'Zend/Config.php';
 class Zend_Cache_ManagerTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_cache_dir = $this->mkdir();
         $this->_cache = Zend_Cache::factory(
@@ -42,7 +42,7 @@ class Zend_Cache_ManagerTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->rmdir();
         $this->_cache = null;

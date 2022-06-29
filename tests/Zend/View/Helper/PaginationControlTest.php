@@ -77,7 +77,7 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
         $this->_paginator = Zend_Paginator::factory(range(1, 101));
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_viewHelper);
         unset($this->_paginator);

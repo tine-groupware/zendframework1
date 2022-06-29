@@ -52,7 +52,7 @@ class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->validator = new Zend_Validate_Identical;
     }

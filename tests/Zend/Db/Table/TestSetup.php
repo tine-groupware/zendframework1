@@ -49,7 +49,7 @@ abstract class Zend_Db_Table_TestSetup extends Zend_Db_TestSetup
 
     protected $_runtimeIncludePath = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -59,7 +59,7 @@ abstract class Zend_Db_Table_TestSetup extends Zend_Db_TestSetup
         $this->_table['products']      = $this->_getTable('My_ZendDbTable_TableProducts');
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         if ($this->_runtimeIncludePath) {
             $this->_restoreIncludePath();

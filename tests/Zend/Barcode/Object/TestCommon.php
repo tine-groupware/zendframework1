@@ -49,12 +49,12 @@ abstract class Zend_Barcode_Object_TestCommon extends \PHPUnit\Framework\TestCas
         return include_once (dirname(__FILE__) . "/_files/$fileName.php");
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_object = $this->_getBarcodeObject();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_object = null;
     }

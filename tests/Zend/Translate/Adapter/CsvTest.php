@@ -46,7 +46,7 @@ class Zend_Translate_Adapter_CsvTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (Zend_Translate_Adapter_Csv::hasCache()) {
             Zend_Translate_Adapter_Csv::removeCache();

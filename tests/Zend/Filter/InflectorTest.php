@@ -66,7 +66,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->inflector = new Zend_Filter_Inflector();
         $this->loader    = $this->inflector->getPluginLoader();
@@ -78,7 +78,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->loader->clearPaths();
     }

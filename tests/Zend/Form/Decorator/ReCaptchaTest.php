@@ -59,7 +59,7 @@ class Zend_Form_Decorator_ReCaptchaTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $view = new Zend_View();
         $this->element   = new Zend_Form_Element_Captcha('captcha', [

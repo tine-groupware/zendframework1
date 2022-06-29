@@ -39,7 +39,7 @@ class Zend_Gdata_Gapps_EmailListFeedTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $emailListFeedText = file_get_contents(
                 'Zend/Gdata/Gapps/_files/EmailListFeedDataSample1.xml',

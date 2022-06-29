@@ -64,7 +64,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_Layout_LayoutTest_Override::resetMvcInstance();
 
@@ -83,7 +83,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Layout::resetMvcInstance();
     }

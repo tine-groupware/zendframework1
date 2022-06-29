@@ -54,7 +54,7 @@ class Zend_View_Helper_Navigation_LinksTest
     private $_doctypeHelper;
     private $_oldDoctype;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -70,7 +70,7 @@ class Zend_View_Helper_Navigation_LinksTest
         }
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_doctypeHelper->setDoctype($this->_oldDoctype);
     }

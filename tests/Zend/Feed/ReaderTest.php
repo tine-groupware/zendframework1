@@ -37,12 +37,12 @@ class Zend_Feed_ReaderTest extends \PHPUnit\Framework\TestCase
 
     protected $_feedSamplePath = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         $this->_feedSamplePath = dirname(__FILE__) . '/Reader/_files';
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Feed_Reader::reset();
     }

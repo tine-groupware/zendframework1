@@ -40,7 +40,7 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
     protected $_tmpdir;
     protected $_subdirs = ['.', '.subfolder', '.subfolder.test'];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_originalDir = dirname(__FILE__) . '/_files/test.maildir/';
 
@@ -98,7 +98,7 @@ class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         foreach (array_reverse($this->_subdirs) as $dir) {
             if (!file_exists($this->_tmpdir . $dir)) {

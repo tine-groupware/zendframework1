@@ -46,12 +46,12 @@ class Zend_Config_Writer_JsonTest extends \PHPUnit\Framework\TestCase
 {
     protected $_tempName;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_tempName = tempnam(dirname(__FILE__) . '/temp', 'tmp');
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         @unlink($this->_tempName);
     }

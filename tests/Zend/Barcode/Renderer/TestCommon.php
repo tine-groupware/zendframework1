@@ -40,13 +40,13 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     abstract protected function _getRendererObject($options = null);
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_Barcode::setBarcodeFont(dirname(__FILE__) . '/../Object/_fonts/Vera.ttf');
         $this->_renderer = $this->_getRendererObject();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Barcode::setBarcodeFont('');
     }

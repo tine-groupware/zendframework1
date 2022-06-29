@@ -77,7 +77,7 @@ class Zend_OpenId_Consumer_Storage_FileTest extends \PHPUnit\Framework\TestCase
         @rmdir($dirName);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_tmpDir = dirname(__FILE__) . "/_files";
 
@@ -86,7 +86,7 @@ class Zend_OpenId_Consumer_Storage_FileTest extends \PHPUnit\Framework\TestCase
         mkdir($this->_tmpDir);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         self::_rmDir($this->_tmpDir);
     }

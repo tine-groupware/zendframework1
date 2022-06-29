@@ -35,7 +35,7 @@ require_once 'Zend/Filter/Encrypt/Openssl.php';
  */
 class Zend_Filter_Encrypt_OpensslTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('openssl')) {
             $this->markTestSkipped('This filter needs the openssl extension');

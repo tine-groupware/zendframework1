@@ -74,7 +74,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends \PHPUnit\Framework\Tes
      */
     protected $_waitPeriod = 1;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_config = $this->_getConfig();
         $this->_commonStorage = Zend_Cloud_StorageService_Factory::getAdapter($this->_config);

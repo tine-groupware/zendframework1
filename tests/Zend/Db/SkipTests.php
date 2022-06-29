@@ -38,7 +38,7 @@ abstract class Zend_Db_Skip_CommonTest extends \PHPUnit\Framework\TestCase
 
     abstract public function getDriver();
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $driver = $this->getDriver();
         $message = 'Skipping ' . $this->getDriver();

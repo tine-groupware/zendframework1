@@ -39,7 +39,7 @@ class Zend_GData_Analytics_DataQueryTest extends \PHPUnit\Framework\TestCase
      */
     public $dataQuery;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->dataQuery = new Zend_GData_Analytics_DataQuery();
     }

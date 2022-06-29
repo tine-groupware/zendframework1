@@ -90,7 +90,7 @@ abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase 
         }
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         if ($this->_instance) {
             $this->_instance->clean();

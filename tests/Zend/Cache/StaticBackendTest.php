@@ -66,7 +66,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
         $this->_instance->save('bar3 : data to cache', bin2hex('/bar3'), ['tag2', 'tag3']);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);

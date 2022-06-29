@@ -37,7 +37,7 @@ class Zend_Feed_Reader_Feed_CommonTest extends \PHPUnit\Framework\TestCase
 
     protected $_feedSamplePath = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         Zend_Feed_Reader::reset();
         if (Zend_Registry::isRegistered('Zend_Locale')) {

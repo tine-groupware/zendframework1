@@ -47,7 +47,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_filter = new Zend_Filter_Null();
     }

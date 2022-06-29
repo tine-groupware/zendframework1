@@ -46,14 +46,14 @@ class Zend_Log_Filter_ChainingTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->log = fopen('php://memory', 'w');
         $this->logger = new Zend_Log();
         $this->logger->addWriter(new Zend_Log_Writer_Stream($this->log));
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         fclose($this->log);
     }

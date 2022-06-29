@@ -44,12 +44,12 @@ class Zend_Tool_Framework_Manifest_ActionMetadataTest extends \PHPUnit\Framework
      */
     protected $_metadata = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         $this->_metadata = new Zend_Tool_Framework_Manifest_ActionMetadata();
     }
 
-    public function teardown(): void
+    protected function tearDown(): void
     {
         $this->_metadata = null;
     }

@@ -60,7 +60,7 @@ class Zend_Form_Decorator_DescriptionTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (isset($this->html)) {
             unset($this->html);
@@ -79,7 +79,7 @@ class Zend_Form_Decorator_DescriptionTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

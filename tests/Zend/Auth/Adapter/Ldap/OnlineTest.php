@@ -52,7 +52,7 @@ class Zend_Auth_Adapter_Ldap_OnlineTest extends \PHPUnit\Framework\TestCase
      */
     protected $_names = [];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_options = [
             'host' => TESTS_ZEND_LDAP_HOST,

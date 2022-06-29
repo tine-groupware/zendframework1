@@ -59,7 +59,7 @@ class Zend_Amf_AuthTest extends \PHPUnit\Framework\TestCase
         (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_server = new Zend_Amf_Server();
         $this->_server->setProduction(false);

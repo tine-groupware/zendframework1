@@ -43,7 +43,7 @@ require_once dirname(__FILE__) . '/TestAsset/commontypes.php';
  */
 class Zend_Soap_ServerTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('soap')) {
            $this->markTestSkipped('SOAP Extension is not loaded');

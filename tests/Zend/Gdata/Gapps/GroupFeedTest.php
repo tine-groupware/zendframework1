@@ -39,7 +39,7 @@ class Zend_Gdata_Gapps_GroupFeedTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $groupFeedText = file_get_contents(
                 'Zend/Gdata/Gapps/_files/GroupFeedDataSample1.xml',

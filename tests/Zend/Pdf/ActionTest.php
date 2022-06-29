@@ -53,7 +53,7 @@ require_once 'Zend/Pdf/ElementFactory.php';
  */
 class Zend_Pdf_ActionTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         date_default_timezone_set('GMT');
     }

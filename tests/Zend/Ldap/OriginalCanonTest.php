@@ -39,7 +39,7 @@ class Zend_Ldap_OriginalCanonTest extends \PHPUnit\Framework\TestCase
     protected $_principalName = TESTS_ZEND_LDAP_PRINCIPAL_NAME;
     protected $_names = [];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_options = [
             'host' => TESTS_ZEND_LDAP_HOST,

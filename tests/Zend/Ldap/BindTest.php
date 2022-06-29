@@ -46,7 +46,7 @@ class Zend_Ldap_BindTest extends \PHPUnit\Framework\TestCase
     protected $_altUsername = TESTS_ZEND_LDAP_ALT_USERNAME;
     protected $_bindRequiresDn = false;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_options = [
             'host' => TESTS_ZEND_LDAP_HOST,

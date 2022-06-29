@@ -72,7 +72,7 @@ class Zend_Service_SlideShareTest extends \PHPUnit\Framework\TestCase
         return $ss;
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!defined("TESTS_ZEND_SERVICE_SLIDESHARE_APIKEY")
             || !defined("TESTS_ZEND_SERVICE_SLIDESHARE_SHAREDSECRET")

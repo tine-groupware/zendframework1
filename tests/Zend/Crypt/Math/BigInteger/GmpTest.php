@@ -38,7 +38,7 @@ class Zend_Crypt_Math_BigInteger_GmpTest extends \PHPUnit\Framework\TestCase
 
     private $_math = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('gmp')) {
             $this->markTestSkipped('Skipped: Zend_Crypt_Math_BigInteger_GmpTest due to ext/gmp being unavailable');

@@ -36,7 +36,7 @@ require_once 'Zend/Date.php';
 class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->originalTimezone = date_default_timezone_get();
         date_default_timezone_set('Europe/Paris');
@@ -47,7 +47,7 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
         Zend_Date_DateObjectTestHelper::setOptions(['cache' => $this->_cache]);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         date_default_timezone_set($this->originalTimezone);
         $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);

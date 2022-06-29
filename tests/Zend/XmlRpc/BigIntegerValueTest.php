@@ -49,7 +49,7 @@ require_once 'Zend/Date.php';
  */
 class Zend_XmlRpc_BigIntegerValueTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         try {
             $XmlRpcBigInteger = new Zend_XmlRpc_Value_BigInteger(0);

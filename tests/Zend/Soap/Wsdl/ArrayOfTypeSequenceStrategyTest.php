@@ -43,7 +43,7 @@ class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\
     private $wsdl;
     private $strategy;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->strategy = new Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence();
         $this->wsdl = new Zend_Soap_Wsdl('MyService', 'http://localhost/MyService.php', $this->strategy);

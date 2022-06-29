@@ -33,7 +33,7 @@ require_once 'Zend/Gdata/Query.php';
  */
 class Zend_Gdata_QueryTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
     }
 

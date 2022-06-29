@@ -36,7 +36,7 @@ require_once 'Zend/Gdata/Calendar.php';
 class Zend_Gdata_Calendar_LinkTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->linkText = file_get_contents(
                 'Zend/Gdata/Calendar/_files/LinkElementSample1.xml',
                 true);

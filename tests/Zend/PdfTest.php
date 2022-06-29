@@ -84,8 +84,7 @@ class Zend_PdfTest extends \PHPUnit\Framework\TestCase
     public function testSetTextFieldNonExistent()
     {
         $this->expectException(\Zend_Pdf_Exception::class);
-        $this->expectExceptionMessage('Field \'FieldNotExists\' does not exist or is not
-                          a textfield');
+        $this->expectExceptionMessage('Field \'FieldNotExists\' does not exist or is not a textfield');
         $this->_pdf->setTextField('FieldNotExists', 'Value1');
     }
 
@@ -118,8 +117,7 @@ class Zend_PdfTest extends \PHPUnit\Framework\TestCase
     public function testSetTextFieldPropertiesNonExistent()
     {
         $this->expectException(\Zend_Pdf_Exception::class);
-        $this->expectExceptionMessage('Field \'FieldNotExists\' does not exist or is not
-                          a textfield');
+        $this->expectExceptionMessage('Field \'FieldNotExists\' does not exist or is not a textfield');
         $this->_pdf->setTextFieldProperties(
             'FieldNotExists', Zend_Pdf::PDF_FORM_FIELD_REQUIRED
         );
@@ -142,8 +140,7 @@ class Zend_PdfTest extends \PHPUnit\Framework\TestCase
     public function testMarkTextFieldAsReadOnlyNonExistent()
     {
         $this->expectException(\Zend_Pdf_Exception::class);
-        $this->expectExceptionMessage('Field \'FieldNotExists\' does not exist or is not
-                          a textfield');
+        $this->expectExceptionMessage('Field \'FieldNotExists\' does not exist or is not a textfield');
         $this->_pdf->markTextFieldAsReadOnly('FieldNotExists');
     }
 
@@ -206,8 +203,7 @@ class Zend_PdfTest extends \PHPUnit\Framework\TestCase
     public function testSetJavaScriptEmptyString()
     {
         $this->expectException(\Zend_Pdf_Exception::class);
-        $this->expectExceptionMessage('JavaScript must be a non empty string or array
-                          of strings');
+        $this->expectExceptionMessage('JavaScript must be a non empty string or array of strings');
         $pdf = new Zend_Pdf();
         $pdf->setJavaScript('');
     }
@@ -218,8 +214,7 @@ class Zend_PdfTest extends \PHPUnit\Framework\TestCase
     public function testSetJavaScriptEmptyArray()
     {
         $this->expectException(\Zend_Pdf_Exception::class);
-        $this->expectExceptionMessage('JavaScript must be a non empty string or array
-                          of strings');
+        $this->expectExceptionMessage('JavaScript must be a non empty string or array of strings');
         $pdf = new Zend_Pdf();
         $pdf->setJavaScript([]);
     }

@@ -59,7 +59,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Form::setDefaultTranslator(null);
@@ -72,7 +72,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         Zend_Controller_Action_HelperBroker::resetHelpers();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

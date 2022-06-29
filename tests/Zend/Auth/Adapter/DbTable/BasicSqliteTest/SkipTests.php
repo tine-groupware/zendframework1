@@ -33,7 +33,7 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest_SkipTests extends \PHPUnit\Frame
 
     public $message = 'Skipped for unspecified reason';
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->markTestSkipped($this->message);
     }

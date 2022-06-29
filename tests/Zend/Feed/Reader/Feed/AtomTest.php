@@ -42,7 +42,7 @@ class Zend_Feed_Reader_Feed_AtomTest extends \PHPUnit\Framework\TestCase
     
     protected $_expectedCatsDc = [];
 
-    public function setup(): void
+    protected function setUp(): void
     {
         Zend_Feed_Reader::reset();
         if (Zend_Registry::isRegistered('Zend_Locale')) {
@@ -88,7 +88,7 @@ class Zend_Feed_Reader_Feed_AtomTest extends \PHPUnit\Framework\TestCase
         ];
     }
     
-    public function teardown(): void
+    protected function tearDown(): void
     {
         Zend_Date::setOptions($this->_options);
     }

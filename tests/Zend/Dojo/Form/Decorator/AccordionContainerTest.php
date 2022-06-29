@@ -70,7 +70,7 @@ class Zend_Dojo_Form_Decorator_AccordionContainerTest extends \PHPUnit\Framework
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
@@ -88,7 +88,7 @@ class Zend_Dojo_Form_Decorator_AccordionContainerTest extends \PHPUnit\Framework
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

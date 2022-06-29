@@ -59,7 +59,7 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->view   = new Zend_View();
         $this->helper = new Zend_View_Helper_FormErrors();
@@ -73,7 +73,7 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         ob_end_clean();
     }

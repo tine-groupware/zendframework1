@@ -70,7 +70,7 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_origServer = $_SERVER;
         $_SERVER = [
@@ -99,7 +99,7 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->request, $this->response, $this->helper);
         $_SERVER = $this->_origServer;

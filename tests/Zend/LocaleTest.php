@@ -56,7 +56,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
     private $_cache  = null;
     private $_locale = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_locale = setlocale(LC_ALL, 0);
         setlocale(LC_ALL, 'de');
@@ -72,7 +72,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
         putenv("HTTP_ACCEPT_LANGUAGE=,de,en-UK-US;q=0.5,fr_FR;q=0.2");
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
         if (is_string($this->_locale) && strpos($this->_locale, ';')) {

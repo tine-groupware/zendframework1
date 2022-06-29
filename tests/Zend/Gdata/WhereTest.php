@@ -34,7 +34,7 @@ require_once 'Zend/Gdata.php';
 class Zend_Gdata_WhereTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->whereText = file_get_contents(
                 'Zend/Gdata/_files/WhereElementSample1.xml',
                 true);

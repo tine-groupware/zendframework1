@@ -31,7 +31,7 @@ require_once 'Zend/Http/UserAgent/Features/Adapter/DeviceAtlas.php';
 class Zend_Http_UserAgent_Features_Adapter_DeviceAtlasTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!constant('TESTS_ZEND_HTTP_USERAGENT_DEVICEATLAS_LIB_DIR')
             || !constant('TESTS_ZEND_HTTP_USERAGENT_DEVICEATLAS_DATA_FILE')

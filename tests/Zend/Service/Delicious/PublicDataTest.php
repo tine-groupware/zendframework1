@@ -50,7 +50,7 @@ class Zend_Service_Delicious_PublicDataTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $httpClient = new Zend_Http_Client();
         $httpClient->setConfig([

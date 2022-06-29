@@ -85,7 +85,7 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->clearRegistry();
         $this->helper = new Zend_View_Helper_Translate();
@@ -97,7 +97,7 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->helper);
         $this->clearRegistry();

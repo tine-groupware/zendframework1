@@ -38,7 +38,7 @@ class Zend_Test_DbAdapterTest extends \PHPUnit\Framework\TestCase
      */
     private $_adapter = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_adapter = new Zend_Test_DbAdapter();
     }

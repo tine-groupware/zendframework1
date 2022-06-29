@@ -67,7 +67,7 @@ class Zend_Service_Rackspace_Files_OnlineTest extends \PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         
         if (!constant('TESTS_ZEND_SERVICE_RACKSPACE_ONLINE_ENABLED')) {

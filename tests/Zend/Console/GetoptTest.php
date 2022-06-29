@@ -35,7 +35,7 @@ require_once 'Zend/Console/Getopt.php';
  */
 class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if(ini_get('register_argc_argv') == false) {
             $this->markTestSkipped("Cannot Test Zend_Console_Getopt without 'register_argc_argv' ini option true.");

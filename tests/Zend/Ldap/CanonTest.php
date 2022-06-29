@@ -43,7 +43,7 @@ class Zend_Ldap_CanonTest extends \PHPUnit\Framework\TestCase
 {
     protected $_options = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_options = [
             'host' => TESTS_ZEND_LDAP_HOST,

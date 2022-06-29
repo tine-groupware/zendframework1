@@ -48,7 +48,7 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
         Zend_Rest_Client::setHttpClient(new Zend_Http_Client());
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Rest_Client::setHttpClient($this->_httpClientOriginal);
     }
@@ -182,7 +182,7 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
  */
 class Zend_Service_Ebay_Finding_OnlineSkipTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->markTestSkipped('Zend_Service_Ebay online tests not enabled with an APPID in TestConfiguration.php');
     }

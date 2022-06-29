@@ -40,7 +40,7 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
     protected $_xmlFileCircularConfig;
     protected $_xmlFileInvalid;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_xmlFileConfig = dirname(__FILE__) . '/_files/config.xml';
         $this->_xmlFileAllSectionsConfig = dirname(__FILE__) . '/_files/allsections.xml';

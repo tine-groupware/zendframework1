@@ -84,7 +84,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
      *
      * Also resets the front controller instance.
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $front = Zend_Controller_Front::getInstance();
         $front->resetInstance();
@@ -114,7 +114,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     /**
      * Unset all properties
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->redirector);
         unset($this->controller);

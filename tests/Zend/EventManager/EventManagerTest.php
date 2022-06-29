@@ -47,7 +47,7 @@ class Zend_EventManager_EventManagerTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (isset($this->message)) {
             unset($this->message);

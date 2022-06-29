@@ -75,7 +75,7 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->basePath = dirname(__FILE__) . '/_files/modules';
         $this->helper = new Zend_View_Helper_PartialLoop();
@@ -88,7 +88,7 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->helper);
     }

@@ -36,7 +36,7 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends \PHPUnit\Framework\TestC
 {
     private $operation = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->operation = new Zend_Test_PHPUnit_Db_Operation_Insert();
     }

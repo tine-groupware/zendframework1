@@ -42,7 +42,7 @@ require_once 'Zend/Service/StrikeIron/ZipCodeInfo.php';
  */
 class Zend_Service_StrikeIron_ZipCodeInfoTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->soapClient = new stdclass();
         $this->service = new Zend_Service_StrikeIron_ZipCodeInfo(['client' => $this->soapClient]);

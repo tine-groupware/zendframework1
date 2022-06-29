@@ -57,13 +57,13 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_response = new Zend_Controller_Response_Http();
         $this->_response->headersSentThrowsException = false;
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_response);
     }

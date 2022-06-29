@@ -63,7 +63,7 @@ class Zend_View_Helper_CycleTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->helper = new Zend_View_Helper_Cycle();
     }
@@ -74,7 +74,7 @@ class Zend_View_Helper_CycleTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->helper);
     }

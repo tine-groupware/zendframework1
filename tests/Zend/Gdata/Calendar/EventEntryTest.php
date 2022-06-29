@@ -36,7 +36,7 @@ require_once 'Zend/Gdata/Calendar.php';
 class Zend_Gdata_Calendar_EventEntryTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->entryText = file_get_contents(
                 'Zend/Gdata/Calendar/_files/EventEntrySample1.xml',
                 true);

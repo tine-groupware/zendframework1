@@ -42,7 +42,7 @@ class Zend_Gdata_Photos_PhotosUserFeedTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $userFeedText = file_get_contents(
                 '_files/TestUserFeed.xml',

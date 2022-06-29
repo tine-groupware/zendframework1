@@ -32,7 +32,7 @@
  */
 class Zend_Service_Delicious_SkipTests extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->markTestSkipped('Zend_Service_Delicious tests not enabled in TestConfiguration.php');
     }

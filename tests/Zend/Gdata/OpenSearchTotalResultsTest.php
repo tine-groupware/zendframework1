@@ -35,7 +35,7 @@ require_once 'Zend/Gdata.php';
 class Zend_Gdata_OpenSearchTotalResultsTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->openSearchTotalResultsText = file_get_contents(
                 'Zend/Gdata/_files/OpenSearchTotalResultsElementSample1.xml',
                 true);

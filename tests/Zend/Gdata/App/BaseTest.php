@@ -42,7 +42,7 @@ class Zend_Gdata_App_BaseTest extends \PHPUnit\Framework\TestCase
      */
     private $base;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->fileName = 'Zend/Gdata/App/_files/FeedSample1.xml';
         $this->base = new Zend_Gdata_App_MockBase();

@@ -352,7 +352,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends \PHPUnit\Framework\Te
         $this->_commonDocument->deleteCollection($name);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_config = $this->_getConfig();
         $this->_commonDocument = Zend_Cloud_DocumentService_Factory::getAdapter($this->_config);

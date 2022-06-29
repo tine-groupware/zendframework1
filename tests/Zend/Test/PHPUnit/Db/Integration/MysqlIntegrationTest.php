@@ -32,7 +32,7 @@ require_once "AbstractTestCase.php";
  */
 class Zend_Test_PHPUnit_Db_Integration_MysqlIntegrationTest extends Zend_Test_PHPUnit_Db_Integration_AbstractTestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!TESTS_ZEND_DB_ADAPTER_PDO_MYSQL_ENABLED) {
             $this->markTestSkipped('Database tests are not enabled.');

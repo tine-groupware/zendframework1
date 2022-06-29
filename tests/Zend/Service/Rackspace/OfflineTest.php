@@ -62,7 +62,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_files = new Zend_Service_Rackspace_Files('foo','bar');
         $this->_filesPath   = dirname(__FILE__) . '/_files';

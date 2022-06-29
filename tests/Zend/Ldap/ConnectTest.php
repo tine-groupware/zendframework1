@@ -43,7 +43,7 @@ class Zend_Ldap_ConnectTest extends \PHPUnit\Framework\TestCase
 {
     protected $_options = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_options = ['host' => TESTS_ZEND_LDAP_HOST];
         if (defined('TESTS_ZEND_LDAP_PORT') && TESTS_ZEND_LDAP_PORT != 389)

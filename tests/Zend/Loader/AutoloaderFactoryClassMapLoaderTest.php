@@ -51,7 +51,7 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         // Store original autoloaders
         $this->_loaders = spl_autoload_functions();
@@ -71,7 +71,7 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework
         $this->_includePath = get_include_path();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Loader_AutoloaderFactory::unregisterAutoloaders();
         // Restore original autoloaders

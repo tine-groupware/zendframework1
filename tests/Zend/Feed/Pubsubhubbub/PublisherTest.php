@@ -35,7 +35,7 @@ class Zend_Feed_Pubsubhubbub_PublisherTest extends \PHPUnit\Framework\TestCase
 
     protected $_publisher = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $client = new Zend_Http_Client;
         Zend_Feed_Pubsubhubbub::setHttpClient($client);

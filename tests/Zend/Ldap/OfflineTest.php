@@ -55,7 +55,7 @@ class Zend_Ldap_OfflineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('ldap')) {
             $this->markTestSkipped('LDAP is not enabled');

@@ -83,7 +83,7 @@ class Zend_SessionTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         ini_set('session.save_path', $this->_savePath);
 

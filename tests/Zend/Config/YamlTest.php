@@ -35,7 +35,7 @@ require_once 'Zend/Config/Yaml.php';
  */
 class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_iniFileConfig             = dirname(__FILE__) . '/_files/config.yaml';
         $this->_iniFileAllSectionsConfig  = dirname(__FILE__) . '/_files/allsections.yaml';

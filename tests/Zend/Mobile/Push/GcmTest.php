@@ -48,7 +48,7 @@ class Zend_Mobile_Push_gcmTest extends \PHPUnit\Framework\TestCase
         ]);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->adapter = new Zend_Http_Client_Adapter_Test();
         $this->client = new Zend_Http_Client();

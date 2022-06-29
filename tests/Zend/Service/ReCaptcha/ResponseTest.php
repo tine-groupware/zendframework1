@@ -36,7 +36,7 @@ class Zend_Service_ReCaptcha_ResponseTest extends \PHPUnit\Framework\TestCase
 {
     protected $_response = null;
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->_response = new Zend_Service_ReCaptcha_Response();
     }
 

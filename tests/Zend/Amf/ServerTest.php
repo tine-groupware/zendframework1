@@ -55,14 +55,14 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_server = new Zend_Amf_Server();
         $this->_server->setProduction(false);
         Zend_Amf_Parse_TypeLoader::resetMap();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_server);
         //Zend_Amf_Parse_TypeLoader::resetMap();

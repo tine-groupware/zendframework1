@@ -56,7 +56,7 @@ class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends \PHPUnit\Framework\TestC
         'adapter'     => 'Zend_Http_Client_Adapter_Socket'
     ];
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (defined('TESTS_Zend_Feed_Pubsubhubbub_BASEURI') &&
             Zend_Uri_Http::check(TESTS_Zend_Feed_Pubsubhubbub_BASEURI)) {

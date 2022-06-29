@@ -35,7 +35,7 @@ require_once 'Zend/Filter/Encrypt/Mcrypt.php';
  */
 class Zend_Filter_Encrypt_McryptTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('mcrypt')) {
             $this->markTestSkipped('This adapter needs the mcrypt extension');

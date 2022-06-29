@@ -69,7 +69,7 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_filter = new Zend_Filter_Alnum();
         if (null === self::$_unicodeEnabled) {

@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/App/Util.php';
 class Zend_Gdata_FeedTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->etagLocalName = 'etag';
         $this->expectedEtag = 'W/"CE4BRXw4cCp7ImA9WxRVFEs."';
         $this->expectedMismatchExceptionMessage = "ETag mismatch";

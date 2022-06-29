@@ -42,7 +42,7 @@ class Zend_EventManager_GlobalEventManagerTest extends \PHPUnit\Framework\TestCa
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_EventManager_GlobalEventManager::setEventCollection(null);
     }

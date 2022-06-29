@@ -62,7 +62,7 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_Label();
     }
@@ -73,7 +73,7 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

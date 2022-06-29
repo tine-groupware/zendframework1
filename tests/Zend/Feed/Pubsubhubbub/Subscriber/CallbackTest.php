@@ -41,7 +41,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends \PHPUnit\Framework\
 
     protected $_originalServer = null;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_callback = new Zend_Feed_Pubsubhubbub_Subscriber_Callback;
 
@@ -74,7 +74,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends \PHPUnit\Framework\
         $_SERVER['QUERY_STRING'] = 'xhub.subscription=verifytokenkey';
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $_SERVER = $this->_originalServer;
     }

@@ -64,7 +64,7 @@ class Zend_Service_Delicious_PostTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_delicious = new Zend_Service_Delicious(self::UNAME, self::PASS);
 

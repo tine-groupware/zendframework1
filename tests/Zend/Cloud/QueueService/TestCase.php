@@ -72,7 +72,7 @@ abstract class Zend_Cloud_QueueService_TestCase extends \PHPUnit\Framework\TestC
      */
     protected $_waitPeriod = 1;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_config = $this->_getConfig();
         $this->_commonQueue = Zend_Cloud_QueueService_Factory::getAdapter($this->_config);

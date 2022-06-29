@@ -60,7 +60,7 @@ class Zend_Amf_Value_ArrayCollectionTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $data = [];
         $data[] = ['foo' => 'foo1', 'bar' => 'bar1'];
@@ -69,7 +69,7 @@ class Zend_Amf_Value_ArrayCollectionTest extends \PHPUnit\Framework\TestCase
 
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_arrayCollection);
         unset($this->_data);

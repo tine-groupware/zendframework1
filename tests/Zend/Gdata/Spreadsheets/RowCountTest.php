@@ -35,7 +35,7 @@ require_once 'Zend/Http/Client.php';
 class Zend_Gdata_Spreadsheets_RowCountTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->rowCount = new Zend_Gdata_Spreadsheets_Extension_RowCount();
     }

@@ -79,7 +79,7 @@ class Zend_View_Helper_CurrencyTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->clearRegistry();
         require_once 'Zend/Cache.php';
@@ -97,7 +97,7 @@ class Zend_View_Helper_CurrencyTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->helper);
         $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);

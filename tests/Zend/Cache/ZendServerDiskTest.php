@@ -54,7 +54,7 @@ class Zend_Cache_ZendServerDiskTest extends Zend_Cache_CommonBackendTest {
         parent::setUp(true);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         parent::tearDown();
         unset($this->_instance);

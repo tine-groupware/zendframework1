@@ -59,7 +59,7 @@ class Zend_Json_Server_ErrorTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->error = new Zend_Json_Server_Error();
     }
@@ -70,7 +70,7 @@ class Zend_Json_Server_ErrorTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

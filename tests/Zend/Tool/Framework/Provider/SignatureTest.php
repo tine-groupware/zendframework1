@@ -56,7 +56,7 @@ class Zend_Tool_Framework_Provider_SignatureTest extends \PHPUnit\Framework\Test
      */
     protected $_targetSignature = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         // setup the registry components required to test with
         $this->_registry = new Zend_Tool_Framework_Registry();
@@ -66,7 +66,7 @@ class Zend_Tool_Framework_Provider_SignatureTest extends \PHPUnit\Framework\Test
         $this->_targetSignature->process();
     }
 
-    public function teardown(): void
+    protected function tearDown(): void
     {
         $this->_registry->reset();
     }

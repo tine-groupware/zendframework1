@@ -48,7 +48,7 @@ class Zend_Mail_ImapTest extends \PHPUnit\Framework\TestCase
 {
     protected $_params;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_params = ['host'     => TESTS_ZEND_MAIL_IMAP_HOST,
                                'user'     => TESTS_ZEND_MAIL_IMAP_USER,

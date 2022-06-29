@@ -58,7 +58,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (!extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
@@ -93,7 +93,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         // remove chaptcha images
         foreach(new DirectoryIterator($this->testDir) as $file) {

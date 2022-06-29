@@ -77,7 +77,7 @@ class Zend_Session_SaveHandler_DbTableTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_Session::$_unitTestEnabled = true;
         $this->_setupDb($this->_saveHandlerTableConfig['primary']);
@@ -88,7 +88,7 @@ class Zend_Session_SaveHandler_DbTableTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         if ($this->_db instanceof Zend_Db_Adapter_Abstract) {
             $this->_dropTable();

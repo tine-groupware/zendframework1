@@ -50,7 +50,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->dojoData = new Zend_Dojo_Data;
     }

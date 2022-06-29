@@ -67,14 +67,14 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->clearRegistry();
         Zend_Validate_Abstract::setDefaultTranslator(null);
         $this->validator = new Zend_Validate_AbstractTest_Concrete();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->clearRegistry();
         Zend_Validate_Abstract::setDefaultTranslator(null);

@@ -90,7 +90,7 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends \PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_amazon = new Zend_Service_Amazon_SimpleDb(
             constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID'),
@@ -501,7 +501,7 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends \PHPUnit\Framework\TestCas
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
 
         // $this->request('deleteDomain', array($this->_testDomainNamePrefix));

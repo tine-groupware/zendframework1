@@ -50,7 +50,7 @@ class Zend_Service_Flickr_OnlineTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         /**
          * @see Zend_Service_Flickr

@@ -57,7 +57,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (isset($this->error)) {
             unset($this->error);
@@ -72,7 +72,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         ]);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->_dispatcher);
     }

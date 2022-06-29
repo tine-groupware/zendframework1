@@ -38,7 +38,7 @@ class Zend_Feed_IteratorTest extends \PHPUnit\Framework\TestCase
     private $_feed;
     private $_nsfeed;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_feed = Zend_Feed::importFile(dirname(__FILE__) . '/_files/TestAtomFeed.xml');
         $this->_nsfeed = Zend_Feed::importFile(dirname(__FILE__) . '/_files/TestAtomFeedNamespaced.xml');

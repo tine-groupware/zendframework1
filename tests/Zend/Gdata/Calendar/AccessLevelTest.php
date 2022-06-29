@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/Calendar.php';
 class Zend_Gdata_Calendar_AccessLevelTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void {
+    protected function setUp(): void {
         $this->accessLevelText = file_get_contents(
                 'Zend/Gdata/Calendar/_files/AccessLevelElementSample1.xml',
                 true);

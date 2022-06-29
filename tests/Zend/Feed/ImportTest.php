@@ -60,7 +60,7 @@ class Zend_Feed_ImportTest extends \PHPUnit\Framework\TestCase
      */
     protected $_adapter;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->_adapter = new Zend_Http_Client_Adapter_Test();
         Zend_Feed::setHttpClient(new Zend_Http_Client(null, ['adapter' => $this->_adapter]));

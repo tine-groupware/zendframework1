@@ -57,7 +57,7 @@ class Zend_Server_Method_PrototypeTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->prototype = new Zend_Server_Method_Prototype();
     }
@@ -68,7 +68,7 @@ class Zend_Server_Method_PrototypeTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

@@ -55,7 +55,7 @@ class Zend_Filter_PregReplaceTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->filter = new Zend_Filter_PregReplace();
     }

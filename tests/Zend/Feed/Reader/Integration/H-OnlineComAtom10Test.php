@@ -36,7 +36,7 @@ class Zend_Feed_Reader_Integration_HOnlineComAtom10Test extends \PHPUnit\Framewo
 
     protected $_feedSamplePath = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         Zend_Feed_Reader::reset();
         $this->_feedSamplePath = dirname(__FILE__) . '/_files/h-online.com-atom10.xml';
@@ -49,7 +49,7 @@ class Zend_Feed_Reader_Integration_HOnlineComAtom10Test extends \PHPUnit\Framewo
         Zend_Date::setOptions(['format_type'=>'iso']);
     }
     
-    public function teardown(): void
+    protected function tearDown(): void
     {
         Zend_Date::setOptions($this->_options);
     }

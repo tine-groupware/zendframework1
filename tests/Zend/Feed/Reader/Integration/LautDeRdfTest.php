@@ -36,7 +36,7 @@ class Zend_Feed_Reader_Integration_LautDeRdfTest extends \PHPUnit\Framework\Test
 
     protected $_feedSamplePath = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         Zend_Feed_Reader::reset();
         $this->_feedSamplePath = dirname(__FILE__) . '/_files/laut.de-rdf.xml';
@@ -49,7 +49,7 @@ class Zend_Feed_Reader_Integration_LautDeRdfTest extends \PHPUnit\Framework\Test
         Zend_Date::setOptions(['format_type'=>'iso']);
     }
     
-    public function teardown(): void
+    protected function tearDown(): void
     {
         Zend_Date::setOptions($this->_options);
     }

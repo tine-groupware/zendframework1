@@ -43,7 +43,7 @@ class Zend_Log_Writer_DbTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->tableName = 'db-table-name';
 

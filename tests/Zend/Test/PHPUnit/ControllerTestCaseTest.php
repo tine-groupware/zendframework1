@@ -67,7 +67,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $_SESSION = [];
         $this->expectException(null);
@@ -82,7 +82,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $registry = Zend_Registry::getInstance();
         if (isset($registry['router'])) {

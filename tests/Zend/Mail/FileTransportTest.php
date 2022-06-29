@@ -44,7 +44,7 @@ class Zend_Mail_FileTransportTest extends \PHPUnit\Framework\TestCase
     protected $_transport;
     protected $_tmpdir;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->createdTmpDir = false;
 
@@ -67,7 +67,7 @@ class Zend_Mail_FileTransportTest extends \PHPUnit\Framework\TestCase
         $this->_cleanDir($this->_tmpdir);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_cleanDir($this->_tmpdir);
         if ($this->createdTmpDir) {

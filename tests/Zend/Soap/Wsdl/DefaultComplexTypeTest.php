@@ -44,7 +44,7 @@ class Zend_Soap_Wsdl_DefaultComplexTypeTest extends \PHPUnit\Framework\TestCase
      */
     private $strategy;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->strategy = new Zend_Soap_Wsdl_Strategy_DefaultComplexType();
         $this->wsdl = new Zend_Soap_Wsdl("TestService", "http://framework.zend.com/soap/unittests");

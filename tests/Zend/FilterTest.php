@@ -48,7 +48,7 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->error   = null;
         $this->_filter = new Zend_Filter();
@@ -59,7 +59,7 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Zend_Filter::setDefaultNamespaces([]);
     }

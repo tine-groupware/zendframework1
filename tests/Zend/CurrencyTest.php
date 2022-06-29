@@ -38,7 +38,7 @@ require_once 'Zend/Currency.php';
 class Zend_CurrencyTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
@@ -47,7 +47,7 @@ class Zend_CurrencyTest extends \PHPUnit\Framework\TestCase
         Zend_Currency::setCache($this->_cache);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
     }

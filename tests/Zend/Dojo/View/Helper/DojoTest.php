@@ -72,7 +72,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         $this->view   = $this->getView();
@@ -88,7 +88,7 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
     }
 

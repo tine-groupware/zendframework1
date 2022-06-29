@@ -64,7 +64,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
      *
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->container = new Zend_View_Helper_Placeholder_Container([]);
     }
@@ -75,7 +75,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
      *
      * @return void
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->container);
     }

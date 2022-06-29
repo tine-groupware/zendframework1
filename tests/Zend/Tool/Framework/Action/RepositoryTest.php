@@ -46,12 +46,12 @@ class Zend_Tool_Framework_Action_RepositoryTest extends \PHPUnit\Framework\TestC
      */
     protected $_repository = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         $this->_repository = new Zend_Tool_Framework_Action_Repository();
     }
 
-    public function teardown(): void
+    protected function tearDown(): void
     {
         $this->_repository = null;
     }

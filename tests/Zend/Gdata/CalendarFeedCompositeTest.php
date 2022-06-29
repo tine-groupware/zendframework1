@@ -41,7 +41,7 @@ class Zend_Gdata_CalendarFeedCompositeTest extends \PHPUnit\Framework\TestCase
     /**
       * Called before each test to setup any fixtures.
       */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $eventFeedText = file_get_contents(
                 'Zend/Gdata/Calendar/_files/EventFeedCompositeSample1.xml',

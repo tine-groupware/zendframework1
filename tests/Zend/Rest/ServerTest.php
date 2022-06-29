@@ -55,7 +55,7 @@ class Zend_Rest_ServerTest extends \PHPUnit\Framework\TestCase
         $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (isset($this->request)) {
             $_REQUEST = $this->request;
