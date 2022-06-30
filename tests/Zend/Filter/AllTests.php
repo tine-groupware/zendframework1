@@ -31,10 +31,10 @@ require_once 'Zend/Filter/BooleanTest.php';
 require_once 'Zend/Filter/CallbackTest.php';
 require_once 'Zend/Filter/CompressTest.php';
 require_once 'Zend/Filter/DecompressTest.php';
-require_once 'Zend/Filter/DecryptTest.php';
+// require_once 'Zend/Filter/DecryptTest.php';
 require_once 'Zend/Filter/DigitsTest.php';
 require_once 'Zend/Filter/DirTest.php';
-require_once 'Zend/Filter/EncryptTest.php';
+// require_once 'Zend/Filter/EncryptTest.php';
 require_once 'Zend/Filter/HtmlEntitiesTest.php';
 require_once 'Zend/Filter/InflectorTest.php';
 require_once 'Zend/Filter/InputTest.php';
@@ -122,10 +122,10 @@ class Zend_Filter_AllTests
         $suite->addTestSuite('Zend_Filter_CallbackTest');
         $suite->addTestSuite('Zend_Filter_CompressTest');
         $suite->addTestSuite('Zend_Filter_DecompressTest');
-        $suite->addTestSuite('Zend_Filter_DecryptTest');
+        // $suite->addTestSuite('Zend_Filter_DecryptTest');
         $suite->addTestSuite('Zend_Filter_DigitsTest');
         $suite->addTestSuite('Zend_Filter_DirTest');
-        $suite->addTestSuite('Zend_Filter_EncryptTest');
+        // $suite->addTestSuite('Zend_Filter_EncryptTest');
         $suite->addTestSuite('Zend_Filter_HtmlEntitiesTest');
         $suite->addTestSuite('Zend_Filter_InflectorTest');
         $suite->addTestSuite('Zend_Filter_InputTest');
@@ -170,7 +170,7 @@ class Zend_Filter_AllTests
 */
 
         $suite->addTest(Zend_Filter_Compress_AllTests::suite());
-        $suite->addTest(Zend_Filter_Encrypt_AllTests::suite());
+        // $suite->addTest(Zend_Filter_Encrypt_AllTests::suite());
         $suite->addTest(Zend_Filter_File_AllTests::suite());
         $suite->addTest(Zend_Filter_Word_AllTests::suite());
 
