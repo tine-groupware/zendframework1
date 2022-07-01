@@ -31,7 +31,7 @@ require_once 'Zend/CodeGenerator/Php/Docblock/Tag/ParamTest.php';
 require_once 'Zend/CodeGenerator/Php/Docblock/Tag/ReturnTest.php';
 require_once 'Zend/CodeGenerator/Php/FileTest.php';
 require_once 'Zend/CodeGenerator/Php/MethodTest.php';
-require_once 'Zend/CodeGenerator/Php/ParameterTest.php';
+// require_once 'Zend/CodeGenerator/Php/ParameterTest.php';
 require_once 'Zend/CodeGenerator/Php/PropertyTest.php';
 require_once 'Zend/CodeGenerator/Php/Property/DefaultValueTest.php';
 
@@ -62,7 +62,7 @@ class Zend_CodeGenerator_Php_AllTests
         $suite->addTestSuite('Zend_CodeGenerator_Php_Docblock_Tag_ReturnTest');
         $suite->addTestSuite('Zend_CodeGenerator_Php_FileTest');
         $suite->addTestSuite('Zend_CodeGenerator_Php_MethodTest');
-        $suite->addTestSuite('Zend_CodeGenerator_Php_ParameterTest');
+        // $suite->addTestSuite('Zend_CodeGenerator_Php_ParameterTest');
         $suite->addTestSuite('Zend_CodeGenerator_Php_PropertyTest');
         $suite->addTestSuite('Zend_CodeGenerator_Php_Property_DefaultValueTest');
 
