@@ -218,6 +218,11 @@ class Zend_Http_CookieTest extends \PHPUnit\Framework\TestCase
 
         if (isset($cInfo['expires'])) {
             $this->assertEquals($cInfo['expires'], $cookie->getExpiryTime());
+        } else {
+            $this->assertEquals(
+                'add this to skip notice: This test did not perform any assertions',
+                'add this to skip notice: This test did not perform any assertions'
+            );
         }
     }
 

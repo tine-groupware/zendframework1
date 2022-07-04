@@ -38,7 +38,10 @@ class AllTests
 {
     public static function main()
     {
-        $parameters = [];
+        $parameters = [
+            'configuration' => __DIR__ . '/phpunit.xml',
+            'unavailableExtensions' => []
+        ];
 
         if (TESTS_GENERATE_REPORT && extension_loaded('xdebug')) {
             $parameters['reportDirectory'] = TESTS_GENERATE_REPORT_TARGET;

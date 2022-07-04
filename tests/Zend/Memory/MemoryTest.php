@@ -109,16 +109,16 @@ class Zend_Memory_MemoryTest extends \PHPUnit\Framework\TestCase
     public function providerCacheBackend()
     {
         return [
-            ['Apc'],
-            ['File'],
-            ['Libmemcached'],
-            ['Memcached'],
-            ['Sqlite'],
-            ['TwoLevels'],
-            ['Xcache'],
-            ['ZendPlatform'],
-            ['ZendServer_Disk'],
-            ['ZendServer_ShMem']
+            'Zend_Cache_Backend_Apc' => ['Apc'],
+            'Zend_Cache_Backend_File' => ['File'],
+            'Zend_Cache_Backend_Libmemcached' => ['Libmemcached'],
+            'Zend_Cache_Backend_Memcached' => ['Memcached'],
+            'Zend_Cache_Backend_Sqlite' => ['Sqlite'],
+            'Zend_Cache_Backend_TwoLevels' => ['TwoLevels'],
+            'Zend_Cache_Backend_TwoLevels' => ['Xcache'],
+            'Zend_Cache_Backend_ZendPlatform' => ['ZendPlatform'],
+            'Zend_Cache_Backend_ZendServer_Disk' => ['ZendServer_Disk'],
+            'Zend_Cache_Backend_ZendServer_ShMem    ' => ['ZendServer_ShMem']
         ];
     }
 }

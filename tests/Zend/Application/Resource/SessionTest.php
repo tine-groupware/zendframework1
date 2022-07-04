@@ -85,7 +85,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 
         $this->resource->init();
 
-        $this->assertEquals(1, Zend_Session::getOptions('use_only_cookies'));
+        $this->assertEquals('on', Zend_Session::getOptions('use_only_cookies'));
         $this->assertEquals(7200, Zend_Session::getOptions('remember_me_seconds'));
     }
 

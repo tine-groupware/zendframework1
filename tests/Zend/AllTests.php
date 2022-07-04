@@ -128,11 +128,8 @@ class Zend_AllTests
         // }
 
         (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), [
-            'cacheResult' => false, 
-            'colors' => 'always',
-            'testdoxTextFile' => true,
-            'convertNoticesToExceptions' => true,
-            'convertWarningToExceptions' => true,
+            'configuration' => __DIR__ . '/../phpunit.xml',
+            'unavailableExtensions' => []
         ]);
     }
 
