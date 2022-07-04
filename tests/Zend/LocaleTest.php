@@ -87,6 +87,16 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
         setlocale(LC_ALL, $this->_locale);
     }
 
+    public static function tearDownAfterClass(): void
+    {
+        /**
+         * Fix issue side effect Zend_Locale::$_auto cached when run 
+         * Zend_TranslateTest suite after Zend_LocateTest in same process
+         */
+        putenv("HTTP_ACCEPT_LANGUAGE");
+        Zend_LocaleTestHelper::resetObject();
+    }
+
     /**
      * Test that locale names that have been dropped from CLDR continue to
      * work.
@@ -969,16 +979,6 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext = [])
     {
         $this->_errorOccurred = true;
-    }
-}
-
-class Zend_LocaleTestHelper extends Zend_Locale
-{
-    public static function resetObject()
-    {
-        self::$_auto        = null;
-        self::$_environment = null;
-        self::$_browser     = null;
     }
 }
 

@@ -129,7 +129,8 @@ class Zend_AllTests
 
         (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), [
             'configuration' => __DIR__ . '/../phpunit.xml',
-            'unavailableExtensions' => []
+            'unavailableExtensions' => [],
+            'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
         ]);
     }
 

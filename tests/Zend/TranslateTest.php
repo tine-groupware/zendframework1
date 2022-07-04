@@ -305,12 +305,15 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testUntranslatedMessageWithTriggeredError()
     {
-        $this->expectNotice();
-        $this->expectNoticeMessage("Untranslated message within 'en': ignored");
         $lang = new Zend_Translate(Zend_Translate::AN_CSV, dirname(__FILE__) . '/Translate/Adapter/_files', 'en', ['delimiter' => ',']);
         $this->assertEquals('ignored', $lang->translate('ignored'));
+
+        $this->_errorOccured = false;
         $lang->setOptions(['logUntranslated' => true]);
+        set_error_handler([$this, 'errorHandlerIgnore']);
         $this->assertEquals('ignored', $lang->translate('ignored'));
+        $this->assertTrue($this->_errorOccured);
+        restore_error_handler();
     }
 
     public function testLogUntranslatedMessage()
@@ -333,11 +336,13 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testSettingUnknownLocaleWithTriggeredError()
     {
-        $this->expectNotice();
-        $this->expectNoticeMessage("The language 'ru' has to be added before it can be used.");
         $lang = new Zend_Translate(Zend_Translate::AN_CSV, dirname(__FILE__) . '/Translate/Adapter/_files', 'en', ['delimiter' => ',']);
+        $this->_errorOccured = false;
+        set_error_handler([$this, 'errorHandlerIgnore']);
         $lang->setLocale('ru');
         $this->assertEquals('ru', $lang->getLocale('ru'));
+        $this->assertTrue($this->_errorOccured);
+        restore_error_handler();
     }
 
     public function testSettingUnknownLocaleWritingToLog()
@@ -892,6 +897,21 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 
         rewind($stream);
         $this->assertStringContainsString('ALERT (1)', stream_get_contents($stream));
+    }
+
+    /**
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     *
+     * @param  integer $errno
+     * @param  string  $errstr
+     * @param  string  $errfile
+     * @param  integer $errline
+     * @param  array   $errcontext
+     * @return void
+     */
+    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext = [])
+    {
+        $this->_errorOccured = true;
     }
 
     /**

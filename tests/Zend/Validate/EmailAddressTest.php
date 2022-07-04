@@ -630,6 +630,8 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
     {
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {
             $this->markTestSkipped('idn_to_ascii() is available in intl in PHP 5.3.0+');
+        } else if (!extension_loaded('intl')) {
+            $this->markTestSkipped('idn_to_ascii() is available in intl in PHP 5.3.0+');
         }
         $validator = new Zend_Validate_EmailAddress();
         $validator->setValidateMx(true);
