@@ -210,6 +210,11 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
             $config = new Zend_Config_Xml('I/dont/exist');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
+            /**
+             * Zend_Config_Xml construct missing call restore_error_handler() 
+             * on internal exception handler when xml file not exist.
+             */
+            restore_error_handler(); 
             $this->assertStringContainsString('doesn\'t exist', $expected->getMessage());
         }
     }

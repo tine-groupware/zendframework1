@@ -149,6 +149,7 @@ class Zend_XmlRpc_ResponseTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_errorOccured);
         $this->assertFalse($response->loadXml($invalidResponse));
         $this->assertFalse($this->_errorOccured);
+        restore_error_handler();
     }
 
     /**

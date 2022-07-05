@@ -54,6 +54,11 @@ class Zend_Validate_CcnumTest extends \PHPUnit\Framework\TestCase
         $this->_validator = new Zend_Validate_Ccnum();
     }
 
+    protected function tearDown(): void
+    {
+        restore_error_handler();
+    }
+
     /**
      * Ensures that the validator follows expected behavior
      *
@@ -71,7 +76,6 @@ class Zend_Validate_CcnumTest extends \PHPUnit\Framework\TestCase
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $this->_validator->isValid($input));
         }
-        restore_error_handler();
     }
 
     /**
@@ -82,7 +86,6 @@ class Zend_Validate_CcnumTest extends \PHPUnit\Framework\TestCase
     public function testGetMessages()
     {
         $this->assertEquals([], $this->_validator->getMessages());
-        restore_error_handler();
     }
 
     /**

@@ -325,6 +325,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $string = @$this->helper->toString();
         $this->assertEquals('', $string);
         $this->assertTrue(is_string($this->error));
+        restore_error_handler();
     }
 
     public function testHeadMetaHelperCreatesItemEntry()

@@ -120,18 +120,19 @@ class Zend_AllTests
 {
     public static function main()
     {
+        $arguments = [
+            'configuration' => __DIR__ . '/../phpunit.xml',
+            'unavailableExtensions' => [],
+            'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
+        ];
         // Run buffered tests as a separate suite first
         // ob_start();
         // (new \PHPUnit\TextUI\TestRunner)->run(self::suiteBuffered());
         // if (ob_get_level()) {
         //     ob_end_flush();
         // }
-
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), [
-            'configuration' => __DIR__ . '/../phpunit.xml',
-            'unavailableExtensions' => [],
-            'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
-        ]);
+        
+        (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), $arguments);
     }
 
     /**

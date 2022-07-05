@@ -717,15 +717,16 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
     /**
      * @doesNotPerformAssertions
      */
-    function testStreamWarningRewind()
-    {
-        $httpClient = new Zend_Http_Client();
-        $httpClient->setUri('http://example.org');
-        $httpClient->setMethod(Zend_Http_Client::GET);
-        ob_start();
-        $httpClient->setStream('php://output')->request();
-        ob_clean();
-    }
+    // function testStreamWarningRewind()
+    // {
+    //     $httpClient = new Zend_Http_Client();
+    //     $httpClient->setUri('http://example.org');
+    //     $httpClient->setMethod(Zend_Http_Client::GET);
+    //     ob_start();
+    //     $httpClient->setStream('php://output')->request();
+    //     ob_clean();
+    // }
+
     /**
      * Data providers
      */

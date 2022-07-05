@@ -334,6 +334,7 @@ class Zend_Log_LogTest extends \PHPUnit\Framework\TestCase
         restore_error_handler(); // Pop off the verifyHandlerData
         error_reporting($oldErrorLevel); // Restore original reporting level
         unset($this->errWriter);
+        restore_error_handler();
     }
 
     /**
