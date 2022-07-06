@@ -3,7 +3,7 @@
     bootstrap="./TestHelper.php" 
     colors="true"
     testdox="true"
-    cacheResult ="false"
+    cacheResult="false"
     convertDeprecationsToExceptions="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"

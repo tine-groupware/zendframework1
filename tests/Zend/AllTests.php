@@ -123,11 +123,11 @@ class Zend_AllTests
         $arguments = [
             'configuration' => __DIR__ . '/../phpunit.xml',
             'unavailableExtensions' => [],
-            'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
+            // 'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
         ];
         // Run buffered tests as a separate suite first
         // ob_start();
-        // (new \PHPUnit\TextUI\TestRunner)->run(self::suiteBuffered());
+        // (new \PHPUnit\TextUI\TestRunner)->run(self::suiteBuffered(), $arguments);
         // if (ob_get_level()) {
         //     ob_end_flush();
         // }
@@ -150,7 +150,7 @@ class Zend_AllTests
         // These tests require no output be sent prior to running as they rely
         // on internal PHP functions
         $suite->addTestSuite('Zend_OpenIdTest');
-        // $suite->addTest(Zend_OpenId_AllTests::suite());
+        $suite->addTest(Zend_OpenId_AllTests::suite());
         // $suite->addTest(Zend_Session_AllTests::suite());
         // $suite->addTest(Zend_Soap_AllTests::suite());
 
@@ -205,7 +205,7 @@ class Zend_AllTests
         $suite->addTest(Zend_Http_AllTests::suite());
         $suite->addTestSuite('Zend_JsonTest');
         $suite->addTest(Zend_Json_AllTests::suite());
-        // $suite->addTest(Zend_Layout_AllTests::suite());
+        $suite->addTest(Zend_Layout_AllTests::suite());
         // $suite->addTest(Zend_Ldap_AllTests::suite());
         $suite->addTestSuite('Zend_LoaderTest');
         $suite->addTest(Zend_Loader_AllTests::suite());

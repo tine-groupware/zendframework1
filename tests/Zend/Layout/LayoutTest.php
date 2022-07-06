@@ -528,8 +528,8 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $layout = new Zend_Layout([
             'view' => new Zend_Layout_Test_MinimalCustomView(),
             'ViewScriptPath' => 'some/path'
-            ]);
-        $layout->render();
+        ]);
+        $this->assertNull($layout->render());
     }
 
     /**
