@@ -203,10 +203,10 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
 
         $this->assertFalse($view->doctype()->isHtml5());
         $this->assertNull($actual);
-
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
         $registry->deleteContainer('Zend_View_Helper_HeadMeta');
         $registry->deleteContainer('Zend_View_Helper_Doctype');
+        Zend_Registry::_unsetInstance();
     }
     
     /**

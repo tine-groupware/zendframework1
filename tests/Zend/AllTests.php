@@ -122,6 +122,7 @@ class Zend_AllTests
     {
         $arguments = [
             'configuration' => __DIR__ . '/../phpunit.xml',
+            'extensions' => [],
             'unavailableExtensions' => [],
             // 'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
         ];
@@ -131,7 +132,7 @@ class Zend_AllTests
         // if (ob_get_level()) {
         //     ob_end_flush();
         // }
-        
+
         (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), $arguments);
     }
 
