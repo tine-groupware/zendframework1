@@ -57,7 +57,7 @@ require_once 'Zend/Gdata/AllTests.php';
 require_once 'Zend/Http/AllTests.php';
 require_once 'Zend/JsonTest.php';
 require_once 'Zend/Json/AllTests.php';
-// require_once 'Zend/Layout/AllTests.php';
+require_once 'Zend/Layout/AllTests.php';
 // require_once 'Zend/Ldap/AllTests.php';
 require_once 'Zend/LoaderTest.php';
 require_once 'Zend/Loader/AllTests.php';

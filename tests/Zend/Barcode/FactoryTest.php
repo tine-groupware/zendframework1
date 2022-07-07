@@ -22,6 +22,7 @@
 
 require_once 'Zend/Barcode.php';
 require_once 'Zend/Config.php';
+require_once 'Zend/Barcode/Renderer/Exception.php';
 
 /**
  * @category   Zend

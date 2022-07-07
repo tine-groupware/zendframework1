@@ -31,6 +31,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  */
 require_once 'Zend/Locale.php';
 require_once 'Zend/Cache.php';
+require_once 'Zend/LocaleTestHelper.php';
 
 /**
  * @category   Zend
