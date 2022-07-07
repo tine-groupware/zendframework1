@@ -265,7 +265,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     public function testResourceAddAndGetOne()
     {
         $resourceArea = new Zend_Acl_Resource('area');
-        $resource = $this->_acl->add($resourceArea)
+        $resource = $this->_acl->addResource($resourceArea)
                           ->get($resourceArea->getResourceId());
         $this->assertTrue($resourceArea === $resource);
         $resource = $this->_acl->get($resourceArea);
@@ -306,7 +306,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     public function testResourceRemoveOne()
     {
         $resourceArea = new Zend_Acl_Resource('area');
-        $this->_acl->add($resourceArea)
+        $this->_acl->addResource($resourceArea)
                    ->remove($resourceArea);
         $this->assertFalse($this->_acl->has($resourceArea));
     }
@@ -334,7 +334,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     public function testResourceRemoveAll()
     {
         $resourceArea = new Zend_Acl_Resource('area');
-        $this->_acl->add($resourceArea)
+        $this->_acl->addResource($resourceArea)
                    ->removeAll();
         $this->assertFalse($this->_acl->has($resourceArea));
     }
@@ -347,7 +347,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     public function testResourceAddInheritsNonExistent()
     {
         try {
-            $this->_acl->add(new Zend_Acl_Resource('area'), 'nonexistent');
+            $this->_acl->addResource(new Zend_Acl_Resource('area'), 'nonexistent');
             $this->fail('Expected Zend_Acl_Exception not thrown upon specifying a non-existent parent');
         } catch (Zend_Acl_Exception $e) {
             $this->assertStringContainsString('does not exist', $e->getMessage());
@@ -362,7 +362,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     public function testResourceInheritsNonExistent()
     {
         $resourceArea = new Zend_Acl_Resource('area');
-        $this->_acl->add($resourceArea);
+        $this->_acl->addResource($resourceArea);
         try {
             $this->_acl->inherits('nonexistent', $resourceArea);
             $this->fail('Expected Zend_Acl_Exception not thrown upon specifying a non-existent child Resource');
@@ -387,9 +387,9 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $resourceCity     = new Zend_Acl_Resource('city');
         $resourceBuilding = new Zend_Acl_Resource('building');
         $resourceRoom     = new Zend_Acl_Resource('room');
-        $this->_acl->add($resourceCity)
-                   ->add($resourceBuilding, $resourceCity->getResourceId())
-                   ->add($resourceRoom, $resourceBuilding);
+        $this->_acl->addResource($resourceCity)
+                   ->addResource($resourceBuilding, $resourceCity->getResourceId())
+                   ->addResource($resourceRoom, $resourceBuilding);
         $this->assertTrue($this->_acl->inherits($resourceBuilding, $resourceCity, true));
         $this->assertTrue($this->_acl->inherits($resourceRoom, $resourceBuilding, true));
         $this->assertTrue($this->_acl->inherits($resourceRoom, $resourceCity));
@@ -409,8 +409,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     {
         try {
             $resourceArea = new Zend_Acl_Resource('area');
-            $this->_acl->add($resourceArea)
-                       ->add($resourceArea);
+            $this->_acl->addResource($resourceArea)
+                       ->addResource($resourceArea);
             $this->fail('Expected exception not thrown upon adding same Resource twice');
         } catch (Zend_Acl_Exception $e) {
             $this->assertStringContainsString('already exists', $e->getMessage());
@@ -427,8 +427,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         try {
             $resourceArea1 = new Zend_Acl_Resource('area');
             $resourceArea2 = new Zend_Acl_Resource('area');
-            $this->_acl->add($resourceArea1)
-                       ->add($resourceArea2);
+            $this->_acl->addResource($resourceArea1)
+                       ->addResource($resourceArea2);
             $this->fail('Expected exception not thrown upon adding two Resources with same ID');
         } catch (Zend_Acl_Exception $e) {
             $this->assertStringContainsString('already exists', $e->getMessage());
@@ -757,8 +757,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     {
         $this->_acl->addRole(new Zend_Acl_Role('guest'))
                    ->addRole(new Zend_Acl_Role('staff'), 'guest')
-                   ->add(new Zend_Acl_Resource('area1'))
-                   ->add(new Zend_Acl_Resource('area2'))
+                   ->addResource(new Zend_Acl_Resource('area1'))
+                   ->addResource(new Zend_Acl_Resource('area2'))
                    ->deny()
                    ->allow('staff')
                    ->deny('staff', ['area1', 'area2']);
@@ -846,7 +846,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testRulesResourceRemove()
     {
-        $this->_acl->add(new Zend_Acl_Resource('area'))
+        $this->_acl->addResource(new Zend_Acl_Resource('area'))
                    ->allow(null, 'area');
         $this->assertTrue($this->_acl->isAllowed(null, 'area'));
         $this->_acl->remove('area');
@@ -856,7 +856,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Acl_Exception $e) {
             $this->assertStringContainsString('not found', $e->getMessage());
         }
-        $this->_acl->add(new Zend_Acl_Resource('area'));
+        $this->_acl->addResource(new Zend_Acl_Resource('area'));
         $this->assertFalse($this->_acl->isAllowed(null, 'area'));
     }
 
@@ -867,7 +867,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testRulesResourceRemoveAll()
     {
-        $this->_acl->add(new Zend_Acl_Resource('area'))
+        $this->_acl->addResource(new Zend_Acl_Resource('area'))
                    ->allow(null, 'area');
         $this->assertTrue($this->_acl->isAllowed(null, 'area'));
         $this->_acl->removeAll();
@@ -877,7 +877,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Acl_Exception $e) {
             $this->assertStringContainsString('not found', $e->getMessage());
         }
-        $this->_acl->add(new Zend_Acl_Resource('area'));
+        $this->_acl->addResource(new Zend_Acl_Resource('area'));
         $this->assertFalse($this->_acl->isAllowed(null, 'area'));
     }
 
@@ -949,12 +949,12 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->_acl->isAllowed('administrator'));
 
         // Some checks on specific areas, which inherit access controls from the root ACL node
-        $this->_acl->add(new Zend_Acl_Resource('newsletter'))
-                   ->add(new Zend_Acl_Resource('pending'), 'newsletter')
-                   ->add(new Zend_Acl_Resource('gallery'))
-                   ->add(new Zend_Acl_Resource('profiles', 'gallery'))
-                   ->add(new Zend_Acl_Resource('config'))
-                   ->add(new Zend_Acl_Resource('hosts'), 'config');
+        $this->_acl->addResource(new Zend_Acl_Resource('newsletter'))
+                   ->addResource(new Zend_Acl_Resource('pending'), 'newsletter')
+                   ->addResource(new Zend_Acl_Resource('gallery'))
+                   ->addResource(new Zend_Acl_Resource('profiles', 'gallery'))
+                   ->addResource(new Zend_Acl_Resource('config'))
+                   ->addResource(new Zend_Acl_Resource('hosts'), 'config');
         $this->assertTrue($this->_acl->isAllowed('guest', 'pending', 'view'));
         $this->assertTrue($this->_acl->isAllowed('staff', 'profiles', 'revise'));
         $this->assertTrue($this->_acl->isAllowed('staff', 'pending', 'view'));
@@ -973,15 +973,15 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->_acl->allow('marketing', 'newsletter', ['publish', 'archive']);
 
         // Allow marketing to publish and archive latest news
-        $this->_acl->add(new Zend_Acl_Resource('news'))
-                   ->add(new Zend_Acl_Resource('latest'), 'news');
+        $this->_acl->addResource(new Zend_Acl_Resource('news'))
+                   ->addResource(new Zend_Acl_Resource('latest'), 'news');
         $this->_acl->allow('marketing', 'latest', ['publish', 'archive']);
 
         // Deny staff (and marketing, by inheritance) rights to revise latest news
         $this->_acl->deny('staff', 'latest', 'revise');
 
         // Deny everyone access to archive news announcements
-        $this->_acl->add(new Zend_Acl_Resource('announcement'), 'news');
+        $this->_acl->addResource(new Zend_Acl_Resource('announcement'), 'news');
         $this->_acl->deny(null, 'announcement', 'archive');
 
         // Access control checks for the above refined permission sets
@@ -1076,7 +1076,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $someResource = new Zend_Acl_Resource('someResource');
         $someRole     = new Zend_Acl_Role('someRole');
 
-        $acl->add($someResource)
+        $acl->addResource($someResource)
             ->addRole($someRole);
 
         $nullValue     = null;
@@ -1184,13 +1184,13 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetRegisteredRoles()
     {
-        $this->expectNotice();
         $acl = $this->_acl;
         $acl->addRole('developer');
-
+        set_error_handler(fn($errno, $errstr) => true, E_USER_NOTICE);
         $roles = $acl->getRegisteredRoles();
+        restore_error_handler();
         $this->assertIsArray($roles);
-        $this->assertEmpty($roles);
+        $this->assertCount(1, $roles);
     }
 
     /**
@@ -1259,17 +1259,10 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8468
-     * @doesNotPerformAssertions
      */
     public function testGetRegisteredRolesIsDeprecated() {
-        try {
-            $this->_acl->getRegisteredRoles();
-            $this->fail('getRegisteredRoles() did not throw an exception');
-        } catch(\PHPUnit\Framework\Error\Notice $e) {
-            return;
-        }
-
-        $this->fail('An expected notice has not been raised');
+        $this->expectNotice();
+        $this->_acl->getRegisteredRoles();
     }
 
     /**
@@ -1294,8 +1287,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     public function testgetResources() {
         $this->assertEquals([],$this->_acl->getResources());
 
-        $this->_acl->add(new Zend_Acl_Resource('someResource'));
-        $this->_acl->add(new Zend_Acl_Resource('someOtherResource'));
+        $this->_acl->addResource(new Zend_Acl_Resource('someResource'));
+        $this->_acl->addResource(new Zend_Acl_Resource('someOtherResource'));
 
         $expected = ['someResource', 'someOtherResource'];
         $this->assertEquals($expected, $this->_acl->getResources());
