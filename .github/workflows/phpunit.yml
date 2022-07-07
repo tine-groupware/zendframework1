@@ -3,7 +3,7 @@ name: run PHPUnit-9
 on: [push, pull_request]
 
 jobs:
-  phpunit-on-php-8:
+  phpunit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,3 +16,4 @@ jobs:
         uses: docker://jakzal/phpqa:php8.0-alpine
         with:
           args: /tools/phpunit --bootstrap tests/TestHelper.php tests/Zend/AllTests.php
+          

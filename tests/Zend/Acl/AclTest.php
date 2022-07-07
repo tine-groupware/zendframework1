@@ -1186,7 +1186,12 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     {
         $acl = $this->_acl;
         $acl->addRole('developer');
-        set_error_handler(fn($errno, $errstr) => true, E_USER_NOTICE);
+        set_error_handler(
+            function($errno, $errstr) {
+                return true; 
+            },
+            E_USER_NOTICE
+        );
         $roles = $acl->getRegisteredRoles();
         restore_error_handler();
         $this->assertIsArray($roles);
