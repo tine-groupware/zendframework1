@@ -91,6 +91,7 @@ class resources_languages_Zend_ValidateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests if the given language is really a language
+     * @doesNotPerformAssertions
      */
     public function testIsLocale()
     {
@@ -103,6 +104,7 @@ class resources_languages_Zend_ValidateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests if all english original keys have the same translations
+     * @doesNotPerformAssertions
      */
     public function testEnglishKeySameAsValue()
     {
@@ -122,6 +124,7 @@ class resources_languages_Zend_ValidateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests if all translation keys are also available in the english original
+     * @doesNotPerformAssertions
      */
     public function testTranslationAvailableInEnglish()
     {
@@ -147,6 +150,7 @@ class resources_languages_Zend_ValidateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests if the key is translated
+     * @doesNotPerformAssertions
      */
     public function testTranslationDiffersFromEnglish()
     {
@@ -172,6 +176,7 @@ class resources_languages_Zend_ValidateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests if all placeholders from the original are also available within the translation
+     * @doesNotPerformAssertions
      */
     public function testPlaceholder()
     {

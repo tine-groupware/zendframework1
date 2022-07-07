@@ -40,7 +40,9 @@ class AllTests
     {
         $parameters = [
             'configuration' => __DIR__ . '/phpunit.xml',
-            'unavailableExtensions' => []
+            'extensions' => [],
+            'unavailableExtensions' => [],
+            // 'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
         ];
 
         if (TESTS_GENERATE_REPORT && extension_loaded('xdebug')) {
@@ -53,11 +55,11 @@ class AllTests
         }
 
         // Run buffered tests as a separate suite first
-        ob_start();
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suiteBuffered(), $parameters);
-        if (ob_get_level()) {
-            ob_end_flush();
-        }
+        // ob_start();
+        // (new \PHPUnit\TextUI\TestRunner)->run(self::suiteBuffered(), $parameters);
+        // if (ob_get_level()) {
+        //     ob_end_flush();
+        // }
 
         (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), $parameters);
     }
