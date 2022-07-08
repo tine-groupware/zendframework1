@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+
 use PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -45,7 +47,7 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends TestCase
 
     public function testInsertDataSetUsingAdapterInsert()
     {
-        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__) . "/_files/insertFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->at(0))
@@ -67,7 +69,7 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends TestCase
     {
         $this->expectException('PHPUnit_Extensions_Database_Operation_Exception');
 
-        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__) . "/_files/insertFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())->method('insert')->will($this->throwException(new Exception()));

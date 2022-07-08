@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,9 +55,8 @@ class Zend_Form_Decorator_FileTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_FileTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_FileTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -198,29 +199,29 @@ class Zend_Form_Decorator_FileTest extends TestCase
     {
         if (!is_numeric($setting)) {
             $type = strtoupper(substr($setting, -1));
-            $setting = (integer) substr($setting, 0, -1);
+            $setting = (int) substr($setting, 0, -1);
 
             switch ($type) {
-                case 'M' :
+                case 'M':
                     $setting *= 1024;
                     break;
 
-                case 'G' :
+                case 'G':
                     $setting *= 1024 * 1024;
                     break;
 
-                default :
+                default:
                     break;
             }
         }
 
-        return (integer) $setting;
+        return (int) $setting;
     }
 }
 
 class Zend_View_Helper_FormFileMock extends Zend_View_Helper_FormElement
 {
-    public function formFileMock($name, $attribs=NULL)
+    public function formFileMock($name, $attribs = null)
     {
         return "FormFileMock";
     }

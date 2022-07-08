@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -47,7 +49,6 @@ require_once '_files/EmptyLoader.php';
  */
 class Zend_Tool_Framework_RegistryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->_registry = new Zend_Tool_Framework_Registry();
@@ -137,6 +138,4 @@ class Zend_Tool_Framework_RegistryTest extends TestCase
         $this->expectException(Zend_Tool_Framework_Exception::class);
         $this->_registry->enableRegistryOnObject(new ArrayObject());
     }
-
 }
-

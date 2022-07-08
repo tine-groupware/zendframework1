@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -58,9 +60,8 @@ class Zend_Controller_Action_Helper_JsonTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Action_Helper_JsonTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Action_Helper_JsonTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -175,7 +177,8 @@ class Zend_XmlRpc_ServerTest extends TestCase
             ['test1' => 'argv-argument',
                 'test2' => null,
                 'arg' => ['argv-argument']],
-            $response->getReturnValue());
+            $response->getReturnValue()
+        );
     }
 
     public function testSettingClassWithArgumentsOnlyPassingToConstructor()
@@ -393,9 +396,12 @@ class Zend_XmlRpc_ServerTest extends TestCase
         $this->assertTrue(is_array($returns));
         $this->assertEquals(2, count($returns), var_export($returns, 1));
         $this->assertTrue(is_array($returns[0]), var_export($returns[0], 1));
-        $this->assertSame([
+        $this->assertSame(
+            [
             'faultCode' => 620, 'faultString' => 'Method "undefined" does not exist'],
-            $returns[1], var_export($returns[1], 1));
+            $returns[1],
+            var_export($returns[1], 1)
+        );
     }
 
     /**
@@ -416,7 +422,7 @@ class Zend_XmlRpc_ServerTest extends TestCase
     public function testRequestResponseEncoding()
     {
         $response = $this->_server->handle();
-        $request  = $this->_server->getRequest();
+        $request = $this->_server->getRequest();
 
         $this->assertEquals('UTF-8', $request->getEncoding());
         $this->assertEquals('UTF-8', $response->getEncoding());
@@ -429,7 +435,7 @@ class Zend_XmlRpc_ServerTest extends TestCase
     {
         $this->_server->setEncoding('ISO-8859-1');
         $response = $this->_server->handle();
-        $request  = $this->_server->getRequest();
+        $request = $this->_server->getRequest();
 
         $this->assertEquals('ISO-8859-1', $request->getEncoding());
         $this->assertEquals('ISO-8859-1', $response->getEncoding());
@@ -568,11 +574,11 @@ class Zend_XmlRpc_ServerTest extends TestCase
             ],
             [
                 'methodName' => 'system.listMethods',
-                'params'     => ''
+                'params' => ''
             ],
             [
                 'methodName' => 'system.multicall',
-                'params'     => []
+                'params' => []
             ]
         ];
         $returned = $this->_server->multicall($try);
@@ -611,8 +617,8 @@ class Zend_XmlRpc_ServerTest extends TestCase
     public function testCanMarshalBase64Requests()
     {
         $this->_server->setClass('Zend_XmlRpc_Server_testClass', 'test');
-        $data    = base64_encode('this is the payload');
-        $param   = ['type' => 'base64', 'value' => $data];
+        $data = base64_encode('this is the payload');
+        $param = ['type' => 'base64', 'value' => $data];
         $request = new Zend_XmlRpc_Request('test.base64', [$param]);
 
         $response = $this->_server->handle($request);

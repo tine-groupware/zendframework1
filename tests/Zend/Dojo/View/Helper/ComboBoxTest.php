@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_ComboBoxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_ComboBoxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_ComboBox();
         $this->helper->setView($this->view);
     }
@@ -185,10 +187,10 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends TestCase
             'elementId',
             'someCombo',
             [
-                'store'       => 'stateStore',
-                'storeType'   => 'dojo.data.ItemFileReadStore',
+                'store' => 'stateStore',
+                'storeType' => 'dojo.data.ItemFileReadStore',
                 'storeParams' => ['url' => 'states.txt'],
-                'searchAttr'  => 'name',
+                'searchAttr' => 'name',
             ]
         );
         if (!preg_match('/(<input[^>]*(dojoType="dijit.form.ComboBox"))/', $html, $m)) {
@@ -210,7 +212,7 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends TestCase
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic(true);
         $html = $this->getElementAsRemoter();
 
-        $js   = $this->view->dojo()->getJavascript();
+        $js = $this->view->dojo()->getJavascript();
         $this->assertContains('var stateStore;', $js);
 
         $onLoad = $this->view->dojo()->_getZendLoadActions();

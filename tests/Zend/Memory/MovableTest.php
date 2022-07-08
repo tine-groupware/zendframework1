@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Memory_Manager_Dummy extends Zend_Memory_Manager
     public function processUpdate(Zend_Memory_Container_Movable $container, $id)
     {
         $this->processUpdatePassed = true;
-        $this->processedId         = $id;
-        $this->processedObject     = $container;
+        $this->processedId = $id;
+        $this->processedObject = $container;
     }
 }
 
@@ -128,13 +130,13 @@ class Zend_Memory_Container_MovableTest extends TestCase
         $memoryManager = new Zend_Memory_Manager_Dummy();
         $memObject = new Zend_Memory_Container_Movable($memoryManager, 10, '0123456789');
 
-        $this->assertFalse((boolean)$memObject->isLocked());
+        $this->assertFalse((bool)$memObject->isLocked());
 
         $memObject->lock();
-        $this->assertTrue((boolean)$memObject->isLocked());
+        $this->assertTrue((bool)$memObject->isLocked());
 
         $memObject->unlock();
-        $this->assertFalse((boolean)$memObject->isLocked());
+        $this->assertFalse((bool)$memObject->isLocked());
     }
 
     /**

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_Server_Method_ParameterTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Server_Method_ParameterTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Server_Method_ParameterTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -167,12 +169,12 @@ class Zend_Server_Method_ParameterTest extends TestCase
 
     public function testParameterShouldSerializeToArray()
     {
-        $type         = 'string';
-        $name         = 'foo';
-        $optional     = true;
+        $type = 'string';
+        $name = 'foo';
+        $optional = true;
         $defaultValue = 'bar';
-        $description  = 'Foo bar!';
-        $parameter    = compact('type', 'name', 'optional', 'defaultValue', 'description');
+        $description = 'Foo bar!';
+        $parameter = compact('type', 'name', 'optional', 'defaultValue', 'description');
         $this->parameter->setType($type)
                         ->setName($name)
                         ->setOptional($optional)
@@ -184,14 +186,14 @@ class Zend_Server_Method_ParameterTest extends TestCase
 
     public function testConstructorShouldSetObjectStateFromPassedOptions()
     {
-        $type         = 'string';
-        $name         = 'foo';
-        $optional     = true;
+        $type = 'string';
+        $name = 'foo';
+        $optional = true;
         $defaultValue = 'bar';
-        $description  = 'Foo bar!';
-        $options      = compact('type', 'name', 'optional', 'defaultValue', 'description');
-        $parameter    = new Zend_Server_Method_Parameter($options);
-        $test         = $parameter->toArray();
+        $description = 'Foo bar!';
+        $options = compact('type', 'name', 'optional', 'defaultValue', 'description');
+        $parameter = new Zend_Server_Method_Parameter($options);
+        $test = $parameter->toArray();
         $this->assertEquals($options, $test);
     }
 }

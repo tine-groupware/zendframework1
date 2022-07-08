@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,37 +37,43 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_Gapps_PropertyTest extends TestCase
 {
-
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->thePropertyText = file_get_contents(
-                'Zend/Gdata/Gapps/_files/PropertyElementSample1.xml',
-                true);
+            'Zend/Gdata/Gapps/_files/PropertyElementSample1.xml',
+            true
+        );
         $this->theProperty = new Zend_Gdata_Gapps_Extension_Property();
     }
 
-    public function testEmptyPropertyShouldHaveNoExtensionElements() {
+    public function testEmptyPropertyShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->theProperty->extensionElements));
         $this->assertTrue(count($this->theProperty->extensionElements) == 0);
     }
 
-    public function testEmptyPropertyShouldHaveNoExtensionAttributes() {
+    public function testEmptyPropertyShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->theProperty->extensionAttributes));
         $this->assertTrue(count($this->theProperty->extensionAttributes) == 0);
     }
 
-    public function testSamplePropertyShouldHaveNoExtensionElements() {
+    public function testSamplePropertyShouldHaveNoExtensionElements()
+    {
         $this->theProperty->transferFromXML($this->thePropertyText);
         $this->assertTrue(is_array($this->theProperty->extensionElements));
         $this->assertTrue(count($this->theProperty->extensionElements) == 0);
     }
 
-    public function testSamplePropertyShouldHaveNoExtensionAttributes() {
+    public function testSamplePropertyShouldHaveNoExtensionAttributes()
+    {
         $this->theProperty->transferFromXML($this->thePropertyText);
         $this->assertTrue(is_array($this->theProperty->extensionAttributes));
         $this->assertTrue(count($this->theProperty->extensionAttributes) == 0);
     }
 
-    public function testNormalPropertyShouldHaveNoExtensionElements() {
+    public function testNormalPropertyShouldHaveNoExtensionElements()
+    {
         $this->theProperty->name = "foo";
         $this->theProperty->value = "bar";
 
@@ -91,7 +99,8 @@ class Zend_Gdata_Gapps_PropertyTest extends TestCase
         $this->assertEquals("bar", $newProperty2->value);
     }
 
-    public function testEmptyPropertyToAndFromStringShouldMatch() {
+    public function testEmptyPropertyToAndFromStringShouldMatch()
+    {
         $propertyXml = $this->theProperty->saveXML();
         $newProperty = new Zend_Gdata_Gapps_Extension_Property();
         $newProperty->transferFromXML($propertyXml);
@@ -99,7 +108,8 @@ class Zend_Gdata_Gapps_PropertyTest extends TestCase
         $this->assertTrue($propertyXml == $newPropertyXml);
     }
 
-    public function testPropertyWithValueToAndFromStringShouldMatch() {
+    public function testPropertyWithValueToAndFromStringShouldMatch()
+    {
         $this->theProperty->name = "foo2";
         $this->theProperty->value = "bar2";
         $propertyXml = $this->theProperty->saveXML();
@@ -111,10 +121,11 @@ class Zend_Gdata_Gapps_PropertyTest extends TestCase
         $this->assertEquals("bar2", $this->theProperty->value);
     }
 
-    public function testExtensionAttributes() {
+    public function testExtensionAttributes()
+    {
         $extensionAttributes = $this->theProperty->extensionAttributes;
-        $extensionAttributes['foo1'] = ['name'=>'foo1', 'value'=>'bar'];
-        $extensionAttributes['foo2'] = ['name'=>'foo2', 'value'=>'rab'];
+        $extensionAttributes['foo1'] = ['name' => 'foo1', 'value' => 'bar'];
+        $extensionAttributes['foo2'] = ['name' => 'foo2', 'value' => 'rab'];
         $this->theProperty->extensionAttributes = $extensionAttributes;
         $this->assertEquals('bar', $this->theProperty->extensionAttributes['foo1']['value']);
         $this->assertEquals('rab', $this->theProperty->extensionAttributes['foo2']['value']);
@@ -125,10 +136,10 @@ class Zend_Gdata_Gapps_PropertyTest extends TestCase
         $this->assertEquals('rab', $newProperty->extensionAttributes['foo2']['value']);
     }
 
-    public function testConvertFullNameToAndFromString() {
+    public function testConvertFullNameToAndFromString()
+    {
         $this->theProperty->transferFromXML($this->thePropertyText);
         $this->assertEquals("Some Name", $this->theProperty->name);
         $this->assertEquals("Some Value", $this->theProperty->value);
     }
-
 }

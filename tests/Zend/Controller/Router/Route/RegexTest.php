@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Controller/Router/Route/Regex.php';
  */
 class Zend_Controller_Router_Route_RegexTest extends TestCase
 {
-
     public function testStaticMatch()
     {
         $route = new Zend_Controller_Router_Route_Regex('users/all');
@@ -106,10 +107,10 @@ class Zend_Controller_Router_Route_RegexTest extends TestCase
 
     public function testNegativeMatch()
     {
-
-        $route = new Zend_Controller_Router_Route_Regex('((?!admin|moderator).+)',
-           ['module' => 'index', 'controller' => 'index'],
-           [1 => 'action']
+        $route = new Zend_Controller_Router_Route_Regex(
+            '((?!admin|moderator).+)',
+            ['module' => 'index', 'controller' => 'index'],
+            [1 => 'action']
         );
 
         $values = $route->match('users');
@@ -327,7 +328,8 @@ class Zend_Controller_Router_Route_RegexTest extends TestCase
         try {
             $url = $route->assemble();
             $this->fail();
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
     }
 
     public function testAssembleWithDefaultWithoutMatch()
@@ -370,7 +372,7 @@ class Zend_Controller_Router_Route_RegexTest extends TestCase
             ['module' => 'default', 'controller' => 'content.item', 'action' => 'forward'],
             [1 => 'name', 2 => 'id', 3 => 'class'],
             '%s.%s-%s.html'
-         );
+        );
 
         $route->match('uml-explained-composition.72-3.html');
 
@@ -408,7 +410,6 @@ class Zend_Controller_Router_Route_RegexTest extends TestCase
         $values = $route->match('forum/1');
 
         $this->assertSame('ctrl', $values['controller']);
-
     }
 
     /**
@@ -440,7 +441,6 @@ class Zend_Controller_Router_Route_RegexTest extends TestCase
 
         // check to make sure that the assembly can reset a single parameter
         $this->assertEquals('itemlist/1', $route->assemble(['page' => null]));
-
     }
 
     /**
@@ -452,7 +452,7 @@ class Zend_Controller_Router_Route_RegexTest extends TestCase
             'blog/archive/(.+)-(.+)\.html',
             [
                 'controller' => 'blog',
-                'action'     => 'view'
+                'action' => 'view'
             ],
             [
                 1 => 'name',
@@ -503,7 +503,7 @@ class Zend_Controller_Router_Route_RegexTest extends TestCase
         );
 
         $url = $route->assemble([
-            'lang'  => 'fi',
+            'lang' => 'fi',
             'title' => 'Suomi'
         ], true, true);
 

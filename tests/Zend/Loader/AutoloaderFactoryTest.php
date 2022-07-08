@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Loader_AutoloaderFactoryTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -218,7 +220,7 @@ class Zend_Loader_AutoloaderFactoryTest extends TestCase
         $loader = array_shift($loaders);
         $this->assertTrue($loader instanceof Zend_Loader_StandardAutoloader);
 
-        $test  = [$loader, 'autoload'];
+        $test = [$loader, 'autoload'];
         $found = false;
         foreach (spl_autoload_functions() as $function) {
             if ($function === $test) {

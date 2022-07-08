@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Loader/AutoloaderFactory.php';
  */
 class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends TestCase
 {
-
     /**
      * @var array
      */
@@ -50,8 +51,8 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void

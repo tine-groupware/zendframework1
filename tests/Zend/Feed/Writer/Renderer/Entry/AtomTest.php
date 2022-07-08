@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,13 +38,12 @@ require_once 'Zend/Version.php';
  */
 class Zend_Feed_Writer_Renderer_Entry_AtomTest extends TestCase
 {
-
     protected $_validWriter = null;
     protected $_validEntry = null;
 
     protected function setUp(): void
     {
-        $this->_validWriter = new Zend_Feed_Writer_Feed;
+        $this->_validWriter = new Zend_Feed_Writer_Feed();
 
         $this->_validWriter->setType('atom');
 
@@ -169,7 +170,7 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends TestCase
 
     public function testEntryIncludesLinkToHtmlVersionOfFeed()
     {
-        $renderer= new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
+        $renderer = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
         $this->assertEquals('http://www.example.com/1', $entry->getLink());
@@ -182,9 +183,9 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends TestCase
         $entry = $feed->current();
         $author = $entry->getAuthor();
         $this->assertEquals([
-            'name'=>'Jane',
-            'email'=>'jane@example.com',
-            'uri'=>'http://www.example.com/jane'], $entry->getAuthor());
+            'name' => 'Jane',
+            'email' => 'jane@example.com',
+            'uri' => 'http://www.example.com/jane'], $entry->getAuthor());
     }
 
     public function testEntryHoldsAnyEnclosureAdded()
@@ -278,16 +279,16 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends TestCase
     public function testCategoriesCanBeSet()
     {
         $this->_validEntry->addCategories([
-            ['term'=>'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2']
+            ['term' => 'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2']
         ]);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $atomFeed->render();
         $feed = Zend_Feed_Reader::importString($atomFeed->saveXml());
         $entry = $feed->current();
         $expected = [
-            ['term'=>'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
+            ['term' => 'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
         ];
         $this->assertEquals($expected, (array) $entry->getCategories());
     }
@@ -296,8 +297,8 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends TestCase
     {
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validEntry->setCommentFeedLinks([
-            ['uri'=>'http://www.example.com/atom/id/1','type'=>'atom'],
-            ['uri'=>'http://www.example.com/rss/id/1','type'=>'rss'],
+            ['uri' => 'http://www.example.com/atom/id/1', 'type' => 'atom'],
+            ['uri' => 'http://www.example.com/rss/id/1', 'type' => 'rss'],
         ]);
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
@@ -305,5 +306,4 @@ class Zend_Feed_Writer_Renderer_Entry_AtomTest extends TestCase
         //$this->assertEquals('http://www.example.com/rss/id/1', $entry->getCommentFeedLink('rss'));
         $this->assertEquals('http://www.example.com/atom/id/1', $entry->getCommentFeedLink('atom'));
     }
-
 }

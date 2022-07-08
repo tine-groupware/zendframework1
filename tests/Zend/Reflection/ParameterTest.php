@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,8 +39,7 @@ require_once 'Zend/Reflection/Parameter.php';
  */
 class Zend_Reflection_ParameterTest extends TestCase
 {
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -81,10 +82,9 @@ class Zend_Reflection_ParameterTest extends TestCase
     public function paramTypeTestProvider()
     {
         return [
-            ['one','int'],
-            ['two','int'],
-            ['three','string'],
+            ['one', 'int'],
+            ['two', 'int'],
+            ['three', 'string'],
         ];
     }
 }
-

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -57,8 +59,8 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -82,7 +84,7 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
 
         $this->loader = new Zend_Loader_Autoloader_Resource([
             'namespace' => 'FooBar',
-            'basePath'  => realpath(dirname(__FILE__) . '/_files'),
+            'basePath' => realpath(dirname(__FILE__) . '/_files'),
         ]);
     }
 
@@ -183,7 +185,7 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
     {
         $this->loader->addResourceTypes([
             'model' => ['path' => 'models', 'namespace' => 'Model'],
-            'form'  => ['path' => 'forms', 'namespace' => 'Form'],
+            'form' => ['path' => 'forms', 'namespace' => 'Form'],
         ]);
         $resources = $this->loader->getResourceTypes();
         $this->assertContains('model', array_keys($resources));
@@ -206,11 +208,11 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
     {
         $this->loader->addResourceTypes([
             'model' => ['path' => 'models', 'namespace' => 'Model'],
-            'form'  => ['path' => 'forms', 'namespace' => 'Form'],
+            'form' => ['path' => 'forms', 'namespace' => 'Form'],
         ]);
 
         $this->loader->setResourceTypes([
-            'view'   => ['path' => 'views', 'namespace' => 'View'],
+            'view' => ['path' => 'views', 'namespace' => 'View'],
             'layout' => ['path' => 'layouts', 'namespace' => 'Layout'],
         ]);
 
@@ -238,7 +240,7 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
     {
         $this->loader->addResourceTypes([
             'model' => ['path' => 'models', 'namespace' => 'Model'],
-            'form'  => ['path' => 'forms', 'namespace' => 'Form'],
+            'form' => ['path' => 'forms', 'namespace' => 'Form'],
         ]);
         $this->loader->removeResourceType('form');
 
@@ -290,7 +292,7 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
         ]);
         $object = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
         $this->assertTrue($object instanceof FooBar_Form_ZendLoaderAutoloaderResourceTest);
-        $test   = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
+        $test = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
         $this->assertSame($object, $test);
     }
 
@@ -298,7 +300,7 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
     {
         $loader = new Zend_Loader_Autoloader_Resource([
             'namespace' => '',
-            'basePath'  => realpath(dirname(__FILE__) . '/_files'),
+            'basePath' => realpath(dirname(__FILE__) . '/_files'),
         ]);
         $loader->addResourceTypes([
             'service' => ['path' => 'services', 'namespace' => 'Service'],
@@ -409,24 +411,24 @@ class Zend_Loader_Autoloader_ResourceTest extends TestCase
     {
         // namespace is after resourceTypes - fails in ZF 1.11.1
         $data = [
-            'basePath'      => 'path/to/some/directory',
+            'basePath' => 'path/to/some/directory',
             'resourceTypes' => [
                 'acl' => [
-                    'path'      => 'acls/',
+                    'path' => 'acls/',
                     'namespace' => 'Acl',
                 ]
             ],
-            'namespace'     => 'My'
+            'namespace' => 'My'
         ];
         $loader1 = new Zend_Loader_Autoloader_Resource($data);
 
         // namespace is defined before resourceTypes - always worked as expected
         $data = [
-            'basePath'      => 'path/to/some/directory',
-            'namespace'     => 'My',
+            'basePath' => 'path/to/some/directory',
+            'namespace' => 'My',
             'resourceTypes' => [
                 'acl' => [
-                    'path'      => 'acls/',
+                    'path' => 'acls/',
                     'namespace' => 'Acl',
                 ]
             ]

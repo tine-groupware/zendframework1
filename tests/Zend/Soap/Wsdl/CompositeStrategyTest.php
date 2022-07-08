@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -54,8 +56,8 @@ class Zend_Soap_Wsdl_CompositeStrategyTest extends TestCase
         $bookStrategy = $strategy->getStrategyOfType("Book");
         $cookieStrategy = $strategy->getStrategyOfType("Cookie");
 
-        $this->assertTrue( $bookStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex );
-        $this->assertTrue( $cookieStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence );
+        $this->assertTrue($bookStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex);
+        $this->assertTrue($cookieStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence);
     }
 
     public function testConstructorTypeMapSyntax()
@@ -67,8 +69,8 @@ class Zend_Soap_Wsdl_CompositeStrategyTest extends TestCase
         $bookStrategy = $strategy->getStrategyOfType("Book");
         $cookieStrategy = $strategy->getStrategyOfType("Cookie");
 
-        $this->assertTrue( $bookStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex );
-        $this->assertTrue( $cookieStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence );
+        $this->assertTrue($bookStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeComplex);
+        $this->assertTrue($cookieStrategy instanceof Zend_Soap_Wsdl_Strategy_ArrayOfTypeSequence);
     }
 
     public function testCompositeThrowsExceptionOnInvalidType()
@@ -77,7 +79,7 @@ class Zend_Soap_Wsdl_CompositeStrategyTest extends TestCase
         try {
             $strategy->connectTypeToStrategy([], "strategy");
             $this->fail();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Soap_Wsdl_Exception);
         }
     }
@@ -90,14 +92,14 @@ class Zend_Soap_Wsdl_CompositeStrategyTest extends TestCase
         try {
             $book = $strategy->getStrategyOfType("Book");
             $this->fail();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Soap_Wsdl_Exception);
         }
 
         try {
             $book = $strategy->getStrategyOfType("Anything");
             $this->fail();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Soap_Wsdl_Exception);
         }
     }
@@ -122,7 +124,7 @@ class Zend_Soap_Wsdl_CompositeStrategyTest extends TestCase
         try {
             $strategy->addComplexType("Test");
             $this->fail();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Soap_Wsdl_Exception);
         }
     }

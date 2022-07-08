@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_CellQueryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->docQuery = new Zend_Gdata_Spreadsheets_CellQuery();
@@ -135,5 +136,4 @@ class Zend_Gdata_Spreadsheets_CellQueryTest extends TestCase
         $this->docQuery->setVisibility('xyz');
         $this->assertTrue($this->docQuery->getVisibility() == 'xyz');
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -29,13 +31,12 @@ require_once 'Zend/Service/ShortUrl/BitLy.php';
  */
 class Zend_Service_ShortUrl_BitLyTest extends TestCase
 {
-
     /**
      * reset zend service http client
      *
      * @return void
      */
-    public function setUp (): void
+    public function setUp(): void
     {
         if (!defined('TESTS_ZEND_SERVICE_SHORTURL_BITLY_ENABLED')
             || !constant('TESTS_ZEND_SERVICE_SHORTURL_BITLY_ENABLED')
@@ -86,8 +87,8 @@ class Zend_Service_ShortUrl_BitLyTest extends TestCase
         $clientResponse->expects($this->once())->method('getBody')->will($this->returnValue('http://bit.ly/ZFramework'));
 
         $client = $this->createMock('Zend_Http_Client');
-        $client->expects($this->any())->method('setParameterGet')->with($this->anything(),$this->anything());
-        $client->expects($this->at(0))->method('setParameterGet')->with('access_token',$accessToken);
+        $client->expects($this->any())->method('setParameterGet')->with($this->anything(), $this->anything());
+        $client->expects($this->at(0))->method('setParameterGet')->with('access_token', $accessToken);
         $client->expects($this->once())->method('request')->will($this->returnValue($clientResponse));
 
         $s = new Zend_Service_ShortUrl_BitLy($accessToken);
@@ -105,9 +106,9 @@ class Zend_Service_ShortUrl_BitLyTest extends TestCase
         $clientResponse->expects($this->once())->method('getBody')->will($this->returnValue('http://bit.ly/ZFramework'));
 
         $client = $this->createMock('Zend_Http_Client');
-        $client->expects($this->any())->method('setParameterGet')->with($this->anything(),$this->anything());
-        $client->expects($this->at(0))->method('setParameterGet')->with('login',$login);
-        $client->expects($this->at(1))->method('setParameterGet')->with('apiKey',$apiKey);
+        $client->expects($this->any())->method('setParameterGet')->with($this->anything(), $this->anything());
+        $client->expects($this->at(0))->method('setParameterGet')->with('login', $login);
+        $client->expects($this->at(1))->method('setParameterGet')->with('apiKey', $apiKey);
         $client->expects($this->once())->method('request')->will($this->returnValue($clientResponse));
 
         $s = new Zend_Service_ShortUrl_BitLy($login, $apiKey);

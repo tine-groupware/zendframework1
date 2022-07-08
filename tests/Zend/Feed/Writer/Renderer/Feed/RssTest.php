@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,12 +38,11 @@ require_once 'Zend/Version.php';
  */
 class Zend_Feed_Writer_Renderer_Feed_RssTest extends TestCase
 {
-
     protected $_validWriter = null;
 
     protected function setUp(): void
     {
-        $this->_validWriter = new Zend_Feed_Writer_Feed;
+        $this->_validWriter = new Zend_Feed_Writer_Feed();
         $this->_validWriter->setTitle('This is a test feed.');
         $this->_validWriter->setDescription('This is a test description.');
         $this->_validWriter->setLink('http://www.example.com');
@@ -56,7 +57,7 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends TestCase
 
     public function testSetsWriterInConstructor()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $feed = new Zend_Feed_Writer_Renderer_Feed_Rss($writer);
         $this->assertTrue($feed->getDataContainer() instanceof Zend_Feed_Writer_Feed);
     }
@@ -277,7 +278,7 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends TestCase
         $atomFeed->render();
         $feed = Zend_Feed_Reader::importString($atomFeed->saveXml());
         $author = $feed->getAuthor();
-        $this->assertEquals(['name'=>'Joe'], $feed->getAuthor());
+        $this->assertEquals(['name' => 'Joe'], $feed->getAuthor());
     }
 
     /**
@@ -290,7 +291,7 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends TestCase
         $atomFeed->render();
         $feed = Zend_Feed_Reader::importString($atomFeed->saveXml());
         $author = $feed->getAuthor();
-        $this->assertEquals(['name'=>'<>&\'"áéíóú'], $feed->getAuthor());
+        $this->assertEquals(['name' => '<>&\'"áéíóú'], $feed->getAuthor());
     }
 
     public function testCopyrightCanBeSet()
@@ -317,15 +318,15 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends TestCase
     public function testCategoriesCanBeSet()
     {
         $this->_validWriter->addCategories([
-            ['term'=>'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2']
+            ['term' => 'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2']
         ]);
         $rssFeed = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $rssFeed->render();
         $feed = Zend_Feed_Reader::importString($rssFeed->saveXml());
         $expected = [
-            ['term'=>'cat_dog', 'label' => 'cat_dog', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
+            ['term' => 'cat_dog', 'label' => 'cat_dog', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
         ];
         $this->assertEquals($expected, (array) $feed->getCategories());
     }
@@ -336,15 +337,15 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends TestCase
     public function testCategoriesCharDataEncoding()
     {
         $this->_validWriter->addCategories([
-            ['term'=>'<>&\'"áéíóú', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2']
+            ['term' => '<>&\'"áéíóú', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2']
         ]);
         $rssFeed = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $rssFeed->render();
         $feed = Zend_Feed_Reader::importString($rssFeed->saveXml());
         $expected = [
-            ['term'=>'<>&\'"áéíóú', 'label' => '<>&\'"áéíóú', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
+            ['term' => '<>&\'"áéíóú', 'label' => '<>&\'"áéíóú', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
         ];
         $this->assertEquals($expected, (array) $feed->getCategories());
     }
@@ -547,6 +548,4 @@ class Zend_Feed_Writer_Renderer_Feed_RssTest extends TestCase
         $rssFeed = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $rssFeed->render();
     }
-
-
 }

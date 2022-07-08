@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Markup.php';
  */
 class Zend_Markup_FactoryTest extends TestCase
 {
-
     /**
      * @doesNotPerformAssertions
      */
@@ -48,7 +49,6 @@ class Zend_Markup_FactoryTest extends TestCase
 
         Zend_Markup::factory('MockParser', 'MockRenderer');
     }
-
 }
 
 // Call Zend_Markup_BbcodeTest::main() if this source file is executed directly.

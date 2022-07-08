@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -76,10 +78,10 @@ class Zend_Feed_AbstractFeedTest extends TestCase
     public function prepareFeed($filename)
     {
         $basePath = dirname(__FILE__) . '/_files/';
-        $path     = $basePath . $filename;
-        $remote   = str_replace('.xml', '.remote.xml', $filename);
-        $string   = file_get_contents($path);
-        $string   = str_replace('XXE_URI', $this->baseUri . '/xxe-info.txt', $string);
+        $path = $basePath . $filename;
+        $remote = str_replace('.xml', '.remote.xml', $filename);
+        $string = file_get_contents($path);
+        $string = str_replace('XXE_URI', $this->baseUri . '/xxe-info.txt', $string);
         file_put_contents($basePath . '/' . $remote, $string);
         return $remote;
     }

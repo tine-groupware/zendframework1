@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,9 +51,8 @@ class Zend_Form_Element_CaptchaTest extends TestCase
 {
     public static function main()
     {
-
-        $suite  = new TestSuite('Zend_Form_Element_CaptchaTest');
-        (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Form_Element_CaptchaTest');
+        (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -93,7 +94,7 @@ class Zend_Form_Element_CaptchaTest extends TestCase
     {
         $this->element->addPrefixPath('My_Captcha', 'My/Captcha/', 'captcha');
         $loader = $this->element->getPluginLoader('captcha');
-        $paths  = $loader->getPaths('My_Captcha');
+        $paths = $loader->getPaths('My_Captcha');
         $this->assertTrue(is_array($paths));
     }
 
@@ -101,7 +102,7 @@ class Zend_Form_Element_CaptchaTest extends TestCase
     {
         $this->element->addPrefixPath('My', 'My');
         $loader = $this->element->getPluginLoader('captcha');
-        $paths  = $loader->getPaths('My_Captcha');
+        $paths = $loader->getPaths('My_Captcha');
         $this->assertTrue(is_array($paths));
     }
 
@@ -115,9 +116,9 @@ class Zend_Form_Element_CaptchaTest extends TestCase
             [
                  'prefixPath' => [
                      'prefix' => 'Zend_Form_Element_CaptchaTest',
-                     'path'   => dirname(__FILE__) . '/_files',
+                     'path' => dirname(__FILE__) . '/_files',
                  ],
-                 'captcha'    => 'Foo',
+                 'captcha' => 'Foo',
             ]
         );
 
@@ -138,7 +139,7 @@ class Zend_Form_Element_CaptchaTest extends TestCase
         $form = new Zend_Form();
         $form->addElement($this->element)
              ->setElementsBelongTo('bar');
-        $html = $form->render(new Zend_View);
+        $html = $form->render(new Zend_View());
         $this->assertStringContainsString('name="bar[foo', $html, $html);
         $this->assertStringContainsString('id="bar-foo-', $html, $html);
         $this->form = $form;
@@ -152,11 +153,11 @@ class Zend_Form_Element_CaptchaTest extends TestCase
     {
         $this->testCaptchaShouldRenderFullyQualifiedElementName();
         $word = $this->element->getCaptcha()->getWord();
-        $id   = $this->element->getCaptcha()->getId();
+        $id = $this->element->getCaptcha()->getId();
         $data = [
             'bar' => [
                 'foo' => [
-                    'id'    => $id,
+                    'id' => $id,
                     'input' => $word,
                 ]
             ]
@@ -246,9 +247,9 @@ class Zend_Form_Element_CaptchaTest extends TestCase
         
         $options = [
             'privKey' => 'privateKey',
-            'pubKey'  => 'publicKey',
-            'ssl'     => true,
-            'xhtml'   => true,
+            'pubKey' => 'publicKey',
+            'ssl' => true,
+            'xhtml' => true,
         ];
         $this->element->setCaptcha(new Zend_Captcha_ReCaptcha($options));
         
@@ -290,7 +291,7 @@ class Zend_Form_Element_CaptchaTest extends TestCase
         $element = new Zend_Form_Element_Captcha(
             'foo',
             [
-                'captcha'        => 'Dumb',
+                'captcha' => 'Dumb',
                 'captchaOptions' => [
                     'sessionClass' => 'Zend_Form_Element_CaptchaTest_SessionContainer',
                 ],
@@ -318,12 +319,12 @@ class Zend_Form_Element_CaptchaTest extends TestCase
         $element = new Zend_Form_Element_Captcha(
             'foo',
             [
-                'captcha'        => 'Dumb',
+                'captcha' => 'Dumb',
                 'captchaOptions' => [
                     'sessionClass' => 'Zend_Form_Element_CaptchaTest_SessionContainer',
                 ],
                 'disableLoadDefaultDecorators' => true,
-                'decorators'                   => [
+                'decorators' => [
                     'Description',
                     'Errors',
                     'Captcha_Word',
@@ -367,7 +368,7 @@ class Zend_Form_Element_CaptchaTest extends TestCase
         $element = new Zend_Form_Element_Captcha(
             'foo',
             [
-                'captcha'        => 'Dumb',
+                'captcha' => 'Dumb',
                 'captchaOptions' => [
                     'sessionClass' => 'Zend_Form_Element_CaptchaTest_SessionContainer',
                 ],
@@ -423,7 +424,7 @@ class Zend_Form_Element_CaptchaTest extends TestCase
         }
         $this->element->addPrefixPath('My\Captcha', 'My/Captcha/', 'captcha');
         $loader = $this->element->getPluginLoader('captcha');
-        $paths  = $loader->getPaths('My\Captcha');
+        $paths = $loader->getPaths('My\Captcha');
         $this->assertTrue(is_array($paths));
     }
     
@@ -438,7 +439,7 @@ class Zend_Form_Element_CaptchaTest extends TestCase
         }
         $this->element->addPrefixPath('My\\', 'My/');
         $loader = $this->element->getPluginLoader('captcha');
-        $paths  = $loader->getPaths('My\Captcha');
+        $paths = $loader->getPaths('My\Captcha');
         $this->assertTrue(is_array($paths));
     }
 }
@@ -475,7 +476,7 @@ class Zend_Form_Element_CaptchaTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== self::$_word))  {
+        if (('word' == $name) && (null !== self::$_word)) {
             return true;
         }
 

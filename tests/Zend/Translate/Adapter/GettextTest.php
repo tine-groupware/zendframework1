@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Translate_Adapter_GettextTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Translate_Adapter_GettextTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Translate_Adapter_GettextTest");
+        $result = (new TestRunner())->run($suite);
         Zend_Translate_Adapter_Gettext::removeCache();
     }
 
@@ -129,17 +131,17 @@ class Zend_Translate_Adapter_GettextTest extends TestCase
         $adapter = new Zend_Translate_Adapter_Gettext(dirname(__FILE__) . '/_files/translation_en.mo', 'en');
         $adapter->setOptions(['testoption' => 'testkey']);
         $expected = [
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => dirname(__FILE__) . '/_files/translation_en.mo',
-            'scan'            => null,
-            'locale'          => 'en',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => dirname(__FILE__) . '/_files/translation_en.mo',
+            'scan' => null,
+            'locale' => 'en',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         ];
         $options = $adapter->getOptions();
 
@@ -263,7 +265,8 @@ class Zend_Translate_Adapter_GettextTest extends TestCase
     public function testPluralToPlural()
     {
         $adapter = new Zend_Translate_Adapter_Gettext(
-            dirname(__FILE__) . '/_files/translation_plural_fr.mo', 'fr'
+            dirname(__FILE__) . '/_files/translation_plural_fr.mo',
+            'fr'
         );
 
         $this->assertEquals(
@@ -286,7 +289,8 @@ class Zend_Translate_Adapter_GettextTest extends TestCase
     public function testPluralToSingular()
     {
         $adapter = new Zend_Translate_Adapter_Gettext(
-            dirname(__FILE__) . '/_files/translation_plural_tr.mo', 'tr'
+            dirname(__FILE__) . '/_files/translation_plural_tr.mo',
+            'tr'
         );
 
         $this->assertEquals(

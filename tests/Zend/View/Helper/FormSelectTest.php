@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,8 +53,8 @@ class Zend_View_Helper_FormSelectTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormSelectTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormSelectTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -63,7 +65,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormSelect();
         $this->helper->setView($this->view);
     }
@@ -159,7 +161,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanDisableEntireSelect()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar'
@@ -178,7 +180,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanDisableIndividualSelectOptionsOnly()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar'
@@ -211,7 +213,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanDisableMultipleSelectOptions()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar',
@@ -232,7 +234,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanDisableOptGroups()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => [
@@ -257,7 +259,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanDisableOptGroupOptions()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => [
@@ -279,7 +281,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanSpecifySelectMultipleThroughAttribute()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar',
@@ -295,7 +297,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testSpecifyingSelectMultipleThroughAttributeAppendsNameWithBrackets()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar',
@@ -311,7 +313,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanSpecifySelectMultipleThroughName()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz[]',
+            'name' => 'baz[]',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar',
@@ -327,7 +329,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testNameCanContainBracketsButNotBeMultiple()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz[]',
+            'name' => 'baz[]',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar',
@@ -341,13 +343,13 @@ class Zend_View_Helper_FormSelectTest extends TestCase
         $this->assertDoesNotMatchRegularExpression('/<select[^>]*?(multiple="multiple")/', $html, $html);
     }
 
-    /** 
+    /**
      * @group ZF-8252
      */
     public function testOptGroupHasAnId()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz',
+            'name' => 'baz',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => [
@@ -363,7 +365,7 @@ class Zend_View_Helper_FormSelectTest extends TestCase
     public function testCanApplyOptionClasses()
     {
         $html = $this->helper->formSelect([
-            'name'    => 'baz[]',
+            'name' => 'baz[]',
             'options' => [
                 'foo' => 'Foo',
                 'bar' => 'Bar',

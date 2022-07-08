@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -51,7 +53,7 @@ class Zend_FilterTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->error   = null;
+        $this->error = null;
         $this->_filter = new Zend_Filter();
     }
 

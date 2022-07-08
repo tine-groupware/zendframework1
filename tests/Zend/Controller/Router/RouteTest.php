@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -69,12 +71,12 @@ class Zend_Controller_Router_RouteTest extends TestCase
         unset($_SERVER['HTTP_HOST'],
             $_SERVER['HTTPS'], $_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
 
-       // Set translator
-       $translator = new Zend_Translate('array', ['foo' => 'en_foo', 'bar' => 'en_bar'], 'en');
-       $translator->addTranslation(['foo' => 'de_foo', 'bar' => 'de_bar'], 'de');
-       $translator->setLocale('en');
+        // Set translator
+        $translator = new Zend_Translate('array', ['foo' => 'en_foo', 'bar' => 'en_bar'], 'en');
+        $translator->addTranslation(['foo' => 'de_foo', 'bar' => 'de_bar'], 'de');
+        $translator->setLocale('en');
 
-       Zend_Registry::set('Zend_Translate', $translator);
+        Zend_Registry::set('Zend_Translate', $translator);
     }
 
     /**
@@ -443,15 +445,15 @@ class Zend_Controller_Router_RouteTest extends TestCase
     public function testAssembleWithGivenDataEqualsDefaults()
     {
         $route = new Zend_Controller_Router_Route('index/*', [
-            'module'     => 'default',
+            'module' => 'default',
             'controller' => 'index',
-            'action'     => 'index'
+            'action' => 'index'
         ]);
 
         $this->assertEquals('index', $route->assemble([
-            'module'     => 'default',
+            'module' => 'default',
             'controller' => 'index',
-            'action'     => 'index'
+            'action' => 'index'
         ]));
     }
 
@@ -469,8 +471,10 @@ class Zend_Controller_Router_RouteTest extends TestCase
 
     public function testGetDefaults()
     {
-        $route = new Zend_Controller_Router_Route('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+        $route = new Zend_Controller_Router_Route(
+            'users/all',
+            ['controller' => 'ctrl', 'action' => 'act']
+        );
 
         $values = $route->getDefaults();
 
@@ -481,8 +485,10 @@ class Zend_Controller_Router_RouteTest extends TestCase
 
     public function testGetDefault()
     {
-        $route = new Zend_Controller_Router_Route('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+        $route = new Zend_Controller_Router_Route(
+            'users/all',
+            ['controller' => 'ctrl', 'action' => 'act']
+        );
 
         $this->assertEquals('ctrl', $route->getDefault('controller'));
         $this->assertEquals(null, $route->getDefault('bogus'));
@@ -507,7 +513,6 @@ class Zend_Controller_Router_RouteTest extends TestCase
         $values = $route->match('users/all');
 
         $this->assertEquals('ctrl', $values['controller']);
-
     }
 
     public function testAssembleResetDefaults()
@@ -648,7 +653,6 @@ class Zend_Controller_Router_RouteTest extends TestCase
         $this->assertEquals('en', $values['lang']);
         $this->assertEquals('tmp', $values['temp']);
         $this->assertEquals('en/tmp', $route->getMatchedPath());
-
     }
 
     /**
@@ -657,14 +661,14 @@ class Zend_Controller_Router_RouteTest extends TestCase
     public function testStaticTranslationAssemble()
     {
         $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url   = $route->assemble();
+        $url = $route->assemble();
 
         $this->assertEquals('foo/en_foo', $url);
     }
 
     public function testStaticTranslationMatch()
     {
-        $route  = new Zend_Controller_Router_Route('foo/@foo');
+        $route = new Zend_Controller_Router_Route('foo/@foo');
         $values = $route->match('foo/en_foo');
 
         $this->assertTrue(is_array($values));
@@ -673,14 +677,14 @@ class Zend_Controller_Router_RouteTest extends TestCase
     public function testDynamicTranslationAssemble()
     {
         $route = new Zend_Controller_Router_Route('foo/:@myvar');
-        $url   = $route->assemble(['myvar' => 'foo']);
+        $url = $route->assemble(['myvar' => 'foo']);
 
         $this->assertEquals('foo/en_foo', $url);
     }
 
     public function testDynamicTranslationMatch()
     {
-        $route  = new Zend_Controller_Router_Route('foo/:@myvar');
+        $route = new Zend_Controller_Router_Route('foo/:@myvar');
         $values = $route->match('foo/en_foo');
 
         $this->assertEquals($values['myvar'], 'foo');
@@ -688,7 +692,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
 
     public function testTranslationMatchWrongLanguage()
     {
-        $route  = new Zend_Controller_Router_Route('foo/@foo');
+        $route = new Zend_Controller_Router_Route('foo/@foo');
         $values = $route->match('foo/de_foo');
 
         $this->assertFalse($values);
@@ -697,7 +701,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
     public function testTranslationAssembleLocaleInstanceOverride()
     {
         $route = new Zend_Controller_Router_Route('foo/@foo', null, null, null, 'de');
-        $url   = $route->assemble();
+        $url = $route->assemble();
 
         $this->assertEquals('foo/de_foo', $url);
     }
@@ -705,7 +709,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
     public function testTranslationAssembleLocaleParamOverride()
     {
         $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url   = $route->assemble(['@locale' => 'de']);
+        $url = $route->assemble(['@locale' => 'de']);
 
         $this->assertEquals('foo/de_foo', $url);
     }
@@ -715,7 +719,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
         Zend_Controller_Router_Route::setDefaultLocale('de');
 
         $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url   = $route->assemble();
+        $url = $route->assemble();
 
         $this->assertEquals('foo/de_foo', $url);
     }
@@ -725,7 +729,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
         Zend_Registry::set('Zend_Locale', 'de');
 
         $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url   = $route->assemble();
+        $url = $route->assemble();
 
         $this->assertEquals('foo/de_foo', $url);
     }
@@ -735,7 +739,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
         $translator = new Zend_Translate('array', ['foo' => 'en_baz'], 'en');
 
         $route = new Zend_Controller_Router_Route('foo/@foo', null, null, $translator);
-        $url   = $route->assemble();
+        $url = $route->assemble();
 
         $this->assertEquals('foo/en_baz', $url);
     }
@@ -747,7 +751,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
         Zend_Controller_Router_Route::setDefaultTranslator($translator);
 
         $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url   = $route->assemble();
+        $url = $route->assemble();
 
         $this->assertEquals('foo/en_baz', $url);
     }
@@ -759,7 +763,7 @@ class Zend_Controller_Router_RouteTest extends TestCase
         Zend_Registry::set('Zend_Translate', $translator);
 
         $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url   = $route->assemble();
+        $url = $route->assemble();
 
         $this->assertEquals('foo/en_baz', $url);
     }

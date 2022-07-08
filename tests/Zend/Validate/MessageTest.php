@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,8 +55,8 @@ class Zend_Validate_MessageTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -101,7 +103,8 @@ class Zend_Validate_MessageTest extends TestCase
     public function testSetMessageDefaultKey()
     {
         $this->_validator->setMessage(
-            'Your value is too short', Zend_Validate_StringLength::TOO_SHORT
+            'Your value is too short',
+            Zend_Validate_StringLength::TOO_SHORT
         );
 
         $this->assertFalse($this->_validator->isValid('abc'));
@@ -187,8 +190,10 @@ class Zend_Validate_MessageTest extends TestCase
             );
             $this->fail('Expected to catch Zend_Validate_Exception');
         } catch (Zend_Exception $e) {
-            $this->assertTrue($e instanceof Zend_Validate_Exception,
-                'Expected exception of type Zend_Validate_Exception, got ' . get_class($e));
+            $this->assertTrue(
+                $e instanceof Zend_Validate_Exception,
+                'Expected exception of type Zend_Validate_Exception, got ' . get_class($e)
+            );
             $this->assertEquals("No message template exists for key '$keyInvalid'", $e->getMessage());
         }
     }
@@ -204,7 +209,7 @@ class Zend_Validate_MessageTest extends TestCase
     {
         $this->_validator->setMessages(
             [
-                Zend_Validate_StringLength::TOO_LONG  => 'Your value is too long',
+                Zend_Validate_StringLength::TOO_LONG => 'Your value is too long',
                 Zend_Validate_StringLength::TOO_SHORT => 'Your value is too short'
             ]
         );
@@ -265,8 +270,10 @@ class Zend_Validate_MessageTest extends TestCase
             $property = $this->_validator->unknownProperty;
             $this->fail('Expected to catch Zend_Validate_Exception');
         } catch (Zend_Exception $e) {
-            $this->assertTrue($e instanceof Zend_Validate_Exception,
-                'Expected exception of type Zend_Validate_Exception, got ' . get_class($e));
+            $this->assertTrue(
+                $e instanceof Zend_Validate_Exception,
+                'Expected exception of type Zend_Validate_Exception, got ' . get_class($e)
+            );
             $this->assertEquals("No property exists by the name 'unknownProperty'", $e->getMessage());
         }
     }
@@ -310,7 +317,6 @@ class Zend_Validate_MessageTest extends TestCase
         $messages = $this->_validator->getMessages();
         $this->assertEquals('variables: %notvar% 4 8 ', current($messages));
     }
-
 }
 
 // Call Zend_Validate_MessageTest::main() if this source file is executed directly.

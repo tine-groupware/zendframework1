@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_CellTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->cell = new Zend_Gdata_Spreadsheets_Extension_Cell();
@@ -64,5 +65,4 @@ class Zend_Gdata_Spreadsheets_CellTest extends TestCase
         $this->assertTrue($this->cell->getInputValue() == $newCell->getInputValue());
         $this->assertTrue($this->cell->getNumericValue() == $newCell->getNumericValue());
     }
-
 }

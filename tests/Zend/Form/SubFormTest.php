@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Form_SubFormTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Form_SubFormTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Form_SubFormTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -127,9 +129,9 @@ class Zend_Form_SubFormTest extends TestCase
         ]);
         $form = new Zend_Form();
         $form->addSubForm($subForm, 'foobar')
-             ->setView(new Zend_View);
+             ->setView(new Zend_View());
         $html = $form->render();
-        $this->assertStringContainsString('>&#160;</dt>', $html  );
+        $this->assertStringContainsString('>&#160;</dt>', $html);
     }
 
     /**
@@ -157,8 +159,8 @@ class Zend_Form_SubFormTest extends TestCase
         $form->addSubForm($subForm, 0);
         $form->addSubForm($subForm, 234);
         $form2 = clone $form;
-        $this->assertEquals($form2->getSubForm(234)->getName(),234);
-        $this->assertEquals($form2->getSubForm(0)->getName(),0);
+        $this->assertEquals($form2->getSubForm(234)->getName(), 234);
+        $this->assertEquals($form2->getSubForm(0)->getName(), 0);
     }
 }
 

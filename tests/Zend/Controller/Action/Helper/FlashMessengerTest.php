@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -82,8 +84,8 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Controller_Action_Helper_FlashMessengerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Action_Helper_FlashMessengerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -102,15 +104,15 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends TestCase
         }
         Zend_Session::start();
 
-        $this->front      = Zend_Controller_Front::getInstance();
+        $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
         $this->front->setControllerDirectory(dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . '_files');
         $this->front->returnResponse(true);
-        $this->request    = new Zend_Controller_Request_Http();
+        $this->request = new Zend_Controller_Request_Http();
         $this->request->setControllerName('helper-flash-messenger');
-        $this->response   = new Zend_Controller_Response_Cli();
+        $this->response = new Zend_Controller_Response_Cli();
         $this->controller = new HelperFlashMessengerController($this->request, $this->response, []);
-        $this->helper     = new Zend_Controller_Action_Helper_FlashMessenger;
+        $this->helper = new Zend_Controller_Action_Helper_FlashMessenger();
     }
 
     public function testLoadFlashMessenger()
@@ -198,13 +200,13 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends TestCase
      */
     public function testSimulateCrossRequestMessagePassing()
     {
-        $helper = new FlashMessengerControllerActionHelper;
+        $helper = new FlashMessengerControllerActionHelper();
         $helper->addMessage('testmessage', 'foobar');
         $helper->addMessage('defaultmessage');
 
         // Reset and recreate the helper, essentially faking a subsequent request
         $helper->reset();
-        $helper = new FlashMessengerControllerActionHelper;
+        $helper = new FlashMessengerControllerActionHelper();
 
         // Check the contents
         $this->assertFalse($helper->hasCurrentMessages('foobar'));
@@ -228,12 +230,15 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends TestCase
  */
 class FlashMessengerControllerActionHelper extends Zend_Controller_Action_Helper_FlashMessenger
 {
-    public function getName() { return 'FlashMessenger'; }
+    public function getName()
+    {
+        return 'FlashMessenger';
+    }
 
     public function reset()
     {
         self::$_messages = [];
-        self::$_session = NULL;
+        self::$_session = null;
         self::$_messageAdded = false;
     }
 }

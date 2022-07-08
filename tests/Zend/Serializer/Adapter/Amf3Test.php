@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Serializer/Adapter/Amf3.php';
  */
 class Zend_Serializer_Adapter_Amf3Test extends TestCase
 {
-
     private $_adapter;
 
     protected function setUp(): void
@@ -54,7 +55,7 @@ class Zend_Serializer_Adapter_Amf3Test extends TestCase
      */
     public function testSerialize()
     {
-        $value    = true;
+        $value = true;
         $expected = "\x03"; // Amf3 -> true
 
         $data = $this->_adapter->serialize($value);
@@ -67,11 +68,10 @@ class Zend_Serializer_Adapter_Amf3Test extends TestCase
      */
     public function testUnserialize()
     {
-        $expected   = true;
-        $value      = "\x03"; // Amf3 -> true
+        $expected = true;
+        $value = "\x03"; // Amf3 -> true
 
         $data = $this->_adapter->unserialize($value);
         $this->assertEquals($expected, $data);
     }
-
 }

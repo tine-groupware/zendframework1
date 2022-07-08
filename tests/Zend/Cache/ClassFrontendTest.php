@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -60,7 +62,8 @@ class test
         echo $this->dummyMethod($param1, $param2);
     }
 
-    private function dummyMethod($param1, $param2) {
+    private function dummyMethod($param1, $param2)
+    {
         return "foobar_output($param1,$param2)";
     }
 
@@ -253,7 +256,6 @@ class Zend_Cache_ClassFrontendTest extends TestCase
 
         $this->assertNull($return);
         $this->assertEquals('foobar_output(param1,param2)', $data);
-      
     }
 
     /**
@@ -297,7 +299,8 @@ class Zend_Cache_ClassFrontendTest extends TestCase
         try {
             $this->_instance2->throwException();
             $this->fail("An exception should be thrown");
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
         echo 'end';
 
         $output = ob_get_clean();

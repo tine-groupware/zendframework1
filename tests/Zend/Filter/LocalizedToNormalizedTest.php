@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -45,11 +47,11 @@ class Zend_Filter_LocalizedToNormalizedTest extends TestCase
     {
         $filter = new Zend_Filter_LocalizedToNormalized(['locale' => 'de']);
         $valuesExpected = [
-            '0'         => '0',
-            '1.234'     => '1234',
-            '1,234'     => '1.234',
-            '1.234,56'  => '1234.56',
-            '-1.234'    => '-1234',
+            '0' => '0',
+            '1.234' => '1234',
+            '1,234' => '1.234',
+            '1.234,56' => '1234.56',
+            '-1.234' => '-1234',
             '-1.234,56' => '-1234.56'
         ];
 
@@ -69,28 +71,28 @@ class Zend_Filter_LocalizedToNormalizedTest extends TestCase
         $valuesExpected = [
             '11:22:33' => [
                 'date_format' => 'HH:mm:ss',
-                'locale'      => 'de',
-                'hour'        => '11',
-                'minute'      => '22',
-                'second'      => '33'],
+                'locale' => 'de',
+                'hour' => '11',
+                'minute' => '22',
+                'second' => '33'],
             '20.04.2009' => [
                 'date_format' => 'dd.MM.y',
-                'locale'      => 'de',
-                'day'         => '20',
-                'month'       => '04',
-                'year'        => '2009'],
+                'locale' => 'de',
+                'day' => '20',
+                'month' => '04',
+                'year' => '2009'],
             // '20.April.2009' => [
             //     'date_format' => 'dd.MM.y',
             //     'locale'      => 'de',
             //     'day'         => '20',
             //     'month'       => '4',
             //     'year'        => '2009'],
-            '20.04.09'      => [
+            '20.04.09' => [
                 'date_format' => 'dd.MM.y',
-                'locale'      => 'de',
-                'day'         => '20',
-                'month'       => '04',
-                'year'        => '2009'],
+                'locale' => 'de',
+                'day' => '20',
+                'month' => '04',
+                'year' => '2009'],
             // '20.April.09'   => [
             //     'date_format' => 'dd.MM.y',
             //     'locale'      => 'de',
@@ -121,16 +123,16 @@ class Zend_Filter_LocalizedToNormalizedTest extends TestCase
             //     'year'        => '2009'],
             '2009.20.04' => [
                 'date_format' => 'yyyy.dd.MM',
-                'locale'      => 'de',
-                'day'         => '20',
-                'month'       => '04',
-                'year'        => '2009'],
-            '09.20.04'      => [
+                'locale' => 'de',
+                'day' => '20',
+                'month' => '04',
+                'year' => '2009'],
+            '09.20.04' => [
                 'date_format' => 'yyyy.dd.MM',
-                'locale'      => 'de',
-                'day'         => '20',
-                'month'       => '04',
-                'year'        => '2009'],
+                'locale' => 'de',
+                'day' => '20',
+                'month' => '04',
+                'year' => '2009'],
             // '09.20.April'   => [
             //     'date_format' => 'yyyy.dd.MM',
             //     'locale'      => 'de',
@@ -154,7 +156,7 @@ class Zend_Filter_LocalizedToNormalizedTest extends TestCase
         $filter = new Zend_Filter_LocalizedToNormalized(['locale' => 'de', 'precision' => 0]);
         $valuesExpected = [
             '1.234,56' => '1234',
-            '1,234'    => '1',
+            '1,234' => '1',
             // '1234'     => '1234'
         ];
 
@@ -173,8 +175,8 @@ class Zend_Filter_LocalizedToNormalizedTest extends TestCase
         $filter = new Zend_Filter_LocalizedToNormalized(['locale' => 'de', 'precision' => 2]);
         $valuesExpected = [
             '1.234,5678' => '1234.56',
-            '1,234'    => '1.23',
-            '1.234'     => '1234'
+            '1,234' => '1.23',
+            '1.234' => '1234'
         ];
 
         foreach ($valuesExpected as $input => $output) {

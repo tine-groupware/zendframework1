@@ -618,7 +618,8 @@ class Zend_Db_Table_Select_StaticTest extends Zend_Db_Select_TestCommon
      * @doesNotPerformAssertions
      */
     public function testSelectLimitFetchCol()
-    {}
+    {
+    }
 
     public function testSelectLimitNone()
     {
@@ -719,8 +720,11 @@ class Zend_Db_Table_Select_StaticTest extends Zend_Db_Select_TestCommon
             ->order('productId DESC');
 
         $expected = 'SELECT "p".* FROM "product" AS "p" ORDER BY "productId" DESC';
-        $this->assertEquals($expected, $select->assemble(),
-            'Order direction of field failed');
+        $this->assertEquals(
+            $expected,
+            $select->assemble(),
+            'Order direction of field failed'
+        );
     }
 
     /**
@@ -733,8 +737,11 @@ class Zend_Db_Table_Select_StaticTest extends Zend_Db_Select_TestCommon
             ->order(['productId DESC', 'userId ASC']);
 
         $expected = 'SELECT "p".* FROM "product" AS "p" ORDER BY "productId" DESC, "userId" ASC';
-        $this->assertEquals($expected, $select->assemble(),
-            'Order direction of field failed');
+        $this->assertEquals(
+            $expected,
+            $select->assemble(),
+            'Order direction of field failed'
+        );
     }
 
     /**
@@ -747,8 +754,11 @@ class Zend_Db_Table_Select_StaticTest extends Zend_Db_Select_TestCommon
             ->order(['productId', 'userId DESC']);
 
         $expected = 'SELECT "p".* FROM "product" AS "p" ORDER BY "productId" ASC, "userId" DESC';
-        $this->assertEquals($expected, $select->assemble(),
-            'Order direction of field failed');
+        $this->assertEquals(
+            $expected,
+            $select->assemble(),
+            'Order direction of field failed'
+        );
     }
 
     /**
@@ -762,8 +772,10 @@ class Zend_Db_Table_Select_StaticTest extends Zend_Db_Select_TestCommon
             ->order('IF("productId" > 5,1,0) ASC');
 
         $expected = 'SELECT "p".* FROM "product" AS "p" ORDER BY IF("productId" > 5,1,0) ASC';
-        $this->assertEquals($expected, $select->assemble(),
-            'Order direction of field failed');
+        $this->assertEquals(
+            $expected,
+            $select->assemble(),
+            'Order direction of field failed'
+        );
     }
-
 }

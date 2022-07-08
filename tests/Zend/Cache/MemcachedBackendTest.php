@@ -39,8 +39,8 @@ require_once 'CommonExtendedBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTest {
-
+class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTest
+{
     protected $_instance;
 
     public function __construct($name = null, array $data = [], $dataName = '')
@@ -50,7 +50,7 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
 
     public function setUp($notag = true): void
     {
-        if(!class_exists('Memcached')) {
+        if (!class_exists('Memcached')) {
             $this->markTestSkipped('Memcached is not installed, skipping test');
             return;
         }
@@ -145,19 +145,27 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
     /**
      * @doesNotPerformAssertions
      */
-    public function testGetWithAnExpiredCacheId() {}
+    public function testGetWithAnExpiredCacheId()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeMatchingTags2() {}
+    public function testCleanModeMatchingTags2()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeNotMatchingTags2() {}
+    public function testCleanModeNotMatchingTags2()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeNotMatchingTags3() {}
+    public function testCleanModeNotMatchingTags3()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
@@ -183,7 +191,6 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
      */
     public function testSaveWithSpecificLifeTime()
     {
-
         $this->_instance->setDirectives(['logging' => false]);
         parent::testSaveWithSpecificLifeTime();
         $this->_instance->setDirectives(['logging' => true]);
@@ -214,7 +221,4 @@ class Zend_Cache_MemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTe
         $this->_instance->setDirectives(['logging' => false]);
         parent::testGetFillingPercentageOnEmptyBackend();
     }
-
 }
-
-

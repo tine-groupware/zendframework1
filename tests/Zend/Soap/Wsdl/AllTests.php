@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestSuite;
+
 /**
  * Zend Framework
  *

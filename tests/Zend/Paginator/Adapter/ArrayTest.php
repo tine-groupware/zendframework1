@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -48,7 +50,7 @@ class Zend_Paginator_Adapter_ArrayTest extends TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp (): void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_adapter = new Zend_Paginator_Adapter_Array(range(1, 101));
@@ -56,7 +58,7 @@ class Zend_Paginator_Adapter_ArrayTest extends TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown (): void
+    protected function tearDown(): void
     {
         $this->_adapter = null;
         parent::tearDown();
@@ -85,7 +87,8 @@ class Zend_Paginator_Adapter_ArrayTest extends TestCase
     /**
      * @group ZF-4151
      */
-    public function testEmptySet() {
+    public function testEmptySet()
+    {
         $this->_adapter = new Zend_Paginator_Adapter_Array([]);
         $actual = $this->_adapter->getItems(0, 10);
         $this->assertEquals([], $actual);

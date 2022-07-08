@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,7 +40,6 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class Zend_Cache_BackendTest_SkipTests extends TestCase
 {
-
     public $message = 'Skipped for unspecified reason';
 
     protected function setUp(): void
@@ -53,7 +54,6 @@ abstract class Zend_Cache_BackendTest_SkipTests extends TestCase
     {
         // this is here only so we have at least one test
     }
-
 }
 
 /**

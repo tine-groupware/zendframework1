@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,13 +52,13 @@ require_once 'Zend/Db/Table.php';
  */
 class Zend_Application_Resource_MultidbTest extends TestCase
 {
-    protected $_dbOptions = ['db1' => ['adapter' => 'pdo_mysql','dbname' => 'db1','password' => 'XXXX','username' => 'webuser'],
+    protected $_dbOptions = ['db1' => ['adapter' => 'pdo_mysql', 'dbname' => 'db1', 'password' => 'XXXX', 'username' => 'webuser'],
                                 'db2' => ['adapter' => 'pdo_pgsql', 'dbname' => 'db2', 'password' => 'notthatpublic', 'username' => 'dba']];
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -139,7 +141,6 @@ class Zend_Application_Resource_MultidbTest extends TestCase
         $this->assertTrue($res->isDefault($res->getDb('db2')));
         $this->assertTrue($res->isDefault('db2'));
         $this->assertTrue(Zend_Db_Table::getDefaultAdapter() instanceof Zend_Db_Adapter_Pdo_Pgsql);
-
     }
 
     public function testGetDefaultRandomWhenNoDefaultWasSetObject()
@@ -163,7 +164,7 @@ class Zend_Application_Resource_MultidbTest extends TestCase
         try {
             $res->getDb('foobar');
             $this->fail('An exception should have been thrown');
-        } catch(Zend_Application_Resource_Exception $e) {
+        } catch (Zend_Application_Resource_Exception $e) {
             $this->assertEquals($e->getMessage(), 'A DB adapter was tried to retrieve, but was not configured');
         }
     }
@@ -187,9 +188,9 @@ class Zend_Application_Resource_MultidbTest extends TestCase
             'charset' => null,
             'persistent' => false,
             'options' => [
-                'caseFolding'          => 0,
+                'caseFolding' => 0,
                 'autoQuoteIdentifiers' => true,
-                'fetchMode'            => 2],
+                'fetchMode' => 2],
             'driver_options' => []];
         $this->assertEquals($expected, $res->getDb('db2')->getConfig());
 

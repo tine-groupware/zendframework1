@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Extensions\Database\DataSet\ITableMetaData;
+
 /**
  * Zend Framework
  *
@@ -69,7 +71,8 @@ class Zend_Test_PHPUnit_Db_DataSet_QueryTableTest extends Zend_Test_PHPUnit_Db_D
         $data = $queryTable->getRow(0);
 
         $this->assertEquals(
-            ["foo" => "bar"], $data
+            ["foo" => "bar"],
+            $data
         );
     }
 

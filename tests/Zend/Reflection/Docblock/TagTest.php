@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,9 +37,7 @@ require_once 'Zend/Reflection/File.php';
  */
 class Zend_Reflection_Docblock_TagTest extends TestCase
 {
-
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -78,7 +78,7 @@ class Zend_Reflection_Docblock_TagTest extends TestCase
 
         $tag = $classReflection->getMethod('doSomething')->getDocblock()->getTag('descriptionTag');
 
-        $expectedString = "Docblock Tag [ * @descriptionTag ]".PHP_EOL;
+        $expectedString = "Docblock Tag [ * @descriptionTag ]" . PHP_EOL;
 
         $this->assertEquals($expectedString, (string)$tag);
     }

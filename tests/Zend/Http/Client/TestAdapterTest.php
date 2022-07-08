@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -227,7 +229,7 @@ class Zend_Http_Client_TestAdapterTest extends TestCase
      *
      * @return array
      */
-    static public function validHttpResponseProvider()
+    public static function validHttpResponseProvider()
     {
         return [
            ["HTTP/1.1 200 OK\r\n\r\n"],

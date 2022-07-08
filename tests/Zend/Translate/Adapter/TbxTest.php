@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Translate_Adapter_TbxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Translate_Adapter_TbxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Translate_Adapter_TbxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testCreate()
@@ -133,17 +135,17 @@ class Zend_Translate_Adapter_TbxTest extends TestCase
         $adapter = new Zend_Translate_Adapter_Tbx(dirname(__FILE__) . '/_files/translation_en.tbx', 'en');
         $adapter->setOptions(['testoption' => 'testkey']);
         $expected = [
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => dirname(__FILE__) . '/_files/translation_en.tbx',
-            'scan'            => null,
-            'locale'          => 'en',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => dirname(__FILE__) . '/_files/translation_en.tbx',
+            'scan' => null,
+            'locale' => 'en',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         ];
         $options = $adapter->getOptions();
 
@@ -195,7 +197,7 @@ class Zend_Translate_Adapter_TbxTest extends TestCase
         $this->assertEquals(['en' => 'en', 'de' => 'de', 'fr' => 'fr'], $adapter->getList());
         $this->assertTrue($adapter->isAvailable('fr'));
         $locale = new Zend_Locale('en');
-        $this->assertTrue( $adapter->isAvailable($locale));
+        $this->assertTrue($adapter->isAvailable($locale));
         $this->assertFalse($adapter->isAvailable('sr'));
     }
 

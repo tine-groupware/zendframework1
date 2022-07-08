@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -66,7 +68,7 @@ class Zend_Pdf_NamedDestinationsTest extends TestCase
         $this->assertTrue($pdf->getNamedDestination('Page2') === $destination2);
         $this->assertTrue($pdf->getNamedDestination('Page9') === null);
 
-        $pdf->setNamedDestination('Page1',   $destination1);
+        $pdf->setNamedDestination('Page1', $destination1);
         $pdf->setNamedDestination('Page1_1', Zend_Pdf_Destination_Fit::create(1));
         $pdf->setNamedDestination('Page9_1', Zend_Pdf_Destination_Fit::create(9)); // will be egnored
 

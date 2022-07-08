@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,13 +40,15 @@ require_once 'Zend/Currency.php';
  */
 class Zend_CurrencyTest extends TestCase
 {
-
     protected function setUp(): void
     {
         require_once 'Zend/Cache.php';
-        $this->_cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 120, 'automatic_serialization' => true],
-                 ['cache_dir' => dirname(__FILE__) . '/_files/']);
+        $this->_cache = Zend_Cache::factory(
+            'Core',
+            'File',
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => dirname(__FILE__) . '/_files/']
+        );
         Zend_Currency::setCache($this->_cache);
     }
 
@@ -275,8 +279,8 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testToCurrency()
     {
-        $USD = new Zend_Currency('USD','en_US');
-        $EGP = new Zend_Currency('EGP','ar_EG');
+        $USD = new Zend_Currency('USD', 'en_US');
+        $EGP = new Zend_Currency('EGP', 'ar_EG');
 
         $this->assertSame('$53,292.18', $USD->toCurrency(53292.18));
         $this->assertSame('$٥٣,٢٩٢.١٨', $USD->toCurrency(53292.18, ['script' => 'Arab' ]));
@@ -285,7 +289,7 @@ class Zend_CurrencyTest extends TestCase
 
         $this->assertSame('ج.م.‏ 53٬292٫18', $EGP->toCurrency(53292.18));
         $this->assertSame('ج.م.‏ ٥٣٬٢٩٢٫١٨', $EGP->toCurrency(53292.18, ['script' => 'Arab']));
-        $this->assertSame('ج.م.‏ ٥٣.٢٩٢,١٨', $EGP->toCurrency(53292.18, ['script' =>'Arab', 'format' => 'de_AT']));
+        $this->assertSame('ج.م.‏ ٥٣.٢٩٢,١٨', $EGP->toCurrency(53292.18, ['script' => 'Arab', 'format' => 'de_AT']));
         $this->assertSame('ج.م.‏ 53.292,18', $EGP->toCurrency(53292.18, ['format' => 'de_AT']));
 
         $USD = new Zend_Currency('en_US');
@@ -311,7 +315,7 @@ class Zend_CurrencyTest extends TestCase
     public function testSetFormat()
     {
         $locale = new Zend_Locale('en_US');
-        $USD    = new Zend_Currency('USD','en_US');
+        $USD = new Zend_Currency('USD', 'en_US');
 
         $USD->setFormat(['script' => 'Arab']);
         $this->assertSame('$٥٣,٢٩٢.١٨', $USD->toCurrency(53292.18));
@@ -412,14 +416,14 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testGetSign()
     {
-        $locale   = new Zend_Locale('ar_EG');
+        $locale = new Zend_Locale('ar_EG');
         $currency = new Zend_Currency('ar_EG');
 
-        $this->assertSame('ج.م.‏', $currency->getSymbol('EGP','ar_EG'));
-        $this->assertSame('€',    $currency->getSymbol('EUR','de_AT'));
-        $this->assertSame('ج.م.‏', $currency->getSymbol('ar_EG'      ));
-        $this->assertSame('€',    $currency->getSymbol('de_AT'      ));
-        $this->assertSame('ج.م.‏',    $currency->getSymbol());
+        $this->assertSame('ج.م.‏', $currency->getSymbol('EGP', 'ar_EG'));
+        $this->assertSame('€', $currency->getSymbol('EUR', 'de_AT'));
+        $this->assertSame('ج.م.‏', $currency->getSymbol('ar_EG'));
+        $this->assertSame('€', $currency->getSymbol('de_AT'));
+        $this->assertSame('ج.م.‏', $currency->getSymbol());
 
         try {
             $currency->getSymbol('EGP', 'de_XX');
@@ -434,15 +438,15 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testGetName()
     {
-        $locale   = new Zend_Locale('ar_EG');
+        $locale = new Zend_Locale('ar_EG');
         $currency = new Zend_Currency('ar_EG');
 
-        $this->assertSame('جنيه مصري',       $currency->getName('EGP','ar_EG'));
-        $this->assertSame('Estnische Krone', $currency->getName('EEK','de_AT'));
-        $this->assertSame('جنيه مصري',       $currency->getName('EGP',$locale));
-        $this->assertSame('جنيه مصري',       $currency->getName('ar_EG'      ));
-        $this->assertSame('Euro',            $currency->getName('de_AT'      ));
-        $this->assertSame('جنيه مصري',       $currency->getName());
+        $this->assertSame('جنيه مصري', $currency->getName('EGP', 'ar_EG'));
+        $this->assertSame('Estnische Krone', $currency->getName('EEK', 'de_AT'));
+        $this->assertSame('جنيه مصري', $currency->getName('EGP', $locale));
+        $this->assertSame('جنيه مصري', $currency->getName('ar_EG'));
+        $this->assertSame('Euro', $currency->getName('de_AT'));
+        $this->assertSame('جنيه مصري', $currency->getName());
 
         try {
             $currency->getName('EGP', 'xy_XY');
@@ -457,13 +461,13 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testGetShortName()
     {
-        $locale   = new Zend_Locale('de_AT');
+        $locale = new Zend_Locale('de_AT');
         $currency = new Zend_Currency('de_AT');
 
-        $this->assertSame('EUR', $currency->getShortName('Euro',     'de_AT'));
-        $this->assertSame('EUR', $currency->getShortName('Euro',     $locale));
-        $this->assertSame('USD', $currency->getShortName('US-Dollar','de_AT'));
-        $this->assertSame('EUR', $currency->getShortName('de_AT'            ));
+        $this->assertSame('EUR', $currency->getShortName('Euro', 'de_AT'));
+        $this->assertSame('EUR', $currency->getShortName('Euro', $locale));
+        $this->assertSame('USD', $currency->getShortName('US-Dollar', 'de_AT'));
+        $this->assertSame('EUR', $currency->getShortName('de_AT'));
         $this->assertSame('EUR', $currency->getShortName());
 
         try {
@@ -533,7 +537,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testToString()
     {
-        $USD = new Zend_Currency('USD','en_US');
+        $USD = new Zend_Currency('USD', 'en_US');
         $this->assertSame('$0.00', $USD->toString());
         $this->assertSame('$0.00', $USD->__toString());
     }
@@ -708,7 +712,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testCompareValues()
     {
-        $currency  = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
+        $currency = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $currency2 = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $this->assertEquals(0, $currency->compare($currency2));
 
@@ -724,7 +728,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testEqualsValues()
     {
-        $currency  = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
+        $currency = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $currency2 = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $this->assertTrue($currency->equals($currency2));
 
@@ -737,7 +741,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testIsMoreValues()
     {
-        $currency  = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
+        $currency = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $currency2 = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $this->assertFalse($currency->isMore($currency2));
 
@@ -750,7 +754,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testIsLessValues()
     {
-        $currency  = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
+        $currency = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $currency2 = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $this->assertFalse($currency->isLess($currency2));
 
@@ -763,7 +767,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testExchangeValues()
     {
-        $currency  = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
+        $currency = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
         $currency2 = new Zend_Currency(['currency' => 'EUR', 'locale' => 'de_AT', 'value' => 100]);
 
         require_once 'Currency/ExchangeTest.php';
@@ -781,7 +785,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testConstructingPrecisionValues()
     {
-        $currency  = new Zend_Currency(['value' => 100.5]);
+        $currency = new Zend_Currency(['value' => 100.5]);
         $this->assertEquals('€ 100,50', $currency->toString('de_AT'));
     }
 
@@ -790,7 +794,7 @@ class Zend_CurrencyTest extends TestCase
      */
     public function testCurrencyWithSelfPattern()
     {
-        $currency  = new Zend_Currency(['value' => 10000, 'format' => '#,#0', 'locale' => 'de_DE']);
+        $currency = new Zend_Currency(['value' => 10000, 'format' => '#,#0', 'locale' => 'de_DE']);
         $this->assertEquals('1.00.00', $currency->toString());
     }
 

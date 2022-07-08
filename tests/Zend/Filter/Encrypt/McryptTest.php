@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -54,7 +56,7 @@ class Zend_Filter_Encrypt_McryptTest extends TestCase
         $valuesExpected = [
             'STRING' => 'STRING',
             'ABC1@3' => 'ABC1@3',
-            'A b C'  => 'A B C'
+            'A b C' => 'A B C'
         ];
 
         $enc = $filter->getEncryption();
@@ -116,7 +118,8 @@ class Zend_Filter_Encrypt_McryptTest extends TestCase
         $filter->setVector('testvect');
         $filter->setEncryption(
             ['mode' => MCRYPT_MODE_ECB,
-                  'algorithm' => MCRYPT_3DES]);
+                  'algorithm' => MCRYPT_3DES]
+        );
         $this->assertEquals(
             ['key' => 'testkey',
                   'algorithm' => MCRYPT_3DES,

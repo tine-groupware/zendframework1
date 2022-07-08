@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,8 +42,6 @@ require_once 'Zend/Amf/Value/Messaging/ArrayCollection.php';
  */
 class Zend_Amf_Value_ArrayCollectionTest extends TestCase
 {
-
-
     /**
      * Refrence to the array collection
      * @var Zend_Amf_Value_Message_ArrayCollection
@@ -59,8 +59,8 @@ class Zend_Amf_Value_ArrayCollectionTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Amf_Value_ArrayCollectionTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Amf_Value_ArrayCollectionTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -69,7 +69,6 @@ class Zend_Amf_Value_ArrayCollectionTest extends TestCase
         $data[] = ['foo' => 'foo1', 'bar' => 'bar1'];
         $data[] = ['foo' => 'foo2', 'bar' => 'bar2'];
         $this->_data = $data;
-
     }
 
     protected function tearDown(): void
@@ -110,7 +109,7 @@ class Zend_Amf_Value_ArrayCollectionTest extends TestCase
         $this->_arrayCollection = new Zend_Amf_Value_Messaging_ArrayCollection($this->_data);
         $total = count($this->_arrayCollection);
         $count = 0;
-        foreach($this->_arrayCollection as $row) {
+        foreach ($this->_arrayCollection as $row) {
             $count++;
         }
         $this->assertEquals(2, $count);
@@ -132,7 +131,7 @@ class Zend_Amf_Value_ArrayCollectionTest extends TestCase
     {
         $this->_arrayCollection = new Zend_Amf_Value_Messaging_ArrayCollection($this->_data);
         $data = ['fooSet' => 'fooSet2', 'barSet' => 'barSet2'];
-        $this->_arrayCollection->offsetSet(1,$data);
+        $this->_arrayCollection->offsetSet(1, $data);
         $this->assertEquals($data, $this->_arrayCollection->offsetGet(1));
     }
 
@@ -204,8 +203,6 @@ class Zend_Amf_Value_ArrayCollectionTest extends TestCase
 
     }
     */
-
-
 }
 
 class Zend_Amf_Value_ArrayCollectionTest_SerializableData

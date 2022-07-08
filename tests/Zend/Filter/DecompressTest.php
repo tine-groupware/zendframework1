@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Filter_DecompressTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Filter_DecompressTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Filter_DecompressTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -74,9 +76,9 @@ class Zend_Filter_DecompressTest extends TestCase
      */
     public function testBasicUsage()
     {
-        $filter  = new Zend_Filter_Decompress('bz2');
+        $filter = new Zend_Filter_Decompress('bz2');
 
-        $text       = 'compress me';
+        $text = 'compress me';
         $compressed = $filter->compress($text);
         $this->assertNotEquals($text, $compressed);
 
@@ -91,14 +93,14 @@ class Zend_Filter_DecompressTest extends TestCase
      */
     public function testCompressToFile()
     {
-        $filter   = new Zend_Filter_Decompress('bz2');
+        $filter = new Zend_Filter_Decompress('bz2');
         $archive = dirname(__FILE__) . '/../_files/compressed.bz2';
         $filter->setArchive($archive);
 
         $content = $filter->compress('compress me');
         $this->assertTrue($content);
 
-        $filter2  = new Zend_Filter_Decompress('bz2');
+        $filter2 = new Zend_Filter_Decompress('bz2');
         $content2 = $filter2->filter($archive);
         $this->assertEquals('compress me', $content2);
 
@@ -115,14 +117,14 @@ class Zend_Filter_DecompressTest extends TestCase
      */
     public function testDecompressArchive()
     {
-        $filter   = new Zend_Filter_Decompress('bz2');
+        $filter = new Zend_Filter_Decompress('bz2');
         $archive = dirname(__FILE__) . '/../_files/compressed.bz2';
         $filter->setArchive($archive);
 
         $content = $filter->compress('compress me');
         $this->assertTrue($content);
 
-        $filter2  = new Zend_Filter_Decompress('bz2');
+        $filter2 = new Zend_Filter_Decompress('bz2');
         $content2 = $filter2->filter($archive);
         $this->assertEquals('compress me', $content2);
     }

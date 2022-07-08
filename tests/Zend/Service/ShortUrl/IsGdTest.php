@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,7 +43,7 @@ class Zend_Service_ShortUrl_IsGdTest extends TestCase
      *
      * @return void
      */
-    public function setUp (): void
+    public function setUp(): void
     {
         if (!defined('TESTS_ZEND_SERVICE_SHORTURL_ISGD_ENABLED')
             || !constant('TESTS_ZEND_SERVICE_SHORTURL_ISGD_ENABLED')
@@ -85,7 +87,7 @@ class Zend_Service_ShortUrl_IsGdTest extends TestCase
     public function testUnshorten()
     {
         $urls = [
-            'http://framework.zend.com/'           => 'http://is.gd/g3ASn',
+            'http://framework.zend.com/' => 'http://is.gd/g3ASn',
             'http://framework.zend.com/manual/en/' => 'http://is.gd/g3AVm'
         ];
 

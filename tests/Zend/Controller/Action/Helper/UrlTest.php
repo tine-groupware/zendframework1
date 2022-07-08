@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,9 +56,8 @@ class Zend_Controller_Action_Helper_UrlTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Action_Helper_UrlTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Action_Helper_UrlTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -112,13 +113,13 @@ class Zend_Controller_Action_Helper_UrlTest extends TestCase
     public function testUrlMethodCreatesUrlBasedOnNamedRouteAndPassedParameters()
     {
         $router = $this->front->getRouter();
-        $route  = new Zend_Controller_Router_Route(
+        $route = new Zend_Controller_Router_Route(
             'foo/:action/:page',
             [
-                'module'     => 'default',
+                'module' => 'default',
                 'controller' => 'foobar',
-                'action'     => 'bazbat',
-                'page'       => 1
+                'action' => 'bazbat',
+                'page' => 1
             ]
         );
         $router->addRoute('foo', $route);
@@ -129,13 +130,13 @@ class Zend_Controller_Action_Helper_UrlTest extends TestCase
     public function testUrlMethodCreatesUrlBasedOnNamedRouteAndDefaultParameters()
     {
         $router = $this->front->getRouter();
-        $route  = new Zend_Controller_Router_Route(
+        $route = new Zend_Controller_Router_Route(
             'foo/:action/:page',
             [
-                'module'     => 'default',
+                'module' => 'default',
                 'controller' => 'foobar',
-                'action'     => 'bazbat',
-                'page'       => 1
+                'action' => 'bazbat',
+                'page' => 1
             ]
         );
         $router->addRoute('foo', $route);
@@ -148,11 +149,11 @@ class Zend_Controller_Action_Helper_UrlTest extends TestCase
         $this->front->getRouter()->addDefaultRoutes();
         $this->front->addModuleDirectory(dirname(__FILE__) . '/../../_files/modules');
         $url = $this->helper->url([
-            'module'     => 'foo',
+            'module' => 'foo',
             'controller' => 'bar',
-            'action'     => 'baz',
-            'bat'        => 'foo',
-            'ho'         => 'hum'
+            'action' => 'baz',
+            'bat' => 'foo',
+            'ho' => 'hum'
         ]);
         $this->assertEquals('/foo/bar/baz', substr($url, 0, 12));
         $this->assertStringContainsString('/bat/foo', $url);

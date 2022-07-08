@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,8 +53,8 @@ class Zend_Validate_NotEmptyTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Validate_NotEmptyTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Validate_NotEmptyTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -98,8 +100,11 @@ class Zend_Validate_NotEmptyTest extends TestCase
             [[5], true],
         ];
         foreach ($valuesExpected as $i => $element) {
-            $this->assertEquals($element[1], $this->_validator->isValid($element[0]),
-                "Failed test #$i");
+            $this->assertEquals(
+                $element[1],
+                $this->_validator->isValid($element[0]),
+                "Failed test #$i"
+            );
         }
     }
 
@@ -486,7 +491,7 @@ class Zend_Validate_NotEmptyTest extends TestCase
     {
         require_once 'Zend/Config.php';
         $options = ['type' => 'all'];
-        $config  = new Zend_Config($options);
+        $config = new Zend_Config($options);
 
         $filter = new Zend_Validate_NotEmpty(
             $config
@@ -606,7 +611,9 @@ class Zend_Validate_NotEmptyTest extends TestCase
     }
 }
 
-class ClassTest1 {}
+class ClassTest1
+{
+}
 
 class ClassTest2
 {

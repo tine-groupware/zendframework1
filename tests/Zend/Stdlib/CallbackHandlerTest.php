@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Stdlib_CallbackHandlerTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -78,7 +80,7 @@ class Zend_Stdlib_CallbackHandlerTest extends TestCase
     public function testCallShouldInvokeCallbackWithSuppliedArguments()
     {
         $handler = new Zend_Stdlib_CallbackHandler([ $this, 'handleCall' ]);
-        $args   = ['foo', 'bar', 'baz'];
+        $args = ['foo', 'bar', 'baz'];
         $handler->call($args);
         $this->assertSame($args, $this->args);
     }
@@ -108,7 +110,7 @@ class Zend_Stdlib_CallbackHandlerTest extends TestCase
     public function testStringCallbackReferringToClassWithoutDefinedInvokeShouldRaiseException()
     {
         $this->expectException('Zend_Stdlib_Exception_InvalidCallbackException');
-        $class   = new Zend_Stdlib_TestAsset_SignalHandlers_InstanceMethod();
+        $class = new Zend_Stdlib_TestAsset_SignalHandlers_InstanceMethod();
         $handler = new Zend_Stdlib_CallbackHandler($class);
     }
 
@@ -123,7 +125,7 @@ class Zend_Stdlib_CallbackHandlerTest extends TestCase
             $this->markTestSkipped('Behavior of is_callable changes between 5.2 and 5.3');
         }
         $this->expectException('Zend_Stdlib_Exception_InvalidCallbackException');
-        $handler     = new Zend_Stdlib_CallbackHandler(['Zend_Stdlib_TestAsset_SignalHandlers_InstanceMethod', 'handler']);
+        $handler = new Zend_Stdlib_CallbackHandler(['Zend_Stdlib_TestAsset_SignalHandlers_InstanceMethod', 'handler']);
     }
 
     public function testStringCallbackConsistingOfNonStaticMethodShouldRaiseException()

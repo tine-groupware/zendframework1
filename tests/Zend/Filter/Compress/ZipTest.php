@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Filter_Compress_ZipTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Filter_Compress_ZipTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Filter_Compress_ZipTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -73,7 +75,7 @@ class Zend_Filter_Compress_ZipTest extends TestCase
             dirname(__FILE__) . '/../_files/_compress'
         ];
 
-        foreach($files as $file) {
+        foreach ($files as $file) {
             if (file_exists($file)) {
                 if (is_dir($file)) {
                     rmdir($file);
@@ -107,7 +109,7 @@ class Zend_Filter_Compress_ZipTest extends TestCase
             dirname(__FILE__) . '/../_files/_compress'
         ];
 
-        foreach($files as $file) {
+        foreach ($files as $file) {
             if (file_exists($file)) {
                 if (is_dir($file)) {
                     rmdir($file);
@@ -132,10 +134,10 @@ class Zend_Filter_Compress_ZipTest extends TestCase
      */
     public function testBasicUsage()
     {
-        $filter  = new Zend_Filter_Compress_Zip(
+        $filter = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip',
-                'target'  => dirname(__FILE__) . '/../_files/zipextracted.txt'
+                'target' => dirname(__FILE__) . '/../_files/zipextracted.txt'
             ]
         );
 
@@ -199,7 +201,7 @@ class Zend_Filter_Compress_ZipTest extends TestCase
         try {
             $filter->setTarget('/unknown/path/to/file.txt');
             $this->fails('Exception expected');
-        } catch(Zend_Filter_Exception $e) {
+        } catch (Zend_Filter_Exception $e) {
             $this->assertStringContainsString('does not exist', $e->getMessage());
         }
     }
@@ -211,10 +213,10 @@ class Zend_Filter_Compress_ZipTest extends TestCase
      */
     public function testZipCompressFile()
     {
-        $filter  = new Zend_Filter_Compress_Zip(
+        $filter = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip',
-                'target'  => dirname(__FILE__) . '/../_files/zipextracted.txt'
+                'target' => dirname(__FILE__) . '/../_files/zipextracted.txt'
             ]
         );
         file_put_contents(dirname(__FILE__) . '/../_files/zipextracted.txt', 'compress me');
@@ -237,10 +239,10 @@ class Zend_Filter_Compress_ZipTest extends TestCase
      */
     public function testCompressNonExistingTargetFile()
     {
-        $filter  = new Zend_Filter_Compress_Zip(
+        $filter = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip',
-                'target'  => dirname(__FILE__) . '/../_files'
+                'target' => dirname(__FILE__) . '/../_files'
             ]
         );
 
@@ -261,10 +263,10 @@ class Zend_Filter_Compress_ZipTest extends TestCase
      */
     public function testZipCompressDirectory()
     {
-        $filter  = new Zend_Filter_Compress_Zip(
+        $filter = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip',
-                'target'  => dirname(__FILE__) . '/../_files/_compress'
+                'target' => dirname(__FILE__) . '/../_files/_compress'
             ]
         );
         $content = $filter->compress(dirname(__FILE__) . '/../_files/Compress');
@@ -306,10 +308,10 @@ class Zend_Filter_Compress_ZipTest extends TestCase
     public function testDecompressWillThrowExceptionWhenDecompressingWithNoTarget()
     {
         $this->expectException(Zend_Filter_Exception::class);
-        $filter  = new Zend_Filter_Compress_Zip(
+        $filter = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip',
-                'target'  => dirname(__FILE__) . '/../_files/_compress'
+                'target' => dirname(__FILE__) . '/../_files/_compress'
             ]
         );
 
@@ -317,7 +319,7 @@ class Zend_Filter_Compress_ZipTest extends TestCase
         $this->assertEquals(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files'
                             . DIRECTORY_SEPARATOR . 'compressed.zip', $content);
 
-        $filter  = new Zend_Filter_Compress_Zip(
+        $filter = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip'
             ]
@@ -339,12 +341,12 @@ class Zend_Filter_Compress_ZipTest extends TestCase
             return;
         }
 
-        $filter  = new Zend_Filter_Compress_Zip(
+        $filter = new Zend_Filter_Compress_Zip(
             [
                 'archive' => dirname(__FILE__) . '/../_files/compressed.zip',
-                'target'  => dirname(__FILE__) . '/../_files/evil.zip'
+                'target' => dirname(__FILE__) . '/../_files/evil.zip'
                 ]
-            );
+        );
 
         $filter->decompress(dirname(__FILE__) . '/../_files/evil.zip');
     }

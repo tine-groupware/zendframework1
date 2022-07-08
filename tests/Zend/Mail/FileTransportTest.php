@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -100,7 +102,7 @@ class Zend_Mail_FileTransportTest extends TestCase
         $transport = new Zend_Mail_Transport_File();
 
         $transport = new Zend_Mail_Transport_File([
-            'path'     => $this->_tmpdir,
+            'path' => $this->_tmpdir,
             'callback' => 'test_function'
         ]);
     }

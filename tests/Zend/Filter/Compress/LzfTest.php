@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Filter_Compress_LzfTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Filter_Compress_LzfTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Filter_Compress_LzfTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -67,9 +69,9 @@ class Zend_Filter_Compress_LzfTest extends TestCase
      */
     public function testBasicUsage()
     {
-        $filter  = new Zend_Filter_Compress_Lzf();
+        $filter = new Zend_Filter_Compress_Lzf();
 
-        $text       = 'compress me';
+        $text = 'compress me';
         $compressed = $filter->compress($text);
         $this->assertNotEquals($text, $compressed);
 

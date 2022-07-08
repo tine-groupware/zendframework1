@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,8 +58,8 @@ class Zend_View_Helper_FormTextareaTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormTextareaTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormTextareaTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -79,8 +81,8 @@ class Zend_View_Helper_FormTextareaTest extends TestCase
     public function testCanDisableElement()
     {
         $html = $this->helper->formTextarea([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'attribs' => ['disable' => true]
         ]);
 
@@ -93,8 +95,8 @@ class Zend_View_Helper_FormTextareaTest extends TestCase
     public function testDisablingElementDoesNotRenderHiddenElements()
     {
         $html = $this->helper->formTextarea([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'attribs' => ['disable' => true]
         ]);
 

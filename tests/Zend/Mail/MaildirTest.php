@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -239,15 +241,15 @@ class Zend_Mail_MaildirTest extends TestCase
         $this->assertEquals('Simple Message', $subject);
     }
 
-/*
-    public function testFetchTopBody()
-    {
-        $mail = new Zend_Mail_Storage_Maildir(array('dirname' => $this->_maildir));
+    /*
+        public function testFetchTopBody()
+        {
+            $mail = new Zend_Mail_Storage_Maildir(array('dirname' => $this->_maildir));
 
-        $content = $mail->getHeader(3, 1)->getContent();
-        $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
-    }
-*/
+            $content = $mail->getHeader(3, 1)->getContent();
+            $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
+        }
+    */
     public function testFetchMessageHeader()
     {
         $mail = new Zend_Mail_Storage_Maildir(['dirname' => $this->_maildir]);
@@ -346,7 +348,7 @@ class Zend_Mail_MaildirTest extends TestCase
             $this->assertEquals($id, $should_ids[$num]);
 
             if ($mail->getNumberByUniqueId($id) != $num) {
-                    $this->fail('reverse lookup failed');
+                $this->fail('reverse lookup failed');
             }
         }
     }
@@ -387,7 +389,7 @@ class Zend_Mail_MaildirTest extends TestCase
         }
 
         if (!$check) {
-           $this->fail('no exception while loading invalid dir with ' . $dir . ' as file');
+            $this->fail('no exception while loading invalid dir with ' . $dir . ' as file');
         }
     }
 
@@ -431,7 +433,7 @@ class Zend_Mail_MaildirTest extends TestCase
         chmod($this->_maildir . '/' . $dir, $stat['mode']);
 
         if (!$check) {
-           $this->fail('no exception while loading invalid dir with ' . $dir . ' not readable');
+            $this->fail('no exception while loading invalid dir with ' . $dir . ' not readable');
         }
     }
 
@@ -494,5 +496,4 @@ class Zend_Mail_MaildirTest extends TestCase
         $size = $mail->getSize(2);
         $this->assertEquals(456, $size);
     }
-
 }

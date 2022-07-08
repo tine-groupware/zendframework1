@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Extensions\ExceptionTestCase;
+
 /**
  * Zend Framework
  *
@@ -32,7 +34,8 @@ require_once 'Zend/Cache.php';
  */
 class Zend_Cache_FactoryException extends ExceptionTestCase
 {
-    function setUp(){
+    public function setUp()
+    {
         $this->setExpectedException('Zend_Cache_Exception');
     }
 
@@ -48,12 +51,12 @@ class Zend_Cache_FactoryException extends ExceptionTestCase
 
     public function testFrontendBadParam()
     {
-        Zend_Cache::factory('badFrontend', 'File', ['badParam'=>true]);
+        Zend_Cache::factory('badFrontend', 'File', ['badParam' => true]);
     }
 
     public function testBackendBadParam()
     {
-        Zend_Cache::factory('Output', 'badBackend', [], ['badParam'=>true]);
+        Zend_Cache::factory('Output', 'badBackend', [], ['badParam' => true]);
     }
 
     public function testThrowMethod()

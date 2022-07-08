@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -43,7 +45,6 @@ require_once 'Zend/Amf/Value/Messaging/RemotingMessage.php';
  */
 class Zend_Amf_ResourceTest extends TestCase
 {
-
     /**
      * Enter description here...
      *
@@ -53,8 +54,8 @@ class Zend_Amf_ResourceTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Amf_ResourceTest");
-        (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Amf_ResourceTest");
+        (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -74,7 +75,7 @@ class Zend_Amf_ResourceTest extends TestCase
         $request = new Zend_Amf_Request();
         $request->setObjectEncoding(0x03);
         $this->_server->setClass($class);
-        $newBody = new Zend_Amf_Value_MessageBody("$class.$method","/1",["test"]);
+        $newBody = new Zend_Amf_Value_MessageBody("$class.$method", "/1", ["test"]);
         $request->addAmfBody($newBody);
         $this->_server->handle($request);
         $response = $this->_server->getResponse();
@@ -97,7 +98,7 @@ class Zend_Amf_ResourceTest extends TestCase
     {
         try {
             $this->_callService("returnCtx");
-        } catch(Zend_Amf_Server_Exception $e) {
+        } catch (Zend_Amf_Server_Exception $e) {
             $this->assertStringContainsString("serialize resource type", $e->getMessage());
             return;
         }
@@ -110,7 +111,7 @@ class Zend_Amf_ResourceTest extends TestCase
      */
     public function testCtxLoader()
     {
-        Zend_Amf_Parse_TypeLoader::addResourceDirectory("Test_Resource", dirname(__FILE__)."/Resources");
+        Zend_Amf_Parse_TypeLoader::addResourceDirectory("Test_Resource", dirname(__FILE__) . "/Resources");
         $resp = $this->_callService("returnCtx");
         $this->assertStringContainsString("Accept-language:", $resp->getResponse());
         $this->assertStringContainsString("foo=bar", $resp->getResponse());
@@ -137,26 +138,26 @@ class Zend_Amf_ResourceTest extends TestCase
         Zend_Amf_Parse_TypeLoader::setResourceLoader(new Zend_Amf_TestResourceLoader("3"));
         try {
             $resp = $this->_callService("returnCtx");
-        } catch(Zend_Amf_Server_Exception $e) {
+        } catch (Zend_Amf_Server_Exception $e) {
             $this->assertStringContainsString("Could not call parse()", $e->getMessage());
             return;
         }
         $this->fail("Failed to throw exception on unknown resource");
     }
-
 }
 
-class Zend_Amf_Resource_testclass {
-    function returnFile()
+class Zend_Amf_Resource_testclass
+{
+    public function returnFile()
     {
-        return fopen(dirname(__FILE__)."/_files/testdata", "r");
+        return fopen(dirname(__FILE__) . "/_files/testdata", "r");
     }
-    function returnCtx()
+    public function returnCtx()
     {
         $opts = [
-            'http'=>[
-            'method'=>"GET",
-            'header'=>"Accept-language: en\r\n" .
+            'http' => [
+            'method' => "GET",
+            'header' => "Accept-language: en\r\n" .
                 "Cookie: foo=bar\r\n"
             ]
         ];
@@ -179,21 +180,31 @@ class StreamContext3
         return stream_context_get_options($resource);
     }
 }
-class Zend_Amf_TestResourceLoader implements Zend_Loader_PluginLoader_Interface {
+class Zend_Amf_TestResourceLoader implements Zend_Loader_PluginLoader_Interface
+{
     public $suffix;
-    public function __construct($suffix) {
+    public function __construct($suffix)
+    {
         $this->suffix = $suffix;
     }
-    public function addPrefixPath($prefix, $path) {}
-    public function removePrefixPath($prefix, $path = null) {}
-    public function isLoaded($name) {}
-    public function getClassName($name) {}
-    public function load($name) {
-        return $name.$this->suffix;
+    public function addPrefixPath($prefix, $path)
+    {
+    }
+    public function removePrefixPath($prefix, $path = null)
+    {
+    }
+    public function isLoaded($name)
+    {
+    }
+    public function getClassName($name)
+    {
+    }
+    public function load($name)
+    {
+        return $name . $this->suffix;
     }
 }
 
 if (PHPUnit_MAIN_METHOD == "Zend_Amf_ResourceTest::main") {
     Zend_Amf_ResourceTest::main();
 }
-

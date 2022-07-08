@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,37 +36,43 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_EntryLinkTest extends TestCase
 {
-
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->entryLinkText = file_get_contents(
-                'Zend/Gdata/_files/EntryLinkElementSample1.xml',
-                true);
+            'Zend/Gdata/_files/EntryLinkElementSample1.xml',
+            true
+        );
         $this->entryLink = new Zend_Gdata_Extension_EntryLink();
     }
 
-    public function testEmptyEntryLinkShouldHaveNoExtensionElements() {
+    public function testEmptyEntryLinkShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->entryLink->extensionElements));
         $this->assertTrue(count($this->entryLink->extensionElements) == 0);
     }
 
-    public function testEmptyEntryLinkShouldHaveNoExtensionAttributes() {
+    public function testEmptyEntryLinkShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->entryLink->extensionAttributes));
         $this->assertTrue(count($this->entryLink->extensionAttributes) == 0);
     }
 
-    public function testSampleEntryLinkShouldHaveNoExtensionElements() {
+    public function testSampleEntryLinkShouldHaveNoExtensionElements()
+    {
         $this->entryLink->transferFromXML($this->entryLinkText);
         $this->assertTrue(is_array($this->entryLink->extensionElements));
         $this->assertTrue(count($this->entryLink->extensionElements) == 0);
     }
 
-    public function testSampleEntryLinkShouldHaveNoExtensionAttributes() {
+    public function testSampleEntryLinkShouldHaveNoExtensionAttributes()
+    {
         $this->entryLink->transferFromXML($this->entryLinkText);
         $this->assertTrue(is_array($this->entryLink->extensionAttributes));
         $this->assertTrue(count($this->entryLink->extensionAttributes) == 0);
     }
 
-    public function testNormalEntryLinkShouldHaveNoExtensionElements() {
+    public function testNormalEntryLinkShouldHaveNoExtensionElements()
+    {
         $this->entryLink->href = "http://gmail.com/jo/contacts/Bob";
         $this->entryLink->rel = "self";
         $this->entryLink->readOnly = false;
@@ -94,7 +102,8 @@ class Zend_Gdata_EntryLinkTest extends TestCase
         $this->assertEquals(false, $newEntryLink2->readOnly);
     }
 
-    public function testEmptyEntryLinkToAndFromStringShouldMatch() {
+    public function testEmptyEntryLinkToAndFromStringShouldMatch()
+    {
         $entryLinkXml = $this->entryLink->saveXML();
         $newEntryLink = new Zend_Gdata_Extension_EntryLink();
         $newEntryLink->transferFromXML($entryLinkXml);
@@ -102,7 +111,8 @@ class Zend_Gdata_EntryLinkTest extends TestCase
         $this->assertTrue($entryLinkXml == $newEntryLinkXml);
     }
 
-    public function testEntryLinkWithValueToAndFromStringShouldMatch() {
+    public function testEntryLinkWithValueToAndFromStringShouldMatch()
+    {
         $this->entryLink->href = "http://gmail.com/jo/contacts/Bob";
         $this->entryLink->rel = "self";
         $this->entryLink->readOnly = false;
@@ -116,10 +126,11 @@ class Zend_Gdata_EntryLinkTest extends TestCase
         $this->assertEquals(false, $this->entryLink->readOnly);
     }
 
-    public function testExtensionAttributes() {
+    public function testExtensionAttributes()
+    {
         $extensionAttributes = $this->entryLink->extensionAttributes;
-        $extensionAttributes['foo1'] = ['name'=>'foo1', 'value'=>'bar'];
-        $extensionAttributes['foo2'] = ['name'=>'foo2', 'value'=>'rab'];
+        $extensionAttributes['foo1'] = ['name' => 'foo1', 'value' => 'bar'];
+        $extensionAttributes['foo2'] = ['name' => 'foo2', 'value' => 'rab'];
         $this->entryLink->extensionAttributes = $extensionAttributes;
         $this->assertEquals('bar', $this->entryLink->extensionAttributes['foo1']['value']);
         $this->assertEquals('rab', $this->entryLink->extensionAttributes['foo2']['value']);
@@ -130,7 +141,8 @@ class Zend_Gdata_EntryLinkTest extends TestCase
         $this->assertEquals('rab', $newEntryLink->extensionAttributes['foo2']['value']);
     }
 
-    public function testConvertFullEntryLinkToAndFromString() {
+    public function testConvertFullEntryLinkToAndFromString()
+    {
         $this->entryLink->transferFromXML($this->entryLinkText);
         $this->assertEquals("http://gmail.com/jo/contacts/Jo", $this->entryLink->href);
         $this->assertEquals("via", $this->entryLink->rel);
@@ -138,5 +150,4 @@ class Zend_Gdata_EntryLinkTest extends TestCase
         $this->assertTrue($this->entryLink->entry instanceof Zend_Gdata_App_Entry);
         $this->assertEquals("Jo March", $this->entryLink->entry->title->text);
     }
-
 }

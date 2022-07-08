@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_XmlRpc_Request_HttpTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_XmlRpc_Request_HttpTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_XmlRpc_Request_HttpTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -59,7 +61,7 @@ class Zend_XmlRpc_Request_HttpTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->xml =<<<EOX
+        $this->xml = <<<EOX
 <?xml version="1.0" encoding="UTF-8"?>
 <methodCall>
     <methodName>test.userUpdate</methodName>
@@ -99,9 +101,9 @@ EOX;
                 unset($_SERVER[$key]);
             }
         }
-        $_SERVER['HTTP_USER_AGENT']     = 'Zend_XmlRpc_Client';
-        $_SERVER['HTTP_HOST']           = 'localhost';
-        $_SERVER['HTTP_CONTENT_TYPE']   = 'text/xml';
+        $_SERVER['HTTP_USER_AGENT'] = 'Zend_XmlRpc_Client';
+        $_SERVER['HTTP_HOST'] = 'localhost';
+        $_SERVER['HTTP_CONTENT_TYPE'] = 'text/xml';
         $_SERVER['HTTP_CONTENT_LENGTH'] = strlen($this->xml) + 1;
         Zend_AllTests_StreamWrapper_PhpInput::mockInput($this->xml);
     }
@@ -124,9 +126,9 @@ EOX;
     public function testGetHeaders()
     {
         $expected = [
-            'User-Agent'     => 'Zend_XmlRpc_Client',
-            'Host'           => 'localhost',
-            'Content-Type'   => 'text/xml',
+            'User-Agent' => 'Zend_XmlRpc_Client',
+            'Host' => 'localhost',
+            'Content-Type' => 'text/xml',
             'Content-Length' => 958
         ];
         $this->assertEquals($expected, $this->request->getHeaders());
@@ -134,7 +136,7 @@ EOX;
 
     public function testGetFullRequest()
     {
-        $expected =<<<EOT
+        $expected = <<<EOT
 User-Agent: Zend_XmlRpc_Client
 Host: localhost
 Content-Type: text/xml
@@ -170,7 +172,7 @@ EOT;
     {
         $this->assertNull(Zend_AllTests_StreamWrapper_PhpInput::argumentsPassedTo('stream_open'));
         $request = new Zend_XmlRpc_Request_Http();
-        list($path, $mode,) = Zend_AllTests_StreamWrapper_PhpInput::argumentsPassedTo('stream_open');
+        list($path, $mode, ) = Zend_AllTests_StreamWrapper_PhpInput::argumentsPassedTo('stream_open');
         $this->assertSame('php://input', $path);
         $this->assertSame('rb', $mode);
         $this->assertSame($this->xml, $request->getRawRequest());

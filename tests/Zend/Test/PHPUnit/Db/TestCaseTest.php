@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Extensions\Database\DataSet\CompositeDataSet;
-use PHPUnit\Extensions\Database\ITester;
 use PHPUnit\Extensions\Database\DB\IDatabaseConnection;
+use PHPUnit\Extensions\Database\ITester;
+
 /**
  * Zend Framework
  *
@@ -55,9 +57,11 @@ class Zend_Test_PHPUnit_Db_TestCaseTest extends Zend_Test_PHPUnit_DatabaseTestCa
      */
     protected function getConnection()
     {
-        if($this->_connectionMock == null) {
+        if ($this->_connectionMock == null) {
             $this->_connectionMock = $this->getMock(
-                'Zend_Test_PHPUnit_Db_Connection', [], [new Zend_Test_DbAdapter(), "schema"]
+                'Zend_Test_PHPUnit_Db_Connection',
+                [],
+                [new Zend_Test_DbAdapter(), "schema"]
             );
         }
         return $this->_connectionMock;

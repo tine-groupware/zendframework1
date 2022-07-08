@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/CodeGenerator/Php/Property/DefaultValue.php';
  */
 class Zend_CodeGenerator_Php_Property_DefaultValueTest extends TestCase
 {
-
     public function testPropertyDefaultValueConstructor()
     {
         $propDefaultValue = new Zend_CodeGenerator_Php_Property_DefaultValue();
@@ -120,8 +121,5 @@ EOS;
         $propDefaultValue->setValue($targetValue);
         $generatedTargetSource = $propDefaultValue->generate();
         $this->assertEquals($expectedSource, $generatedTargetSource);
-
     }
-
-
 }

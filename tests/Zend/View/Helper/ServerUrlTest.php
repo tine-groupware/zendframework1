@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -126,8 +128,8 @@ class Zend_View_Helper_ServerUrlTest extends TestCase
 
     public function testServerUrlWithTrueParam()
     {
-        $_SERVER['HTTPS']       = 'off';
-        $_SERVER['HTTP_HOST']   = 'example.com';
+        $_SERVER['HTTPS'] = 'off';
+        $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 
         $url = new Zend_View_Helper_ServerUrl();
@@ -136,7 +138,7 @@ class Zend_View_Helper_ServerUrlTest extends TestCase
 
     public function testServerUrlWithInteger()
     {
-        $_SERVER['HTTPS']     = 'off';
+        $_SERVER['HTTPS'] = 'off';
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 
@@ -146,7 +148,7 @@ class Zend_View_Helper_ServerUrlTest extends TestCase
 
     public function testServerUrlWithObject()
     {
-        $_SERVER['HTTPS']     = 'off';
+        $_SERVER['HTTPS'] = 'off';
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 

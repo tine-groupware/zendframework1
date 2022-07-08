@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -213,5 +215,4 @@ class Zend_Mobile_Push_Message_Mpns_TileTest extends TestCase
         $this->assertEquals($backgroundImage, (string) $xml->Tile->BackgroundImage);
         $this->assertEquals($count, (int) $xml->Tile->Count);
     }
-
 }

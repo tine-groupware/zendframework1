@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -39,7 +41,6 @@ require_once 'Zend/Tool/Framework/Provider/Repository.php';
  */
 class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends TestCase
 {
-
     /**
      * @var Zend_Tool_Framework_Registry
      */
@@ -47,7 +48,6 @@ class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends TestCase
 
     protected function setUp(): void
     {
-
     }
 
     protected function tearDown(): void
@@ -79,5 +79,4 @@ class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends TestCase
     }
 
     */
-
 }

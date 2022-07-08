@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,14 +44,14 @@ class Zend_TimeSyncTest extends TestCase
 {
     public $timeservers = [
         // invalid servers
-        'server_a'  => 'ntp://be.foo.bar.org',
-        'server_b'  => 'sntp://be.foo.bar.org',
-        'server_c'  => 'sntp://foo:bar@be.foo.bar.org:123',
+        'server_a' => 'ntp://be.foo.bar.org',
+        'server_b' => 'sntp://be.foo.bar.org',
+        'server_c' => 'sntp://foo:bar@be.foo.bar.org:123',
 
         // valid servers
-        'server_d'  => 'ntp://be.pool.ntp.org',
-        'server_e'  => 'ntp://time.windows.com',
-        'server_f'  => 'sntp://time-C.timefreq.bldrdoc.gov'
+        'server_d' => 'ntp://be.pool.ntp.org',
+        'server_e' => 'ntp://time.windows.com',
+        'server_f' => 'sntp://time-C.timefreq.bldrdoc.gov'
     ];
 
     /**
@@ -161,7 +163,7 @@ class Zend_TimeSyncTest extends TestCase
     {
         $options = [
             'timeout' => 5,
-            'foo'     => 'bar'
+            'foo' => 'bar'
         ];
 
         $server = new Zend_TimeSync();
@@ -314,7 +316,7 @@ class Zend_TimeSyncTest extends TestCase
         } catch (Zend_TimeSync_Exception $e) {
             $exceptions = $e->get();
 
-            foreach($exceptions as $key => $exception) {
+            foreach ($exceptions as $key => $exception) {
                 $this->assertTrue($exception instanceof Zend_TimeSync_Exception);
             }
         }
@@ -343,7 +345,7 @@ class Zend_TimeSyncTest extends TestCase
     {
         $server = new Zend_TimeSync('time.windows.com');
         try {
-            $date   = $server->getDate();
+            $date = $server->getDate();
             $result = $server->getInfo();
 
             $this->assertTrue(count($result) > 0);

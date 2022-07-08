@@ -34,7 +34,6 @@ require_once 'Zend/Db/Statement/Pdo/TestCommon.php';
  */
 class Zend_Db_Statement_Pdo_IbmTest extends Zend_Db_Statement_Pdo_TestCommon
 {
-
     public function getDriver()
     {
         return 'Pdo_Ibm';

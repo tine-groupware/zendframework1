@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -62,15 +64,15 @@ class Zend_Validate_AlphaTest extends TestCase
     public function testBasic()
     {
         $valuesExpected = [
-            'abc123'  => false,
+            'abc123' => false,
             'abc 123' => false,
-            'abcxyz'  => true,
+            'abcxyz' => true,
             'AZ@#4.3' => false,
-            'aBc123'  => false,
-            'aBcDeF'  => true,
-            ''        => false,
-            ' '       => false,
-            "\n"      => false
+            'aBc123' => false,
+            'aBcDeF' => true,
+            '' => false,
+            ' ' => false,
+            "\n" => false
             ];
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $this->_validator->isValid($input));
@@ -97,24 +99,24 @@ class Zend_Validate_AlphaTest extends TestCase
         $this->_validator->setAllowWhiteSpace(true);
 
         $valuesExpected = [
-            'abc123'  => false,
+            'abc123' => false,
             'abc 123' => false,
-            'abcxyz'  => true,
+            'abcxyz' => true,
             'AZ@#4.3' => false,
-            'aBc123'  => false,
-            'aBcDeF'  => true,
-            ''        => false,
-            ' '       => true,
-            "\n"      => true,
-            " \t "    => true,
-            "a\tb c"  => true
+            'aBc123' => false,
+            'aBcDeF' => true,
+            '' => false,
+            ' ' => true,
+            "\n" => true,
+            " \t " => true,
+            "a\tb c" => true
             ];
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals(
                 $result,
                 $this->_validator->isValid($input),
                 "Expected '$input' to be considered " . ($result ? '' : 'in') . "valid"
-                );
+            );
         }
     }
 

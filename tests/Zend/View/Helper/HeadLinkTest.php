@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -70,9 +72,8 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_HeadLinkTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_HeadLinkTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -183,9 +184,9 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
                      ->headLink($links['link3']);
 
         $string = $this->helper->toString();
-        $lines  = substr_count($string, PHP_EOL);
+        $lines = substr_count($string, PHP_EOL);
         $this->assertEquals(2, $lines);
-        $lines  = substr_count($string, '<link ');
+        $lines = substr_count($string, '<link ');
         $this->assertEquals(3, $lines, $string);
 
         foreach ($links as $link) {
@@ -219,9 +220,9 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
                      ->appendStylesheet($links['link3']['href']);
 
         $string = $this->helper->toString();
-        $lines  = substr_count($string, PHP_EOL);
+        $lines = substr_count($string, PHP_EOL);
         $this->assertEquals(2, $lines);
-        $lines  = substr_count($string, '<link ');
+        $lines = substr_count($string, '<link ');
         $this->assertEquals(3, $lines, $string);
 
         foreach ($links as $link) {
@@ -258,11 +259,11 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
         }
 
         $string = $this->helper->toString();
-        $lines  = substr_count($string, PHP_EOL);
+        $lines = substr_count($string, PHP_EOL);
         $this->assertEquals(2, $lines);
-        $lines  = substr_count($string, '<link ');
+        $lines = substr_count($string, '<link ');
         $this->assertEquals(3, $lines, $string);
-        $lines  = substr_count($string, ' rel="alternate"');
+        $lines = substr_count($string, ' rel="alternate"');
         $this->assertEquals(3, $lines, $string);
 
         foreach ($links as $link) {
@@ -292,7 +293,8 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
         try {
             $this->helper->appendStylesheet();
             $this->fail('Helper should expect at least one argument');
-        } catch (Zend_View_Exception $e) {}
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testOverloadingShouldAllowSingleArrayArgument()
@@ -310,7 +312,8 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
         try {
             $this->helper->setStylesheet(['bogus' => 'unused']);
             $this->fail('Invalid attribute values should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testOverloadingOffsetSetWorks()
@@ -330,7 +333,8 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
         try {
             $this->helper->bogusMethod();
             $this->fail('Invalid method should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testStylesheetAttributesGetSet()
@@ -379,11 +383,13 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
         try {
             $this->helper->setAlternate('foo');
             $this->fail('Setting alternate with fewer than 3 args should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
         try {
             $this->helper->setAlternate('foo', 'bar');
             $this->fail('Setting alternate with fewer than 3 args should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testIndentationIsHonored()
@@ -447,7 +453,7 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
 
     public function testSetAlternateWithExtras()
     {
-        $this->helper->setAlternate('/mydocument.pdf', 'application/pdf', 'foo', ['media' => ['print','screen']]);
+        $this->helper->setAlternate('/mydocument.pdf', 'application/pdf', 'foo', ['media' => ['print', 'screen']]);
         $test = $this->helper->toString();
         $this->assertStringContainsString('media="print,screen"', $test);
     }
@@ -461,7 +467,7 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
 
     public function testSetStylesheetWithMediaAsArray()
     {
-        $this->helper->appendStylesheet('/bar/baz', ['screen','print']);
+        $this->helper->appendStylesheet('/bar/baz', ['screen', 'print']);
         $test = $this->helper->toString();
         $this->assertStringContainsString(' media="screen,print"', $test);
     }
@@ -471,10 +477,10 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
      */
     public function testContainerMaintainsCorrectOrderOfItems()
     {
-        $this->helper->headLink()->offsetSetStylesheet(1,'/test1.css');
-        $this->helper->headLink()->offsetSetStylesheet(10,'/test2.css');
-        $this->helper->headLink()->offsetSetStylesheet(20,'/test3.css');
-        $this->helper->headLink()->offsetSetStylesheet(5,'/test4.css');
+        $this->helper->headLink()->offsetSetStylesheet(1, '/test1.css');
+        $this->helper->headLink()->offsetSetStylesheet(10, '/test2.css');
+        $this->helper->headLink()->offsetSetStylesheet(20, '/test3.css');
+        $this->helper->headLink()->offsetSetStylesheet(5, '/test4.css');
 
         $test = $this->helper->toString();
 
@@ -512,10 +518,10 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
     {
         $this->helper->headLink(
             [
-                 'rel'   => 'icon',
-                 'href'  => 'favicon.png',
+                 'rel' => 'icon',
+                 'href' => 'favicon.png',
                  'sizes' => '16x16',
-                 'type'  => 'image/png',
+                 'type' => 'image/png',
             ]
         );
 

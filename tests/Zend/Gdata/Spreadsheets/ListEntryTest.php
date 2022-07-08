@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,15 +37,18 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->listEntry = new Zend_Gdata_Spreadsheets_ListEntry();
         $this->rowData = [];
         $this->rowData[] = new Zend_Gdata_Spreadsheets_Extension_Custom(
-            'column_1', 'value 1');
+            'column_1',
+            'value 1'
+        );
         $this->rowData[] = new Zend_Gdata_Spreadsheets_Extension_Custom(
-            'column_2', 'value 2');
+            'column_2',
+            'value 2'
+        );
     }
 
     public function testToAndFromString()
@@ -53,10 +58,14 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
 
         $this->assertEquals(count($this->rowData), count($rowDataOut));
         for ($i = 0; $i < count($this->rowData); $i++) {
-        $this->assertEquals($this->rowData[$i]->getText(),
-             $rowDataOut[$i]->getText());
-        $this->assertEquals($this->rowData[$i]->getColumnName(),
-            $rowDataOut[$i]->getColumnName());
+            $this->assertEquals(
+                $this->rowData[$i]->getText(),
+                $rowDataOut[$i]->getText()
+            );
+            $this->assertEquals(
+                $this->rowData[$i]->getColumnName(),
+                $rowDataOut[$i]->getColumnName()
+            );
         }
 
         $newListEntry = new Zend_Gdata_Spreadsheets_ListEntry();
@@ -67,10 +76,14 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
 
         $this->assertEquals(count($this->rowData), count($rowDataFromXML));
         for ($i = 0; $i < count($this->rowData); $i++) {
-        $this->assertEquals($this->rowData[$i]->getText(),
-             $rowDataFromXML[$i]->getText());
-        $this->assertEquals($this->rowData[$i]->getColumnName(),
-            $rowDataFromXML[$i]->getColumnName());
+            $this->assertEquals(
+                $this->rowData[$i]->getText(),
+                $rowDataFromXML[$i]->getText()
+            );
+            $this->assertEquals(
+                $this->rowData[$i]->getColumnName(),
+                $rowDataFromXML[$i]->getColumnName()
+            );
         }
     }
 
@@ -78,13 +91,19 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
     {
         $this->listEntry->setCustom($this->rowData);
 
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         for ($i = 0; $i < count($this->rowData); $i++) {
-            $this->assertEquals($this->rowData[$i],
-                $this->listEntry->custom[$i]);
+            $this->assertEquals(
+                $this->rowData[$i],
+                $this->listEntry->custom[$i]
+            );
         }
     }
 
@@ -92,14 +111,21 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
     {
         $this->listEntry->setCustom($this->rowData);
 
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         for ($i = 0; $i < count($this->rowData); $i++) {
-            $this->assertEquals($this->rowData[$i],
+            $this->assertEquals(
+                $this->rowData[$i],
                 $this->listEntry->getCustomByName(
-                    $this->rowData[$i]->getColumnName()));
+                    $this->rowData[$i]->getColumnName()
+                )
+            );
         }
     }
 
@@ -107,14 +133,21 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
     {
         $this->listEntry->setCustom($this->rowData);
 
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         for ($i = 0; $i < count($this->rowData); $i++) {
-            $this->assertEquals($this->rowData[$i],
+            $this->assertEquals(
+                $this->rowData[$i],
                 $this->listEntry->getCustomByName(
-                    $this->rowData[$i]->getColumnName()));
+                    $this->rowData[$i]->getColumnName()
+                )
+            );
         }
     }
 
@@ -124,13 +157,19 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
             $this->listEntry->addCustom($this->rowData[$i]);
         }
 
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         for ($i = 0; $i < count($this->rowData); $i++) {
-            $this->assertEquals($this->rowData[$i],
-                $this->listEntry->custom[$i]);
+            $this->assertEquals(
+                $this->rowData[$i],
+                $this->listEntry->custom[$i]
+            );
         }
     }
 
@@ -142,10 +181,14 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
     public function testCanReplaceAllCustomElements()
     {
         $this->listEntry->setCustom($this->rowData);
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         $this->listEntry->setCustom([]);
         $this->assertEquals(0, count($this->listEntry->getCustom()));
     }
@@ -153,47 +196,71 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
     public function testCanDeleteCustomElementById()
     {
         $this->listEntry->setCustom($this->rowData);
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         $this->assertEquals($this->rowData[0], $this->listEntry->custom[0]);
 
         $this->listEntry->removeCustom(0);
-        $this->assertEquals(count($this->rowData) - 1,
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData) - 1,
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         $this->assertEquals($this->rowData[1], $this->listEntry->custom[0]);
     }
 
     public function testCanDeleteCustomElementByName()
     {
         $this->listEntry->setCustom($this->rowData);
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
-        $this->assertEquals($this->rowData[0],
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
+        $this->assertEquals(
+            $this->rowData[0],
             $this->listEntry->getCustomByName(
-                $this->rowData[0]->getColumnName()));
+                $this->rowData[0]->getColumnName()
+            )
+        );
 
         $this->listEntry->removeCustomByName('column_1');
-        $this->assertEquals(count($this->rowData) - 1,
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData) - 1,
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
         $this->assertNull($this->listEntry->getCustomByName(
-            $this->rowData[0]->getColumnName()));
+            $this->rowData[0]->getColumnName()
+        ));
     }
 
     public function testDeletingNonexistantElementByIdThrowsException()
     {
         $this->listEntry->setCustom($this->rowData);
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
 
         $exceptionCaught = false;
         try {
@@ -208,10 +275,14 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
     public function testDeletingNonexistantElementByNameThrowsException()
     {
         $this->listEntry->setCustom($this->rowData);
-        $this->assertEquals(count($this->rowData),
-            count($this->listEntry->getCustom()));
-        $this->assertEquals(count($this->listEntry->getCustom()),
-            count($this->listEntry->getCustomByName()));
+        $this->assertEquals(
+            count($this->rowData),
+            count($this->listEntry->getCustom())
+        );
+        $this->assertEquals(
+            count($this->listEntry->getCustom()),
+            count($this->listEntry->getCustomByName())
+        );
 
         $exceptionCaught = false;
         try {
@@ -222,5 +293,4 @@ class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
         }
         $this->assertTrue($exceptionCaught);
     }
-
 }

@@ -25,8 +25,8 @@ require_once 'CommonBackendTest.php';
  * @package    Zend_Cache
  * @subpackage UnitTests
  */
-class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
-
+class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest
+{
     protected $_instance;
     protected $_instance2;
     protected $_cache_dir;
@@ -42,10 +42,13 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
     {
         $this->mkdir();
         $this->_cache_dir = $this->mkdir();
-        @mkdir($this->_cache_dir.'/tags');
+        @mkdir($this->_cache_dir . '/tags');
 
-        $this->_innerCache = Zend_Cache::factory('Core','File',
-            ['automatic_serialization'=>true], ['cache_dir'=>$this->_cache_dir.'/tags']
+        $this->_innerCache = Zend_Cache::factory(
+            'Core',
+            'File',
+            ['automatic_serialization' => true],
+            ['cache_dir' => $this->_cache_dir . '/tags']
         );
         $this->_instance = new Zend_Cache_Backend_Static([
             'public_dir' => $this->_cache_dir,
@@ -92,7 +95,7 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
 
     public function testOptionsSetTagCache()
     {
-        $test = new Zend_Cache_Backend_Static(['tag_cache'=>$this->_innerCache]);
+        $test = new Zend_Cache_Backend_Static(['tag_cache' => $this->_innerCache]);
         $this->assertTrue($test->getInnerCache() instanceof Zend_Cache_Core);
     }
 
@@ -344,5 +347,4 @@ class Zend_Cache_StaticBackendTest extends Zend_Cache_CommonBackendTest {
             throw new Exception("no writable tmpdir found");
         }
     }
-
 }

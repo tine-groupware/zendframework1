@@ -1,7 +1,9 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
-use PHPUnit\Framework\TestSuite;
+
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -31,7 +33,7 @@ require_once 'Zend/Ldap/Node/OfflineTest.php';
 require_once 'Zend/Ldap/Node/AttributeIterationTest.php';
 
 if (defined('TESTS_ZEND_LDAP_ONLINE_ENABLED')
-	&& constant('TESTS_ZEND_LDAP_ONLINE_ENABLED')) {
+    && constant('TESTS_ZEND_LDAP_ONLINE_ENABLED')) {
     require_once 'Zend/Ldap/Node/OnlineTest.php';
     require_once 'Zend/Ldap/Node/ChildrenTest.php';
     require_once 'Zend/Ldap/Node/ChildrenIterationTest.php';
@@ -53,7 +55,7 @@ class Zend_Ldap_Node_AllTests
 {
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()

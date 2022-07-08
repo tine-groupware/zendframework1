@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -177,7 +179,7 @@ class Zend_Db_Skip_FirebirdTest extends Zend_Db_Skip_CommonTest
  */
 class Zend_Db_Skip_Pdo_IbmTest extends Zend_Db_Skip_CommonTest
 {
-    function getDriver()
+    public function getDriver()
     {
         return 'Pdo_Ibm';
     }
@@ -193,7 +195,7 @@ class Zend_Db_Skip_Pdo_IbmTest extends Zend_Db_Skip_CommonTest
  */
 class Zend_Db_Skip_Pdo_MssqlTest extends Zend_Db_Skip_CommonTest
 {
-    function getDriver()
+    public function getDriver()
     {
         return 'Pdo_Mssql';
     }

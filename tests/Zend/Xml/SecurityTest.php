@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -46,8 +48,8 @@ class Zend_Xml_SecurityTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
  
     public function testScanForXEE()
@@ -164,7 +166,6 @@ XML;
     <result>test</result>
 </results>
 XML;
-
     }
 }
 

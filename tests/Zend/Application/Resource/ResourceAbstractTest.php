@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_ResourceAbstractTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -102,7 +104,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends TestCase
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options  = [
+        $options = [
             'foo' => 'bar',
         ];
         $resource->setOptions($options);
@@ -113,13 +115,13 @@ class Zend_Application_Resource_ResourceAbstractTest extends TestCase
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options1  = [
+        $options1 = [
             'foo' => 'bar',
         ];
-        $options2  = [
+        $options2 = [
             'bar' => 'baz',
         ];
-        $options3  = [
+        $options3 = [
             'foo' => 'BAR',
         ];
         $expected = $resource->mergeOptions($options1, $options2);
@@ -134,7 +136,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends TestCase
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options  = [
+        $options = [
             'someArbitraryKey' => 'test',
         ];
         $resource->setOptions($options);
@@ -144,7 +146,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends TestCase
     public function testConstructorAcceptsArrayConfiguration()
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
-        $options  = [
+        $options = [
             'foo' => 'bar',
         ];
         $resource = new Zend_Application_BootstrapTest_Resource_Foo($options);
@@ -154,7 +156,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends TestCase
     public function testConstructorAcceptsZendConfigObject()
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
-        $options  = [
+        $options = [
             'foo' => 'bar',
         ];
         $config = new Zend_Config($options);
@@ -189,7 +191,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends TestCase
         ];
 
         $resource = new Zend_Application_BootstrapTest_Resource_Foo($options);
-        $stored   = $resource->getOptions();
+        $stored = $resource->getOptions();
         $this->assertSame($options, $stored);
     }
 }

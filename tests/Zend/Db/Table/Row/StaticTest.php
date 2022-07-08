@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Db_Table_Row_StaticTest extends TestCase
     public function testTableRowTransformColumnNotUsedInConstructor()
     {
         $data = [
-            'column'         => 'value1',
-            'column_foo'     => 'value2',
+            'column' => 'value1',
+            'column_foo' => 'value2',
             'column_bar_baz' => 'value3'
         ];
         $row = new My_ZendDbTable_Row_TestMockRow(['data' => $data]);
@@ -55,8 +57,8 @@ class Zend_Db_Table_Row_StaticTest extends TestCase
     public function testTableRowTransformColumnMagicGet()
     {
         $data = [
-            'column'         => 'value1',
-            'column_foo'     => 'value2',
+            'column' => 'value1',
+            'column_foo' => 'value2',
             'column_bar_baz' => 'value3'
         ];
         $row = new My_ZendDbTable_Row_TestMockRow(['data' => $data]);
@@ -69,8 +71,8 @@ class Zend_Db_Table_Row_StaticTest extends TestCase
     public function testTableRowTransformColumnMagicSet()
     {
         $data = [
-            'column'         => 'value1',
-            'column_foo'     => 'value2',
+            'column' => 'value1',
+            'column_foo' => 'value2',
             'column_bar_baz' => 'value3'
         ];
         $row = new My_ZendDbTable_Row_TestMockRow(['data' => $data]);
@@ -79,22 +81,23 @@ class Zend_Db_Table_Row_StaticTest extends TestCase
         $this->assertEquals('value2', $row->columnFoo);
         $this->assertEquals('value3', $row->columnBarBaz);
 
-        $row->column       = 'another value 1';
-        $row->columnFoo    = 'another value 2';
+        $row->column = 'another value 1';
+        $row->columnFoo = 'another value 2';
         $row->columnBarBaz = 'another value 3';
 
         $array = $row->toArray();
         $this->assertEquals(
             [
-                'column'         => 'another value 1',
-                'column_foo'     => 'another value 2',
+                'column' => 'another value 1',
+                'column_foo' => 'another value 2',
                 'column_bar_baz' => 'another value 3'
-            ], $array);
+            ],
+            $array
+        );
     }
 
     public function getDriver()
     {
         return 'Static';
     }
-
 }

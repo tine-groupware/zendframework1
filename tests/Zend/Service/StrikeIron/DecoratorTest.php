@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -77,7 +79,7 @@ class Zend_Service_StrikeIron_DecoratorTest extends TestCase
 
     public function testDecoratorReturnsAnotherDecoratorWhenValueIsAnObject()
     {
-        $object = (object)['Foo' => new stdclass];
+        $object = (object)['Foo' => new stdclass()];
         $decorator = new Zend_Service_StrikeIron_Decorator($object);
         $class = get_class($decorator);
         $this->assertTrue($decorator->Foo instanceof $class);

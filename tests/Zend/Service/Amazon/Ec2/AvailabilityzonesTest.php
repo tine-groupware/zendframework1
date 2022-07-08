@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -39,7 +41,6 @@ require_once 'Zend/Service/Amazon/Ec2/Availabilityzones.php';
  */
 class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends TestCase
 {
-
     /**
      * @var Zend_Service_Amazon_Ec2_Availabilityzones
      */
@@ -60,7 +61,6 @@ class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends TestCase
         ]);
         $this->adapter = $adapter;
         Zend_Service_Amazon_Ec2_Availabilityzones::setHttpClient($client);
-
     }
 
     /**
@@ -141,4 +141,3 @@ class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends TestCase
         }
     }
 }
-

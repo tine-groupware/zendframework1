@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,12 +42,11 @@ require_once 'Zend/Db/Profiler/AllTests.php';
  */
 class Zend_Db_AllTests
 {
-
     protected static $_skipTestSuite = null;
 
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()
@@ -96,7 +97,7 @@ class Zend_Db_AllTests
 
         $ext = [
             'Oracle' => 'oci8',
-            'Db2'    => 'ibm_db2',
+            'Db2' => 'ibm_db2',
             'Mysqli' => 'mysqli',
             'Sqlsrv' => 'sqlsrv',
             /**
@@ -125,7 +126,6 @@ class Zend_Db_AllTests
         }
 
         try {
-
             Zend_Loader::loadClass("Zend_Db_Adapter_{$driver}Test");
             Zend_Loader::loadClass("Zend_Db_Profiler_{$driver}Test");
             Zend_Loader::loadClass("Zend_Db_Statement_{$driver}Test");
@@ -148,7 +148,6 @@ class Zend_Db_AllTests
             $suite->addTestSuite("Zend_Db_Table_Rowset_{$driver}Test");
             $suite->addTestSuite("Zend_Db_Table_Row_{$driver}Test");
             $suite->addTestSuite("Zend_Db_Table_Relationships_{$driver}Test");
-
         } catch (Zend_Exception $e) {
             self::_skipTestSuite($driver, "cannot load test classes: " . $e->getMessage());
         }
@@ -166,7 +165,6 @@ class Zend_Db_AllTests
 
         self::$_skipTestSuite->addTest($skipTest);
     }
-
 }
 
 if (PHPUnit_MAIN_METHOD == 'Zend_Db_AllTests::main') {

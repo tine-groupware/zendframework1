@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -90,8 +92,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -103,15 +105,15 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
     protected function setUp(): void
     {
         $this->basePath = realpath(dirname(__FILE__) . str_repeat(DIRECTORY_SEPARATOR . '..', 2));
-        $this->request  = new Zend_Controller_Request_Http();
+        $this->request = new Zend_Controller_Request_Http();
         $this->response = new Zend_Controller_Response_Http();
-        $this->front    = Zend_Controller_Front::getInstance();
+        $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
         $this->front->addModuleDirectory($this->basePath . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'modules')
                     ->setRequest($this->request)
                     ->setResponse($this->response);
 
-        $this->helper   = new Zend_Controller_Action_Helper_ViewRenderer();
+        $this->helper = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($this->helper);
     }
 
@@ -128,7 +130,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
 
     public function testConstructorSetsViewWhenPassed()
     {
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $helper = new Zend_Controller_Action_Helper_ViewRenderer($view);
         $this->assertNotNull(isset($helper->view));
         $this->assertSame($view, $helper->view);
@@ -137,11 +139,11 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
     public function testConstructorSetsOptionsWhenPassed()
     {
         $helper = new Zend_Controller_Action_Helper_ViewRenderer(null, [
-            'neverRender'     => true,
-            'noRender'        => true,
-            'noController'    => true,
-            'viewSuffix'      => 'php',
-            'scriptAction'    => 'foo',
+            'neverRender' => true,
+            'noRender' => true,
+            'noController' => true,
+            'viewSuffix' => 'php',
+            'scriptAction' => 'foo',
             'responseSegment' => 'baz'
         ]);
 
@@ -179,8 +181,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
         $this->assertStringContainsString($module, $scriptPaths[0]);
 
         $helperPaths = $this->helper->view->getHelperPaths();
-        $test        = ucfirst($module) . '_View_Helper_';
-        $found       = false;
+        $test = ucfirst($module) . '_View_Helper_';
+        $found = false;
         foreach ($helperPaths as $prefix => $paths) {
             if ($test == $prefix) {
                 $found = true;
@@ -189,7 +191,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
         $this->assertTrue($found, 'Did not find auto-initialized helper path: ' . var_export($helperPaths, 1));
 
         $filterPaths = $this->helper->view->getFilterPaths();
-        $test        = ucfirst($module) . '_View_Filter_';
+        $test = ucfirst($module) . '_View_Filter_';
         $found = false;
         foreach ($filterPaths as $prefix => $paths) {
             if ($test == $prefix) {
@@ -262,11 +264,11 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
 
         $viewDir = dirname(__FILE__) . str_repeat(DIRECTORY_SEPARATOR . '..', 2) . DIRECTORY_SEPARATOR . 'views';
         $this->helper->initView($viewDir, 'Baz_Bat', [
-            'neverRender'     => true,
-            'noRender'        => true,
-            'noController'    => true,
-            'viewSuffix'      => 'php',
-            'scriptAction'    => 'foo',
+            'neverRender' => true,
+            'noRender' => true,
+            'noController' => true,
+            'viewSuffix' => 'php',
+            'scriptAction' => 'foo',
             'responseSegment' => 'baz'
         ]);
 
@@ -278,14 +280,14 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
         $this->assertEquals('baz', $this->helper->getResponseSegment());
 
         $scriptPaths = $this->helper->view->getScriptPaths();
-        $scriptPath  = $scriptPaths[0];
+        $scriptPath = $scriptPaths[0];
         $this->assertStringContainsString(
             $this->_normalizePath($viewDir),
             $this->_normalizePath($scriptPath)
-            );
+        );
 
         $helperPaths = $this->helper->view->getHelperPaths();
-        $found       = false;
+        $found = false;
         foreach ($helperPaths as $prefix => $paths) {
             if ('Baz_Bat_Helper_' == $prefix) {
                 $found = true;
@@ -294,7 +296,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
         $this->assertTrue($found, 'Helper prefix not set according to spec: ' . var_export($helperPaths, 1));
 
         $filterPaths = $this->helper->view->getFilterPaths();
-        $found       = false;
+        $found = false;
         foreach ($filterPaths as $prefix => $paths) {
             if ('Baz_Bat_Filter_' == $prefix) {
                 $found = true;
@@ -510,7 +512,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
                       ->setControllerName('index')
                       ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, []);
-        $expected   = 'index/test.phtml';
+        $expected = 'index/test.phtml';
         $this->assertEquals($expected, $this->helper->getViewScript());
     }
 
@@ -520,7 +522,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
                       ->setControllerName('index')
                       ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, []);
-        $expected   = 'index/baz.phtml';
+        $expected = 'index/baz.phtml';
         $this->assertEquals($expected, $this->helper->getViewScript('baz'));
     }
 
@@ -530,7 +532,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
                       ->setControllerName('index')
                       ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, []);
-        $expected   = 'baz/bat.php';
+        $expected = 'baz/bat.php';
         $this->assertEquals(
             $expected,
             $this->helper->getViewScript(
@@ -547,7 +549,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
                       ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, []);
         $this->helper->setNoController();
-        $expected   = 'test.phtml';
+        $expected = 'test.phtml';
         $this->assertEquals($expected, $this->helper->getViewScript());
     }
 
@@ -751,9 +753,9 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
 
         $inflector = new Zend_Filter_Inflector('test.phtml');
         $inflector->addRules([
-            ':module'     => ['Word_CamelCaseToDash', 'stringToLower'],
+            ':module' => ['Word_CamelCaseToDash', 'stringToLower'],
             ':controller' => ['Word_CamelCaseToDash', new Zend_Filter_Word_UnderscoreToSeparator(DIRECTORY_SEPARATOR), 'StringToLower'],
-            ':action'     => [
+            ':action' => [
                 'Word_CamelCaseToDash',
                 new Zend_Filter_PregReplace('/[^a-z0-9]+/i', '-'),
                 'StringToLower'
@@ -794,7 +796,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
         $this->assertMatchesRegularExpression(
             $expectedPathRegex,
             $this->_normalizePath($viewScriptPaths['script'][0])
-            );
+        );
         $this->assertEquals($this->helper->getViewScript(), 'index/admin.phtml');
     }
 
@@ -814,7 +816,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
         $this->assertMatchesRegularExpression(
             $expectedPathRegex,
             $this->_normalizePath($viewScriptPaths['script'][0])
-            );
+        );
         $this->assertEquals('car-bar/baz.phtml', $this->helper->getViewScript());
     }
 
@@ -867,7 +869,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
         
         $this->assertEquals('A', $a->getViewSuffix());
         
-        $b = clone $a;        
+        $b = clone $a;
         $this->assertEquals('A', $b->getViewSuffix());
         $b->setViewSuffix('B');
         
@@ -918,12 +920,15 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
 
         $this->helper->setActionController(
             new Bar_IndexController(
-                $this->request, $this->response, []
+                $this->request,
+                $this->response,
+                []
             )
         );
 
         $this->assertEquals(
-            'index/index.phtml', $this->helper->getViewScript()
+            'index/index.phtml',
+            $this->helper->getViewScript()
         );
     }
 
@@ -946,18 +951,21 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
      */
     public function testControllerNameFormattingShouldRespectWordCamelCaseToDash()
     {
-       $this->request->setControllerName('MetadataValidation')
+        $this->request->setControllerName('MetadataValidation')
                      ->setActionName('index');
 
-       $this->helper->setActionController(
-           new Bar_IndexController(
-               $this->request, $this->response, []
-           )
-       );
+        $this->helper->setActionController(
+            new Bar_IndexController(
+                $this->request,
+                $this->response,
+                []
+            )
+        );
 
-       $this->assertEquals(
-           'metadata-validation/index.phtml', $this->helper->getViewScript()
-       );
+        $this->assertEquals(
+            'metadata-validation/index.phtml',
+            $this->helper->getViewScript()
+        );
     }
 
     protected function _normalizePath($path)
@@ -984,4 +992,3 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
 if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_ViewRendererTest::main") {
     Zend_Controller_Action_Helper_ViewRendererTest::main();
 }
-

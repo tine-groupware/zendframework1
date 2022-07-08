@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -41,8 +43,8 @@ class Zend_EventManager_GlobalEventManagerTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -93,7 +95,7 @@ class Zend_EventManager_GlobalEventManagerTest extends TestCase
         $events = Zend_EventManager_GlobalEventManager::getEvents();
         $this->assertEquals([], $events);
 
-        $this->test = new stdClass;
+        $this->test = new stdClass();
         $listener = Zend_EventManager_GlobalEventManager::attach('foo.bar', [$this, 'aggregateEventMetadata']);
         $events = Zend_EventManager_GlobalEventManager::getEvents();
         $this->assertEquals(['foo.bar'], $events);
@@ -108,7 +110,7 @@ class Zend_EventManager_GlobalEventManagerTest extends TestCase
 
     public function aggregateEventMetadata($e)
     {
-        $this->test->event  = $e->getName();
+        $this->test->event = $e->getName();
         $this->test->target = $e->getTarget();
         $this->test->params = $e->getParams();
         return $this->test->params;

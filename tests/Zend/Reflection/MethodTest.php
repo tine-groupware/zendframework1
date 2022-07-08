@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,7 @@ require_once dirname(__FILE__) . '/_files/ZF9018TestClass.php';
  */
 class Zend_Reflection_MethodTest extends TestCase
 {
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -92,7 +93,7 @@ class Zend_Reflection_MethodTest extends TestCase
      */
     public function testGetBodyReturnsCorrectBodyWhenContentEndsWithClosingCurlyBrace()
     {
-        $body = '        if ( true ) {
+        $body = '        if (true) {
             echo "True";
         } else {
             echo "False";
@@ -107,7 +108,7 @@ class Zend_Reflection_MethodTest extends TestCase
      */
     public function testGetBodyReturnsCorrectBodyWhenMethodWithInlineOpenBraceHasBodyWhichEndsWithClosingCurlyBrace()
     {
-        $body = '        if ( true ) {
+        $body = '        if (true) {
             echo "True";
         } else {
             echo "False";
@@ -141,6 +142,4 @@ class Zend_Reflection_MethodTest extends TestCase
         $reflectionMethod = new Zend_Reflection_Method('Zend_Reflection_TestSampleClass7', 'testInlineMethod');
         $this->assertEquals($body, $reflectionMethod->getBody());
     }
-
 }
-

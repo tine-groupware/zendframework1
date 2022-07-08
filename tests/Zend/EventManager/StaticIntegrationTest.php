@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -43,8 +45,8 @@ class Zend_EventManager_StaticIntegrationTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -56,8 +58,8 @@ class Zend_EventManager_StaticIntegrationTest extends TestCase
     {
         $this->counter = (object) ['count' => 0];
         Zend_EventManager_StaticEventManager::getInstance()->attach(
-            'Zend_EventManager_TestAsset_ClassWithEvents', 
-            'foo', 
+            'Zend_EventManager_TestAsset_ClassWithEvents',
+            'foo',
             [$this, 'advanceCounter']
         );
         $class = new Zend_EventManager_TestAsset_ClassWithEvents();
@@ -69,8 +71,8 @@ class Zend_EventManager_StaticIntegrationTest extends TestCase
     {
         $this->test = (object) ['results' => []];
         Zend_EventManager_StaticEventManager::getInstance()->attach(
-            'Zend_EventManager_TestAsset_ClassWithEvents', 
-            'foo', 
+            'Zend_EventManager_TestAsset_ClassWithEvents',
+            'foo',
             [$this, 'aggregateStatic']
         );
         $class = new Zend_EventManager_TestAsset_ClassWithEvents();
@@ -83,8 +85,8 @@ class Zend_EventManager_StaticIntegrationTest extends TestCase
     {
         $this->test = (object) ['results' => []];
         Zend_EventManager_StaticEventManager::getInstance()->attach(
-            'Zend_EventManager_TestAsset_ClassWithEvents', 
-            'foo', 
+            'Zend_EventManager_TestAsset_ClassWithEvents',
+            'foo',
             [$this, 'aggregateStatic'],
             10000 // high priority
         );
@@ -100,8 +102,8 @@ class Zend_EventManager_StaticIntegrationTest extends TestCase
     {
         $this->counter = (object) ['count' => 0];
         Zend_EventManager_StaticEventManager::getInstance()->attach(
-            'Zend_EventManager_TestAsset_ClassWithEvents', 
-            'foo', 
+            'Zend_EventManager_TestAsset_ClassWithEvents',
+            'foo',
             [$this, 'advanceCounter']
         );
         $class = new Zend_EventManager_TestAsset_ClassWithEvents();
@@ -114,8 +116,8 @@ class Zend_EventManager_StaticIntegrationTest extends TestCase
     {
         $this->counter = (object) ['count' => 0];
         Zend_EventManager_StaticEventManager::getInstance()->attach(
-            'Zend_EventManager_TestAsset_ClassWithEvents', 
-            'foo', 
+            'Zend_EventManager_TestAsset_ClassWithEvents',
+            'foo',
             [$this, 'advanceCounter']
         );
         $mockStaticEvents = new Zend_EventManager_TestAsset_StaticEventsMock();
@@ -130,8 +132,8 @@ class Zend_EventManager_StaticIntegrationTest extends TestCase
     {
         $this->test = (object) ['results' => []];
         Zend_EventManager_StaticEventManager::getInstance()->attach(
-            'Zend_EventManager_TestAsset_ClassWithEvents', 
-            'foo', 
+            'Zend_EventManager_TestAsset_ClassWithEvents',
+            'foo',
             [$this, 'aggregateStatic'],
             100
         );

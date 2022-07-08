@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -55,7 +57,7 @@ class Zend_Service_Amazon_Sqs_OfflineTest extends TestCase
     {
         //$this->markTestSkipped('No offline tests for Zend_Service_Amazon_Sqs');
         
-        $this->_amazon= new Zend_Service_Amazon_Sqs('test','test');
+        $this->_amazon = new Zend_Service_Amazon_Sqs('test', 'test');
         
         $this->_httpClientAdapterTest = new Zend_Http_Client_Adapter_Test();
 
@@ -66,32 +68,32 @@ class Zend_Service_Amazon_Sqs_OfflineTest extends TestCase
     public function testSetRegion()
     {
         $this->_amazon->setEndpoint('eu-west-1');
-        $endPoints= $this->_amazon->getEndpoints();
-        $this->assertEquals($this->_amazon->getEndpoint(),$endPoints['eu-west-1']);
+        $endPoints = $this->_amazon->getEndpoints();
+        $this->assertEquals($this->_amazon->getEndpoint(), $endPoints['eu-west-1']);
     }
     
     public function testSetNewRegion()
     {
         $this->_amazon->setEndpoint('foo');
-        $this->assertEquals($this->_amazon->getEndpoint(),'sqs.foo.amazonaws.com');
+        $this->assertEquals($this->_amazon->getEndpoint(), 'sqs.foo.amazonaws.com');
     }
     
     public function testSetEmptyRegion()
     {
-         $this->expectException(
+        $this->expectException(
             'Zend_Service_Amazon_Sqs_Exception'
         );
-         $this->expectExceptionMessage('Empty region specified.');
+        $this->expectExceptionMessage('Empty region specified.');
         $this->_amazon->setEndpoint('');
     }
     
     public function testGetRegions()
     {
-        $endPoints= ['us-east-1' => 'sqs.us-east-1.amazonaws.com',
+        $endPoints = ['us-east-1' => 'sqs.us-east-1.amazonaws.com',
                                      'us-west-1' => 'sqs.us-west-1.amazonaws.com',
                                      'eu-west-1' => 'sqs.eu-west-1.amazonaws.com',
                                      'ap-southeast-1' => 'sqs.ap-southeast-1.amazonaws.com',
                                      'ap-northeast-1' => 'sqs.ap-northeast-1.amazonaws.com'];
-        $this->assertEquals($this->_amazon->getEndpoints(),$endPoints);
+        $this->assertEquals($this->_amazon->getEndpoints(), $endPoints);
     }
 }

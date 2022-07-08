@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -23,7 +25,9 @@ use PHPUnit\Framework\TestCase;
 
 require_once 'Zend/Oauth.php';
 
-class Test_Http_Client_19485876 extends Zend_Http_Client {}
+class Test_Http_Client_19485876 extends Zend_Http_Client
+{
+}
 
 /**
  * @category   Zend
@@ -35,7 +39,6 @@ class Test_Http_Client_19485876 extends Zend_Http_Client {}
  */
 class Zend_OauthTest extends TestCase
 {
-
     protected function tearDown(): void
     {
         Zend_Oauth::clearHttpClient();
@@ -50,7 +53,7 @@ class Zend_OauthTest extends TestCase
     public function testGetHttpClientResetsParameters()
     {
         $client = new Test_Http_Client_19485876();
-        $client->setParameterGet(['key'=>'value']);
+        $client->setParameterGet(['key' => 'value']);
         Zend_Oauth::setHttpClient($client);
         $resetClient = Zend_Oauth::getHttpClient();
         $resetClient->setUri('http://www.example.com');
@@ -96,7 +99,7 @@ class Zend_OauthTest extends TestCase
     {
         $options = [
             'requestMethod' => 'GET',
-            'siteUrl'       => 'http://www.example.com'
+            'siteUrl' => 'http://www.example.com'
         ];
 
         require_once 'Zend/Config.php';
@@ -127,7 +130,7 @@ class Zend_OauthTest extends TestCase
                 new Zend_Config([
                    'adapter' => 'Zend_Http_Client_Adapter_Test',
                    'rfc3986_strict' => false,
-                   'timeout'        => 100,
+                   'timeout' => 100,
                    'useragent' => 'Zend_Http_ClientCustom'
                 ]),
                 ['rfc' => false,
@@ -137,8 +140,8 @@ class Zend_OauthTest extends TestCase
             ],
             [
                 null,
-                ['rfc'       => true,
-                      'timeout'   => 10,
+                ['rfc' => true,
+                      'timeout' => 10,
                       'useragent' => 'Zend_Http_Client'
                 ]
             ],
@@ -151,7 +154,7 @@ class Zend_OauthTest extends TestCase
     public function testOauthClientAcceptsRealmConfigurationOption()
     {
         $options = [
-            'realm'			=> 'http://www.example.com'
+            'realm' => 'http://www.example.com'
         ];
 
         require_once 'Zend/Oauth/Client.php';
@@ -168,21 +171,21 @@ class Zend_OauthTest extends TestCase
 
         $options = [
             'requestMethod' => 'GET',
-            'siteUrl'       => 'http://www.example.com',
-            'realm'			=> 'someRealm'
+            'siteUrl' => 'http://www.example.com',
+            'realm' => 'someRealm'
         ];
         $token = new Zend_Oauth_Token_Access();
 
         require_once 'Zend/Oauth/Client.php';
         $client = new Zend_Oauth_Client($options);
-        $this->assertEquals(NULL,$client->getHeader('Authorization'));
+        $this->assertEquals(null, $client->getHeader('Authorization'));
 
         $client->setToken($token);
         $client->setUri('http://oauth.example.com');
         $client->prepareOauth();
 
-        $this->assertStringNotContainsString('realm=""',$client->getHeader('Authorization'));
-        $this->assertStringContainsString('realm="someRealm"',$client->getHeader('Authorization'));
+        $this->assertStringNotContainsString('realm=""', $client->getHeader('Authorization'));
+        $this->assertStringContainsString('realm="someRealm"', $client->getHeader('Authorization'));
     }
     
     /**
@@ -196,7 +199,7 @@ class Zend_OauthTest extends TestCase
         $options = [
             'requestMethod' => 'GET',
             'requestScheme' => Zend_Oauth::REQUEST_SCHEME_QUERYSTRING,
-            'realm'			=> 'someRealm'
+            'realm' => 'someRealm'
         ];
         
         require_once 'Zend/Oauth/Client.php';
@@ -206,14 +209,14 @@ class Zend_OauthTest extends TestCase
         $queryString = $client->getUri()->getQuery();
         
         // Check that query string was set properly
-        $this->assertSame('test=FooBar', $queryString);        
+        $this->assertSame('test=FooBar', $queryString);
         
         // Change the GET parameters
         $client->setParameterGet('test', 'FooBaz');
         $client->setParameterGet('second', 'TestTest');
         
         // Prepare the OAuth request
-        $client->prepareOauth();        
+        $client->prepareOauth();
         $queryString = $client->getUri()->getQuery();
         
         // Ensure that parameter 'test' is unchanged, as URI parameters

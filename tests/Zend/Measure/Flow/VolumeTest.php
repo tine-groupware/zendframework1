@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeInit()
     {
-        $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $this->assertTrue($value instanceof Zend_Measure_Flow_Volume,'Zend_Measure_Flow_Volume Object not returned');
+        $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $this->assertTrue($value instanceof Zend_Measure_Flow_Volume, 'Zend_Measure_Flow_Volume Object not returned');
     }
 
 
@@ -55,7 +57,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
     public function testFlow_VolumeUnknownType()
     {
         try {
-            $value = new Zend_Measure_Flow_Volume('100','Flow_Volume::UNKNOWN','de');
+            $value = new Zend_Measure_Flow_Volume('100', 'Flow_Volume::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -71,7 +73,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
     public function testFlow_VolumeUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Flow_Volume('novalue',Zend_Measure_Flow_Volume::STANDARD,'de');
+            $value = new Zend_Measure_Flow_Volume('novalue', Zend_Measure_Flow_Volume::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -87,7 +89,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
     public function testFlow_VolumeUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD,'nolocale');
+            $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -101,8 +103,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeNoLocale()
     {
-        $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD);
-        $this->assertEquals(100, $value->getValue(),'Zend_Measure_Flow_Volume value expected');
+        $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD);
+        $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Flow_Volume value expected');
     }
 
 
@@ -112,7 +114,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeValuePositive()
     {
-        $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Flow_Volume value expected to be a positive integer');
     }
 
@@ -123,7 +125,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeValueNegative()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals(-100, $value->getValue(), 'Zend_Measure_Flow_Volume value expected to be a negative integer');
     }
 
@@ -134,7 +136,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeValueDecimal()
     {
-        $value = new Zend_Measure_Flow_Volume('-100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals(-100.200, $value->getValue(), 'Zend_Measure_Flow_Volume value expected to be a decimal value');
     }
 
@@ -145,8 +147,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeValueDecimalSeperated()
     {
-        $value = new Zend_Measure_Flow_Volume('-100.100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Flow_Volume Object not returned');
+        $value = new Zend_Measure_Flow_Volume('-100.100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Flow_Volume Object not returned');
     }
 
 
@@ -156,8 +158,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeValueString()
     {
-        $value = new Zend_Measure_Flow_Volume('-100.100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Flow_Volume Object not returned');
+        $value = new Zend_Measure_Flow_Volume('-100.100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Flow_Volume Object not returned');
     }
 
 
@@ -167,9 +169,9 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeEquality()
     {
-        $value = new Zend_Measure_Flow_Volume('-100.100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $newvalue = new Zend_Measure_Flow_Volume('-100.100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $this->assertTrue($value->equals($newvalue),'Zend_Measure_Flow_Volume Object should be equal');
+        $value = new Zend_Measure_Flow_Volume('-100.100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Flow_Volume('-100.100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $this->assertTrue($value->equals($newvalue), 'Zend_Measure_Flow_Volume Object should be equal');
     }
 
 
@@ -179,9 +181,9 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeNoEquality()
     {
-        $value = new Zend_Measure_Flow_Volume('-100.100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $newvalue = new Zend_Measure_Flow_Volume('-100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $this->assertFalse($value->equals($newvalue),'Zend_Measure_Flow_Volume Object should be not equal');
+        $value = new Zend_Measure_Flow_Volume('-100.100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Flow_Volume('-100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $this->assertFalse($value->equals($newvalue), 'Zend_Measure_Flow_Volume Object should be not equal');
     }
 
 
@@ -191,8 +193,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetPositive()
     {
-        $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $value->setValue('200',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $value->setValue('200', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals(200, $value->getValue(), 'Zend_Measure_Flow_Volume value expected to be a positive integer');
     }
 
@@ -203,8 +205,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetNegative()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $value->setValue('-200',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $value->setValue('-200', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals(-200, $value->getValue(), 'Zend_Measure_Flow_Volume value expected to be a negative integer');
     }
 
@@ -215,8 +217,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetDecimal()
     {
-        $value = new Zend_Measure_Flow_Volume('-100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $value->setValue('-200,200',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $value->setValue('-200,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals(-200.200, $value->getValue(), 'Zend_Measure_Flow_Volume value expected to be a decimal value');
     }
 
@@ -227,9 +229,9 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetDecimalSeperated()
     {
-        $value = new Zend_Measure_Flow_Volume('-100.100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Flow_Volume Object not returned');
+        $value = new Zend_Measure_Flow_Volume('-100.100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Flow_Volume Object not returned');
     }
 
 
@@ -239,9 +241,9 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetString()
     {
-        $value = new Zend_Measure_Flow_Volume('-100.100,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Flow_Volume Object not returned');
+        $value = new Zend_Measure_Flow_Volume('-100.100,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Flow_Volume Object not returned');
     }
 
 
@@ -253,8 +255,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
     public function testFlow_VolumeSetUnknownType()
     {
         try {
-            $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD,'de');
-            $value->setValue('-200.200,200','Flow_Volume::UNKNOWN','de');
+            $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD, 'de');
+            $value->setValue('-200.200,200', 'Flow_Volume::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -270,8 +272,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
     public function testFlow_VolumeSetUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD,'de');
-            $value->setValue('novalue',Zend_Measure_Flow_Volume::STANDARD,'de');
+            $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD, 'de');
+            $value->setValue('novalue', Zend_Measure_Flow_Volume::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -287,8 +289,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
     public function testFlow_VolumeSetUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Flow_Volume('100',Zend_Measure_Flow_Volume::STANDARD,'de');
-            $value->setValue('200',Zend_Measure_Flow_Volume::STANDARD,'nolocale');
+            $value = new Zend_Measure_Flow_Volume('100', Zend_Measure_Flow_Volume::STANDARD, 'de');
+            $value->setValue('200', Zend_Measure_Flow_Volume::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -314,7 +316,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetType()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $value->setType(Zend_Measure_Flow_Volume::CUSEC);
         $this->assertEquals(Zend_Measure_Flow_Volume::CUSEC, $value->getType(), 'Zend_Measure_Flow_Volume type expected');
     }
@@ -326,7 +328,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetComputedType1()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $value->setType(Zend_Measure_Flow_Volume::BARREL_PER_DAY);
         $this->assertEquals(Zend_Measure_Flow_Volume::BARREL_PER_DAY, $value->getType(), 'Zend_Measure_Flow_Volume type expected');
     }
@@ -338,7 +340,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeSetComputedType2()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::BARREL_PER_DAY,'de');
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::BARREL_PER_DAY, 'de');
         $value->setType(Zend_Measure_Flow_Volume::STANDARD);
         $this->assertEquals(Zend_Measure_Flow_Volume::STANDARD, $value->getType(), 'Zend_Measure_Flow_Volume type expected');
     }
@@ -352,7 +354,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
     public function testFlow_VolumeSetTypeFailed()
     {
         try {
-            $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
+            $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
             $value->setType('Flow_Volume::UNKNOWN');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
@@ -367,7 +369,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeToString()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals('-100 m³/s', $value->toString(), 'Value -100 m³/s expected');
     }
 
@@ -378,7 +380,7 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_Volume_ToString()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
         $this->assertEquals('-100 m³/s', $value->__toString(), 'Value -100 m³/s expected');
     }
 
@@ -389,8 +391,8 @@ class Zend_Measure_Flow_VolumeTest extends TestCase
      */
     public function testFlow_VolumeConversionList()
     {
-        $value = new Zend_Measure_Flow_Volume('-100',Zend_Measure_Flow_Volume::STANDARD,'de');
-        $unit  = $value->getConversionList();
+        $value = new Zend_Measure_Flow_Volume('-100', Zend_Measure_Flow_Volume::STANDARD, 'de');
+        $unit = $value->getConversionList();
         $this->assertTrue(is_array($unit), 'Array expected');
     }
 }

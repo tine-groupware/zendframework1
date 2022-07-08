@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -64,7 +66,7 @@ class Zend_Filter_StringToUpperTest extends TestCase
         $valuesExpected = [
             'STRING' => 'STRING',
             'ABC1@3' => 'ABC1@3',
-            'A b C'  => 'A B C'
+            'A b C' => 'A B C'
         ];
 
         foreach ($valuesExpected as $input => $output) {
@@ -81,8 +83,8 @@ class Zend_Filter_StringToUpperTest extends TestCase
     public function testWithEncoding()
     {
         $valuesExpected = [
-            'ü'     => 'Ü',
-            'ñ'     => 'Ñ',
+            'ü' => 'Ü',
+            'ñ' => 'Ñ',
             'üñ123' => 'ÜÑ123'
         ];
 
@@ -119,8 +121,8 @@ class Zend_Filter_StringToUpperTest extends TestCase
     public function testInitiationWithEncoding()
     {
         $valuesExpected = [
-            'ü'     => 'Ü',
-            'ñ'     => 'Ñ',
+            'ü' => 'Ü',
+            'ñ' => 'Ñ',
             'üñ123' => 'ÜÑ123'
         ];
 
@@ -140,8 +142,8 @@ class Zend_Filter_StringToUpperTest extends TestCase
     public function testCaseInsensitiveEncoding()
     {
         $valuesExpected = [
-            'ü'     => 'Ü',
-            'ñ'     => 'Ñ',
+            'ü' => 'Ü',
+            'ñ' => 'Ñ',
             'üñ123' => 'ÜÑ123'
         ];
 

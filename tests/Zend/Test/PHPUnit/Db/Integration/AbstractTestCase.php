@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+
 use PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -54,10 +56,12 @@ abstract class Zend_Test_PHPUnit_Db_Integration_AbstractTestCase extends TestCas
         $dataSet->addTable($this->createBarTable());
 
         $this->assertEquals(
-            "foo", $dataSet->getTableMetaData('foo')->getTableName()
+            "foo",
+            $dataSet->getTableMetaData('foo')->getTableName()
         );
         $this->assertEquals(
-            "bar", $dataSet->getTableMetaData("bar")->getTableName()
+            "bar",
+            $dataSet->getTableMetaData("bar")->getTableName()
         );
 
         $this->assertEquals(["foo", "bar"], $dataSet->getTableNames());
@@ -74,7 +78,7 @@ abstract class Zend_Test_PHPUnit_Db_Integration_AbstractTestCase extends TestCas
         $dataSet->addTable($fooTable);
 
         $xmlDataSet = new FlatXmlDataSet(
-            dirname(__FILE__)."/_files/sqliteIntegrationFixture.xml"
+            dirname(__FILE__) . "/_files/sqliteIntegrationFixture.xml"
         );
 
         if (method_exists($xmlDataSet, 'assertEquals')) {
@@ -95,7 +99,7 @@ abstract class Zend_Test_PHPUnit_Db_Integration_AbstractTestCase extends TestCas
     public function testSimpleTesterSetupAndRowsetEquals()
     {
         $dataSet = new FlatXmlDataSet(
-            dirname(__FILE__)."/_files/sqliteIntegrationFixture.xml"
+            dirname(__FILE__) . "/_files/sqliteIntegrationFixture.xml"
         );
         $fooDataTable = $dataSet->getTable("foo");
 

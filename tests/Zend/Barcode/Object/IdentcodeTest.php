@@ -34,7 +34,6 @@ require_once 'Zend/Barcode/Object/Identcode.php';
  */
 class Zend_Barcode_Object_IdentcodeTest extends Zend_Barcode_Object_TestCommon
 {
-
     protected function _getBarcodeObject($options = null)
     {
         return new Zend_Barcode_Object_Identcode($options);
@@ -129,7 +128,8 @@ class Zend_Barcode_Object_IdentcodeTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Identcode_00123456789_border_instructions');
+            'Identcode_00123456789_border_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -139,7 +139,8 @@ class Zend_Barcode_Object_IdentcodeTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setOrientation(60);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Identcode_00123456789_oriented_instructions');
+            'Identcode_00123456789_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -150,7 +151,8 @@ class Zend_Barcode_Object_IdentcodeTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Identcode_00123456789_border_oriented_instructions');
+            'Identcode_00123456789_border_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 

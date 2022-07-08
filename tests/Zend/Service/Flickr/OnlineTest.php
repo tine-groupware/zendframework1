@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -78,8 +80,8 @@ class Zend_Service_Flickr_OnlineTest extends TestCase
     public function testGroupPoolGetPhotosBasic()
     {
         $options = ['per_page' => 10,
-                         'page'     => 1,
-                         'extras'   => 'license, date_upload, date_taken, owner_name, icon_server'];
+                         'page' => 1,
+                         'extras' => 'license, date_upload, date_taken, owner_name, icon_server'];
 
         $resultSet = $this->_flickr->groupPoolGetPhotos('20083316@N00', $options);
 
@@ -125,8 +127,8 @@ class Zend_Service_Flickr_OnlineTest extends TestCase
     public function testUserSearchBasic()
     {
         $options = ['per_page' => 10,
-                         'page'     => 1,
-                         'extras'   => 'license, date_upload, date_taken, owner_name, icon_server'];
+                         'page' => 1,
+                         'extras' => 'license, date_upload, date_taken, owner_name, icon_server'];
 
         $resultSet = $this->_flickr->userSearch('darby.felton@yahoo.com', $options);
 
@@ -184,10 +186,10 @@ class Zend_Service_Flickr_OnlineTest extends TestCase
     {
         $options = [
             'per_page' => 10,
-            'page'     => 1,
+            'page' => 1,
             'tag_mode' => 'or',
-            'sort'     => 'date-taken-asc',
-            'extras'   => 'license, date_upload, date_taken, owner_name, icon_server'
+            'sort' => 'date-taken-asc',
+            'extras' => 'license, date_upload, date_taken, owner_name, icon_server'
             ];
 
         $resultSet = $this->_flickr->tagSearch('php', $options);
@@ -209,7 +211,7 @@ class Zend_Service_Flickr_OnlineTest extends TestCase
     /**
      *  @see ZF-6397
      */
-    function testTotalForEmptyResultSet()
+    public function testTotalForEmptyResultSet()
     {
         $this->assertEquals(0, $this->_flickr->tagSearch('zendflickrtesttagnoresults')->totalResults());
     }

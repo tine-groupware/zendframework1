@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -138,15 +140,15 @@ class Zend_Mail_MaildirMessageOldTest extends TestCase
         $this->assertEquals('Simple Message', $subject);
     }
 
-/*
-    public function testFetchTopBody()
-    {
-        $mail = new Zend_Mail_Storage_Maildir_OldMessage(array('dirname' => $this->_maildir));
+    /*
+        public function testFetchTopBody()
+        {
+            $mail = new Zend_Mail_Storage_Maildir_OldMessage(array('dirname' => $this->_maildir));
 
-        $content = $mail->getHeader(3, 1)->getContent();
-        $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
-    }
-*/
+            $content = $mail->getHeader(3, 1)->getContent();
+            $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
+        }
+    */
     public function testFetchMessageHeader()
     {
         $mail = new Zend_Mail_Storage_Maildir_OldMessage(['dirname' => $this->_maildir]);

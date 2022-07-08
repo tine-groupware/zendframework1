@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -103,7 +105,7 @@ class Zend_Auth_Adapter_DigestTest extends TestCase
     public function testUserExistsRealmNonexistent()
     {
         $filename = "$this->_filesPath/.htdigest.1";
-        $realm    = 'Nonexistent Realm';
+        $realm = 'Nonexistent Realm';
         $username = 'someUser';
         $password = 'somePassword';
 
@@ -131,7 +133,7 @@ class Zend_Auth_Adapter_DigestTest extends TestCase
     public function testUserNonexistentRealmExists()
     {
         $filename = "$this->_filesPath/.htdigest.1";
-        $realm    = 'Some Realm';
+        $realm = 'Some Realm';
         $username = 'nonexistentUser';
         $password = 'somePassword';
 
@@ -159,7 +161,7 @@ class Zend_Auth_Adapter_DigestTest extends TestCase
     public function testIncorrectPassword()
     {
         $filename = "$this->_filesPath/.htdigest.1";
-        $realm    = 'Some Realm';
+        $realm = 'Some Realm';
         $username = 'someUser';
         $password = 'incorrectPassword';
 
@@ -187,7 +189,7 @@ class Zend_Auth_Adapter_DigestTest extends TestCase
     public function testAuthenticationSuccess()
     {
         $filename = "$this->_filesPath/.htdigest.1";
-        $realm    = 'Some Realm';
+        $realm = 'Some Realm';
         $username = 'someUser';
         $password = 'somePassword';
 

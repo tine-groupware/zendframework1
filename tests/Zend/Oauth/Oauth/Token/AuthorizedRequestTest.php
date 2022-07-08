@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,10 +36,9 @@ require_once 'Zend/Oauth/Token/AuthorizedRequest.php';
  */
 class Zend_Oauth_Token_AuthorizedRequestTest extends TestCase
 {
-
     public function testConstructorSetsInputData()
     {
-        $data = ['foo'=>'bar'];
+        $data = ['foo' => 'bar'];
         $token = new Zend_Oauth_Token_AuthorizedRequest($data);
         $this->assertEquals($data, $token->getData());
     }
@@ -45,7 +46,7 @@ class Zend_Oauth_Token_AuthorizedRequestTest extends TestCase
     public function testConstructorParsesAccessTokenFromInputData()
     {
         $data = [
-            'oauth_token'=>'jZaee4GF52O3lUb9'
+            'oauth_token' => 'jZaee4GF52O3lUb9'
         ];
         $token = new Zend_Oauth_Token_AuthorizedRequest($data);
         $this->assertEquals('jZaee4GF52O3lUb9', $token->getToken());
@@ -54,7 +55,7 @@ class Zend_Oauth_Token_AuthorizedRequestTest extends TestCase
     public function testPropertyAccessWorks()
     {
         $data = [
-            'oauth_token'=>'jZaee4GF52O3lUb9'
+            'oauth_token' => 'jZaee4GF52O3lUb9'
         ];
         $token = new Zend_Oauth_Token_AuthorizedRequest($data);
         $this->assertEquals('jZaee4GF52O3lUb9', $token->oauth_token);
@@ -80,7 +81,7 @@ class Zend_Oauth_Token_AuthorizedRequestTest extends TestCase
     public function testIsValidDetectsBadResponse()
     {
         $data = [
-            'missing_oauth_token'=>'jZaee4GF52O3lUb9'
+            'missing_oauth_token' => 'jZaee4GF52O3lUb9'
         ];
         $token = new Zend_Oauth_Token_AuthorizedRequest($data);
         $this->assertFalse($token->isValid());
@@ -89,11 +90,10 @@ class Zend_Oauth_Token_AuthorizedRequestTest extends TestCase
     public function testIsValidDetectsGoodResponse()
     {
         $data = [
-            'oauth_token'=>'jZaee4GF52O3lUb9',
-            'foo'=>'bar'
+            'oauth_token' => 'jZaee4GF52O3lUb9',
+            'foo' => 'bar'
         ];
         $token = new Zend_Oauth_Token_AuthorizedRequest($data);
         $this->assertTrue($token->isValid());
     }
-
 }

@@ -45,7 +45,7 @@ class Zend_Queue_Queue2Test extends Zend_Queue_QueueBaseTest
     {
         // Test Zend_Config
         $this->config = [
-            'name'      => 'queue1'
+            'name' => 'queue1'
         ];
 
         $this->queue = new Zend_Queue('Null', $this->config);

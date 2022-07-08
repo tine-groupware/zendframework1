@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -183,7 +185,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -197,7 +199,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
         $this->assertEquals(count($hits), 1);
 
         $this->assertEquals($hits[0]->id, 8);
-        $this->assertTrue( abs($hits[0]->score - 0.141633) < 0.000001 );
+        $this->assertTrue(abs($hits[0]->score - 0.141633) < 0.000001);
         $this->assertEquals($hits[0]->path, 'IndexSource/contributing.html');
     }
 
@@ -215,7 +217,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -232,7 +234,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -248,7 +250,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -260,8 +262,10 @@ class Zend_Search_Lucene_SearchTest extends TestCase
         $query = Zend_Search_Lucene_Search_QueryParser::parse('"Non-existing phrase" AND Home');
 
         $this->assertEquals($query->__toString(), '+("Non-existing phrase") +(Home)');
-        $this->assertEquals($query->rewrite($index)->__toString(),
-                            '+((path:"non existing phrase") (modified:"non existing phrase") (contents:"non existing phrase")) +(path:home modified:home contents:home)');
+        $this->assertEquals(
+            $query->rewrite($index)->__toString(),
+            '+((path:"non existing phrase") (modified:"non existing phrase") (contents:"non existing phrase")) +(path:home modified:home contents:home)'
+        );
         $this->assertEquals($query->rewrite($index)->optimize($index)->__toString(), '<EmptyQuery>');
     }
 
@@ -279,7 +283,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -306,7 +310,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
 
@@ -335,7 +339,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
 
@@ -357,7 +361,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -377,7 +381,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -400,7 +404,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
 
@@ -459,7 +463,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
     }
@@ -481,7 +485,7 @@ class Zend_Search_Lucene_SearchTest extends TestCase
 
         foreach ($hits as $resId => $hit) {
             $this->assertEquals($hit->id, $expectedResultset[$resId][0]);
-            $this->assertTrue( abs($hit->score - $expectedResultset[$resId][1]) < 0.000001 );
+            $this->assertTrue(abs($hit->score - $expectedResultset[$resId][1]) < 0.000001);
             $this->assertEquals($hit->path, $expectedResultset[$resId][2]);
         }
 

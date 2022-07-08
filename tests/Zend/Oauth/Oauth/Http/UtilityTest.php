@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -95,5 +97,4 @@ class Zend_Oauth_Http_UtilityTest extends TestCase
         $string = '、';
         $this->assertEquals('%E3%80%81', Zend_Oauth_Http_Utility::urlEncode($string));
     }
-
 }

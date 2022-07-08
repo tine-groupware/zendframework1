@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,11 +38,11 @@ require_once 'Zend/Gdata/Docs/DocumentListEntry.php';
  */
 class Zend_Gdata_Docs_DocumentListEntryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->doc = new Zend_Gdata_Docs_DocumentListEntry(
-                file_get_contents('Zend/Gdata/Docs/_files/TestDataDocumentListEntrySample.xml', true));
+            file_get_contents('Zend/Gdata/Docs/_files/TestDataDocumentListEntrySample.xml', true)
+        );
     }
 
     public function testToAndFromString()
@@ -69,5 +71,4 @@ class Zend_Gdata_Docs_DocumentListEntryTest extends TestCase
         $this->assertTrue($this->doc->getMediaSource()->getSlug() ===
             'test slug');
     }
-
 }

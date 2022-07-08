@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -28,12 +30,14 @@ require_once 'Zend/Cache.php';
 require_once 'Zend/Cache/Frontend/Function.php';
 require_once 'Zend/Cache/Backend/Test.php';
 
-function foobar($param1, $param2) {
+function foobar($param1, $param2)
+{
     echo "foobar_output($param1, $param2)";
     return "foobar_return($param1, $param2)";
 }
 
-class fooclass {
+class fooclass
+{
     private static $_instanceCounter = 0;
 
     public function __construct()
@@ -56,8 +60,8 @@ class fooclass {
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_FunctionFrontendTest extends TestCase {
-
+class Zend_Cache_FunctionFrontendTest extends TestCase
+{
     private $_instance;
 
     protected function setUp(): void
@@ -223,6 +227,4 @@ class Zend_Cache_FunctionFrontendTest extends TestCase {
         }
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
-
 }
-

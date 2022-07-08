@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Serializer/Adapter/PythonPickle.php';
  */
 class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCase
 {
-
     private $_adapter;
 
     protected function setUp(): void
@@ -49,8 +50,8 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
     }
 
     public function testSerializeNull()
-   {
-        $value    = null;
+    {
+        $value = null;
         $expected = 'N.';
 
         $data = $this->_adapter->serialize($value);
@@ -59,7 +60,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeTrue()
     {
-        $value    = true;
+        $value = true;
         $expected = "I01\r\n.";
 
         $data = $this->_adapter->serialize($value);
@@ -68,7 +69,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeFalse()
     {
-        $value    = false;
+        $value = false;
         $expected = "I00\r\n.";
 
         $data = $this->_adapter->serialize($value);
@@ -77,7 +78,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeBinInt1()
     {
-        $value    = 255;
+        $value = 255;
         $expected = "K\xff.";
 
         $data = $this->_adapter->serialize($value);
@@ -86,7 +87,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeBinInt2()
     {
-        $value    = 256;
+        $value = 256;
         $expected = "M\x00\x01.";
 
         $data = $this->_adapter->serialize($value);
@@ -95,7 +96,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeBinInt()
     {
-        $value    = -2;
+        $value = -2;
         $expected = "J\xfe\xff\xff\xff.";
 
         $data = $this->_adapter->serialize($value);
@@ -104,7 +105,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeBinFloat()
     {
-        $value    = -12345.6789;
+        $value = -12345.6789;
         $expected = "G\xc0\xc8\x1c\xd6\xe6\x31\xf8\xa1.";
 
         $data = $this->_adapter->serialize($value);
@@ -113,7 +114,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeShortBinString()
     {
-        $value    = 'test';
+        $value = 'test';
         $expected = "U\x04test"
                   . "q\x00.";
 
@@ -123,7 +124,7 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
 
     public function testSerializeBinString()
     {
-        $value    = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
+        $value = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
                   . "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
                   . "01234567890123456789012345678901234567890123456789012345";
         $expected = "T\x00\x01\x00\x00"
@@ -135,5 +136,4 @@ class Zend_Serializer_Adapter_PythonPickleSerializeProtocol1Test extends TestCas
         $data = $this->_adapter->serialize($value);
         $this->assertEquals($expected, $data);
     }
-
 }

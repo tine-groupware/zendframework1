@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,15 +53,14 @@ class Zend_Filter_Word_SeparatorToSeparatorTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Filter_Word_SeparatorToSeparatorTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Filter_Word_SeparatorToSeparatorTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testFilterSeparatesWordsByDefault()
     {
-        $string   = 'dash separated words';
-        $filter   = new Zend_Filter_Word_SeparatorToSeparator();
+        $string = 'dash separated words';
+        $filter = new Zend_Filter_Word_SeparatorToSeparator();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -68,8 +69,8 @@ class Zend_Filter_Word_SeparatorToSeparatorTest extends TestCase
 
     public function testFilterSeparatesWordsWithSearchSpecified()
     {
-        $string   = 'dash=separated=words';
-        $filter   = new Zend_Filter_Word_SeparatorToSeparator('=');
+        $string = 'dash=separated=words';
+        $filter = new Zend_Filter_Word_SeparatorToSeparator('=');
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -78,14 +79,13 @@ class Zend_Filter_Word_SeparatorToSeparatorTest extends TestCase
 
     public function testFilterSeparatesWordsWithSearchAndReplacementSpecified()
     {
-        $string   = 'dash=separated=words';
-        $filter   = new Zend_Filter_Word_SeparatorToSeparator('=', '?');
+        $string = 'dash=separated=words';
+        $filter = new Zend_Filter_Word_SeparatorToSeparator('=', '?');
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
         $this->assertEquals('dash?separated?words', $filtered);
     }
-
 }
 
 // Call Zend_Filter_Word_SeparatorToSeparatorTest::main() if this source file is executed directly.

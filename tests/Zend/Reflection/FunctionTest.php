@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,8 +39,7 @@ require_once 'Zend/Reflection/Function.php';
  */
 class Zend_Reflection_FunctionTest extends TestCase
 {
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -62,6 +63,4 @@ class Zend_Reflection_FunctionTest extends TestCase
         $function = new Zend_Reflection_Function('zend_reflection_test_sample_function6');
         $this->assertEquals(get_class($function->getDocblock()), 'Zend_Reflection_Docblock');
     }
-
 }
-

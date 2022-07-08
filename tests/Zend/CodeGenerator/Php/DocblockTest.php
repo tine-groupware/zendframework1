@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,7 +40,6 @@ require_once 'Zend/CodeGenerator/Php/Docblock.php';
  */
 class Zend_CodeGenerator_Php_DocblockTest extends TestCase
 {
-
     /**
      * @var Zend_CodeGenerator_Php_Docblock
      */
@@ -83,7 +84,5 @@ class Zend_CodeGenerator_Php_DocblockTest extends TestCase
 EOS;
 
         $this->assertEquals($target, $this->_docblock->generate());
-
     }
-
 }

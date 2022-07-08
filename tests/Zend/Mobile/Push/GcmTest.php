@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,10 +39,9 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Mobile_Push_gcmTest extends TestCase
 {
-
     protected function _createJSONResponse($id, $success, $failure, $ids, $results)
     {
-         return json_encode([
+        return json_encode([
             'multicast_id' => $id,
             'success' => $success,
             'failure' => $failure,

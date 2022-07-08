@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Translate_Adapter_CsvTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Translate_Adapter_CsvTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Translate_Adapter_CsvTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -125,20 +127,20 @@ class Zend_Translate_Adapter_CsvTest extends TestCase
         $adapter = new Zend_Translate_Adapter_Csv(dirname(__FILE__) . '/_files/translation_en.csv', 'en');
         $adapter->setOptions(['testoption' => 'testkey']);
         $expected = [
-            'delimiter'       => ';',
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => dirname(__FILE__) . '/_files/translation_en.csv',
-            'scan'            => null,
-            'locale'          => 'en',
-            'length'          => 0,
-            'enclosure'       => '"',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'delimiter' => ';',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => dirname(__FILE__) . '/_files/translation_en.csv',
+            'scan' => null,
+            'locale' => 'en',
+            'length' => 0,
+            'enclosure' => '"',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         ];
         $options = $adapter->getOptions();
 

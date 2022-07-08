@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -251,9 +253,9 @@ class Zend_Mail_MaildirFolderTest extends TestCase
         $mail = new Zend_Mail_Storage_Folder_Maildir($this->_params);
         $iterator = new RecursiveIteratorIterator($mail->getFolders(), RecursiveIteratorIterator::SELF_FIRST);
         // we search for this folder because we can't assume a order while iterating
-        $search_folders = ['subfolder'      => 'subfolder',
+        $search_folders = ['subfolder' => 'subfolder',
                                 'subfolder.test' => 'test',
-                                'INBOX'          => 'INBOX'];
+                                'INBOX' => 'INBOX'];
         $found_folders = [];
 
         foreach ($iterator as $localName => $folder) {
@@ -273,9 +275,9 @@ class Zend_Mail_MaildirFolderTest extends TestCase
         $mail = new Zend_Mail_Storage_Folder_Maildir($this->_params);
         $iterator = new RecursiveIteratorIterator($mail->getFolders(), RecursiveIteratorIterator::SELF_FIRST);
         // we search for this folder because we can't assume a order while iterating
-        $search_folders = ['subfolder'      => 'subfolder',
+        $search_folders = ['subfolder' => 'subfolder',
                                 'subfolder.test' => 'test',
-                                'INBOX'          => 'INBOX'];
+                                'INBOX' => 'INBOX'];
         $found_folders = [];
 
         foreach ($iterator as $localName => $folder) {
@@ -384,7 +386,7 @@ class Zend_Mail_MaildirFolderTest extends TestCase
         chmod($this->_params['dirname'] . '.subfolder', $stat['mode']);
 
         if (!$check) {
-           $this->fail('no exception while loading invalid dir with subfolder not readable');
+            $this->fail('no exception while loading invalid dir with subfolder not readable');
         }
     }
 
@@ -414,7 +416,7 @@ class Zend_Mail_MaildirFolderTest extends TestCase
         chmod($this->_params['dirname'], $stat['mode']);
 
         if (!$check) {
-           $this->fail('no exception while loading not readable maildir');
+            $this->fail('no exception while loading not readable maildir');
         }
     }
 

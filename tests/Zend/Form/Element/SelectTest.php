@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Form_Element_SelectTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Form_Element_SelectTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_SelectTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -263,7 +265,7 @@ class Zend_Form_Element_SelectTest extends TestCase
                       ->setIsArray(true)
                       ->setDecorators(['ViewHelper']);
 
-        $actual   = $this->element->render($this->getView());
+        $actual = $this->element->render($this->getView());
         $expected = PHP_EOL
                   . '<select name="foo[]" id="foo">'
                   . "\n"

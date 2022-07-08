@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -39,9 +41,9 @@ require_once 'Zend/Service/Delicious.php';
  */
 class Zend_Service_Delicious_PublicDataTest extends TestCase
 {
-    const TEST_UNAME = 'zfTestUser';
-    const TEST_PASS  = 'zfuser';
-    const TEST_URL  = 'http://framework.zend.com/';
+    public const TEST_UNAME = 'zfTestUser';
+    public const TEST_PASS = 'zfuser';
+    public const TEST_URL = 'http://framework.zend.com/';
 
     /**
      * @var Zend_Service_Delicious
@@ -148,7 +150,8 @@ class Zend_Service_Delicious_PublicDataTest extends TestCase
      *
      * @return void
      */
-    public function testGetUrlDetails() {
+    public function testGetUrlDetails()
+    {
         $details = $this->_delicious->getUrlDetails(self::TEST_URL);
 
         $this->assertTrue(is_array($details));

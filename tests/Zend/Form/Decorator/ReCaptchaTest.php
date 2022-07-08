@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,9 +53,8 @@ class Zend_Form_Decorator_ReCaptchaTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_ReCaptchaTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_ReCaptchaTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -65,11 +66,11 @@ class Zend_Form_Decorator_ReCaptchaTest extends TestCase
     protected function setUp(): void
     {
         $view = new Zend_View();
-        $this->element   = new Zend_Form_Element_Captcha('captcha', [
+        $this->element = new Zend_Form_Element_Captcha('captcha', [
             'captcha' => [
                 'captcha' => 'ReCaptcha',
                 'privKey' => 'private',
-                'pubKey'  => 'public',
+                'pubKey' => 'public',
             ],
         ]);
         $this->element->setView($view);
@@ -133,4 +134,3 @@ class Zend_Form_Decorator_ReCaptchaTest extends TestCase
 if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_ReCaptchaTest::main") {
     Zend_Form_Decorator_ReCaptchaTest::main();
 }
-

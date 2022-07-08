@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -63,8 +65,8 @@ class Zend_Dojo_Form_Decorator_DijitFormTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_Form_Decorator_DijitFormTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_Form_Decorator_DijitFormTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -78,9 +80,9 @@ class Zend_Dojo_Form_Decorator_DijitFormTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view      = $this->getView();
+        $this->view = $this->getView();
         $this->decorator = new Zend_Dojo_Form_Decorator_DijitForm();
-        $this->element   = $this->getElement();
+        $this->element = $this->getElement();
         $this->element->setView($this->view);
         $this->decorator->setElement($this->element);
     }
@@ -107,12 +109,12 @@ class Zend_Dojo_Form_Decorator_DijitFormTest extends TestCase
     {
         $element = new Zend_Dojo_Form();
         $element->setAttribs([
-            'name'   => 'foo',
-            'style'  => 'width: 300px; height: 500px;',
-            'class'  => 'someclass',
+            'name' => 'foo',
+            'style' => 'width: 300px; height: 500px;',
+            'class' => 'someclass',
             'dijitParams' => [
                 'labelAttr' => 'foobar',
-                'typeAttr'  => 'barbaz',
+                'typeAttr' => 'barbaz',
             ],
         ]);
         return $element;
@@ -134,11 +136,11 @@ class Zend_Dojo_Form_Decorator_DijitFormTest extends TestCase
     {
         $element = new Zend_Dojo_Form();
         $element->setAttribs([
-            'style'  => 'width: 300px; height: 500px;',
-            'class'  => 'someclass',
+            'style' => 'width: 300px; height: 500px;',
+            'class' => 'someclass',
             'dijitParams' => [
                 'labelAttr' => 'foobar',
-                'typeAttr'  => 'barbaz',
+                'typeAttr' => 'barbaz',
             ],
         ]);
         $element->setView($this->view);

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -55,9 +57,8 @@ class Zend_Form_Element_ButtonTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Element_ButtonTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_ButtonTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -176,8 +177,8 @@ class Zend_Form_Element_ButtonTest extends TestCase
         // Set element options
         $this->element->setOptions(
             [
-                 'label'      => 'Foo',
-                 'value'      => 'bar',
+                 'label' => 'Foo',
+                 'value' => 'bar',
                  'decorators' => [
                      'ViewHelper',
                  ],

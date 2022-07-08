@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -70,4 +72,3 @@ class Zend_Search_Lucene_Index_DictionaryLoaderTest extends TestCase
         $this->assertTrue($termDictionaryInfos == $loadedTermDictionaryInfos);
     }
 }
-

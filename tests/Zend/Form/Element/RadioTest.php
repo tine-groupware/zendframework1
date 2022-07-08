@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Form_Element_RadioTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Form_Element_RadioTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_RadioTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -121,10 +123,10 @@ class Zend_Form_Element_RadioTest extends TestCase
     public function testCanDisableIndividualRadioOptions()
     {
         $this->element->setMultiOptions([
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
-                'bat'  => 'Bat',
+                'foo' => 'Foo',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
+                'bat' => 'Bat',
                 'test' => 'Test',
             ])
             ->setAttrib('disable', ['baz', 'test']);
@@ -146,10 +148,10 @@ class Zend_Form_Element_RadioTest extends TestCase
     public function testSpecifiedSeparatorIsUsedWhenRendering()
     {
         $this->element->setMultiOptions([
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
-                'bat'  => 'Bat',
+                'foo' => 'Foo',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
+                'bat' => 'Bat',
                 'test' => 'Test',
             ])
             ->setSeparator('--FooBarFunSep--');
@@ -162,10 +164,10 @@ class Zend_Form_Element_RadioTest extends TestCase
     public function testRadioElementRendersDtDdWrapper()
     {
         $this->element->setMultiOptions([
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
-                'bat'  => 'Bat',
+                'foo' => 'Foo',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
+                'bat' => 'Bat',
                 'test' => 'Test',
             ]);
         $html = $this->element->render($this->getView());
@@ -195,8 +197,8 @@ class Zend_Form_Element_RadioTest extends TestCase
     public function testRenderingShouldCreateLabelWithoutForAttribute()
     {
         $this->element->setMultiOptions([
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
+                'foo' => 'Foo',
+                'bar' => 'Bar',
              ])
              ->setLabel('Foo');
         $html = $this->element->render($this->getView());
@@ -209,10 +211,10 @@ class Zend_Form_Element_RadioTest extends TestCase
     public function testCreationWithIndividualDecoratorsAsConstructorOptionsWithoutLabel()
     {
         $element = new Zend_Form_Element_Radio([
-            'name'         => 'foo',
+            'name' => 'foo',
             'multiOptions' => [
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
             ],
             'decorators' => [
                 'ViewHelper',
@@ -228,10 +230,10 @@ class Zend_Form_Element_RadioTest extends TestCase
     public function testRenderingWithIndividualDecoratorsAsConstructorOptionsWithoutLabel()
     {
         $element = new Zend_Form_Element_Radio([
-            'name'         => 'foo',
+            'name' => 'foo',
             'multiOptions' => [
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
             ],
             'decorators' => [
                 'ViewHelper',

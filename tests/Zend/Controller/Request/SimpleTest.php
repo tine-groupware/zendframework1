@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,9 +54,8 @@ class Zend_Controller_Request_SimpleTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Request_SimpleTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Request_SimpleTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testSimpleRequestIsOfAbstractRequestType()
@@ -77,14 +78,13 @@ class Zend_Controller_Request_SimpleTest extends TestCase
      */
     public function testSettingParamToNullInSetparamsCorrectlyUnsetsValue()
     {
-        $request = new Zend_Controller_Request_Simple;
+        $request = new Zend_Controller_Request_Simple();
         $request->setParam('key', 'value');
         $request->setParams([
             'key' => null
         ]);
         $this->assertNull($request->getParam('key'));
     }
-
 }
 
 // Call Zend_Controller_Request_SimpleTest::main() if this source file is executed directly.

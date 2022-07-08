@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Form_Element_CheckboxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Form_Element_CheckboxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_CheckboxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -197,7 +199,7 @@ class Zend_Form_Element_CheckboxTest extends TestCase
     public function testSetOptionsSetsInitialValueAccordingToCheckedAndUncheckedValues()
     {
         $options = [
-            'checkedValue'   => 'foo',
+            'checkedValue' => 'foo',
             'uncheckedValue' => 'bar',
         ];
 
@@ -209,13 +211,13 @@ class Zend_Form_Element_CheckboxTest extends TestCase
     {
         $options = [
             'test1' => [
-                'value'          => 'foo',
-                'checkedValue'   => 'foo',
+                'value' => 'foo',
+                'checkedValue' => 'foo',
                 'uncheckedValue' => 'bar',
             ],
             'test2' => [
-                'value'          => 'bar',
-                'checkedValue'   => 'foo',
+                'value' => 'bar',
+                'checkedValue' => 'foo',
                 'uncheckedValue' => 'bar',
             ],
         ];

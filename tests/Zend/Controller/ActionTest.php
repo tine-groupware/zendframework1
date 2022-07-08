@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,9 +56,8 @@ class Zend_Controller_ActionTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_ActionTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_ActionTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -189,7 +190,7 @@ class Zend_Controller_ActionTest extends TestCase
     public function testRun()
     {
         $response = $this->_controller->run();
-        $body     = $response->getBody();
+        $body = $response->getBody();
         $this->assertStringContainsString('In the index action', $body, var_export($this->_controller->getRequest(), 1));
         $this->assertStringNotContainsString('Prerun ran', $body, $body);
     }
@@ -248,14 +249,14 @@ class Zend_Controller_ActionTest extends TestCase
         $this->assertEquals(-1, $this->_controller->getParam('baz', -1));
     }
 
-	/**
+    /**
      * @group ZF-9179
      */
-	public function testGetParamForEmptyString()
-	{
-		$this->_controller->setParam('lang', '');
-		$this->assertEquals('en', $this->_controller->getParam('lang', 'en'));
-	}
+    public function testGetParamForEmptyString()
+    {
+        $this->_controller->setParam('lang', '');
+        $this->assertEquals('en', $this->_controller->getParam('lang', 'en'));
+    }
 
     public function testGetParams()
     {
@@ -276,8 +277,8 @@ class Zend_Controller_ActionTest extends TestCase
         $this->_controller->redirect('/baz/foo');
         $this->_controller->redirect('/foo/bar');
         $headers = $response->getHeaders();
-        $found   = 0;
-        $url     = '';
+        $found = 0;
+        $url = '';
         foreach ($headers as $header) {
             if ('Location' == $header['name']) {
                 ++$found;
@@ -397,10 +398,10 @@ class Zend_Controller_ActionTest extends TestCase
         Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
 
-        $request    = new Zend_Controller_Request_Http();
+        $request = new Zend_Controller_Request_Http();
         $request->setControllerName('view')
                 ->setActionName('test');
-        $response   = new Zend_Controller_Response_Cli();
+        $response = new Zend_Controller_Response_Cli();
         $controller = new ViewController($request, $response);
 
         $this->assertSame($viewRenderer->getActionController(), $controller);
@@ -452,7 +453,7 @@ class Zend_Controller_ActionTest extends TestCase
     public function testGetHelperCopy()
     {
         $redirector = $this->_controller->getHelper('redirector');
-        $copy       = $this->_controller->getHelperCopy('redirector');
+        $copy = $this->_controller->getHelperCopy('redirector');
         $this->assertNotSame($redirector, $copy);
         $this->assertTrue($copy instanceof Zend_Controller_Action_Helper_Redirector);
     }

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,9 +50,9 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
 {
     public static function main()
     {
-        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS)  {
-            $suite  = new TestSuite("Zend_Service_WindowsAzure_QueueStorageTest");
-            $result = (new TestRunner)->run($suite);
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+            $suite = new TestSuite("Zend_Service_WindowsAzure_QueueStorageTest");
+            $result = (new TestRunner())->run($suite);
         }
     }
    
@@ -67,9 +69,11 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
     protected function tearDown(): void
     {
         $storageClient = $this->createStorageInstance();
-        for ($i = 1; $i <= self::$uniqId; $i++)
-        {
-            try { $storageClient->deleteQueue(TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_PREFIX . $i); } catch (Exception $e) { }
+        for ($i = 1; $i <= self::$uniqId; $i++) {
+            try {
+                $storageClient->deleteQueue(TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_PREFIX . $i);
+            } catch (Exception $e) {
+            }
         }
     }
 
@@ -102,7 +106,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testQueueExists()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName1 = $this->generateName();
             $queueName2 = $this->generateName();
             $storageClient = $this->createStorageInstance();
@@ -122,7 +126,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testCreateQueue()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName = $this->generateName();
             $storageClient = $this->createStorageInstance();
             $result = $storageClient->createQueue($queueName);
@@ -135,7 +139,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testCreateQueueIfNotExists()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName = $this->generateName();
             $storageClient = $this->createStorageInstance();
             
@@ -156,7 +160,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testSetQueueMetadata()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName = $this->generateName();
             $storageClient = $this->createStorageInstance();
             $storageClient->createQueue($queueName);
@@ -175,7 +179,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testGetQueue()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName = $this->generateName();
             $storageClient = $this->createStorageInstance();
             $storageClient->createQueue($queueName);
@@ -191,7 +195,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testListQueues()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName1 = 'testlist1';
             $queueName2 = 'testlist2';
             $queueName3 = 'testlist3';
@@ -219,7 +223,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testListQueuesWithMetadata()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName = $this->generateName();
             $storageClient = $this->createStorageInstance();
             $storageClient->createQueue($queueName, [
@@ -239,7 +243,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
      */
     public function testPutMessage()
     {
-    	if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
+        if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS) {
             $queueName = $this->generateName();
             $storageClient = $this->createStorageInstance();
             $storageClient->createQueue($queueName);
@@ -320,8 +324,8 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
             
             $expectedDequeueCount = 3;
             for ($i = 0; $i < $expectedDequeueCount - 1; $i++) {
-	            $storageClient->getMessages($queueName, 1, 1);
-	            sleep(3);
+                $storageClient->getMessages($queueName, 1, 1);
+                sleep(3);
             }
             
             $messages = $storageClient->getMessages($queueName, 1);
@@ -375,8 +379,7 @@ class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
             sleep(5); // wait for the messages to appear in the queue...
             
             $messages1 = $storageClient->getMessages($queueName, 2, 10);
-            foreach ($messages1 as $message)
-            {
+            foreach ($messages1 as $message) {
                 $storageClient->deleteMessage($queueName, $message);
             }
             

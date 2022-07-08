@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,7 +44,7 @@ class Zend_Service_ShortUrl_MetamarkNetTest extends TestCase
      *
      * @return void
      */
-    public function setUp (): void
+    public function setUp(): void
     {
         if (!defined('TESTS_ZEND_SERVICE_SHORTURL_METAMARKNET_ENABLED')
             || !constant('TESTS_ZEND_SERVICE_SHORTURL_METAMARKNET_ENABLED')
@@ -70,7 +72,7 @@ class Zend_Service_ShortUrl_MetamarkNetTest extends TestCase
     public function testShorten()
     {
         $urls = [
-            'http://framework.zend.com/'           => 'http://xrl.us/bh4ptf',
+            'http://framework.zend.com/' => 'http://xrl.us/bh4ptf',
             'http://framework.zend.com/manual/en/' => 'http://xrl.us/bh4pth'
         ];
 
@@ -82,7 +84,7 @@ class Zend_Service_ShortUrl_MetamarkNetTest extends TestCase
     public function testUnshorten()
     {
         $urls = [
-            'http://framework.zend.com/'           => 'http://xrl.us/bh4ptf',
+            'http://framework.zend.com/' => 'http://xrl.us/bh4ptf',
             'http://framework.zend.com/manual/en/' => 'http://xrl.us/bh4pth'
         ];
 

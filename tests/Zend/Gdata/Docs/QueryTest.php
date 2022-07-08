@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,7 +38,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Docs_QueryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->docQuery = new Zend_Gdata_Docs_Query();

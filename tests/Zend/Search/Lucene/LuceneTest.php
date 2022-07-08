@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,13 +46,13 @@ class Zend_Search_Lucene_LuceneTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     private function _clearDirectory($dirName)
     {
-        if (!file_exists($dirName) || !is_dir($dirName))  {
+        if (!file_exists($dirName) || !is_dir($dirName)) {
             return;
         }
 
@@ -205,7 +207,7 @@ class Zend_Search_Lucene_LuceneTest extends TestCase
     {
         $index = Zend_Search_Lucene::open(dirname(__FILE__) . '/_indexSample/_files');
 
-        $this->assertTrue(array_values( $index->termDocs(new Zend_Search_Lucene_Index_Term('packages', 'contents')) ) ==
+        $this->assertTrue(array_values($index->termDocs(new Zend_Search_Lucene_Index_Term('packages', 'contents'))) ==
                           [0, 2, 6, 7, 8]);
     }
 
@@ -296,20 +298,20 @@ class Zend_Search_Lucene_LuceneTest extends TestCase
             if (is_dir($indexSourceDir . '/' . $file)) {
                 continue;
             }
-            if (strcasecmp(substr($file, strlen($file)-5), '.html') != 0) {
+            if (strcasecmp(substr($file, strlen($file) - 5), '.html') != 0) {
                 continue;
             }
 
             // Create new Document from a file
             $doc = new Zend_Search_Lucene_Document();
             $doc->addField(Zend_Search_Lucene_Field::Text('path', 'IndexSource/' . $file));
-            $doc->addField(Zend_Search_Lucene_Field::Keyword( 'modified', filemtime($indexSourceDir . '/' . $file) ));
+            $doc->addField(Zend_Search_Lucene_Field::Keyword('modified', filemtime($indexSourceDir . '/' . $file)));
 
-            $f = fopen($indexSourceDir . '/' . $file,'rb');
+            $f = fopen($indexSourceDir . '/' . $file, 'rb');
             $byteCount = filesize($indexSourceDir . '/' . $file);
 
             $data = '';
-            while ( $byteCount > 0 && ($nextBlock = fread($f, $byteCount)) != false ) {
+            while ($byteCount > 0 && ($nextBlock = fread($f, $byteCount)) != false) {
                 $data .= $nextBlock;
                 $byteCount -= strlen($nextBlock);
             }
@@ -343,20 +345,20 @@ class Zend_Search_Lucene_LuceneTest extends TestCase
             if (is_dir($indexSourceDir . '/' . $file)) {
                 continue;
             }
-            if (strcasecmp(substr($file, strlen($file)-5), '.html') != 0) {
+            if (strcasecmp(substr($file, strlen($file) - 5), '.html') != 0) {
                 continue;
             }
 
             // Create new Document from a file
             $doc = new Zend_Search_Lucene_Document();
             $doc->addField(Zend_Search_Lucene_Field::Keyword('path', 'IndexSource/' . $file));
-            $doc->addField(Zend_Search_Lucene_Field::Keyword( 'modified', filemtime($indexSourceDir . '/' . $file) ));
+            $doc->addField(Zend_Search_Lucene_Field::Keyword('modified', filemtime($indexSourceDir . '/' . $file)));
 
-            $f = fopen($indexSourceDir . '/' . $file,'rb');
+            $f = fopen($indexSourceDir . '/' . $file, 'rb');
             $byteCount = filesize($indexSourceDir . '/' . $file);
 
             $data = '';
-            while ( $byteCount > 0 && ($nextBlock = fread($f, $byteCount)) != false ) {
+            while ($byteCount > 0 && ($nextBlock = fread($f, $byteCount)) != false) {
                 $data .= $nextBlock;
                 $byteCount -= strlen($nextBlock);
             }
@@ -567,7 +569,7 @@ class Zend_Search_Lucene_LuceneTest extends TestCase
 
         $index = Zend_Search_Lucene::create(dirname(__FILE__) . '/_index/_files');
 
-        $document = new Zend_Search_Lucene_Document;
+        $document = new Zend_Search_Lucene_Document();
         $document->addField(Zend_Search_Lucene_Field::Keyword('_id', 'myId'));
         $document->addField(Zend_Search_Lucene_Field::Keyword('bla', 'blubb'));
         $index->addDocument($document);

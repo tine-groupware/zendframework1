@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,9 +55,8 @@ class Zend_Rest_ServerTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Rest_ServerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Rest_ServerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -114,7 +115,7 @@ class Zend_Rest_ServerTest extends TestCase
         $this->assertStringContainsString('failed', $result);
     }
 
-      public function testHandleFunctionNoArgsUsingRequest()
+    public function testHandleFunctionNoArgsUsingRequest()
     {
         $_REQUEST = [
             'method' => 'Zend_Rest_Server_TestFunc2'
@@ -139,7 +140,6 @@ class Zend_Rest_ServerTest extends TestCase
 
     public function testHandleMultipleFunction()
     {
-
         $server = new Zend_Rest_Server();
         $server->addFunction('Zend_Rest_Server_TestFunc2');
         $server->addFunction('Zend_Rest_Server_TestFunc');
@@ -900,7 +900,9 @@ class Zend_Rest_Server_Test2
     }
 }
 
-class Zend_Rest_TestException extends Exception { }
+class Zend_Rest_TestException extends Exception
+{
+}
 
 // Call Zend_Rest_ServerTest::main() if this source file is executed directly.
 if (PHPUnit_MAIN_METHOD == "Zend_Rest_ServerTest::main") {

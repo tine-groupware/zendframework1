@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,9 +58,8 @@ class Zend_View_Helper_Placeholder_ContainerTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -115,7 +116,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends TestCase
         $this->container['foo'] = 'bar';
         $this->container['bar'] = 'baz';
         $expected = ['foo' => 'bar', 'bar' => 'baz'];
-        $return   = $this->container->getValue();
+        $return = $this->container->getValue();
         $this->assertEquals($expected, $return);
     }
 
@@ -224,8 +225,8 @@ class Zend_View_Helper_Placeholder_ContainerTest extends TestCase
 
         $this->assertEquals($originalCount + 1, count($this->container));
 
-        $value     = $this->container->getValue();
-        $keys      = array_keys($value);
+        $value = $this->container->getValue();
+        $keys = array_keys($value);
         $lastIndex = array_pop($keys);
         $this->assertEquals('foo', $value[$lastIndex - 1]);
         $this->assertStringContainsString('This is content intended for capture', $value[$lastIndex]);
@@ -245,8 +246,8 @@ class Zend_View_Helper_Placeholder_ContainerTest extends TestCase
 
         $this->assertEquals($originalCount + 1, count($this->container));
 
-        $value     = $this->container->getValue();
-        $keys      = array_keys($value);
+        $value = $this->container->getValue();
+        $keys = array_keys($value);
         $lastIndex = array_pop($keys);
         $this->assertEquals('foo', $value[$lastIndex]);
         $this->assertStringContainsString('This is content intended for capture', $value[$lastIndex - 1]);
@@ -324,8 +325,8 @@ class Zend_View_Helper_Placeholder_ContainerTest extends TestCase
         $caught = false;
         try {
             $this->container->captureStart('SET');
-                $this->container->captureStart('SET');
-                $this->container->captureEnd();
+            $this->container->captureStart('SET');
+            $this->container->captureEnd();
             $this->container->captureEnd();
         } catch (Exception $e) {
             $this->container->captureEnd();

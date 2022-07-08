@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Log_Filter_MessageTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testMessageFilterRecognizesInvalidRegularExpression()
@@ -70,10 +72,10 @@ class Zend_Log_Filter_MessageTest extends TestCase
     public function testFactory()
     {
         $cfg = ['log' => ['memory' => [
-            'writerName'   => "Mock",
-            'filterName'   => "Message",
+            'writerName' => "Mock",
+            'filterName' => "Message",
             'filterParams' => [
-                'regexp'   => "/42/"
+                'regexp' => "/42/"
              ],
         ]]];
 
@@ -85,10 +87,10 @@ class Zend_Log_Filter_MessageTest extends TestCase
     {
         require_once 'Zend/Config.php';
         $config = new Zend_Config(['log' => ['memory' => [
-            'writerName'   => "Mock",
-            'filterName'   => "Message",
+            'writerName' => "Mock",
+            'filterName' => "Message",
             'filterParams' => [
-                'regexp'   => "/42/"
+                'regexp' => "/42/"
              ],
         ]]]);
 

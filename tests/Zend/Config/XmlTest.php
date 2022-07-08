@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -116,7 +118,7 @@ class Zend_Config_XmlTest extends TestCase
 
     public function testZF413_MultiSections()
     {
-        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, ['staging','other_staging']);
+        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, ['staging', 'other_staging']);
 
         $this->assertEquals('otherStaging', $config->only_in);
         $this->assertEquals('staging', $config->hostname);
@@ -139,8 +141,8 @@ class Zend_Config_XmlTest extends TestCase
         $this->assertEquals('all', $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
 
-        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, ['staging','other_staging']);
-        $this->assertEquals(['staging','other_staging'], $config->getSectionName());
+        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, ['staging', 'other_staging']);
+        $this->assertEquals(['staging', 'other_staging'], $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
     }
 
@@ -157,7 +159,7 @@ class Zend_Config_XmlTest extends TestCase
     public function testErrorNoFile()
     {
         try {
-            $config = new Zend_Config_Xml('',null);
+            $config = new Zend_Config_Xml('', null);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertStringContainsString('Filename is not set', $expected->getMessage());
@@ -176,7 +178,6 @@ class Zend_Config_XmlTest extends TestCase
         $this->assertEquals('one', $config->one);
         $config = new Zend_Config_Xml($this->_xmlFileOneTopLevelStringConfig, 'one');
         $this->assertEquals('one', $config->one);
-
     }
 
     public function testZF2285_MultipleKeysOfTheSameName()
@@ -212,10 +213,10 @@ class Zend_Config_XmlTest extends TestCase
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             /**
-             * Zend_Config_Xml construct missing call restore_error_handler() 
+             * Zend_Config_Xml construct missing call restore_error_handler()
              * on internal exception handler when xml file not exist.
              */
-            restore_error_handler(); 
+            restore_error_handler();
             $this->assertStringContainsString('doesn\'t exist', $expected->getMessage());
         }
     }
@@ -329,7 +330,6 @@ EOT;
 
         $config = new Zend_Config_Xml($string, 'staging');
         $this->assertEquals('staging', $config->hostname);
-
     }
 
     /*

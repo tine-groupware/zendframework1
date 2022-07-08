@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,15 +34,13 @@ use PHPUnit\Framework\TestCase;
  */
 class Zend_Oauth_Signature_RsaTest extends TestCase
 {
-
-    public function testSignatureWithoutAccessSecretIsHashedWithConsumerSecret() 
+    public function testSignatureWithoutAccessSecretIsHashedWithConsumerSecret()
     {
         $this->markTestIncomplete('Zend_Crypt_Rsa finalisation outstanding');
     }
 
-    public function testSignatureWithAccessSecretIsHashedWithConsumerAndAccessSecret() 
+    public function testSignatureWithAccessSecretIsHashedWithConsumerAndAccessSecret()
     {
         $this->markTestIncomplete('Zend_Crypt_Rsa finalisation outstanding');
     }
-
 }

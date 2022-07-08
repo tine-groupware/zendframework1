@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_LocaleTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -102,15 +104,15 @@ class Zend_Application_Resource_LocaleTest extends TestCase
     public function testOptionsPassedToResourceAreUsedToSetLocaleState()
     {
         $options = [
-            'default'      => 'kok_IN',
+            'default' => 'kok_IN',
             'registry_key' => 'Foo_Bar',
-            'force'        => true
+            'force' => true
         ];
 
         $resource = new Zend_Application_Resource_Locale($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $locale   = $resource->getLocale();
+        $locale = $resource->getLocale();
         $this->assertEquals('kok_IN', $locale->__toString());
         $this->assertTrue(Zend_Registry::isRegistered('Foo_Bar'));
         $this->assertSame(Zend_Registry::get('Foo_Bar'), $locale);
@@ -119,14 +121,14 @@ class Zend_Application_Resource_LocaleTest extends TestCase
     public function testOptionsPassedToResourceAreUsedToSetLocaleState1()
     {
         $options = [
-            'default'      => 'kok_IN',
+            'default' => 'kok_IN',
             'force' => true
         ];
 
         $resource = new Zend_Application_Resource_Locale($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $locale   = $resource->getLocale();
+        $locale = $resource->getLocale();
 
         // This test will fail if your configured locale is kok_IN
         $this->assertEquals('kok_IN', $locale->__toString());

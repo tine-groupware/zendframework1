@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_Dom_QueryTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dom_QueryTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dom_QueryTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -80,7 +82,7 @@ class Zend_Dom_QueryTest extends TestCase
     public function getHtml()
     {
         if (null === $this->html) {
-            $this->html  = file_get_contents(dirname(__FILE__) . '/_files/sample.xhtml');
+            $this->html = file_get_contents(dirname(__FILE__) . '/_files/sample.xhtml');
         }
         return $this->html;
     }
@@ -102,7 +104,7 @@ class Zend_Dom_QueryTest extends TestCase
 
     public function testConstructorShouldAcceptDocumentString()
     {
-        $html  = $this->getHtml();
+        $html = $this->getHtml();
         $query = new Zend_Dom_Query($html);
         $this->assertSame($html, $query->getDocument());
     }
@@ -184,7 +186,7 @@ class Zend_Dom_QueryTest extends TestCase
     public function testResultShouldIndicateNumberOfFoundNodes()
     {
         $this->loadHtml();
-        $result  = $this->query->query('.foo');
+        $result = $this->query->query('.foo');
         $message = 'Xpath: ' . $result->getXpathQuery() . "\n";
         $this->assertEquals(3, count($result), $message);
     }
@@ -328,7 +330,7 @@ EOF;
         $this->query->setDocument($this->getHtml(), 'utf-8');
         $test = $this->query->query('.foo');
         $this->assertTrue($test instanceof Zend_Dom_Query_Result);
-        $doc  = $test->getDocument();
+        $doc = $test->getDocument();
         $this->assertTrue($doc instanceof DOMDocument);
         $this->assertEquals('utf-8', $doc->encoding);
     }

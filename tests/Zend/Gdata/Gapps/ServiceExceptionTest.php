@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -39,10 +41,12 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends TestCase
     protected $fixture;
     protected $data;
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->xmlSample = file_get_contents(
-                'Zend/Gdata/Gapps/_files/AppsForYourDomainElementSample1.xml',
-                true);
+            'Zend/Gdata/Gapps/_files/AppsForYourDomainElementSample1.xml',
+            true
+        );
         $this->fixture = new Zend_Gdata_Gapps_ServiceException();
         $this->data[1] = new Zend_Gdata_Gapps_Error(1234, "foo", "bar");
         $this->data[2] = new Zend_Gdata_Gapps_Error(4317, "blah", "woof");
@@ -50,12 +54,14 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends TestCase
         $this->data[4] = new Zend_Gdata_Gapps_Error(2398, "red", "kitten");
     }
 
-    public function testCanThrowServiceException() {
+    public function testCanThrowServiceException()
+    {
         $this->expectException(Zend_Gdata_Gapps_ServiceException::class);
         throw $this->fixture;
     }
 
-    public function testCanSetAndGetErrorArray() {
+    public function testCanSetAndGetErrorArray()
+    {
         $this->fixture->setErrors($this->data);
         $incoming = $this->fixture->getErrors();
         $this->assertTrue(is_array($incoming));
@@ -65,7 +71,8 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends TestCase
         }
     }
 
-    public function testCanInsertSingleError() {
+    public function testCanInsertSingleError()
+    {
         $this->fixture->setErrors($this->data);
         $outgoing = new Zend_Gdata_Gapps_Error(1111, "a", "b");
         $this->fixture->addError($outgoing);
@@ -73,35 +80,40 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends TestCase
         $this->assertEquals($outgoing, $result);
     }
 
-    public function testCanSetPropertiesViaConstructor() {
+    public function testCanSetPropertiesViaConstructor()
+    {
         $this->fixture = new Zend_Gdata_Gapps_ServiceException($this->data);
         $incoming = $this->fixture->getErrors();
         $this->assertTrue(is_array($incoming));
         $this->assertEquals(count($this->data), count($incoming));
-        foreach($this->data as $i) {
+        foreach ($this->data as $i) {
             $this->assertEquals($i, $incoming[$i->getErrorCode()]);
         }
     }
 
-    public function testCanRetrieveASpecificErrorByCode() {
+    public function testCanRetrieveASpecificErrorByCode()
+    {
         $this->fixture->setErrors($this->data);
         $result = $this->fixture->getError(5978);
         $this->assertEquals($this->data[3], $result);
     }
 
-    public function testRetrievingNonexistantErrorCodeReturnsNull() {
+    public function testRetrievingNonexistantErrorCodeReturnsNull()
+    {
         $this->fixture->setErrors($this->data);
         $result = $this->fixture->getError(0000);
         $this->assertEquals(null, $result);
     }
 
-    public function testCanCheckIfAKeyExists() {
+    public function testCanCheckIfAKeyExists()
+    {
         $this->fixture->setErrors($this->data);
         $this->assertTrue($this->fixture->hasError(2398));
         $this->assertFalse($this->fixture->hasError(0000));
     }
 
-    public function testCanConvertFromXML() {
+    public function testCanConvertFromXML()
+    {
         $this->fixture->importFromString($this->xmlSample);
         $incoming = $this->fixture->getErrors();
         $this->assertTrue(is_array($incoming));
@@ -125,7 +137,8 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends TestCase
         self::fail('Illegal string should\'ve cause an expcetion');
     }
 
-    public function testCanConvertToString() {
+    public function testCanConvertToString()
+    {
         $this->fixture->setErrors($this->data);
         $this->assertEquals("The server encountered the following errors processing the request:
 Error 1234: foo
@@ -137,5 +150,4 @@ Error 5978: blue
 Error 2398: red
 \tInvalid Input: \"kitten\"", $this->fixture->__toString());
     }
-
 }

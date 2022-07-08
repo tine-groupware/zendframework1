@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Dojo_View_Helper_StackContainerTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_StackContainerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_StackContainerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Dojo_View_Helper_StackContainerTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_StackContainer();
         $this->helper->setView($this->view);
     }
@@ -102,9 +104,9 @@ class Zend_Dojo_View_Helper_StackContainerTest extends TestCase
     {
         $html = '';
         foreach (['top', 'bottom', 'center', 'left', 'right'] as $pane) {
-            $id      = $pane . 'Pane';
+            $id = $pane . 'Pane';
             $content = 'This is the content of pane ' . $pane;
-            $html   .= $this->view->contentPane($id, $content, ['region' => $pane]);
+            $html .= $this->view->contentPane($id, $content, ['region' => $pane]);
         }
         return $this->helper->stackContainer('container', $html, ['design' => 'headline']);
     }

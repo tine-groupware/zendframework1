@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_XmlRpc_Server_CacheTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_XmlRpc_Server_CacheTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_XmlRpc_Server_CacheTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -65,21 +67,21 @@ class Zend_Mail_Transport_Mock extends Zend_Mail_Transport_Abstract
     /**
      * @var Zend_Mail
      */
-    public $mail       = null;
+    public $mail = null;
     public $returnPath = null;
-    public $subject    = null;
-    public $from       = null;
-    public $headers    = null;
-    public $called     = false;
+    public $subject = null;
+    public $from = null;
+    public $headers = null;
+    public $called = false;
 
     public function _sendMail()
     {
-        $this->mail       = $this->_mail;
-        $this->subject    = $this->_mail->getSubject();
-        $this->from       = $this->_mail->getFrom();
+        $this->mail = $this->_mail;
+        $this->subject = $this->_mail->getSubject();
+        $this->from = $this->_mail->getFrom();
         $this->returnPath = $this->_mail->getReturnPath();
-        $this->headers    = $this->_headers;
-        $this->called     = true;
+        $this->headers = $this->_headers;
+        $this->called = true;
     }
 }
 
@@ -97,17 +99,17 @@ class Zend_Mail_Transport_Sendmail_Mock extends Zend_Mail_Transport_Sendmail
     /**
      * @var Zend_Mail
      */
-    public $mail    = null;
-    public $from    = null;
+    public $mail = null;
+    public $from = null;
     public $subject = null;
-    public $called  = false;
+    public $called = false;
 
     public function _sendMail()
     {
-        $this->mail    = $this->_mail;
-        $this->from    = $this->_mail->getFrom();
+        $this->mail = $this->_mail;
+        $this->from = $this->_mail->getFrom();
         $this->subject = $this->_mail->getSubject();
-        $this->called  = true;
+        $this->called = true;
     }
 }
 
@@ -123,7 +125,8 @@ class Zend_Mail_MailTest extends TestCase
 {
     protected $numAssertions;
 
-    protected function tearDown(): void {
+    protected function tearDown(): void
+    {
         Zend_Mail::clearDefaultFrom();
         Zend_Mail::clearDefaultReplyTo();
     }
@@ -580,7 +583,7 @@ class Zend_Mail_MailTest extends TestCase
     {
         $headers = str_replace("\r\n", "\n", $mock->header);
         $headers = explode("\n", $mock->header);
-        $return  = '';
+        $return = '';
         foreach ($headers as $header) {
             if (!empty($return)) {
                 // Check for header continuation
@@ -612,7 +615,7 @@ class Zend_Mail_MailTest extends TestCase
         // test with generic transport
         $mock = new Zend_Mail_Transport_Mock();
         $mail->send($mock);
-        $to  = $this->_getHeader($mock);
+        $to = $this->_getHeader($mock);
         $bcc = $this->_getHeader($mock, 'Bcc');
         $this->assertStringContainsString('to.address@email.com', $to, $to);
         $this->assertStringNotContainsString('second.bcc@email.com', $to, $bcc);
@@ -620,7 +623,7 @@ class Zend_Mail_MailTest extends TestCase
         // test with sendmail-like transport
         $mock = new Zend_Mail_Transport_Sendmail_Mock();
         $mail->send($mock);
-        $to  = $this->_getHeader($mock);
+        $to = $this->_getHeader($mock);
         $bcc = $this->_getHeader($mock, 'Bcc');
         // Remove the following line due to fixes by Simon
         // $this->assertStringNotContainsString('to.address@email.com', $to, $mock->header);
@@ -894,7 +897,7 @@ class Zend_Mail_MailTest extends TestCase
         $mail = new Zend_Mail();
         $this->assertEquals(Zend_Mime::ENCODING_QUOTEDPRINTABLE, $mail->getHeaderEncoding());
         $mail->setHeaderEncoding(Zend_Mime::ENCODING_BASE64);
-        $this->assertEquals(Zend_Mime::ENCODING_BASE64,          $mail->getHeaderEncoding());
+        $this->assertEquals(Zend_Mime::ENCODING_BASE64, $mail->getHeaderEncoding());
     }
 
     /**
@@ -913,50 +916,56 @@ class Zend_Mail_MailTest extends TestCase
     /**
      * @group ZF-7702
      */
-    public function testReplyToIsNoRecipient() {
+    public function testReplyToIsNoRecipient()
+    {
         $mail = new Zend_Mail();
-        $mail->setReplyTo('foo@example.com','foobar');
+        $mail->setReplyTo('foo@example.com', 'foobar');
         $this->assertEquals(0, count($mail->getRecipients()));
     }
 
-    public function testGetReplyToReturnsReplyTo() {
+    public function testGetReplyToReturnsReplyTo()
+    {
         $mail = new Zend_Mail();
         $mail->setReplyTo('foo@example.com');
-        $this->assertEquals('foo@example.com',$mail->getReplyTo());
+        $this->assertEquals('foo@example.com', $mail->getReplyTo());
     }
 
-    public function testReplyToCantBeSetTwice() {
+    public function testReplyToCantBeSetTwice()
+    {
         $this->expectException(Zend_Mail_Exception::class);
         $mail = new Zend_Mail();
         $mail->setReplyTo('user@example.com');
         $mail->setReplyTo('user2@example.com');
     }
 
-    public function testDefaultFrom() {
-        Zend_Mail::setDefaultFrom('john@example.com','John Doe');
-        $this->assertEquals(['email' => 'john@example.com','name' =>'John Doe'], Zend_Mail::getDefaultFrom());
+    public function testDefaultFrom()
+    {
+        Zend_Mail::setDefaultFrom('john@example.com', 'John Doe');
+        $this->assertEquals(['email' => 'john@example.com', 'name' => 'John Doe'], Zend_Mail::getDefaultFrom());
 
         Zend_Mail::clearDefaultFrom();
         $this->assertEquals(null, Zend_Mail::getDefaultFrom());
 
         Zend_Mail::setDefaultFrom('john@example.com');
-        $this->assertEquals(['email' => 'john@example.com','name' => null], Zend_Mail::getDefaultFrom());
+        $this->assertEquals(['email' => 'john@example.com', 'name' => null], Zend_Mail::getDefaultFrom());
     }
 
-    public function testDefaultReplyTo() {
-        Zend_Mail::setDefaultReplyTo('john@example.com','John Doe');
-        $this->assertEquals(['email' => 'john@example.com','name' =>'John Doe'], Zend_Mail::getDefaultReplyTo());
+    public function testDefaultReplyTo()
+    {
+        Zend_Mail::setDefaultReplyTo('john@example.com', 'John Doe');
+        $this->assertEquals(['email' => 'john@example.com', 'name' => 'John Doe'], Zend_Mail::getDefaultReplyTo());
 
         Zend_Mail::clearDefaultReplyTo();
         $this->assertEquals(null, Zend_Mail::getDefaultReplyTo());
 
         Zend_Mail::setDefaultReplyTo('john@example.com');
-        $this->assertEquals(['email' => 'john@example.com','name' => null], Zend_Mail::getDefaultReplyTo());
+        $this->assertEquals(['email' => 'john@example.com', 'name' => null], Zend_Mail::getDefaultReplyTo());
     }
 
-    public function testSettingFromDefaults() {
+    public function testSettingFromDefaults()
+    {
         Zend_Mail::setDefaultFrom('john@example.com', 'John Doe');
-        Zend_Mail::setDefaultReplyTo('foo@example.com','Foo Bar');
+        Zend_Mail::setDefaultReplyTo('foo@example.com', 'Foo Bar');
 
         $mail = new Zend_Mail();
         $headers = $mail->setFromToDefaultFrom() // test fluent interface
@@ -972,7 +981,7 @@ class Zend_Mail_MailTest extends TestCase
     public function testMethodSendUsesDefaults()
     {
         Zend_Mail::setDefaultFrom('john@example.com', 'John Doe');
-        Zend_Mail::setDefaultReplyTo('foo@example.com','Foo Bar');
+        Zend_Mail::setDefaultReplyTo('foo@example.com', 'Foo Bar');
 
         $mail = new Zend_Mail();
         $mail->setBodyText('Defaults Test');
@@ -997,7 +1006,7 @@ class Zend_Mail_MailTest extends TestCase
         $mail->addTo('foobar@example.com');
         $mail->setSubject('hello world!');
 
-        $params = ['envelope'=> '-tjohn@example.com', 'foo' => '-fbar'];
+        $params = ['envelope' => '-tjohn@example.com', 'foo' => '-fbar'];
         $expected = '-tjohn@example.com -fbar';
 
         $transportMock = new Zend_Mail_Transport_Sendmail_Mock($params);
@@ -1024,8 +1033,8 @@ class Zend_Mail_MailTest extends TestCase
         try {
             $mail->send($transport);
             $this->fail('Exception should have been thrown, but wasn\'t');
-        } catch(Zend_Mail_Transport_Exception $e) {
-        	// do nothing
+        } catch (Zend_Mail_Transport_Exception $e) {
+            // do nothing
         }
     }
 
@@ -1069,16 +1078,16 @@ class Zend_Mail_MailTest extends TestCase
     {
         $this->numAssertions++;
         $parts = explode(Zend_Mime::LINEEND, $header);
-        if(count($parts) > 0) {
-            for($i = 0; $i < count($parts); $i++) {
-                if(preg_match('/(=?[a-z0-9-_]+\?[q|b]{1}\?)/i', $parts[$i], $matches)) {
+        if (count($parts) > 0) {
+            for ($i = 0; $i < count($parts); $i++) {
+                if (preg_match('/(=?[a-z0-9-_]+\?[q|b]{1}\?)/i', $parts[$i], $matches)) {
                     $dce = sprintf("=?%s", $matches[0]);
                     // Check that Delimiter, Charset, Encoding are at the front of the string
-                    if(substr(trim($parts[$i]), 0, strlen($dce)) != $dce) {
+                    if (substr(trim($parts[$i]), 0, strlen($dce)) != $dce) {
                         $this->fail(sprintf(
                             "Header-Part '%s' in line '%d' has missing or malformated delimiter, charset, encoding information.",
                             $parts[$i],
-                            $i+1
+                            $i + 1
                         ));
                     }
                     // check that the encoded word is not too long.);
@@ -1092,49 +1101,48 @@ class Zend_Mail_MailTest extends TestCase
                         ));
                     }*/
                     // Check that the end-delmiter ?= is correctly placed
-                    if(substr(trim($parts[$i]), -2, 2) != "?=") {
+                    if (substr(trim($parts[$i]), -2, 2) != "?=") {
                         $this->fail(sprintf(
                             "Lines with an encoded-word have to end in ?=, but line %d does not: %s",
-                            $i+1,
+                            $i + 1,
                             substr(trim($parts[$i]), -2, 2)
                         ));
                     }
 
                     // Check that only one encoded-word can be found per line.
-                    if(substr_count($parts[$i], "=?") != 1) {
+                    if (substr_count($parts[$i], "=?") != 1) {
                         $this->fail(sprintf(
                             "Only one encoded-word is allowed per line in the header. It seems line %d contains more: %s",
-                            $i+1,
+                            $i + 1,
                             $parts[$i]
                         ));
                     }
 
                     // Check that the encoded-text only contains US-ASCII chars, and no space
                     $encodedText = substr(trim($parts[$i]), strlen($dce), -2);
-                    if(preg_match('/([\s]+)/', $encodedText)) {
+                    if (preg_match('/([\s]+)/', $encodedText)) {
                         $this->fail(sprintf(
                             "No whitespace characters allowed in encoded-text of line %d: %s",
-                            $i+1,
+                            $i + 1,
                             $parts[$i]
                         ));
                     }
-                    for($i = 0; $i < strlen($encodedText); $i++) {
-                        if(ord($encodedText[$i]) > 127) {
+                    for ($i = 0; $i < strlen($encodedText); $i++) {
+                        if (ord($encodedText[$i]) > 127) {
                             $this->fail(sprintf(
                                 "No non US-ASCII characters allowed, but line %d has them: %s",
-                                 $i+1,
-                                 $parts[$i]
+                                $i + 1,
+                                $parts[$i]
                             ));
                         }
                     }
-                } else if(Zend_Mime::isPrintable($parts[$i]) == false) {
+                } elseif (Zend_Mime::isPrintable($parts[$i]) == false) {
                     $this->fail(sprintf(
                         "Encoded-word in line %d contains non printable characters.",
-                        $i+1
+                        $i + 1
                     ));
                 }
             }
         }
     }
-
 }

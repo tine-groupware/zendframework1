@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -46,8 +48,8 @@ class Zend_Loader_ClassMapAutoloaderTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -123,7 +125,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends TestCase
         $map = $this->loader->getAutoloadMap();
         $this->assertTrue(is_array($map));
         $this->assertEquals(2, count($map));
-        // Just to make sure nothing changes after loading the same map again 
+        // Just to make sure nothing changes after loading the same map again
         // (loadMapFromFile should just return)
         $this->loader->registerAutoloadMap(dirname(__FILE__) . '/_files/goodmap.php');
         $map = $this->loader->getAutoloadMap();
@@ -161,7 +163,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends TestCase
 
     public function testRegisterMapsThrowsExceptionForNonTraversableArguments()
     {
-        $tests = [true, 'string', 1, 1.0, new stdClass];
+        $tests = [true, 'string', 1, 1.0, new stdClass()];
         foreach ($tests as $test) {
             try {
                 $this->loader->registerAutoloadMaps($test);

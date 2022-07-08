@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Feed/Reader.php';
  */
 class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
 {
-
     protected $_feedSamplePath = null;
     
     protected $_options = [];
@@ -52,12 +53,12 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
         }
         $this->_feedSamplePath = dirname(__FILE__) . '/_files/AtomSource';
         $this->_options = Zend_Date::setOptions();
-        foreach($this->_options as $k=>$v) {
+        foreach ($this->_options as $k => $v) {
             if (is_null($v)) {
                 unset($this->_options[$k]);
             }
         }
-        Zend_Date::setOptions(['format_type'=>'iso']);
+        Zend_Date::setOptions(['format_type' => 'iso']);
         $this->_expectedCats = [
             [
                 'term' => 'topic1',
@@ -97,10 +98,10 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsSourceFromEntry()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/title/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/title/atom10.xml')
         );
         $source = $feed->current()->getSource();
-        $this->assertTrue($source instanceof Zend_Feed_Reader_Feed_Atom_Source);  
+        $this->assertTrue($source instanceof Zend_Feed_Reader_Feed_Atom_Source);
     }
 
     /**
@@ -110,7 +111,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsTitleFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/title/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/title/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('My Title', $source->getTitle());
@@ -123,17 +124,17 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsAuthorArrayFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/author/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/author/atom10.xml')
         );
         $source = $feed->current()->getSource();
 
         $authors = [
-            ['email'=>'joe@example.com','name'=>'Joe Bloggs','uri'=>'http://www.example.com'],
-            ['name'=>'Joe Bloggs','uri'=>'http://www.example.com'],
-            ['name'=>'Joe Bloggs'],
-            ['email'=>'joe@example.com','uri'=>'http://www.example.com'],
-            ['uri'=>'http://www.example.com'],
-            ['email'=>'joe@example.com']
+            ['email' => 'joe@example.com', 'name' => 'Joe Bloggs', 'uri' => 'http://www.example.com'],
+            ['name' => 'Joe Bloggs', 'uri' => 'http://www.example.com'],
+            ['name' => 'Joe Bloggs'],
+            ['email' => 'joe@example.com', 'uri' => 'http://www.example.com'],
+            ['uri' => 'http://www.example.com'],
+            ['email' => 'joe@example.com']
         ];
 
         $this->assertEquals($authors, (array) $source->getAuthors());
@@ -146,11 +147,11 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsSingleAuthorFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/author/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/author/atom10.xml')
         );
         $source = $feed->current()->getSource();
 
-        $this->assertEquals(['name'=>'Joe Bloggs','email'=>'joe@example.com','uri'=>'http://www.example.com'], $feed->getAuthor());
+        $this->assertEquals(['name' => 'Joe Bloggs', 'email' => 'joe@example.com', 'uri' => 'http://www.example.com'], $feed->getAuthor());
     }
 
     /**
@@ -164,7 +165,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
         );
         $source = $feed->current()->getSource();
 
-        $edate = new Zend_Date;
+        $edate = new Zend_Date();
         $edate->set('2009-03-07T08:03:50Z', Zend_Date::ISO_8601);
         $this->assertTrue($edate->equals($source->getDateCreated()));
     }
@@ -180,7 +181,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
         );
         $source = $feed->current()->getSource();
 
-        $edate = new Zend_Date;
+        $edate = new Zend_Date();
         $edate->set('2009-03-07T08:03:50Z', Zend_Date::ISO_8601);
         $this->assertTrue($edate->equals($source->getDateModified()));
     }
@@ -192,7 +193,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsGeneratorFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/generator/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/generator/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('Zend_Feed', $source->getGenerator());
@@ -205,7 +206,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsCopyrightFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/copyright/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/copyright/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('Copyright 2008', $source->getCopyright());
@@ -218,7 +219,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsDescriptionFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/description/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/description/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('My Description', $source->getDescription());
@@ -231,7 +232,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsIdFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/id/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/id/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('123', $source->getId());
@@ -244,7 +245,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsLanguageFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/language/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/language/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('en-GB', $source->getLanguage());
@@ -257,7 +258,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsLinkFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/link/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/link/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('http://www.example.com', $source->getLink());
@@ -270,7 +271,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsFeedLinkFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/feedlink/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/feedlink/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals('http://www.example.com/feed/atom', $source->getFeedLink());
@@ -282,7 +283,7 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsHubsFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/hubs/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/hubs/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals([
@@ -297,11 +298,10 @@ class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
     public function testGetsCategoriesFromAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/category/atom10.xml')
+            file_get_contents($this->_feedSamplePath . '/category/atom10.xml')
         );
         $source = $feed->current()->getSource();
         $this->assertEquals($this->_expectedCats, (array) $source->getCategories());
-        $this->assertEquals(['topic1','Cat & Dog'], array_values($source->getCategories()->getValues()));
+        $this->assertEquals(['topic1', 'Cat & Dog'], array_values($source->getCategories()->getValues()));
     }
-
 }

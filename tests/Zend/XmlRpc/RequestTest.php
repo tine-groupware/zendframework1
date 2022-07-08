@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -126,7 +128,7 @@ class Zend_XmlRpc_RequestTest extends TestCase
         $xml = $this->_request->saveXml();
         $sxl = new SimpleXMLElement($xml);
         $param = $sxl->params->param->value;
-        $type  = 'dateTime.iso8601';
+        $type = 'dateTime.iso8601';
         $this->assertTrue(isset($param->{$type}), var_export($param, 1));
         $this->assertEquals($time, strtotime((string) $param->{$type}));
     }
@@ -176,12 +178,12 @@ class Zend_XmlRpc_RequestTest extends TestCase
         $mName = $mCall->appendChild($dom->createElement('methodName', 'do.Something'));
         $params = $mCall->appendChild($dom->createElement('params'));
         $param1 = $params->appendChild($dom->createElement('param'));
-            $value1 = $param1->appendChild($dom->createElement('value'));
-            $value1->appendChild($dom->createElement('string', 'string1'));
+        $value1 = $param1->appendChild($dom->createElement('value'));
+        $value1->appendChild($dom->createElement('string', 'string1'));
 
         $param2 = $params->appendChild($dom->createElement('param'));
-            $value2 = $param2->appendChild($dom->createElement('value'));
-            $value2->appendChild($dom->createElement('boolean', 1));
+        $value2 = $param2->appendChild($dom->createElement('value'));
+        $value2->appendChild($dom->createElement('boolean', 1));
 
 
         $xml = $dom->saveXml();
@@ -219,8 +221,10 @@ class Zend_XmlRpc_RequestTest extends TestCase
         $this->assertFalse($this->_request->loadXml('<empty/>'));
         $this->assertTrue($this->_request->isFault());
         $this->assertSame(632, $this->_request->getFault()->getCode());
-        $this->assertSame("Invalid request, no method passed; request must contain a 'methodName' tag",
-            $this->_request->getFault()->getMessage());
+        $this->assertSame(
+            "Invalid request, no method passed; request must contain a 'methodName' tag",
+            $this->_request->getFault()->getMessage()
+        );
     }
 
     public function testLoadingXmlWithInvalidParams()
@@ -229,12 +233,14 @@ class Zend_XmlRpc_RequestTest extends TestCase
             '<methodCall>'
           . '<methodName>foo</methodName>'
           . '<params><param/><param/><param><foo/></param></params>'
-          . '</methodCall>'));
+          . '</methodCall>'
+        ));
         $this->assertTrue($this->_request->isFault());
         $this->assertSame(633, $this->_request->getFault()->getCode());
         $this->assertSame(
             'Param must contain a value',
-            $this->_request->getFault()->getMessage());
+            $this->_request->getFault()->getMessage()
+        );
     }
 
     public function testExceptionWhileLoadingXmlParamValueIsHandled()
@@ -243,12 +249,14 @@ class Zend_XmlRpc_RequestTest extends TestCase
             '<methodCall>'
           . '<methodName>foo</methodName>'
           . '<params><param><value><foo/></value></param></params>'
-          . '</methodCall>'));
+          . '</methodCall>'
+        ));
         $this->assertTrue($this->_request->isFault());
         $this->assertSame(636, $this->_request->getFault()->getCode());
         $this->assertSame(
             'Error creating xmlrpc value',
-            $this->_request->getFault()->getMessage());
+            $this->_request->getFault()->getMessage()
+        );
     }
 
     /**
@@ -361,10 +369,10 @@ class Zend_XmlRpc_RequestTest extends TestCase
         }
     }
 
-     public function testShouldDisallowsDoctypeInRequestXmlAndReturnFalseOnLoading()
-     {
-         $payload = file_get_contents(dirname(__FILE__) . '/_files/ZF12293-request.xml');
-         $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/ZF12293-payload.txt'));
-         $this->assertFalse($this->_request->loadXml($payload));
-     }
+    public function testShouldDisallowsDoctypeInRequestXmlAndReturnFalseOnLoading()
+    {
+        $payload = file_get_contents(dirname(__FILE__) . '/_files/ZF12293-request.xml');
+        $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/ZF12293-payload.txt'));
+        $this->assertFalse($this->_request->loadXml($payload));
+    }
 }

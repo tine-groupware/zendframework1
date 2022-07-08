@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -59,7 +61,7 @@ class Zend_Filter_DecryptTest extends TestCase
         $valuesExpected = [
             'STRING' => 'STRING',
             'ABC1@3' => 'ABC1@3',
-            'A b C'  => 'A B C'
+            'A b C' => 'A B C'
         ];
 
         $enc = $filter->getEncryption();
@@ -109,7 +111,8 @@ cAkcoMuBcgWhIn/46C1PAkEAzLK/ibrdMQLOdO4SuDgj/2nc53NZ3agl61ew8Os6
 d/fxzPfuO/bLpADozTAnYT9Hu3wPrQVLeAfCp0ojqH7DYg==
 -----END RSA PRIVATE KEY-----
 '],
-            $key);
+            $key
+        );
     }
 
 
@@ -144,13 +147,13 @@ d/fxzPfuO/bLpADozTAnYT9Hu3wPrQVLeAfCp0ojqH7DYg==
         $filter->setVector('testvect');
         $this->assertEquals(
             [
-                'key'                 => 'testkey',
-                'algorithm'           => MCRYPT_BLOWFISH,
+                'key' => 'testkey',
+                'algorithm' => MCRYPT_BLOWFISH,
                 'algorithm_directory' => '',
-                'mode'                => MCRYPT_MODE_CBC,
-                'mode_directory'      => '',
-                'vector'              => 'testvect',
-                'salt'                => '',
+                'mode' => MCRYPT_MODE_CBC,
+                'mode_directory' => '',
+                'vector' => 'testvect',
+                'salt' => '',
             ],
             $filter->getEncryption()
         );
@@ -171,16 +174,17 @@ d/fxzPfuO/bLpADozTAnYT9Hu3wPrQVLeAfCp0ojqH7DYg==
         $filter->setVector('testvect');
         $filter->setEncryption(
             ['mode' => MCRYPT_MODE_ECB,
-                  'algorithm' => MCRYPT_3DES]);
+                  'algorithm' => MCRYPT_3DES]
+        );
         $this->assertEquals(
             [
-                'mode'                => MCRYPT_MODE_ECB,
-                'algorithm'           => MCRYPT_3DES,
-                'key'                 => 'testkey',
+                'mode' => MCRYPT_MODE_ECB,
+                'algorithm' => MCRYPT_3DES,
+                'key' => 'testkey',
                 'algorithm_directory' => '',
-                'mode_directory'      => '',
-                'vector'              => 'testvect',
-                'salt'                => '',
+                'mode_directory' => '',
+                'vector' => 'testvect',
+                'salt' => '',
             ],
             $filter->getEncryption()
         );

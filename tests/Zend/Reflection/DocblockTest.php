@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,9 +37,7 @@ require_once 'Zend/Reflection/File.php';
  */
 class Zend_Reflection_DocblockTest extends TestCase
 {
-
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -57,7 +57,7 @@ class Zend_Reflection_DocblockTest extends TestCase
     public function testDocblockLongDescription()
     {
         $classReflection = new Zend_Reflection_Class('Zend_Reflection_TestSampleClass5');
-        $expectedOutput =<<<EOS
+        $expectedOutput = <<<EOS
 This is a long description for
 the docblock of this class, it
 should be longer than 3 lines.
@@ -66,7 +66,6 @@ now.
 EOS;
 
         $this->assertEquals($classReflection->getDocblock()->getLongDescription(), $expectedOutput);
-
     }
 
     public function testDocblockTags()
@@ -93,7 +92,6 @@ EOS;
 
         $this->assertEquals($classDocblock->getStartLine(), 77);
         $this->assertEquals($classDocblock->getEndLine(), 87);
-
     }
 
     public function testDocblockContents()
@@ -116,7 +114,6 @@ now.
 EOS;
 
         $this->assertEquals($classDocblock->getContents(), $expectedContents);
-
     }
 
     public function testToString()
@@ -134,5 +131,4 @@ EOS;
 
         $this->assertEquals($expectedString, (string)$classDocblock);
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -82,21 +84,21 @@ class Zend_Filter_DigitsTest extends TestCase
              * The last contains only singlebyte digits.
              */
             $valuesExpected = [
-                '1９2八3四８'     => '123',
-                'Ｃ 4.5B　6'      => '456',
+                '1９2八3四８' => '123',
+                'Ｃ 4.5B　6' => '456',
                 '9壱8＠7．6，5＃4' => '987654',
-                '789'              => '789'
+                '789' => '789'
                 ];
         } else {
             // POSIX named classes are not supported, use alternative 0-9 match
             // Or filter for the value without mbstring
             $valuesExpected = [
-                'abc123'  => '123',
+                'abc123' => '123',
                 'abc 123' => '123',
-                'abcxyz'  => '',
+                'abcxyz' => '',
                 'AZ@#4.3' => '43',
-                '1.23'    => '123',
-                '0x9f'    => '09'
+                '1.23' => '123',
+                '0x9f' => '09'
                 ];
         }
 
@@ -105,7 +107,7 @@ class Zend_Filter_DigitsTest extends TestCase
                 $output,
                 $result = $this->_filter->filter($input),
                 "Expected '$input' to filter to '$output', but received '$result' instead"
-                );
+            );
         }
     }
 }

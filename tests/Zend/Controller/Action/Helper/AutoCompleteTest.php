@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -62,9 +64,8 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Action_Helper_AutoCompleteTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Action_Helper_AutoCompleteTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -110,11 +111,11 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends TestCase
 
     public function testEncodeJsonProxiesToJsonActionHelper()
     {
-        $dojo    = new Zend_Controller_Action_Helper_AutoCompleteDojo();
-        $data    = ['foo', 'bar', 'baz'];
+        $dojo = new Zend_Controller_Action_Helper_AutoCompleteDojo();
+        $data = ['foo', 'bar', 'baz'];
         $encoded = $dojo->prepareAutoCompletion($data);
         $decoded = Zend_Json::decode($encoded);
-        $test    = [];
+        $test = [];
         foreach ($decoded['items'] as $item) {
             $test[] = $item['name'];
         }
@@ -157,7 +158,7 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends TestCase
         $data = ['foo', 'bar', 'baz'];
         $encoded = $dojo->direct($data);
         $decoded = Zend_Json::decode($encoded);
-        $test    = [];
+        $test = [];
         foreach ($decoded['items'] as $item) {
             $test[] = $item['name'];
         }
@@ -208,7 +209,7 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends TestCase
     {
         $scriptaculous = new Zend_Controller_Action_Helper_AutoCompleteScriptaculous();
 
-        $data = new stdClass;
+        $data = new stdClass();
         $data->foo = 'bar';
         $data->bar = 'baz';
         try {

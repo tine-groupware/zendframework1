@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_RowCountTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->rowCount = new Zend_Gdata_Spreadsheets_Extension_RowCount();
@@ -51,5 +52,4 @@ class Zend_Gdata_Spreadsheets_RowCountTest extends TestCase
         $newRowCount->transferFromDom($doc->documentElement);
         $this->assertTrue($this->rowCount->getText() == $newRowCount->getText());
     }
-
 }

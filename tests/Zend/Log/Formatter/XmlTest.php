@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Log_Formatter_XmlTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testDefaultFormat()
@@ -152,7 +154,7 @@ class Zend_Log_Formatter_XmlTest extends TestCase
         $event = [
             'message' => 'tottakai',
             'priority' => 4,
-            'context' => ['test'=>'one'],
+            'context' => ['test' => 'one'],
             'reference' => new Zend_Log_Formatter_Xml()
         ];
         $expected = '<log><message>tottakai</message><priority>4</priority></log>';
@@ -173,7 +175,7 @@ class Zend_Log_Formatter_XmlTest extends TestCase
         $event = [
             'message' => 'tottakai',
             'priority' => 4,
-            'context' => ['test'=>'one'],
+            'context' => ['test' => 'one'],
             'reference' => new Zend_Log_Formatter_XmlTest_SerializableObject()
         ];
         $expected = '<log><message>tottakai</message><priority>4</priority><reference>Zend_Log_Formatter_XmlTest_SerializableObject</reference></log>';

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -58,15 +60,15 @@ class Zend_Navigation_PageFactoryTest extends TestCase
     {
         $pages = [
             Zend_Navigation_Page::factory([
-                'label'  => 'MVC Page',
+                'label' => 'MVC Page',
                 'action' => 'index'
             ]),
             Zend_Navigation_Page::factory([
-                'label'      => 'MVC Page',
+                'label' => 'MVC Page',
                 'controller' => 'index'
             ]),
             Zend_Navigation_Page::factory([
-                'label'  => 'MVC Page',
+                'label' => 'MVC Page',
                 'module' => 'index'
             ]),
             Zend_Navigation_Page::factory([
@@ -74,7 +76,7 @@ class Zend_Navigation_PageFactoryTest extends TestCase
                 'route' => 'home'
             ]),
             Zend_Navigation_Page::factory([
-                'label'  => 'MVC Page',
+                'label' => 'MVC Page',
                 'params' => [
                     'foo' => 'bar',
                 ],
@@ -88,7 +90,7 @@ class Zend_Navigation_PageFactoryTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'label' => 'URI Page',
-            'uri'   => '#'
+            'uri' => '#'
         ]);
 
         $this->assertTrue($page instanceof Zend_Navigation_Page_Uri);
@@ -97,9 +99,9 @@ class Zend_Navigation_PageFactoryTest extends TestCase
     public function testSupportsMvcShorthand()
     {
         $mvcPage = Zend_Navigation_Page::factory([
-            'type'       => 'mvc',
-            'label'      => 'MVC Page',
-            'action'     => 'index',
+            'type' => 'mvc',
+            'label' => 'MVC Page',
+            'action' => 'index',
             'controller' => 'index'
         ]);
 
@@ -109,9 +111,9 @@ class Zend_Navigation_PageFactoryTest extends TestCase
     public function testSupportsUriShorthand()
     {
         $uriPage = Zend_Navigation_Page::factory([
-            'type'  => 'uri',
+            'type' => 'uri',
             'label' => 'URI Page',
-            'uri'   => 'http://www.example.com/'
+            'uri' => 'http://www.example.com/'
         ]);
 
         $this->assertTrue($uriPage instanceof Zend_Navigation_Page_Uri);
@@ -120,7 +122,7 @@ class Zend_Navigation_PageFactoryTest extends TestCase
     public function testSupportsCustomPageTypes()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'  => 'My_Page',
+            'type' => 'My_Page',
             'label' => 'My Custom Page'
         ]);
 
@@ -132,7 +134,7 @@ class Zend_Navigation_PageFactoryTest extends TestCase
         $this->expectException(Zend_Navigation_Exception::class);
         $this->expectExceptionMessage('Invalid argument: Detected type "My_InvalidPage", which is not an instance of Zend_Navigation_Page');
         $page = Zend_Navigation_Page::factory([
-            'type'  => 'My_InvalidPage',
+            'type' => 'My_InvalidPage',
             'label' => 'My Invalid Page'
         ]);
     }
@@ -143,7 +145,7 @@ class Zend_Navigation_PageFactoryTest extends TestCase
         $this->expectExceptionMessage('File "My' . DIRECTORY_SEPARATOR . 'NonExistant' . DIRECTORY_SEPARATOR . 'Page.php" does not exist or class '
         . '"My_NonExistant_Page" was not found in the file');
         $pageConfig = [
-            'type'  => 'My_NonExistant_Page',
+            'type' => 'My_NonExistant_Page',
             'label' => 'My non-existant Page'
         ];
         $page = Zend_Navigation_Page::factory($pageConfig);
@@ -159,7 +161,7 @@ class Zend_Navigation_PageFactoryTest extends TestCase
             $this->fail(
                 'An exception has not been thrown for invalid page type'
             );
-        } catch(Zend_Navigation_Exception $e) {
+        } catch (Zend_Navigation_Exception $e) {
             $this->assertEquals(
                 'Invalid argument: Unable to determine class to instantiate '
                 . '(Page label: My Invalid Page)',

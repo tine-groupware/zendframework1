@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Gdata/Analytics.php';
  */
 class Zend_GData_Analytics_DataQueryTest extends TestCase
 {
-
     /**
      * @var Zend_GData_Analytics_DataQuery
      */

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -48,7 +50,7 @@ class Zend_Filter_StripNewlinesTest extends TestCase
      *
      * @return void
      */
-    public function setUp (): void
+    public function setUp(): void
     {
         $this->_filter = new Zend_Filter_StripNewlines();
     }
@@ -58,7 +60,7 @@ class Zend_Filter_StripNewlinesTest extends TestCase
      *
      * @return void
      */
-    public function testBasic ()
+    public function testBasic()
     {
         $valuesExpected = [
             '' => '',

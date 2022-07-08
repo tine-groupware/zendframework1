@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,7 +40,6 @@ require_once 'Zend/CodeGenerator/Php/Class.php';
  */
 class Zend_CodeGenerator_Php_ClassTest extends TestCase
 {
-
     public function testConstruction()
     {
         $class = new Zend_CodeGenerator_Php_Class();
@@ -50,7 +51,6 @@ class Zend_CodeGenerator_Php_ClassTest extends TestCase
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setName('TestClass');
         $this->assertEquals($codeGenClass->getName(), 'TestClass');
-
     }
 
     public function testAbstractAccessors()
@@ -77,7 +77,6 @@ class Zend_CodeGenerator_Php_ClassTest extends TestCase
 
     public function testPropertyAccessors()
     {
-
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setProperties([
             ['name' => 'propOne'],
@@ -138,7 +137,8 @@ class Zend_CodeGenerator_Php_ClassTest extends TestCase
 
     public function testSetMethod_NoMethodOrArray_ThrowsException()
     {
-        $this->expectException("Zend_CodeGenerator_Php_Exception"
+        $this->expectException(
+            "Zend_CodeGenerator_Php_Exception"
         );
         $this->expectExceptionMessage('setMethod() expects either an array of method options or an instance of Zend_CodeGenerator_Php_Method');
 
@@ -231,8 +231,8 @@ EOS;
      * @group ZF-7909 */
     public function testClassFromReflectionThatImplementsInterfaces()
     {
-        if(!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
-            require_once dirname(__FILE__)."/_files/ClassAndInterfaces.php";
+        if (!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
+            require_once dirname(__FILE__) . "/_files/ClassAndInterfaces.php";
         }
 
         require_once "Zend/Reflection/Class.php";
@@ -251,8 +251,8 @@ EOS;
      */
     public function testClassFromReflectionDiscardParentImplementedInterfaces()
     {
-        if(!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
-            require_once dirname(__FILE__)."/_files/ClassAndInterfaces.php";
+        if (!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
+            require_once dirname(__FILE__) . "/_files/ClassAndInterfaces.php";
         }
 
         require_once "Zend/Reflection/Class.php";
@@ -273,7 +273,7 @@ EOS;
     public function testSetextendedclassShouldIgnoreEmptyClassnameOnGenerate()
     {
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
-        $codeGenClass->setName( 'MyClass' )
+        $codeGenClass->setName('MyClass')
                      ->setExtendedClass('');
 
         $expected = <<<CODE
@@ -284,7 +284,7 @@ class MyClass
 }
 
 CODE;
-        $this->assertEquals( $expected, $codeGenClass->generate() );
+        $this->assertEquals($expected, $codeGenClass->generate());
     }
 
     /**
@@ -293,7 +293,7 @@ CODE;
     public function testSetextendedclassShouldNotIgnoreNonEmptyClassnameOnGenerate()
     {
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
-        $codeGenClass->setName( 'MyClass' )
+        $codeGenClass->setName('MyClass')
                      ->setExtendedClass('ParentClass');
 
         $expected = <<<CODE
@@ -304,7 +304,7 @@ class MyClass extends ParentClass
 }
 
 CODE;
-        $this->assertEquals( $expected, $codeGenClass->generate() );
+        $this->assertEquals($expected, $codeGenClass->generate());
     }
 
     /**
@@ -333,7 +333,6 @@ class My_Class
 }
 
 CODE;
-        $this->assertEquals( $expected, $codeGenClass->generate() );
+        $this->assertEquals($expected, $codeGenClass->generate());
     }
-
 }

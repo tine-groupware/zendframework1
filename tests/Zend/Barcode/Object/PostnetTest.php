@@ -34,7 +34,6 @@ require_once 'Zend/Barcode/Object/Postnet.php';
  */
 class Zend_Barcode_Object_PostnetTest extends Zend_Barcode_Object_TestCommon
 {
-
     protected function _getBarcodeObject($options = null)
     {
         return new Zend_Barcode_Object_Postnet($options);
@@ -129,7 +128,8 @@ class Zend_Barcode_Object_PostnetTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Postnet_012345_border_instructions');
+            'Postnet_012345_border_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -139,7 +139,8 @@ class Zend_Barcode_Object_PostnetTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setOrientation(60);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Postnet_012345_oriented_instructions');
+            'Postnet_012345_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -150,7 +151,8 @@ class Zend_Barcode_Object_PostnetTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Postnet_012345_border_oriented_instructions');
+            'Postnet_012345_border_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 

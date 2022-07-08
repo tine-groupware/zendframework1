@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -67,8 +69,8 @@ class Zend_View_Helper_HeadScriptTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_HeadScriptTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_HeadScriptTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -124,19 +126,23 @@ class Zend_View_Helper_HeadScriptTest extends TestCase
         try {
             $this->helper->append('foo');
             $this->fail('Append should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
         try {
             $this->helper->offsetSet(1, 'foo');
             $this->fail('OffsetSet should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
         try {
             $this->helper->prepend('foo');
             $this->fail('Prepend should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
         try {
             $this->helper->set('foo');
             $this->fail('Set should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     protected function _inflectAction($type)
@@ -331,7 +337,7 @@ class Zend_View_Helper_HeadScriptTest extends TestCase
         $this->assertStringContainsString('bar', $string);
         $this->assertStringContainsString('baz', $string);
 
-        $doc = new DOMDocument;
+        $doc = new DOMDocument();
         $dom = $doc->loadHtml($string);
         $this->assertTrue($dom !== false);
     }
@@ -449,7 +455,6 @@ document.write(bar.strlen());');
      */
     public function testContainerMaintainsCorrectOrderOfItems()
     {
-
         $this->helper->offsetSetFile(1, 'test1.js');
         $this->helper->offsetSetFile(20, 'test2.js');
         $this->helper->offsetSetFile(10, 'test3.js');
@@ -487,7 +492,9 @@ document.write(bar.strlen());');
     {
         $this->helper->setAllowArbitraryAttributes(true);
         $this->helper->appendFile(
-            '/js/foo.js', 'text/javascript', ['conditional' => 'lt IE 7']
+            '/js/foo.js',
+            'text/javascript',
+            ['conditional' => 'lt IE 7']
         );
         $test = $this->helper->toString();
 
@@ -501,7 +508,9 @@ document.write(bar.strlen());');
     {
         $this->helper->setAllowArbitraryAttributes(true);
         $this->helper->appendScript(
-            '// some script', 'text/javascript', ['noescape' => true]
+            '// some script',
+            'text/javascript',
+            ['noescape' => true]
         );
         $test = $this->helper->toString();
 
@@ -514,7 +523,9 @@ document.write(bar.strlen());');
     public function testNoEscapeDefaultsToFalse()
     {
         $this->helper->appendScript(
-            '// some script' . PHP_EOL, 'text/javascript', []
+            '// some script' . PHP_EOL,
+            'text/javascript',
+            []
         );
         $test = $this->helper->toString();
 
@@ -528,7 +539,9 @@ document.write(bar.strlen());');
     public function testNoEscapeTrue()
     {
         $this->helper->appendScript(
-            '// some script' . PHP_EOL, 'text/javascript', ['noescape' => true]
+            '// some script' . PHP_EOL,
+            'text/javascript',
+            ['noescape' => true]
         );
         $test = $this->helper->toString();
 
@@ -543,7 +556,9 @@ document.write(bar.strlen());');
     {
         $this->helper->setAllowArbitraryAttributes(true);
         $this->helper->appendFile(
-            '/js/foo.js', 'text/javascript', ['conditional' => '!IE']
+            '/js/foo.js',
+            'text/javascript',
+            ['conditional' => '!IE']
         );
         $test = $this->helper->toString();
         $this->assertStringContainsString('<!--[if !IE]><!--><', $test);

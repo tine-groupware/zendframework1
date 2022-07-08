@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -65,8 +67,8 @@ class Zend_View_Helper_FormFileTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormFileTest");
-        (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormFileTest");
+        (new TestRunner())->run($suite);
     }
 
     /**
@@ -92,7 +94,7 @@ class Zend_View_Helper_FormFileTest extends TestCase
     public function testCanDisableElement()
     {
         $html = $this->helper->formFile([
-            'name'    => 'foo',
+            'name' => 'foo',
             'attribs' => ['disable' => true]
         ]);
 
@@ -105,7 +107,7 @@ class Zend_View_Helper_FormFileTest extends TestCase
     public function testDisablingElementDoesNotRenderHiddenElements()
     {
         $html = $this->helper->formFile([
-            'name'    => 'foo',
+            'name' => 'foo',
             'attribs' => ['disable' => true]
         ]);
 

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Log_Filter_PriorityTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testComparisonDefaultsToLessThanOrEqual()
@@ -96,11 +98,11 @@ class Zend_Log_Filter_PriorityTest extends TestCase
 
         try {
             $logger = Zend_Log::factory(['Null' => [
-                'writerName'   => 'Mock',
-                'filterName'   => 'Priority',
+                'writerName' => 'Mock',
+                'filterName' => 'Priority',
                 'filterParams' => [],
             ]]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Log_Exception);
             $this->assertMatchesRegularExpression('/must be an integer/', $e->getMessage());
         }

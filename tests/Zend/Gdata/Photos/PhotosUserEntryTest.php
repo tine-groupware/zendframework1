@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Gdata_Photos_PhotosUserEntryTest extends TestCase
 {
-
     protected $userEntry = null;
 
     /**
@@ -46,8 +47,9 @@ class Zend_Gdata_Photos_PhotosUserEntryTest extends TestCase
     protected function setUp(): void
     {
         $userEntryText = file_get_contents(
-                '_files/TestUserEntry.xml',
-                true);
+            '_files/TestUserEntry.xml',
+            true
+        );
         $this->userEntry = new Zend_Gdata_Photos_UserEntry($userEntryText);
     }
 
@@ -138,8 +140,12 @@ class Zend_Gdata_Photos_PhotosUserEntryTest extends TestCase
 
         // Assert that the entry's ID is correct
         $this->assertTrue($entry->getId() instanceof Zend_Gdata_App_Extension_Id);
-        $this->verifyProperty2($entry, "id", "text",
-                "http://picasaweb.google.com/data/entry/api/user/sample.user");
+        $this->verifyProperty2(
+            $entry,
+            "id",
+            "text",
+            "http://picasaweb.google.com/data/entry/api/user/sample.user"
+        );
     }
 
     /**
@@ -165,8 +171,12 @@ class Zend_Gdata_Photos_PhotosUserEntryTest extends TestCase
 
         // Assert that the entry's updated date is correct
         $this->assertTrue($entry->getUpdated() instanceof Zend_Gdata_App_Extension_Updated);
-        $this->verifyProperty2($entry, "updated", "text",
-                "2007-09-24T23:45:49.059Z");
+        $this->verifyProperty2(
+            $entry,
+            "updated",
+            "text",
+            "2007-09-24T23:45:49.059Z"
+        );
     }
 
     /**
@@ -220,10 +230,17 @@ class Zend_Gdata_Photos_PhotosUserEntryTest extends TestCase
 
         // Assert that the entry's thumbnail is correct
         $this->assertTrue($entry->getGphotoThumbnail() instanceof Zend_Gdata_Photos_Extension_Thumbnail);
-        $this->verifyProperty2($entry, "gphotoThumbnail", "text",
-            "http://lh5.google.com/sample.user/AAAAuZnob5E/AAAAAAAAAAA/EtCbNCdLGxM/s64-c/sample.user");
-        $this->verifyProperty3($entry, "gphotoThumbnail", "text",
-            "http://lh5.google.com/sample.user/AAAAuZnob5E/AAAAAAAAAAA/EtCbNCdLGxM/s64-c/sample.user");
+        $this->verifyProperty2(
+            $entry,
+            "gphotoThumbnail",
+            "text",
+            "http://lh5.google.com/sample.user/AAAAuZnob5E/AAAAAAAAAAA/EtCbNCdLGxM/s64-c/sample.user"
+        );
+        $this->verifyProperty3(
+            $entry,
+            "gphotoThumbnail",
+            "text",
+            "http://lh5.google.com/sample.user/AAAAuZnob5E/AAAAAAAAAAA/EtCbNCdLGxM/s64-c/sample.user"
+        );
     }
-
 }

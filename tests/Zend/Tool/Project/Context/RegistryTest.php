@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Debug.php';
  */
 class Zend_Tool_Project_Context_RepositoryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         Zend_Tool_Project_Context_Repository::resetInstance();
@@ -68,7 +69,6 @@ class Zend_Tool_Project_Context_RepositoryTest extends TestCase
 
     public function testRegistryThrowsExceptionOnUnallowedContextOverwrite()
     {
-
         $this->expectException(Zend_Tool_Project_Context_Exception::class);
         Zend_Tool_Project_Context_Repository::getInstance()->addContextClass('Zend_Tool_Project_Context_System_ProjectDirectory');
     }

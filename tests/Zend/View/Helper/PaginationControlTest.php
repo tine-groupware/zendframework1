@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -58,9 +60,8 @@ class Zend_View_Helper_PaginationControlTest extends TestCase
      */
     public static function main()
     {
-
         $suite = new TestSuite("Zend_View_Helper_PaginationControlTest");
-        (new TestRunner)->run($suite);
+        (new TestRunner())->run($suite);
     }
 
     /**
@@ -88,7 +89,7 @@ class Zend_View_Helper_PaginationControlTest extends TestCase
 
     public function testGetsAndSetsView()
     {
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $helper = new Zend_View_Helper_PaginationControl();
         $this->assertNull($helper->view);
         $helper->setView($view);
@@ -192,7 +193,7 @@ class Zend_View_Helper_PaginationControlTest extends TestCase
      */
     public function testUsesPaginatorFromViewOnlyIfNoneSupplied()
     {
-        $this->_viewHelper->view->paginator  = $this->_paginator;
+        $this->_viewHelper->view->paginator = $this->_paginator;
         $paginator = Zend_Paginator::factory(range(1, 30));
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('testPagination.phtml');
 

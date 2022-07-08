@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,7 +38,6 @@ require_once 'Zend/Gdata/ClientLogin.php';
  */
 class Zend_Gdata_DocsOnlineTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');
@@ -78,7 +79,7 @@ class Zend_Gdata_DocsOnlineTest extends TestCase
         $query = new Zend_Gdata_Docs_Query();
         $query->title = $this->docTitle;
         $feed = $this->gdata->getDocumentListFeed($query);
-        $this->assertTrue(strpos(strtolower($feed->entries[0]->title), strtolower($this->docTitle)) !== FALSE);
+        $this->assertTrue(strpos(strtolower($feed->entries[0]->title), strtolower($this->docTitle)) !== false);
     }
 
     public function testGetDocumentListEntry()
@@ -94,9 +95,11 @@ class Zend_Gdata_DocsOnlineTest extends TestCase
     {
         $documentTitle = 'spreadsheet_upload_test.csv';
         $newDocumentEntry = $this->gdata->uploadFile(
-            'Zend/Gdata/_files/DocsTest.csv', $documentTitle,
+            'Zend/Gdata/_files/DocsTest.csv',
+            $documentTitle,
             $this->gdata->lookupMimeType('CSV'),
-            Zend_Gdata_Docs::DOCUMENTS_LIST_FEED_URI);
+            Zend_Gdata_Docs::DOCUMENTS_LIST_FEED_URI
+        );
         $this->assertTrue($newDocumentEntry->title->text === $documentTitle);
 
         // Get the newly created document.
@@ -108,23 +111,27 @@ class Zend_Gdata_DocsOnlineTest extends TestCase
         if ($keyParts[0] == 'document') {
             $documentFromGetDocument = $this->gdata->getDocument($keyParts[1]);
             $this->assertTrue(
-                $documentFromGetDocument->title->text === $documentTitle);
+                $documentFromGetDocument->title->text === $documentTitle
+            );
         }
         if ($keyParts[0] == 'spreadsheet') {
             $documentFromGetSpreadsheet = $this->gdata->getSpreadsheet(
-                $keyParts[1]);
+                $keyParts[1]
+            );
             $this->assertTrue(
-                $documentFromGetSpreadsheet->title->text === $documentTitle);
+                $documentFromGetSpreadsheet->title->text === $documentTitle
+            );
         }
         if ($keyParts[0] == 'presentation') {
             $documentFromGetPresentation = $this->gdata->getPresentation(
-                $keyParts[1]);
+                $keyParts[1]
+            );
             $this->assertTrue(
-                $documentFromGetPresentation->title->text === $documentTitle);
+                $documentFromGetPresentation->title->text === $documentTitle
+            );
         }
 
         // Cleanup and remove the new document.
         $newDocumentEntry->delete();
     }
-
 }

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Dojo_View_Helper_AccordionContainerTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_AccordionContainerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_AccordionContainerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Dojo_View_Helper_AccordionContainerTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_AccordionContainer();
         $this->helper->setView($this->view);
     }
@@ -102,10 +104,10 @@ class Zend_Dojo_View_Helper_AccordionContainerTest extends TestCase
     {
         $html = '';
         for ($i = 1; $i < 6; ++$i) {
-            $id      = 'pane' . $i;
-            $title   = 'Pane ' . $i;
+            $id = 'pane' . $i;
+            $title = 'Pane ' . $i;
             $content = 'This is the content of pane ' . $i;
-            $html   .= $this->view->accordionPane($id, $content, ['title' => $title]);
+            $html .= $this->view->accordionPane($id, $content, ['title' => $title]);
         }
         return $this->helper->accordionContainer('container', $html, [], ['style' => 'height: 200px; width: 100px;']);
     }

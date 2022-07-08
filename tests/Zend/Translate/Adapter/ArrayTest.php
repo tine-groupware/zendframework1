@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,8 +58,8 @@ class Zend_Translate_Adapter_ArrayTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Translate_Adapter_ArrayTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Translate_Adapter_ArrayTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -154,17 +156,17 @@ class Zend_Translate_Adapter_ArrayTest extends TestCase
         $adapter = new Zend_Translate_Adapter_Array(dirname(__FILE__) . '/_files/translation_en.php', 'en');
         $adapter->setOptions(['testoption' => 'testkey']);
         $expected = [
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => dirname(__FILE__) . '/_files/translation_en.php',
-            'scan'            => null,
-            'locale'          => 'en',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => dirname(__FILE__) . '/_files/translation_en.php',
+            'scan' => null,
+            'locale' => 'en',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         ];
 
         $options = $adapter->getOptions();
@@ -286,21 +288,24 @@ class Zend_Translate_Adapter_ArrayTest extends TestCase
     public function testCaching()
     {
         require_once 'Zend/Cache.php';
-        $cache = Zend_Cache::factory('Core', 'File',
+        $cache = Zend_Cache::factory(
+            'Core',
+            'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
-            ['cache_dir' => dirname(__FILE__) . '/_files/']);
+            ['cache_dir' => dirname(__FILE__) . '/_files/']
+        );
 
         $this->assertFalse(Zend_Translate_Adapter_Array::hasCache());
         Zend_Translate_Adapter_Array::setCache($cache);
         $this->assertTrue(Zend_Translate_Adapter_Array::hasCache());
 
         $adapter = new Zend_Translate_Adapter_Array(dirname(__FILE__) . '/_files/translation_en.php', 'en');
-        $cache   = Zend_Translate_Adapter_Array::getCache();
+        $cache = Zend_Translate_Adapter_Array::getCache();
         $this->assertTrue($cache instanceof Zend_Cache_Core);
-        unset ($adapter);
+        unset($adapter);
 
         $adapter = new Zend_Translate_Adapter_Array(dirname(__FILE__) . '/_files/translation_en.php', 'en');
-        $cache   = Zend_Translate_Adapter_Array::getCache();
+        $cache = Zend_Translate_Adapter_Array::getCache();
         $this->assertTrue($cache instanceof Zend_Cache_Core);
 
         Zend_Translate_Adapter_Array::removeCache();
@@ -317,16 +322,19 @@ class Zend_Translate_Adapter_ArrayTest extends TestCase
     public function testLoadingFilesIntoCacheAfterwards()
     {
         require_once 'Zend/Cache.php';
-        $cache = Zend_Cache::factory('Core', 'File',
+        $cache = Zend_Cache::factory(
+            'Core',
+            'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
-            ['cache_dir' => dirname(__FILE__) . '/_files/']);
+            ['cache_dir' => dirname(__FILE__) . '/_files/']
+        );
 
         $this->assertFalse(Zend_Translate_Adapter_Array::hasCache());
         Zend_Translate_Adapter_Array::setCache($cache);
         $this->assertTrue(Zend_Translate_Adapter_Array::hasCache());
 
         $adapter = new Zend_Translate_Adapter_Array(dirname(__FILE__) . '/_files/translation_en.php', 'en');
-        $cache   = Zend_Translate_Adapter_Array::getCache();
+        $cache = Zend_Translate_Adapter_Array::getCache();
         $this->assertTrue($cache instanceof Zend_Cache_Core);
 
         $adapter->addTranslation(dirname(__FILE__) . '/_files/translation_en.php', 'ru', ['reload' => true]);

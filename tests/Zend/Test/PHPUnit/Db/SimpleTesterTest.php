@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,7 +43,7 @@ class Zend_Test_PHPUnit_Db_SimpleTesterTest extends TestCase
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())
                     ->method('delete')
-                    ->will($this->throwException(new Exception));
+                    ->will($this->throwException(new Exception()));
 
         $connection = new Zend_Test_PHPUnit_Db_Connection($testAdapter, "schema");
 
@@ -55,7 +57,7 @@ class Zend_Test_PHPUnit_Db_SimpleTesterTest extends TestCase
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())
                     ->method('delete')
-                    ->will($this->throwException(new Exception));
+                    ->will($this->throwException(new Exception()));
 
         $connection = new Zend_Test_PHPUnit_Db_Connection($testAdapter, "schema");
 

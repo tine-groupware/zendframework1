@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,8 +53,8 @@ class Zend_Form_Element_MultiselectTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Form_Element_MultiselectTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_MultiselectTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -166,15 +168,15 @@ class Zend_Form_Element_MultiselectTest extends TestCase
         $options = [
             [
                 'value' => '1',
-                'key'   => 'aa',
+                'key' => 'aa',
             ],
             [
-                'key'   => '2',
+                'key' => '2',
                 'value' => 'xxxx',
             ],
             [
                 'value' => '444',
-                'key'   => 'ssss',
+                'key' => 'ssss',
             ],
         ];
         $this->element->addMultiOptions($options);
@@ -201,7 +203,6 @@ class Zend_Form_Element_MultiselectTest extends TestCase
         $this->assertEquals($config->options->first->value, $this->element->getMultiOption('aa'));
         $this->assertEquals($config->options->second->value, $this->element->getMultiOption(2));
         $this->assertEquals($config->options->third->value, $this->element->getMultiOption('ssss'));
-
     }
 
     public function testCanRemoveMultiOption()
@@ -229,7 +230,7 @@ class Zend_Form_Element_MultiselectTest extends TestCase
     public function testTranslatedOptionsAreRenderedInFinalMarkupWhenTranslatorPresent()
     {
         $translations = [
-            'ThisShouldNotShow'   => 'Foo Value',
+            'ThisShouldNotShow' => 'Foo Value',
             'ThisShouldNeverShow' => 'Bar Value'
         ];
         require_once 'Zend/Translate.php';
@@ -254,7 +255,7 @@ class Zend_Form_Element_MultiselectTest extends TestCase
     public function testOptionLabelsAreTranslatedWhenTranslateAdapterIsPresent()
     {
         $translations = include dirname(__FILE__) . '/../_files/locale/array.php';
-        $translate    = new Zend_Translate('array', $translations, 'en');
+        $translate = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
 
         $options = [
@@ -275,13 +276,13 @@ class Zend_Form_Element_MultiselectTest extends TestCase
     public function testOptionLabelsAreUntouchedIfTranslatonDoesNotExistInnTranslateAdapter()
     {
         $translations = include dirname(__FILE__) . '/../_files/locale/array.php';
-        $translate    = new Zend_Translate('array', $translations, 'en');
+        $translate = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
 
         $options = [
             'foovalue' => 'Foo',
             'barvalue' => 'Bar',
-            'testing'  => 'Test Value',
+            'testing' => 'Test Value',
         ];
         $this->element->addMultiOptions($options)
                       ->setTranslator($translate);
@@ -300,8 +301,8 @@ class Zend_Form_Element_MultiselectTest extends TestCase
     public function testOptGroupTranslationsShouldWorkAfterPopulatingElement()
     {
         $translations = [
-            'ThisIsTheLabel'      => 'Optgroup label',
-            'ThisShouldNotShow'   => 'Foo Value',
+            'ThisIsTheLabel' => 'Optgroup label',
+            'ThisShouldNotShow' => 'Foo Value',
             'ThisShouldNeverShow' => 'Bar Value'
         ];
         require_once 'Zend/Translate.php';

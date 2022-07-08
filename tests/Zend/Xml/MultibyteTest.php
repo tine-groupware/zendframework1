@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_Xml_MultibyteTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
  
     public function multibyteEncodings()
@@ -109,10 +111,10 @@ XML;
      */
     public function testDetectsMultibyteXXEVectorsUnderFPMWithEncodedStringUsingBOM($encoding, $bom)
     {
-        $xml  = $this->getXmlWithXXE();
-        $xml  = str_replace('{ENCODING}', $encoding, $xml);
+        $xml = $this->getXmlWithXXE();
+        $xml = str_replace('{ENCODING}', $encoding, $xml);
         $orig = iconv('UTF-8', $encoding, $xml);
-        $xml  = $bom . $orig;
+        $xml = $bom . $orig;
         $this->expectException('Zend_Xml_Exception');
         $this->expectExceptionMessage('ENTITY');
         $this->invokeHeuristicScan($xml);

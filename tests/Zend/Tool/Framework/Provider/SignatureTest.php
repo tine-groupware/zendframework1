@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -49,7 +51,6 @@ require_once '_files/ProviderFullFeaturedBadSpecialties2.php';
  */
 class Zend_Tool_Framework_Provider_SignatureTest extends TestCase
 {
-
     protected $_registry = null;
 
     /**
@@ -177,5 +178,4 @@ class Zend_Tool_Framework_Provider_SignatureTest extends TestCase
 
         $this->assertFalse($this->_targetSignature->getActionableMethodByActionName('Foo'));
     }
-
 }

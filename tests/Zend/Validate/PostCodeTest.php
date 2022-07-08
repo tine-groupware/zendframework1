@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,8 +58,8 @@ class Zend_Validate_PostCodeTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Validate_PostCodeTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Validate_PostCodeTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -92,8 +94,11 @@ class Zend_Validate_PostCodeTest extends TestCase
         ];
 
         foreach ($valuesExpected as $element) {
-            $this->assertEquals($element[1], $this->_validator->isValid($element[0]),
-                'Test failed with ' . var_export($element, 1));
+            $this->assertEquals(
+                $element[1],
+                $this->_validator->isValid($element[0]),
+                'Test failed with ' . var_export($element, 1)
+            );
         }
     }
 

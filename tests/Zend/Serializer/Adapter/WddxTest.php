@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Serializer/Adapter/Wddx.php';
  */
 class Zend_Serializer_Adapter_WddxTest extends TestCase
 {
-
     private $_adapter;
 
     protected function setUp(): void
@@ -50,7 +51,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testSerializeString()
     {
-        $value    = 'test';
+        $value = 'test';
         $expected = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><string>test</string></data></wddxPacket>';
 
@@ -60,7 +61,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testSerializeStringWithComment()
     {
-        $value    = 'test';
+        $value = 'test';
         $expected = '<wddxPacket version=\'1.0\'><header><comment>a test comment</comment></header>'
                   . '<data><string>test</string></data></wddxPacket>';
 
@@ -70,7 +71,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testSerializeFalse()
     {
-        $value    = false;
+        $value = false;
         $expected = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><boolean value=\'false\'/></data></wddxPacket>';
 
@@ -80,7 +81,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testSerializeTrue()
     {
-        $value    = true;
+        $value = true;
         $expected = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><boolean value=\'true\'/></data></wddxPacket>';
 
@@ -90,7 +91,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testSerializeNull()
     {
-        $value    = null;
+        $value = null;
         $expected = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><null/></data></wddxPacket>';
 
@@ -100,7 +101,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testSerializeNumeric()
     {
-        $value    = 100;
+        $value = 100;
         $expected = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><number>100</number></data></wddxPacket>';
 
@@ -124,7 +125,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testUnserializeString()
     {
-        $value    = '<wddxPacket version=\'1.0\'><header/>'
+        $value = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><string>test</string></data></wddxPacket>';
         $expected = 'test';
 
@@ -134,7 +135,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testUnserializeFalse()
     {
-        $value    = '<wddxPacket version=\'1.0\'><header/>'
+        $value = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><boolean value=\'false\'/></data></wddxPacket>';
         $expected = false;
 
@@ -144,7 +145,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testUnserializeTrue()
     {
-        $value    = '<wddxPacket version=\'1.0\'><header/>'
+        $value = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><boolean value=\'true\'/></data></wddxPacket>';
         $expected = true;
 
@@ -154,7 +155,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testUnserializeNull1()
     {
-        $value    = '<wddxPacket version=\'1.0\'><header/>'
+        $value = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><null/></data></wddxPacket>';
         $expected = null;
 
@@ -169,7 +170,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
      */
     public function testUnserializeNull2()
     {
-        $value    = '<wddxPacket version=\'1.0\'><header/>' . "\n"
+        $value = '<wddxPacket version=\'1.0\'><header/>' . "\n"
                   . '<data><null/></data></wddxPacket>';
         $expected = null;
 
@@ -179,7 +180,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testUnserializeNumeric()
     {
-        $value    = '<wddxPacket version=\'1.0\'><header/>'
+        $value = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><number>100</number></data></wddxPacket>';
         $expected = 100;
 
@@ -189,7 +190,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testUnserializeObject()
     {
-        $value    = '<wddxPacket version=\'1.0\'><header/>'
+        $value = '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><struct>'
                   . '<var name=\'php_class_name\'><string>stdClass</string></var>'
                   . '<var name=\'test\'><string>test</string></var>'
@@ -214,8 +215,9 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
      *
      * No workaround implemented !!! - This test failes on php < 5.2.7
      */
-    public function testSerializeStringUtf8() {
-        $value    = "\xc2\xbf"; // &Xi;
+    public function testSerializeStringUtf8()
+    {
+        $value = "\xc2\xbf"; // &Xi;
         $expected = '<wddxPacket version=\'1.0\'><header/>'
                   . "<data><string>\xc2\xbf</string></data></wddxPacket>";
         $data = $this->_adapter->serialize($value);
@@ -238,7 +240,7 @@ class Zend_Serializer_Adapter_WddxTest extends TestCase
 
     public function testShouldThrowExceptionIfXmlToUnserializeFromContainsADoctype()
     {
-        $value    = '<!DOCTYPE>'
+        $value = '<!DOCTYPE>'
                   . '<wddxPacket version=\'1.0\'><header/>'
                   . '<data><string>test</string></data></wddxPacket>';
         $this->expectException("Zend_Serializer_Exception");
@@ -262,7 +264,7 @@ class Zend_Serializer_Adapter_WddxSkipTest extends TestCase
     {
         $message = 'Skipped Zend_Serializer_Adapter_WddxTest';
         if ($this->message) {
-            $message.= ': ' . $this->message;
+            $message .= ': ' . $this->message;
         }
         $this->markTestSkipped($message);
     }
@@ -271,6 +273,4 @@ class Zend_Serializer_Adapter_WddxSkipTest extends TestCase
     {
         // this is here only so we have at least one test
     }
-
 }
-

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_CustomTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->custom = new Zend_Gdata_Spreadsheets_Extension_Custom();
@@ -54,5 +55,4 @@ class Zend_Gdata_Spreadsheets_CustomTest extends TestCase
         $this->assertTrue($this->custom->getText() == $newCustom->getText());
         $this->assertTrue($this->custom->getColumnName() == $newCustom->getColumnName());
     }
-
 }

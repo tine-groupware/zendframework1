@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -68,8 +70,8 @@ class Zend_View_Helper_BaseUrlTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_BaseUrlTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_BaseUrlTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -114,8 +116,8 @@ class Zend_View_Helper_BaseUrlTest extends TestCase
     public function testBaseUrlIsCorrectingFilePath()
     {
         $baseUrls = [
-            ''             => '/file.js',
-            '/subdir'      => '/subdir/file.js',
+            '' => '/file.js',
+            '/subdir' => '/subdir/file.js',
             '/sub/sub/dir' => '/sub/sub/dir/file.js',
         ];
 
@@ -134,8 +136,8 @@ class Zend_View_Helper_BaseUrlTest extends TestCase
     public function testBaseUrlIsAppendedWithFile()
     {
         $baseUrls = [
-            ''             => '/file.js',
-            '/subdir'      => '/subdir/file.js',
+            '' => '/file.js',
+            '/subdir' => '/subdir/file.js',
             '/sub/sub/dir' => '/sub/sub/dir/file.js',
         ];
 
@@ -154,8 +156,8 @@ class Zend_View_Helper_BaseUrlTest extends TestCase
     public function testBaseUrlIsAppendedWithPath()
     {
         $baseUrls = [
-            ''             => '/path/bar',
-            '/subdir'      => '/subdir/path/bar',
+            '' => '/path/bar',
+            '/subdir' => '/subdir/path/bar',
             '/sub/sub/dir' => '/sub/sub/dir/path/bar',
         ];
 
@@ -174,7 +176,7 @@ class Zend_View_Helper_BaseUrlTest extends TestCase
     public function testBaseUrlIsAppendedWithRootPath()
     {
         $baseUrls = [
-            ''     => '/',
+            '' => '/',
             '/foo' => '/foo/'
         ];
 

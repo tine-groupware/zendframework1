@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -63,8 +65,8 @@ class Zend_View_Helper_ActionTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_ActionTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_ActionTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -78,20 +80,20 @@ class Zend_View_Helper_ActionTest extends TestCase
         $this->_origServer = $_SERVER;
         $_SERVER = [
             'SCRIPT_FILENAME' => __FILE__,
-            'PHP_SELF'        => __FILE__,
+            'PHP_SELF' => __FILE__,
         ];
 
         $front = Zend_Controller_Front::getInstance();
         $front->resetInstance();
 
-        $this->request  = new Zend_Controller_Request_Http('http://framework.zend.com/action-foo');
+        $this->request = new Zend_Controller_Request_Http('http://framework.zend.com/action-foo');
         $this->response = new Zend_Controller_Response_Http();
         $this->response->headersSentThrowsException = false;
         $front->setRequest($this->request)
               ->setResponse($this->response)
               ->addModuleDirectory(dirname(__FILE__) . '/_files/modules');
 
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_Action();
         $this->helper->setView($this->view);
     }
@@ -126,7 +128,7 @@ class Zend_View_Helper_ActionTest extends TestCase
     public function testInitialStateHasDefaultModuleName()
     {
         $dispatcher = Zend_Controller_Front::getInstance()->getDispatcher();
-        $module     = $dispatcher->getDefaultModule();
+        $module = $dispatcher->getDefaultModule();
         $this->assertEquals($module, $this->helper->defaultModule);
 
         $dispatcher->setDefaultModule('foo');
@@ -163,7 +165,7 @@ class Zend_View_Helper_ActionTest extends TestCase
         $this->helper->response->setHeader('X-Foo', 'Bar')
                                ->setRawHeader('HTTP/1.1');
         $this->helper->resetObjects();
-        $headers    = $this->helper->response->getHeaders();
+        $headers = $this->helper->response->getHeaders();
         $rawHeaders = $this->helper->response->getRawHeaders();
         $this->assertTrue(empty($headers));
         $this->assertTrue(empty($rawHeaders));
@@ -299,7 +301,6 @@ class Zend_View_Helper_ActionTest extends TestCase
         $partial->partial('partialActionCall.phtml');
 
         $this->assertSame($this->view, Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer')->view);
-
     }
 
     /**

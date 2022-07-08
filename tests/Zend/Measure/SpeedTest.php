@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,8 +45,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedInit()
     {
-        $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD,'de');
-        $this->assertTrue($value instanceof Zend_Measure_Speed,'Zend_Measure_Speed Object not returned');
+        $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD, 'de');
+        $this->assertTrue($value instanceof Zend_Measure_Speed, 'Zend_Measure_Speed Object not returned');
     }
 
 
@@ -56,7 +58,7 @@ class Zend_Measure_SpeedTest extends TestCase
     public function testSpeedUnknownType()
     {
         try {
-            $value = new Zend_Measure_Speed('100','Speed::UNKNOWN','de');
+            $value = new Zend_Measure_Speed('100', 'Speed::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -72,7 +74,7 @@ class Zend_Measure_SpeedTest extends TestCase
     public function testSpeedUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Speed('novalue',Zend_Measure_Speed::STANDARD,'de');
+            $value = new Zend_Measure_Speed('novalue', Zend_Measure_Speed::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -88,7 +90,7 @@ class Zend_Measure_SpeedTest extends TestCase
     public function testSpeedUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD,'nolocale');
+            $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -102,8 +104,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedNoLocale()
     {
-        $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD);
-        $this->assertEquals(100, $value->getValue(),'Zend_Measure_Speed value expected');
+        $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD);
+        $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Speed value expected');
     }
 
 
@@ -113,7 +115,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedValuePositive()
     {
-        $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Speed value expected to be a positive integer');
     }
 
@@ -124,7 +126,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedValueNegative()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals(-100, $value->getValue(), 'Zend_Measure_Speed value expected to be a negative integer');
     }
 
@@ -135,7 +137,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedValueDecimal()
     {
-        $value = new Zend_Measure_Speed('-100,200',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100,200', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals(-100.200, $value->getValue(), 'Zend_Measure_Speed value expected to be a decimal value');
     }
 
@@ -146,8 +148,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedValueDecimalSeperated()
     {
-        $value = new Zend_Measure_Speed('-100.100,200',Zend_Measure_Speed::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Speed Object not returned');
+        $value = new Zend_Measure_Speed('-100.100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Speed Object not returned');
     }
 
 
@@ -157,8 +159,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedValueString()
     {
-        $value = new Zend_Measure_Speed('-100.100,200',Zend_Measure_Speed::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Speed Object not returned');
+        $value = new Zend_Measure_Speed('-100.100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Speed Object not returned');
     }
 
 
@@ -168,9 +170,9 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedEquality()
     {
-        $value = new Zend_Measure_Speed('-100.100,200',Zend_Measure_Speed::STANDARD,'de');
-        $newvalue = new Zend_Measure_Speed('-100.100,200',Zend_Measure_Speed::STANDARD,'de');
-        $this->assertTrue($value->equals($newvalue),'Zend_Measure_Speed Object should be equal');
+        $value = new Zend_Measure_Speed('-100.100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Speed('-100.100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $this->assertTrue($value->equals($newvalue), 'Zend_Measure_Speed Object should be equal');
     }
 
 
@@ -180,9 +182,9 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedNoEquality()
     {
-        $value = new Zend_Measure_Speed('-100.100,200',Zend_Measure_Speed::STANDARD,'de');
-        $newvalue = new Zend_Measure_Speed('-100,200',Zend_Measure_Speed::STANDARD,'de');
-        $this->assertFalse($value->equals($newvalue),'Zend_Measure_Speed Object should be not equal');
+        $value = new Zend_Measure_Speed('-100.100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Speed('-100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $this->assertFalse($value->equals($newvalue), 'Zend_Measure_Speed Object should be not equal');
     }
 
 
@@ -192,8 +194,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetPositive()
     {
-        $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD,'de');
-        $value->setValue('200',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD, 'de');
+        $value->setValue('200', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals(200, $value->getValue(), 'Zend_Measure_Speed value expected to be a positive integer');
     }
 
@@ -204,8 +206,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetNegative()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
-        $value->setValue('-200',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
+        $value->setValue('-200', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals(-200, $value->getValue(), 'Zend_Measure_Speed value expected to be a negative integer');
     }
 
@@ -216,8 +218,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetDecimal()
     {
-        $value = new Zend_Measure_Speed('-100,200',Zend_Measure_Speed::STANDARD,'de');
-        $value->setValue('-200,200',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $value->setValue('-200,200', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals(-200.200, $value->getValue(), 'Zend_Measure_Speed value expected to be a decimal value');
     }
 
@@ -228,9 +230,9 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetDecimalSeperated()
     {
-        $value = new Zend_Measure_Speed('-100.100,200',Zend_Measure_Speed::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Speed::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Speed Object not returned');
+        $value = new Zend_Measure_Speed('-100.100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Speed::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Speed Object not returned');
     }
 
 
@@ -240,9 +242,9 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetString()
     {
-        $value = new Zend_Measure_Speed('-100.100,200',Zend_Measure_Speed::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Speed::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Speed Object not returned');
+        $value = new Zend_Measure_Speed('-100.100,200', Zend_Measure_Speed::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Speed::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Speed Object not returned');
     }
 
 
@@ -254,8 +256,8 @@ class Zend_Measure_SpeedTest extends TestCase
     public function testSpeedSetUnknownType()
     {
         try {
-            $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD,'de');
-            $value->setValue('-200.200,200','Speed::UNKNOWN','de');
+            $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD, 'de');
+            $value->setValue('-200.200,200', 'Speed::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -271,8 +273,8 @@ class Zend_Measure_SpeedTest extends TestCase
     public function testSpeedSetUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD,'de');
-            $value->setValue('novalue',Zend_Measure_Speed::STANDARD,'de');
+            $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD, 'de');
+            $value->setValue('novalue', Zend_Measure_Speed::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -288,8 +290,8 @@ class Zend_Measure_SpeedTest extends TestCase
     public function testSpeedSetUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Speed('100',Zend_Measure_Speed::STANDARD,'de');
-            $value->setValue('200',Zend_Measure_Speed::STANDARD,'nolocale');
+            $value = new Zend_Measure_Speed('100', Zend_Measure_Speed::STANDARD, 'de');
+            $value->setValue('200', Zend_Measure_Speed::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -315,7 +317,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetType()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
         $value->setType(Zend_Measure_Speed::METER_PER_HOUR);
         $this->assertEquals(Zend_Measure_Speed::METER_PER_HOUR, $value->getType(), 'Zend_Measure_Speed type expected');
     }
@@ -327,7 +329,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetComputedType1()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
         $value->setType(Zend_Measure_Speed::METER_PER_HOUR);
         $this->assertEquals(Zend_Measure_Speed::METER_PER_HOUR, $value->getType(), 'Zend_Measure_Speed type expected');
     }
@@ -339,7 +341,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedSetComputedType2()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::METER_PER_HOUR,'de');
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::METER_PER_HOUR, 'de');
         $value->setType(Zend_Measure_Speed::STANDARD);
         $this->assertEquals(Zend_Measure_Speed::STANDARD, $value->getType(), 'Zend_Measure_Speed type expected');
     }
@@ -353,7 +355,7 @@ class Zend_Measure_SpeedTest extends TestCase
     public function testSpeedSetTypeFailed()
     {
         try {
-            $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
+            $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
             $value->setType('Speed::UNKNOWN');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
@@ -368,7 +370,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedToString()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals('-100 m/s', $value->toString(), 'Value -100 m/s expected');
     }
 
@@ -379,7 +381,7 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeed_ToString()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
         $this->assertEquals('-100 m/s', $value->__toString(), 'Value -100 m/s expected');
     }
 
@@ -390,8 +392,8 @@ class Zend_Measure_SpeedTest extends TestCase
      */
     public function testSpeedConversionList()
     {
-        $value = new Zend_Measure_Speed('-100',Zend_Measure_Speed::STANDARD,'de');
-        $unit  = $value->getConversionList();
+        $value = new Zend_Measure_Speed('-100', Zend_Measure_Speed::STANDARD, 'de');
+        $unit = $value->getConversionList();
         $this->assertTrue(is_array($unit), 'Array expected');
     }
 }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -40,7 +42,6 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Mobile_Push_MpnsTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->adapter = new Zend_Http_Client_Adapter_Test();
@@ -50,7 +51,8 @@ class Zend_Mobile_Push_MpnsTest extends TestCase
         $this->mpns->setHttpClient($this->client);
     }
 
-    public function getMessage($type) {
+    public function getMessage($type)
+    {
         switch ($type) {
             case 'tile':
                 $message = new Zend_Mobile_Push_Message_Mpns_Tile();

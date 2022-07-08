@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,17 +37,21 @@ require_once 'Zend/Gdata/Gapps.php';
  */
 class Zend_Gdata_Gapps_OwnerEntryTest extends TestCase
 {
-
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->entryText = file_get_contents(
-                'Zend/Gdata/Gapps/_files/OwnerEntryDataSample1.xml',
-                true);
+            'Zend/Gdata/Gapps/_files/OwnerEntryDataSample1.xml',
+            true
+        );
         $this->entry = new Zend_Gdata_Gapps_OwnerEntry();
     }
 
-    private function verifyAllSamplePropertiesAreCorrect ($ownerEntry) {
-        $this->assertEquals('https://www.google.com/a/feeds/group/2.0/example.com/us-sales/owner/joe%40example.com',
-            $ownerEntry->id->text);
+    private function verifyAllSamplePropertiesAreCorrect($ownerEntry)
+    {
+        $this->assertEquals(
+            'https://www.google.com/a/feeds/group/2.0/example.com/us-sales/owner/joe%40example.com',
+            $ownerEntry->id->text
+        );
         $this->assertEquals('1970-01-01T00:00:00.000Z', $ownerEntry->updated->text);
         $this->assertEquals('self', $ownerEntry->getLink('self')->rel);
         $this->assertEquals('application/atom+xml', $ownerEntry->getLink('self')->type);
@@ -57,29 +63,34 @@ class Zend_Gdata_Gapps_OwnerEntryTest extends TestCase
         $this->assertEquals('joe@example.com', $ownerEntry->property[0]->value);
     }
 
-    public function testEmptyEntryShouldHaveNoExtensionElements() {
+    public function testEmptyEntryShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->entry->extensionElements));
         $this->assertTrue(count($this->entry->extensionElements) == 0);
     }
 
-    public function testEmptyEntryShouldHaveNoExtensionAttributes() {
+    public function testEmptyEntryShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->entry->extensionAttributes));
         $this->assertTrue(count($this->entry->extensionAttributes) == 0);
     }
 
-    public function testSampleEntryShouldHaveNoExtensionElements() {
+    public function testSampleEntryShouldHaveNoExtensionElements()
+    {
         $this->entry->transferFromXML($this->entryText);
         $this->assertTrue(is_array($this->entry->extensionElements));
         $this->assertTrue(count($this->entry->extensionElements) == 0);
     }
 
-    public function testSampleEntryShouldHaveNoExtensionAttributes() {
+    public function testSampleEntryShouldHaveNoExtensionAttributes()
+    {
         $this->entry->transferFromXML($this->entryText);
         $this->assertTrue(is_array($this->entry->extensionAttributes));
         $this->assertTrue(count($this->entry->extensionAttributes) == 0);
     }
 
-    public function testEmptyOwnerEntryToAndFromStringShouldMatch() {
+    public function testEmptyOwnerEntryToAndFromStringShouldMatch()
+    {
         $entryXml = $this->entry->saveXML();
         $newOwnerEntry = new Zend_Gdata_Gapps_OwnerEntry();
         $newOwnerEntry->transferFromXML($entryXml);
@@ -87,12 +98,14 @@ class Zend_Gdata_Gapps_OwnerEntryTest extends TestCase
         $this->assertTrue($entryXml == $newOwnerEntryXml);
     }
 
-    public function testSamplePropertiesAreCorrect () {
+    public function testSamplePropertiesAreCorrect()
+    {
         $this->entry->transferFromXML($this->entryText);
         $this->verifyAllSamplePropertiesAreCorrect($this->entry);
     }
 
-    public function testConvertOwnerEntryToAndFromString() {
+    public function testConvertOwnerEntryToAndFromString()
+    {
         $this->entry->transferFromXML($this->entryText);
         $entryXml = $this->entry->saveXML();
         $newOwnerEntry = new Zend_Gdata_Gapps_OwnerEntry();
@@ -101,5 +114,4 @@ class Zend_Gdata_Gapps_OwnerEntryTest extends TestCase
         $newOwnerEntryXml = $newOwnerEntry->saveXML();
         $this->assertEquals($entryXml, $newOwnerEntryXml);
     }
-
 }

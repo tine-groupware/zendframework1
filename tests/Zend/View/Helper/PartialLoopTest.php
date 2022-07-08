@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -67,9 +69,8 @@ class Zend_View_Helper_PartialLoopTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_PartialLoopTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_PartialLoopTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -342,8 +343,8 @@ class Zend_View_Helper_PartialLoopTest extends TestCase
         $this->helper->setView($view);
 
         $result = $this->helper->partialLoop('partialLoopCouter.phtml', $data);
-        foreach ($data as $key=>$item) {
-            $string = 'This is an iteration: ' . $item['message'] . ', pointer at ' . ($key+1);
+        foreach ($data as $key => $item) {
+            $string = 'This is an iteration: ' . $item['message'] . ', pointer at ' . ($key + 1);
             $this->assertStringContainsString($string, $result);
         }
     }
@@ -367,14 +368,14 @@ class Zend_View_Helper_PartialLoopTest extends TestCase
         $this->helper->setView($view);
 
         $result = $this->helper->partialLoop('partialLoopCouter.phtml', $data);
-        foreach ($data as $key=>$item) {
-            $string = 'This is an iteration: ' . $item['message'] . ', pointer at ' . ($key+1);
+        foreach ($data as $key => $item) {
+            $string = 'This is an iteration: ' . $item['message'] . ', pointer at ' . ($key + 1);
             $this->assertStringContainsString($string, $result);
         }
 
         $result = $this->helper->partialLoop('partialLoopCouter.phtml', $data);
-        foreach ($data as $key=>$item) {
-            $string = 'This is an iteration: ' . $item['message'] . ', pointer at ' . ($key+1);
+        foreach ($data as $key => $item) {
+            $string = 'This is an iteration: ' . $item['message'] . ', pointer at ' . ($key + 1);
             $this->assertStringContainsString($string, $result);
         }
     }

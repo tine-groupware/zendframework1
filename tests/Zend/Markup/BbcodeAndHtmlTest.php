@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,7 +42,6 @@ require_once 'Zend/Filter/StringToUpper.php';
  */
 class Zend_Markup_BbcodeAndHtmlTest extends TestCase
 {
-
     /**
      * Zend_Markup_Renderer_RendererAbstract instance
      *
@@ -56,9 +57,8 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Markup_MarkupTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Markup_MarkupTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -91,8 +91,10 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
     public function testBasicTags()
     {
         $this->assertEquals('<strong>foo</strong>bar', $this->_markup->render('[b]foo[/b]bar'));
-        $this->assertEquals('<strong>foo<em>bar</em>foo</strong>ba[r',
-            $this->_markup->render('[b=test file="test"]foo[i hell=nice]bar[/i]foo[/b]ba[r'));
+        $this->assertEquals(
+            '<strong>foo<em>bar</em>foo</strong>ba[r',
+            $this->_markup->render('[b=test file="test"]foo[i hell=nice]bar[/i]foo[/b]ba[r')
+        );
     }
 
     /**
@@ -102,17 +104,24 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
      */
     public function testComplicatedTags()
     {
-        $this->assertEquals('<a href="http://framework.zend.com/">http://framework.zend.com/</a>',
-            $this->_markup->render('[url]http://framework.zend.com/[/url]'));
-        $this->assertEquals('<a href="http://framework.zend.com/">foo</a>',
-            $this->_markup->render('[url=http://framework.zend.com/]foo[/url]'));
+        $this->assertEquals(
+            '<a href="http://framework.zend.com/">http://framework.zend.com/</a>',
+            $this->_markup->render('[url]http://framework.zend.com/[/url]')
+        );
+        $this->assertEquals(
+            '<a href="http://framework.zend.com/">foo</a>',
+            $this->_markup->render('[url=http://framework.zend.com/]foo[/url]')
+        );
         $this->assertEquals('bar', $this->_markup->render('[url="javascript:alert(1)"]bar[/url]'));
 
-        $this->assertEquals('<img src="http://framework.zend.com/images/logo.png" alt="logo" />',
-            $this->_markup->render('[img]http://framework.zend.com/images/logo.png[/img]'));
-        $this->assertEquals('<img src="http://framework.zend.com/images/logo.png" alt="Zend Framework" />',
-            $this->_markup->render('[img alt="Zend Framework"]http://framework.zend.com/images/logo.png[/img]'));
-
+        $this->assertEquals(
+            '<img src="http://framework.zend.com/images/logo.png" alt="logo" />',
+            $this->_markup->render('[img]http://framework.zend.com/images/logo.png[/img]')
+        );
+        $this->assertEquals(
+            '<img src="http://framework.zend.com/images/logo.png" alt="Zend Framework" />',
+            $this->_markup->render('[img alt="Zend Framework"]http://framework.zend.com/images/logo.png[/img]')
+        );
     }
 
     /**
@@ -151,26 +160,39 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
             'Zend/Markup/Test/Renderer/Html'
         );
 
-        $this->_markup->addMarkup('bar',
+        $this->_markup->addMarkup(
+            'bar',
             Zend_Markup_Renderer_RendererAbstract::TYPE_CALLBACK,
-            ['group' => 'inline']);
-        $this->_markup->addMarkup('suppp',
+            ['group' => 'inline']
+        );
+        $this->_markup->addMarkup(
+            'suppp',
             Zend_Markup_Renderer_RendererAbstract::TYPE_REPLACE,
-            ['start' => '<sup>', 'end' => '</sup>', 'group' => 'inline']);
-        $this->_markup->addMarkup('zend',
+            ['start' => '<sup>', 'end' => '</sup>', 'group' => 'inline']
+        );
+        $this->_markup->addMarkup(
+            'zend',
             Zend_Markup_Renderer_RendererAbstract::TYPE_REPLACE,
-            ['replace' => 'Zend Framework', 'group' => 'inline', 'empty' => true]);
-        $this->_markup->addMarkup('line', Zend_Markup_Renderer_RendererAbstract::TYPE_ALIAS,
-            ['name' => 'hr']);
+            ['replace' => 'Zend Framework', 'group' => 'inline', 'empty' => true]
+        );
+        $this->_markup->addMarkup(
+            'line',
+            Zend_Markup_Renderer_RendererAbstract::TYPE_ALIAS,
+            ['name' => 'hr']
+        );
 
-        $this->assertEquals('[foo=blaat]hell<sup>test</sup>blaat[/foo]',
-            $this->_markup->render('[bar="blaat"]hell[suppp]test[/suppp]blaat[/]'));
+        $this->assertEquals(
+            '[foo=blaat]hell<sup>test</sup>blaat[/foo]',
+            $this->_markup->render('[bar="blaat"]hell[suppp]test[/suppp]blaat[/]')
+        );
 
         $this->assertEquals('Zend Framework', $this->_markup->render('[zend]'));
         $this->assertEquals('<hr />', $this->_markup->render('[line]'));
 
-        $this->assertEquals('<sup>test aap</sup>test',
-            $this->_markup->render('[suppp]test aap[/suppp]test'));
+        $this->assertEquals(
+            '<sup>test aap</sup>test',
+            $this->_markup->render('[suppp]test aap[/suppp]test')
+        );
     }
 
     public function testHtmlUrlTitleIsRenderedCorrectly()
@@ -186,7 +208,7 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
         // Notice: Uninitialized string offset: 42
         // in Zend/Markup/Parser/Bbcode.php on line 316
         $expected = '<a href="http://example.com">Example</a>';
-        $value    = '[url=http://example.com foo]Example[/url]';
+        $value = '[url=http://example.com foo]Example[/url]';
         $this->assertEquals($expected, $this->_markup->render($value));
     }
 
@@ -227,7 +249,7 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
 
     public function testImgSrcsConstraints()
     {
-        $this->assertEquals('F/\!ZLrFz',$this->_markup->render('F[img]/\!ZLrFz[/img]'));
+        $this->assertEquals('F/\!ZLrFz', $this->_markup->render('F[img]/\!ZLrFz[/img]'));
     }
 
     public function testColorConstraintsAndJs()
@@ -286,17 +308,17 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
     public function testListTypes()
     {
         $types = [
-            '01'    => 'decimal-leading-zero',
-            '1'     => 'decimal',
-            'i'     => 'lower-roman',
-            'I'     => 'upper-roman',
-            'a'     => 'lower-alpha',
-            'A'     => 'upper-alpha',
+            '01' => 'decimal-leading-zero',
+            '1' => 'decimal',
+            'i' => 'lower-roman',
+            'I' => 'upper-roman',
+            'a' => 'lower-alpha',
+            'A' => 'upper-alpha',
             'alpha' => 'lower-greek'
         ];
 
         foreach ($types as $type => $style) {
-            $input    = "[list={$type}][*]Foobar\n[*]Zend\n[/list]";
+            $input = "[list={$type}][*]Foobar\n[*]Zend\n[/list]";
             $expected = "<ol style=\"list-style-type: {$style}\"><li>Foobar</li><li>Zend</li></ol>";
             $this->assertEquals($expected, $this->_markup->render($input));
         }
@@ -307,8 +329,10 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
         $m = $this->_markup;
 
         $this->assertEquals('<strong>foo</strong>', $m->render('[b]foo[/b]'));
-        $this->assertEquals('<span style="text-decoration: underline;">foo</span>',
-                            $m->render('[u]foo[/u]'));
+        $this->assertEquals(
+            '<span style="text-decoration: underline;">foo</span>',
+            $m->render('[u]foo[/u]')
+        );
         $this->assertEquals('<em>foo</em>', $m->render('[i]foo[/i]'));
         $this->assertEquals('<cite>foo</cite>', $m->render('[cite]foo[/cite]'));
         $this->assertEquals('<del>foo</del>', $m->render('[del]foo[/del]'));
@@ -331,8 +355,10 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
 
         $this->assertEquals($expected, $m->render("[code]<?php\nexit;[/code]"));
         $this->assertEquals('<p>I</p>', $m->render('[p]I[/p]'));
-        $this->assertEquals('N',
-                $m->render('[ignore]N[/ignore]'));
+        $this->assertEquals(
+            'N',
+            $m->render('[ignore]N[/ignore]')
+        );
         $this->assertEquals('<blockquote>M</blockquote>', $m->render('[quote]M[/quote]'));
 
         $this->assertEquals('<hr />foo<hr />bar[/hr]', $m->render('[hr]foo[hr]bar[/hr]'));
@@ -340,10 +366,14 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
 
     public function testWrongNesting()
     {
-        $this->assertEquals('<strong>foo<em>bar</em></strong>',
-                                $this->_markup->render('[b]foo[i]bar[/b][/i]'));
-        $this->assertEquals('<strong>foo<em>bar</em></strong><em>kokx</em>',
-                                $this->_markup->render('[b]foo[i]bar[/b]kokx[/i]'));
+        $this->assertEquals(
+            '<strong>foo<em>bar</em></strong>',
+            $this->_markup->render('[b]foo[i]bar[/b][/i]')
+        );
+        $this->assertEquals(
+            '<strong>foo<em>bar</em></strong><em>kokx</em>',
+            $this->_markup->render('[b]foo[i]bar[/b]kokx[/i]')
+        );
     }
 
     public function testHtmlAliases()
@@ -360,12 +390,14 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
         $this->assertEquals($m->render('[cite]N[/cite]'), $m->render('[citation]N[/citation]'));
         $this->assertEquals($m->render('[del]G[/del]'), $m->render('[deleted]G[/deleted]'));
         $this->assertEquals($m->render('[ins]M[/ins]'), $m->render('[insert]M[/insert]'));
-        $this->assertEquals($m->render('[s]E[/s]'),$m->render('[strike]E[/strike]'));
+        $this->assertEquals($m->render('[s]E[/s]'), $m->render('[strike]E[/strike]'));
         $this->assertEquals($m->render('[sub]-[/sub]'), $m->render('[subscript]-[/subscript]'));
         $this->assertEquals($m->render('[sup]D[/sup]'), $m->render('[superscript]D[/superscript]'));
         $this->assertEquals($m->render('[url]google.com[/url]'), $m->render('[a]google.com[/a]'));
-        $this->assertEquals($m->render('[img]http://google.com/favicon.ico[/img]'),
-                            $m->render('[image]http://google.com/favicon.ico[/image]'));
+        $this->assertEquals(
+            $m->render('[img]http://google.com/favicon.ico[/img]'),
+            $m->render('[image]http://google.com/favicon.ico[/image]')
+        );
     }
 
     public function testEmptyTagName()
@@ -376,17 +408,23 @@ class Zend_Markup_BbcodeAndHtmlTest extends TestCase
     public function testStyleAlignCombination()
     {
         $m = $this->_markup;
-        $this->assertEquals('<h1 style="color: green;text-align: left;">Foobar</h1>',
-                            $m->render('[h1 style="color: green" align=left]Foobar[/h1]'));
-        $this->assertEquals('<h1 style="color: green;text-align: center;">Foobar</h1>',
-                            $m->render('[h1 style="color: green;" align=center]Foobar[/h1]'));
+        $this->assertEquals(
+            '<h1 style="color: green;text-align: left;">Foobar</h1>',
+            $m->render('[h1 style="color: green" align=left]Foobar[/h1]')
+        );
+        $this->assertEquals(
+            '<h1 style="color: green;text-align: center;">Foobar</h1>',
+            $m->render('[h1 style="color: green;" align=center]Foobar[/h1]')
+        );
     }
 
     public function testXssInAttributeValues()
     {
         $m = $this->_markup;
-        $this->assertEquals('<strong class="&quot;&gt;xss">foobar</strong>',
-                            $m->render('[b class=\'">xss\']foobar[/b]'));
+        $this->assertEquals(
+            '<strong class="&quot;&gt;xss">foobar</strong>',
+            $m->render('[b class=\'">xss\']foobar[/b]')
+        );
     }
 
     /**
@@ -445,11 +483,15 @@ BBCODE;
 
         $filter = new Zend_Filter_HtmlEntities();
 
-        $this->_markup->addMarkup('suppp',
+        $this->_markup->addMarkup(
+            'suppp',
             Zend_Markup_Renderer_RendererAbstract::TYPE_REPLACE,
-            ['start' => '<sup>', 'end' => '</sup>', 'group' => 'inline', 'filter' => $filter]);
-        $this->assertEquals("filter<br />\n<sup>filter\n&amp;\nfilter</sup>",
-            $m->render("filter\n[suppp]filter\n&\nfilter[/suppp]"));
+            ['start' => '<sup>', 'end' => '</sup>', 'group' => 'inline', 'filter' => $filter]
+        );
+        $this->assertEquals(
+            "filter<br />\n<sup>filter\n&amp;\nfilter</sup>",
+            $m->render("filter\n[suppp]filter\n&\nfilter[/suppp]")
+        );
     }
 
     public function testSetFilterForExistingMarkup()
@@ -486,10 +528,14 @@ BBCODE;
 
     public function testXssInImgAndUrl()
     {
-        $this->assertEquals('<a href="http://google.com/&quot;&lt;script&gt;alert(1)&lt;/script&gt;">...</a>',
-            $this->_markup->render('[url=\'http://google.com/"<script>alert(1)</script>\']...[/url]'));
-        $this->assertEquals('<img src="http://google.com/&amp;quot;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;" alt="/script&amp;gt;" />',
-            $this->_markup->render('[img]http://google.com/"<script>alert(1)</script>[/img]'));
+        $this->assertEquals(
+            '<a href="http://google.com/&quot;&lt;script&gt;alert(1)&lt;/script&gt;">...</a>',
+            $this->_markup->render('[url=\'http://google.com/"<script>alert(1)</script>\']...[/url]')
+        );
+        $this->assertEquals(
+            '<img src="http://google.com/&amp;quot;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;" alt="/script&amp;gt;" />',
+            $this->_markup->render('[img]http://google.com/"<script>alert(1)</script>[/img]')
+        );
     }
 
     public function testAddGroup()
@@ -504,7 +550,7 @@ BBCODE;
             'table',
             Zend_Markup_Renderer_RendererAbstract::TYPE_REPLACE,
             [
-                'tag'   => 'table',
+                'tag' => 'table',
                 'group' => 'table'
             ]
         );
@@ -512,7 +558,7 @@ BBCODE;
             'tr',
             Zend_Markup_Renderer_RendererAbstract::TYPE_REPLACE,
             [
-                'tag'   => 'tr',
+                'tag' => 'tr',
                 'group' => 'table-row'
             ]
         );
@@ -520,13 +566,15 @@ BBCODE;
             'td',
             Zend_Markup_Renderer_RendererAbstract::TYPE_REPLACE,
             [
-                'tag'   => 'td',
+                'tag' => 'td',
                 'group' => 'table-cell'
             ]
         );
 
-        $this->assertEquals('<table><tr><td>test</td></tr></table>',
-            $m->render('[table][tr][td]test[/td][/tr][/table]'));
+        $this->assertEquals(
+            '<table><tr><td>test</td></tr></table>',
+            $m->render('[table][tr][td]test[/td][/tr][/table]')
+        );
     }
 
     /**
@@ -536,8 +584,10 @@ BBCODE;
     {
         $m = $this->_markup;
 
-        $this->assertEquals('<a href="http://framework.zend.com/">test</a><a href="http://framework.zend.com/">test</a>',
-            $m->render('[url="http://framework.zend.com/"]test[/url][url="http://framework.zend.com/"]test[/url]'));
+        $this->assertEquals(
+            '<a href="http://framework.zend.com/">test</a><a href="http://framework.zend.com/">test</a>',
+            $m->render('[url="http://framework.zend.com/"]test[/url][url="http://framework.zend.com/"]test[/url]')
+        );
     }
 
     /**
@@ -546,8 +596,10 @@ BBCODE;
     public function testNoXssInH()
     {
         $m = $this->_markup;
-        $this->assertEquals('<h1>&lt;script&gt;alert(&quot;hi&quot;);&lt;/script&gt;</h1>',
-            $m->render('[h1]<script>alert("hi");</script>[/h1]'));
+        $this->assertEquals(
+            '<h1>&lt;script&gt;alert(&quot;hi&quot;);&lt;/script&gt;</h1>',
+            $m->render('[h1]<script>alert("hi");</script>[/h1]')
+        );
     }
 }
 

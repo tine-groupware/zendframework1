@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -62,9 +64,8 @@ class Zend_View_Helper_CurrencyTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_CurrencyTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_CurrencyTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function clearRegistry()
@@ -86,9 +87,12 @@ class Zend_View_Helper_CurrencyTest extends TestCase
     {
         $this->clearRegistry();
         require_once 'Zend/Cache.php';
-        $this->_cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 120, 'automatic_serialization' => true],
-                 ['cache_dir' => dirname(__FILE__) . '/../../_files/']);
+        $this->_cache = Zend_Cache::factory(
+            'Core',
+            'File',
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => dirname(__FILE__) . '/../../_files/']
+        );
         Zend_Currency::setCache($this->_cache);
 
         $this->helper = new Zend_View_Helper_Currency('de_AT');

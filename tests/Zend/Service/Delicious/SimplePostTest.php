@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -77,7 +79,7 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
      */
     public function testGetUrl()
     {
-        $url  = 'something';
+        $url = 'something';
         $post = [
             'd' => 'anything',
             'u' => $url
@@ -87,7 +89,7 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
             $url,
             $result = $simplePost->getUrl(),
             "Expected getUrl() to return '$url'; got '$result' instead"
-            );
+        );
     }
 
     /**
@@ -97,8 +99,8 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
      */
     public function testGetTitle()
     {
-        $title  = 'something';
-        $post   = [
+        $title = 'something';
+        $post = [
             'd' => $title,
             'u' => 'anything'
             ];
@@ -107,7 +109,7 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
             $title,
             $result = $simplePost->getTitle(),
             "Expected getTitle() to return '$title'; got '$result' instead"
-            );
+        );
     }
 
     /**
@@ -117,8 +119,8 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
      */
     public function testGetNotes()
     {
-        $notes  = 'something';
-        $post   = [
+        $notes = 'something';
+        $post = [
             'd' => 'anything',
             'u' => 'anything',
             'n' => $notes
@@ -128,7 +130,7 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
             $notes,
             $result = $simplePost->getNotes(),
             "Expected getNotes() to return '$notes'; got '$result' instead"
-            );
+        );
     }
 
     /**
@@ -138,8 +140,8 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
      */
     public function testGetTags()
     {
-        $tags  = 'something';
-        $post  = [
+        $tags = 'something';
+        $post = [
             'd' => 'anything',
             'u' => 'anything',
             't' => $tags
@@ -149,6 +151,6 @@ class Zend_Service_Delicious_SimplePostTest extends TestCase
             $tags,
             $result = $simplePost->getTags(),
             "Expected getTags() to return '$tags'; got '$result' instead"
-            );
+        );
     }
 }

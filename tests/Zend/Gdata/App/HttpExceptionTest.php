@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Gdata/ClientLogin.php';
  */
 class Zend_Gdata_App_HttpExceptionTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');
@@ -56,17 +57,21 @@ class Zend_Gdata_App_HttpExceptionTest extends TestCase
             $entry = $this->gdata->insertRow($rowData, $this->sprKey);
             $this->fail('Expecting Zend_Gdata_App_HttpException');
         } catch (Zend_Gdata_App_HttpException $hExc) {
-            $this->assertThat($hExc,
+            $this->assertThat(
+                $hExc,
                 $this->isInstanceOf('Zend_Gdata_App_HttpException'),
                 'Expecting Zend_Gdata_App_HttpException, got '
-                . get_class($hExc));
+                . get_class($hExc)
+            );
 
             $message = $hExc->getMessage();
             $this->assertEquals($message, 'Expected response code 200, got 400');
             $body = $hExc->getRawResponseBody();
             $this->assertNotNull($body);
-            $this->assertNotEquals(stripos($body,
-                'Blank rows cannot be written; use delete instead.'), false);
+            $this->assertNotEquals(stripos(
+                $body,
+                'Blank rows cannot be written; use delete instead.'
+            ), false);
         }
     }
 }

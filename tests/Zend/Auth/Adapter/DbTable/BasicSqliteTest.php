@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -227,7 +229,7 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends TestCase
         $this->assertEquals(
             'SELECT "users".*, (CASE WHEN "password" = \'my_password\' THEN 1 ELSE 0 END) AS "zend_auth_credential_match" FROM "users" WHERE (1 = 1) AND ("username" = \'my_username\')',
             $profiler->getLastQueryProfile()->getQuery()
-            );
+        );
     }
 
     /**
@@ -403,8 +405,10 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends TestCase
         $this->_adapter->setIdentity('my_username')
                        ->setCredential('my_password');
         $result = $this->_adapter->authenticate();
-        $this->assertTrue(in_array('More than one record matches the supplied identity.',
-            $result->getMessages()));
+        $this->assertTrue(in_array(
+            'More than one record matches the supplied identity.',
+            $result->getMessages()
+        ));
         $this->assertFalse($result->isValid());
     }
     /**
@@ -426,8 +430,10 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends TestCase
                        ->setCredential('my_password')
                        ->setAmbiguityIdentity(true);
         $result = $this->_adapter->authenticate();
-        $this->assertFalse(in_array('More than one record matches the supplied identity.',
-            $result->getMessages()));
+        $this->assertFalse(in_array(
+            'More than one record matches the supplied identity.',
+            $result->getMessages()
+        ));
         $this->assertTrue($result->isValid());
         $this->assertEquals('my_username', $result->getIdentity());
 
@@ -439,8 +445,10 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends TestCase
                        ->setCredential('my_otherpass')
                        ->setAmbiguityIdentity(true);
         $result2 = $this->_adapter->authenticate();
-        $this->assertFalse(in_array('More than one record matches the supplied identity.',
-            $result->getMessages()));
+        $this->assertFalse(in_array(
+            'More than one record matches the supplied identity.',
+            $result->getMessages()
+        ));
         $this->assertTrue($result->isValid());
         $this->assertEquals('my_username', $result->getIdentity());
     }
@@ -472,8 +480,6 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends TestCase
     {
         $this->_adapter = new Zend_Auth_Adapter_DbTable($this->_db, 'users', 'username', 'password');
     }
-
-
 }
 
 

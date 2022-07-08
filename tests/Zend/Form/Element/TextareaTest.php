@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,9 +51,8 @@ class Zend_Form_Element_TextareaTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Element_TextareaTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_TextareaTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**

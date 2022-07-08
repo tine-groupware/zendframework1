@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -40,7 +42,7 @@ class Zend_Test_PHPUnit_Db_DataSet_DbRowsetTest extends TestCase
     {
         $config = [
             'rowClass' => 'stdClass',
-            'data'     => [['foo' => 'bar'], ['foo' => 'baz']],
+            'data' => [['foo' => 'bar'], ['foo' => 'baz']],
         ];
         $rowset = new Zend_Db_Table_Rowset($config);
         return $rowset;
@@ -92,7 +94,7 @@ class Zend_Test_PHPUnit_Db_DataSet_DbRowsetTest extends TestCase
                ->will($this->returnValue($tableMock));
         $rowset->expects($this->once())
                ->method('toArray')
-               ->will($this->returnValue( [] ));
+               ->will($this->returnValue([]));
 
         $rowsetTable = new Zend_Test_PHPUnit_Db_DataSet_DbRowset($rowset, "tableName");
     }

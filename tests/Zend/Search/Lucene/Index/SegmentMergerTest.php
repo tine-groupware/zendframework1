@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -50,7 +52,7 @@ class Zend_Search_Lucene_Index_SegmentMergerTest extends TestCase
     public function testMerge()
     {
         $segmentsDirectory = new Zend_Search_Lucene_Storage_Directory_Filesystem(dirname(__FILE__) . '/_source/_files');
-        $outputDirectory   = new Zend_Search_Lucene_Storage_Directory_Filesystem(dirname(__FILE__) . '/_files');
+        $outputDirectory = new Zend_Search_Lucene_Storage_Directory_Filesystem(dirname(__FILE__) . '/_files');
         $segmentsList = ['_0', '_1', '_2', '_3', '_4'];
 
         $segmentMerger = new Zend_Search_Lucene_Index_SegmentMerger($outputDirectory, 'mergedSegment');
@@ -74,4 +76,3 @@ class Zend_Search_Lucene_Index_SegmentMergerTest extends TestCase
         $outputDirectory->deleteFile('mergedSegment.cfs');
     }
 }
-

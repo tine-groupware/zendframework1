@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -55,8 +57,8 @@ class Zend_File_Transfer_Adapter_HttpTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_File_Transfer_Adapter_HttpTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_File_Transfer_Adapter_HttpTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -224,7 +226,8 @@ class Zend_File_Transfer_Adapter_HttpTest extends TestCase
         $this->assertEquals(
             ['exe_0_' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'file1.txt',
                   'exe_1_' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'file2.txt'],
-            $adapter->getFileName('exe', false));
+            $adapter->getFileName('exe', false)
+        );
     }
 
     public function testNoUploadInProgress()
@@ -250,27 +253,26 @@ class Zend_File_Transfer_Adapter_HttpTest extends TestCase
         $_GET['progress_key'] = 'mykey';
         $status = Zend_File_Transfer_Adapter_HttpTest_MockAdapter::getProgress();
         $this->assertEquals([
-            'total'   => 100,
+            'total' => 100,
             'current' => 100,
-            'rate'    => 10,
-            'id'      => 'mykey',
-            'done'    => false,
+            'rate' => 10,
+            'id' => 'mykey',
+            'done' => false,
             'message' => '100B - 100B'], $status);
 
         $this->adapter->switchApcToUP();
         $status = Zend_File_Transfer_Adapter_HttpTest_MockAdapter::getProgress($status);
         $this->assertEquals([
-            'total'          => 100,
-            'bytes_total'    => 100,
-            'current'        => 100,
+            'total' => 100,
+            'bytes_total' => 100,
+            'current' => 100,
             'bytes_uploaded' => 100,
-            'rate'           => 10,
-            'speed_average'  => 10,
-            'cancel_upload'  => true,
-            'message'        => 'The upload has been canceled',
-            'done'           => true,
-            'id'      => 'mykey'], $status);
-
+            'rate' => 10,
+            'speed_average' => 10,
+            'cancel_upload' => true,
+            'message' => 'The upload has been canceled',
+            'done' => true,
+            'id' => 'mykey'], $status);
     }
 
     public function testUploadProgressAdapter()

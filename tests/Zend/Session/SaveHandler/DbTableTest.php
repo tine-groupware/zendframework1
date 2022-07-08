@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -44,15 +46,15 @@ class Zend_Session_SaveHandler_DbTableTest extends TestCase
      * @var array
      */
     protected $_saveHandlerTableConfig = [
-        'name'              => 'sessions',
-        'primary'           => [
+        'name' => 'sessions',
+        'primary' => [
             'id',
             'save_path',
             'name',
         ],
-        Zend_Session_SaveHandler_DbTable::MODIFIED_COLUMN    => 'modified',
-        Zend_Session_SaveHandler_DbTable::LIFETIME_COLUMN    => 'lifetime',
-        Zend_Session_SaveHandler_DbTable::DATA_COLUMN        => 'data',
+        Zend_Session_SaveHandler_DbTable::MODIFIED_COLUMN => 'modified',
+        Zend_Session_SaveHandler_DbTable::LIFETIME_COLUMN => 'lifetime',
+        Zend_Session_SaveHandler_DbTable::DATA_COLUMN => 'data',
         Zend_Session_SaveHandler_DbTable::PRIMARY_ASSIGNMENT => [
             Zend_Session_SaveHandler_DbTable::PRIMARY_ASSIGNMENT_SESSION_ID,
             Zend_Session_SaveHandler_DbTable::PRIMARY_ASSIGNMENT_SESSION_SAVE_PATH,
@@ -339,7 +341,9 @@ class Zend_Session_SaveHandler_DbTableTest extends TestCase
         unset($config['lifetime']);
         $this->_usedSaveHandlers[] =
             $saveHandler = new Zend_Session_SaveHandler_DbTable($config);
-        $this->assertSame($saveHandler->getLifetime(), (int) ini_get('session.gc_maxlifetime'),
+        $this->assertSame(
+            $saveHandler->getLifetime(),
+            (int) ini_get('session.gc_maxlifetime'),
             'lifetime must default to session.gc_maxlifetime'
         );
 
@@ -401,8 +405,10 @@ class Zend_Session_SaveHandler_DbTableTest extends TestCase
         session_write_close();
 
         foreach ($this->_db->query('SELECT * FROM Sessions')->fetchAll() as $row) {
-            $this->assertSame($row[$config[Zend_Session_SaveHandler_DbTable::DATA_COLUMN]],
-                $testAgainst, 'Data was not saved properly'
+            $this->assertSame(
+                $row[$config[Zend_Session_SaveHandler_DbTable::DATA_COLUMN]],
+                $testAgainst,
+                'Data was not saved properly'
             );
         }
     }
@@ -563,8 +569,8 @@ class Zend_Session_SaveHandler_DbTableTest extends TestCase
      */
     public function testDestroyWithAutoQuoteIdentifiersEnabledAndDisabled()
     {
-        $id       = uniqid();
-        $config   = $this->_saveHandlerTableConfig;
+        $id = uniqid();
+        $config = $this->_saveHandlerTableConfig;
         $configDb = [
             'options' => [
                 'autoQuoteIdentifiers' => false,

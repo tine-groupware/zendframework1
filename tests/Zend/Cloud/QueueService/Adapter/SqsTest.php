@@ -1,6 +1,8 @@
 <?php
+
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,9 +54,9 @@ class Zend_Cloud_QueueService_Adapter_SqsTest extends Zend_Cloud_QueueService_Te
      * @var int
      */
     protected $_waitPeriod = 10;
-	protected $_clientType = 'Zend_Service_Amazon_Sqs';
+    protected $_clientType = 'Zend_Service_Amazon_Sqs';
 
-	/**
+    /**
      * Runs the test methods of this class.
      *
      * @access public
@@ -62,8 +64,8 @@ class Zend_Cloud_QueueService_Adapter_SqsTest extends Zend_Cloud_QueueService_Te
      */
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -126,7 +128,8 @@ class Zend_Cloud_QueueService_Adapter_SqsTest extends Zend_Cloud_QueueService_Te
         }
     }
 
-    public function testStoreQueueMetadata() {
+    public function testStoreQueueMetadata()
+    {
         $this->markTestSkipped('SQS does not currently support storing metadata');
     }
 

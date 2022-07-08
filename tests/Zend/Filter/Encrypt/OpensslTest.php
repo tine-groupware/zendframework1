@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -54,7 +56,7 @@ class Zend_Filter_Encrypt_OpensslTest extends TestCase
         $valuesExpected = [
             'STRING' => 'STRING',
             'ABC1@3' => 'ABC1@3',
-            'A b C'  => 'A B C'
+            'A b C' => 'A B C'
         ];
 
         $key = $filter->getPublicKey();
@@ -79,7 +81,8 @@ FDD4V7XpcNU63QIDAQABMA0GCSqGSIb3DQEBBAUAA4GBAFQ22OU/PAN7rRDr23NS
 PIDs9E7uuizAKDhRRRvho8BS
 -----END CERTIFICATE-----
 '],
-            $key);
+            $key
+        );
         foreach ($valuesExpected as $input => $output) {
             $this->assertNotEquals($output, $filter->encrypt($input));
         }

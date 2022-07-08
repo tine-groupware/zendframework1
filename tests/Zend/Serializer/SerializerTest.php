@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Serializer.php';
  */
 class Zend_Serializer_SerializerTest extends TestCase
 {
-
     protected function setUp(): void
     {
         Zend_Serializer::resetAdapterLoader();
@@ -131,5 +132,4 @@ class Zend_Serializer_SerializerTest extends TestCase
         $expected = $adapter->unserialize($value);
         $this->assertEquals($expected, Zend_Serializer::unserialize($value, ['adapter' => $adapter]));
     }
-
 }

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,9 +54,8 @@ class Zend_Layout_HelperTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Layout_HelperTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Layout_HelperTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -134,7 +135,7 @@ class Zend_Layout_HelperTest extends TestCase
         $helper = new Zend_Layout_Controller_Action_Helper_Layout();
 
         $helper->setOptions([
-            'layout'     => 'foo.phtml',
+            'layout' => 'foo.phtml',
             'layoutPath' => dirname(__FILE__) . '/_files/layouts',
             'contentKey' => 'foo'
         ]);

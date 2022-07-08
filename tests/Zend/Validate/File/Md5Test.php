@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_Validate_File_Md5Test extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Validate_File_Md5Test");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Validate_File_Md5Test");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -84,32 +86,32 @@ class Zend_Validate_File_Md5Test extends TestCase
         $this->assertTrue(array_key_exists('fileMd5NotFound', $validator->getMessages()));
 
         $files = [
-            'name'     => 'test1',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'test1',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => 'tmp_test1',
-            'error'    => 0
+            'error' => 0
         ];
         $validator = new Zend_Validate_File_Md5('ed74c22109fe9f110579f77b053b8bc3');
         $this->assertFalse($validator->isValid(dirname(__FILE__) . '/_files/nofile.mo', $files));
         $this->assertTrue(array_key_exists('fileMd5NotFound', $validator->getMessages()));
 
         $files = [
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => dirname(__FILE__) . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0
         ];
         $validator = new Zend_Validate_File_Md5('ed74c22109fe9f110579f77b053b8bc3');
         $this->assertTrue($validator->isValid(dirname(__FILE__) . '/_files/picture.jpg', $files));
 
         $files = [
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => dirname(__FILE__) . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0
         ];
         $validator = new Zend_Validate_File_Md5('7d74c22109fe9f110579f77b053b8bc3');
         $this->assertFalse($validator->isValid(dirname(__FILE__) . '/_files/picture.jpg', $files));

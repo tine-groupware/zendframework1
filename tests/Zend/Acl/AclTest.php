@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -166,7 +168,7 @@ class Zend_Acl_AclTest extends TestCase
      */
     public function testRoleRegistryInherits()
     {
-        $roleGuest  = new Zend_Acl_Role('guest');
+        $roleGuest = new Zend_Acl_Role('guest');
         $roleMember = new Zend_Acl_Role('member');
         $roleEditor = new Zend_Acl_Role('editor');
         $roleRegistry = new Zend_Acl_Role_Registry();
@@ -200,7 +202,7 @@ class Zend_Acl_AclTest extends TestCase
     {
         $roleParent1 = new Zend_Acl_Role('parent1');
         $roleParent2 = new Zend_Acl_Role('parent2');
-        $roleChild   = new Zend_Acl_Role('child');
+        $roleChild = new Zend_Acl_Role('child');
         $roleRegistry = new Zend_Acl_Role_Registry();
         $roleRegistry->add($roleParent1)
                     ->add($roleParent2)
@@ -385,9 +387,9 @@ class Zend_Acl_AclTest extends TestCase
      */
     public function testResourceInherits()
     {
-        $resourceCity     = new Zend_Acl_Resource('city');
+        $resourceCity = new Zend_Acl_Resource('city');
         $resourceBuilding = new Zend_Acl_Resource('building');
-        $resourceRoom     = new Zend_Acl_Resource('room');
+        $resourceRoom = new Zend_Acl_Resource('room');
         $this->_acl->addResource($resourceCity)
                    ->addResource($resourceBuilding, $resourceCity->getResourceId())
                    ->addResource($resourceRoom, $resourceBuilding);
@@ -1046,7 +1048,6 @@ class Zend_Acl_AclTest extends TestCase
         $this->assertTrue($this->_acl->isAllowed('marketing', 'latest', 'publish'));
         $this->assertTrue($this->_acl->isAllowed('marketing', 'latest', 'edit'));
         $this->assertTrue($this->_acl->isAllowed('marketing', 'latest'));
-
     }
 
     /**
@@ -1075,13 +1076,13 @@ class Zend_Acl_AclTest extends TestCase
         $acl = new Zend_Acl_ExtendedAclZF2234();
 
         $someResource = new Zend_Acl_Resource('someResource');
-        $someRole     = new Zend_Acl_Role('someRole');
+        $someRole = new Zend_Acl_Role('someRole');
 
         $acl->addResource($someResource)
             ->addRole($someRole);
 
-        $nullValue     = null;
-        $nullReference =& $nullValue;
+        $nullValue = null;
+        $nullReference = &$nullValue;
 
         try {
             $acl->roleDFSVisitAllPrivileges($someRole, $someResource, $nullReference);
@@ -1131,7 +1132,6 @@ class Zend_Acl_AclTest extends TestCase
         $this->assertTrue($acl->isAllowed($user, $blogPost, 'modify'));
 
         $this->assertEquals('publisher', $assertion->lastAssertRole->getRoleId());
-
     }
 
     /**
@@ -1161,7 +1161,6 @@ class Zend_Acl_AclTest extends TestCase
         // check to see if the last assertion has the proper objets
         $this->assertTrue($assertion->lastAssertRole instanceof Zend_Acl_UseCase1_User, 'Assertion did not recieve proper role object');
         $this->assertTrue($assertion->lastAssertResource instanceof Zend_Acl_UseCase1_BlogPost, 'Assertion did not recieve proper resource object');
-
     }
 
     /**
@@ -1188,8 +1187,8 @@ class Zend_Acl_AclTest extends TestCase
         $acl = $this->_acl;
         $acl->addRole('developer');
         set_error_handler(
-            function($errno, $errstr) {
-                return true; 
+            function ($errno, $errstr) {
+                return true;
             },
             E_USER_NOTICE
         );
@@ -1213,7 +1212,7 @@ class Zend_Acl_AclTest extends TestCase
         $acl->addRole(new Zend_Acl_Role('test2'));
         $acl->addResource(new Zend_Acl_Resource('Test'));
 
-        $acl->allow(null,'Test','xxx');
+        $acl->allow(null, 'Test', 'xxx');
 
         // error test
         $acl->removeRole('test0');
@@ -1229,7 +1228,8 @@ class Zend_Acl_AclTest extends TestCase
      * Meant to test for the (in)existance of this notice:
      * "Notice: Undefined index: allPrivileges in lib/Zend/Acl.php on line 682"
      */
-    public function testMethodRemoveAllowDoesNotThrowNotice() {
+    public function testMethodRemoveAllowDoesNotThrowNotice()
+    {
         $acl = new Zend_Acl();
         $acl->addRole('admin');
         $acl->addResource('blog');
@@ -1237,28 +1237,31 @@ class Zend_Acl_AclTest extends TestCase
         $acl->removeAllow(['admin'], ['blog'], null);
     }
 
-    public function testRoleObjectImplementsToString() {
+    public function testRoleObjectImplementsToString()
+    {
         $role = new Zend_Acl_Role('_fooBar_');
-        $this->assertEquals('_fooBar_',(string)$role);
+        $this->assertEquals('_fooBar_', (string)$role);
     }
 
-    public function testResourceObjectImplementsToString() {
+    public function testResourceObjectImplementsToString()
+    {
         $resource = new Zend_Acl_Resource('_fooBar_');
-        $this->assertEquals('_fooBar_',(string)$resource);
+        $this->assertEquals('_fooBar_', (string)$resource);
     }
 
     /**
      * @group ZF-7973
      */
-    public function testAclPassesPrivilegeToAssertClass() {
+    public function testAclPassesPrivilegeToAssertClass()
+    {
         require_once dirname(__FILE__) . '/_files/AssertionZF7973.php';
         $assertion = new Zend_Acl_AclTest_AssertionZF7973();
 
         $acl = new Zend_Acl();
         $acl->addRole('role');
         $acl->addResource('resource');
-        $acl->allow('role',null,null,$assertion);
-        $allowed = $acl->isAllowed('role','resource','privilege',$assertion);
+        $acl->allow('role', null, null, $assertion);
+        $allowed = $acl->isAllowed('role', 'resource', 'privilege', $assertion);
 
         $this->assertTrue($allowed);
     }
@@ -1266,7 +1269,8 @@ class Zend_Acl_AclTest extends TestCase
     /**
      * @group ZF-8468
      */
-    public function testGetRegisteredRolesIsDeprecated() {
+    public function testGetRegisteredRolesIsDeprecated()
+    {
         $this->expectNotice();
         $this->_acl->getRegisteredRoles();
     }
@@ -1274,8 +1278,9 @@ class Zend_Acl_AclTest extends TestCase
     /**
      * @group ZF-8468
      */
-    public function testgetRoles() {
-        $this->assertEquals([],$this->_acl->getRoles());
+    public function testgetRoles()
+    {
+        $this->assertEquals([], $this->_acl->getRoles());
 
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest);
@@ -1283,15 +1288,16 @@ class Zend_Acl_AclTest extends TestCase
         $this->_acl->addRole(new Zend_Acl_Role('editor'), 'staff');
         $this->_acl->addRole(new Zend_Acl_Role('administrator'));
 
-        $expected = ['guest', 'staff','editor','administrator'];
+        $expected = ['guest', 'staff', 'editor', 'administrator'];
         $this->assertEquals($expected, $this->_acl->getRoles());
     }
 
     /**
      * @group ZF-8468
      */
-    public function testgetResources() {
-        $this->assertEquals([],$this->_acl->getResources());
+    public function testgetResources()
+    {
+        $this->assertEquals([], $this->_acl->getResources());
 
         $this->_acl->addResource(new Zend_Acl_Resource('someResource'));
         $this->_acl->addResource(new Zend_Acl_Resource('someOtherResource'));

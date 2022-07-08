@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -62,14 +64,14 @@ class Zend_Validate_AlnumTest extends TestCase
     public function testExpectedResultsWithBasicInputValues()
     {
         $valuesExpected = [
-            'abc123'  => true,
+            'abc123' => true,
             'abc 123' => false,
-            'abcxyz'  => true,
+            'abcxyz' => true,
             'AZ@#4.3' => false,
-            'aBc123'  => true,
-            ''        => false,
-            ' '       => false,
-            "\n"      => false,
+            'aBc123' => true,
+            '' => false,
+            ' ' => false,
+            "\n" => false,
             'foobar1' => true
             ];
         foreach ($valuesExpected as $input => $result) {
@@ -97,15 +99,15 @@ class Zend_Validate_AlnumTest extends TestCase
         $this->_validator->setAllowWhiteSpace(true);
 
         $valuesExpected = [
-            'abc123'  => true,
+            'abc123' => true,
             'abc 123' => true,
-            'abcxyz'  => true,
+            'abcxyz' => true,
             'AZ@#4.3' => false,
-            'aBc123'  => true,
-            ''        => false,
-            ' '       => true,
-            "\n"      => true,
-            " \t "    => true,
+            'aBc123' => true,
+            '' => false,
+            ' ' => true,
+            "\n" => true,
+            " \t " => true,
             'foobar1' => true
             ];
         foreach ($valuesExpected as $input => $result) {
@@ -113,7 +115,7 @@ class Zend_Validate_AlnumTest extends TestCase
                 $result,
                 $this->_validator->isValid($input),
                 "Expected '$input' to be considered " . ($result ? '' : 'in') . "valid"
-                );
+            );
         }
     }
 

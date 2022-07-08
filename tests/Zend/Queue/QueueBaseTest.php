@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -55,7 +57,7 @@ abstract class Zend_Queue_QueueBaseTest extends TestCase
     {
         // Test Zend_Config
         $this->config = [
-            'name'      => 'queue1',
+            'name' => 'queue1',
         ];
 
         $this->queue = new Zend_Queue('Null', $this->config);
@@ -82,9 +84,9 @@ abstract class Zend_Queue_QueueBaseTest extends TestCase
     {
         // Test Zend_Config
         $config = [
-            'name'      => 'queue1',
-            'params'    => [],
-            'adapter'   => 'array'
+            'name' => 'queue1',
+            'params' => [],
+            'adapter' => 'array'
         ];
 
         $zend_config = new Zend_Config($config);
@@ -175,9 +177,9 @@ abstract class Zend_Queue_QueueBaseTest extends TestCase
 
     public function testSendAndCountAndReceiveAndDeleteMessage()
     {
-        if (! $this->queue->isSupported('send')
-            && ! $this->queue->isSupported('receive')
-            && ! $this->queue->isSupported('count')) {
+        if (!$this->queue->isSupported('send')
+            && !$this->queue->isSupported('receive')
+            && !$this->queue->isSupported('count')) {
             $this->markTestSkipped('send/count/receive are not supported');
             return;
         }
@@ -237,7 +239,7 @@ abstract class Zend_Queue_QueueBaseTest extends TestCase
             'isExists'
         ];
 
-        foreach ( array_values($func) as $f ) {
+        foreach (array_values($func) as $f) {
             $this->assertTrue(isset($list[$f]));
             $this->assertTrue(is_bool($list[$f]));
         }
@@ -246,9 +248,9 @@ abstract class Zend_Queue_QueueBaseTest extends TestCase
     public function testIsSupported()
     {
         $list = $this->queue->getCapabilities();
-        foreach ( $list as $function => $result ) {
+        foreach ($list as $function => $result) {
             $this->assertTrue(is_bool($result));
-            if ( $result ) {
+            if ($result) {
                 $this->assertTrue($this->queue->isSupported($function));
             } else {
                 $this->assertFalse($this->queue->isSupported($function));

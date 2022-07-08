@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -120,9 +122,9 @@ class Zend_XmlRpc_ResponseTest extends TestCase
     {
         $dom = new DOMDocument('1.0', 'UTF-8');
         $response = $dom->appendChild($dom->createElement('methodResponse'));
-        $params   = $response->appendChild($dom->createElement('params'));
-        $param    = $params->appendChild($dom->createElement('param'));
-        $value    = $param->appendChild($dom->createElement('value'));
+        $params = $response->appendChild($dom->createElement('params'));
+        $param = $params->appendChild($dom->createElement('param'));
+        $value = $param->appendChild($dom->createElement('value'));
         $value->appendChild($dom->createElement('string', 'Return value'));
 
         $xml = $dom->saveXml();
@@ -163,17 +165,17 @@ class Zend_XmlRpc_ResponseTest extends TestCase
 EOD;
         try {
             $response = new Zend_XmlRpc_Response();
-            $ret      = $response->loadXml($rawResponse);
-        } catch(Exception $e) {
+            $ret = $response->loadXml($rawResponse);
+        } catch (Exception $e) {
             $this->fail("Parsing the response should not throw an exception.");
         }
 
         $this->assertTrue($ret);
         $this->assertEquals([
             0 => [
-                'id'            => 1,
-                'name'          => 'birdy num num!',
-                'description'   => null,
+                'id' => 1,
+                'name' => 'birdy num num!',
+                'description' => null,
             ]
         ], $response->getReturnValue());
     }
@@ -270,10 +272,10 @@ EOD;
         }
     }
 
-     public function testShouldDisallowsDoctypeInRequestXmlAndReturnFalseOnLoading()
-     {
-         $payload = file_get_contents(dirname(__FILE__) . '/_files/ZF12293-response.xml');
-         $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/ZF12293-payload.txt'));
-         $this->assertFalse($this->_response->loadXml($payload));
-     }
+    public function testShouldDisallowsDoctypeInRequestXmlAndReturnFalseOnLoading()
+    {
+        $payload = file_get_contents(dirname(__FILE__) . '/_files/ZF12293-response.xml');
+        $payload = sprintf($payload, 'file://' . realpath(dirname(__FILE__) . '/_files/ZF12293-payload.txt'));
+        $this->assertFalse($this->_response->loadXml($payload));
+    }
 }

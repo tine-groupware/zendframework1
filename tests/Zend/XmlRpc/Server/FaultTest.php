@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,9 +55,8 @@ class Zend_XmlRpc_Server_FaultTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_XmlRpc_Server_FaultTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_XmlRpc_Server_FaultTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -225,20 +226,20 @@ class Zend_XmlRpc_Server_FaultTest extends TestCase
      */
     public function test__toString()
     {
-        $dom  = new DOMDocument('1.0', 'UTF-8');
-        $r    = $dom->appendChild($dom->createElement('methodResponse'));
-        $f    = $r->appendChild($dom->createElement('fault'));
-        $v    = $f->appendChild($dom->createElement('value'));
-        $s    = $v->appendChild($dom->createElement('struct'));
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        $r = $dom->appendChild($dom->createElement('methodResponse'));
+        $f = $r->appendChild($dom->createElement('fault'));
+        $v = $f->appendChild($dom->createElement('value'));
+        $s = $v->appendChild($dom->createElement('struct'));
 
-        $m1   = $s->appendChild($dom->createElement('member'));
+        $m1 = $s->appendChild($dom->createElement('member'));
         $m1->appendChild($dom->createElement('name', 'faultCode'));
-        $cv   = $m1->appendChild($dom->createElement('value'));
+        $cv = $m1->appendChild($dom->createElement('value'));
         $cv->appendChild($dom->createElement('int', 411));
 
-        $m2   = $s->appendChild($dom->createElement('member'));
+        $m2 = $s->appendChild($dom->createElement('member'));
         $m2->appendChild($dom->createElement('name', 'faultString'));
-        $sv   = $m2->appendChild($dom->createElement('value'));
+        $sv = $m2->appendChild($dom->createElement('value'));
         $sv->appendChild($dom->createElement('string', 'Testing fault'));
 
         $xml = $dom->saveXML();
@@ -251,10 +252,18 @@ class Zend_XmlRpc_Server_FaultTest extends TestCase
     }
 }
 
-class zxrs_fault_test_exception extends Exception {}
-class zxrs_fault_test_exception2 extends Exception {}
-class zxrs_fault_test_exception3 extends Exception {}
-class zxrs_fault_test_exception4 extends zxrs_fault_test_exception {}
+class zxrs_fault_test_exception extends Exception
+{
+}
+class zxrs_fault_test_exception2 extends Exception
+{
+}
+class zxrs_fault_test_exception3 extends Exception
+{
+}
+class zxrs_fault_test_exception4 extends zxrs_fault_test_exception
+{
+}
 
 class zxrs_fault_observer
 {

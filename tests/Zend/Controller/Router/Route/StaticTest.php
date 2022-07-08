@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Controller/Router/Route/Static.php';
  */
 class Zend_Controller_Router_Route_StaticTest extends TestCase
 {
-
     public function testStaticMatch()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all');
@@ -54,8 +55,10 @@ class Zend_Controller_Router_Route_StaticTest extends TestCase
 
     public function testStaticMatchWithDefaults()
     {
-        $route = new Zend_Controller_Router_Route_Static('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+        $route = new Zend_Controller_Router_Route_Static(
+            'users/all',
+            ['controller' => 'ctrl', 'action' => 'act']
+        );
         $values = $route->match('users/all');
 
         $this->assertTrue(is_array($values));
@@ -89,8 +92,10 @@ class Zend_Controller_Router_Route_StaticTest extends TestCase
 
     public function testGetDefaults()
     {
-        $route = new Zend_Controller_Router_Route_Static('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+        $route = new Zend_Controller_Router_Route_Static(
+            'users/all',
+            ['controller' => 'ctrl', 'action' => 'act']
+        );
 
         $values = $route->getDefaults();
 
@@ -101,8 +106,10 @@ class Zend_Controller_Router_Route_StaticTest extends TestCase
 
     public function testGetDefault()
     {
-        $route = new Zend_Controller_Router_Route_Static('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+        $route = new Zend_Controller_Router_Route_Static(
+            'users/all',
+            ['controller' => 'ctrl', 'action' => 'act']
+        );
 
         $this->assertSame('ctrl', $route->getDefault('controller'));
         $this->assertSame(null, $route->getDefault('bogus'));
@@ -127,7 +134,5 @@ class Zend_Controller_Router_Route_StaticTest extends TestCase
         $values = $route->match('users/all');
 
         $this->assertSame('ctrl', $values['controller']);
-
     }
-
 }

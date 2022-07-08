@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -39,7 +41,6 @@ require_once 'Zend/Markup.php';
  */
 class Zend_Markup_ParserIntegrityTest extends TestCase
 {
-
     /**
      * Runs the test methods of this class.
      *
@@ -47,16 +48,15 @@ class Zend_Markup_ParserIntegrityTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Markup_MarkupTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Markup_MarkupTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testBbcodeParser()
     {
         $parser = Zend_Markup::factory('bbcode')->getParser();
 
-        $value  = '[b][s][i]foobar[/i][/s][/b]';
+        $value = '[b][s][i]foobar[/i][/s][/b]';
         $output = '';
 
         $tree = $parser->parse($value);
@@ -68,17 +68,20 @@ class Zend_Markup_ParserIntegrityTest extends TestCase
             $output .= $token->getTag();
 
             if ($token->getStopper() != '') {
-                $token->addChild(new Zend_Markup_Token(
-                    $token->getStopper(),
-                    Zend_Markup_Token::TYPE_NONE,
-                    '', [], $token)
+                $token->addChild(
+                    new Zend_Markup_Token(
+                        $token->getStopper(),
+                        Zend_Markup_Token::TYPE_NONE,
+                        '',
+                        [],
+                        $token
+                    )
                 );
             }
         }
 
         $this->assertEquals($value, $output);
     }
-
 }
 
 // Call Zend_Markup_BbcodeTest::main() if this source file is executed directly.

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +50,8 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -59,12 +61,12 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends TestCase
     {
         $credentials = new Zend_Service_WindowsAzure_Credentials_SharedKeyLite(Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_ACCOUNT, Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_KEY, true);
         $signedHeaders = $credentials->signRequestHeaders(
-                              'GET',
-                              '/',
-                              '',
-                              ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
-                              true
-                          );
+            'GET',
+            '/',
+            '',
+            ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
+            true
+        );
                           
         $this->assertTrue(is_array($signedHeaders));
         $this->assertEquals(2, count($signedHeaders));
@@ -78,12 +80,12 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends TestCase
     {
         $credentials = new Zend_Service_WindowsAzure_Credentials_SharedKeyLite(Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_ACCOUNT, Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_KEY, true);
         $signedHeaders = $credentials->signRequestHeaders(
-                              'GET',
-                              '/test',
-                              '',
-                              ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
-                              true
-                          );
+            'GET',
+            '/test',
+            '',
+            ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
+            true
+        );
   
         $this->assertTrue(is_array($signedHeaders));
         $this->assertEquals(2, count($signedHeaders));
@@ -97,12 +99,12 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends TestCase
     {
         $credentials = new Zend_Service_WindowsAzure_Credentials_SharedKeyLite(Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_ACCOUNT, Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_KEY, true);
         $signedHeaders = $credentials->signRequestHeaders(
-                              'GET',
-                              '/',
-                              '?test=true',
-                              ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
-                              true
-                          );
+            'GET',
+            '/',
+            '?test=true',
+            ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
+            true
+        );
   
         $this->assertTrue(is_array($signedHeaders));
         $this->assertEquals(2, count($signedHeaders));
@@ -116,12 +118,12 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends TestCase
     {
         $credentials = new Zend_Service_WindowsAzure_Credentials_SharedKeyLite('testing', 'abcdefg');
         $signedHeaders = $credentials->signRequestHeaders(
-                              'GET',
-                              '/',
-                              '',
-                              ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
-                              true
-                          );
+            'GET',
+            '/',
+            '',
+            ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
+            true
+        );
                           
         $this->assertTrue(is_array($signedHeaders));
         $this->assertEquals(2, count($signedHeaders));
@@ -135,12 +137,12 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends TestCase
     {
         $credentials = new Zend_Service_WindowsAzure_Credentials_SharedKeyLite('testing', 'abcdefg');
         $signedHeaders = $credentials->signRequestHeaders(
-                              'GET',
-                              '/test',
-                              '',
-                              ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
-                              true
-                          );
+            'GET',
+            '/test',
+            '',
+            ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
+            true
+        );
   
         $this->assertTrue(is_array($signedHeaders));
         $this->assertEquals(2, count($signedHeaders));
@@ -154,12 +156,12 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest extends TestCase
     {
         $credentials = new Zend_Service_WindowsAzure_Credentials_SharedKeyLite('testing', 'abcdefg');
         $signedHeaders = $credentials->signRequestHeaders(
-                              'GET',
-                              '/',
-                              '?test=true',
-                              ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
-                              true
-                          );
+            'GET',
+            '/',
+            '?test=true',
+            ["x-ms-date" => "Wed, 29 Apr 2009 13:12:47 GMT"],
+            true
+        );
   
         $this->assertTrue(is_array($signedHeaders));
         $this->assertEquals(2, count($signedHeaders));

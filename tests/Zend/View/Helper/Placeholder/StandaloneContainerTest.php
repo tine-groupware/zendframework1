@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_Placeholder_StandaloneContainerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_Placeholder_StandaloneContainerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -101,11 +103,11 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends TestCase
 
     public function testContainersPersistBetweenInstances()
     {
-        $foo1 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo;
+        $foo1 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo();
         $foo1->append('Foo');
         $foo1->setSeparator(' - ');
 
-        $foo2 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo;
+        $foo2 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo();
         $foo2->append('Bar');
 
         $test = $foo1->toString();

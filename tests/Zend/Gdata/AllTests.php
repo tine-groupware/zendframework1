@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -32,7 +34,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 require_once 'Zend/Gdata/AuthSubTest.php';
 
 /**
- * 
+ *
  */
 require_once 'Zend/Gdata/Analytics/AccountFeedTest.php';
 require_once 'Zend/Gdata/Analytics/AccountQueryTest.php';
@@ -185,10 +187,9 @@ require_once 'Zend/Gdata/SkipTests.php';
  */
 class Zend_Gdata_AllTests
 {
-
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()
@@ -380,7 +381,6 @@ class Zend_Gdata_AllTests
         }
         return $suite;
     }
-
 }
 
 if (PHPUnit_MAIN_METHOD == 'Zend_Gdata_AllTests::main') {

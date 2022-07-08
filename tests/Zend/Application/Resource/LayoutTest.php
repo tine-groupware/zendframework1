@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_LayoutTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -103,16 +105,16 @@ class Zend_Application_Resource_LayoutTest extends TestCase
     public function testOptionsPassedToResourceAreUsedToSetLayoutState()
     {
         $options = [
-            'layout'     => 'foo.phtml',
+            'layout' => 'foo.phtml',
             'layoutPath' => dirname(__FILE__),
         ];
 
         $resource = new Zend_Application_Resource_Layout($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $layout   = $resource->getLayout();
-        $test     = [
-            'layout'     => $layout->getLayout(),
+        $layout = $resource->getLayout();
+        $test = [
+            'layout' => $layout->getLayout(),
             'layoutPath' => $layout->getLayoutPath(),
         ];
         $this->assertEquals($options, $test);

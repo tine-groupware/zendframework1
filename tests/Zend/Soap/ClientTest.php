@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,14 +54,14 @@ class Zend_Soap_ClientTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
     {
         if (!extension_loaded('soap')) {
-           $this->markTestSkipped('SOAP Extension is not loaded');
+            $this->markTestSkipped('SOAP Extension is not loaded');
         }
     }
 
@@ -74,31 +76,31 @@ class Zend_Soap_ClientTest extends TestCase
 
         $ctx = stream_context_create();
 
-        $nonWsdlOptions = ['soap_version'   => SOAP_1_1,
-                                'classmap'       => ['TestData1' => 'Zend_Soap_Client_TestData1',
-                                                    'TestData2' => 'Zend_Soap_Client_TestData2',],
-                                'encoding'       => 'ISO-8859-1',
-                                'uri'            => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
-                                'location'       => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
-                                'use'            => SOAP_ENCODED,
-                                'style'          => SOAP_RPC,
+        $nonWsdlOptions = ['soap_version' => SOAP_1_1,
+                                'classmap' => ['TestData1' => 'Zend_Soap_Client_TestData1',
+                                                    'TestData2' => 'Zend_Soap_Client_TestData2', ],
+                                'encoding' => 'ISO-8859-1',
+                                'uri' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
+                                'location' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
+                                'use' => SOAP_ENCODED,
+                                'style' => SOAP_RPC,
 
-                                'login'          => 'http_login',
-                                'password'       => 'http_password',
+                                'login' => 'http_login',
+                                'password' => 'http_password',
 
-                                'proxy_host'     => 'proxy.somehost.com',
-                                'proxy_port'     => 8080,
-                                'proxy_login'    => 'proxy_login',
+                                'proxy_host' => 'proxy.somehost.com',
+                                'proxy_port' => 8080,
+                                'proxy_login' => 'proxy_login',
                                 'proxy_password' => 'proxy_password',
 
-                                'local_cert'     => dirname(__FILE__).'/_files/cert_file',
-                                'passphrase'     => 'some pass phrase',
+                                'local_cert' => dirname(__FILE__) . '/_files/cert_file',
+                                'passphrase' => 'some pass phrase',
 
                                 'stream_context' => $ctx,
-                                'cache_wsdl'     => 8,
-                                'features'       => 4,
+                                'cache_wsdl' => 8,
+                                'features' => 4,
 
-                                'compression'    => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5];
+                                'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5];
 
         $client->setOptions($nonWsdlOptions);
         $this->assertTrue($client->getOptions() == $nonWsdlOptions);
@@ -111,26 +113,26 @@ class Zend_Soap_ClientTest extends TestCase
 
         $this->assertTrue($client1->getOptions() == ['encoding' => 'UTF-8', 'soap_version' => SOAP_1_2]);
 
-        $wsdlOptions = ['soap_version'   => SOAP_1_1,
-                             'wsdl'           => dirname(__FILE__).'/_files/wsdl_example.wsdl',
-                             'classmap'       => ['TestData1' => 'Zend_Soap_Client_TestData1',
-                                                 'TestData2' => 'Zend_Soap_Client_TestData2',],
-                             'encoding'       => 'ISO-8859-1',
+        $wsdlOptions = ['soap_version' => SOAP_1_1,
+                             'wsdl' => dirname(__FILE__) . '/_files/wsdl_example.wsdl',
+                             'classmap' => ['TestData1' => 'Zend_Soap_Client_TestData1',
+                                                 'TestData2' => 'Zend_Soap_Client_TestData2', ],
+                             'encoding' => 'ISO-8859-1',
 
-                             'login'          => 'http_login',
-                             'password'       => 'http_password',
+                             'login' => 'http_login',
+                             'password' => 'http_password',
 
-                             'proxy_host'     => 'proxy.somehost.com',
-                             'proxy_port'     => 8080,
-                             'proxy_login'    => 'proxy_login',
+                             'proxy_host' => 'proxy.somehost.com',
+                             'proxy_port' => 8080,
+                             'proxy_login' => 'proxy_login',
                              'proxy_password' => 'proxy_password',
 
-                             'local_cert'     => dirname(__FILE__).'/_files/cert_file',
-                             'passphrase'     => 'some pass phrase',
+                             'local_cert' => dirname(__FILE__) . '/_files/cert_file',
+                             'passphrase' => 'some pass phrase',
 
                              'stream_context' => $ctx,
 
-                             'compression'    => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5];
+                             'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5];
 
         $client1->setOptions($wsdlOptions);
         $this->assertTrue($client1->getOptions() == $wsdlOptions);
@@ -142,29 +144,29 @@ class Zend_Soap_ClientTest extends TestCase
 
         $this->assertTrue($client->getOptions() == ['encoding' => 'UTF-8', 'soap_version' => SOAP_1_2]);
 
-        $options = ['soap_version'   => SOAP_1_1,
-                         'wsdl'           => dirname(__FILE__).'/_files/wsdl_example.wsdl',
+        $options = ['soap_version' => SOAP_1_1,
+                         'wsdl' => dirname(__FILE__) . '/_files/wsdl_example.wsdl',
 
-                         'classmap'       => ['TestData1' => 'Zend_Soap_Client_TestData1',
-                                             'TestData2' => 'Zend_Soap_Client_TestData2',],
-                         'encoding'       => 'ISO-8859-1',
-                         'uri'            => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
-                         'location'       => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
-                         'use'            => SOAP_ENCODED,
-                         'style'          => SOAP_RPC,
+                         'classmap' => ['TestData1' => 'Zend_Soap_Client_TestData1',
+                                             'TestData2' => 'Zend_Soap_Client_TestData2', ],
+                         'encoding' => 'ISO-8859-1',
+                         'uri' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
+                         'location' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
+                         'use' => SOAP_ENCODED,
+                         'style' => SOAP_RPC,
 
-                         'login'          => 'http_login',
-                         'password'       => 'http_password',
+                         'login' => 'http_login',
+                         'password' => 'http_password',
 
-                         'proxy_host'     => 'proxy.somehost.com',
-                         'proxy_port'     => 8080,
-                         'proxy_login'    => 'proxy_login',
+                         'proxy_host' => 'proxy.somehost.com',
+                         'proxy_port' => 8080,
+                         'proxy_login' => 'proxy_login',
                          'proxy_password' => 'proxy_password',
 
-                         'local_cert'     => dirname(__FILE__).'/_files/cert_file',
-                         'passphrase'     => 'some pass phrase',
+                         'local_cert' => dirname(__FILE__) . '/_files/cert_file',
+                         'passphrase' => 'some pass phrase',
 
-                         'compression'    => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5];
+                         'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5];
 
         $client->setOptions($options);
         $this->assertTrue($client->getOptions() == $options);
@@ -272,7 +274,7 @@ class Zend_Soap_ClientTest extends TestCase
         $this->assertNull($client->getExceptions());
         $this->assertEquals(
             [
-                'encoding'     => 'UTF-8',
+                'encoding' => 'UTF-8',
                 'soap_version' => 2,
             ],
             $client->getOptions()
@@ -291,9 +293,9 @@ class Zend_Soap_ClientTest extends TestCase
         $this->assertFalse($client->getExceptions());
         $this->assertEquals(
             [
-                'encoding'     => 'UTF-8',
+                'encoding' => 'UTF-8',
                 'soap_version' => 2,
-                'exceptions'   => false,
+                'exceptions' => false,
             ],
             $client->getOptions()
         );
@@ -319,7 +321,7 @@ class Zend_Soap_ClientTest extends TestCase
     {
         // Remove the following line when you implement this test.
         $this->markTestIncomplete(
-          "This test has not been implemented yet."
+            "This test has not been implemented yet."
         );
     }
 
@@ -340,14 +342,14 @@ class Zend_Soap_ClientTest extends TestCase
 
         $expectedRequest = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
                          . '<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" '
-                         .               'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
-                         .               'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-                         .               'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
-                         .     '<env:Body>'
-                         .         '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
-                         .             '<who xsi:type="xsd:string">World</who>'
-                         .         '</env:testFunc2>'
-                         .     '</env:Body>'
+                         . 'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+                         . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                         . 'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<env:Body>'
+                         . '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<who xsi:type="xsd:string">World</who>'
+                         . '</env:testFunc2>'
+                         . '</env:Body>'
                          . '</env:Envelope>' . "\n";
 
         $this->assertEquals($client->getLastRequest(), $expectedRequest);
@@ -370,15 +372,15 @@ class Zend_Soap_ClientTest extends TestCase
 
         $expectedResponse = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
                           . '<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" '
-                          .               'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
-                          .               'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-                          .               'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
-                          .     '<env:Body xmlns:rpc="http://www.w3.org/2003/05/soap-rpc">'
-                          .         '<env:testFunc2Response env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
-                          .             '<rpc:result>testFunc2Return</rpc:result>'
-                          .             '<testFunc2Return xsi:type="xsd:string">Hello World!</testFunc2Return>'
-                          .         '</env:testFunc2Response>'
-                          .     '</env:Body>'
+                          . 'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+                          . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                          . 'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
+                          . '<env:Body xmlns:rpc="http://www.w3.org/2003/05/soap-rpc">'
+                          . '<env:testFunc2Response env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
+                          . '<rpc:result>testFunc2Return</rpc:result>'
+                          . '<testFunc2Return xsi:type="xsd:string">Hello World!</testFunc2Return>'
+                          . '</env:testFunc2Response>'
+                          . '</env:Body>'
                           . '</env:Envelope>' . "\n";
 
         $this->assertEquals($client->getLastResponse(), $expectedResponse);
@@ -403,29 +405,29 @@ class Zend_Soap_ClientTest extends TestCase
     {
         $ctx = stream_context_create();
 
-        $nonWsdlOptions = ['soap_version'   => SOAP_1_1,
-                                'classmap'       => ['TestData1' => 'Zend_Soap_Client_TestData1',
-                                                    'TestData2' => 'Zend_Soap_Client_TestData2',],
-                                'encoding'       => 'ISO-8859-1',
-                                'uri'            => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
-                                'location'       => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
-                                'use'            => SOAP_ENCODED,
-                                'style'          => SOAP_RPC,
+        $nonWsdlOptions = ['soap_version' => SOAP_1_1,
+                                'classmap' => ['TestData1' => 'Zend_Soap_Client_TestData1',
+                                                    'TestData2' => 'Zend_Soap_Client_TestData2', ],
+                                'encoding' => 'ISO-8859-1',
+                                'uri' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
+                                'location' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
+                                'use' => SOAP_ENCODED,
+                                'style' => SOAP_RPC,
 
-                                'login'          => 'http_login',
-                                'password'       => 'http_password',
+                                'login' => 'http_login',
+                                'password' => 'http_password',
 
-                                'proxy_host'     => 'proxy.somehost.com',
-                                'proxy_port'     => 8080,
-                                'proxy_login'    => 'proxy_login',
+                                'proxy_host' => 'proxy.somehost.com',
+                                'proxy_port' => 8080,
+                                'proxy_login' => 'proxy_login',
                                 'proxy_password' => 'proxy_password',
 
-                                'local_cert'     => dirname(__FILE__).'/_files/cert_file',
-                                'passphrase'     => 'some pass phrase',
+                                'local_cert' => dirname(__FILE__) . '/_files/cert_file',
+                                'passphrase' => 'some pass phrase',
 
                                 'stream_context' => $ctx,
 
-                                'compression'    => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5
+                                'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP | 5
         ];
 
         $config = new Zend_Config($nonWsdlOptions);
@@ -457,19 +459,19 @@ class Zend_Soap_ClientTest extends TestCase
 
         $expectedRequest = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
                          . '<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" '
-                         .               'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
-                         .               'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-                         .               'xmlns:ns1="http://www.example.com/namespace" '
-                         .               'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
-                         .     '<env:Header>'
-                         .         '<ns1:MyHeader2>SOAP header content 2</ns1:MyHeader2>'
-                         .         '<ns1:MyHeader1>SOAP header content 1</ns1:MyHeader1>'
-                         .     '</env:Header>'
-                         .     '<env:Body>'
-                         .         '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
-                         .             '<who xsi:type="xsd:string">World</who>'
-                         .         '</env:testFunc2>'
-                         .     '</env:Body>'
+                         . 'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+                         . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                         . 'xmlns:ns1="http://www.example.com/namespace" '
+                         . 'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<env:Header>'
+                         . '<ns1:MyHeader2>SOAP header content 2</ns1:MyHeader2>'
+                         . '<ns1:MyHeader1>SOAP header content 1</ns1:MyHeader1>'
+                         . '</env:Header>'
+                         . '<env:Body>'
+                         . '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<who xsi:type="xsd:string">World</who>'
+                         . '</env:testFunc2>'
+                         . '</env:Body>'
                          . '</env:Envelope>' . "\n";
 
         $this->assertEquals($client->getLastRequest(), $expectedRequest);
@@ -483,19 +485,19 @@ class Zend_Soap_ClientTest extends TestCase
 
         $expectedRequest = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
                          . '<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" '
-                         .               'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
-                         .               'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-                         .               'xmlns:ns1="http://www.example.com/namespace" '
-                         .               'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
-                         .     '<env:Header>'
-                         .         '<ns1:MyHeader2>SOAP header content 2</ns1:MyHeader2>'
-                         .         '<ns1:MyHeader3>SOAP header content 3</ns1:MyHeader3>'
-                         .     '</env:Header>'
-                         .     '<env:Body>'
-                         .         '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
-                         .             '<who xsi:type="xsd:string">World</who>'
-                         .         '</env:testFunc2>'
-                         .     '</env:Body>'
+                         . 'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+                         . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                         . 'xmlns:ns1="http://www.example.com/namespace" '
+                         . 'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<env:Header>'
+                         . '<ns1:MyHeader2>SOAP header content 2</ns1:MyHeader2>'
+                         . '<ns1:MyHeader3>SOAP header content 3</ns1:MyHeader3>'
+                         . '</env:Header>'
+                         . '<env:Body>'
+                         . '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<who xsi:type="xsd:string">World</who>'
+                         . '</env:testFunc2>'
+                         . '</env:Body>'
                          . '</env:Envelope>' . "\n";
 
         $this->assertEquals($client->getLastRequest(), $expectedRequest);
@@ -511,18 +513,18 @@ class Zend_Soap_ClientTest extends TestCase
 
         $expectedRequest = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
                          . '<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" '
-                         .               'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
-                         .               'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-                         .               'xmlns:ns1="http://www.example.com/namespace" '
-                         .               'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
-                         .     '<env:Header>'
-                         .         '<ns1:MyHeader4>SOAP header content 4</ns1:MyHeader4>'
-                         .     '</env:Header>'
-                         .     '<env:Body>'
-                         .         '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
-                         .             '<who xsi:type="xsd:string">World</who>'
-                         .         '</env:testFunc2>'
-                         .     '</env:Body>'
+                         . 'xmlns:xsd="http://www.w3.org/2001/XMLSchema" '
+                         . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                         . 'xmlns:ns1="http://www.example.com/namespace" '
+                         . 'xmlns:enc="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<env:Header>'
+                         . '<ns1:MyHeader4>SOAP header content 4</ns1:MyHeader4>'
+                         . '</env:Header>'
+                         . '<env:Body>'
+                         . '<env:testFunc2 env:encodingStyle="http://www.w3.org/2003/05/soap-encoding">'
+                         . '<who xsi:type="xsd:string">World</who>'
+                         . '</env:testFunc2>'
+                         . '</env:Body>'
                          . '</env:Envelope>' . "\n";
 
         $this->assertEquals($client->getLastRequest(), $expectedRequest);
@@ -560,13 +562,14 @@ class Zend_Soap_ClientTest extends TestCase
 
 
 /** Test Class */
-class Zend_Soap_Client_TestClass {
+class Zend_Soap_Client_TestClass
+{
     /**
      * Test Function 1
      *
      * @return string
      */
-    function testFunc1()
+    public function testFunc1()
     {
         return "Hello World";
     }
@@ -577,7 +580,7 @@ class Zend_Soap_Client_TestClass {
      * @param string $who Some Arg
      * @return string
      */
-    function testFunc2($who)
+    public function testFunc2($who)
     {
         return "Hello $who!";
     }
@@ -589,7 +592,7 @@ class Zend_Soap_Client_TestClass {
      * @param int $when Some
      * @return string
      */
-    function testFunc3($who, $when)
+    public function testFunc3($who, $when)
     {
         return "Hello $who, How are you $when";
     }
@@ -599,44 +602,46 @@ class Zend_Soap_Client_TestClass {
      *
      * @return string
      */
-    static function testFunc4()
+    public static function testFunc4()
     {
         return "I'm Static!";
     }
 }
 
 /** Test class 2 */
-class Zend_Soap_Client_TestData1 {
+class Zend_Soap_Client_TestData1
+{
     /**
      * Property1
      *
      * @var string
      */
-     public $property1;
+    public $property1;
 
     /**
      * Property2
      *
      * @var float
      */
-     public $property2;
+    public $property2;
 }
 
 /** Test class 2 */
-class Zend_Soap_Client_TestData2 {
+class Zend_Soap_Client_TestData2
+{
     /**
      * Property1
      *
      * @var integer
      */
-     public $property1;
+    public $property1;
 
     /**
      * Property1
      *
      * @var float
      */
-     public $property2;
+    public $property2;
 }
 
 

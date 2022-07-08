@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,7 +50,6 @@ require_once 'Zend/Acl/Role.php';
  */
 class Zend_Amf_AuthTest extends TestCase
 {
-
     /**
      * Enter description here...
      *
@@ -58,8 +59,8 @@ class Zend_Amf_AuthTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Amf_AuthTest");
-        (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Amf_AuthTest");
+        (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -78,13 +79,13 @@ class Zend_Amf_AuthTest extends TestCase
     {
         $data[] = "12345";
         $this->_server->setClass($class);
-        $newBody = new Zend_Amf_Value_MessageBody("$class.$method","/1",$data);
+        $newBody = new Zend_Amf_Value_MessageBody("$class.$method", "/1", $data);
         $request->addAmfBody($newBody);
     }
 
     protected function _addLogin($request, $username, $password)
     {
-        $cmdBody = new Zend_Amf_Value_MessageBody("","/1","");
+        $cmdBody = new Zend_Amf_Value_MessageBody("", "/1", "");
         $loginCmd = new Zend_Amf_Value_Messaging_CommandMessage();
         $cmdBody->setData($loginCmd);
         $loginCmd->operation = Zend_Amf_Value_Messaging_CommandMessage::LOGIN_OPERATION;
@@ -94,7 +95,7 @@ class Zend_Amf_AuthTest extends TestCase
 
     protected function _addLogout($request)
     {
-        $cmdBody = new Zend_Amf_Value_MessageBody("","/1","");
+        $cmdBody = new Zend_Amf_Value_MessageBody("", "/1", "");
         $loginCmd = new Zend_Amf_Value_Messaging_CommandMessage();
         $cmdBody->setData($loginCmd);
         $loginCmd->operation = Zend_Amf_Value_Messaging_CommandMessage::LOGOUT_OPERATION;
@@ -288,11 +289,13 @@ class Zend_Amf_AuthTest extends TestCase
 
 class WrongPassword extends Zend_Amf_Auth_Abstract
 {
-    public function authenticate() {
-        return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID,
-                null,
-                ['Wrong Password']
-                );
+    public function authenticate()
+    {
+        return new Zend_Auth_Result(
+            Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID,
+            null,
+            ['Wrong Password']
+        );
     }
 }
 
@@ -312,34 +315,43 @@ class RightPassword extends Zend_Amf_Auth_Abstract
     }
 }
 
-class Zend_Amf_Auth_testclass {
-    function hello() {
+class Zend_Amf_Auth_testclass
+{
+    public function hello()
+    {
         return "hello!";
     }
 }
 
-class Zend_Amf_Auth_testclass_Acl {
-    function hello() {
+class Zend_Amf_Auth_testclass_Acl
+{
+    public function hello()
+    {
         return "hello!";
     }
 
-    function hello2() {
+    public function hello2()
+    {
         return "hello2!";
     }
 
-    function initAcl(Zend_Acl $acl) {
+    public function initAcl(Zend_Acl $acl)
+    {
         $acl->allow("testrole", null, "hello");
         $acl->allow("testrole2", null, "hello2");
         return true;
     }
 }
 
-class Zend_Amf_Auth_testclass_NoAcl {
-    function hello() {
+class Zend_Amf_Auth_testclass_NoAcl
+{
+    public function hello()
+    {
         return "hello!";
     }
 
-    function initAcl() {
+    public function initAcl()
+    {
         return false;
     }
 }
@@ -347,4 +359,3 @@ class Zend_Amf_Auth_testclass_NoAcl {
 if (PHPUnit_MAIN_METHOD == "Zend_Amf_AuthTest::main") {
     Zend_Amf_AuthTest::main();
 }
-

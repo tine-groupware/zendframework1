@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +50,8 @@ class Zend_Service_WindowsAzure_TableEntityTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Service_WindowsAzure_TableEntityTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Service_WindowsAzure_TableEntityTest");
+        $result = (new TestRunner())->run($suite);
     }
     
     /**
@@ -59,7 +61,7 @@ class Zend_Service_WindowsAzure_TableEntityTest extends TestCase
     {
         $target = new TSETTest_TestEntity('partition1', '000001');
         $this->assertEquals('partition1', $target->getPartitionKey());
-        $this->assertEquals('000001',     $target->getRowKey());
+        $this->assertEquals('000001', $target->getRowKey());
     }
     
     /**
@@ -70,17 +72,17 @@ class Zend_Service_WindowsAzure_TableEntityTest extends TestCase
         $target = new TSETTest_TestEntity('partition1', '000001');
         $result = $target->getAzureValues();
         
-        $this->assertEquals('Name',       $result[0]->Name);
-        $this->assertEquals(null,         $result[0]->Value);
+        $this->assertEquals('Name', $result[0]->Name);
+        $this->assertEquals(null, $result[0]->Value);
         
-        $this->assertEquals('Age',        $result[1]->Name);
-        $this->assertEquals('Edm.Int64',  $result[1]->Type);
+        $this->assertEquals('Age', $result[1]->Name);
+        $this->assertEquals('Edm.Int64', $result[1]->Type);
         
-        $this->assertEquals('Visible',    $result[2]->Name);
-        $this->assertEquals(false,        $result[2]->Value);
+        $this->assertEquals('Visible', $result[2]->Name);
+        $this->assertEquals(false, $result[2]->Value);
         
         $this->assertEquals('partition1', $result[3]->Value);
-        $this->assertEquals('000001',     $result[4]->Value);
+        $this->assertEquals('000001', $result[4]->Value);
     }
     
     /**
@@ -100,10 +102,10 @@ class Zend_Service_WindowsAzure_TableEntityTest extends TestCase
         $target->setAzureValues($values);
         
         $this->assertEquals('partition1', $target->getPartitionKey());
-        $this->assertEquals('000001',     $target->getRowKey());
-        $this->assertEquals('Maarten',    $target->FullName);
-        $this->assertEquals(25,           $target->Age);
-        $this->assertEquals(true,         $target->Visible);
+        $this->assertEquals('000001', $target->getRowKey());
+        $this->assertEquals('Maarten', $target->FullName);
+        $this->assertEquals(25, $target->Age);
+        $this->assertEquals(true, $target->Visible);
     }
     
     /**
@@ -118,11 +120,9 @@ class Zend_Service_WindowsAzure_TableEntityTest extends TestCase
         
         $exceptionRaised = false;
         $target = new TSETTest_TestEntity();
-        try 
-        {
+        try {
             $target->setAzureValues($values, true);
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex) {
             $exceptionRaised = true;
         }
         

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Oauth/Token/Request.php';
  */
 class Zend_Oauth_Token_RequestTest extends TestCase
 {
-
     public function testConstructorSetsResponseObject()
     {
         $response = new Zend_Http_Response(200, []);
@@ -99,5 +100,4 @@ class Zend_Oauth_Token_RequestTest extends TestCase
         $token = new Zend_Oauth_Token_Request($response);
         $this->assertTrue($token->isValid());
     }
-
 }

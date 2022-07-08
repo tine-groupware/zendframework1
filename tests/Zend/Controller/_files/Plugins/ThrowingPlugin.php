@@ -1,14 +1,15 @@
 <?php
 
 namespace MyApp\Controller\Plugin;
-use Zend_Controller_Plugin_Abstract;
+
 use Exception;
 use stdClass;
+use Zend_Controller_Plugin_Abstract;
 use Zend_Controller_Request_Abstract;
 
 require_once 'Zend/Controller/Action/Helper/Abstract.php';
-class ThrowingPlugin extends Zend_Controller_Plugin_Abstract {
-
+class ThrowingPlugin extends Zend_Controller_Plugin_Abstract
+{
     public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
     {
         $this->produceTypeError();

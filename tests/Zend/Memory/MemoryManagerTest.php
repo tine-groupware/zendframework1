@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Memory_MemoryManagerTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -109,13 +111,13 @@ class Zend_Memory_MemoryManagerTest extends TestCase
         $memoryManager = Zend_Memory::factory('File', $backendOptions);
 
         // MemoryLimit
-        $memoryManager->setMemoryLimit(2*1024*1024 /* 2Mb */);
-        $this->assertEquals($memoryManager->getMemoryLimit(), 2*1024*1024);
+        $memoryManager->setMemoryLimit(2 * 1024 * 1024 /* 2Mb */);
+        $this->assertEquals($memoryManager->getMemoryLimit(), 2 * 1024 * 1024);
 
         // MinSize
-        $this->assertEquals($memoryManager->getMinSize(), 16*1024); // check for default value (16K)
-        $memoryManager->setMinSize(4*1024 /* 4Kb */);
-        $this->assertEquals($memoryManager->getMinSize(), 4*1024);
+        $this->assertEquals($memoryManager->getMinSize(), 16 * 1024); // check for default value (16K)
+        $memoryManager->setMinSize(4 * 1024 /* 4Kb */);
+        $this->assertEquals($memoryManager->getMinSize(), 4 * 1024);
     }
 
 
@@ -156,7 +158,7 @@ class Zend_Memory_MemoryManagerTest extends TestCase
         $memoryManager = Zend_Memory::factory('File', $backendOptions);
 
         $memoryManager->setMinSize(256);
-        $memoryManager->setMemoryLimit(1024*32);
+        $memoryManager->setMemoryLimit(1024 * 32);
 
         $memObjects = [];
         for ($count = 0; $count < 64; $count++) {

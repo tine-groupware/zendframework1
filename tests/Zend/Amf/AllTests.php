@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,7 +52,7 @@ class Zend_Amf_AllTests
 {
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()
@@ -77,4 +79,3 @@ class Zend_Amf_AllTests
 if (PHPUnit_MAIN_METHOD == 'Zend_Amf_AllTests::main') {
     Zend_Amf_AllTests::main();
 }
-

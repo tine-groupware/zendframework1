@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Memory_MemoryTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -100,7 +102,7 @@ class Zend_Memory_MemoryTest extends TestCase
     {
         try {
             $memoryManager = Zend_Memory::factory($backend);
-        } catch(Zend_Cache_Exception $exception) {
+        } catch (Zend_Cache_Exception $exception) {
             $this->markTestSkipped($exception->getMessage());
         }
         $this->assertTrue($memoryManager instanceof Zend_Memory_Manager);

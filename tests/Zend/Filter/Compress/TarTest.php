@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Filter_Compress_TarTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Filter_Compress_TarTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Filter_Compress_TarTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -77,7 +79,7 @@ class Zend_Filter_Compress_TarTest extends TestCase
             dirname(__FILE__) . '/../_files/compressed.tar'
         ];
 
-        foreach($files as $file) {
+        foreach ($files as $file) {
             if (file_exists($file)) {
                 if (is_dir($file)) {
                     rmdir($file);
@@ -110,7 +112,7 @@ class Zend_Filter_Compress_TarTest extends TestCase
             dirname(__FILE__) . '/../_files/compressed.tar'
         ];
 
-        foreach($files as $file) {
+        foreach ($files as $file) {
             if (file_exists($file)) {
                 if (is_dir($file)) {
                     rmdir($file);
@@ -135,10 +137,10 @@ class Zend_Filter_Compress_TarTest extends TestCase
      */
     public function testBasicUsage()
     {
-        $filter  = new Zend_Filter_Compress_Tar(
+        $filter = new Zend_Filter_Compress_Tar(
             [
-                'archive'  => dirname(__FILE__) . '/../_files/compressed.tar',
-                'target'   => dirname(__FILE__) . '/../_files/zipextracted.txt'
+                'archive' => dirname(__FILE__) . '/../_files/compressed.tar',
+                'target' => dirname(__FILE__) . '/../_files/zipextracted.txt'
             ]
         );
 
@@ -163,8 +165,8 @@ class Zend_Filter_Compress_TarTest extends TestCase
         $this->assertEquals(
             [
                 'archive' => null,
-                'target'  => '.',
-                'mode'    => null],
+                'target' => '.',
+                'mode' => null],
             $filter->getOptions()
         );
 
@@ -208,7 +210,7 @@ class Zend_Filter_Compress_TarTest extends TestCase
         try {
             $filter->setTarget('/unknown/path/to/file.txt');
             $this->fail('Exception expected');
-        } catch(Zend_Filter_Exception $e) {
+        } catch (Zend_Filter_Exception $e) {
             $this->assertStringContainsString('does not exist', $e->getMessage());
         }
     }
@@ -220,10 +222,10 @@ class Zend_Filter_Compress_TarTest extends TestCase
      */
     public function testTarCompressToFile()
     {
-        $filter  = new Zend_Filter_Compress_Tar(
+        $filter = new Zend_Filter_Compress_Tar(
             [
-                'archive'  => dirname(__FILE__) . '/../_files/compressed.tar',
-                'target'   => dirname(__FILE__) . '/../_files/zipextracted.txt'
+                'archive' => dirname(__FILE__) . '/../_files/compressed.tar',
+                'target' => dirname(__FILE__) . '/../_files/zipextracted.txt'
             ]
         );
         file_put_contents(dirname(__FILE__) . '/../_files/zipextracted.txt', 'compress me');
@@ -245,10 +247,10 @@ class Zend_Filter_Compress_TarTest extends TestCase
      */
     public function testTarCompressDirectory()
     {
-        $filter  = new Zend_Filter_Compress_Tar(
+        $filter = new Zend_Filter_Compress_Tar(
             [
-                'archive'  => dirname(__FILE__) . '/../_files/compressed.tar',
-                'target'   => dirname(__FILE__) . '/../_files/_compress'
+                'archive' => dirname(__FILE__) . '/../_files/compressed.tar',
+                'target' => dirname(__FILE__) . '/../_files/_compress'
             ]
         );
         $content = $filter->compress(dirname(__FILE__) . '/../_files/Compress');

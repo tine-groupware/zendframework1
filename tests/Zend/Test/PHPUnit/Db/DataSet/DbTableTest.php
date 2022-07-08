@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -63,7 +65,7 @@ class Zend_Test_PHPUnit_Db_DataSet_DbTableTest extends TestCase
         $table->expects($this->at(1))
               ->method('info')
               ->with($this->equalTo('cols'))
-              ->will($this->returnValue( ["foo", "bar"] ));
+              ->will($this->returnValue(["foo", "bar"]));
         $table->expects($this->once())
               ->method('fetchAll')
               ->will($this->returnValue([ ["foo" => 1, "bar" => 2] ]));

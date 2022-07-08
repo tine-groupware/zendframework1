@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,9 +51,8 @@ class Zend_Json_Server_RequestTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Json_Server_RequestTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Json_Server_RequestTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -102,7 +103,7 @@ class Zend_Json_Server_RequestTest extends TestCase
     public function testInvalidKeysShouldBeIgnored()
     {
         $count = 0;
-        foreach ([['foo', true], ['foo', new stdClass], ['foo', []]] as $spec) {
+        foreach ([['foo', true], ['foo', new stdClass()], ['foo', []]] as $spec) {
             $this->request->addParam($spec[0], $spec[1]);
             $this->assertNull($this->request->getParam('foo'));
             $params = $this->request->getParams();
@@ -224,7 +225,7 @@ class Zend_Json_Server_RequestTest extends TestCase
     public function testShouldBeAbleToLoadRequestFromJsonString()
     {
         $options = $this->getOptions();
-        $json    = Zend_Json::encode($options);
+        $json = Zend_Json::encode($options);
         $this->request->loadJson($json);
 
         $this->assertEquals('foo', $this->request->getMethod());
@@ -236,7 +237,7 @@ class Zend_Json_Server_RequestTest extends TestCase
     {
         $options = $this->getOptions();
         $options['jsonrpc'] = '2.0';
-        $json    = Zend_Json::encode($options);
+        $json = Zend_Json::encode($options);
         $this->request->loadJson($json);
         $this->assertEquals('2.0', $this->request->getVersion());
     }
@@ -245,7 +246,7 @@ class Zend_Json_Server_RequestTest extends TestCase
     {
         $options = $this->getOptions();
         $this->request->setOptions($options);
-        $json    = $this->request->toJson();
+        $json = $this->request->toJson();
         $this->validateJson($json, $options);
     }
 
@@ -253,7 +254,7 @@ class Zend_Json_Server_RequestTest extends TestCase
     {
         $options = $this->getOptions();
         $this->request->setOptions($options);
-        $json    = $this->request->__toString();
+        $json = $this->request->__toString();
         $this->validateJson($json, $options);
     }
 
@@ -275,7 +276,7 @@ class Zend_Json_Server_RequestTest extends TestCase
                 'four',
                 true,
             ],
-            'id'     => 'foobar'
+            'id' => 'foobar'
         ];
     }
 

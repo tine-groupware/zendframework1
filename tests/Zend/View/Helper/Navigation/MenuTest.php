@@ -34,8 +34,7 @@ require_once 'Zend/View/Helper/Navigation/Menu.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Navigation_MenuTest
-    extends Zend_View_Helper_Navigation_TestAbstract
+class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_TestAbstract
 {
     /**
      * Class name for view helper to test
@@ -115,14 +114,14 @@ class Zend_View_Helper_Navigation_MenuTest
         $rendered1 = $this->_getExpected('menu/default1.html');
         $rendered2 = $this->_getExpected('menu/default2.html');
         $expected = [
-            'registered'       => $rendered1,
-            'supplied'         => $rendered2,
+            'registered' => $rendered1,
+            'supplied' => $rendered2,
             'registered_again' => $rendered1
         ];
 
         $actual = [
-            'registered'       => $this->_helper->render(),
-            'supplied'         => $this->_helper->render($this->_nav2),
+            'registered' => $this->_helper->render(),
+            'supplied' => $this->_helper->render($this->_nav2),
             'registered_again' => $this->_helper->render()
         ];
 
@@ -301,7 +300,6 @@ class Zend_View_Helper_Navigation_MenuTest
         Zend_Registry::set('Zend_Translate', $oldReg);
 
         $this->assertEquals($expected, $actual);
-
     }
 
     public function testDisablingTranslation()
@@ -647,7 +645,7 @@ class Zend_View_Helper_Navigation_MenuTest
         $this->_nav3->findOneBy('id', 'home')->setCustomHtmlAttrib('rel', 'nofollow');
         $this->_nav3->findOneBy('uri', 'contact')->setCustomHtmlAttribs(
             [
-                 'rel'   => 'nofollow',
+                 'rel' => 'nofollow',
                  'style' => 'font-weight: bold;',
             ]
         );
@@ -762,7 +760,7 @@ class Zend_View_Helper_Navigation_MenuTest
         // Tests
         $options = [
             'onlyActiveBranch' => true,
-            'renderParents'    => false,
+            'renderParents' => false,
             'addPageClassToLi' => true,
         ];
 
@@ -799,8 +797,8 @@ class Zend_View_Helper_Navigation_MenuTest
         // Tests
         $options = [
             'onlyActiveBranch' => true,
-            'renderParents'    => false,
-            'activeClass'      => 'current',
+            'renderParents' => false,
+            'activeClass' => 'current',
         ];
 
         $html = $this->_helper->renderMenu(null, $options);
@@ -835,8 +833,8 @@ class Zend_View_Helper_Navigation_MenuTest
     public function testOptionRenderParentClass()
     {
         $expected = $this->_getExpected('menu/parentclass_standard.html');
-        $actual   = $this->_helper->renderMenu(
-            null ,
+        $actual = $this->_helper->renderMenu(
+            null,
             [
                  'renderParentClass' => true,
             ]
@@ -851,11 +849,11 @@ class Zend_View_Helper_Navigation_MenuTest
     public function testOptionRenderParentClassAndParentClass()
     {
         $expected = $this->_getExpected('menu/parentclass_custom.html');
-        $actual   = $this->_helper->renderMenu(
-            null ,
+        $actual = $this->_helper->renderMenu(
+            null,
             [
                  'renderParentClass' => true,
-                 'parentClass'       => 'foo',
+                 'parentClass' => 'foo',
             ]
         );
 
@@ -893,7 +891,7 @@ class Zend_View_Helper_Navigation_MenuTest
         $this->_helper->setRenderParentClass(true);
 
         $expected = $this->_getExpected('menu/parentclass_bothdepts.html');
-        $actual   = $this->_helper->setMinDepth(1)->setMaxDepth(2)->render();
+        $actual = $this->_helper->setMinDepth(1)->setMaxDepth(2)->render();
 
         $this->assertEquals($expected, $actual);
     }
@@ -907,7 +905,7 @@ class Zend_View_Helper_Navigation_MenuTest
         $this->_helper->setOnlyActiveBranch(true);
 
         $expected = $this->_getExpected('menu/parentclass_onlyactivebranch_bothdepts.html');
-        $actual   = $this->_helper->setMinDepth(1)->setMaxDepth(2)->render();
+        $actual = $this->_helper->setMinDepth(1)->setMaxDepth(2)->render();
 
         $this->assertEquals($expected, $actual);
     }

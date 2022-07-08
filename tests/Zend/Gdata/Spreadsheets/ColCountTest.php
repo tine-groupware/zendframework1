@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_ColCountTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->colCount = new Zend_Gdata_Spreadsheets_Extension_ColCount();
@@ -51,5 +52,4 @@ class Zend_Gdata_Spreadsheets_ColCountTest extends TestCase
         $newColCount->transferFromDom($doc->documentElement);
         $this->assertTrue($this->colCount->getText() == $newColCount->getText());
     }
-
 }

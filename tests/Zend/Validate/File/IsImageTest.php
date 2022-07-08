@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_Validate_File_IsImageTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Validate_File_IsImageTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Validate_File_IsImageTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -74,11 +76,11 @@ class Zend_Validate_File_IsImageTest extends TestCase
         ];
 
         $files = [
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpeg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpeg',
+            'size' => 200,
             'tmp_name' => dirname(__FILE__) . '/_files/picture.jpg',
-            'error'    => 0
+            'error' => 0
         ];
 
         foreach ($valuesExpected as $element) {
@@ -161,11 +163,11 @@ class Zend_Validate_File_IsImageTest extends TestCase
     public function testErrorMessages()
     {
         $files = [
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpeg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpeg',
+            'size' => 200,
             'tmp_name' => dirname(__FILE__) . '/_files/picture.jpg',
-            'error'    => 0
+            'error' => 0
         ];
 
         $validator = new Zend_Validate_File_IsImage('test/notype');

@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,7 +47,7 @@ class Zend_Service_SqlAzure_AllTests
 {
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()
@@ -53,7 +55,7 @@ class Zend_Service_SqlAzure_AllTests
         $suite = new TestSuite(__CLASS__);
 
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_SQLMANAGEMENT_RUNTESTS) {
-        	$suite->addTest(Zend_Service_SqlAzure_Management_AllTests::suite());
+            $suite->addTest(Zend_Service_SqlAzure_Management_AllTests::suite());
         }
 
         return $suite;

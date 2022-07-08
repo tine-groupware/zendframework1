@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Translate_Adapter_XliffTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Translate_Adapter_XliffTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Translate_Adapter_XliffTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testCreate()
@@ -134,17 +136,17 @@ class Zend_Translate_Adapter_XliffTest extends TestCase
         $adapter = new Zend_Translate_Adapter_Xliff(dirname(__FILE__) . '/_files/translation_en.xliff', 'en');
         $adapter->setOptions(['testoption' => 'testkey']);
         $expected = [
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => dirname(__FILE__) . '/_files/translation_en.xliff',
-            'scan'            => null,
-            'locale'          => 'en',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => dirname(__FILE__) . '/_files/translation_en.xliff',
+            'scan' => null,
+            'locale' => 'en',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         ];
         $options = $adapter->getOptions();
 
@@ -197,7 +199,7 @@ class Zend_Translate_Adapter_XliffTest extends TestCase
         $this->assertTrue($adapter->isAvailable('de'));
         $locale = new Zend_Locale('en');
         $this->assertTrue($adapter->isAvailable($locale));
-        $this->assertFalse($adapter->isAvailable('sr'   ));
+        $this->assertFalse($adapter->isAvailable('sr'));
     }
 
     public function testOptionLocaleDirectory()

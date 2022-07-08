@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -67,8 +69,10 @@ class Zend_Gdata_QueryTest extends TestCase
         $query = new Zend_Gdata_Query();
         $query->setPublishedMax('2007-01-01');
         $this->assertEquals('2007-01-01', $query->getPublishedMax());
-        $this->assertStringContainsString('published-max=2007-01-01',
-            $query->getQueryUrl());
+        $this->assertStringContainsString(
+            'published-max=2007-01-01',
+            $query->getQueryUrl()
+        );
     }
 
     public function testSetAndGetPublishedMin()
@@ -76,8 +80,10 @@ class Zend_Gdata_QueryTest extends TestCase
         $query = new Zend_Gdata_Query();
         $query->setPublishedMin('2007-01-01');
         $this->assertEquals('2007-01-01', $query->getPublishedMin());
-        $this->assertStringContainsString('published-min=2007-01-01',
-                $query->getQueryUrl());
+        $this->assertStringContainsString(
+            'published-min=2007-01-01',
+            $query->getQueryUrl()
+        );
     }
 
     public function testSetAndGetAuthor()
@@ -119,5 +125,4 @@ class Zend_Gdata_QueryTest extends TestCase
         $this->assertEquals(12, $query->getStartIndex());
         $this->assertStringContainsString('start-index=12', $query->getQueryUrl());
     }
-
 }

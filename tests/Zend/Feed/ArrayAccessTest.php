@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -98,5 +100,4 @@ class Zend_Feed_ArrayAccessTest extends TestCase
         $entry = $feed->current();
         $this->assertEquals('http://www.h-online.com/security/Google-acquires-reCAPTCHA--/news/114266/from/rss', $entry->link('alternate'));
     }
-
 }

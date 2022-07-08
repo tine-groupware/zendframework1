@@ -22,6 +22,7 @@
 namespace Zend\Form\Element\FileTest\Adapter;
 
 use Zend_File_Transfer_Adapter_Abstract;
+
 /**
  * @category   Zend
  * @package    Zend_Form

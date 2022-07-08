@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -46,14 +48,14 @@ class Zend_Http_Client_ClientTest extends TestCase
     public function invalidHeaders()
     {
         return [
-            'invalid-name-cr'                      => ["X-Foo-\rBar", 'value'],
-            'invalid-name-lf'                      => ["X-Foo-\nBar", 'value'],
-            'invalid-name-crlf'                    => ["X-Foo-\r\nBar", 'value'],
-            'invalid-value-cr'                     => ['X-Foo-Bar', "value\risEvil"],
-            'invalid-value-lf'                     => ['X-Foo-Bar', "value\nisEvil"],
-            'invalid-value-bad-continuation'       => ['X-Foo-Bar', "value\r\nisEvil"],
-            'invalid-array-value-cr'               => ['X-Foo-Bar', ["value\risEvil"]],
-            'invalid-array-value-lf'               => ['X-Foo-Bar', ["value\nisEvil"]],
+            'invalid-name-cr' => ["X-Foo-\rBar", 'value'],
+            'invalid-name-lf' => ["X-Foo-\nBar", 'value'],
+            'invalid-name-crlf' => ["X-Foo-\r\nBar", 'value'],
+            'invalid-value-cr' => ['X-Foo-Bar', "value\risEvil"],
+            'invalid-value-lf' => ['X-Foo-Bar', "value\nisEvil"],
+            'invalid-value-bad-continuation' => ['X-Foo-Bar', "value\r\nisEvil"],
+            'invalid-array-value-cr' => ['X-Foo-Bar', ["value\risEvil"]],
+            'invalid-array-value-lf' => ['X-Foo-Bar', ["value\nisEvil"]],
             'invalid-array-value-bad-continuation' => ['X-Foo-Bar', ["value\r\nisEvil"]],
         ];
     }

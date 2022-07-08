@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -62,11 +64,11 @@ class Zend_Filter_HtmlEntitiesTest extends TestCase
     {
         $valuesExpected = [
             'string' => 'string',
-            '<'      => '&lt;',
-            '>'      => '&gt;',
-            '\''     => '\'',
-            '"'      => '&quot;',
-            '&'      => '&amp;'
+            '<' => '&lt;',
+            '>' => '&gt;',
+            '\'' => '\'',
+            '"' => '&quot;',
+            '&' => '&amp;'
             ];
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals($output, $this->_filter->filter($input));
@@ -155,7 +157,7 @@ class Zend_Filter_HtmlEntitiesTest extends TestCase
     {
         require_once 'Zend/Config.php';
         $options = ['quotestyle' => 5, 'encoding' => 'ISO-8859-1'];
-        $config  = new Zend_Config($options);
+        $config = new Zend_Config($options);
 
         $filter = new Zend_Filter_HtmlEntities(
             $config
@@ -173,7 +175,7 @@ class Zend_Filter_HtmlEntitiesTest extends TestCase
      */
     public function testQuoteStyleQuotesEncodeBoth()
     {
-        $input  = "A 'single' and " . '"double"';
+        $input = "A 'single' and " . '"double"';
         $result = 'A &#039;single&#039; and &quot;double&quot;';
 
         $this->_filter->setQuoteStyle(ENT_QUOTES);
@@ -188,7 +190,7 @@ class Zend_Filter_HtmlEntitiesTest extends TestCase
      */
     public function testQuoteStyleQuotesEncodeDouble()
     {
-        $input  = "A 'single' and " . '"double"';
+        $input = "A 'single' and " . '"double"';
         $result = "A 'single' and &quot;double&quot;";
 
         $this->_filter->setQuoteStyle(ENT_COMPAT);
@@ -203,7 +205,7 @@ class Zend_Filter_HtmlEntitiesTest extends TestCase
      */
     public function testQuoteStyleQuotesEncodeNone()
     {
-        $input  = "A 'single' and " . '"double"';
+        $input = "A 'single' and " . '"double"';
         $result = "A 'single' and " . '"double"';
 
         $this->_filter->setQuoteStyle(ENT_NOQUOTES);

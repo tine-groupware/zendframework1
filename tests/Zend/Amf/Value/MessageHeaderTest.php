@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +50,8 @@ class Zend_Amf_Value_MessageHeaderTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Amf_Value_MessageHeaderTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Amf_Value_MessageHeaderTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testConstructorShouldSetMessageHeaderName()
@@ -76,7 +78,7 @@ class Zend_Amf_Value_MessageHeaderTest extends TestCase
 
     public function testConstructorShouldSetMessageHeaderDataUnmodified()
     {
-        $data = new stdClass;
+        $data = new stdClass();
         $data->foo = 'bar';
         $data->bar = ['baz' => 'bat'];
         $messageHeader = new Zend_Amf_Value_MessageHeader('foo', true, $data);

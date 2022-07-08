@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+
 use PHPUnit\Framework\Error\Notice;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -59,7 +61,7 @@ class Zend_SessionTest extends TestCase
      *
      * @return void
      */
-    public function __construct($name = NULL, array $data = [], $dataName = '')
+    public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
         $this->_script = 'php '
@@ -73,7 +75,7 @@ class Zend_SessionTest extends TestCase
     /**
      * Set up tests environment
      */
-    function setUp(): void
+    public function setUp(): void
     {
         // _unitTestEnabled is utilised by other tests to handle session data processing
         // Zend_Session tests should pass with _unitTestEnabled turned off
@@ -91,9 +93,9 @@ class Zend_SessionTest extends TestCase
 
         $this->assertSame(
             E_ALL | E_STRICT,
-            error_reporting( E_ALL | E_STRICT ),
+            error_reporting(E_ALL | E_STRICT),
             'A test altered error_reporting to something other than E_ALL | E_STRICT'
-            );
+        );
 
         Zend_Session_Namespace::unlockAll();
 
@@ -136,8 +138,10 @@ class Zend_SessionTest extends TestCase
 
             $this->assertFalse(Zend_Session::isRegenerated());
             $id = Zend_Session::getId();
-            $this->assertTrue($id === 'myid123',
-                'getId() reported something different than set via setId("myid123")');
+            $this->assertTrue(
+                $id === 'myid123',
+                'getId() reported something different than set via setId("myid123")'
+            );
 
             Zend_Session::start();
         } else {
@@ -191,7 +195,7 @@ class Zend_SessionTest extends TestCase
     public function testInit()
     {
         $s = new Zend_Session_Namespace();
-        $this->assertTrue($s instanceof Zend_Session_Namespace,'Zend_Session Object not returned');
+        $this->assertTrue($s instanceof Zend_Session_Namespace, 'Zend_Session Object not returned');
     }
 
     /**
@@ -267,14 +271,20 @@ class Zend_SessionTest extends TestCase
     public function testNamespaceIsset()
     {
         try {
-            $this->assertFalse(Zend_Session::namespaceIsset('trees'),
-                'namespaceIsset() should have returned false for a namespace with no keys set');
+            $this->assertFalse(
+                Zend_Session::namespaceIsset('trees'),
+                'namespaceIsset() should have returned false for a namespace with no keys set'
+            );
             $s = new Zend_Session_Namespace('trees');
-            $this->assertFalse(Zend_Session::namespaceIsset('trees'),
-                'namespaceIsset() should have returned false for a namespace with no keys set');
+            $this->assertFalse(
+                Zend_Session::namespaceIsset('trees'),
+                'namespaceIsset() should have returned false for a namespace with no keys set'
+            );
             $s->cherry = 'bing';
-            $this->assertTrue(Zend_Session::namespaceIsset('trees'),
-                'namespaceIsset() should have returned true for a namespace with keys set');
+            $this->assertTrue(
+                Zend_Session::namespaceIsset('trees'),
+                'namespaceIsset() should have returned true for a namespace with keys set'
+            );
         } catch (Zend_Session_Exception $e) {
             $this->fail('Unexpected exception returned when attempting to fetch the value of non-existent key');
         }
@@ -312,7 +322,9 @@ class Zend_SessionTest extends TestCase
 
         try {
             $name = ''; // simulate a common bug, where user refers to an unset/empty variable
-            if (isset($s->$name)) { true; }
+            if (isset($s->$name)) {
+                true;
+            }
             $this->fail('No exception was returned when trying to __set() a key named ""; expected '
                 . 'Zend_Session_Exception');
         } catch (Zend_Session_Exception $e) {
@@ -346,11 +358,13 @@ class Zend_SessionTest extends TestCase
         $s1->a = 'apple';
         $s2->a = 'pear';
         $s3->a = 'orange';
-        $this->assertTrue(($s1->a != $s2->a && $s1->a != $s3->a && $s2->a != $s3->a),
-            'Zend_Session improperly shared namespaces');
-        $this->assertTrue(($s1->a === $s1b->a),'Zend_Session namespace error');
-        $this->assertTrue(($s2->a === $s2b->a),'Zend_Session namespace error');
-        $this->assertTrue(($s3->a === $s3b->a),'Zend_Session namespace error');
+        $this->assertTrue(
+            ($s1->a != $s2->a && $s1->a != $s3->a && $s2->a != $s3->a),
+            'Zend_Session improperly shared namespaces'
+        );
+        $this->assertTrue(($s1->a === $s1b->a), 'Zend_Session namespace error');
+        $this->assertTrue(($s2->a === $s2b->a), 'Zend_Session namespace error');
+        $this->assertTrue(($s3->a === $s3b->a), 'Zend_Session namespace error');
     }
 
     /**
@@ -402,8 +416,10 @@ class Zend_SessionTest extends TestCase
         foreach ($s->getIterator() as $key => $val) {
             $result .= "$key === $val;";
         }
-        $this->assertTrue($result === 'a === apple;p === pear;o === orange;',
-            'iteration over default Zend_Session namespace failed: result="' . $result . '"');
+        $this->assertTrue(
+            $result === 'a === apple;p === pear;o === orange;',
+            'iteration over default Zend_Session namespace failed: result="' . $result . '"'
+        );
         $s = new Zend_Session_Namespace('namespace');
         $s->g = 'guava';
         $s->p = 'peach';
@@ -412,8 +428,10 @@ class Zend_SessionTest extends TestCase
         foreach ($s->getIterator() as $key => $val) {
             $result .= "$key === $val;";
         }
-        $this->assertTrue($result === 'g === guava;p === plum;',
-            'iteration over named Zend_Session namespace failed');
+        $this->assertTrue(
+            $result === 'g === guava;p === plum;',
+            'iteration over named Zend_Session namespace failed'
+        );
     }
 
     /**
@@ -674,8 +692,10 @@ class Zend_SessionTest extends TestCase
         foreach ($s->getIterator() as $key => $val) {
             $result .= "$key === $val;";
         }
-        $this->assertTrue($result === 'a === apple;p === papaya;c === cherry;',
-            "unsetAll() setup for test failed: '$result'");
+        $this->assertTrue(
+            $result === 'a === apple;p === papaya;c === cherry;',
+            "unsetAll() setup for test failed: '$result'"
+        );
         $s->unsetAll();
         $result = '';
         foreach ($s->getIterator() as $key => $val) {
@@ -766,8 +786,10 @@ class Zend_SessionTest extends TestCase
         foreach ($s->getIterator() as $key => $val) {
             $result .= "$key === $val;";
         }
-        $this->assertTrue($result === 'a === apple;p === papaya;c === cherry;',
-            "unsetAll() setup for test failed: '$result'");
+        $this->assertTrue(
+            $result === 'a === apple;p === papaya;c === cherry;',
+            "unsetAll() setup for test failed: '$result'"
+        );
         $s->unsetAll();
         $result = '';
         foreach ($s->getIterator() as $key => $val) {
@@ -799,7 +821,7 @@ class Zend_SessionTest extends TestCase
         $s->a = 'apple';
         $s->p = 'pear';
         $s->o = 'orange';
-        $s->setExpirationSeconds($execTime*2 + 5);
+        $s->setExpirationSeconds($execTime * 2 + 5);
 
         Zend_Session::regenerateId();
         $id = Zend_Session::getId();
@@ -812,10 +834,12 @@ class Zend_SessionTest extends TestCase
 
         $result = $this->sortResult($result);
         $expect = ';a === apple;o === orange;p === pear';
-        $this->assertTrue($result === $expect,
-            "iteration over default Zend_Session namespace failed; expecting result === '$expect', but got '$result'");
+        $this->assertTrue(
+            $result === $expect,
+            "iteration over default Zend_Session namespace failed; expecting result === '$expect', but got '$result'"
+        );
 
-        sleep($execTime*2 + 2); // long enough for things to expire (total of $execTime*2 + 6 seconds waiting, but expires in $execTime*2 + 5)
+        sleep($execTime * 2 + 2); // long enough for things to expire (total of $execTime*2 + 6 seconds waiting, but expires in $execTime*2 + 5)
 
         session_write_close(); // release session so process below can use it
         exec("$this->_script expireAll $id expireAll", $result, $returnValue);
@@ -838,8 +862,10 @@ class Zend_SessionTest extends TestCase
         session_start(); // resume artificially suspended session
 
         $result = $this->sortResult($result);
-        $this->assertTrue($result === ';p === plum',
-            "iteration over named Zend_Session namespace failed (result=$result)");
+        $this->assertTrue(
+            $result === ';p === plum',
+            "iteration over named Zend_Session namespace failed (result=$result)"
+        );
     }
 
     /**
@@ -866,11 +892,15 @@ class Zend_SessionTest extends TestCase
 
             $result = $this->sortResult($result);
             if ($i > $expireBeforeHop) {
-                $this->assertTrue($result === '',
-                    "iteration over default Zend_Session namespace failed (result='$result'; hop #$i)");
+                $this->assertTrue(
+                    $result === '',
+                    "iteration over default Zend_Session namespace failed (result='$result'; hop #$i)"
+                );
             } else {
-                $this->assertTrue($result === ';a === apple;o === orange;p === pear',
-                    "iteration over default Zend_Session namespace failed (result='$result'; hop #$i)");
+                $this->assertTrue(
+                    $result === ';a === apple;o === orange;p === pear',
+                    "iteration over default Zend_Session namespace failed (result='$result'; hop #$i)"
+                );
             }
         }
     }
@@ -943,11 +973,15 @@ class Zend_SessionTest extends TestCase
 
             $result = $this->sortResult($result);
             if ($i > $expireBeforeHop) {
-                $this->assertTrue($result === ';p === plum',
-                    "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)");
+                $this->assertTrue(
+                    $result === ';p === plum',
+                    "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)"
+                );
             } else {
-                $this->assertTrue($result === ';g === guava;p === plum',
-                    "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)");
+                $this->assertTrue(
+                    $result === ';g === guava;p === plum',
+                    "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)"
+                );
             }
         }
     }
@@ -971,8 +1005,10 @@ class Zend_SessionTest extends TestCase
 
         $result = array_pop($result);
         $expect = 'top === begin;astring === happy;someArray === Array;(;[0]=>aspace;[1]=>1;[2]=>2;[3]=>3;[4]=>4;[5]=>5;[bee]=>honey;[ant]=>sugar;[dog]=>cat;);;serializedArray === a:8:{i:0;s:6:"aspace";i:1;s:1:"1";i:2;s:1:"2";i:3;s:1:"3";i:4;s:1:"4";i:5;s:1:"5";s:3:"ant";s:5:"sugar";s:3:"dog";s:3:"cat";};';
-        $this->assertTrue($result === $expect,
-            "iteration over default Zend_Session namespace failed; expecting result ===\n$expect\n, but got\n$result\n)");
+        $this->assertTrue(
+            $result === $expect,
+            "iteration over default Zend_Session namespace failed; expecting result ===\n$expect\n, but got\n$result\n)"
+        );
     }
 
     /**
@@ -999,8 +1035,10 @@ class Zend_SessionTest extends TestCase
             session_start(); // resume artificially suspended session
 
             $result = $this->sortResult($result);
-            $this->assertTrue($result === '',
-                    "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)");
+            $this->assertTrue(
+                $result === '',
+                "iteration over named Zend_Session namespace failed (result='$result'; hop #$i)"
+            );
         }
 
         for ($i = 1; $i <= ($expireBeforeHop + 2); $i++) {
@@ -1011,12 +1049,16 @@ class Zend_SessionTest extends TestCase
             $result = $this->sortResult($result);
             if ($i > $expireBeforeHop) {
                 $expect = ';p === plum';
-                $this->assertTrue($result === $expect,
-                    "unexpected results iterating over named Zend_Session namespace (result='$result'; expected '$expect'; hop #$i)");
+                $this->assertTrue(
+                    $result === $expect,
+                    "unexpected results iterating over named Zend_Session namespace (result='$result'; expected '$expect'; hop #$i)"
+                );
             } else {
                 $expect = ';g === guava;p === plum';
-                $this->assertTrue($result === $expect,
-                    "unexpected results iterating over named Zend_Session namespace (result='$result'; expected '$expect'; hop #$i)");
+                $this->assertTrue(
+                    $result === $expect,
+                    "unexpected results iterating over named Zend_Session namespace (result='$result'; expected '$expect'; hop #$i)"
+                );
             }
         }
 
@@ -1065,7 +1107,7 @@ class Zend_SessionTest extends TestCase
         try {
             Zend_Session::start();
             require_once dirname(__FILE__) . '/Validator/NoticeValidator.php';
-            Zend_Session::registerValidator(new Zend_Session_Validator_NoticeValidator);
+            Zend_Session::registerValidator(new Zend_Session_Validator_NoticeValidator());
         } catch (Notice $exception) {
             $this->fail($exception->getMessage());
         }
@@ -1080,16 +1122,18 @@ class Zend_SessionTest extends TestCase
         ini_set('session.hash_bits_per_character', 5);
 
         // Session store
-        $sessionCharSet = array_merge(range(0,9), range('a','v'));
+        $sessionCharSet = array_merge(range(0, 9), range('a', 'v'));
         $sessionStore = dirname(__FILE__)
                       . DIRECTORY_SEPARATOR . "_files"
                       . DIRECTORY_SEPARATOR . "ZF-3378";
-        if ( !is_dir($sessionStore) ) @mkdir($sessionStore, 0755, true);
+        if (!is_dir($sessionStore)) {
+            @mkdir($sessionStore, 0755, true);
+        }
         ini_set('session.save_path', "1;666;" . $sessionStore);
 
         // When using subdirs for session.save_path, the directory structure
         // is your own responsibility...set it up, or else bad things happen
-        foreach ( $sessionCharSet as $subdir ) {
+        foreach ($sessionCharSet as $subdir) {
             @mkdir($sessionStore . DIRECTORY_SEPARATOR . $subdir);
         }
 
@@ -1109,9 +1153,9 @@ class Zend_SessionTest extends TestCase
 
         // We don't need the session any more, clean it up
         //but we don't to want to destroy it completely, while other tests can start
-        Zend_Session::$_unitTestEnabled = true; 
+        Zend_Session::$_unitTestEnabled = true;
         Zend_Session::destroy();
-        foreach ( $sessionCharSet as $subdir ) {
+        foreach ($sessionCharSet as $subdir) {
             @rmdir($sessionStore . DIRECTORY_SEPARATOR . $subdir);
         }
         @rmdir($sessionStore);

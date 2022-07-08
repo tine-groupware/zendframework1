@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,12 +43,12 @@ abstract class Zend_Ldap_TestCase extends TestCase
      */
     protected function _createTestArrayData()
     {
-        $data=[
-            'dn'          => 'cn=name,dc=example,dc=org',
-            'cn'          => ['name'],
-            'host'        => ['a', 'b', 'c'],
-            'empty'       => [],
-            'boolean'     => ['TRUE', 'FALSE'],
+        $data = [
+            'dn' => 'cn=name,dc=example,dc=org',
+            'cn' => ['name'],
+            'host' => ['a', 'b', 'c'],
+            'empty' => [],
+            'boolean' => ['TRUE', 'FALSE'],
             'objectclass' => ['account', 'top'],
         ];
         return $data;

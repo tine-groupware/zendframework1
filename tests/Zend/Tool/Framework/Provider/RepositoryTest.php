@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -44,7 +46,6 @@ require_once '_files/ProviderAltName.php';
  */
 class Zend_Tool_Framework_Provider_RepositoryTest extends TestCase
 {
-
     /**
      * @var Zend_Tool_Framework_Provider_Repository
      */
@@ -116,7 +117,6 @@ class Zend_Tool_Framework_Provider_RepositoryTest extends TestCase
         foreach ($this->_repository->getProviders() as $provider) {
             $this->assertTrue($provider instanceof Zend_Tool_Framework_Provider_Interface);
         }
-
     }
 
     public function testGetProviderSignaturesReturnsProviderSignatures()
@@ -128,7 +128,6 @@ class Zend_Tool_Framework_Provider_RepositoryTest extends TestCase
         foreach ($this->_repository->getProviderSignatures() as $providerSignature) {
             $this->assertTrue($providerSignature instanceof Zend_Tool_Framework_Provider_Signature);
         }
-
     }
 
     public function testHasProviderReturnsCorrectValues()
@@ -169,5 +168,4 @@ class Zend_Tool_Framework_Provider_RepositoryTest extends TestCase
             $this->assertTrue(true);
         }
     }
-
 }

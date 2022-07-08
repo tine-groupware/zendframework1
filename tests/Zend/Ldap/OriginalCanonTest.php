@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -48,16 +50,21 @@ class Zend_Ldap_OriginalCanonTest extends TestCase
             'password' => TESTS_ZEND_LDAP_PASSWORD,
             'baseDn' => TESTS_ZEND_LDAP_BASE_DN,
         ];
-        if (defined('TESTS_ZEND_LDAP_PORT') && TESTS_ZEND_LDAP_PORT != 389)
+        if (defined('TESTS_ZEND_LDAP_PORT') && TESTS_ZEND_LDAP_PORT != 389) {
             $this->_options['port'] = TESTS_ZEND_LDAP_PORT;
-        if (defined('TESTS_ZEND_LDAP_USE_SSL'))
+        }
+        if (defined('TESTS_ZEND_LDAP_USE_SSL')) {
             $this->_options['useSsl'] = TESTS_ZEND_LDAP_USE_SSL;
-        if (defined('TESTS_ZEND_LDAP_BIND_REQUIRES_DN'))
+        }
+        if (defined('TESTS_ZEND_LDAP_BIND_REQUIRES_DN')) {
             $this->_options['bindRequiresDn'] = TESTS_ZEND_LDAP_BIND_REQUIRES_DN;
-        if (defined('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME'))
+        }
+        if (defined('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME')) {
             $this->_options['accountDomainName'] = TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME;
-        if (defined('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME_SHORT'))
+        }
+        if (defined('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME_SHORT')) {
             $this->_options['accountDomainNameShort'] = TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME_SHORT;
+        }
         if (defined('TESTS_ZEND_LDAP_ALT_USERNAME')) {
             $this->_names[Zend_Ldap::ACCTNAME_FORM_USERNAME] = TESTS_ZEND_LDAP_ALT_USERNAME;
             if (defined('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME')) {

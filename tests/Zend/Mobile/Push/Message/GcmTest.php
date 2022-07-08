@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -46,7 +48,7 @@ class Zend_Mobile_Push_Message_GcmTest extends TestCase
     {
         $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $msg = new Zend_Mobile_Push_Message_Gcm();
-        $msg->addData('key', new stdClass);
+        $msg->addData('key', new stdClass());
     }
 
     public function testSetData()

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -48,7 +50,7 @@ class Zend_Paginator_Adapter_IteratorTest extends TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp (): void
+    protected function setUp(): void
     {
         parent::setUp();
         $iterator = new ArrayIterator(range(1, 101));
@@ -57,7 +59,7 @@ class Zend_Paginator_Adapter_IteratorTest extends TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown (): void
+    protected function tearDown(): void
     {
         $this->_adapter = null;
         parent::tearDown();
@@ -122,17 +124,19 @@ class Zend_Paginator_Adapter_IteratorTest extends TestCase
     /**
      * @group ZF-8084
      */
-    public function testGetItemsSerializable() {
+    public function testGetItemsSerializable()
+    {
         $items = $this->_adapter->getItems(0, 1);
         $innerIterator = $items->getInnerIterator();
         $items = unserialize(serialize($items));
-        $this->assertTrue( ($items->getInnerIterator() == $innerIterator), 'getItems has to be serializable to use caching');
+        $this->assertTrue(($items->getInnerIterator() == $innerIterator), 'getItems has to be serializable to use caching');
     }
 
     /**
      * @group ZF-4151
      */
-    public function testEmptySet() {
+    public function testEmptySet()
+    {
         $iterator = new ArrayIterator([]);
         $this->_adapter = new Zend_Paginator_Adapter_Iterator($iterator);
         $actual = $this->_adapter->getItems(0, 10);

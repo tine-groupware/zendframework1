@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,9 +56,8 @@ class Zend_Layout_PluginTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Layout_PluginTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Layout_PluginTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -116,7 +117,7 @@ class Zend_Layout_PluginTest extends TestCase
     public function testGetLayoutReturnsLayoutObjectWhenPulledFromPluginBroker()
     {
         $layout = Zend_Layout::startMvc();
-        $front  = Zend_Controller_Front::getInstance();
+        $front = Zend_Controller_Front::getInstance();
         $this->assertTrue($front->hasPlugin('Zend_Layout_Controller_Plugin_Layout'));
         $plugin = $front->getPlugin('Zend_Layout_Controller_Plugin_Layout');
         $this->assertSame($layout, $plugin->getLayout());
@@ -124,8 +125,8 @@ class Zend_Layout_PluginTest extends TestCase
 
     public function testPostDispatchRendersLayout()
     {
-        $front    = Zend_Controller_Front::getInstance();
-        $request  = new Zend_Controller_Request_Simple();
+        $front = Zend_Controller_Front::getInstance();
+        $request = new Zend_Controller_Request_Simple();
         $response = new Zend_Controller_Response_Cli();
 
         $request->setDispatched(true);
@@ -152,8 +153,8 @@ class Zend_Layout_PluginTest extends TestCase
 
     public function testPostDispatchDoesNotRenderLayoutWhenForwardDetected()
     {
-        $front    = Zend_Controller_Front::getInstance();
-        $request  = new Zend_Controller_Request_Simple();
+        $front = Zend_Controller_Front::getInstance();
+        $request = new Zend_Controller_Request_Simple();
         $response = new Zend_Controller_Response_Cli();
 
         $request->setDispatched(false);
@@ -177,8 +178,8 @@ class Zend_Layout_PluginTest extends TestCase
 
     public function testPostDispatchDoesNotRenderLayoutWhenLayoutDisabled()
     {
-        $front    = Zend_Controller_Front::getInstance();
-        $request  = new Zend_Controller_Request_Simple();
+        $front = Zend_Controller_Front::getInstance();
+        $request = new Zend_Controller_Request_Simple();
         $response = new Zend_Controller_Response_Cli();
 
         $request->setDispatched(true);
@@ -206,8 +207,8 @@ class Zend_Layout_PluginTest extends TestCase
      */
     public function testPostDispatchDoesNotRenderLayoutWhenResponseRedirected()
     {
-        $front    = Zend_Controller_Front::getInstance();
-        $request  = new Zend_Controller_Request_Simple();
+        $front = Zend_Controller_Front::getInstance();
+        $request = new Zend_Controller_Request_Simple();
         $response = new Zend_Controller_Response_Cli();
 
         $request->setDispatched(true);

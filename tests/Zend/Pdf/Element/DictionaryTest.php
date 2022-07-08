@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -117,8 +119,10 @@ class Zend_Pdf_Element_DictionaryTest extends TestCase
         $srcArray['Text'] = new Zend_Pdf_Element_String('some text');
         $srcArray['BinaryText'] = new Zend_Pdf_Element_String_Binary("\x01\x02\x00\xff");
         $dictionaryObj = new Zend_Pdf_Element_Dictionary($srcArray);
-        $this->assertEquals($dictionaryObj->toString(),
-                            '<</Bool false /Number 100.426 /Name /MyName /Text (some text) /BinaryText <010200FF> >>');
+        $this->assertEquals(
+            $dictionaryObj->toString(),
+            '<</Bool false /Number 100.426 /Name /MyName /Text (some text) /BinaryText <010200FF> >>'
+        );
     }
 
     public function testAdd()
@@ -128,8 +132,9 @@ class Zend_Pdf_Element_DictionaryTest extends TestCase
         $dictionaryObj->add(new Zend_Pdf_Element_Name('Var2'), new Zend_Pdf_Element_Numeric(100.426));
         $dictionaryObj->add(new Zend_Pdf_Element_Name('Var3'), new Zend_Pdf_Element_Name('MyName'));
         $dictionaryObj->add(new Zend_Pdf_Element_Name('Var4'), new Zend_Pdf_Element_String('some text'));
-        $this->assertEquals($dictionaryObj->toString(),
-                            '<</Var1 false /Var2 100.426 /Var3 /MyName /Var4 (some text) >>');
+        $this->assertEquals(
+            $dictionaryObj->toString(),
+            '<</Var1 false /Var2 100.426 /Var3 /MyName /Var4 (some text) >>'
+        );
     }
-
 }

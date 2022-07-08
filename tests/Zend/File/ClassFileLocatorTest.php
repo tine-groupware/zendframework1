@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,7 +40,6 @@ require_once 'Zend/File/ClassFileLocator.php';
  */
 class Zend_File_ClassFileLocatorTest extends TestCase
 {
-
     public function testConstructorThrowsInvalidArgumentExceptionForInvalidStringDirectory()
     {
         $this->expectException('InvalidArgumentException');

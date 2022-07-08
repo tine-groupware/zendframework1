@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -54,21 +56,21 @@ class Zend_Queue_MessageTest extends TestCase
     {
         // Test Zend_Config
         $this->options = [
-            'name'      => 'queue1',
-            'params'    => [],
+            'name' => 'queue1',
+            'params' => [],
         ];
 
         $this->queue = new Zend_Queue('array', $this->options);
 
         $this->data = [
-            'id'     => 123,
+            'id' => 123,
             'handle' => 567,
-            'body'   => 'Hello world' // This is my 2524'th time writing that.
+            'body' => 'Hello world' // This is my 2524'th time writing that.
         ];
 
         $this->options = [
-            'queue'     => $this->queue,
-            'data'      => $this->data,
+            'queue' => $this->queue,
+            'data' => $this->data,
         ];
 
         $this->message = new Zend_Queue_Message($this->options);
@@ -196,5 +198,4 @@ class Zend_Queue_MessageTest extends TestCase
         $woken = unserialize($message);
         $this->assertEquals($this->message->body, $woken->body);
     }
-
 }

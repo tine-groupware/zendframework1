@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -41,8 +43,8 @@ class Zend_Stdlib_SplPriorityQueueTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -63,7 +65,7 @@ class Zend_Stdlib_SplPriorityQueueTest extends TestCase
         $queue->insert('bat', 1000);
 
         $expected = ['foo', 'bar', 'baz', 'bat'];
-        $test     = [];
+        $test = [];
         foreach ($queue as $datum) {
             $test[] = $datum;
         }
@@ -91,12 +93,12 @@ class Zend_Stdlib_SplPriorityQueueTest extends TestCase
     public function testCanRetrieveQueueAsArray()
     {
         $expected = [
-            'bar', 
-            'foo', 
-            'baz', 
+            'bar',
+            'foo',
+            'baz',
             'bat',
         ];
-        $test     = $this->queue->toArray();
+        $test = $this->queue->toArray();
         $this->assertSame($expected, $test, var_export($test, 1));
     }
 }

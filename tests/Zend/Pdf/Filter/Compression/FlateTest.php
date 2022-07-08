@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 class Zend_Pdf_Filter_Compression_FlateTest extends TestCase
 {
     protected function setUp(): void

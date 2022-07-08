@@ -34,8 +34,7 @@ require_once 'Zend/View/Helper/Navigation.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Navigation_NavigationTest
-    extends Zend_View_Helper_Navigation_TestAbstract
+class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Navigation_TestAbstract
 {
     /**
      * Class name for view helper to test
@@ -121,11 +120,11 @@ class Zend_View_Helper_Navigation_NavigationTest
 
         // result
         $expected = [
-            'menu'        => '',
+            'menu' => '',
             'breadcrumbs' => ''
         ];
         $actual = [
-            'menu'        => $this->_helper->render(),
+            'menu' => $this->_helper->render(),
             'breadcrumbs' => $this->_helper->breadcrumbs()->render()
         ];
 
@@ -356,13 +355,13 @@ class Zend_View_Helper_Navigation_NavigationTest
         $container = new Zend_Navigation([
             [
                 'label' => 'Page 1',
-                'id'    => 'p1',
-                'uri'   => 'p1'
+                'id' => 'p1',
+                'uri' => 'p1'
             ],
             [
                 'label' => 'Page 2',
-                'id'    => 'p2',
-                'uri'   => 'p2'
+                'id' => 'p2',
+                'uri' => 'p2'
             ]
         ]);
 
@@ -388,7 +387,7 @@ class Zend_View_Helper_Navigation_NavigationTest
         $this->_helper->view->addHelperPath(
             $this->_files . '/helpers',
             'My_View_Helper_Navigation'
-        );                
+        );
         
         $this->assertTrue(
             $this->_helper->findHelper('menu') instanceof
@@ -439,13 +438,13 @@ class Zend_View_Helper_Navigation_NavigationTest
         $container = new Zend_Navigation([
             [
                 'label' => 'Page 1',
-                'id'    => 'p1',
-                'uri'   => 'p1'
+                'id' => 'p1',
+                'uri' => 'p1'
             ],
             [
-                'label'   => 'Page 2',
-                'id'      => 'p2',
-                'uri'     => 'p2',
+                'label' => 'Page 2',
+                'id' => 'p2',
+                'uri' => 'p2',
                 'visible' => false
             ]
         ]);

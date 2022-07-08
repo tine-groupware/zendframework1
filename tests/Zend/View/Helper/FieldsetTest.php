@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,9 +53,8 @@ class Zend_View_Helper_FieldsetTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_FieldsetTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FieldsetTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -64,7 +65,7 @@ class Zend_View_Helper_FieldsetTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_Fieldset();
         $this->helper->setView($this->view);
         ob_start();

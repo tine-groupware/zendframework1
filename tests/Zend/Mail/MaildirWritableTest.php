@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -488,12 +490,12 @@ class Zend_Mail_MaildirWritableTest extends TestCase
     {
         $mail = new Zend_Mail_Storage_Writable_Maildir($this->_params);
         $quotaResult = [
-            'size'  => 2596,
+            'size' => 2596,
             'count' => 6,
             'quota' => [
                     'count' => 10,
-                    'L'     => 1,
-                    'size'  => 3000
+                    'L' => 1,
+                    'size' => 3000
                 ],
             'over_quota' => false
         ];
@@ -516,12 +518,12 @@ class Zend_Mail_MaildirWritableTest extends TestCase
         $this->assertEquals($mail->getQuota(true), ['size' => 3000, 'L' => 1, 'count' => 10]);
 
         $quotaResult = [
-            'size'  => 2596,
+            'size' => 2596,
             'count' => 6,
             'quota' => [
-                    'size'  => 100,
+                    'size' => 100,
                     'count' => 2,
-                    'X'     => 0
+                    'X' => 0
                 ],
             'over_quota' => true
         ];
@@ -541,7 +543,7 @@ class Zend_Mail_MaildirWritableTest extends TestCase
 
         try {
             $mail->getQuota(true);
-        } catch(Zend_Mail_Exception $e) {
+        } catch (Zend_Mail_Exception $e) {
             // ok
             return;
         }
@@ -555,12 +557,12 @@ class Zend_Mail_MaildirWritableTest extends TestCase
         $mail->setQuota(['size' => 100, 'count' => 2, 'X' => 0]);
 
         $quotaResult = [
-            'size'  => 2596,
+            'size' => 2596,
             'count' => 6,
             'quota' => [
-                    'size'  => 100,
+                    'size' => 100,
                     'count' => 2,
-                    'X'     => 0
+                    'X' => 0
                 ],
             'over_quota' => true
         ];
@@ -576,12 +578,12 @@ class Zend_Mail_MaildirWritableTest extends TestCase
         $this->assertFalse($mail->checkQuota(false, true));
         $mail->appendMessage("Subject: test\r\n\r\n");
         $quotaResult = [
-            'size'  => 2613,
+            'size' => 2613,
             'count' => 7,
             'quota' => [
-                    'size'  => 3000,
+                    'size' => 3000,
                     'count' => 6,
-                    'X'     => 0
+                    'X' => 0
                 ],
             'over_quota' => true
         ];
@@ -591,7 +593,7 @@ class Zend_Mail_MaildirWritableTest extends TestCase
         $this->assertTrue($mail->checkQuota());
         try {
             $mail->appendMessage("Subject: test\r\n\r\n");
-        } catch(Zend_Mail_Exception $e) {
+        } catch (Zend_Mail_Exception $e) {
             $this->fail('appending should not fail if quota check is not active');
         }
 
@@ -599,7 +601,7 @@ class Zend_Mail_MaildirWritableTest extends TestCase
         $this->assertTrue($mail->checkQuota());
         try {
             $mail->appendMessage("Subject: test\r\n\r\n");
-        } catch(Zend_Mail_Exception $e) {
+        } catch (Zend_Mail_Exception $e) {
             // ok
             return;
         }
@@ -623,12 +625,12 @@ class Zend_Mail_MaildirWritableTest extends TestCase
         $this->assertFalse($mail->checkQuota(false, true));
         $mail->copyMessage(1, 'subfolder');
         $quotaResult = [
-            'size'  => 2993,
+            'size' => 2993,
             'count' => 7,
             'quota' => [
-                    'size'  => 3000,
+                    'size' => 3000,
                     'count' => 6,
-                    'X'     => 0
+                    'X' => 0
                 ],
             'over_quota' => true
         ];

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_Text_MultiByteTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Text_MultiByteTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Text_MultiByteTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -55,8 +57,8 @@ class Zend_ProgressBar_ProgressBarTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_ProgressBar_ProgressBarTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_ProgressBar_ProgressBarTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testGreaterMin()
@@ -188,17 +190,16 @@ class Zend_ProgressBar_Adapter_MockUp extends Zend_ProgressBar_Adapter
 
     public function notify($current, $max, $percent, $timeTaken, $timeRemaining, $text)
     {
-        $this->_current       = $current;
-        $this->_max           = $max;
-        $this->_percent       = $percent;
-        $this->_timeTaken     = $timeTaken;
+        $this->_current = $current;
+        $this->_max = $max;
+        $this->_percent = $percent;
+        $this->_timeTaken = $timeTaken;
         $this->_timeRemaining = $timeRemaining;
-        $this->_text          = $text;
+        $this->_text = $text;
     }
 
     public function finish()
     {
-
     }
 
     public function getCurrent()

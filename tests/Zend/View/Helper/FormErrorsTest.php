@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,9 +53,8 @@ class Zend_View_Helper_FormErrorsTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_FormErrorsTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormErrorsTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -64,7 +65,7 @@ class Zend_View_Helper_FormErrorsTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormErrors();
         $this->helper->setView($this->view);
         ob_start();
@@ -169,7 +170,7 @@ class Zend_View_Helper_FormErrorsTest extends TestCase
      */
     public function testCanSetClassAttribute()
     {
-        $options    = ['class' => 'custom-class'];
+        $options = ['class' => 'custom-class'];
         $actualHtml = $this->helper->formErrors([], $options);
         $this->assertEquals(
             '<ul class="custom-class"><li></li></ul>',
@@ -185,8 +186,8 @@ class Zend_View_Helper_FormErrorsTest extends TestCase
         $actual = $this->helper->formErrors(
             ['foo', 'bar', 'baz'],
             [
-                 'elementStart'     => '<p>',
-                 'elementEnd'       => '</p>',
+                 'elementStart' => '<p>',
+                 'elementEnd' => '</p>',
                  'elementSeparator' => '<br>',
             ]
         );

@@ -35,7 +35,6 @@ require_once 'Zend/Barcode/Object/Code39.php';
  */
 class Zend_Barcode_Renderer_SvgTest extends Zend_Barcode_Renderer_TestCommon
 {
-
     protected function _getRendererObject($options = null)
     {
         return new Zend_Barcode_Renderer_Svg($options);

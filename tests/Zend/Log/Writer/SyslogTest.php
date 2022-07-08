@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Log_Writer_SyslogTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -60,7 +62,7 @@ class Zend_Log_Writer_SyslogTest extends TestCase
     {
         $cfg = [
             'application' => 'my app',
-            'facility'    => LOG_USER
+            'facility' => LOG_USER
         ];
 
         $writer = Zend_Log_Writer_Syslog::factory($cfg);
@@ -103,7 +105,7 @@ class Zend_Log_Writer_SyslogTest extends TestCase
      */
     public function testFluentInterface()
     {
-        $writer   = new Zend_Log_Writer_Syslog();
+        $writer = new Zend_Log_Writer_Syslog();
         $instance = $writer->setFacility(LOG_USER)
                            ->setApplicationName('my_app');
 
@@ -126,7 +128,7 @@ class Zend_Log_Writer_SyslogTest extends TestCase
     public function testWriteWithFormatter()
     {
         $event = [
-        	'message' => 'tottakai',
+            'message' => 'tottakai',
             'priority' => Zend_Log::ERR
         ];
 

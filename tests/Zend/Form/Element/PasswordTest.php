@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,9 +52,8 @@ class Zend_Form_Element_PasswordTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Element_PasswordTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_PasswordTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -109,7 +110,7 @@ class Zend_Form_Element_PasswordTest extends TestCase
             'Alpha',
             'Alnum'
         ]);
-        $value  = 'abc-123';
+        $value = 'abc-123';
         $expect = '*******';
         $this->assertFalse($this->element->isValid($value));
         foreach ($this->element->getMessages() as $message) {

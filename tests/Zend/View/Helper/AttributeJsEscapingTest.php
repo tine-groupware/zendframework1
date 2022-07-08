@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_View_Helper_AttributeJsEscapingTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormSubmitTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormSubmitTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -68,7 +70,7 @@ class Zend_View_Helper_AttributeJsEscapingTest extends TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry['Zend_View_Helper_Doctype']);
         }
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormSubmit();
         $this->helper->setView($this->view);
     }
@@ -91,8 +93,8 @@ class Zend_View_Helper_AttributeJsEscapingTest extends TestCase
     public function testRendersSubmitInput()
     {
         $html = $this->helper->formSubmit([
-            'name'    => 'foo',
-            'value'   => 'Submit!',
+            'name' => 'foo',
+            'value' => 'Submit!',
             'attribs' => ['onsubmit' => ['foo', '\'bar\'', 10]]
         ]);
         $this->assertEquals('<input type="submit" name="foo" id="foo" value="Submit!" onsubmit=\'["foo","&#39;bar&#39;",10]\'>', $html);

@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+
 use PHPUnit\Framework\ExpectationFailedException;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *

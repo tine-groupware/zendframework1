@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -64,7 +66,7 @@ class Zend_Paginator_ScrollingStyle_AllTest extends TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown (): void
+    protected function tearDown(): void
     {
         $this->_scrollingStyle = null;
         $this->_paginator = null;

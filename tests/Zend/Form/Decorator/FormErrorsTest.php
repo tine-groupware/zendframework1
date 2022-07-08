@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,8 +55,8 @@ class Zend_Form_Decorator_FormErrorsTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Form_Decorator_FormErrorsTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_FormErrorsTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -86,7 +88,7 @@ class Zend_Form_Decorator_FormErrorsTest extends TestCase
 
     public function setupForm()
     {
-        $form1 = new Zend_Form_SubForm;
+        $form1 = new Zend_Form_SubForm();
         $form1->addElement('text', 'foo', [
                     'label' => 'Sub Foo: ',
                     'required' => true,
@@ -103,7 +105,7 @@ class Zend_Form_Decorator_FormErrorsTest extends TestCase
                         'Alnum',
                     ],
                 ]);
-        $form2 = new Zend_Form;
+        $form2 = new Zend_Form();
         $form2->addElement('text', 'foo', [
                     'label' => 'Master Foo: ',
                     'required' => true,
@@ -226,13 +228,13 @@ class Zend_Form_Decorator_FormErrorsTest extends TestCase
     public function testMarkupOptionsMayBePassedViaSetOptions()
     {
         $options = [
-            'ignoreSubForms'          => true,
-            'markupElementLabelEnd'   => '</i>',
+            'ignoreSubForms' => true,
+            'markupElementLabelEnd' => '</i>',
             'markupElementLabelStart' => '<i>',
-            'markupListEnd'           => '</dl>',
-            'markupListItemEnd'       => '</dd>',
-            'markupListItemStart'     => '<dd>',
-            'markupListStart'         => '<dl class="form-errors">',
+            'markupListEnd' => '</dl>',
+            'markupListItemEnd' => '</dd>',
+            'markupListItemStart' => '<dd>',
+            'markupListStart' => '<dl class="form-errors">',
         ];
         $this->decorator->setOptions($options);
         foreach ($options as $key => $value) {
@@ -248,13 +250,13 @@ class Zend_Form_Decorator_FormErrorsTest extends TestCase
     public function testMarkupOptionsShouldBeUsedWhenRendering()
     {
         $options = [
-            'ignoreSubForms'          => true,
-            'markupElementLabelEnd'   => '</i>',
+            'ignoreSubForms' => true,
+            'markupElementLabelEnd' => '</i>',
             'markupElementLabelStart' => '<i>',
-            'markupListEnd'           => '</div>',
-            'markupListItemEnd'       => '</p>',
-            'markupListItemStart'     => '<p>',
-            'markupListStart'         => '<div class="form-errors">',
+            'markupListEnd' => '</div>',
+            'markupListItemEnd' => '</p>',
+            'markupListItemStart' => '<p>',
+            'markupListStart' => '<div class="form-errors">',
         ];
         $this->setupForm();
         $this->decorator->setOptions($options);
@@ -376,7 +378,7 @@ class Zend_Form_Decorator_FormErrorsTest extends TestCase
             'array',
             [
                  'Master Foo: ' => 'transleted label',
-                 'bar'          => 'translated name',
+                 'bar' => 'translated name',
             ]
         );
 

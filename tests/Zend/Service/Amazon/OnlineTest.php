@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -75,7 +77,7 @@ class Zend_Service_Amazon_OnlineTest extends TestCase
      */
     protected function setUp(): void
     {
-        if(!defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID') || !defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_SECRETKEY')) {
+        if (!defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID') || !defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_SECRETKEY')) {
             $this->markTestSkipped('Constants AccessKeyId and SecretKey have to be set.');
         }
 
@@ -109,8 +111,8 @@ class Zend_Service_Amazon_OnlineTest extends TestCase
     public function testItemSearchBooksPhp()
     {
         $resultSet = $this->_amazon->itemSearch([
-            'SearchIndex'   => 'Books',
-            'Keywords'      => 'php',
+            'SearchIndex' => 'Books',
+            'Keywords' => 'php',
             'ResponseGroup' => 'Small,ItemAttributes,Images,SalesRank,Reviews,EditorialReview,Similarities,'
                              . 'ListmaniaLists'
             ]);
@@ -150,8 +152,8 @@ class Zend_Service_Amazon_OnlineTest extends TestCase
     public function testItemSearchMusicMozart()
     {
         $resultSet = $this->_amazon->itemSearch([
-            'SearchIndex'   => 'Music',
-            'Keywords'      => 'Mozart',
+            'SearchIndex' => 'Music',
+            'Keywords' => 'Mozart',
             'ResponseGroup' => 'Small,Tracks,Offers'
             ]);
 
@@ -168,8 +170,8 @@ class Zend_Service_Amazon_OnlineTest extends TestCase
     public function testItemSearchElectronicsDigitalCamera()
     {
         $resultSet = $this->_amazon->itemSearch([
-            'SearchIndex'   => 'Electronics',
-            'Keywords'      => 'digital camera',
+            'SearchIndex' => 'Electronics',
+            'Keywords' => 'digital camera',
             'ResponseGroup' => 'Accessories'
             ]);
 
@@ -187,8 +189,8 @@ class Zend_Service_Amazon_OnlineTest extends TestCase
     {
         $resultSet = $this->_amazon->itemSearch([
             'SearchIndex' => 'Books',
-            'Keywords'    => 'php',
-            'Sort'        => '-titlerank'
+            'Keywords' => 'php',
+            'Sort' => '-titlerank'
             ]);
 
         foreach ($resultSet as $item) {
@@ -207,8 +209,8 @@ class Zend_Service_Amazon_OnlineTest extends TestCase
         try {
             $this->_amazon->itemSearch([
                 'SearchIndex' => 'Restaurants',
-                'Keywords'    => 'seafood',
-                'City'        => 'Des Moines'
+                'Keywords' => 'seafood',
+                'City' => 'Des Moines'
                 ]);
             $this->fail('Expected Zend_Service_Exception not thrown');
         } catch (Zend_Service_Exception $e) {

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -47,7 +49,7 @@ class Zend_Soap_ServerTest extends TestCase
     protected function setUp(): void
     {
         if (!extension_loaded('soap')) {
-           $this->markTestSkipped('SOAP Extension is not loaded');
+            $this->markTestSkipped('SOAP Extension is not loaded');
         }
     }
 
@@ -60,7 +62,7 @@ class Zend_Soap_ServerTest extends TestCase
         $options = ['soap_version' => SOAP_1_1,
                          'actor' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
                          'classmap' => ['TestData1' => 'Zend_Soap_Server_TestData1',
-                                             'TestData2' => 'Zend_Soap_Server_TestData2',],
+                                             'TestData2' => 'Zend_Soap_Server_TestData2', ],
                          'encoding' => 'ISO-8859-1',
                          'uri' => 'http://framework.zend.com/Zend_Soap_ServerTest.php'
                         ];
@@ -167,7 +169,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setSoapVersion('bogus');
             $this->fail('Invalid soap versions should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -197,7 +199,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setActor('bogus');
             $this->fail('Invalid actor should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -221,7 +223,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setUri('bogus');
             $this->fail('Invalid URI should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -248,13 +250,13 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setClassmap('bogus');
             $this->fail('Classmap which is not an array should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
         try {
             $server->setClassmap(['soapTypeName', 'bogusClassName']);
             $this->fail('Invalid class within classmap should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -276,12 +278,12 @@ class Zend_Soap_ServerTest extends TestCase
         $server = new Zend_Soap_Server();
 
         $this->assertNull($server->getWsdl());
-        $server->setWsdl(dirname(__FILE__).'/_files/wsdl_example.wsdl');
-        $this->assertEquals(dirname(__FILE__).'/_files/wsdl_example.wsdl', $server->getWsdl());
+        $server->setWsdl(dirname(__FILE__) . '/_files/wsdl_example.wsdl');
+        $this->assertEquals(dirname(__FILE__) . '/_files/wsdl_example.wsdl', $server->getWsdl());
         try {
-            $server->setWsdl(dirname(__FILE__).'/_files/bogus.wsdl');
+            $server->setWsdl(dirname(__FILE__) . '/_files/bogus.wsdl');
             $this->fail('Invalid WSDL URI or PATH should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -291,8 +293,8 @@ class Zend_Soap_ServerTest extends TestCase
         $server = new Zend_Soap_Server();
 
         $this->assertNull($server->getWsdl());
-        $server->setWsdl(dirname(__FILE__).'/_files/wsdl_example.wsdl');
-        $this->assertEquals(dirname(__FILE__).'/_files/wsdl_example.wsdl', $server->getWsdl());
+        $server->setWsdl(dirname(__FILE__) . '/_files/wsdl_example.wsdl');
+        $this->assertEquals(dirname(__FILE__) . '/_files/wsdl_example.wsdl', $server->getWsdl());
     }
 
     public function testAddFunction()
@@ -320,7 +322,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->addFunction(126);
             $this->fail('Invalid value should fail');
-        } catch (Zend_Soap_Server_Exception $e)  {
+        } catch (Zend_Soap_Server_Exception $e) {
             // success
         }
     }
@@ -332,7 +334,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->addFunction('bogus_function');
             $this->fail('Invalid function should fail.');
-        } catch (Zend_Soap_Server_Exception $e)  {
+        } catch (Zend_Soap_Server_Exception $e) {
             // success
         }
     }
@@ -347,7 +349,7 @@ class Zend_Soap_ServerTest extends TestCase
                                 'Zend_Soap_Server_TestFunc6'];
             $server->addFunction($functions);
             $this->fail('Invalid function within a set of functions should fail');
-        } catch (Zend_Soap_Server_Exception $e)  {
+        } catch (Zend_Soap_Server_Exception $e) {
             // success
         }
     }
@@ -369,7 +371,7 @@ class Zend_Soap_ServerTest extends TestCase
         // Correct class name should pass
         try {
             $server->setClass('Zend_Soap_Server_TestClass');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail("Setting a correct class name should not fail setClass()");
         }
     }
@@ -383,7 +385,7 @@ class Zend_Soap_ServerTest extends TestCase
             $server->setClass('Zend_Soap_Server_TestClass');
             $server->setClass('Zend_Soap_Server_TestClass');
             $this->fail();
-        } catch(Zend_Soap_Server_Exception $e) {
+        } catch (Zend_Soap_Server_Exception $e) {
             $this->assertEquals('A class has already been registered with this soap server instance', $e->getMessage());
         }
     }
@@ -395,7 +397,7 @@ class Zend_Soap_ServerTest extends TestCase
         // Correct class name should pass
         try {
             $server->setClass('Zend_Soap_Server_TestClass', 1, 2, 3, 4);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail("Setting a correct class name should not fail setClass()");
         }
     }
@@ -407,7 +409,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setClass(465);
             $this->fail('Non-string value should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -419,7 +421,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setClass('Zend_Soap_Server_Test_BogusClass');
             $this->fail('Invalid class should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -434,7 +436,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setObject(465);
             $this->fail('Non-object value should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
 
@@ -442,7 +444,7 @@ class Zend_Soap_ServerTest extends TestCase
             $int = 1;
             $server->setObject($int);
             $this->fail('Invalid argument should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
 
@@ -452,7 +454,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setObject(new Zend_Soap_Server_TestClass());
             $this->fail('setClass() should pass only once');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
     }
@@ -463,12 +465,12 @@ class Zend_Soap_ServerTest extends TestCase
 
         $server->addFunction('Zend_Soap_Server_TestFunc1');
 
-        $functions  =  ['Zend_Soap_Server_TestFunc2',
+        $functions = ['Zend_Soap_Server_TestFunc2',
                              'Zend_Soap_Server_TestFunc3',
                              'Zend_Soap_Server_TestFunc4'];
         $server->addFunction($functions);
 
-        $functions  =  ['Zend_Soap_Server_TestFunc3',
+        $functions = ['Zend_Soap_Server_TestFunc3',
                              'Zend_Soap_Server_TestFunc5',
                              'Zend_Soap_Server_TestFunc6'];
         $server->addFunction($functions);
@@ -516,7 +518,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setSoapVersion('bogus');
             $this->fail('Invalid soap versions should fail');
-        } catch (Exception $e)  {
+        } catch (Exception $e) {
             // success
         }
 
@@ -531,8 +533,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->setPersistence('bogus');
             $this->fail();
-        } catch(Zend_Soap_Server_Exception $e) {
-
+        } catch (Zend_Soap_Server_Exception $e) {
         }
     }
 
@@ -557,7 +558,7 @@ class Zend_Soap_ServerTest extends TestCase
         }
 
         $server = new Zend_Soap_Server();
-        $server->setOptions(['location'=>'test://', 'uri'=>'http://framework.zend.com']);
+        $server->setOptions(['location' => 'test://', 'uri' => 'http://framework.zend.com']);
         $server->setReturnResponse(true);
 
         $server->setClass('Zend_Soap_Server_TestClass');
@@ -570,11 +571,11 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc2>'
-          .             '<param0 xsi:type="xsd:string">World</param0>'
-          .         '</ns1:testFunc2>'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc2>'
+          . '<param0 xsi:type="xsd:string">World</param0>'
+          . '</ns1:testFunc2>'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $response = $server->handle($request);
@@ -589,7 +590,7 @@ class Zend_Soap_ServerTest extends TestCase
     public function testWsiCompliant()
     {
         $server = new Zend_Soap_Server(null, ['wsi_compliant' => true]);
-        $server->setOptions(['location'=>'test://', 'uri'=>'http://framework.zend.com']);
+        $server->setOptions(['location' => 'test://', 'uri' => 'http://framework.zend.com']);
         $server->setReturnResponse(true);
 
         $server->setClass('Zend_Soap_Server_TestClass');
@@ -602,11 +603,11 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc2>'
-          .             '<who>World</who>'
-          .         '</ns1:testFunc2>'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc2>'
+          . '<who>World</who>'
+          . '</ns1:testFunc2>'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $expectedResult =
@@ -618,16 +619,16 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:ns2="http://xml.apache.org/xml-soap" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc2Response>'
-          .             '<return xsi:type="ns2:Map">'
-          .                 '<item>'
-          .                     '<key xsi:type="xsd:string">testFunc2Result</key>'
-          .                     '<value xsi:type="xsd:string">Hello World!</value>'
-          .                 '</item>'
-          .             '</return>'
-          .         '</ns1:testFunc2Response>'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc2Response>'
+          . '<return xsi:type="ns2:Map">'
+          . '<item>'
+          . '<key xsi:type="xsd:string">testFunc2Result</key>'
+          . '<value xsi:type="xsd:string">Hello World!</value>'
+          . '</item>'
+          . '</return>'
+          . '</ns1:testFunc2Response>'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $response = $server->handle($request);
@@ -666,7 +667,7 @@ class Zend_Soap_ServerTest extends TestCase
         }
 
         $server = new Zend_Soap_Server();
-        $server->setOptions(['location'=>'test://', 'uri'=>'http://framework.zend.com']);
+        $server->setOptions(['location' => 'test://', 'uri' => 'http://framework.zend.com']);
         $server->setReturnResponse(true);
 
         $server->setClass('Zend_Soap_Server_TestClass');
@@ -679,11 +680,11 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc2>'
-          .             '<param0 xsi:type="xsd:string">World</param0>'
-          .         '</ns1:testFunc2>'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc2>'
+          . '<param0 xsi:type="xsd:string">World</param0>'
+          . '</ns1:testFunc2>'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $expectedResponse =
@@ -694,11 +695,11 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc2Response>'
-          .             '<return xsi:type="xsd:string">Hello World!</return>'
-          .         '</ns1:testFunc2Response>'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc2Response>'
+          . '<return xsi:type="xsd:string">Hello World!</return>'
+          . '</ns1:testFunc2Response>'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $server->handle($request);
@@ -714,14 +715,16 @@ class Zend_Soap_ServerTest extends TestCase
         }
 
         $server = new Zend_Soap_Server();
-        $server->setOptions(['location'=>'test://', 'uri'=>'http://framework.zend.com']);
+        $server->setOptions(['location' => 'test://', 'uri' => 'http://framework.zend.com']);
 
         $server->setClass('Zend_Soap_Server_TestClass');
 
-        $localClient = new Zend_Soap_Server_TestLocalSoapClient($server,
-                                                                null,
-                                                                ['location'=>'test://',
-                                                                      'uri'=>'http://framework.zend.com']);
+        $localClient = new Zend_Soap_Server_TestLocalSoapClient(
+            $server,
+            null,
+            ['location' => 'test://',
+                                                                      'uri' => 'http://framework.zend.com']
+        );
 
         // Local SOAP client call automatically invokes handle method of the provided SOAP server
         $this->assertEquals('Hello World!', $localClient->testFunc2('World'));
@@ -735,11 +738,11 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc2>'
-          .             '<param0 xsi:type="xsd:string">World</param0>'
-          .         '</ns1:testFunc2>'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc2>'
+          . '<param0 xsi:type="xsd:string">World</param0>'
+          . '</ns1:testFunc2>'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $expectedResponse =
@@ -750,15 +753,15 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc2Response>'
-          .             '<return xsi:type="xsd:string">Hello World!</return>'
-          .         '</ns1:testFunc2Response>'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc2Response>'
+          . '<return xsi:type="xsd:string">Hello World!</return>'
+          . '</ns1:testFunc2Response>'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $server1 = new Zend_Soap_Server();
-        $server1->setOptions(['location'=>'test://', 'uri'=>'http://framework.zend.com']);
+        $server1->setOptions(['location' => 'test://', 'uri' => 'http://framework.zend.com']);
 
         $server1->setClass('Zend_Soap_Server_TestClass');
         $server1->setReturnResponse(true);
@@ -872,7 +875,7 @@ class Zend_Soap_ServerTest extends TestCase
 
         // Remove the following line when you implement this test.
         $this->markTestIncomplete(
-          "This test has not been implemented yet."
+            "This test has not been implemented yet."
         );
     }
 
@@ -883,8 +886,7 @@ class Zend_Soap_ServerTest extends TestCase
         try {
             $server->loadFunctions("bogus");
             $this->fail();
-        } catch(Zend_Soap_Server_Exception $e) {
-
+        } catch (Zend_Soap_Server_Exception $e) {
         }
     }
 
@@ -899,7 +901,7 @@ class Zend_Soap_ServerTest extends TestCase
         }
 
         $server = new Zend_Soap_Server();
-        $server->setOptions(['location'=>'test://', 'uri'=>'http://framework.zend.com']);
+        $server->setOptions(['location' => 'test://', 'uri' => 'http://framework.zend.com']);
         $server->setReturnResponse(true);
 
         // Requesting Method with enforced parameter without it.
@@ -911,9 +913,9 @@ class Zend_Soap_ServerTest extends TestCase
                              . 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
                              . 'xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" '
                              . 'SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">'
-          .     '<SOAP-ENV:Body>'
-          .         '<ns1:testFunc5 />'
-          .     '</SOAP-ENV:Body>'
+          . '<SOAP-ENV:Body>'
+          . '<ns1:testFunc5 />'
+          . '</SOAP-ENV:Body>'
           . '</SOAP-ENV:Envelope>' . "\n";
 
         $server->setClass('Zend_Soap_Server_TestClass');
@@ -933,7 +935,7 @@ class Zend_Soap_ServerTest extends TestCase
         $options = ['soap_version' => SOAP_1_1,
                          'actor' => 'http://framework.zend.com/Zend_Soap_ServerTest.php',
                          'classmap' => ['TestData1' => 'Zend_Soap_Server_TestData1',
-                                             'TestData2' => 'Zend_Soap_Server_TestData2',],
+                                             'TestData2' => 'Zend_Soap_Server_TestData2', ],
                          'encoding' => 'ISO-8859-1',
                          'uri' => 'http://framework.zend.com/Zend_Soap_ServerTest.php'
                         ];
@@ -1019,30 +1021,30 @@ class Zend_Soap_ServerTest extends TestCase
 if (extension_loaded('soap')) {
 
 /** Local SOAP client */
-class Zend_Soap_Server_TestLocalSoapClient extends SoapClient
-{
-    /**
-     * Server object
-     *
-     * @var Zend_Soap_Server
-     */
-    public $server;
-
-    /**
-     * Local client constructor
-     *
-     * @param Zend_Soap_Server $server
-     * @param string $wsdl
-     * @param array $options
-     */
-    function __construct(Zend_Soap_Server $server, $wsdl, $options)
+    class Zend_Soap_Server_TestLocalSoapClient extends SoapClient
     {
-        $this->server = $server;
-        parent::__construct($wsdl, $options);
-    }
+        /**
+         * Server object
+         *
+         * @var Zend_Soap_Server
+         */
+        public $server;
 
-    #[ReturnTypeWillChange]
-    function __doRequest($request, $location, $action, $version, $one_way = 0)
+        /**
+         * Local client constructor
+         *
+         * @param Zend_Soap_Server $server
+         * @param string $wsdl
+         * @param array $options
+         */
+        public function __construct(Zend_Soap_Server $server, $wsdl, $options)
+        {
+            $this->server = $server;
+            parent::__construct($wsdl, $options);
+        }
+
+        #[ReturnTypeWillChange]
+    public function __doRequest($request, $location, $action, $version, $one_way = 0)
     {
         ob_start();
         $this->server->handle($request);
@@ -1050,35 +1052,40 @@ class Zend_Soap_Server_TestLocalSoapClient extends SoapClient
 
         return $response;
     }
+    }
 }
 
-}
-
-class MockSoapServer {
+class MockSoapServer
+{
     public $handle = null;
     public function handle()
     {
         $this->handle = func_get_args();
     }
-    public function __call($name, $args) {}
+    public function __call($name, $args)
+    {
+    }
 }
 
-class Zend_Soap_MockServer extends Zend_Soap_Server {
+class Zend_Soap_MockServer extends Zend_Soap_Server
+{
     public $mockSoapServer = null;
-    protected function _getSoap() {
+    protected function _getSoap()
+    {
         $this->mockSoapServer = new MockSoapServer();
         return $this->mockSoapServer;
     }
 }
 
 /** Test Class */
-class Zend_Soap_Server_TestClass {
+class Zend_Soap_Server_TestClass
+{
     /**
      * Test Function 1
      *
      * @return string
      */
-    function testFunc1()
+    public function testFunc1()
     {
         return "Hello World";
     }
@@ -1089,7 +1096,7 @@ class Zend_Soap_Server_TestClass {
      * @param string $who Some Arg
      * @return string
      */
-    function testFunc2($who)
+    public function testFunc2($who)
     {
         return "Hello $who!";
     }
@@ -1101,7 +1108,7 @@ class Zend_Soap_Server_TestClass {
      * @param int $when Some
      * @return string
      */
-    function testFunc3($who, $when)
+    public function testFunc3($who, $when)
     {
         return "Hello $who, How are you $when";
     }
@@ -1111,7 +1118,7 @@ class Zend_Soap_Server_TestClass {
      *
      * @return string
      */
-    static function testFunc4()
+    public static function testFunc4()
     {
         return "I'm Static!";
     }
@@ -1121,7 +1128,7 @@ class Zend_Soap_Server_TestClass {
      *
      * @return void
      */
-    function testFunc5()
+    public function testFunc5()
     {
         trigger_error("Test Message", E_USER_ERROR);
     }
@@ -1129,37 +1136,39 @@ class Zend_Soap_Server_TestClass {
 
 
 /** Test class 2 */
-class Zend_Soap_Server_TestData1 {
+class Zend_Soap_Server_TestData1
+{
     /**
      * Property1
      *
      * @var string
      */
-     public $property1;
+    public $property1;
 
     /**
      * Property2
      *
      * @var float
      */
-     public $property2;
+    public $property2;
 }
 
 /** Test class 2 */
-class Zend_Soap_Server_TestData2 {
+class Zend_Soap_Server_TestData2
+{
     /**
      * Property1
      *
      * @var integer
      */
-     public $property1;
+    public $property1;
 
     /**
      * Property1
      *
      * @var float
      */
-     public $property2;
+    public $property2;
 }
 
 

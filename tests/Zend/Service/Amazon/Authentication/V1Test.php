@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Service/Amazon/Authentication/V1.php';
  */
 class Zend_Service_Amazon_Authentication_V1Test extends TestCase
 {
-
     /**
      * @var Zend_Service_Amazon_Authentication_V2
      */
@@ -75,6 +76,4 @@ class Zend_Service_Amazon_Authentication_V1Test extends TestCase
         $this->assertEquals('31Q2YlgABM5X3GkYQpGErcL10Xc=', $params['Signature']);
         $this->assertEquals("ActionActivateHostedProductAWSAccessKeyId0PN5J17HBGZHT7JJ3X82SignatureVersion1Timestamp2009-11-11T13:52:38ZVersion2007-12-01", $ret);
     }
-
 }
-

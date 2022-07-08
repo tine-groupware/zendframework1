@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -64,7 +66,7 @@ class Zend_Server_Reflection_NodeTest extends TestCase
     public function testSetParent()
     {
         $parent = new Zend_Server_Reflection_Node('string');
-        $child  = new Zend_Server_Reflection_Node('array');
+        $child = new Zend_Server_Reflection_Node('array');
 
         $child->setParent($parent);
 
@@ -91,7 +93,7 @@ class Zend_Server_Reflection_NodeTest extends TestCase
     public function testAttachChild()
     {
         $parent = new Zend_Server_Reflection_Node('string');
-        $child  = new Zend_Server_Reflection_Node('array');
+        $child = new Zend_Server_Reflection_Node('array');
 
         $parent->attachChild($child);
         $this->assertTrue($parent === $child->getParent());

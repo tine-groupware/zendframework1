@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -57,7 +59,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
     protected $_dummyNamePrefix = 'TestItem';
 
     protected $_dummyDataPrefix = 'TestData';
-	protected $_clientType = 'stdClass';
+    protected $_clientType = 'stdClass';
 
     /**
      * Config object
@@ -83,7 +85,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
 
     public function testGetClient()
     {
-    	$this->assertTrue(is_a($this->_commonStorage->getClient(), $this->_clientType));
+        $this->assertTrue(is_a($this->_commonStorage->getClient(), $this->_clientType));
     }
 
     public function testNoParams()
@@ -100,10 +102,10 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
      */
     public function testFetchItemString()
     {
-        $dummyNameText   = null;
+        $dummyNameText = null;
         $dummyNameStream = null;
         try {
-            $originalData  = $this->_dummyDataPrefix . 'FetchItem';
+            $originalData = $this->_dummyDataPrefix . 'FetchItem';
             $dummyNameText = $this->_dummyNamePrefix . 'ForFetchText';
             $this->_clobberItem($originalData, $dummyNameText);
             $this->_wait();
@@ -123,7 +125,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
         }
     }
 
-	/**
+    /**
      * Test fetch item
      *
      * @return void
@@ -132,11 +134,11 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
     {
         // TODO: Add support for streaming fetch
         return $this->markTestIncomplete('Cloud API doesn\'t support streamed fetches yet');
-        $dummyNameText   = null;
+        $dummyNameText = null;
         $dummyNameStream = null;
         try {
             $originalFilename = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files/data/dummy_data.txt');
-            $dummyNameStream  = $this->_dummyNamePrefix . 'ForFetchStream';
+            $dummyNameStream = $this->_dummyNamePrefix . 'ForFetchStream';
             $stream = fopen($originalFilename, 'r');
             $this->_clobberItem($stream, $dummyNameStream);
             $this->_wait();
@@ -163,7 +165,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
         $dummyNameText = null;
         try {
             // Test string data
-            $originalData  = $this->_dummyDataPrefix . 'StoreItem';
+            $originalData = $this->_dummyDataPrefix . 'StoreItem';
             $dummyNameText = $this->_dummyNamePrefix . 'ForStoreText';
             $this->_clobberItem($originalData, $dummyNameText);
             $this->_wait();
@@ -180,7 +182,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
         }
     }
 
-	/**
+    /**
      * Test store item
      *
      * @return void
@@ -275,7 +277,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
         }
     }
 
-	/**
+    /**
      * Test move item
      *
      * @return void
@@ -310,7 +312,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
         }
     }
 
-	/**
+    /**
      * Test fetch metadata
      *
      * @return void
@@ -339,7 +341,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
         }
     }
 
-	/**
+    /**
      * Test list items
      *
      * @return void
@@ -349,7 +351,6 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
         $dummyName1 = null;
         $dummyName2 = null;
         try {
-
             $dummyName1 = $this->_dummyNamePrefix . 'ForListItem1';
             $dummyData1 = $this->_dummyDataPrefix . 'Item1';
             $this->_clobberItem($dummyData1, $dummyName1);
@@ -395,7 +396,7 @@ abstract class Zend_Cloud_StorageService_TestCase extends TestCase
      */
     protected function _clobberItem($data, $path)
     {
-        if($this->_commonStorage->fetchItem($path)) {
+        if ($this->_commonStorage->fetchItem($path)) {
             $this->_commonStorage->deleteItem($path);
         }
         $this->_wait();

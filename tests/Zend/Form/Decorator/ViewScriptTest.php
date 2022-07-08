@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,8 +55,8 @@ class Zend_Form_Decorator_ViewScriptTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Form_Decorator_ViewScriptTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_ViewScriptTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -176,10 +178,10 @@ class Zend_Form_Decorator_ViewScriptTest extends TestCase
     public function testOptionsArePassedToPartialAsVariables()
     {
         $this->decorator->setOptions([
-            'foo'        => 'Foo Value',
-            'bar'        => 'Bar Value',
-            'baz'        => 'Baz Value',
-            'bat'        => 'Bat Value',
+            'foo' => 'Foo Value',
+            'bar' => 'Bar Value',
+            'baz' => 'Baz Value',
+            'bat' => 'Bat Value',
             'viewScript' => 'decorator.phtml',
         ]);
         $this->getElement();

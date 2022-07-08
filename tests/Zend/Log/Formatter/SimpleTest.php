@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Log_Formatter_SimpleTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testConstructorThrowsOnBadFormatString()
@@ -59,9 +61,9 @@ class Zend_Log_Formatter_SimpleTest extends TestCase
 
     public function testDefaultFormat()
     {
-        $fields = ['timestamp'    => 0,
-                        'message'      => 'foo',
-                        'priority'     => 42,
+        $fields = ['timestamp' => 0,
+                        'message' => 'foo',
+                        'priority' => 42,
                         'priorityName' => 'bar'];
 
         $f = new Zend_Log_Formatter_Simple();
@@ -73,10 +75,10 @@ class Zend_Log_Formatter_SimpleTest extends TestCase
         $this->assertStringContainsString((string)$fields['priority'], $line);
     }
 
-    function testComplexValues()
+    public function testComplexValues()
     {
-        $fields = ['timestamp'    => 0,
-                        'priority'     => 42,
+        $fields = ['timestamp' => 0,
+                        'priority' => 42,
                         'priorityName' => 'bar'];
 
         $f = new Zend_Log_Formatter_Simple();
@@ -102,7 +104,7 @@ class Zend_Log_Formatter_SimpleTest extends TestCase
         $this->assertStringContainsString('Resource id ', $line);
         fclose($fields['message']);
 
-        $fields['message'] = range(1,10);
+        $fields['message'] = range(1, 10);
         $line = $f->format($fields);
         $this->assertStringContainsString('array', $line);
 
@@ -128,15 +130,16 @@ class Zend_Log_Formatter_SimpleTest extends TestCase
     }
 }
 
-class Zend_Log_Formatter_SimpleTest_TestObject1 {
-
+class Zend_Log_Formatter_SimpleTest_TestObject1
+{
     public function __toString()
     {
         return 'Hello World';
     }
 }
 
-class Zend_Log_Formatter_SimpleTest_TestObject2 {
+class Zend_Log_Formatter_SimpleTest_TestObject2
+{
 }
 
 if (PHPUnit_MAIN_METHOD == 'Zend_Log_Formatter_SimpleTest::main') {

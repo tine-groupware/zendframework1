@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Memory_Container_AccessControllerTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -102,8 +104,8 @@ class Zend_Memory_Container_AccessControllerTest extends TestCase
      */
     public function testCreation()
     {
-        $memoryManager  = $this->_getMemoryManager();
-        $memObject      = $memoryManager->create('012345678');
+        $memoryManager = $this->_getMemoryManager();
+        $memObject = $memoryManager->create('012345678');
 
         $this->assertTrue($memObject instanceof Zend_Memory_AccessController);
     }
@@ -114,8 +116,8 @@ class Zend_Memory_Container_AccessControllerTest extends TestCase
      */
     public function testValueAccess()
     {
-        $memoryManager  = $this->_getMemoryManager();
-        $memObject      = $memoryManager->create('0123456789');
+        $memoryManager = $this->_getMemoryManager();
+        $memObject = $memoryManager->create('0123456789');
 
         // getRef() method
         $this->assertEquals($memObject->getRef(), '0123456789');
@@ -146,16 +148,16 @@ class Zend_Memory_Container_AccessControllerTest extends TestCase
      */
     public function testLock()
     {
-        $memoryManager  = $this->_getMemoryManager();
-        $memObject      = $memoryManager->create('012345678');
+        $memoryManager = $this->_getMemoryManager();
+        $memObject = $memoryManager->create('012345678');
 
-        $this->assertFalse((boolean)$memObject->isLocked());
+        $this->assertFalse((bool)$memObject->isLocked());
 
         $memObject->lock();
-        $this->assertTrue((boolean)$memObject->isLocked());
+        $this->assertTrue((bool)$memObject->isLocked());
 
         $memObject->unlock();
-        $this->assertFalse((boolean)$memObject->isLocked());
+        $this->assertFalse((bool)$memObject->isLocked());
     }
 }
 

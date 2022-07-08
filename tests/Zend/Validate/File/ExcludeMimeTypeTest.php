@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Validate_File_ExcludeMimeTypeTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Validate_File_ExcludeMimeTypeTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -76,11 +78,11 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends TestCase
 
         $filetest = dirname(__FILE__) . '/_files/picture.jpg';
         $files = [
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpeg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpeg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0
         ];
 
         foreach ($valuesExpected as $element) {

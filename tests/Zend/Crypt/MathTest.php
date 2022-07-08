@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Crypt/Exception.php';
  */
 class Zend_Crypt_MathTest extends TestCase
 {
-
     public function testRand()
     {
         if (!extension_loaded('bcmath')) {
@@ -51,9 +52,9 @@ class Zend_Crypt_MathTest extends TestCase
             }
         }
 
-        $math   = new Zend_Crypt_Math();
+        $math = new Zend_Crypt_Math();
         $higher = '155172898181473697471232257763715539915724801966915404479707795314057629378541917580651227423698188993727816152646631438561595825688188889951272158842675419950341258706556549803580104870537681476726513255747040765857479291291572334510643245094715007229621094194349783925984760375594985848253359305585439638443';
-        $lower  = '155172898181473697471232257763715539915724801966915404479707795314057629378541917580651227423698188993727816152646631438561595825688188889951272158842675419950341258706556549803580104870537681476726513255747040765857479291291572334510643245094715007229621094194349783925984760375594985848253359305585439638442';
+        $lower = '155172898181473697471232257763715539915724801966915404479707795314057629378541917580651227423698188993727816152646631438561595825688188889951272158842675419950341258706556549803580104870537681476726513255747040765857479291291572334510643245094715007229621094194349783925984760375594985848253359305585439638442';
         $result = $math->rand($lower, $higher);
         $this->assertTrue(bccomp($result, $higher) !== '1');
         $this->assertTrue(bccomp($result, $lower) !== '-1');
@@ -71,8 +72,8 @@ class Zend_Crypt_MathTest extends TestCase
     public function testRandInteger()
     {
         for ($i = 0; $i < 1024; $i++) {
-            $min = rand(1, PHP_INT_MAX/2);
-            $max = $min + rand(1, PHP_INT_MAX/2 - 1);
+            $min = rand(1, PHP_INT_MAX / 2);
+            $max = $min + rand(1, PHP_INT_MAX / 2 - 1);
             $rand = Zend_Crypt_Math::randInteger($min, $max);
             $this->assertGreaterThanOrEqual($min, $rand);
             $this->assertLessThanOrEqual($max, $rand);
@@ -102,10 +103,10 @@ class Zend_Crypt_MathTest extends TestCase
             $this->markTestSkipped($e->getMessage());
         }
 
-        $i     = 0;
+        $i = 0;
         $count = 0;
         do {
-            $up   = 0;
+            $up = 0;
             $down = 0;
             for ($i = 0; $i < $cycles; $i++) {
                 $x = Zend_Crypt_Math::randInteger(0, $tot, $strong);

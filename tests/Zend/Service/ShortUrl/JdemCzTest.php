@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,7 +43,7 @@ class Zend_Service_ShortUrl_JdemCzTest extends TestCase
      *
      * @return void
      */
-    public function setUp (): void
+    public function setUp(): void
     {
         if (!defined('TESTS_ZEND_SERVICE_SHORTURL_JDEMCZ_ENABLED')
             || !constant('TESTS_ZEND_SERVICE_SHORTURL_JDEMCZ_ENABLED')
@@ -69,7 +71,7 @@ class Zend_Service_ShortUrl_JdemCzTest extends TestCase
     public function testShorten()
     {
         $urls = [
-            'http://framework.zend.com/'           => 'http://jdem.cz/ab2l1',
+            'http://framework.zend.com/' => 'http://jdem.cz/ab2l1',
             'http://framework.zend.com/manual/en/' => 'http://jdem.cz/ab3z7'
         ];
 
@@ -81,7 +83,7 @@ class Zend_Service_ShortUrl_JdemCzTest extends TestCase
     public function testUnshorten()
     {
         $urls = [
-            'http://framework.zend.com/'           => 'http://jdem.cz/ab2l1',
+            'http://framework.zend.com/' => 'http://jdem.cz/ab2l1',
             'http://framework.zend.com/manual/en/' => 'http://jdem.cz/ab3z7'
         ];
 

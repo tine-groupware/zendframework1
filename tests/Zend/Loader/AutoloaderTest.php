@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Loader_AutoloaderTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -162,7 +164,7 @@ class Zend_Loader_AutoloaderTest extends TestCase
     public function testRegisteringInvalidNamespaceSpecShouldRaiseException()
     {
         $this->expectException(Zend_Loader_Exception::class);
-        $o = new stdClass;
+        $o = new stdClass();
         $this->autoloader->registerNamespace($o);
     }
 
@@ -184,7 +186,7 @@ class Zend_Loader_AutoloaderTest extends TestCase
     public function testUnregisteringInvalidNamespaceSpecShouldRaiseException()
     {
         $this->expectException(Zend_Loader_Exception::class);
-        $o = new stdClass;
+        $o = new stdClass();
         $this->autoloader->unregisterNamespace($o);
     }
 
@@ -396,9 +398,9 @@ class Zend_Loader_AutoloaderTest extends TestCase
         $this->autoloader->pushAutoloader([$this, 'autoloadFirstLevel'], 'Level1_')
                          ->pushAutoloader([$this, 'autoloadSecondLevel'], 'Level1_Level2');
         $class = 'Level1_Level2_Foo';
-        $als   = $this->autoloader->getClassAutoloaders($class);
+        $als = $this->autoloader->getClassAutoloaders($class);
         $this->assertEquals(1, count($als));
-        $al    = array_shift($als);
+        $al = array_shift($als);
         $this->assertEquals([$this, 'autoloadSecondLevel'], $al);
     }
 

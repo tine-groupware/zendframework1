@@ -34,7 +34,6 @@ require_once 'Zend/Barcode/Object/Upce.php';
  */
 class Zend_Barcode_Object_UpceTest extends Zend_Barcode_Object_TestCommon
 {
-
     protected function _getBarcodeObject($options = null)
     {
         return new Zend_Barcode_Object_Upce($options);
@@ -137,7 +136,8 @@ class Zend_Barcode_Object_UpceTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Upce_1234567_border_instructions');
+            'Upce_1234567_border_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -147,7 +147,8 @@ class Zend_Barcode_Object_UpceTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setOrientation(60);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Upce_1234567_oriented_instructions');
+            'Upce_1234567_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -158,7 +159,8 @@ class Zend_Barcode_Object_UpceTest extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Upce_1234567_border_oriented_instructions');
+            'Upce_1234567_border_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 

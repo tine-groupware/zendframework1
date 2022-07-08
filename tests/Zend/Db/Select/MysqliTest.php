@@ -37,7 +37,6 @@ require_once 'Zend/Db/Select/TestCommon.php';
  */
 class Zend_Db_Select_MysqliTest extends Zend_Db_Select_TestCommon
 {
-
     public function getDriver()
     {
         return 'Mysqli';
@@ -53,5 +52,4 @@ class Zend_Db_Select_MysqliTest extends Zend_Db_Select_TestCommon
         $this->expectException(Zend_Db_Statement_Exception::class);
         parent::testSelectQueryWithBinds();
     }
-
 }

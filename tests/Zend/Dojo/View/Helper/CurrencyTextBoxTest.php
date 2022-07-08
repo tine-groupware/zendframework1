@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Dojo_View_Helper_CurrencyTextBoxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_CurrencyTextBoxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_CurrencyTextBoxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Dojo_View_Helper_CurrencyTextBoxTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_CurrencyTextBox();
         $this->helper->setView($this->view);
     }
@@ -104,9 +106,9 @@ class Zend_Dojo_View_Helper_CurrencyTextBoxTest extends TestCase
             'elementId',
             '3',
             [
-                'required'    => true,
+                'required' => true,
                 'constraints' => '{fractional:true}',
-                'currency'    => 'USD',
+                'currency' => 'USD',
             ],
             []
         );

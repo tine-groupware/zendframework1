@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -96,7 +98,6 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends TestCase
         $providers = $providerRepository->getProviders();
         $this->assertArrayHasKey('providerone', $providers);
         $this->assertArrayHasKey('providertwo', $providers);
-
     }
 
     public function testAddManfestsWillPersistManifestsAndObeyIndex()
@@ -110,7 +111,6 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends TestCase
         $this->assertEquals(2, count($manifests));
         $this->assertTrue(array_shift($manifests) instanceof Zend_Tool_Framework_Manifest_ManifestGoodOne);
         $this->assertTrue(array_shift($manifests) instanceof Zend_Tool_Framework_Manifest_ManifestGoodTwo);
-
     }
 
     public function testAddManifestThrowsExceptionOnBadGetProviders()
@@ -194,8 +194,6 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends TestCase
         $resultMetadatas = $this->_repository->getMetadatas(['name' => 'Bar']);
         $this->assertEquals(1, count($resultMetadatas));
         $this->assertTrue($metadata2 === array_shift($resultMetadatas));
-
-
     }
 
     public function testManifestGetMetadataSingularSearchWorks()
@@ -221,7 +219,6 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends TestCase
 
         $resultMetadata = $this->_repository->getMetadata(['name' => 'Baz']);
         $this->assertTrue($metadata3 === $resultMetadata);
-
     }
 
     public function testManifestGetMetadatasCollectionSearchWorksWithNonExistentProperties()
@@ -251,7 +248,5 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends TestCase
         $resultMetadatas = $this->_repository->getMetadatas(['name' => 'Bar', 'blah' => 'boo'], false);
         $this->assertEquals(0, count($resultMetadatas));
         //$this->assertTrue($metadata2 === array_shift($resultMetadatas));
-
     }
-
 }

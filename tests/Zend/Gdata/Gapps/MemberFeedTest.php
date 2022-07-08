@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,28 +45,33 @@ class Zend_Gdata_Gapps_MemberFeedTest extends TestCase
     protected function setUp(): void
     {
         $memberFeedText = file_get_contents(
-                'Zend/Gdata/Gapps/_files/MemberFeedDataSample1.xml',
-                true);
+            'Zend/Gdata/Gapps/_files/MemberFeedDataSample1.xml',
+            true
+        );
         $this->memberFeed = new Zend_Gdata_Gapps_MemberFeed($memberFeedText);
         $this->emptyMemberFeed = new Zend_Gdata_Gapps_MemberFeed();
     }
 
-    public function testEmptyFeedShouldHaveNoExtensionElements() {
+    public function testEmptyFeedShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->emptyMemberFeed->extensionElements));
         $this->assertTrue(count($this->emptyMemberFeed->extensionElements) == 0);
     }
 
-    public function testEmptyFeedShouldHaveNoExtensionAttributes() {
+    public function testEmptyFeedShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->emptyMemberFeed->extensionAttributes));
         $this->assertTrue(count($this->emptyMemberFeed->extensionAttributes) == 0);
     }
 
-    public function testSampleFeedShouldHaveNoExtensionElements() {
+    public function testSampleFeedShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->memberFeed->extensionElements));
         $this->assertTrue(count($this->memberFeed->extensionElements) == 0);
     }
 
-    public function testSampleFeedShouldHaveNoExtensionAttributes() {
+    public function testSampleFeedShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->memberFeed->extensionAttributes));
         $this->assertTrue(count($this->memberFeed->extensionAttributes) == 0);
     }
@@ -84,7 +91,8 @@ class Zend_Gdata_Gapps_MemberFeedTest extends TestCase
 
         /* Grab XML from $this->memberFeed and convert back to objects */
         $newMemberFeed = new Zend_Gdata_Gapps_MemberFeed(
-                $this->memberFeed->saveXML());
+            $this->memberFeed->saveXML()
+        );
         $newEntryCount = 0;
         foreach ($newMemberFeed as $entry) {
             $newEntryCount++;
@@ -106,5 +114,4 @@ class Zend_Gdata_Gapps_MemberFeedTest extends TestCase
         }
         $this->assertEquals(2, $entryCount);
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,7 +44,6 @@ require_once 'Zend/Queue/Stomp/Frame.php';
  */
 class Zend_Queue_Stomp_FrameTest extends TestCase
 {
-
     protected $body = 'hello world'; // 11 characters
 
     public function test_to_fromFrame()
@@ -88,56 +89,56 @@ class Zend_Queue_Stomp_FrameTest extends TestCase
         try {
             $frame->setAutoContentLength([]);
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
 
         try {
             $frame->setHeader([], 1);
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
 
         try {
             $frame->setHeader('testing', []);
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
 
         try {
             $frame->getHeader([]);
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
 
         try {
             $frame->setBody([]);
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
 
         try {
             $frame->setCommand([]);
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
 
         try {
             $frame->toFrame();
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
 
         try {
             $frame->fromFrame([]);
             $this->fail('Exception should have been thrown');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->assertTrue(true);
         }
     }
@@ -148,5 +149,4 @@ class Zend_Queue_Stomp_FrameTest extends TestCase
         $this->assertTrue(is_string(Zend_Queue_Stomp_Frame::CONTENT_LENGTH));
         $this->assertTrue(is_string(Zend_Queue_Stomp_Frame::EOL));
     }
-
 }

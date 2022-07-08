@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,8 +53,8 @@ class Zend_Text_TableTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Text_TableTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Text_TableTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function tearDown(): void
@@ -408,7 +410,7 @@ class Zend_Text_TableTest extends TestCase
         $row->appendColumn(new Zend_Text_Table_Column('foobar', null, 2));
         $table->appendRow($row);
 
-        $this->assertEquals($table->render(),   "┌──────────┬──────────┐\n"
+        $this->assertEquals($table->render(), "┌──────────┬──────────┐\n"
                                               . "│foobar    │foobar    │\n"
                                               . "├──────────┴──────────┤\n"
                                               . "│foobar               │\n"
@@ -439,7 +441,7 @@ class Zend_Text_TableTest extends TestCase
         $row->appendColumn(new Zend_Text_Table_Column('foobar'));
         $table->appendRow($row);
 
-        $this->assertEquals($table->render(),   "┌──────────┬─────────────────────┐\n"
+        $this->assertEquals($table->render(), "┌──────────┬─────────────────────┐\n"
                                               . "│foobar    │foobar               │\n"
                                               . "├──────────┼─────────────────────┤\n"
                                               . "│foobar    │foobar               │\n"

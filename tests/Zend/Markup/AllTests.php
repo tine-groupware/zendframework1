@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,7 +50,7 @@ class Zend_Markup_AllTests
             $parameters['reportDirectory'] = TESTS_GENERATE_REPORT_TARGET;
         }
 
-        (new TestRunner)->run(self::suite(), $parameters);
+        (new TestRunner())->run(self::suite(), $parameters);
     }
 
     public static function suite()

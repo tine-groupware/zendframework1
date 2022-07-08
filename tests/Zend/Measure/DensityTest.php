@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityInit()
     {
-        $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD,'de');
-        $this->assertTrue($value instanceof Zend_Measure_Density,'Zend_Measure_Density Object not returned');
+        $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD, 'de');
+        $this->assertTrue($value instanceof Zend_Measure_Density, 'Zend_Measure_Density Object not returned');
     }
 
 
@@ -55,7 +57,7 @@ class Zend_Measure_DensityTest extends TestCase
     public function testDensityUnknownType()
     {
         try {
-            $value = new Zend_Measure_Density('100','Density::UNKNOWN','de');
+            $value = new Zend_Measure_Density('100', 'Density::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -71,7 +73,7 @@ class Zend_Measure_DensityTest extends TestCase
     public function testDensityUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Density('novalue',Zend_Measure_Density::STANDARD,'de');
+            $value = new Zend_Measure_Density('novalue', Zend_Measure_Density::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -87,7 +89,7 @@ class Zend_Measure_DensityTest extends TestCase
     public function testDensityUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD,'nolocale');
+            $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -101,8 +103,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityNoLocale()
     {
-        $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD);
-        $this->assertEquals(100, $value->getValue(),'Zend_Measure_Density value expected');
+        $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD);
+        $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Density value expected');
     }
 
 
@@ -112,7 +114,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityValuePositive()
     {
-        $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Density value expected to be a positive integer');
     }
 
@@ -123,7 +125,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityValueNegative()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals(-100, $value->getValue(), 'Zend_Measure_Density value expected to be a negative integer');
     }
 
@@ -134,7 +136,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityValueDecimal()
     {
-        $value = new Zend_Measure_Density('-100,200',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('-100,200', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals(-100.200, $value->getValue(), 'Zend_Measure_Density value expected to be a decimal value');
     }
 
@@ -145,8 +147,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityValueDecimalSeperated()
     {
-        $value = new Zend_Measure_Density('-100.100,200',Zend_Measure_Density::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Density Object not returned');
+        $value = new Zend_Measure_Density('-100.100,200', Zend_Measure_Density::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Density Object not returned');
     }
 
 
@@ -156,8 +158,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityValueString()
     {
-        $value = new Zend_Measure_Density('-100.100,200',Zend_Measure_Density::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Density Object not returned');
+        $value = new Zend_Measure_Density('-100.100,200', Zend_Measure_Density::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Density Object not returned');
     }
 
 
@@ -167,9 +169,9 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityEquality()
     {
-        $value = new Zend_Measure_Density('-100.100,200',Zend_Measure_Density::STANDARD,'de');
-        $newvalue = new Zend_Measure_Density('-100.100,200',Zend_Measure_Density::STANDARD,'de');
-        $this->assertTrue($value->equals($newvalue),'Zend_Measure_Density Object should be equal');
+        $value = new Zend_Measure_Density('-100.100,200', Zend_Measure_Density::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Density('-100.100,200', Zend_Measure_Density::STANDARD, 'de');
+        $this->assertTrue($value->equals($newvalue), 'Zend_Measure_Density Object should be equal');
     }
 
 
@@ -179,9 +181,9 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityNoEquality()
     {
-        $value = new Zend_Measure_Density('-100.100,200',Zend_Measure_Density::STANDARD,'de');
-        $newvalue = new Zend_Measure_Density('-100,200',Zend_Measure_Density::STANDARD,'de');
-        $this->assertFalse($value->equals($newvalue),'Zend_Measure_Density Object should be not equal');
+        $value = new Zend_Measure_Density('-100.100,200', Zend_Measure_Density::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Density('-100,200', Zend_Measure_Density::STANDARD, 'de');
+        $this->assertFalse($value->equals($newvalue), 'Zend_Measure_Density Object should be not equal');
     }
 
 
@@ -191,8 +193,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetPositive()
     {
-        $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD,'de');
-        $value->setValue('200',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD, 'de');
+        $value->setValue('200', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals(200, $value->getValue(), 'Zend_Measure_Density value expected to be a positive integer');
     }
 
@@ -203,8 +205,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetNegative()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::STANDARD,'de');
-        $value->setValue('-200',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::STANDARD, 'de');
+        $value->setValue('-200', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals(-200, $value->getValue(), 'Zend_Measure_Density value expected to be a negative integer');
     }
 
@@ -215,8 +217,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetDecimal()
     {
-        $value = new Zend_Measure_Density('-100,200',Zend_Measure_Density::STANDARD,'de');
-        $value->setValue('-200,200',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('-100,200', Zend_Measure_Density::STANDARD, 'de');
+        $value->setValue('-200,200', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals(-200.200, $value->getValue(), 'Zend_Measure_Density value expected to be a decimal value');
     }
 
@@ -227,9 +229,9 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetDecimalSeperated()
     {
-        $value = new Zend_Measure_Density('-100.100,200',Zend_Measure_Density::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Density::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Density Object not returned');
+        $value = new Zend_Measure_Density('-100.100,200', Zend_Measure_Density::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Density::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Density Object not returned');
     }
 
 
@@ -239,9 +241,9 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetString()
     {
-        $value = new Zend_Measure_Density('-100.100,200',Zend_Measure_Density::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Density::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Density Object not returned');
+        $value = new Zend_Measure_Density('-100.100,200', Zend_Measure_Density::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Density::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Density Object not returned');
     }
 
 
@@ -253,8 +255,8 @@ class Zend_Measure_DensityTest extends TestCase
     public function testDensitySetUnknownType()
     {
         try {
-            $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD,'de');
-            $value->setValue('-200.200,200','Density::UNKNOWN','de');
+            $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD, 'de');
+            $value->setValue('-200.200,200', 'Density::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -270,8 +272,8 @@ class Zend_Measure_DensityTest extends TestCase
     public function testDensitySetUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD,'de');
-            $value->setValue('novalue',Zend_Measure_Density::STANDARD,'de');
+            $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD, 'de');
+            $value->setValue('novalue', Zend_Measure_Density::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -287,8 +289,8 @@ class Zend_Measure_DensityTest extends TestCase
     public function testDensitySetUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Density('100',Zend_Measure_Density::STANDARD,'de');
-            $value->setValue('200',Zend_Measure_Density::STANDARD,'nolocale');
+            $value = new Zend_Measure_Density('100', Zend_Measure_Density::STANDARD, 'de');
+            $value->setValue('200', Zend_Measure_Density::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -314,7 +316,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetType()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::STANDARD, 'de');
         $value->setType(Zend_Measure_Density::GOLD);
         $this->assertEquals(Zend_Measure_Density::GOLD, $value->getType(), 'Zend_Measure_Density type expected');
     }
@@ -326,7 +328,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetComputedType1()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::SILVER,'de');
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::SILVER, 'de');
         $value->setType(Zend_Measure_Density::TONNE_PER_MILLILITER);
         $this->assertEquals(Zend_Measure_Density::TONNE_PER_MILLILITER, $value->getType(), 'Zend_Measure_Density type expected');
     }
@@ -338,7 +340,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensitySetComputedType2()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::TONNE_PER_MILLILITER,'de');
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::TONNE_PER_MILLILITER, 'de');
         $value->setType(Zend_Measure_Density::GOLD);
         $this->assertEquals(Zend_Measure_Density::GOLD, $value->getType(), 'Zend_Measure_Density type expected');
     }
@@ -352,7 +354,7 @@ class Zend_Measure_DensityTest extends TestCase
     public function testDensitySetTypeFailed()
     {
         try {
-            $value = new Zend_Measure_Density('-100',Zend_Measure_Density::STANDARD,'de');
+            $value = new Zend_Measure_Density('-100', Zend_Measure_Density::STANDARD, 'de');
             $value->setType('Density::UNKNOWN');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
@@ -367,7 +369,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityToString()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals('-100 kg/m³', $value->toString(), 'Value -100 kg/m³ expected');
     }
 
@@ -378,7 +380,7 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensity_ToString()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::STANDARD,'de');
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::STANDARD, 'de');
         $this->assertEquals('-100 kg/m³', $value->__toString(), 'Value -100 kg/m³ expected');
     }
 
@@ -389,8 +391,8 @@ class Zend_Measure_DensityTest extends TestCase
      */
     public function testDensityConversionList()
     {
-        $value = new Zend_Measure_Density('-100',Zend_Measure_Density::STANDARD,'de');
-        $unit  = $value->getConversionList();
+        $value = new Zend_Measure_Density('-100', Zend_Measure_Density::STANDARD, 'de');
+        $unit = $value->getConversionList();
         $this->assertTrue(is_array($unit), 'Array expected');
     }
 }

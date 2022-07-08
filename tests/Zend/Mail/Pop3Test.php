@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_Mail_Pop3Test extends TestCase
 
     protected function setUp(): void
     {
-        $this->_params = ['host'     => TESTS_ZEND_MAIL_POP3_HOST,
-                               'user'     => TESTS_ZEND_MAIL_POP3_USER,
+        $this->_params = ['host' => TESTS_ZEND_MAIL_POP3_HOST,
+                               'user' => TESTS_ZEND_MAIL_POP3_USER,
                                'password' => TESTS_ZEND_MAIL_POP3_PASSWORD];
 
         if (defined('TESTS_ZEND_MAIL_SERVER_TESTDIR') && TESTS_ZEND_MAIL_SERVER_TESTDIR) {
@@ -64,8 +66,10 @@ class Zend_Mail_Pop3Test extends TestCase
             }
 
             $this->_cleanDir(TESTS_ZEND_MAIL_SERVER_TESTDIR);
-            $this->_copyDir(dirname(__FILE__) . '/_files/test.' . TESTS_ZEND_MAIL_SERVER_FORMAT,
-                            TESTS_ZEND_MAIL_SERVER_TESTDIR);
+            $this->_copyDir(
+                dirname(__FILE__) . '/_files/test.' . TESTS_ZEND_MAIL_SERVER_FORMAT,
+                TESTS_ZEND_MAIL_SERVER_TESTDIR
+            );
         }
     }
 
@@ -94,7 +98,7 @@ class Zend_Mail_Pop3Test extends TestCase
             if ($entry == '.' || $entry == '..' || $entry == '.svn') {
                 continue;
             }
-            $fullname = $dir  . DIRECTORY_SEPARATOR . $entry;
+            $fullname = $dir . DIRECTORY_SEPARATOR . $entry;
             $destname = $dest . DIRECTORY_SEPARATOR . $entry;
             if (is_dir($fullname)) {
                 mkdir($destname);
@@ -303,15 +307,15 @@ class Zend_Mail_Pop3Test extends TestCase
         $this->assertEquals('Simple Message', $subject);
     }
 
-/*
-    public function testFetchTopBody()
-    {
-        $mail = new Zend_Mail_Storage_Pop3($this->_params);
+    /*
+        public function testFetchTopBody()
+        {
+            $mail = new Zend_Mail_Storage_Pop3($this->_params);
 
-        $content = $mail->getHeader(3, 1)->getContent();
-        $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
-    }
-*/
+            $content = $mail->getHeader(3, 1)->getContent();
+            $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
+        }
+    */
 
     public function testFetchMessageHeader()
     {
@@ -330,20 +334,20 @@ class Zend_Mail_Pop3Test extends TestCase
         $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
     }
 
-/*
-        public function testFailedRemove()
-        {
-            $mail = new Zend_Mail_Storage_Pop3($this->_params);
-    
-            try {
-                $mail->removeMessage(1);
-            } catch (Exception $e) {
-                return; // test ok
+    /*
+            public function testFailedRemove()
+            {
+                $mail = new Zend_Mail_Storage_Pop3($this->_params);
+
+                try {
+                    $mail->removeMessage(1);
+                } catch (Exception $e) {
+                    return; // test ok
+                }
+
+                $this->fail('no exception raised while deleting message (mbox is read-only)');
             }
-    
-            $this->fail('no exception raised while deleting message (mbox is read-only)');
-        }
-    */
+        */
     /**
      * @doesNotPerformAssertions
      */
@@ -420,7 +424,7 @@ class Zend_Mail_Pop3Test extends TestCase
             }
 
             if ($mail->getNumberByUniqueId($id) != $num) {
-                    $this->fail('reverse lookup failed');
+                $this->fail('reverse lookup failed');
             }
         }
     }

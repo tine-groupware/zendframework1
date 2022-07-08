@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_ProgressBar_Adapter_jsPushTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_ProgressBar_Adapter_jsPushTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_ProgressBar_Adapter_jsPushTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testJson()

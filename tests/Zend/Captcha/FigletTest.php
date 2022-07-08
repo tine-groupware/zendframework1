@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Captcha_FigletTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Captcha_FigletTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Captcha_FigletTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -74,7 +76,7 @@ class Zend_Captcha_FigletTest extends TestCase
                 ]
             ]
         );
-        $this->captcha =  $this->element->getCaptcha();
+        $this->captcha = $this->element->getCaptcha();
     }
 
     /**
@@ -175,8 +177,10 @@ class Zend_Captcha_FigletTest extends TestCase
 
     public function testAdapterElementName()
     {
-        $this->assertEquals($this->captcha->getName(),
-                    $this->element->getName());
+        $this->assertEquals(
+            $this->captcha->getName(),
+            $this->element->getName()
+        );
     }
 
     public function testGenerateIsRandomised()
@@ -195,8 +199,10 @@ class Zend_Captcha_FigletTest extends TestCase
     public function testRenderSetsValue()
     {
         $this->testCaptchaIsRendered();
-        $this->assertEquals($this->captcha->getId(),
-                $this->element->getValue());
+        $this->assertEquals(
+            $this->captcha->getId(),
+            $this->element->getValue()
+        );
     }
 
     public function testLabelIsNull()
@@ -243,12 +249,12 @@ class Zend_Captcha_FigletTest extends TestCase
     public function testCaptchaShouldBeConfigurableViaConfigObject()
     {
         $options = [
-            'name'         => 'foo',
+            'name' => 'foo',
             'sessionClass' => 'Zend_Captcha_FigletTest_SessionContainer',
-            'wordLen'      => 6,
-            'timeout'      => 300,
+            'wordLen' => 6,
+            'timeout' => 300,
         ];
-        $config  = new Zend_Config($options);
+        $config = new Zend_Config($options);
         $captcha = new Zend_Captcha_Figlet($config);
         $test = $captcha->getOptions();
         $this->assertEquals($options, $test);
@@ -307,7 +313,7 @@ class Zend_Captcha_FigletTest extends TestCase
      */
     public function testSetSessionWorks()
     {
-        if(headers_sent($file, $line)) {
+        if (headers_sent($file, $line)) {
             $this->markTestSkipped("Cannot use sessions because headers already sent");
         }
         require_once 'Zend/Session/Namespace.php';
@@ -344,7 +350,7 @@ class Zend_Captcha_FigletTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== self::$_word))  {
+        if (('word' == $name) && (null !== self::$_word)) {
             return true;
         }
 

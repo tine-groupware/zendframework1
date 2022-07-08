@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_SpreadsheetsTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->gdata = new Zend_Gdata_Spreadsheets(new Zend_Http_Client());
@@ -45,5 +46,4 @@ class Zend_Gdata_SpreadsheetsTest extends TestCase
     {
         $this->assertTrue(true);
     }
-
 }

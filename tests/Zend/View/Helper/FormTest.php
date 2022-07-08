@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,9 +54,8 @@ class Zend_View_Helper_FormTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_FormTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -138,7 +139,7 @@ class Zend_View_Helper_FormTest extends TestCase
      */
     public function testPassingEmptyNameAttributeToUnnamedFormShouldNotRenderNameAttrib()
     {
-        $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get', 'name' => NULL]);
+        $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get', 'name' => null]);
         $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name=".*")/', $form);
     }
     
@@ -147,7 +148,7 @@ class Zend_View_Helper_FormTest extends TestCase
      */
     public function testPassingEmptyNameAttributeToNamedFormShouldNotOverrideNameAttrib()
     {
-        $form = $this->helper->form('RealName', ['action' => '/foo', 'method' => 'get', 'name' => NULL]);
+        $form = $this->helper->form('RealName', ['action' => '/foo', 'method' => 'get', 'name' => null]);
         $this->assertMatchesRegularExpression('/<form[^>]*(name="RealName")/', $form);
     }
         
@@ -169,7 +170,7 @@ class Zend_View_Helper_FormTest extends TestCase
         $this->view->doctype('XHTML11');
         $form = $this->helper->form('FormName', ['action' => '/foo', 'method' => 'get']);
         $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name="FormName")/', $form);
-    }    
+    }
 
     public function testEmptyActionShouldNotRenderActionAttributeInHTML5()
     {

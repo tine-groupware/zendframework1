@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,8 +38,7 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Calendar_EventQueryExceptionTest extends TestCase
 {
-
-    const GOOGLE_DEVELOPER_CALENDAR = 'developer-calendar@google.com';
+    public const GOOGLE_DEVELOPER_CALENDAR = 'developer-calendar@google.com';
 
     protected function setUp(): void
     {
@@ -61,5 +62,4 @@ class Zend_Gdata_Calendar_EventQueryExceptionTest extends TestCase
         $this->query->setUser(self::GOOGLE_DEVELOPER_CALENDAR);
         $this->query->setFutureEvents($futureEvents);
     }
-
 }

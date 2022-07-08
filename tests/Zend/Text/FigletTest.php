@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,8 +58,8 @@ class Zend_Text_FigletTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Text_FigletTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Text_FigletTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testStandardAlignLeft()
@@ -84,7 +86,7 @@ class Zend_Text_FigletTest extends TestCase
     public function testStandardRightToLeftAlignLeft()
     {
         $figlet = new Zend_Text_Figlet(['justification' => Zend_Text_Figlet::JUSTIFICATION_LEFT,
-                                             'rightToLeft'   => Zend_Text_Figlet::DIRECTION_RIGHT_TO_LEFT]);
+                                             'rightToLeft' => Zend_Text_Figlet::DIRECTION_RIGHT_TO_LEFT]);
 
         $this->_equalAgainstFile($figlet->render('Dummy'), 'StandardRightToLeftAlignLeft.figlet');
     }
@@ -92,7 +94,7 @@ class Zend_Text_FigletTest extends TestCase
     public function testStandardRightToLeftAlignCenter()
     {
         $figlet = new Zend_Text_Figlet(['justification' => Zend_Text_Figlet::JUSTIFICATION_CENTER,
-                                             'rightToLeft'   => Zend_Text_Figlet::DIRECTION_RIGHT_TO_LEFT]);
+                                             'rightToLeft' => Zend_Text_Figlet::DIRECTION_RIGHT_TO_LEFT]);
 
         $this->_equalAgainstFile($figlet->render('Dummy'), 'StandardRightToLeftAlignCenter.figlet');
     }
@@ -139,7 +141,7 @@ class Zend_Text_FigletTest extends TestCase
     {
         $this->expectException(Zend_Text_Figlet_Exception::class);
         $this->markTestSkipped('Test case not reproducible on all setups');
-        $figlet  = new Zend_Text_Figlet();
+        $figlet = new Zend_Text_Figlet();
 
         if (PHP_OS == 'AIX') {
             $isoText = iconv('UTF-8', 'ISO-8859-15', 'Ömläüt');
@@ -186,7 +188,7 @@ class Zend_Text_FigletTest extends TestCase
 
     public function testOutputWidth()
     {
-        $figlet = new Zend_Text_Figlet(['outputWidth'   => 50,
+        $figlet = new Zend_Text_Figlet(['outputWidth' => 50,
                                              'justification' => Zend_Text_Figlet::JUSTIFICATION_RIGHT]);
 
         $this->_equalAgainstFile($figlet->render('Dummy'), 'OutputWidth50AlignRight.figlet');
@@ -201,8 +203,8 @@ class Zend_Text_FigletTest extends TestCase
 
     public function testSmushModeRemovedRightToLeft()
     {
-        $figlet = new Zend_Text_Figlet(['smushMode'     => -1,
-                                             'rightToLeft'   => Zend_Text_Figlet::DIRECTION_RIGHT_TO_LEFT]);
+        $figlet = new Zend_Text_Figlet(['smushMode' => -1,
+                                             'rightToLeft' => Zend_Text_Figlet::DIRECTION_RIGHT_TO_LEFT]);
 
         $this->_equalAgainstFile($figlet->render('Dummy'), 'NoSmushRightToLeft.figlet');
     }

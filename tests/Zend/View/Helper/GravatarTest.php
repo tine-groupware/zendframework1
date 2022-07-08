@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -64,8 +66,8 @@ class Zend_View_Helper_GravatarTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_GravatarTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_GravatarTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -74,12 +76,12 @@ class Zend_View_Helper_GravatarTest extends TestCase
     protected function setUp(): void
     {
         $this->_object = new Zend_View_Helper_Gravatar();
-        $this->_view   = new Zend_View();
+        $this->_view = new Zend_View();
         $this->_view->doctype()->setDoctype(strtoupper("XHTML1_STRICT"));
         $this->_object->setView($this->_view);
 
-        if( isset($_SERVER['HTTPS'])) {
-            unset ($_SERVER['HTTPS']);
+        if (isset($_SERVER['HTTPS'])) {
+            unset($_SERVER['HTTPS']);
         }
     }
 
@@ -96,8 +98,10 @@ class Zend_View_Helper_GravatarTest extends TestCase
      */
     public function testGravataXHTMLDoctype()
     {
-        $this->assertMatchesRegularExpression('/\/>$/',
-            $this->_object->gravatar('example@example.com')->__toString());
+        $this->assertMatchesRegularExpression(
+            '/\/>$/',
+            $this->_object->gravatar('example@example.com')->__toString()
+        );
     }
 
     /**
@@ -106,12 +110,14 @@ class Zend_View_Helper_GravatarTest extends TestCase
     public function testGravatarHTMLDoctype()
     {
         $object = new Zend_View_Helper_Gravatar();
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $view->doctype()->setDoctype(strtoupper("HTML5"));
         $object->setView($view);
 
-        $this->assertMatchesRegularExpression('/[^\/]>$/',
-            $this->_object->gravatar('example@example.com')->__toString());
+        $this->assertMatchesRegularExpression(
+            '/[^\/]>$/',
+            $this->_object->gravatar('example@example.com')->__toString()
+        );
     }
 
     /**
@@ -191,8 +197,10 @@ class Zend_View_Helper_GravatarTest extends TestCase
      */
     public function testHttpsSource()
     {
-        $this->assertMatchesRegularExpression('/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
-                $this->_object->gravatar("example@example.com", ['secure' => true])->__toString());
+        $this->assertMatchesRegularExpression(
+            '/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+            $this->_object->gravatar("example@example.com", ['secure' => true])->__toString()
+        );
     }
 
     /**
@@ -200,9 +208,13 @@ class Zend_View_Helper_GravatarTest extends TestCase
      */
     public function testImgAttribs()
     {
-        $this->assertMatchesRegularExpression('/class="gravatar" title="Gravatar"/',
-                $this->_object->gravatar("example@example.com", [],
-                        ['class' => 'gravatar', 'title' => 'Gravatar'])
+        $this->assertMatchesRegularExpression(
+            '/class="gravatar" title="Gravatar"/',
+            $this->_object->gravatar(
+                "example@example.com",
+                [],
+                ['class' => 'gravatar', 'title' => 'Gravatar']
+            )
                      ->__toString()
         );
     }
@@ -212,10 +224,13 @@ class Zend_View_Helper_GravatarTest extends TestCase
      */
     public function testGravatarOptions()
     {
-        $this->assertMatchesRegularExpression('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}\?s=125&amp;d=wavatar&amp;r=pg"/',
-                $this->_object->gravatar("example@example.com",
-                        ['rating' => 'pg', 'imgSize' => 125, 'defaultImg' => 'wavatar',
-                            'secure' => false])
+        $this->assertMatchesRegularExpression(
+            '/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}\?s=125&amp;d=wavatar&amp;r=pg"/',
+            $this->_object->gravatar(
+                "example@example.com",
+                ['rating' => 'pg', 'imgSize' => 125, 'defaultImg' => 'wavatar',
+                            'secure' => false]
+            )
                      ->__toString()
         );
     }
@@ -230,8 +245,10 @@ class Zend_View_Helper_GravatarTest extends TestCase
 
         foreach ($values as $value) {
             $_SERVER['HTTPS'] = $value;
-            $this->assertMatchesRegularExpression('/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
-                    $this->_object->gravatar("example@example.com")->__toString());
+            $this->assertMatchesRegularExpression(
+                '/src="https:\/\/secure.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+                $this->_object->gravatar("example@example.com")->__toString()
+            );
         }
     }
 
@@ -242,8 +259,10 @@ class Zend_View_Helper_GravatarTest extends TestCase
     {
         $_SERVER['HTTPS'] = "off";
 
-        $this->assertMatchesRegularExpression('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
-                $this->_object->gravatar("example@example.com")->__toString());
+        $this->assertMatchesRegularExpression(
+            '/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+            $this->_object->gravatar("example@example.com")->__toString()
+        );
     }
 
     public function testSetAttribsWithSrcKey()
@@ -252,24 +271,30 @@ class Zend_View_Helper_GravatarTest extends TestCase
         $this->_object->setEmail($email);
         $this->_object->setAttribs([
             'class' => 'gravatar',
-            'src'   => 'http://example.com',
-            'id'    => 'gravatarID',
+            'src' => 'http://example.com',
+            'id' => 'gravatarID',
         ]);
 
-        $this->assertMatchesRegularExpression('/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
-                            $this->_object->getImgTag());
+        $this->assertMatchesRegularExpression(
+            '/src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+"/',
+            $this->_object->getImgTag()
+        );
     }
 
     public function testForgottenEmailParameter()
     {
-        $this->assertMatchesRegularExpression('/(src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+")/',
-                            $this->_object->getImgTag());
+        $this->assertMatchesRegularExpression(
+            '/(src="http:\/\/www.gravatar.com\/avatar\/[a-z0-9]{32}.+")/',
+            $this->_object->getImgTag()
+        );
     }
 
     public function testReturnImgTag()
     {
-        $this->assertMatchesRegularExpression("/^<img\s.+/",
-        $this->_object->gravatar("example@example.com")->__toString());
+        $this->assertMatchesRegularExpression(
+            "/^<img\s.+/",
+            $this->_object->gravatar("example@example.com")->__toString()
+        );
     }
 
     public function testReturnThisObject()

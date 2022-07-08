@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -39,7 +41,6 @@ require_once 'Zend/Tool/Framework/Client/Request.php';
  */
 class Zend_Tool_Framework_Client_RequestTest extends TestCase
 {
-
     /**
      * @var Zend_Tool_Framework_Client_Request
      */
@@ -111,5 +112,4 @@ class Zend_Tool_Framework_Client_RequestTest extends TestCase
     protected $_isPretend = false;
     protected $_isDispatchable = true;
     */
-
 }

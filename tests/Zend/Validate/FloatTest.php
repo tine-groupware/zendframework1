@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -139,7 +141,7 @@ class Zend_Validate_FloatTest extends TestCase
     {
         setlocale(LC_ALL, 'de');
         $valid = new Zend_Validate_Float();
-        $this->assertTrue($valid->isValid(123,456));
+        $this->assertTrue($valid->isValid(123, 456));
         $this->assertTrue($valid->isValid('123,456'));
     }
 

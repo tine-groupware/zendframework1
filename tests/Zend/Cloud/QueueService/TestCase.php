@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -81,7 +83,7 @@ abstract class Zend_Cloud_QueueService_TestCase extends TestCase
 
     public function testGetClient()
     {
-    	$this->assertTrue($this->_commonQueue->getClient() instanceof $this->_clientType);
+        $this->assertTrue($this->_commonQueue->getClient() instanceof $this->_clientType);
     }
 
     public function testCreateQueue()
@@ -95,7 +97,9 @@ abstract class Zend_Cloud_QueueService_TestCase extends TestCase
             $this->assertLessThan(30, $endTime - $startTime);
             $this->_commonQueue->deleteQueue($queueURL);
         } catch (Exception $e) {
-            if(isset($queueURL)) $this->_commonQueue->deleteQueue($queueURL);
+            if (isset($queueURL)) {
+                $this->_commonQueue->deleteQueue($queueURL);
+            }
             throw $e;
         }
     }
@@ -114,13 +118,15 @@ abstract class Zend_Cloud_QueueService_TestCase extends TestCase
             try {
                 $messages = $this->_commonQueue->receiveMessages($queueURL);
                 $this->fail('An exception should have been thrown if the queue has been deleted; received ' . var_export($messages, 1));
-            } catch(Zend_Cloud_QueueService_Exception $e) {
+            } catch (Zend_Cloud_QueueService_Exception $e) {
                 $this->assertTrue(true);
                 $this->_commonQueue->deleteQueue($queueURL);
                 return;
             }
         } catch (Exception $e) {
-            if(isset($queueURL)) $this->_commonQueue->deleteQueue($queueURL);
+            if (isset($queueURL)) {
+                $this->_commonQueue->deleteQueue($queueURL);
+            }
             throw $e;
         }
     }
@@ -208,7 +214,9 @@ abstract class Zend_Cloud_QueueService_TestCase extends TestCase
             }
             $this->_commonQueue->deleteQueue($queueURL);
         } catch (Exception $e) {
-            if(isset($queueURL)) $this->_commonQueue->deleteQueue($queueURL);
+            if (isset($queueURL)) {
+                $this->_commonQueue->deleteQueue($queueURL);
+            }
             throw $e;
         }
     }
@@ -303,7 +311,9 @@ abstract class Zend_Cloud_QueueService_TestCase extends TestCase
 
             $this->_commonQueue->deleteQueue($queueURL);
         } catch (Exception $e) {
-            if(isset($queueURL)) $this->_commonQueue->deleteQueue($queueURL);
+            if (isset($queueURL)) {
+                $this->_commonQueue->deleteQueue($queueURL);
+            }
             throw $e;
         }
     }
@@ -331,7 +341,9 @@ abstract class Zend_Cloud_QueueService_TestCase extends TestCase
 
             $this->_commonQueue->deleteQueue($queueURL);
         } catch (Exception $e) {
-            if(isset($queueURL)) $this->_commonQueue->deleteQueue($queueURL);
+            if (isset($queueURL)) {
+                $this->_commonQueue->deleteQueue($queueURL);
+            }
             throw $e;
         }
     }

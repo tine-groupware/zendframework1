@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -97,7 +99,7 @@ class Zend_Dom_Query_Css2XpathTest extends TestCase
         $test = Zend_Dom_Query_Css2Xpath::transform('div#foo span.bar, #bar li.baz a');
         $this->assertTrue(is_string($test));
         $this->assertStringContainsString('|', $test);
-        $actual   = explode('|', $test);
+        $actual = explode('|', $test);
         $expected = [
             "//div[@id='foo']//span[contains(concat(' ', normalize-space(@class), ' '), ' bar ')]",
             "//*[@id='bar']//li[contains(concat(' ', normalize-space(@class), ' '), ' baz ')]//a",

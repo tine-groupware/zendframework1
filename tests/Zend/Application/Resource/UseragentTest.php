@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Application_Resource_UseragentTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -102,7 +104,7 @@ class Zend_Application_Resource_UseragentTest extends TestCase
         $resource = new Zend_Application_Resource_Useragent($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $ua      = $resource->getUserAgent();
+        $ua = $resource->getUserAgent();
         $storage = $ua->getStorage();
         $this->assertTrue($storage instanceof Zend_Http_UserAgent_Storage_NonPersistent);
     }
@@ -114,7 +116,7 @@ class Zend_Application_Resource_UseragentTest extends TestCase
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
 
-        $view   = $this->bootstrap->getResource('view');
+        $view = $this->bootstrap->getResource('view');
         $helper = $view->getHelper('userAgent');
 
         $expected = $resource->getUserAgent();

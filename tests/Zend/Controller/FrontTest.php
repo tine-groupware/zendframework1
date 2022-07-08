@@ -1,7 +1,8 @@
 <?php
+
+use MyApp\Controller\Plugin\ThrowingPlugin;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
-use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -24,7 +25,7 @@ use PHPUnit\TextUI\TestRunner;
  */
 
 // Call Zend_Controller_FrontTest::main() if this source file is executed directly.
-use MyApp\Controller\Plugin\ThrowingPlugin;
+use PHPUnit\TextUI\TestRunner;
 
 if (!defined("PHPUnit_MAIN_METHOD")) {
     define("PHPUnit_MAIN_METHOD", "Zend_Controller_FrontTest::main");
@@ -69,9 +70,8 @@ class Zend_Controller_FrontTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_FrontTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_FrontTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -453,7 +453,7 @@ class Zend_Controller_FrontTest extends TestCase
     public function testBaseUrlPushedToRequest()
     {
         $this->_controller->setBaseUrl('/index.php');
-        $request  = new Zend_Controller_Request_Http('http://example.com/index');
+        $request = new Zend_Controller_Request_Http('http://example.com/index');
         $response = new Zend_Controller_Response_Cli();
         $response = $this->_controller->dispatch($request, $response);
 
@@ -637,7 +637,8 @@ class Zend_Controller_FrontTest extends TestCase
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Exception);
             $this->assertMatchesRegularExpression(
-                '/Directory \w+ not readable/', $e->getMessage()
+                '/Directory \w+ not readable/',
+                $e->getMessage()
             );
         }
     }
@@ -697,7 +698,7 @@ class Zend_Controller_FrontTest extends TestCase
         $response = new Zend_Controller_Response_Http();
         $responsePost = $this->_controller->dispatch($request, $response);
 
-        $requestPost  = $this->_controller->getRequest();
+        $requestPost = $this->_controller->getRequest();
 
         $this->assertNotSame($request, $requestPost);
         $this->assertNotSame($response, $responsePost);

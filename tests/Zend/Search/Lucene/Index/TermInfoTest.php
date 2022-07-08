@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,14 +43,13 @@ class Zend_Search_Lucene_Index_TermInfoTest extends TestCase
         $termInfo = new Zend_Search_Lucene_Index_TermInfo(0, 1, 2, 3);
         $this->assertTrue($termInfo instanceof Zend_Search_Lucene_Index_TermInfo);
 
-        $this->assertEquals($termInfo->docFreq,      0);
-        $this->assertEquals($termInfo->freqPointer,  1);
-        $this->assertEquals($termInfo->proxPointer,  2);
-        $this->assertEquals($termInfo->skipOffset,   3);
+        $this->assertEquals($termInfo->docFreq, 0);
+        $this->assertEquals($termInfo->freqPointer, 1);
+        $this->assertEquals($termInfo->proxPointer, 2);
+        $this->assertEquals($termInfo->skipOffset, 3);
         $this->assertEquals($termInfo->indexPointer, null);
 
         $termInfo = new Zend_Search_Lucene_Index_TermInfo(0, 1, 2, 3, 4);
         $this->assertEquals($termInfo->indexPointer, 4);
     }
 }
-

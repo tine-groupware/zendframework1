@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +50,8 @@ class Zend_Amf_Util_BinaryStreamTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Amf_Util_BinaryStreamTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Amf_Util_BinaryStreamTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testConstructorShouldThrowExceptionForInvalidStream()
@@ -64,16 +66,16 @@ class Zend_Amf_Util_BinaryStreamTest extends TestCase
         $string = 'this is a short stream';
         $stream = new Zend_Amf_Util_BinaryStream($string);
         $length = strlen($string);
-        $test   = $stream->readBytes(10 * $length);
+        $test = $stream->readBytes(10 * $length);
     }
 
     public function testReadBytesShouldReturnSubsetOfStringFromCurrentNeedle()
     {
         $string = 'this is a short stream';
         $stream = new Zend_Amf_Util_BinaryStream($string);
-        $test   = $stream->readBytes(4);
+        $test = $stream->readBytes(4);
         $this->assertEquals('this', $test);
-        $test   = $stream->readBytes(5);
+        $test = $stream->readBytes(5);
         $this->assertEquals(' is a', $test);
     }
 

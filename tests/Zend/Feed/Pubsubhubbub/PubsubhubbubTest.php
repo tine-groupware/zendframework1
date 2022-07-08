@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,7 +35,6 @@ require_once 'Zend/Feed/Pubsubhubbub.php';
  */
 class Zend_Feed_Pubsubhubbub_PubsubhubbubTest extends TestCase
 {
-
     protected function tearDown(): void
     {
         Zend_Feed_Pubsubhubbub::clearHttpClient();
@@ -54,7 +55,8 @@ class Zend_Feed_Pubsubhubbub_PubsubhubbubTest extends TestCase
             'http://www.example.com/hub', 'http://www.example.com/hub2'
         ], Zend_Feed_Pubsubhubbub::detectHubs($feed));
     }
-
 }
 
-class Test_Http_Client_Pubsub extends Zend_Http_Client {}
+class Test_Http_Client_Pubsub extends Zend_Http_Client
+{
+}

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -56,7 +58,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
 
     protected $_clientType = 'stdClass';
 
-    const ID_FIELD = "__id";
+    public const ID_FIELD = "__id";
 
     /**
      * Config object
@@ -81,7 +83,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
 
     public function testGetClient()
     {
-    	$this->assertTrue(is_a($this->_commonDocument->getClient(), $this->_clientType));
+        $this->assertTrue(is_a($this->_commonDocument->getClient(), $this->_clientType));
     }
 
     public function testCreateCollection()
@@ -220,7 +222,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
         $this->assertTrue($fetchdoc instanceof Zend_Cloud_DocumentService_Document, "New document not found");
         $this->assertEquals($doc1->name, $fetchdoc->name, "Name field did not update");
 
-         $this->_commonDocument->deleteCollection($name);
+        $this->_commonDocument->deleteCollection($name);
     }
 
     public function testUpdateDocumentIDDoc()
@@ -240,7 +242,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
         $this->assertEquals($doc2->name, $fetchdoc->name, "Name field did not update");
         $this->assertEquals($doc2->keyword, $fetchdoc->keyword, "Keywords did not update");
 
-         $this->_commonDocument->deleteCollection($name);
+        $this->_commonDocument->deleteCollection($name);
     }
 
     public function testUpdateDocumentDoc()
@@ -273,7 +275,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
         $fetchdocs = $this->_commonDocument->query($name, $query);
 
         $this->assertTrue(count($fetchdocs) >= 2, "Query failed to fetch 2 fields");
-        foreach($fetchdocs as $fdoc) {
+        foreach ($fetchdocs as $fdoc) {
             $this->assertStringContainsString($fdoc["name"], [$doc[1]->name, $doc[2]->name], "Wrong name in results");
             $this->assertStringContainsString($fdoc["author"], [$doc[1]->author, $doc[2]->author], "Wrong name in results");
         }
@@ -310,7 +312,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
             ->from($name)->where("year > ?", [1945]);
         $fetchdocs = $this->_commonDocument->query($name, $query);
         $this->assertEquals(3, count($fetchdocs));
-        foreach($fetchdocs as $fdoc) {
+        foreach ($fetchdocs as $fdoc) {
             $this->assertTrue($fdoc["year"] > 1945);
         }
 
@@ -327,7 +329,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
             ->from($name)->where("year > ?", [1945])->limit(1);
         $fetchdocs = $this->_commonDocument->query($name, $query);
         $this->assertEquals(1, count($fetchdocs));
-        foreach($fetchdocs as $fdoc) {
+        foreach ($fetchdocs as $fdoc) {
             $this->assertTrue($fdoc["year"] > 1945);
             $this->assertStringContainsString($fdoc["name"], [$doc[0]->name, $doc[2]->name, $doc[3]->name], "Wrong name in results");
         }
@@ -369,7 +371,8 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
         return $this->_dummyCollectionNamePrefix . $name; //.mt_rand();
     }
 
-    protected function _wait() {
+    protected function _wait()
+    {
         sleep($this->_waitPeriod);
     }
 
@@ -384,7 +387,7 @@ abstract class Zend_Cloud_DocumentService_TestCase extends TestCase
     {
         $data = $this->_getDocumentData();
         $this->_commonDocument->createCollection($name);
-        for($i=0; $i<count($data); $i++) {
+        for ($i = 0; $i < count($data); $i++) {
             $doc[$i] = $this->_makeDocument($data[$i]);
             $this->_commonDocument->insertDocument($name, $doc[$i]);
         }

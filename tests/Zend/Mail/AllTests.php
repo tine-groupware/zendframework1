@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,7 +58,7 @@ class Zend_Mail_AllTests
 {
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()
@@ -82,8 +84,8 @@ class Zend_Mail_AllTests
             $suite->addTestSuite('Zend_Mail_MaildirFolderTest');
             $suite->addTestSuite('Zend_Mail_MaildirWritableTest');
         }
-	$suite->addTestSuite('Zend_Mail_SmtpOfflineTest');
-	$suite->addTestSuite('Zend_Mail_SmtpProtocolTest');
+        $suite->addTestSuite('Zend_Mail_SmtpOfflineTest');
+        $suite->addTestSuite('Zend_Mail_SmtpProtocolTest');
         if (defined('TESTS_ZEND_MAIL_SMTP_ENABLED') && constant('TESTS_ZEND_MAIL_SMTP_ENABLED') == true) {
             $suite->addTestSuite('Zend_Mail_SmtpTest');
         }

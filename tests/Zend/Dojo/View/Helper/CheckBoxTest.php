@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_CheckBoxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_CheckBoxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_CheckBox();
         $this->helper->setView($this->view);
     }
@@ -106,7 +108,7 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends TestCase
             [],
             [],
             [
-                'checked'   => 'foo',
+                'checked' => 'foo',
                 'unChecked' => 'bar',
             ]
         );
@@ -150,7 +152,7 @@ class Zend_Dojo_View_Helper_CheckBoxTest extends TestCase
     public function testElementShouldUseCheckedValueForCheckboxInput()
     {
         $html = $this->helper->checkBox('foo', '0', [], [], [
-            'checkedValue'   => '1',
+            'checkedValue' => '1',
             'unCheckedValue' => '0',
         ]);
         if (!preg_match('#(<input[^>]*(?:type="checkbox")[^>]*>)#s', $html, $matches)) {

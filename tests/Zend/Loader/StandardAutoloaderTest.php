@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -89,7 +91,7 @@ class Zend_Loader_StandardAutoloaderTest extends TestCase
     {
         $loader = new Zend_Loader_StandardAutoloader();
 
-        $obj  = new stdClass();
+        $obj = new stdClass();
         foreach ([true, 'foo', $obj] as $arg) {
             try {
                 $loader->setOptions(true);
@@ -104,10 +106,10 @@ class Zend_Loader_StandardAutoloaderTest extends TestCase
     {
         $options = [
             'namespaces' => [
-                'Zend\\'   => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
+                'Zend\\' => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
             ],
-            'prefixes'   => [
-                'Zend_'  => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
+            'prefixes' => [
+                'Zend_' => dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR,
             ],
             'fallback_autoloader' => true,
         ];
@@ -128,7 +130,7 @@ class Zend_Loader_StandardAutoloaderTest extends TestCase
         ]);
         $options = new ArrayObject([
             'namespaces' => $namespaces,
-            'prefixes'   => $prefixes,
+            'prefixes' => $prefixes,
             'fallback_autoloader' => true,
         ]);
         $loader = new Zend_Loader_TestAsset_StandardAutoloader();
@@ -214,8 +216,8 @@ class Zend_Loader_StandardAutoloaderTest extends TestCase
     public function testCanTellAutoloaderToRegisterZfPrefixAtInstantiation()
     {
         $loader = new Zend_Loader_StandardAutoloader(['autoregister_zf' => true]);
-        $r      = new ReflectionClass($loader);
-        $file   = $r->getFileName();
+        $r = new ReflectionClass($loader);
+        $file = $r->getFileName();
         $expected = ['Zend_' => dirname(dirname($file)) . DIRECTORY_SEPARATOR];
         $prefixes = $r->getProperty('prefixes');
         $prefixes->setAccessible(true);

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,17 +44,17 @@ class Zend_Log_Formatter_FirebugTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testFormat()
     {
         $event = [
             'timestamp' => date('c'),
-        	'message' => 'tottakai',
+            'message' => 'tottakai',
             'priority' => 2,
-        	'priorityName' => 'CRIT'
+            'priorityName' => 'CRIT'
         ];
         $formatter = new Zend_Log_Formatter_Firebug();
         $output = $formatter->format($event);

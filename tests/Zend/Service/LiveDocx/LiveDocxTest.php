@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -47,8 +49,8 @@ class Zend_Service_LiveDocX_LiveDocxTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -69,26 +71,26 @@ class Zend_Service_LiveDocX_LiveDocxTest extends TestCase
         }
     }
 
-    public function tearDown (): void
+    public function tearDown(): void
     {
-	if (isset($this->phpLiveDocx)) {
-	    foreach ($this->phpLiveDocx->listTemplates() as $template) {
-		$this->phpLiveDocx->deleteTemplate($template['filename']);
-	    }
-	    unset($this->phpLiveDocx);
-	}
+        if (isset($this->phpLiveDocx)) {
+            foreach ($this->phpLiveDocx->listTemplates() as $template) {
+                $this->phpLiveDocx->deleteTemplate($template['filename']);
+            }
+            unset($this->phpLiveDocx);
+        }
     }
 
-    public function testGetFormat ()
+    public function testGetFormat()
     {
-        $this->assertEquals('',    $this->phpLiveDocx->getFormat('document'));
+        $this->assertEquals('', $this->phpLiveDocx->getFormat('document'));
         $this->assertEquals('doc', $this->phpLiveDocx->getFormat('document.doc'));
         $this->assertEquals('doc', $this->phpLiveDocx->getFormat('document-123.doc'));
         $this->assertEquals('doc', $this->phpLiveDocx->getFormat('document123.doc'));
         $this->assertEquals('doc', $this->phpLiveDocx->getFormat('document.123.doc'));
     }
 
-    public function testGetVersion ()
+    public function testGetVersion()
     {
         $expectedResults = '2.0';
         $this->assertEquals($expectedResults, $this->phpLiveDocx->getVersion());

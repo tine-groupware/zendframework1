@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,12 +45,13 @@ require_once 'Custom/Messages.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Queue
  */
-class Custom_Object {
+class Custom_Object
+{
     public $a;
 
     public function __construct()
     {
-        $a = rand(1,200);
+        $a = rand(1, 200);
     }
 
     public function getA()
@@ -74,14 +77,14 @@ class Zend_Queue_CustomTest extends TestCase
         $object_count = 10;
         $objects = [];
 
-        $queue = new Custom_Queue('Array', ['name'=>'ObjectA']);
+        $queue = new Custom_Queue('Array', ['name' => 'ObjectA']);
         $this->assertTrue($queue instanceof Custom_Queue);
 
         // ------------------------------------------------ send
 
         // add items $objects[0-4]
         $objects = [];
-        for ($i = 0; $i < $object_count-5; $i++) {
+        for ($i = 0; $i < $object_count - 5; $i++) {
             $object = new Custom_Object();
             $queue->send(new Custom_Message($object));
             $objects[] = $object;
@@ -91,7 +94,7 @@ class Zend_Queue_CustomTest extends TestCase
         $messages = new Custom_Messages();
         for ($i = 0; $i < 5; $i++) {
             $object = new Custom_Object();
-            $messages->append( new Custom_Message($object));
+            $messages->append(new Custom_Message($object));
             $objects[] = $object;
         }
         $queue->send($messages);
@@ -112,7 +115,7 @@ class Zend_Queue_CustomTest extends TestCase
             try {
                 unset($receive[$index]);
                 $this->assertTrue(true, '$receive[$index] successfully deleted');
-            } catch(Zend_Queue_Exception $e) {
+            } catch (Zend_Queue_Exception $e) {
                 $this->fail('$receive[$index] should have been deleted' . $e->getMessage());
             }
         }
@@ -144,7 +147,7 @@ class Zend_Queue_CustomTest extends TestCase
             try {
                 unset($receive[$r_index]);
                 $this->assertTrue(true, '$receive[$index] successfully deleted');
-            } catch(Zend_Queue_Exception $e) {
+            } catch (Zend_Queue_Exception $e) {
                 $this->fail('$receive[$index] should have been deleted' . $e->getMessage());
             }
         }

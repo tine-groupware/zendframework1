@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Db/Table/Abstract.php';
  */
 class Zend_Feed_Pubsubhubbub_SubscriberTest extends TestCase
 {
-
     protected $_subscriber = null;
 
     protected $_adapter = null;
@@ -44,9 +45,9 @@ class Zend_Feed_Pubsubhubbub_SubscriberTest extends TestCase
 
     protected function setUp(): void
     {
-        $client = new Zend_Http_Client;
+        $client = new Zend_Http_Client();
         Zend_Feed_Pubsubhubbub::setHttpClient($client);
-        $this->_subscriber = new Zend_Feed_Pubsubhubbub_Subscriber;
+        $this->_subscriber = new Zend_Feed_Pubsubhubbub_Subscriber();
         $this->_adapter = $this->_getCleanMock(
             'Zend_Db_Adapter_Abstract'
         );
@@ -127,7 +128,7 @@ class Zend_Feed_Pubsubhubbub_SubscriberTest extends TestCase
     public function testAddsParameter()
     {
         $this->_subscriber->setParameter('foo', 'bar');
-        $this->assertEquals(['foo'=>'bar'], $this->_subscriber->getParameters());
+        $this->assertEquals(['foo' => 'bar'], $this->_subscriber->getParameters());
     }
 
     public function testAddsParametersFromArray()
@@ -289,7 +290,7 @@ class Zend_Feed_Pubsubhubbub_SubscriberTest extends TestCase
 
     public function testCanSetStorageImplementation()
     {
-	    $storage = new Zend_Feed_Pubsubhubbub_Model_Subscription($this->_tableGateway);
+        $storage = new Zend_Feed_Pubsubhubbub_Model_Subscription($this->_tableGateway);
         $this->_subscriber->setStorage($storage);
         $this->assertThat($this->_subscriber->getStorage(), $this->identicalTo($storage));
     }
@@ -300,14 +301,15 @@ class Zend_Feed_Pubsubhubbub_SubscriberTest extends TestCase
         $this->_subscriber->getStorage();
     }
 
-    protected function _getCleanMock($className) {
+    protected function _getCleanMock($className)
+    {
         $class = new ReflectionClass($className);
         $methods = $class->getMethods();
         $stubMethods = [];
         foreach ($methods as $method) {
             if ($method->isPublic() || ($method->isProtected()
             && $method->isAbstract())) {
-            $stubMethods[] = $method->getName();
+                $stubMethods[] = $method->getName();
             }
         }
         $mocked = $this->createMock(
@@ -315,5 +317,4 @@ class Zend_Feed_Pubsubhubbub_SubscriberTest extends TestCase
         );
         return $mocked;
     }
-
 }

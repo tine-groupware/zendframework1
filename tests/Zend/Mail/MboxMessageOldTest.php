@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -105,15 +107,15 @@ class Zend_Mail_MboxMessageOldTest extends TestCase
         $this->assertEquals('Simple Message', $subject);
     }
 
-/*
-    public function testFetchTopBody()
-    {
-        $mail = new Zend_Mail_Storage_Mbox_OldMessage(array('filename' => $this->_mboxFile));
+    /*
+        public function testFetchTopBody()
+        {
+            $mail = new Zend_Mail_Storage_Mbox_OldMessage(array('filename' => $this->_mboxFile));
 
-        $content = $mail->getHeader(3, 1)->getContent();
-        $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
-    }
-*/
+            $content = $mail->getHeader(3, 1)->getContent();
+            $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
+        }
+    */
 
     public function testFetchMessageHeader()
     {
@@ -145,5 +147,4 @@ class Zend_Mail_MboxMessageOldTest extends TestCase
         $this->assertEquals($mail->getMessage(2)->subject, 'test2');
         $this->assertEquals($mail->getMessage(2)->getContent(), '');
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,8 +45,8 @@ require_once 'Zend/Service/Delicious/Post.php';
  */
 class Zend_Service_Delicious_PostTest extends TestCase
 {
-    const UNAME = 'zfTestUser';
-    const PASS  = 'zfuser';
+    public const UNAME = 'zfTestUser';
+    public const PASS = 'zfuser';
 
     /**
      * Service consumer object
@@ -71,7 +73,7 @@ class Zend_Service_Delicious_PostTest extends TestCase
 
         $values = [
             'title' => 'anything',
-            'url'   => 'anything'
+            'url' => 'anything'
             ];
         $this->_post = new Zend_Service_Delicious_Post($this->_delicious, $values);
     }
@@ -115,8 +117,8 @@ class Zend_Service_Delicious_PostTest extends TestCase
     {
         $values = [
             'title' => 'anything',
-            'url'   => 'anything',
-            'date'  => 'invalid'
+            'url' => 'anything',
+            'date' => 'invalid'
             ];
         try {
             $post = new Zend_Service_Delicious_Post($this->_delicious, $values);

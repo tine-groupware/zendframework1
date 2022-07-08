@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Cache.php';
  */
 class Zend_Feed_ReaderTest extends TestCase
 {
-
     protected $_feedSamplePath = null;
 
     protected function setUp(): void
@@ -51,7 +52,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsRss20()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/rss20.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/rss20.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_RSS_20, $type);
     }
@@ -59,7 +61,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsRss094()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/rss094.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/rss094.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_RSS_094, $type);
     }
@@ -67,7 +70,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsRss093()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/rss093.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/rss093.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_RSS_093, $type);
     }
@@ -75,7 +79,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsRss092()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/rss092.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/rss092.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_RSS_092, $type);
     }
@@ -83,7 +88,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsRss091()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/rss091.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/rss091.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_RSS_091, $type);
     }
@@ -91,7 +97,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsRss10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/rss10.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/rss10.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_RSS_10, $type);
     }
@@ -99,7 +106,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsRss090()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/rss090.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/rss090.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_RSS_090, $type);
     }
@@ -107,7 +115,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsAtom10()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/atom10.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/atom10.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_ATOM_10, $type);
     }
@@ -115,7 +124,8 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testDetectsFeedIsAtom03()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/Reader/atom03.xml'));
+            file_get_contents($this->_feedSamplePath . '/Reader/atom03.xml')
+        );
         $type = Zend_Feed_Reader::detectType($feed);
         $this->assertEquals(Zend_Feed_Reader::TYPE_ATOM_03, $type);
     }
@@ -149,7 +159,7 @@ class Zend_Feed_ReaderTest extends TestCase
             $feed = Zend_Feed_Reader::importFile(
                 dirname(__FILE__) . '/Reader/Entry/_files/Atom/title/plain/atom10.xml'
             );
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
     }
@@ -168,7 +178,7 @@ class Zend_Feed_ReaderTest extends TestCase
 
         try {
             $feed = Zend_Feed_Reader::import('http://www.planet-php.net/rdf/');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
     }
@@ -200,7 +210,7 @@ class Zend_Feed_ReaderTest extends TestCase
 
         try {
             $links = Zend_Feed_Reader::findFeedLinks('http://www.planet-php.net');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
         $this->assertEquals('http://www.planet-php.org/rss/', $links->rss);
@@ -260,7 +270,7 @@ class Zend_Feed_ReaderTest extends TestCase
 
         try {
             $links = Zend_Feed_Reader::findFeedLinks('http://www.infopod.com.br');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
         $this->assertEquals('http://feeds.feedburner.com/jonnyken/infoblog', $links->rss);
@@ -280,7 +290,7 @@ class Zend_Feed_ReaderTest extends TestCase
 
         try {
             $links = Zend_Feed_Reader::findFeedLinks('http://meiobit.com');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
         $this->assertEquals('http://meiobit.com/rss.xml', $links->rss);
@@ -301,7 +311,7 @@ class Zend_Feed_ReaderTest extends TestCase
             $links = Zend_Feed_Reader::findFeedLinks('http://foo/bar');
 
             Zend_Feed_Reader::setHttpClient($currClient);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
 
@@ -319,9 +329,9 @@ class Zend_Feed_ReaderTest extends TestCase
     public function testRegistersUserExtension()
     {
         try {
-            Zend_Feed_Reader::addPrefixPath('My_FeedReader_Extension',dirname(__FILE__) . '/Reader/_files/My/Extension');
+            Zend_Feed_Reader::addPrefixPath('My_FeedReader_Extension', dirname(__FILE__) . '/Reader/_files/My/Extension');
             Zend_Feed_Reader::registerExtension('JungleBooks');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail($e->getMessage());
         }
         $this->assertTrue(Zend_Feed_Reader::isRegistered('JungleBooks'));
@@ -334,9 +344,9 @@ class Zend_Feed_ReaderTest extends TestCase
     {
         $currClient = Zend_Feed_Reader::getHttpClient();
         $testAdapter = new Zend_Http_Client_Adapter_Test();
-        $testAdapter->setResponse(new Zend_Http_Response(200,[],''));
+        $testAdapter->setResponse(new Zend_Http_Response(200, [], ''));
         Zend_Feed_Reader::setHttpClient(new Zend_Http_Client(null, [
-            'adapter'=>$testAdapter
+            'adapter' => $testAdapter
         ]));
         
         $this->expectException('Zend_Feed_Exception');
@@ -344,26 +354,26 @@ class Zend_Feed_ReaderTest extends TestCase
         $result = Zend_Feed_Reader::import('http://www.example.com');
     }
 
-     public function testXxePreventionOnFeedParsing()
-     {
-         $string = file_get_contents($this->_feedSamplePath.'/Reader/xxe-atom10.xml');
-         $string = str_replace('XXE_URI', $this->_feedSamplePath.'/Reader/xxe-info.txt', $string);
-         $this->expectException('Zend_Feed_Exception');
-         $feed = Zend_Feed_Reader::importString($string);
-     }
+    public function testXxePreventionOnFeedParsing()
+    {
+        $string = file_get_contents($this->_feedSamplePath . '/Reader/xxe-atom10.xml');
+        $string = str_replace('XXE_URI', $this->_feedSamplePath . '/Reader/xxe-info.txt', $string);
+        $this->expectException('Zend_Feed_Exception');
+        $feed = Zend_Feed_Reader::importString($string);
+    }
 
-     public function testDetectTypeException()
-     {
-         try {
-             Zend_Feed_Reader::detectType('foo');
-         } catch (Zend_Feed_Exception $e) {
-             self::assertInstanceOf('Zend_Feed_Exception', $e);
+    public function testDetectTypeException()
+    {
+        try {
+            Zend_Feed_Reader::detectType('foo');
+        } catch (Zend_Feed_Exception $e) {
+            self::assertInstanceOf('Zend_Feed_Exception', $e);
 
-             return;
-         }
+            return;
+        }
 
-         self::fail('Illegal string should create an exception');
-     }
+        self::fail('Illegal string should create an exception');
+    }
  
     protected function _getTempDirectory()
     {
@@ -388,7 +398,7 @@ class Zend_Feed_ReaderTest extends TestCase
                 return $dir;
             }
         }
-        $tempFile = tempnam(md5(uniqid(rand(), TRUE)), '');
+        $tempFile = tempnam(md5(uniqid(rand(), true)), '');
         if ($tempFile) {
             $dir = realpath(dirname($tempFile));
             unlink($tempFile);
@@ -411,5 +421,4 @@ class Zend_Feed_ReaderTest extends TestCase
         }
         return false;
     }
-
 }

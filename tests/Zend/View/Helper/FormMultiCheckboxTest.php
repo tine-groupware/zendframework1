@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_View_Helper_FormMultiCheckboxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormMultiCheckboxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormMultiCheckboxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -68,7 +70,7 @@ class Zend_View_Helper_FormMultiCheckboxTest extends TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry['Zend_View_Helper_Doctype']);
         }
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormMultiCheckbox();
         $this->helper->setView($this->view);
         ob_start();
@@ -93,8 +95,8 @@ class Zend_View_Helper_FormMultiCheckboxTest extends TestCase
             'baz' => 'Baz'
         ];
         $html = $this->helper->formMultiCheckbox([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
         ]);
         foreach ($options as $key => $value) {
@@ -117,8 +119,8 @@ class Zend_View_Helper_FormMultiCheckboxTest extends TestCase
             'baz' => 'Baz'
         ];
         $html = $this->helper->formMultiCheckbox([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
         ]);
         foreach ($options as $key => $value) {
@@ -139,8 +141,8 @@ class Zend_View_Helper_FormMultiCheckboxTest extends TestCase
             'baz' => 'Baz'
         ];
         $html = $this->helper->formMultiCheckbox([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
         ]);
         foreach ($options as $key => $value) {

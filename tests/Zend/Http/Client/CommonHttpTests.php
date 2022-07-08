@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -21,9 +23,8 @@ use PHPUnit\Framework\TestCase;
  * @version    $Id$
  */
 // Read local configuration
-if (! defined('TESTS_ZEND_HTTP_CLIENT_BASEURI') &&
+if (!defined('TESTS_ZEND_HTTP_CLIENT_BASEURI') &&
     is_readable('TestConfiguration.php')) {
-
     require_once 'TestConfiguration.php';
 }
 
@@ -83,7 +84,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      * @var array
      */
     protected $config = [
-        'adapter'     => 'Zend_Http_Client_Adapter_Socket'
+        'adapter' => 'Zend_Http_Client_Adapter_Socket'
     ];
 
     /**
@@ -94,9 +95,10 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
     {
         if (defined('TESTS_ZEND_HTTP_CLIENT_BASEURI') &&
             Zend_Uri_Http::check(TESTS_ZEND_HTTP_CLIENT_BASEURI)) {
-
             $this->baseuri = TESTS_ZEND_HTTP_CLIENT_BASEURI;
-            if (substr($this->baseuri, -1) != '/') $this->baseuri .= '/';
+            if (substr($this->baseuri, -1) != '/') {
+                $this->baseuri .= '/';
+            }
 
             $name = $this->getName();
             if (($pos = strpos($name, ' ')) !== false) {
@@ -105,10 +107,9 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
             $uri = $this->baseuri . $name . '.php';
 
-            $this->_adapter = new $this->config['adapter'];
+            $this->_adapter = new $this->config['adapter']();
             $this->client = new Zend_Http_Client($uri, $this->config);
             $this->client->setAdapter($this->_adapter);
-
         } else {
             // Skip tests
             $this->markTestSkipped("Zend_Http_Client dynamic tests are not enabled in TestConfiguration.php");
@@ -513,14 +514,20 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
         $res = $this->client->request('POST');
 
-        $this->assertStringContainsString(serialize($params) . "\n" . serialize($params),
-            $res->getBody(), "returned body does not contain all GET and POST parameters (it should!)");
+        $this->assertStringContainsString(
+            serialize($params) . "\n" . serialize($params),
+            $res->getBody(),
+            "returned body does not contain all GET and POST parameters (it should!)"
+        );
 
         $this->client->resetParameters();
         $res = $this->client->request('POST');
 
-        $this->assertStringNotContainsString(serialize($params), $res->getBody(),
-            "returned body contains GET or POST parameters (it shouldn't!)");
+        $this->assertStringNotContainsString(
+            serialize($params),
+            $res->getBody(),
+            "returned body contains GET or POST parameters (it shouldn't!)"
+        );
         $this->assertStringContainsString($headers["X-Foo"], $this->client->getHeader("X-Foo"), "Header not preserved by reset");
 
         $this->client->resetParameters(true);
@@ -537,12 +544,12 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
         $gparams = [
             'cheese' => 'camambert',
-            'beer'   => 'jever pilnsen',
+            'beer' => 'jever pilnsen',
         ];
 
         $pparams = [
             'from' => 'bob',
-            'to'   => 'alice'
+            'to' => 'alice'
         ];
 
         $this->client->setParameterGet($gparams)->setParameterPost($pparams);
@@ -587,8 +594,9 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
         $body = strtolower($res->getBody());
 
-        foreach ($headers as $key => $val)
+        foreach ($headers as $key => $val) {
             $this->assertStringContainsString(strtolower("$key: $val"), $body);
+        }
 
         $this->assertStringContainsString(strtolower($acceptHeader), $body);
     }
@@ -624,15 +632,15 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
                 $this->assertStringContainsString(strtolower($val), $body);
             }
         }
-     }
+    }
 
-     /**
-      * Test we can set a set of values for one header
-      *
-      */
-     public function testMultipleHeader()
-     {
-         $this->client->setUri($this->baseuri . 'testHeaders.php');
+    /**
+     * Test we can set a set of values for one header
+     *
+     */
+    public function testMultipleHeader()
+    {
+        $this->client->setUri($this->baseuri . 'testHeaders.php');
         $headers = [
             'Accept-encoding' => 'gzip,deflate',
             'X-baz' => 'Foo',
@@ -655,21 +663,22 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $body = strtolower($res->getBody());
 
         foreach ($headers as $key => $val) {
-            if (is_array($val))
+            if (is_array($val)) {
                 $val = implode(', ', $val);
+            }
 
             $this->assertStringContainsString(strtolower("$key: $val"), $body);
         }
-     }
+    }
 
-     /**
-      * Redirection tests
-      */
+    /**
+     * Redirection tests
+     */
 
-     /**
-      * Test the client properly redirects in default mode
-      *
-      */
+    /**
+     * Test the client properly redirects in default mode
+     *
+     */
     public function testRedirectDefault()
     {
         $this->client->setUri($this->baseuri . 'testRedirections.php');
@@ -730,15 +739,19 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $this->client->setConfig(['strictredirects' => true, 'maxredirects' => 2]);
 
         $res = $this->client->request('POST');
-        $this->assertTrue($res->isRedirect(),
-            "Last response was not a redirection as expected. Response code: {$res->getStatus()}. Redirections counter: {$this->client->getRedirectionsCount()} (when strict redirects are on)");
+        $this->assertTrue(
+            $res->isRedirect(),
+            "Last response was not a redirection as expected. Response code: {$res->getStatus()}. Redirections counter: {$this->client->getRedirectionsCount()} (when strict redirects are on)"
+        );
 
         // Then try with normal redirections
         $this->client->setParameterGet('redirection', '0');
         $this->client->setConfig(['strictredirects' => false]);
         $res = $this->client->request('POST');
-        $this->assertTrue($res->isRedirect(),
-            "Last response was not a redirection as expected. Response code: {$res->getStatus()}. Redirections counter: {$this->client->getRedirectionsCount()} (when strict redirects are off)");
+        $this->assertTrue(
+            $res->isRedirect(),
+            "Last response was not a redirection as expected. Response code: {$res->getStatus()}. Redirections counter: {$this->client->getRedirectionsCount()} (when strict redirects are off)"
+        );
     }
 
     /**
@@ -757,8 +770,11 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
         $res = $this->client->request('GET');
 
-        $this->assertEquals("{$uri}/path/to/fake/file.ext?redirect=abpath", $this->client->getUri(true),
-            "The new location is not as expected: {$this->client->getUri(true)}");
+        $this->assertEquals(
+            "{$uri}/path/to/fake/file.ext?redirect=abpath",
+            $this->client->getUri(true),
+            "The new location is not as expected: {$this->client->getUri(true)}"
+        );
     }
 
     /**
@@ -778,8 +794,11 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
         $res = $this->client->request('GET');
 
-        $this->assertEquals("{$uri}?redirect=relpath", $this->client->getUri(true),
-            "The new location is not as expected: {$this->client->getUri(true)}");
+        $this->assertEquals(
+            "{$uri}?redirect=relpath",
+            $this->client->getUri(true),
+            "The new location is not as expected: {$this->client->getUri(true)}"
+        );
     }
 
     /**
@@ -793,10 +812,10 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testHttpAuthBasic()
     {
-        $this->client->setUri($this->baseuri. 'testHttpAuth.php');
+        $this->client->setUri($this->baseuri . 'testHttpAuth.php');
         $this->client->setParameterGet([
-            'user'   => 'alice',
-            'pass'   => 'secret',
+            'user' => 'alice',
+            'pass' => 'secret',
             'method' => 'Basic'
         ]);
 
@@ -821,8 +840,8 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $uri = str_replace('http://', 'http://%s:%s@', $this->baseuri) . 'testHttpAuth.php';
 
         $this->client->setParameterGet([
-            'user'   => 'alice',
-            'pass'   => 'secret',
+            'user' => 'alice',
+            'pass' => 'secret',
             'method' => 'Basic'
         ]);
 
@@ -843,7 +862,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testCancelAuth()
     {
-        $this->client->setUri($this->baseuri. 'testHttpAuth.php');
+        $this->client->setUri($this->baseuri . 'testHttpAuth.php');
 
         // Set auth and cancel it
         $this->client->setAuth('alice', 'secret');
@@ -884,10 +903,10 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testCookiesStringNoJar()
     {
-        $this->client->setUri($this->baseuri. 'testCookies.php');
+        $this->client->setUri($this->baseuri . 'testCookies.php');
 
         $cookies = [
-            'name'   => 'value',
+            'name' => 'value',
             'cookie' => 'crumble'
         ];
 
@@ -906,7 +925,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testSetCookieObjectNoJar()
     {
-        $this->client->setUri($this->baseuri. 'testCookies.php');
+        $this->client->setUri($this->baseuri . 'testCookies.php');
         $refuri = $this->client->getUri();
 
         $cookies = [
@@ -930,7 +949,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testSetCookieObjectArray()
     {
-        $this->client->setUri($this->baseuri. 'testCookies.php');
+        $this->client->setUri($this->baseuri . 'testCookies.php');
         $refuri = $this->client->getUri();
 
         $cookies = [
@@ -956,12 +975,12 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testSetCookieStringArray()
     {
-        $this->client->setUri($this->baseuri. 'testCookies.php');
+        $this->client->setUri($this->baseuri . 'testCookies.php');
 
         $cookies = [
             'chocolate' => 'chips',
-            'crumble'   => 'apple',
-            'another'   => 'cookie'
+            'crumble' => 'apple',
+            'another' => 'cookie'
         ];
 
         $this->client->setCookie($cookies);
@@ -976,7 +995,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testSetCookieObjectJar()
     {
-        $this->client->setUri($this->baseuri. 'testCookies.php');
+        $this->client->setUri($this->baseuri . 'testCookies.php');
         $this->client->setCookieJar();
         $refuri = $this->client->getUri();
 
@@ -1010,7 +1029,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
             $this->markTestSkipped('File uploads disabled.');
         }
 
-        $this->client->setUri($this->baseuri. 'testUploads.php');
+        $this->client->setUri($this->baseuri . 'testUploads.php');
 
         $rawdata = file_get_contents(__FILE__);
         $this->client->setFileUpload('myfile.txt', 'uploadfile', $rawdata, 'text/plain');
@@ -1030,7 +1049,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
             $this->markTestSkipped('File uploads disabled.');
         }
 
-        $this->client->setUri($this->baseuri. 'testUploads.php');
+        $this->client->setUri($this->baseuri . 'testUploads.php');
         $this->client->setFileUpload(__FILE__, 'uploadfile', null, 'text/x-foo-bar');
         $res = $this->client->request('POST');
 
@@ -1049,21 +1068,22 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $detect = null;
         if (function_exists('finfo_file')) {
             $f = @finfo_open(FILEINFO_MIME);
-            if ($f) $detect = 'finfo';
-
+            if ($f) {
+                $detect = 'finfo';
+            }
         } elseif (function_exists('mime_content_type')) {
             if (mime_content_type(__FILE__)) {
                 $detect = 'mime_magic';
             }
         }
 
-        if (! $detect) {
+        if (!$detect) {
             $this->markTestSkipped('No MIME type detection capability (fileinfo or mime_magic extensions) is available');
         }
 
         $file = dirname(realpath(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'staticFile.jpg';
 
-        $this->client->setUri($this->baseuri. 'testUploads.php');
+        $this->client->setUri($this->baseuri . 'testUploads.php');
         $this->client->setFileUpload($file, 'uploadfile');
         $res = $this->client->request('POST');
 
@@ -1078,7 +1098,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
             $this->markTestSkipped('File uploads disabled.');
         }
 
-        $this->client->setUri($this->baseuri. 'testUploads.php');
+        $this->client->setUri($this->baseuri . 'testUploads.php');
 
         $rawdata = file_get_contents(__FILE__);
         $this->client->setFileUpload('/some strage/path%/with[!@#$&]/myfile.txt', 'uploadfile', $rawdata, 'text/plain');
@@ -1117,7 +1137,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $files = ['file1.txt', 'file2.txt', 'someotherfile.foo'];
 
         $expectedBody = '';
-        foreach($files as $filename) {
+        foreach ($files as $filename) {
             $this->client->setFileUpload($filename, 'uploadfile[]', $rawData, 'text/plain');
             $expectedBody .= "uploadfile $filename text/plain " . strlen($rawData) . "\n";
         }
@@ -1143,9 +1163,9 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
     public function testStreamResponse()
     {
-        if(!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
-              $this->markTestSkipped('Current adapter does not support streaming');
-              return;
+        if (!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
+            $this->markTestSkipped('Current adapter does not support streaming');
+            return;
         }
         $this->client->setUri($this->baseuri . 'staticFile.jpg');
         $this->client->setStream();
@@ -1168,9 +1188,9 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
     public function testStreamResponseBody()
     {
-        if(!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
-              $this->markTestSkipped('Current adapter does not support streaming');
-              return;
+        if (!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
+            $this->markTestSkipped('Current adapter does not support streaming');
+            return;
         }
         $this->client->setUri($this->baseuri . 'staticFile.jpg');
         $this->client->setStream();
@@ -1188,9 +1208,9 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
     public function testStreamResponseNamed()
     {
-        if(!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
-              $this->markTestSkipped('Current adapter does not support streaming');
-              return;
+        if (!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
+            $this->markTestSkipped('Current adapter does not support streaming');
+            return;
         }
         $this->client->setUri($this->baseuri . 'staticFile.jpg');
         $outfile = tempnam(sys_get_temp_dir(), "outstream");
@@ -1214,9 +1234,9 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
 
     public function testStreamRequest()
     {
-        if(!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
-              $this->markTestSkipped('Current adapter does not support streaming');
-              return;
+        if (!($this->client->getAdapter() instanceof Zend_Http_Client_Adapter_Stream)) {
+            $this->markTestSkipped('Current adapter does not support streaming');
+            return;
         }
         $data = fopen(dirname(realpath(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'staticFile.jpg', "r");
         $res = $this->client->setRawData($data, 'image/jpeg')->request('PUT');
@@ -1235,12 +1255,12 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $expect = filesize(dirname(realpath(__FILE__)) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ZF9404-doubleContentLength.php');
 
         $response = $this->client->request();
-        if (! $response->isSuccessful()) {
+        if (!$response->isSuccessful()) {
             throw new ErrorException("Error requesting test URL");
         }
 
         $clen = $response->getHeader('content-length');
-        if (! (is_array($clen))) {
+        if (!(is_array($clen))) {
             $this->markTestSkipped("Didn't get multiple Content-length headers");
         }
 
@@ -1258,7 +1278,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $this->client->setRawData(http_build_query($data), 'text/html; charset=ISO-8859-1');
 
         $response = $this->client->request();
-        $request  = $this->client->getLastRequest();
+        $request = $this->client->getLastRequest();
 
         $this->assertStringContainsString('text/html; charset=ISO-8859-1', $request, $request);
         $this->assertStringContainsString('REQUEST_METHOD: PUT', $response->getBody(), $response->getBody());
@@ -1271,7 +1291,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
     public function testMultiplePuts()
     {
         $this->client->setUri($this->baseuri . 'ZF10645-PutContentType.php');
-        $data= 'test';
+        $data = 'test';
         $this->client->setRawData($data, 'text/plain');
         $this->client->setMethod(Zend_Http_Client::PUT);
         $response = $this->client->request();
@@ -1281,9 +1301,8 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
         $this->client->setUri($this->baseuri . 'ZF10645-PutContentType.php');
         $this->client->setMethod(Zend_Http_Client::PUT);
         $response = $this->client->request();
-        $request= $this->client->getLastRequest();
+        $request = $this->client->getLastRequest();
         $this->assertStringNotContainsString('Content-Type: text/plain', $request);
-
     }
 
     /**
@@ -1291,7 +1310,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
      */
     public function testGetAdapterWithoutSet()
     {
-        $client  = new Zend_Http_Client(null, $this->config);
+        $client = new Zend_Http_Client(null, $this->config);
         $adapter = $client->getAdapter();
         $this->assertTrue(!empty($adapter));
     }
@@ -1360,7 +1379,7 @@ abstract class Zend_Http_Client_CommonHttpTests extends TestCase
             [false],
             ['foo => bar'],
             [null],
-            [new stdClass],
+            [new stdClass()],
             [55]
         ];
     }

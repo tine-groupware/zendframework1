@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,9 +54,8 @@ class Zend_Json_Server_SmdTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Json_Server_SmdTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Json_Server_SmdTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -231,7 +232,7 @@ class Zend_Json_Server_SmdTest extends TestCase
     {
         $service = new Zend_Json_Server_Smd_Service('foo');
         $this->smd->addService($service);
-        $test    = new Zend_Json_Server_Smd_Service('foo');
+        $test = new Zend_Json_Server_Smd_Service('foo');
         try {
             $this->smd->addService($test);
             $this->fail('Adding service with existing service name should throw exception');
@@ -254,8 +255,8 @@ class Zend_Json_Server_SmdTest extends TestCase
 
     public function testShouldBeAbleToAddManyServicesAtOnceWithArrayOfServiceObjects()
     {
-        $one   = new Zend_Json_Server_Smd_Service('one');
-        $two   = new Zend_Json_Server_Smd_Service('two');
+        $one = new Zend_Json_Server_Smd_Service('one');
+        $two = new Zend_Json_Server_Smd_Service('two');
         $three = new Zend_Json_Server_Smd_Service('three');
         $services = [$one, $two, $three];
         $this->smd->addServices($services);
@@ -365,7 +366,7 @@ class Zend_Json_Server_SmdTest extends TestCase
         $options = $this->getOptions();
         $this->smd->setOptions($options);
         $json = $this->smd->toJson();
-        $smd  = Zend_Json::decode($json);
+        $smd = Zend_Json::decode($json);
         $this->validateServiceArray($smd, $options);
     }
 
@@ -374,25 +375,25 @@ class Zend_Json_Server_SmdTest extends TestCase
         $options = $this->getOptions();
         $this->smd->setOptions($options);
         $json = $this->smd->__toString();
-        $smd  = Zend_Json::decode($json);
+        $smd = Zend_Json::decode($json);
         $this->validateServiceArray($smd, $options);
     }
 
     public function getOptions()
     {
         return [
-            'target'   => '/test/me',
-            'id'       => '/test/me',
+            'target' => '/test/me',
+            'id' => '/test/me',
             'services' => [
                 [
-                    'name'   => 'foo',
+                    'name' => 'foo',
                     'params' => [
                         ['type' => 'boolean'],
                     ],
                     'return' => 'boolean',
                 ],
                 [
-                    'name'   => 'bar',
+                    'name' => 'bar',
                     'params' => [
                         ['type' => 'integer'],
                     ],

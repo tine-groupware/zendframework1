@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Measure_TemperatureTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -85,8 +87,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureInit()
     {
-        $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD,'de');
-        $this->assertTrue($value instanceof Zend_Measure_Temperature,'Zend_Measure_Temperature Object not returned');
+        $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD, 'de');
+        $this->assertTrue($value instanceof Zend_Measure_Temperature, 'Zend_Measure_Temperature Object not returned');
     }
 
 
@@ -98,7 +100,7 @@ class Zend_Measure_TemperatureTest extends TestCase
     public function testTemperatureUnknownType()
     {
         try {
-            $value = new Zend_Measure_Temperature('100','Temperature::UNKNOWN','de');
+            $value = new Zend_Measure_Temperature('100', 'Temperature::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -114,7 +116,7 @@ class Zend_Measure_TemperatureTest extends TestCase
     public function testTemperatureUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Temperature('novalue',Zend_Measure_Temperature::STANDARD,'de');
+            $value = new Zend_Measure_Temperature('novalue', Zend_Measure_Temperature::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -130,7 +132,7 @@ class Zend_Measure_TemperatureTest extends TestCase
     public function testTemperatureUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD,'nolocale');
+            $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -144,8 +146,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureNoLocale()
     {
-        $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD);
-        $this->assertEquals(100, $value->getValue(),'Zend_Measure_Temperature value expected');
+        $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD);
+        $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Temperature value expected');
     }
 
 
@@ -155,7 +157,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureValuePositive()
     {
-        $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Temperature value expected to be a positive integer');
     }
 
@@ -166,7 +168,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureValueNegative()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals(-100, $value->getValue(), 'Zend_Measure_Temperature value expected to be a negative integer');
     }
 
@@ -177,7 +179,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureValueDecimal()
     {
-        $value = new Zend_Measure_Temperature('-100,200',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('-100,200', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals(-100.200, $value->getValue(), 'Zend_Measure_Temperature value expected to be a decimal value');
     }
 
@@ -188,8 +190,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureValueDecimalSeperated()
     {
-        $value = new Zend_Measure_Temperature('-100.100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Temperature Object not returned');
+        $value = new Zend_Measure_Temperature('-100.100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Temperature Object not returned');
     }
 
 
@@ -199,8 +201,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureValueString()
     {
-        $value = new Zend_Measure_Temperature('-100.100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Temperature Object not returned');
+        $value = new Zend_Measure_Temperature('-100.100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Temperature Object not returned');
     }
 
 
@@ -210,9 +212,9 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureEquality()
     {
-        $value = new Zend_Measure_Temperature('-100.100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $newvalue = new Zend_Measure_Temperature('-100.100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $this->assertTrue($value->equals($newvalue),'Zend_Measure_Temperature Object should be equal');
+        $value = new Zend_Measure_Temperature('-100.100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Temperature('-100.100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $this->assertTrue($value->equals($newvalue), 'Zend_Measure_Temperature Object should be equal');
     }
 
 
@@ -222,9 +224,9 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureNoEquality()
     {
-        $value = new Zend_Measure_Temperature('-100.100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $newvalue = new Zend_Measure_Temperature('-100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $this->assertFalse($value->equals($newvalue),'Zend_Measure_Temperature Object should be not equal');
+        $value = new Zend_Measure_Temperature('-100.100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Temperature('-100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $this->assertFalse($value->equals($newvalue), 'Zend_Measure_Temperature Object should be not equal');
     }
 
 
@@ -234,8 +236,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetPositive()
     {
-        $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD,'de');
-        $value->setValue('200',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD, 'de');
+        $value->setValue('200', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals(200, $value->getValue(), 'Zend_Measure_Temperature value expected to be a positive integer');
     }
 
@@ -246,8 +248,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetNegative()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::STANDARD,'de');
-        $value->setValue('-200',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::STANDARD, 'de');
+        $value->setValue('-200', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals(-200, $value->getValue(), 'Zend_Measure_Temperature value expected to be a negative integer');
     }
 
@@ -258,8 +260,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetDecimal()
     {
-        $value = new Zend_Measure_Temperature('-100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $value->setValue('-200,200',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('-100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $value->setValue('-200,200', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals(-200.200, $value->getValue(), 'Zend_Measure_Temperature value expected to be a decimal value');
     }
 
@@ -270,9 +272,9 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetDecimalSeperated()
     {
-        $value = new Zend_Measure_Temperature('-100.100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Temperature::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Temperature Object not returned');
+        $value = new Zend_Measure_Temperature('-100.100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Temperature Object not returned');
     }
 
 
@@ -282,9 +284,9 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetString()
     {
-        $value = new Zend_Measure_Temperature('-100.100,200',Zend_Measure_Temperature::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Temperature::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Temperature Object not returned');
+        $value = new Zend_Measure_Temperature('-100.100,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Temperature::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Temperature Object not returned');
     }
 
 
@@ -296,8 +298,8 @@ class Zend_Measure_TemperatureTest extends TestCase
     public function testTemperatureSetUnknownType()
     {
         try {
-            $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD,'de');
-            $value->setValue('-200.200,200','Temperature::UNKNOWN','de');
+            $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD, 'de');
+            $value->setValue('-200.200,200', 'Temperature::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -313,8 +315,8 @@ class Zend_Measure_TemperatureTest extends TestCase
     public function testTemperatureSetUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD,'de');
-            $value->setValue('novalue',Zend_Measure_Temperature::STANDARD,'de');
+            $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD, 'de');
+            $value->setValue('novalue', Zend_Measure_Temperature::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -330,8 +332,8 @@ class Zend_Measure_TemperatureTest extends TestCase
     public function testTemperatureSetUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Temperature('100',Zend_Measure_Temperature::STANDARD,'de');
-            $value->setValue('200',Zend_Measure_Temperature::STANDARD,'nolocale');
+            $value = new Zend_Measure_Temperature('100', Zend_Measure_Temperature::STANDARD, 'de');
+            $value->setValue('200', Zend_Measure_Temperature::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Zend_Measure_Exception $e) {
             // success
@@ -357,7 +359,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetType()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::STANDARD, 'de');
         $value->setType(Zend_Measure_Temperature::KELVIN);
         $this->assertEquals(Zend_Measure_Temperature::KELVIN, $value->getType(), 'Zend_Measure_Temperature type expected');
     }
@@ -369,7 +371,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetType1()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::FAHRENHEIT,'de');
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::FAHRENHEIT, 'de');
         $value->setType(Zend_Measure_Temperature::REAUMUR);
         $this->assertEquals(Zend_Measure_Temperature::REAUMUR, $value->getType(), 'Zend_Measure_Temperature type expected');
     }
@@ -381,7 +383,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureSetType2()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::REAUMUR,'de');
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::REAUMUR, 'de');
         $value->setType(Zend_Measure_Temperature::FAHRENHEIT);
         $this->assertEquals(Zend_Measure_Temperature::FAHRENHEIT, $value->getType(), 'Zend_Measure_Temperature type expected');
     }
@@ -395,7 +397,7 @@ class Zend_Measure_TemperatureTest extends TestCase
     public function testTemperatureSetTypeFailed()
     {
         try {
-            $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::STANDARD,'de');
+            $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::STANDARD, 'de');
             $value->setType('Temperature::UNKNOWN');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
@@ -410,7 +412,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureToString()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals('-100 °K', $value->toString(), 'Value -100 °K expected');
     }
 
@@ -421,7 +423,7 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperature_ToString()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::STANDARD,'de');
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::STANDARD, 'de');
         $this->assertEquals('-100 °K', $value->__toString(), 'Value -100 °K expected');
     }
 
@@ -432,8 +434,8 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testTemperatureConversionList()
     {
-        $value = new Zend_Measure_Temperature('-100',Zend_Measure_Temperature::STANDARD,'de');
-        $unit  = $value->getConversionList();
+        $value = new Zend_Measure_Temperature('-100', Zend_Measure_Temperature::STANDARD, 'de');
+        $unit = $value->getConversionList();
         $this->assertTrue(is_array($unit), 'Array expected');
     }
 
@@ -444,10 +446,10 @@ class Zend_Measure_TemperatureTest extends TestCase
      */
     public function testDetailConversion()
     {
-        $unit= new Zend_Measure_Temperature(100, Zend_Measure_Temperature::KELVIN, 'de');
+        $unit = new Zend_Measure_Temperature(100, Zend_Measure_Temperature::KELVIN, 'de');
         $this->assertSame('-280 °F', $unit->convertTo(Zend_Measure_Temperature::FAHRENHEIT, 0));
 
-        $unit= new Zend_Measure_Temperature(100, Zend_Measure_Temperature::FAHRENHEIT, 'de');
+        $unit = new Zend_Measure_Temperature(100, Zend_Measure_Temperature::FAHRENHEIT, 'de');
         $this->assertSame('311 °K', $unit->convertTo(Zend_Measure_Temperature::KELVIN, 0));
     }
 }

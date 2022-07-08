@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -64,7 +66,7 @@ class Zend_Filter_StringToLowerTest extends TestCase
         $valuesExpected = [
             'string' => 'string',
             'aBc1@3' => 'abc1@3',
-            'A b C'  => 'a b c'
+            'A b C' => 'a b c'
         ];
 
         foreach ($valuesExpected as $input => $output) {
@@ -81,8 +83,8 @@ class Zend_Filter_StringToLowerTest extends TestCase
     public function testWithEncoding()
     {
         $valuesExpected = [
-            'Ü'     => 'ü',
-            'Ñ'     => 'ñ',
+            'Ü' => 'ü',
+            'Ñ' => 'ñ',
             'ÜÑ123' => 'üñ123'
         ];
 
@@ -119,8 +121,8 @@ class Zend_Filter_StringToLowerTest extends TestCase
     public function testInitiationWithEncoding()
     {
         $valuesExpected = [
-            'Ü'     => 'ü',
-            'Ñ'     => 'ñ',
+            'Ü' => 'ü',
+            'Ñ' => 'ñ',
             'ÜÑ123' => 'üñ123'
         ];
 
@@ -140,8 +142,8 @@ class Zend_Filter_StringToLowerTest extends TestCase
     public function testCaseInsensitiveEncoding()
     {
         $valuesExpected = [
-            'Ü'     => 'ü',
-            'Ñ'     => 'ñ',
+            'Ü' => 'ü',
+            'Ñ' => 'ñ',
             'ÜÑ123' => 'üñ123'
         ];
 

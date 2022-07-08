@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,9 +56,8 @@ class Zend_Form_Decorator_LabelTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_LabelTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_LabelTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -345,7 +346,7 @@ class Zend_Form_Decorator_LabelTest extends TestCase
                         );
 
         $content = 'test content';
-        $actual  = $this->decorator->render($content);
+        $actual = $this->decorator->render($content);
 
         $expected = '<label class="optional">My Label test content</label>';
 
@@ -370,7 +371,7 @@ class Zend_Form_Decorator_LabelTest extends TestCase
                         );
 
         $content = 'test content';
-        $actual  = $this->decorator->render($content);
+        $actual = $this->decorator->render($content);
 
         $expected = '<label class="optional">My Label test content</label>';
 
@@ -395,7 +396,7 @@ class Zend_Form_Decorator_LabelTest extends TestCase
                         );
 
         $content = 'test content';
-        $actual  = $this->decorator->render($content);
+        $actual = $this->decorator->render($content);
 
         $expected = '<label class="optional">test content My Label</label>';
 
@@ -413,10 +414,10 @@ class Zend_Form_Decorator_LabelTest extends TestCase
             [
                  'adapter' => 'array',
                  'content' => [
-                     'firstLabel'  => 'secondLabel',
+                     'firstLabel' => 'secondLabel',
                      'secondLabel' => 'thirdLabel',
                  ],
-                 'locale'  => 'en'
+                 'locale' => 'en'
             ]
         );
 

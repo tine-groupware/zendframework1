@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Log_Filter_ChainingTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -67,7 +69,7 @@ class Zend_Log_Filter_ChainingTest extends TestCase
         $this->logger->addFilter(Zend_Log::WARN);
 
         $this->logger->info($ignored = 'info-message-ignored');
-        $this->logger->warn($logged  = 'warn-message-logged');
+        $this->logger->warn($logged = 'warn-message-logged');
 
         rewind($this->log);
         $logdata = stream_get_contents($this->log);

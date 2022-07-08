@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,16 +51,16 @@ class Zend_Filter_Word_CamelCaseToSeparatorTest extends TestCase
      * @access public
      * @static
      */
-    public static function main() {
-
-        $suite  = new TestSuite("Zend_Filter_Word_CamelCaseToSeparatorTest");
-        $result = (new TestRunner)->run($suite);
+    public static function main()
+    {
+        $suite = new TestSuite("Zend_Filter_Word_CamelCaseToSeparatorTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithSpacesByDefault()
     {
-        $string   = 'CamelCasedWords';
-        $filter   = new Zend_Filter_Word_CamelCaseToSeparator();
+        $string = 'CamelCasedWords';
+        $filter = new Zend_Filter_Word_CamelCaseToSeparator();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -67,8 +69,8 @@ class Zend_Filter_Word_CamelCaseToSeparatorTest extends TestCase
 
     public function testFilterSeparatesCamelCasedWordsWithProvidedSeparator()
     {
-        $string   = 'CamelCasedWords';
-        $filter   = new Zend_Filter_Word_CamelCaseToSeparator(':-#');
+        $string = 'CamelCasedWords';
+        $filter = new Zend_Filter_Word_CamelCaseToSeparator(':-#');
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);

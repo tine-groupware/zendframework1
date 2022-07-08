@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,9 +55,8 @@ class Zend_Form_Decorator_ErrorsTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_ErrorsTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_ErrorsTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -158,11 +159,11 @@ class Zend_Form_Decorator_ErrorsTest extends TestCase
         // Set up form
         $form = new Zend_Form(
             [
-                 'elements'         => [
+                 'elements' => [
                      'foo' => new Zend_Form_Element('foo'),
                      'bar' => new Zend_Form_Element('bar'),
                  ],
-                 'view'             => $this->getView(),
+                 'view' => $this->getView(),
                  'elementsBelongTo' => 'foobar',
             ]
         );
@@ -196,8 +197,8 @@ class Zend_Form_Decorator_ErrorsTest extends TestCase
                      'foo' => new Zend_Form_Element('foo'),
                      'bar' => new Zend_Form_Element('bar'),
                  ],
-                 'view'     => $this->getView(),
-                 'name'     => 'foobar',
+                 'view' => $this->getView(),
+                 'name' => 'foobar',
             ]
         );
 

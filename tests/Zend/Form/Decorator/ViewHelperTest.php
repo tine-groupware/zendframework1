@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,9 +55,8 @@ class Zend_Form_Decorator_ViewHelperTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_ViewHelperTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_ViewHelperTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -207,7 +208,7 @@ class Zend_Form_Decorator_ViewHelperTest extends TestCase
         
         $expected = '<p><label><input type="checkbox" name="foo[]" id="foo-foo" value="foo">Foo</label></p>'
                   . '<p><label><input type="checkbox" name="foo[]" id="foo-bar" value="bar">Bar</label></p>';
-        $actual   = $element->render($this->getView());
+        $actual = $element->render($this->getView());
         
         $this->assertEquals($expected, $actual);
     }
@@ -235,7 +236,7 @@ class Zend_Form_Decorator_ViewHelperTest extends TestCase
         
         $expected = '<p><label><input type="radio" name="foo" id="foo-foo" value="foo">Foo</label></p>'
                   . '<p><label><input type="radio" name="foo" id="foo-bar" value="bar">Bar</label></p>';
-        $actual   = $element->render($this->getView());
+        $actual = $element->render($this->getView());
         
         $this->assertEquals($expected, $actual);
     }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -166,7 +168,7 @@ class Zend_Config_Writer_JsonTest extends TestCase
         $writer = new Zend_Config_Writer_Json(['config' => $config, 'filename' => $this->_tempName]);
         $writer->setPrettyPrint(true);
         $writer->write();
-        $testOutput     = file_get_contents($this->_tempName);
+        $testOutput = file_get_contents($this->_tempName);
         $this->assertMatchesRegularExpression('/^\s+/m', $testOutput);
     }
 }

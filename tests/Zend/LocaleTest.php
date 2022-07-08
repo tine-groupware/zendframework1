@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,11 +55,11 @@ class Zend_LocaleTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_LocaleTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_LocaleTest");
+        $result = (new TestRunner())->run($suite);
     }
 
-    private $_cache  = null;
+    private $_cache = null;
     private $_locale = null;
     private $errorHandler = null;
 
@@ -66,9 +68,12 @@ class Zend_LocaleTest extends TestCase
         $this->_locale = setlocale(LC_ALL, 0);
         setlocale(LC_ALL, 'de');
         require_once 'Zend/Cache.php';
-        $this->_cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 120, 'automatic_serialization' => true],
-                 ['cache_dir' => dirname(__FILE__) . '/_files/']);
+        $this->_cache = Zend_Cache::factory(
+            'Core',
+            'File',
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => dirname(__FILE__) . '/_files/']
+        );
         Zend_LocaleTestHelper::resetObject();
         Zend_LocaleTestHelper::setCache($this->_cache);
 
@@ -98,7 +103,7 @@ class Zend_LocaleTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         /**
-         * Fix issue side effect Zend_Locale::$_auto cached when run 
+         * Fix issue side effect Zend_Locale::$_auto cached when run
          * Zend_TranslateTest suite after Zend_LocateTest in same process
          */
         putenv("HTTP_ACCEPT_LANGUAGE");
@@ -337,7 +342,7 @@ class Zend_LocaleTest extends TestCase
     {
         $this->setErrorHandler();
         $this->assertEquals('Deutsch', Zend_LocaleTestHelper::getLanguageTranslation('de', 'de_AT'));
-        $this->assertEquals('German',  Zend_LocaleTestHelper::getLanguageTranslation('de', 'en'));
+        $this->assertEquals('German', Zend_LocaleTestHelper::getLanguageTranslation('de', 'en'));
         $this->assertFalse(Zend_LocaleTestHelper::getLanguageTranslation('xyz'));
         $this->assertTrue(is_string(Zend_LocaleTestHelper::getLanguageTranslation('de', 'auto')));
     }
@@ -785,7 +790,8 @@ class Zend_LocaleTest extends TestCase
     /**
      * Test getDefault
      */
-    public function testgetDefault() {
+    public function testgetDefault()
+    {
         Zend_LocaleTestHelper::setDefault('de');
         $this->assertTrue(array_key_exists('de', Zend_LocaleTestHelper::getDefault()));
 
@@ -835,7 +841,8 @@ class Zend_LocaleTest extends TestCase
      * test isLocale
      * expected boolean
      */
-    public function testZF3617() {
+    public function testZF3617()
+    {
         $value = new Zend_LocaleTestHelper('en-US');
         $this->assertEquals('en_US', $value->toString());
     }
@@ -843,7 +850,8 @@ class Zend_LocaleTest extends TestCase
     /**
      * @ZF4963
      */
-    public function testZF4963() {
+    public function testZF4963()
+    {
         $value = new Zend_LocaleTestHelper();
         $locale = $value->toString();
         $this->assertTrue(!empty($locale));
@@ -894,7 +902,8 @@ class Zend_LocaleTest extends TestCase
     /**
      * @ZF-9488
      */
-    public function testTerritoryToGetLocale() {
+    public function testTerritoryToGetLocale()
+    {
         $value = Zend_Locale::findLocale('US');
         $this->assertEquals('en_US', $value);
 
@@ -911,9 +920,9 @@ class Zend_LocaleTest extends TestCase
     {
         $this->assertFalse(Zend_Locale::getTranslation('USD', 'CurrencyFraction'));
         $this->assertEquals('0', Zend_Locale::getTranslation('JPY', 'CurrencyFraction'));
-		$this->assertEquals('2', Zend_Locale::getTranslation('CHF', 'CurrencyFraction'));
-		$this->assertEquals('3', Zend_Locale::getTranslation('BHD', 'CurrencyFraction'));
-		$this->assertEquals('2', Zend_Locale::getTranslation('DEFAULT', 'CurrencyFraction'));
+        $this->assertEquals('2', Zend_Locale::getTranslation('CHF', 'CurrencyFraction'));
+        $this->assertEquals('3', Zend_Locale::getTranslation('BHD', 'CurrencyFraction'));
+        $this->assertEquals('2', Zend_Locale::getTranslation('DEFAULT', 'CurrencyFraction'));
     }
 
     public function testEachDataFileShouldPresentAsLocaleData()
@@ -952,11 +961,11 @@ class Zend_LocaleTest extends TestCase
             }
         }
 
-        $class    = new ReflectionClass('Zend_Locale');
+        $class = new ReflectionClass('Zend_Locale');
         $property = $class->getProperty('_localeData');
         $property->setAccessible(true);
 
-        $locale     = new Zend_Locale();
+        $locale = new Zend_Locale();
         $localeData = $property->getValue($locale);
         $localeData = array_keys($localeData);
 

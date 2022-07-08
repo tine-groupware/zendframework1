@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -64,7 +65,7 @@ class Zend_PdfTest extends TestCase
      */
     public function testGetTextFieldNamesNoFieldsEmptyArray()
     {
-        $pdf        = new Zend_Pdf();
+        $pdf = new Zend_Pdf();
         $fieldNames = $pdf->getTextFieldNames();
         $this->assertEquals([], $fieldNames);
     }
@@ -93,16 +94,20 @@ class Zend_PdfTest extends TestCase
     {
         try {
             $this->_pdf->setTextFieldProperties(
-                    'Field1', Zend_Pdf::PDF_FORM_FIELD_READONLY
+                'Field1',
+                Zend_Pdf::PDF_FORM_FIELD_READONLY
             );
             $this->_pdf->setTextFieldProperties(
-                    'Field1', Zend_Pdf::PDF_FORM_FIELD_REQUIRED
+                'Field1',
+                Zend_Pdf::PDF_FORM_FIELD_REQUIRED
             );
             $this->_pdf->setTextFieldProperties(
-                    'Field1', Zend_Pdf::PDF_FORM_FIELD_NOEXPORT
+                'Field1',
+                Zend_Pdf::PDF_FORM_FIELD_NOEXPORT
             );
             $this->_pdf->setTextFieldProperties(
-                    'Field1', Zend_Pdf::PDF_FORM_FIELD_READONLY
+                'Field1',
+                Zend_Pdf::PDF_FORM_FIELD_READONLY
                     | Zend_Pdf::PDF_FORM_FIELD_REQUIRED
                     | Zend_Pdf::PDF_FORM_FIELD_NOEXPORT
             );
@@ -120,7 +125,8 @@ class Zend_PdfTest extends TestCase
         $this->expectException(Zend_Pdf_Exception::class);
         $this->expectExceptionMessage('Field \'FieldNotExists\' does not exist or is not a textfield');
         $this->_pdf->setTextFieldProperties(
-            'FieldNotExists', Zend_Pdf::PDF_FORM_FIELD_REQUIRED
+            'FieldNotExists',
+            Zend_Pdf::PDF_FORM_FIELD_REQUIRED
         );
     }
 

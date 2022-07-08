@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -137,7 +139,8 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
         return $response;
     }
 
-    public function testGetAttributes() {
+    public function testGetAttributes()
+    {
         $domainName = $this->_testDomainNamePrefix . '_testGetAttributes';
         $this->request('deleteDomain', [$domainName]);
         $this->request('createDomain', [$domainName]);
@@ -171,13 +174,14 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $this->assertEquals($attributeValue2, current($results[$attributeName2]->getValues()));
 
             $this->request('deleteDomain', [$domainName]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;
         }
     }
 
-    public function testPutAttributes() {
+    public function testPutAttributes()
+    {
         $domainName = $this->_testDomainNamePrefix . '_testPutAttributes';
         $this->request('deleteDomain', [$domainName]);
         $this->request('createDomain', [$domainName]);
@@ -203,13 +207,14 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $this->assertEquals($attributes[$attributeName1], $results[$attributeName1]);
             $this->assertEquals($attributes[$attributeName2], $results[$attributeName2]);
             $this->request('deleteDomain', [$domainName]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;
         }
     }
 
-    public function testBatchPutAttributes() {
+    public function testBatchPutAttributes()
+    {
         $domainName = $this->_testDomainNamePrefix . '_testBatchPutAttributes';
         $this->request('deleteDomain', [$domainName]);
         $this->request('createDomain', [$domainName]);
@@ -228,7 +233,7 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $items = [
                 $itemName1 => [
                     $attributeName1 => new Zend_Service_Amazon_SimpleDb_Attribute($itemName1, $attributeName1, $attributeValue1),
-                    $attributeName2 =>new Zend_Service_Amazon_SimpleDb_Attribute($itemName1, $attributeName2, $attributeValue2)],
+                    $attributeName2 => new Zend_Service_Amazon_SimpleDb_Attribute($itemName1, $attributeName2, $attributeValue2)],
                 $itemName2 => [
                     $attributeName3 => new Zend_Service_Amazon_SimpleDb_Attribute($itemName2, $attributeName3, $attributeValue3),
                     $attributeName4 => new Zend_Service_Amazon_SimpleDb_Attribute($itemName2, $attributeName4, [$attributeValue4, $attributeValue5])]
@@ -295,13 +300,14 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $this->assertEquals($items[$itemName1], $this->request('getAttributes', [$domainName, $itemName1]));
 
             $this->request('deleteDomain', [$domainName]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;
         }
     }
 
-    public function testDeleteAttributes() {
+    public function testDeleteAttributes()
+    {
         $domainName = $this->_testDomainNamePrefix . '_testDeleteAttributes';
         $this->request('deleteDomain', [$domainName]);
         $this->request('createDomain', [$domainName]);
@@ -361,17 +367,18 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $this->assertEquals(0, count($results));
 
             $this->request('deleteDomain', [$domainName]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;
         }
     }
 
-    public function testListDomains() {
+    public function testListDomains()
+    {
         $domainName = null;
         try {
             // Create some domains
-            for($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
                 $domainName = $this->_testDomainNamePrefix . '_testListDomains' . $i;
                 $this->request('deleteDomain', [$domainName]);
                 $this->request('createDomain', [$domainName]);
@@ -382,23 +389,23 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             // Amazon returns an empty page as the last page :/
             $isLast = $page->isLast();
             if (!$isLast) {
-              // The old isLast() assertTrue failed in full suite runs. Token often
-              // decodes to 'TestsZendServiceAmazonSimpleDbDomain_testPutAttributes'
-              // which no longer exists. Instead of a plain assertTrue, which seemed
-              // to pass only in single-case runs, we'll make sure the token's
-              // presence is worth a negative.
-              $token = $page->getToken();
-              if ($token) {
-                $tokenDomainName = base64_decode($token);
-                if (false !== strpos($tokenDomainName, $this->_testDomainNamePrefix)) {
-                  try {
-                    $this->request('domainMetadata', [$tokenDomainName]);
-                    $this->fail('listDomains call with 3 domain maximum did not return last page');
-                  } catch (Exception $e) {
-                    $this->assertStringContainsString('The specified domain does not exist', $e->getMessage());
-                  }
+                // The old isLast() assertTrue failed in full suite runs. Token often
+                // decodes to 'TestsZendServiceAmazonSimpleDbDomain_testPutAttributes'
+                // which no longer exists. Instead of a plain assertTrue, which seemed
+                // to pass only in single-case runs, we'll make sure the token's
+                // presence is worth a negative.
+                $token = $page->getToken();
+                if ($token) {
+                    $tokenDomainName = base64_decode($token);
+                    if (false !== strpos($tokenDomainName, $this->_testDomainNamePrefix)) {
+                        try {
+                            $this->request('domainMetadata', [$tokenDomainName]);
+                            $this->fail('listDomains call with 3 domain maximum did not return last page');
+                        } catch (Exception $e) {
+                            $this->assertStringContainsString('The specified domain does not exist', $e->getMessage());
+                        }
+                    }
                 }
-              }
             }
             $this->assertEquals(1, count($this->request('listDomains', [1, $page->getToken()])));
 
@@ -416,13 +423,13 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $this->assertTrue($nextPage->isLast());
 
             // Delete the domains
-            for($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
                 $domainName = $this->_testDomainNamePrefix . '_testListDomains' . $i;
                 $this->request('deleteDomain', [$domainName]);
             }
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             // Delete the domains
-            for($i = 1; $i <= 3; $i++) {
+            for ($i = 1; $i <= 3; $i++) {
                 $domainName = $this->_testDomainNamePrefix . '_testListDomains' . $i;
                 $this->request('deleteDomain', [$domainName]);
             }
@@ -430,7 +437,8 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
         }
     }
 
-    public function testDomainMetadata() {
+    public function testDomainMetadata()
+    {
         $domainName = $this->_testDomainNamePrefix . '_testDomainMetadata';
         $this->request('deleteDomain', [$domainName]);
         $this->request('createDomain', [$domainName]);
@@ -454,14 +462,15 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
 
             // Delete the domain
             $this->request('deleteDomain', [$domainName]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;
         }
     }
 
-	public function testCreateDomain() {
-	    $domainName = $this->_testDomainNamePrefix . '_testCreateDomain';
+    public function testCreateDomain()
+    {
+        $domainName = $this->_testDomainNamePrefix . '_testCreateDomain';
         $this->request('deleteDomain', [$domainName]);
         $this->request('createDomain', [$domainName]);
         try {
@@ -469,14 +478,15 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $this->assertStringContainsString($domainName, $domainListPage->getData());
             // Delete the domain
             $this->request('deleteDomain', [$domainName]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;
         }
     }
 
-	public function testDeleteDomain() {
-	    $domainName = $this->_testDomainNamePrefix . '_testDeleteDomain';
+    public function testDeleteDomain()
+    {
+        $domainName = $this->_testDomainNamePrefix . '_testDeleteDomain';
         $this->request('deleteDomain', [$domainName]);
         $this->request('createDomain', [$domainName]);
         try {
@@ -487,13 +497,14 @@ class Zend_Service_Amazon_SimpleDb_OnlineTest extends TestCase
             $this->request('deleteDomain', [$domainName]);
             $domainListPage = $this->request('listDomains');
             $this->assertStringNotContainsString($domainName, $domainListPage->getData());
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->request('deleteDomain', [$domainName]);
             throw $e;
         }
     }
 
-    private function _wait() {
+    private function _wait()
+    {
         sleep($this->_testWaitPeriod);
     }
 

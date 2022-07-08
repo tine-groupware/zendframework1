@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_View_Helper_FormResetTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormResetTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormResetTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -68,7 +70,7 @@ class Zend_View_Helper_FormResetTest extends TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry['Zend_View_Helper_Doctype']);
         }
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormReset();
         $this->helper->setView($this->view);
     }
@@ -87,8 +89,8 @@ class Zend_View_Helper_FormResetTest extends TestCase
     public function testShouldRenderResetInput()
     {
         $html = $this->helper->formReset([
-            'name'    => 'foo',
-            'value'   => 'Reset',
+            'name' => 'foo',
+            'value' => 'Reset',
         ]);
         $this->assertMatchesRegularExpression('/<input[^>]*?(type="reset")/', $html);
     }
@@ -99,8 +101,8 @@ class Zend_View_Helper_FormResetTest extends TestCase
     public function testShouldAllowDisabling()
     {
         $html = $this->helper->formReset([
-            'name'    => 'foo',
-            'value'   => 'Reset',
+            'name' => 'foo',
+            'value' => 'Reset',
             'attribs' => ['disable' => true]
         ]);
         $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $html);

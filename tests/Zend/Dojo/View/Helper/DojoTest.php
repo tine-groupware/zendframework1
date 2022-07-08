@@ -2,6 +2,7 @@
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -65,8 +66,8 @@ class Zend_Dojo_View_Helper_DojoTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_DojoTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_DojoTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -78,7 +79,7 @@ class Zend_Dojo_View_Helper_DojoTest extends TestCase
     protected function setUp(): void
     {
         Zend_Registry::_unsetInstance();
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_Dojo_Container();
         $this->helper->setView($this->view);
         Zend_Registry::set('Zend_Dojo_View_Helper_Dojo', $this->helper);
@@ -444,7 +445,7 @@ function() {
     {
         $this->setupDojo();
         $html = $this->helper->__toString();
-        $doc  = new DOMDocument;
+        $doc = new DOMDocument();
         $doc->loadHTML($html);
         $xPath = new DOMXPath($doc);
         $results = $xPath->query('//script');
@@ -644,11 +645,11 @@ function() {
     public function testShouldAllowRetrievingDijitsAsJsonArray()
     {
         $this->testShouldAllowAddingMultipleDijitsAtOnce();
-        $json  = $this->helper->dijitsToJson();
+        $json = $this->helper->dijitsToJson();
         $array = Zend_Json::decode($json);
         $this->assertTrue(is_array($array));
 
-        $keys  = [];
+        $keys = [];
         foreach ($array as $dijit) {
             $keys[] = $dijit['id'];
             $this->assertTrue(array_key_exists('params', $dijit));
@@ -683,7 +684,7 @@ function() {
         $html = $this->helper->__toString();
         $found = false;
         if (preg_match_all('|<script[^>]*>(.*?)(</script>)|s', $html, $m)) {
-            foreach ($m[1] as $script)  {
+            foreach ($m[1] as $script) {
                 if (strstr($script, 'var foo = "bar";')) {
                     $found = true;
                     break;
@@ -777,7 +778,7 @@ function() {
         $this->setupDojo();
         $this->testShouldAllowAddingLayers();
         $html = $this->helper->__toString();
-        $doc  = new DOMDocument;
+        $doc = new DOMDocument();
         $doc->loadHTML($html);
         $xPath = new DOMXPath($doc);
         $results = $xPath->query('//script');
@@ -870,7 +871,8 @@ function() {
         $this->assertMatchesRegularExpression('/zendDijits.*?(zend\.custom)/s', $test, 'Generated markup: ' . $test);
     }
 
-    public function testDojoViewHelperContainerAddOptionsPassesOnAllStringOptions() {
+    public function testDojoViewHelperContainerAddOptionsPassesOnAllStringOptions()
+    {
         $helper = $this->helper;
         $options = [
             'requireModules' => 'ZfTestRequiredModule',
@@ -897,19 +899,20 @@ function() {
         $this->assertTrue($helper->registerDojoStylesheet());
     }
 
-    public function testDojoViewHelperContainerAddOptionsPassesOnAllArrayOptions() {
+    public function testDojoViewHelperContainerAddOptionsPassesOnAllArrayOptions()
+    {
         $helper = $this->helper;
         $modulePaths = ['module1' => 'path1', 'module2' => 'path2'];
-        $layers = ['layer_two','layer_three'];
+        $layers = ['layer_two', 'layer_three'];
         $djConfig = ['foo1' => 'bar1', 'foo2' => 'bar2'];
         $stylesheetMods = ['test.one.style', 'test.two.style'];
         $stylesheets = ['style1', 'style2'];
         $options = [
-            'modulePaths'   => $modulePaths,
-            'layers'        => $layers,
-            'djConfig'      => $djConfig,
+            'modulePaths' => $modulePaths,
+            'layers' => $layers,
+            'djConfig' => $djConfig,
             'styleShEEtModules' => $stylesheetMods,
-            'stylesheets'   => $stylesheets,
+            'stylesheets' => $stylesheets,
             'registerdojostylesheet' => false
         ];
 
@@ -925,10 +928,12 @@ function() {
 
     public function testJsonExpressionRenders()
     {
-        $this->helper->addDijit('foo',
-                ['dojoType' => 'dijit.form.TextBox',
+        $this->helper->addDijit(
+            'foo',
+            ['dojoType' => 'dijit.form.TextBox',
                       'onChange' => new Zend_Json_Expr('function(){alert(\'foo\');}'),
-                      ]);
+                      ]
+        );
         $output = $this->helper->dijitsToJson();
         $this->assertMatchesRegularExpression('#(function\\(\\){alert\\(\'foo\'\\);})#', $output);
     }
@@ -940,10 +945,10 @@ function() {
     {
         $helper = $this->helper;
         $options = [
-            'localPath'              => '',
-            'stylesheetmodules'      => 'test.stylesheet.module',
+            'localPath' => '',
+            'stylesheetmodules' => 'test.stylesheet.module',
             'registerdojostylesheet' => true,
-            'enable'                 => true,
+            'enable' => true,
         ];
         $helper->setOptions($options);
 
@@ -955,7 +960,7 @@ function() {
                   . '</style>';
 
         $actual = (string) $helper;
-        $end    = '</style>';
+        $end = '</style>';
         $actual = substr($actual, 0, strpos($actual, $end) + strlen($end));
 
         $this->assertEquals($expected, $actual);

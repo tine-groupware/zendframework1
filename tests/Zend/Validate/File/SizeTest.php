@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_Validate_File_SizeTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Validate_File_SizeTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Validate_File_SizeTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Validate_File_SizeTest extends TestCase
 
         foreach ($valuesExpected as $element) {
             $options = array_shift($element);
-            $value   = array_shift($element);
+            $value = array_shift($element);
             $validator = new Zend_Validate_File_Size($options);
             $this->assertEquals(
                 $value,

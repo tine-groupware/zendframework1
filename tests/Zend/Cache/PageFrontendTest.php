@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,8 +38,8 @@ require_once 'Zend/Cache/Backend/Test.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_PageFrontendTest extends TestCase {
-
+class Zend_Cache_PageFrontendTest extends TestCase
+{
     private $_instance;
 
     protected function setUp(): void
@@ -233,4 +235,3 @@ class Zend_Cache_PageFrontendTest extends TestCase {
         ob_get_clean();
     }
 }
-

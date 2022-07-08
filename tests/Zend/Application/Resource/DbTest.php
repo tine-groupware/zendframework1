@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_DbTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -69,7 +71,7 @@ class Zend_Application_Resource_DbTest extends TestCase
 
     protected function tearDown(): void
     {
-    	Zend_Db_Table::setDefaultMetadataCache();
+        Zend_Db_Table::setDefaultMetadataCache();
 
         // Restore original autoloaders
         $loaders = spl_autoload_functions();
@@ -119,7 +121,7 @@ class Zend_Application_Resource_DbTest extends TestCase
         require_once 'Zend/Application/Resource/Db.php';
         $config = [
             'adapter' => 'Pdo_Sqlite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'isDefaultTableAdapter' => false,
@@ -135,7 +137,7 @@ class Zend_Application_Resource_DbTest extends TestCase
         require_once 'Zend/Application/Resource/Db.php';
         $config = [
             'adapter' => 'Pdo_Sqlite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'isDefaultTableAdapter' => false,
@@ -158,7 +160,7 @@ class Zend_Application_Resource_DbTest extends TestCase
 
         $config = [
             'adapter' => 'PDO_SQLite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'defaultMetadataCache' => $cache,
@@ -192,7 +194,7 @@ class Zend_Application_Resource_DbTest extends TestCase
         $config = [
             'bootstrap' => $this->bootstrap,
             'adapter' => 'PDO_SQLite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'defaultMetadataCache' => 'database',
@@ -210,9 +212,9 @@ class Zend_Application_Resource_DbTest extends TestCase
         $config = [
             'bootstrap' => $this->bootstrap,
             'adapter' => 'PDO_SQLite',
-            'params'  => [
-                'dbname'    => ':memory:',
-                'options'   => [
+            'params' => [
+                'dbname' => ':memory:',
+                'options' => [
                     'fetchMode' => 'obj'
                 ]
             ],
@@ -229,15 +231,15 @@ class Zend_Application_Resource_DbTest extends TestCase
     {
         $options = [
             'resources' => [
-                'db'    => [
-                    'adapter'  => 'Pdo_Sqlite',
-                    'params'   => [
-                        'dbname'   => ':memory:'
+                'db' => [
+                    'adapter' => 'Pdo_Sqlite',
+                    'params' => [
+                        'dbname' => ':memory:'
                      ],
                      'defaultMetadataCache' => 'default'
                 ],
                 'cachemanager' => [
-                    'default'  => [
+                    'default' => [
                         'backend' => ['name' => 'black-hole']
                     ]
                 ]

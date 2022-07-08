@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -57,8 +59,8 @@ class Zend_Application_Module_AutoloaderTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -82,7 +84,7 @@ class Zend_Application_Module_AutoloaderTest extends TestCase
 
         $this->loader = new Zend_Application_Module_Autoloader([
             'namespace' => 'FooBar',
-            'basePath'  => realpath(dirname(__FILE__) . '/_files'),
+            'basePath' => realpath(dirname(__FILE__) . '/_files'),
         ]);
     }
 

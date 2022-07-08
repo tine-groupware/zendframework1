@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,9 +53,8 @@ class Zend_Loader_PluginLoaderTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Loader_PluginLoaderTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Loader_PluginLoaderTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -450,7 +451,7 @@ class Zend_Loader_PluginLoaderTest extends TestCase
     {
         require_once 'Zend/View/Helper/DeclareVars.php';
         $reflection = new ReflectionClass('Zend_View_Helper_DeclareVars');
-        $expected   = $reflection->getFileName();
+        $expected = $reflection->getFileName();
 
         $loader = new Zend_Loader_PluginLoader([]);
         $loader->addPrefixPath('Zend_View_Helper', $this->libPath . '/Zend/View/Helper');

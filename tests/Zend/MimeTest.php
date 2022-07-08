@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -48,7 +50,6 @@ class Zend_MimeTest extends TestCase
         $myBoundary = 'mySpecificBoundary';
         $m3 = new Zend_Mime($myBoundary);
         $this->assertEquals($m3->boundary(), $myBoundary);
-
     }
 
     public function testIsPrintable_notPrintable()
@@ -79,9 +80,9 @@ class Zend_MimeTest extends TestCase
      */
     public function testEncodeQuotedPrintableWhenTextHasZeroAtTheEnd()
     {
-        $raw = str_repeat('x',72) . '0';
+        $raw = str_repeat('x', 72) . '0';
         $quoted = Zend_Mime::encodeQuotedPrintable($raw, 72);
-        $expected = quoted_printable_decode($quoted);        
+        $expected = quoted_printable_decode($quoted);
         $this->assertEquals($expected, $raw);
     }
 
@@ -157,15 +158,15 @@ class Zend_MimeTest extends TestCase
     {
         $subject = "Alle meine Entchen schwimmen in dem See, schwimmen in dem See, Köpfchen in das Wasser, Schwänzchen in die Höh!";
         $encoded = Zend_Mime::encodeQuotedPrintableHeader($subject, "UTF-8", 100);
-        foreach(explode(Zend_Mime::LINEEND, $encoded) AS $line ) {
-            if(strlen($line) > 100) {
-                $this->fail("Line '".$line."' is ".strlen($line)." chars long, only 100 allowed.");
+        foreach (explode(Zend_Mime::LINEEND, $encoded) as $line) {
+            if (strlen($line) > 100) {
+                $this->fail("Line '" . $line . "' is " . strlen($line) . " chars long, only 100 allowed.");
             }
         }
         $encoded = Zend_Mime::encodeQuotedPrintableHeader($subject, "UTF-8", 40);
-        foreach(explode(Zend_Mime::LINEEND, $encoded) AS $line ) {
-            if(strlen($line) > 40) {
-                $this->fail("Line '".$line."' is ".strlen($line)." chars long, only 40 allowed.");
+        foreach (explode(Zend_Mime::LINEEND, $encoded) as $line) {
+            if (strlen($line) > 40) {
+                $this->fail("Line '" . $line . "' is " . strlen($line) . " chars long, only 40 allowed.");
             }
         }
     }

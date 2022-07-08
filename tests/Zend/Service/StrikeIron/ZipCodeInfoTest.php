@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -67,5 +69,4 @@ class Zend_Service_StrikeIron_ZipCodeInfoTest extends TestCase
 
         $this->assertTrue($client instanceof Zend_Service_StrikeIron_ZipCodeInfo);
     }
-
 }

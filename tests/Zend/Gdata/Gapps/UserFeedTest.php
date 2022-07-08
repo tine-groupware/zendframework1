@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,28 +45,33 @@ class Zend_Gdata_Gapps_UserFeedTest extends TestCase
     protected function setUp(): void
     {
         $userFeedText = file_get_contents(
-                'Zend/Gdata/Gapps/_files/UserFeedDataSample1.xml',
-                true);
+            'Zend/Gdata/Gapps/_files/UserFeedDataSample1.xml',
+            true
+        );
         $this->userFeed = new Zend_Gdata_Gapps_UserFeed($userFeedText);
         $this->emptyUserFeed = new Zend_Gdata_Gapps_UserFeed();
     }
 
-    public function testEmptyFeedShouldHaveNoExtensionElements() {
+    public function testEmptyFeedShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->emptyUserFeed->extensionElements));
         $this->assertTrue(count($this->emptyUserFeed->extensionElements) == 0);
     }
 
-    public function testEmptyFeedShouldHaveNoExtensionAttributes() {
+    public function testEmptyFeedShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->emptyUserFeed->extensionAttributes));
         $this->assertTrue(count($this->emptyUserFeed->extensionAttributes) == 0);
     }
 
-    public function testSampleFeedShouldHaveNoExtensionElements() {
+    public function testSampleFeedShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->userFeed->extensionElements));
         $this->assertTrue(count($this->userFeed->extensionElements) == 0);
     }
 
-    public function testSampleFeedShouldHaveNoExtensionAttributes() {
+    public function testSampleFeedShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->userFeed->extensionAttributes));
         $this->assertTrue(count($this->userFeed->extensionAttributes) == 0);
     }
@@ -84,7 +91,8 @@ class Zend_Gdata_Gapps_UserFeedTest extends TestCase
 
         /* Grab XML from $this->userFeed and convert back to objects */
         $newUserFeed = new Zend_Gdata_Gapps_UserFeed(
-                $this->userFeed->saveXML());
+            $this->userFeed->saveXML()
+        );
         $newEntryCount = 0;
         foreach ($newUserFeed as $entry) {
             $newEntryCount++;
@@ -106,5 +114,4 @@ class Zend_Gdata_Gapps_UserFeedTest extends TestCase
         }
         $this->assertEquals(2, $entryCount);
     }
-
 }

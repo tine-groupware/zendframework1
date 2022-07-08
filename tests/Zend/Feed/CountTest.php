@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,7 +38,6 @@ require_once 'Zend/Feed.php';
  */
 class Zend_Feed_CountTest extends TestCase
 {
-
     public function testCount()
     {
         $f = Zend_Feed::importFile(dirname(__FILE__) . '/_files/TestAtomFeed.xml');
@@ -51,5 +52,4 @@ class Zend_Feed_CountTest extends TestCase
         $f = Zend_Feed::importFile(dirname(__FILE__) . '/_files/TestAtomFeed.xml');
         $this->assertEquals(count($f), 2, 'Feed count should be 2');
     }
-
 }

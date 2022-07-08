@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -43,8 +45,8 @@ class Zend_Dojo_DataTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_DataTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_DataTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -55,7 +57,7 @@ class Zend_Dojo_DataTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->dojoData = new Zend_Dojo_Data;
+        $this->dojoData = new Zend_Dojo_Data();
     }
 
     public function testIdentifierShouldBeNullByDefault()
@@ -112,9 +114,9 @@ class Zend_Dojo_DataTest extends TestCase
     public function testAddItemShouldThrowExceptionIfNoIdentifierPresentInObject()
     {
         $item = [
-            'id'    => '1',
+            'id' => '1',
             'title' => 'foo',
-            'url'   => 'http://www.example.com/',
+            'url' => 'http://www.example.com/',
         ];
         try {
             $this->dojoData->addItem($item);
@@ -128,7 +130,7 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $item = [
             'title' => 'foo',
-            'url'   => 'http://www.example.com/',
+            'url' => 'http://www.example.com/',
         ];
         $this->dojoData->setIdentifier('id');
         try {
@@ -142,9 +144,9 @@ class Zend_Dojo_DataTest extends TestCase
     public function testAddItemShouldAcceptArray()
     {
         $item = [
-            'id'    => '1',
+            'id' => '1',
             'title' => 'foo',
-            'url'   => 'http://www.example.com/',
+            'url' => 'http://www.example.com/',
         ];
         $this->dojoData->setIdentifier('id');
         $this->dojoData->addItem($item);
@@ -155,9 +157,9 @@ class Zend_Dojo_DataTest extends TestCase
     public function testAddItemShouldAcceptStdObject()
     {
         $item = [
-            'id'    => '1',
+            'id' => '1',
             'title' => 'foo',
-            'url'   => 'http://www.example.com/',
+            'url' => 'http://www.example.com/',
         ];
         $obj = (object) $item;
         $this->dojoData->setIdentifier('id');
@@ -168,7 +170,7 @@ class Zend_Dojo_DataTest extends TestCase
 
     public function testAddItemShouldAcceptObjectImplementingToArray()
     {
-        $obj = new Zend_Dojo_DataTest_DataObject;
+        $obj = new Zend_Dojo_DataTest_DataObject();
         $this->dojoData->setIdentifier('id');
         $this->dojoData->addItem($obj);
         $this->assertEquals(1, count($this->dojoData));
@@ -190,7 +192,7 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $item = [
             'title' => 'foo',
-            'url'   => 'http://www.example.com/',
+            'url' => 'http://www.example.com/',
         ];
         $this->dojoData->setIdentifier('id');
         $this->dojoData->addItem($item, 'foo');
@@ -208,9 +210,9 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $this->testAddItemShouldAcceptArray();
         $item = [
-            'id'    => '1',
+            'id' => '1',
             'title' => 'foo',
-            'url'   => 'http://www.example.com/',
+            'url' => 'http://www.example.com/',
         ];
         try {
             $this->dojoData->addItem($item);
@@ -224,9 +226,9 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $this->testAddItemShouldAcceptArray();
         $item = [
-            'id'    => '1',
+            'id' => '1',
             'title' => 'bar',
-            'url'   => 'http://www.foo.com/',
+            'url' => 'http://www.foo.com/',
         ];
         $this->assertNotSame($item, $this->dojoData->getItem(1));
         $this->dojoData->setItem($item);
@@ -237,9 +239,9 @@ class Zend_Dojo_DataTest extends TestCase
     public function testSetItemShouldAddItemIfNonexistent()
     {
         $item = [
-            'id'    => '1',
+            'id' => '1',
             'title' => 'bar',
-            'url'   => 'http://www.foo.com/',
+            'url' => 'http://www.foo.com/',
         ];
         $this->dojoData->setIdentifier('id');
         $this->assertEquals(0, count($this->dojoData));
@@ -252,17 +254,17 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $items = [
             [
-                'id'    => 1,
+                'id' => 1,
                 'title' => 'Foo',
                 'email' => 'foo@bar',
             ],
             [
-                'id'    => 2,
+                'id' => 2,
                 'title' => 'Bar',
                 'email' => 'bar@bar',
             ],
             [
-                'id'    => 3,
+                'id' => 3,
                 'title' => 'Baz',
                 'email' => 'baz@bar',
             ],
@@ -278,7 +280,7 @@ class Zend_Dojo_DataTest extends TestCase
 
     public function testAddItemsShouldAcceptTraversableObject()
     {
-        $obj = new Zend_Dojo_DataTest_DataCollection;
+        $obj = new Zend_Dojo_DataTest_DataCollection();
         $this->dojoData->setIdentifier('id');
         $this->assertEquals(0, count($this->dojoData));
         $this->dojoData->addItems($obj);
@@ -298,7 +300,7 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $this->testAddItemsShouldAcceptArray();
         $items = $this->dojoData->getItems();
-        $obj   = new Zend_Dojo_DataTest_DataCollection;
+        $obj = new Zend_Dojo_DataTest_DataCollection();
         $this->dojoData->setItems($obj);
         $this->assertEquals(3, count($this->dojoData));
         $this->assertNotSame($items, $this->dojoData->getItems());
@@ -336,17 +338,17 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $items = [
             [
-                'id'    => 1,
+                'id' => 1,
                 'title' => 'Foo',
                 'email' => 'foo@bar',
             ],
             [
-                'id'    => 2,
+                'id' => 2,
                 'title' => 'Bar',
                 'email' => 'bar@bar',
             ],
             [
-                'id'    => 3,
+                'id' => 3,
                 'title' => 'Baz',
                 'email' => 'baz@bar',
             ],
@@ -412,7 +414,7 @@ class Zend_Dojo_DataTest extends TestCase
         $this->assertEquals($this->dojoData->getItem(1), $this->dojoData[1]);
         $this->dojoData[4] = [
             'title' => 'ArrayAccess',
-            'meta'  => 'fun',
+            'meta' => 'fun',
         ];
         $this->assertTrue(isset($this->dojoData[4]));
         $this->assertEquals($this->dojoData->getItem(4), $this->dojoData[4]);
@@ -439,8 +441,8 @@ class Zend_Dojo_DataTest extends TestCase
     {
         $data = [
             'identifier' => 'id',
-            'label'      => 'title',
-            'items'      => [
+            'label' => 'title',
+            'items' => [
                 ['id' => 1, 'title' => 'One', 'name' => 'First'],
                 ['id' => 2, 'title' => 'Two', 'name' => 'Second'],
                 ['id' => 3, 'title' => 'Three', 'name' => 'Third'],
@@ -458,7 +460,7 @@ class Zend_Dojo_DataTest extends TestCase
     public function testFromJsonShouldThrowExceptionOnInvalidData()
     {
         $this->expectException(Zend_Dojo_Exception::class);
-        $this->dojoData->fromJson(new stdClass);
+        $this->dojoData->fromJson(new stdClass());
     }
 
     /**
@@ -526,7 +528,7 @@ class Zend_Dojo_DataTest extends TestCase
 class Zend_Dojo_DataTest_DataObject
 {
     public $item = [
-        'id'    => 'foo',
+        'id' => 'foo',
         'title' => 'Foo',
         'email' => 'foo@foo.com',
     ];
@@ -544,7 +546,7 @@ class Zend_Dojo_DataTest_DataCollection implements Iterator
     public function __construct()
     {
         for ($i = 1; $i < 4; ++$i) {
-            $item = new Zend_Dojo_DataTest_DataObject;
+            $item = new Zend_Dojo_DataTest_DataObject();
             $item->item['id'] = $i;
             $item->item['title'] .= $i;
             $this->items[] = $item;

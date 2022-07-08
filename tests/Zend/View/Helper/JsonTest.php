@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,9 +56,8 @@ class Zend_View_Helper_JsonTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_JsonTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_JsonTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -160,7 +161,7 @@ class Zend_View_Helper_JsonTest extends TestCase
             ],
             [
                  'keepLayouts' => true,
-                 'encodeData'  => false,
+                 'encodeData' => false,
             ]
         );
         $this->assertTrue($layout->isEnabled());

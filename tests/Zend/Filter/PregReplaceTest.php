@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,8 +56,8 @@ class Zend_Filter_PregReplaceTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Filter_PregReplaceTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Filter_PregReplaceTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -66,14 +68,14 @@ class Zend_Filter_PregReplaceTest extends TestCase
     public function testPassingMatchPatternToConstructorSetsMatchPattern()
     {
         $pattern = '#^controller/(?P<action>[a-z_-]+)#';
-        $filter  = new Zend_Filter_PregReplace($pattern);
+        $filter = new Zend_Filter_PregReplace($pattern);
         $this->assertEquals($pattern, $filter->getMatchPattern());
     }
 
     public function testPassingReplacementToConstructorSetsReplacement()
     {
         $replace = 'foo/bar';
-        $filter  = new Zend_Filter_PregReplace(null, $replace);
+        $filter = new Zend_Filter_PregReplace(null, $replace);
         $this->assertEquals($replace, $filter->getReplacement());
     }
 

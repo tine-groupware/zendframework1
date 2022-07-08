@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -54,7 +56,7 @@ class Zend_Gdata_Analytics_AccountFeedTest extends TestCase
         }
     }
 
-	public function testFirstAccountProperties()
+    public function testFirstAccountProperties()
     {
         $account = $this->accountFeed->entries[0];
         $this->assertEquals(876543, "{$account->accountId}");

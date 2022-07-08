@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,37 +36,43 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_ReminderTest extends TestCase
 {
-
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->reminderText = file_get_contents(
-                'Zend/Gdata/_files/ReminderElementSample1.xml',
-                true);
+            'Zend/Gdata/_files/ReminderElementSample1.xml',
+            true
+        );
         $this->reminder = new Zend_Gdata_Extension_Reminder();
     }
 
-    public function testEmptyReminderShouldHaveNoExtensionElements() {
+    public function testEmptyReminderShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->reminder->extensionElements));
         $this->assertTrue(count($this->reminder->extensionElements) == 0);
     }
 
-    public function testEmptyReminderShouldHaveNoExtensionAttributes() {
+    public function testEmptyReminderShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->reminder->extensionAttributes));
         $this->assertTrue(count($this->reminder->extensionAttributes) == 0);
     }
 
-    public function testSampleReminderShouldHaveNoExtensionElements() {
+    public function testSampleReminderShouldHaveNoExtensionElements()
+    {
         $this->reminder->transferFromXML($this->reminderText);
         $this->assertTrue(is_array($this->reminder->extensionElements));
         $this->assertTrue(count($this->reminder->extensionElements) == 0);
     }
 
-    public function testSampleReminderShouldHaveNoExtensionAttributes() {
+    public function testSampleReminderShouldHaveNoExtensionAttributes()
+    {
         $this->reminder->transferFromXML($this->reminderText);
         $this->assertTrue(is_array($this->reminder->extensionAttributes));
         $this->assertTrue(count($this->reminder->extensionAttributes) == 0);
     }
 
-    public function testNormalReminderShouldHaveNoExtensionElements() {
+    public function testNormalReminderShouldHaveNoExtensionElements()
+    {
         $this->reminder->days = "12";
         $this->reminder->minutes = "64";
         $this->reminder->absoluteTime = "2007-06-19T12:42:19-06:00";
@@ -102,7 +110,8 @@ class Zend_Gdata_ReminderTest extends TestCase
         $this->assertEquals("80", $newReminder2->hours);
     }
 
-    public function testEmptyReminderToAndFromStringShouldMatch() {
+    public function testEmptyReminderToAndFromStringShouldMatch()
+    {
         $reminderXml = $this->reminder->saveXML();
         $newReminder = new Zend_Gdata_Extension_Reminder();
         $newReminder->transferFromXML($reminderXml);
@@ -110,7 +119,8 @@ class Zend_Gdata_ReminderTest extends TestCase
         $this->assertTrue($reminderXml == $newReminderXml);
     }
 
-    public function testReminderWithValueToAndFromStringShouldMatch() {
+    public function testReminderWithValueToAndFromStringShouldMatch()
+    {
         $this->reminder->days = "12";
         $this->reminder->minutes = "64";
         $this->reminder->absoluteTime = "2007-06-19T12:42:19-06:00";
@@ -128,10 +138,11 @@ class Zend_Gdata_ReminderTest extends TestCase
         $this->assertEquals("80", $this->reminder->hours);
     }
 
-    public function testExtensionAttributes() {
+    public function testExtensionAttributes()
+    {
         $extensionAttributes = $this->reminder->extensionAttributes;
-        $extensionAttributes['foo1'] = ['name'=>'foo1', 'value'=>'bar'];
-        $extensionAttributes['foo2'] = ['name'=>'foo2', 'value'=>'rab'];
+        $extensionAttributes['foo1'] = ['name' => 'foo1', 'value' => 'bar'];
+        $extensionAttributes['foo2'] = ['name' => 'foo2', 'value' => 'rab'];
         $this->reminder->extensionAttributes = $extensionAttributes;
         $this->assertEquals('bar', $this->reminder->extensionAttributes['foo1']['value']);
         $this->assertEquals('rab', $this->reminder->extensionAttributes['foo2']['value']);
@@ -142,7 +153,8 @@ class Zend_Gdata_ReminderTest extends TestCase
         $this->assertEquals('rab', $newReminder->extensionAttributes['foo2']['value']);
     }
 
-    public function testConvertFullReminderToAndFromString() {
+    public function testConvertFullReminderToAndFromString()
+    {
         $this->reminder->transferFromXML($this->reminderText);
         $this->assertEquals("42", $this->reminder->days);
         $this->assertEquals("50", $this->reminder->minutes);
@@ -150,5 +162,4 @@ class Zend_Gdata_ReminderTest extends TestCase
         $this->assertEquals("sms", $this->reminder->method);
         $this->assertEquals("20", $this->reminder->hours);
     }
-
 }

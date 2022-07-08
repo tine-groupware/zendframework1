@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -83,18 +85,18 @@ class Zend_Feed_Pubsubhubbub_Model_SubscriptionTest extends TestCase
     protected function _createTable()
     {
         $sql = "CREATE TABLE subscription ("
-             .      "id varchar(32) NOT NULL DEFAULT '', "
-             .      "topic_url varchar(255) DEFAULT NULL, "
-             .      "hub_url varchar(255) DEFAULT NULL, "
-             .      "created_time datetime DEFAULT NULL, "
-             .      "lease_seconds bigint(20) DEFAULT NULL, "
-             .      "verify_token varchar(255) DEFAULT NULL, "
-             .      "secret varchar(255) DEFAULT NULL, "
-             .      "expiration_time datetime DEFAULT NULL, "
-             .      "subscription_state varchar(12) DEFAULT NULL, "
-             .      "PRIMARY KEY (id) "
+             . "id varchar(32) NOT NULL DEFAULT '', "
+             . "topic_url varchar(255) DEFAULT NULL, "
+             . "hub_url varchar(255) DEFAULT NULL, "
+             . "created_time datetime DEFAULT NULL, "
+             . "lease_seconds bigint(20) DEFAULT NULL, "
+             . "verify_token varchar(255) DEFAULT NULL, "
+             . "secret varchar(255) DEFAULT NULL, "
+             . "expiration_time datetime DEFAULT NULL, "
+             . "subscription_state varchar(12) DEFAULT NULL, "
+             . "PRIMARY KEY (id) "
              . ");";
 
-       Zend_Db_Table::getDefaultAdapter()->getConnection()->query($sql);
+        Zend_Db_Table::getDefaultAdapter()->getConnection()->query($sql);
     }
 }

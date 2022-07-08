@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -273,7 +275,6 @@ class Zend_Feed_ImportTest extends TestCase
     public function testAtomImportFullBuilder()
     {
         $feed = Zend_Feed::importBuilder(new Zend_Feed_Builder($this->_getFullArray()), 'atom');
-
     }
 
     /**
@@ -370,7 +371,7 @@ class Zend_Feed_ImportTest extends TestCase
                                             'link' => 'http://www.example.com/subscribe'],
                        'skipHours' => [1, 13, 17],
                        'skipDays' => ['Saturday', 'Sunday'],
-                       'itunes'  => ['block' => 'no',
+                       'itunes' => ['block' => 'no',
                                           'keywords' => 'example,itunes,podcast',
                                           'category' => [['main' => 'Technology',
                                                                     'sub' => 'Gadgets'],
@@ -464,7 +465,7 @@ class Zend_Feed_ImportTest extends TestCase
             $this->markTestSkipped('testFindFeedsIncludesUriAsArrayKey() requires a network connection');
             return;
         }
-        Zend_Feed::setHttpClient(new Zend_Http_Client);
+        Zend_Feed::setHttpClient(new Zend_Http_Client());
         $feeds = Zend_Feed::findFeeds('http://www.planet-php.net');
         $this->assertEquals([
             'http://www.planet-php.org:80/rss/', 'http://www.planet-php.org:80/rdf/'

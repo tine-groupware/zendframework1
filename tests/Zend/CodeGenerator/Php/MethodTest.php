@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,8 +43,6 @@ require_once '_files/TestSampleSingleClass.php';
  */
 class Zend_CodeGenerator_Php_MethodTest extends TestCase
 {
-
-
     /**
      * @var Zend_CodeGenerator_Php_Method
      */
@@ -198,5 +198,4 @@ EOS;
 EOS;
         $this->assertEquals($expected, $codeGenProperty->generate());
     }
-
 }

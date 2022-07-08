@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,22 +50,22 @@ class Zend_Service_WindowsAzure_RetryPolicyTest extends TestCase
 {
     /**
      * Helper variable for counting retries
-     * 
+     *
      * @var int
      */
     protected $_executedRetries = 0;
     
     /**
-     * Helper variable for setting Exception count 
-     * 
+     * Helper variable for setting Exception count
+     *
      * @var int
      */
     protected $_exceptionCount = 0;
     
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Service_WindowsAzure_RetryPolicyTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Service_WindowsAzure_RetryPolicyTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**

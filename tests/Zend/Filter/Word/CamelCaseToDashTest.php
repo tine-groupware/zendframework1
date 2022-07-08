@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,15 +53,14 @@ class Zend_Filter_Word_CamelCaseToDashTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Filter_Word_CamelCaseToDashTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Filter_Word_CamelCaseToDashTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithDashes()
     {
-        $string   = 'CamelCasedWords';
-        $filter   = new Zend_Filter_Word_CamelCaseToDash();
+        $string = 'CamelCasedWords';
+        $filter = new Zend_Filter_Word_CamelCaseToDash();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);

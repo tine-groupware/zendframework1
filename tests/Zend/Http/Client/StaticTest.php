@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -145,8 +147,11 @@ class Zend_Http_Client_StaticTest extends TestCase
         $this->_client->setAdapter('Zend_Http_Client_Adapter_Test');
 
         $res = $this->_client->request('GET');
-        $this->assertStringContainsString($qstr, $this->_client->getLastRequest(),
-            'Request is expected to contain the entire query string');
+        $this->assertStringContainsString(
+            $qstr,
+            $this->_client->getLastRequest(),
+            'Request is expected to contain the entire query string'
+        );
     }
 
     /**
@@ -299,7 +304,7 @@ class Zend_Http_Client_StaticTest extends TestCase
 
         $adapter = new Zend_Http_Client_Adapter_Test();
         $adapter->setResponse(
-        	"HTTP/1.0 200 OK\r\n" .
+            "HTTP/1.0 200 OK\r\n" .
             "Content-type: text/plain\r\n" .
             "Content-length: 2\r\n" .
             "Connection: close\r\n" .
@@ -310,7 +315,7 @@ class Zend_Http_Client_StaticTest extends TestCase
 
         $this->_client->setUri('http://example.example/test');
         $this->_client->setConfig([
-            'adapter'       => $adapter,
+            'adapter' => $adapter,
             'encodecookies' => false
         ]);
 
@@ -323,7 +328,7 @@ class Zend_Http_Client_StaticTest extends TestCase
         $this->_client->request();
 
         $request = $this->_client->getLastRequest();
-        if (! preg_match("/^Cookie: $cookieName=([^;]+)/m", $request, $match)) {
+        if (!preg_match("/^Cookie: $cookieName=([^;]+)/m", $request, $match)) {
             $this->fail("Could not find cookie in request");
         }
 
@@ -341,14 +346,14 @@ class Zend_Http_Client_StaticTest extends TestCase
     public function testConfigSetAsArray()
     {
         $config = [
-            'timeout'    => 500,
+            'timeout' => 500,
             'someoption' => 'hasvalue'
         ];
 
         $this->_client->setConfig($config);
 
         $hasConfig = $this->_client->config;
-        foreach($config as $k => $v) {
+        foreach ($config as $k => $v) {
             $this->assertEquals($v, $hasConfig[$k]);
         }
     }
@@ -363,8 +368,8 @@ class Zend_Http_Client_StaticTest extends TestCase
         require_once 'Zend/Config.php';
 
         $config = new Zend_Config([
-            'timeout'  => 400,
-            'nested'   => [
+            'timeout' => 400,
+            'nested' => [
                 'item' => 'value',
             ]
         ]);
@@ -420,16 +425,21 @@ class Zend_Http_Client_StaticTest extends TestCase
     public function testGetLastResponse()
     {
         // First, make sure we get null before the request
-        $this->assertEquals(null, $this->_client->getLastResponse(),
-            'getLastResponse() is still expected to return null');
+        $this->assertEquals(
+            null,
+            $this->_client->getLastResponse(),
+            'getLastResponse() is still expected to return null'
+        );
 
         // Now, test we get a proper response after the request
         $this->_client->setUri('http://example.com/foo/bar');
         $this->_client->setAdapter('Zend_Http_Client_Adapter_Test');
 
         $response = $this->_client->request();
-        $this->assertTrue(($response === $this->_client->getLastResponse()),
-            'Response is expected to be identical to the result of getLastResponse()');
+        $this->assertTrue(
+            ($response === $this->_client->getLastResponse()),
+            'Response is expected to be identical to the result of getLastResponse()'
+        );
     }
 
     /**
@@ -445,8 +455,10 @@ class Zend_Http_Client_StaticTest extends TestCase
 
         $response = $this->_client->request();
 
-        $this->assertNull($this->_client->getLastResponse(),
-            'getLastResponse is expected to be null when not storing');
+        $this->assertNull(
+            $this->_client->getLastResponse(),
+            'getLastResponse is expected to be null when not storing'
+        );
     }
 
     /**
@@ -536,7 +548,6 @@ class Zend_Http_Client_StaticTest extends TestCase
 
         while (($expected = array_shift($expectedLines)) &&
                ($got = array_shift($gotLines))) {
-
             $expected = trim($expected);
             $got = trim($got);
             $this->assertMatchesRegularExpression("/^$expected$/", $got);
@@ -559,7 +570,6 @@ class Zend_Http_Client_StaticTest extends TestCase
         $this->assertEquals(count($expectedLines), count($gotLines));
         while (($expected = array_shift($expectedLines)) &&
                ($got = array_shift($gotLines))) {
-
             $expected = trim($expected);
             $got = trim($got);
             $this->assertMatchesRegularExpression("/^$expected$/", $got);
@@ -584,7 +594,6 @@ class Zend_Http_Client_StaticTest extends TestCase
         $this->assertEquals(count($expectedLines), count($gotLines));
         while (($expected = array_shift($expectedLines)) &&
                ($got = array_shift($gotLines))) {
-
             $expected = trim($expected);
             $got = trim($got);
             $this->assertMatchesRegularExpression("/^$expected$/", $got);
@@ -611,7 +620,7 @@ class Zend_Http_Client_StaticTest extends TestCase
         $this->_client->request('POST');
         $request = $this->_client->getLastRequest();
 
-        if (! preg_match('/^content-length:\s+(\d+)/mi', $request, $match)) {
+        if (!preg_match('/^content-length:\s+(\d+)/mi', $request, $match)) {
             $this->fail("Unable to find content-length header in request");
         }
 
@@ -629,7 +638,7 @@ class Zend_Http_Client_StaticTest extends TestCase
         $client->setAuth(false);
     }
 
-	/**
+    /**
      * Testing if the connection isn't closed
      *
      * @group ZF-9685
@@ -637,19 +646,19 @@ class Zend_Http_Client_StaticTest extends TestCase
      */
     public function testOpenTempStreamWithValidFileDoesntThrowsException()
     {
-    	$url = 'http://www.example.com';
-    	$config = [
-			'output_stream' => realpath(dirname(__FILE__) . '/_files/zend_http_client_stream.file'),
-		];
-		$client = new Zend_Http_Client($url, $config);
-		try {
-			$result = $client->request();
-		} catch (Zend_Http_Client_Exception $e) {
-			$this->fail('Unexpected exception was thrown');
-		}
-		// we can safely return until we can verify link is still active
-		// @todo verify link is still active
-		return;
+        $url = 'http://www.example.com';
+        $config = [
+            'output_stream' => realpath(dirname(__FILE__) . '/_files/zend_http_client_stream.file'),
+        ];
+        $client = new Zend_Http_Client($url, $config);
+        try {
+            $result = $client->request();
+        } catch (Zend_Http_Client_Exception $e) {
+            $this->fail('Unexpected exception was thrown');
+        }
+        // we can safely return until we can verify link is still active
+        // @todo verify link is still active
+        return;
     }
 
     /**
@@ -660,21 +669,21 @@ class Zend_Http_Client_StaticTest extends TestCase
      */
     public function testOpenTempStreamWithBogusFileClosesTheConnection()
     {
-    	$url = 'http://www.example.com';
-    	$config = [
-			'output_stream' => '/path/to/bogus/file.ext',
-		];
-		$client = new Zend_Http_Client($url, $config);
-		try {
-			$result = $client->request();
-			$this->fail('Expected exception was not thrown');
-		} catch (Zend_Http_Client_Exception $e) {
-			// we return since we expect the exception
-			return;
-		}
+        $url = 'http://www.example.com';
+        $config = [
+            'output_stream' => '/path/to/bogus/file.ext',
+        ];
+        $client = new Zend_Http_Client($url, $config);
+        try {
+            $result = $client->request();
+            $this->fail('Expected exception was not thrown');
+        } catch (Zend_Http_Client_Exception $e) {
+            // we return since we expect the exception
+            return;
+        }
     }
 
-	/**
+    /**
      * Test that we can handle trailing space in location header
      *
      * @group ZF-11283
@@ -706,7 +715,8 @@ class Zend_Http_Client_StaticTest extends TestCase
     /**
      * @group ZF-11162
      */
-    function testClientDoesNotModifyPassedUri() {
+    public function testClientDoesNotModifyPassedUri()
+    {
         $uri = Zend_Uri_Http::fromString('http://example.org/');
         $orig = clone $uri;
         $client = new Zend_Http_Client($uri);
@@ -737,7 +747,7 @@ class Zend_Http_Client_StaticTest extends TestCase
      *
      * @return array
      */
-    static public function validMethodProvider()
+    public static function validMethodProvider()
     {
         return [
             ['OPTIONS'],
@@ -754,7 +764,7 @@ class Zend_Http_Client_StaticTest extends TestCase
      *
      * @return array
      */
-    static public function invalidMethodProvider()
+    public static function invalidMethodProvider()
     {
         return [
             ['N@5TYM3T#0D'],
@@ -769,13 +779,13 @@ class Zend_Http_Client_StaticTest extends TestCase
      *
      * @return array
      */
-    static public function invalidConfigProvider()
+    public static function invalidConfigProvider()
     {
         return [
             [false],
             ['foo => bar'],
             [null],
-            [new stdClass],
+            [new stdClass()],
             [55]
         ];
     }
@@ -784,17 +794,17 @@ class Zend_Http_Client_StaticTest extends TestCase
 class Zend_Http_Client_StaticTest_Mock extends Zend_Http_Client
 {
     public $config = [
-        'maxredirects'    => 5,
+        'maxredirects' => 5,
         'strictredirects' => false,
-        'useragent'       => 'Zend_Http_Client',
-        'timeout'         => 10,
-        'adapter'         => 'Zend_Http_Client_Adapter_Socket',
-        'httpversion'     => self::HTTP_1,
-        'keepalive'       => false,
-        'storeresponse'   => true,
-        'strict'          => true,
-        'output_stream'   => false,
-        'encodecookies'   => true,
+        'useragent' => 'Zend_Http_Client',
+        'timeout' => 10,
+        'adapter' => 'Zend_Http_Client_Adapter_Socket',
+        'httpversion' => self::HTTP_1,
+        'keepalive' => false,
+        'storeresponse' => true,
+        'strict' => true,
+        'output_stream' => false,
+        'encodecookies' => true,
     ];
 }
 

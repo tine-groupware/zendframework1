@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Service/Amazon/Authentication/S3.php';
  */
 class Zend_Service_Amazon_Authentication_S3Test extends TestCase
 {
-
     /**
      * @var Zend_Service_Amazon_Authentication_S3
      */
@@ -51,7 +52,6 @@ class Zend_Service_Amazon_Authentication_S3Test extends TestCase
 
 
         $this->Zend_Service_Amazon_Authentication_S3 = new Zend_Service_Amazon_Authentication_S3('0PN5J17HBGZHT7JJ3X82', 'uV3F3YluFJax1cknvbcGwgjvx4QpvB+leU8dUj2o', '2006-03-01');
-
     }
 
     /**
@@ -132,7 +132,6 @@ Tue, 27 Mar 2007 19:44:46 +0000
 
     public function testDeleteGeneratesCorrectSignature()
     {
-
         $headers = [];
         $headers['x-amz-date'] = "Tue, 27 Mar 2007 21:20:26 +0000";
 
@@ -176,6 +175,4 @@ x-amz-meta-filechecksum:0x02661779
 x-amz-meta-reviewedby:joe@johnsmith.net,jane@johnsmith.net
 //static.johnsmith.net/db-backup.dat.gz");
     }
-
 }
-

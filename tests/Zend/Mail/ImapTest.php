@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -51,8 +53,8 @@ class Zend_Mail_ImapTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->_params = ['host'     => TESTS_ZEND_MAIL_IMAP_HOST,
-                               'user'     => TESTS_ZEND_MAIL_IMAP_USER,
+        $this->_params = ['host' => TESTS_ZEND_MAIL_IMAP_HOST,
+                               'user' => TESTS_ZEND_MAIL_IMAP_USER,
                                'password' => TESTS_ZEND_MAIL_IMAP_PASSWORD];
         if (defined('TESTS_ZEND_MAIL_SERVER_TESTDIR') && TESTS_ZEND_MAIL_SERVER_TESTDIR) {
             if (!file_exists(TESTS_ZEND_MAIL_SERVER_TESTDIR . DIRECTORY_SEPARATOR . 'inbox')
@@ -64,8 +66,10 @@ class Zend_Mail_ImapTest extends TestCase
             }
 
             $this->_cleanDir(TESTS_ZEND_MAIL_SERVER_TESTDIR);
-            $this->_copyDir(dirname(__FILE__) . '/_files/test.' . TESTS_ZEND_MAIL_SERVER_FORMAT,
-                            TESTS_ZEND_MAIL_SERVER_TESTDIR);
+            $this->_copyDir(
+                dirname(__FILE__) . '/_files/test.' . TESTS_ZEND_MAIL_SERVER_FORMAT,
+                TESTS_ZEND_MAIL_SERVER_TESTDIR
+            );
         }
     }
 
@@ -94,7 +98,7 @@ class Zend_Mail_ImapTest extends TestCase
             if ($entry == '.' || $entry == '..' || $entry == '.svn') {
                 continue;
             }
-            $fullname = $dir  . DIRECTORY_SEPARATOR . $entry;
+            $fullname = $dir . DIRECTORY_SEPARATOR . $entry;
             $destname = $dest . DIRECTORY_SEPARATOR . $entry;
             if (is_dir($fullname)) {
                 mkdir($destname);
@@ -315,16 +319,16 @@ class Zend_Mail_ImapTest extends TestCase
             $this->fail('exception raised while closing imap connection');
         }
     }
-/*
-    currently imap has no top
+    /*
+        currently imap has no top
 
-    public function testHasTop()
-    {
-        $mail = new Zend_Mail_Storage_Imap($this->_params);
+        public function testHasTop()
+        {
+            $mail = new Zend_Mail_Storage_Imap($this->_params);
 
-        $this->assertTrue($mail->hasTop);
-    }
-*/
+            $this->assertTrue($mail->hasTop);
+        }
+    */
     public function testHasCreate()
     {
         $mail = new Zend_Mail_Storage_Imap($this->_params);
@@ -380,17 +384,17 @@ class Zend_Mail_ImapTest extends TestCase
         $this->assertEquals('Simple Message', $subject);
     }
 
-/*
-    currently imap has no top
+    /*
+        currently imap has no top
 
-    public function testFetchTopBody()
-    {
-        $mail = new Zend_Mail_Storage_Imap($this->_params);
+        public function testFetchTopBody()
+        {
+            $mail = new Zend_Mail_Storage_Imap($this->_params);
 
-        $content = $mail->getHeader(3, 1)->getContent();
-        $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
-    }
-*/
+            $content = $mail->getHeader(3, 1)->getContent();
+            $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
+        }
+    */
     public function testFetchMessageHeader()
     {
         $mail = new Zend_Mail_Storage_Imap($this->_params);
@@ -503,9 +507,9 @@ class Zend_Mail_ImapTest extends TestCase
         $mail = new Zend_Mail_Storage_Imap($this->_params);
         $iterator = new RecursiveIteratorIterator($mail->getFolders(), RecursiveIteratorIterator::SELF_FIRST);
         // we search for this folder because we can't assume a order while iterating
-        $search_folders = ['subfolder'      => 'subfolder',
+        $search_folders = ['subfolder' => 'subfolder',
                                 'subfolder/test' => 'test',
-                                'INBOX'          => 'INBOX'];
+                                'INBOX' => 'INBOX'];
         $found_folders = [];
 
         foreach ($iterator as $localName => $folder) {
@@ -600,7 +604,7 @@ class Zend_Mail_ImapTest extends TestCase
             }
 
             if ($mail->getNumberByUniqueId($id) != $num) {
-                    $this->fail('reverse lookup failed');
+                $this->fail('reverse lookup failed');
             }
         }
     }

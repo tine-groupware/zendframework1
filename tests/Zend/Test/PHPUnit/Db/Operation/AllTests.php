@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,10 +44,10 @@ class Zend_Test_PHPUnit_Db_Operation_AllTests
 {
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
-    static public function suite()
+    public static function suite()
     {
         $suite = new TestSuite('Zend Framework - Zend_Test_PHPUnit_Db_Operation');
 

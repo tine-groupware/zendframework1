@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -62,7 +64,7 @@ class Zend_Filter_BaseNameTest extends TestCase
     public function testBasic()
     {
         $valuesExpected = [
-            '/path/to/filename'     => 'filename',
+            '/path/to/filename' => 'filename',
             '/path/to/filename.ext' => 'filename.ext'
             ];
         foreach ($valuesExpected as $input => $output) {

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,8 +56,8 @@ class Zend_Dojo_Form_SubFormTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_Form_SubFormTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_Form_SubFormTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -118,9 +120,9 @@ class Zend_Dojo_Form_SubFormTest extends TestCase
 
     public function testShouldRegisterDojoViewHelperPath()
     {
-        $view   = $this->form->getView();
+        $view = $this->form->getView();
         $loader = $view->getPluginLoader('helper');
-        $paths  = $loader->getPaths('Zend_Dojo_View_Helper');
+        $paths = $loader->getPaths('Zend_Dojo_View_Helper');
         $this->assertTrue(is_array($paths));
     }
 }

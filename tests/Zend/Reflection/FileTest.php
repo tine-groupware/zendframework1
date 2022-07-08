@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Reflection/File.php';
  */
 class Zend_Reflection_FileTest extends TestCase
 {
-
     public function testFileConstructor()
     {
         require_once 'Zend/Version.php';
@@ -152,4 +153,3 @@ class Zend_Reflection_FileTest extends TestCase
         $this->assertEquals('secondOne', $functions[1]->getName());
     }
 }
-

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,7 +43,7 @@ class Zend_Service_StrikeIron_StrikeIronTest extends TestCase
     {
         // stub out SOAPClient instance
         $this->soapClient = new stdclass();
-        $this->options    = ['client' => $this->soapClient];
+        $this->options = ['client' => $this->soapClient];
         $this->strikeIron = new Zend_Service_StrikeIron($this->options);
     }
 
@@ -88,7 +90,7 @@ class Zend_Service_StrikeIron_StrikeIronTest extends TestCase
     public function testFactoryMergesItsOptionsWithConstructorOptions()
     {
         $options = ['class' => 'Zend_Service_StrikeIron_StrikeIronTest_StubbedBase',
-                         'foo'   => 'bar'];
+                         'foo' => 'bar'];
 
         $mergedOptions = array_merge($options, $this->options);
         unset($mergedOptions['class']);
@@ -96,7 +98,6 @@ class Zend_Service_StrikeIron_StrikeIronTest extends TestCase
         $stub = $this->strikeIron->getService($options);
         $this->assertEquals($mergedOptions, $stub->options);
     }
-
 }
 
 /**

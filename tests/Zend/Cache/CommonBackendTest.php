@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -29,8 +30,8 @@ use PHPUnit\Framework\TestCase;
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-abstract class Zend_Cache_CommonBackendTest extends TestCase {
-
+abstract class Zend_Cache_CommonBackendTest extends TestCase
+{
     protected $_instance;
     protected $_className;
     protected $_root;
@@ -80,7 +81,7 @@ abstract class Zend_Cache_CommonBackendTest extends TestCase {
         if (is_writeable($this->_root)) {
             return $this->_root . DIRECTORY_SEPARATOR . 'zend_cache_tmp_dir_' . $suffix;
         } else {
-            if (getenv('TMPDIR')){
+            if (getenv('TMPDIR')) {
                 return getenv('TMPDIR') . DIRECTORY_SEPARATOR . 'zend_cache_tmp_dir_' . $suffix;
             } else {
                 die("no writable tmpdir found");

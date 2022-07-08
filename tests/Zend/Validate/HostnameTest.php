@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -421,7 +423,7 @@ class Zend_Validate_HostnameTest extends TestCase
     {
         $valuesExpected = [
             [Zend_Validate_Hostname::ALLOW_ALL, true, ['example.', 'example.com.', '~ex%20ample.com.']],
-            [Zend_Validate_Hostname::ALLOW_ALL, false, ['example..',]],
+            [Zend_Validate_Hostname::ALLOW_ALL, false, ['example..', ]],
             [Zend_Validate_Hostname::ALLOW_ALL, true, ['1.2.3.4.']],
             [Zend_Validate_Hostname::ALLOW_DNS, false, ['example..', '~ex%20ample..']],
             [Zend_Validate_Hostname::ALLOW_LOCAL, true, ['example.', 'example.com.']],

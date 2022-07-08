@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,7 +45,6 @@ require_once dirname(__FILE__) . '/../_files/My/ZendDbTable/Row/TestMockRow.php'
  */
 class Zend_Db_Table_Relationships_StaticTest extends TestCase
 {
-
     public function testTableRelationshipsFindDependentMagic()
     {
         $row = new My_ZendDbTable_Row_TestMockRow();
@@ -108,5 +109,4 @@ class Zend_Db_Table_Relationships_StaticTest extends TestCase
     {
         return 'Static';
     }
-
 }

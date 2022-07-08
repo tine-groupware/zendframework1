@@ -1,7 +1,9 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
-use PHPUnit\Framework\TestSuite;
+
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -43,7 +45,7 @@ class Zend_Ldap_Ldif_AllTests
 {
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()
@@ -55,7 +57,6 @@ class Zend_Ldap_Ldif_AllTests
 
         if (defined('TESTS_ZEND_LDAP_ONLINE_ENABLED')
                 && constant('TESTS_ZEND_LDAP_ONLINE_ENABLED')) {
-
         } else {
             $suite->addTest(new Zend_Ldap_Ldif_SkipOnlineTests());
         }

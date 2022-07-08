@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -57,9 +59,8 @@ class Zend_Form_Decorator_AbstractTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_AbstractTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_AbstractTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -124,7 +125,7 @@ class Zend_Form_Decorator_AbstractTest extends TestCase
     public function testSetElementAllowsDisplayGroups()
     {
         $loader = new Zend_Loader_PluginLoader(['Zend_Form_Decorator' => 'Zend/Form/Decorator']);
-        $group  = new Zend_Form_DisplayGroup('foo', $loader);
+        $group = new Zend_Form_DisplayGroup('foo', $loader);
         $this->decorator->setElement($group);
         $this->assertSame($group, $this->decorator->getElement());
     }

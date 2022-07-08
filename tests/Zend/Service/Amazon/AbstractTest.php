@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -60,7 +62,8 @@ class AmamzonAbstract extends TestCase
         try {
             $class = new TestAmamzonAbstract();
             $this->fail('Exception should be thrown when no keys are passed in.');
-        } catch(Zend_Service_Amazon_Exception $zsae) {}
+        } catch (Zend_Service_Amazon_Exception $zsae) {
+        }
     }
 
     /**
@@ -70,7 +73,7 @@ class AmamzonAbstract extends TestCase
     {
         try {
             $class = new TestAmamzonAbstract('TestAccessKey', 'TestSecretKey');
-        } catch(Zend_Service_Amazon_Exception $zsae) {
+        } catch (Zend_Service_Amazon_Exception $zsae) {
             $this->fail('Exception should be thrown when no keys are passed in.');
         }
     }
@@ -113,6 +116,4 @@ class TestAmamzonAbstract extends Zend_Service_Amazon_Abstract
     {
         return $this->_secretKey;
     }
-
 }
-

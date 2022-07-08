@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -41,7 +43,6 @@ require_once 'Zend/Tool/Framework/Client/Response/ContentDecorator/Separator.php
  */
 class Zend_Tool_Framework_Client_ResponseTest extends TestCase
 {
-
     /**
      * @var Zend_Tool_Framework_Client_Response
      */

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -47,4 +49,3 @@ class Zend_Search_Lucene_Index_FieldInfoTest extends TestCase
         $this->assertEquals($fieldInfo->storeTermVector, false);
     }
 }
-

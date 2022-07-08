@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -55,8 +57,8 @@ class Zend_View_Helper_FormPasswordTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormPasswordTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormPasswordTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -82,8 +84,8 @@ class Zend_View_Helper_FormPasswordTest extends TestCase
     public function testCanDisableElement()
     {
         $html = $this->helper->formPassword([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'attribs' => ['disable' => true]
         ]);
 
@@ -96,8 +98,8 @@ class Zend_View_Helper_FormPasswordTest extends TestCase
     public function testDisablingElementDoesNotRenderHiddenElements()
     {
         $html = $this->helper->formPassword([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'attribs' => ['disable' => true]
         ]);
 

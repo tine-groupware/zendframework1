@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,8 +45,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthInit()
     {
-        $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD,'de');
-        $this->assertTrue($value instanceof Zend_Measure_Length,'Zend_Measure_Length Object not returned');
+        $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD, 'de');
+        $this->assertTrue($value instanceof Zend_Measure_Length, 'Zend_Measure_Length Object not returned');
     }
 
 
@@ -56,7 +58,7 @@ class Zend_Measure_LengthTest extends TestCase
     public function testLengthUnknownType()
     {
         try {
-            $value = new Zend_Measure_Length('100','Length::UNKNOWN','de');
+            $value = new Zend_Measure_Length('100', 'Length::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Exception $e) {
             return true; // Test OK
@@ -72,7 +74,7 @@ class Zend_Measure_LengthTest extends TestCase
     public function testLengthUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Length('novalue',Zend_Measure_Length::STANDARD,'de');
+            $value = new Zend_Measure_Length('novalue', Zend_Measure_Length::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Exception $e) {
             return true; // Test OK
@@ -88,7 +90,7 @@ class Zend_Measure_LengthTest extends TestCase
     public function testLengthUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD,'nolocale');
+            $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Exception $e) {
             return true; // Test OK
@@ -102,8 +104,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthNoLocale()
     {
-        $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD);
-        $this->assertEquals(100, $value->getValue(),'Zend_Measure_Length value expected');
+        $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD);
+        $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Length value expected');
     }
 
 
@@ -113,7 +115,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthValuePositive()
     {
-        $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals(100, $value->getValue(), 'Zend_Measure_Length value expected to be a positive integer');
     }
 
@@ -124,7 +126,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthValueNegative()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals(-100, $value->getValue(), 'Zend_Measure_Length value expected to be a negative integer');
     }
 
@@ -135,7 +137,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthValueDecimal()
     {
-        $value = new Zend_Measure_Length('-100,200',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100,200', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals(-100.200, $value->getValue(), 'Zend_Measure_Length value expected to be a decimal value');
     }
 
@@ -146,8 +148,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthValueDecimalSeperated()
     {
-        $value = new Zend_Measure_Length('-100.100,200',Zend_Measure_Length::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Length Object not returned');
+        $value = new Zend_Measure_Length('-100.100,200', Zend_Measure_Length::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Length Object not returned');
     }
 
 
@@ -157,8 +159,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthValueString()
     {
-        $value = new Zend_Measure_Length('-100.100,200',Zend_Measure_Length::STANDARD,'de');
-        $this->assertEquals(-100100.200, $value->getValue(),'Zend_Measure_Length Object not returned');
+        $value = new Zend_Measure_Length('-100.100,200', Zend_Measure_Length::STANDARD, 'de');
+        $this->assertEquals(-100100.200, $value->getValue(), 'Zend_Measure_Length Object not returned');
     }
 
 
@@ -168,9 +170,9 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthEquality()
     {
-        $value = new Zend_Measure_Length('-100.100,200',Zend_Measure_Length::STANDARD,'de');
-        $newvalue = new Zend_Measure_Length('-100.100,200',Zend_Measure_Length::STANDARD,'de');
-        $this->assertTrue($value->equals($newvalue),'Zend_Measure_Length Object should be equal');
+        $value = new Zend_Measure_Length('-100.100,200', Zend_Measure_Length::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Length('-100.100,200', Zend_Measure_Length::STANDARD, 'de');
+        $this->assertTrue($value->equals($newvalue), 'Zend_Measure_Length Object should be equal');
     }
 
 
@@ -180,9 +182,9 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthNoEquality()
     {
-        $value = new Zend_Measure_Length('-100.100,200',Zend_Measure_Length::STANDARD,'de');
-        $newvalue = new Zend_Measure_Length('-100,200',Zend_Measure_Length::STANDARD,'de');
-        $this->assertFalse($value->equals($newvalue),'Zend_Measure_Length Object should be not equal');
+        $value = new Zend_Measure_Length('-100.100,200', Zend_Measure_Length::STANDARD, 'de');
+        $newvalue = new Zend_Measure_Length('-100,200', Zend_Measure_Length::STANDARD, 'de');
+        $this->assertFalse($value->equals($newvalue), 'Zend_Measure_Length Object should be not equal');
     }
 
 
@@ -192,8 +194,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetPositive()
     {
-        $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD,'de');
-        $value->setValue('200',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD, 'de');
+        $value->setValue('200', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals(200, $value->getValue(), 'Zend_Measure_Length value expected to be a positive integer');
     }
 
@@ -204,8 +206,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetNegative()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
-        $value->setValue('-200',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
+        $value->setValue('-200', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals(-200, $value->getValue(), 'Zend_Measure_Length value expected to be a negative integer');
     }
 
@@ -216,8 +218,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetDecimal()
     {
-        $value = new Zend_Measure_Length('-100,200',Zend_Measure_Length::STANDARD,'de');
-        $value->setValue('-200,200',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100,200', Zend_Measure_Length::STANDARD, 'de');
+        $value->setValue('-200,200', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals(-200.200, $value->getValue(), 'Zend_Measure_Length value expected to be a decimal value');
     }
 
@@ -228,9 +230,9 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetDecimalSeperated()
     {
-        $value = new Zend_Measure_Length('-100.100,200',Zend_Measure_Length::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Length::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Length Object not returned');
+        $value = new Zend_Measure_Length('-100.100,200', Zend_Measure_Length::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Length::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Length Object not returned');
     }
 
 
@@ -240,9 +242,9 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetString()
     {
-        $value = new Zend_Measure_Length('-100.100,200',Zend_Measure_Length::STANDARD,'de');
-        $value->setValue('-200.200,200',Zend_Measure_Length::STANDARD,'de');
-        $this->assertEquals(-200200.200, $value->getValue(),'Zend_Measure_Length Object not returned');
+        $value = new Zend_Measure_Length('-100.100,200', Zend_Measure_Length::STANDARD, 'de');
+        $value->setValue('-200.200,200', Zend_Measure_Length::STANDARD, 'de');
+        $this->assertEquals(-200200.200, $value->getValue(), 'Zend_Measure_Length Object not returned');
     }
 
 
@@ -254,8 +256,8 @@ class Zend_Measure_LengthTest extends TestCase
     public function testLengthSetUnknownType()
     {
         try {
-            $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD,'de');
-            $value->setValue('-200.200,200','Length::UNKNOWN','de');
+            $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD, 'de');
+            $value->setValue('-200.200,200', 'Length::UNKNOWN', 'de');
             $this->fail('Exception expected because of unknown type');
         } catch (Exception $e) {
             return true; // Test OK
@@ -271,8 +273,8 @@ class Zend_Measure_LengthTest extends TestCase
     public function testLengthSetUnknownValue()
     {
         try {
-            $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD,'de');
-            $value->setValue('novalue',Zend_Measure_Length::STANDARD,'de');
+            $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD, 'de');
+            $value->setValue('novalue', Zend_Measure_Length::STANDARD, 'de');
             $this->fail('Exception expected because of empty value');
         } catch (Exception $e) {
             return; // Test OK
@@ -288,8 +290,8 @@ class Zend_Measure_LengthTest extends TestCase
     public function testLengthSetUnknownLocale()
     {
         try {
-            $value = new Zend_Measure_Length('100',Zend_Measure_Length::STANDARD,'de');
-            $value->setValue('200',Zend_Measure_Length::STANDARD,'nolocale');
+            $value = new Zend_Measure_Length('100', Zend_Measure_Length::STANDARD, 'de');
+            $value->setValue('200', Zend_Measure_Length::STANDARD, 'nolocale');
             $this->fail('Exception expected because of unknown locale');
         } catch (Exception $e) {
             return true; // Test OK
@@ -315,7 +317,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetType()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
         $value->setType(Zend_Measure_Length::MILE);
         $this->assertEquals(Zend_Measure_Length::MILE, $value->getType(), 'Zend_Measure_Length type expected');
     }
@@ -327,7 +329,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetComputedType1()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
         $value->setType(Zend_Measure_Length::LINK);
         $this->assertEquals(Zend_Measure_Length::LINK, $value->getType(), 'Zend_Measure_Length type expected');
     }
@@ -339,7 +341,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthSetComputedType2()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::LINK,'de');
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::LINK, 'de');
         $value->setType(Zend_Measure_Length::KEN);
         $this->assertEquals(Zend_Measure_Length::KEN, $value->getType(), 'Zend_Measure_Length type expected');
     }
@@ -353,7 +355,7 @@ class Zend_Measure_LengthTest extends TestCase
     public function testLengthSetTypeFailed()
     {
         try {
-            $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
+            $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
             $value->setType('Length::UNKNOWN');
             $this->fail('Exception expected because of unknown type');
         } catch (Zend_Measure_Exception $e) {
@@ -368,7 +370,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthToString()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals('-100 m', $value->toString(), 'Value -100 m expected');
     }
 
@@ -379,7 +381,7 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLength_ToString()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
         $this->assertEquals('-100 m', $value->__toString(), 'Value -100 m expected');
     }
 
@@ -389,8 +391,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testLengthConversionList()
     {
-        $value = new Zend_Measure_Length('-100',Zend_Measure_Length::STANDARD,'de');
-        $unit  = $value->getConversionList();
+        $value = new Zend_Measure_Length('-100', Zend_Measure_Length::STANDARD, 'de');
+        $unit = $value->getConversionList();
         $this->assertTrue(is_array($unit), 'Array expected');
     }
 
@@ -399,8 +401,8 @@ class Zend_Measure_LengthTest extends TestCase
      */
     public function testConvertingToSmallerUnit()
     {
-        $unit   = new Zend_Measure_Length(231, Zend_Measure_Length::CENTIMETER, 'de');
-        $unit2  = new Zend_Measure_Length(1, Zend_Measure_Length::METER, 'de');
+        $unit = new Zend_Measure_Length(231, Zend_Measure_Length::CENTIMETER, 'de');
+        $unit2 = new Zend_Measure_Length(1, Zend_Measure_Length::METER, 'de');
         $result = $unit->add($unit2);
         $result->setType(Zend_Measure_Length::METER);
 

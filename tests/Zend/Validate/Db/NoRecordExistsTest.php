@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -68,7 +70,6 @@ require_once dirname(__FILE__) . '/_files/Db/MockHasResult.php';
  */
 class Zend_Validate_Db_NoRecordExistsTest extends TestCase
 {
-
     /**
      * @var Zend_Db_Adapter_Abstract
      */
@@ -88,7 +89,6 @@ class Zend_Validate_Db_NoRecordExistsTest extends TestCase
     {
         $this->_adapterHasResult = new Db_MockHasResult();
         $this->_adapterNoResult = new Db_MockNoResult();
-
     }
 
     /**
@@ -247,7 +247,7 @@ class Zend_Validate_Db_NoRecordExistsTest extends TestCase
     }
     
     /**
-     * 
+     *
      * @group ZF-10705
      */
     public function testCreatesQueryBasedOnNamedOrPositionalAvailablity()

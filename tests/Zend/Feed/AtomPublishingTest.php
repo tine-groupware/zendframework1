@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -81,7 +83,7 @@ class Zend_Feed_AtomPublishingTest extends TestCase
     public function testEdit()
     {
         Zend_Feed::setHttpClient(new TestClient());
-        $contents = file_get_contents(dirname(__FILE__) .  '/_files/AtomPublishingTest-before-update.xml');
+        $contents = file_get_contents(dirname(__FILE__) . '/_files/AtomPublishingTest-before-update.xml');
 
         /* The base feed URI is the same as the POST URI, so just supply the
          * Zend_Feed_Entry_Atom object with that. */

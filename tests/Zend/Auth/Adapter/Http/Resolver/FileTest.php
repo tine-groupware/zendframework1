@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -81,8 +83,8 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends TestCase
     {
         $this->_filesPath = dirname(dirname(__FILE__)) . '/_files';
         $this->_validPath = "$this->_filesPath/htdigest.3";
-        $this->_badPath   = 'doesnotexist';
-        $this->_resolver  = new Zend_Auth_Adapter_Http_Resolver_File($this->_validPath);
+        $this->_badPath = 'doesnotexist';
+        $this->_resolver = new Zend_Auth_Adapter_Http_Resolver_File($this->_validPath);
     }
 
     /**
@@ -140,7 +142,7 @@ class Zend_Auth_Adapter_Http_Resolver_FileTest extends TestCase
         try {
             $v = new Zend_Auth_Adapter_Http_Resolver_File($this->_badPath);
             $this->fail('Constructor accepted bad path');
-        } catch(Zend_Auth_Adapter_Http_Resolver_Exception $e) {
+        } catch (Zend_Auth_Adapter_Http_Resolver_Exception $e) {
             $this->assertStringContainsString('Path not readable', $e->getMessage());
         }
     }

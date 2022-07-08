@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -44,7 +46,6 @@ require_once 'Zend/Uri/Http.php';
  */
 class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends TestCase
 {
-
     protected $_subscriber = null;
 
     protected $_baseuri;
@@ -54,7 +55,7 @@ class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends TestCase
     protected $_adapter = null;
 
     protected $_config = [
-        'adapter'     => 'Zend_Http_Client_Adapter_Socket'
+        'adapter' => 'Zend_Http_Client_Adapter_Socket'
     ];
 
     protected function setUp(): void
@@ -62,22 +63,23 @@ class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends TestCase
         if (defined('TESTS_Zend_Feed_Pubsubhubbub_BASEURI') &&
             Zend_Uri_Http::check(TESTS_Zend_Feed_Pubsubhubbub_BASEURI)) {
             $this->_baseuri = TESTS_Zend_Feed_Pubsubhubbub_BASEURI;
-            if (substr($this->_baseuri, -1) != '/') $this->_baseuri .= '/';
+            if (substr($this->_baseuri, -1) != '/') {
+                $this->_baseuri .= '/';
+            }
             $name = $this->getName();
             if (($pos = strpos($name, ' ')) !== false) {
                 $name = substr($name, 0, $pos);
             }
             $uri = $this->_baseuri . $name . '.php';
-            $this->_adapter = new $this->_config['adapter'];
+            $this->_adapter = new $this->_config['adapter']();
             $this->_client = new Zend_Http_Client($uri, $this->_config);
             $this->_client->setAdapter($this->_adapter);
             Zend_Feed_Pubsubhubbub::setHttpClient($this->_client);
-            $this->_subscriber = new Zend_Feed_Pubsubhubbub_Subscriber;
+            $this->_subscriber = new Zend_Feed_Pubsubhubbub_Subscriber();
 
 
             $this->_storage = $this->_getCleanMock('Zend_Feed_Pubsubhubbub_Entity_TopicSubscription');
             $this->_subscriber->setStorage($this->_storage);
-
         } else {
             // Skip tests
             $this->markTestSkipped("Zend_Feed_Pubsubhubbub_Subscriber dynamic tests'
@@ -94,10 +96,11 @@ class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends TestCase
         $this->_subscriber->subscribeAll();
         $this->assertEquals(
             'hub.callback=http%3A%2F%2Fwww.example.com%2Fcallback%3Fxhub.subscription%3D5536df06b5d'
-            .'cb966edab3a4c4d56213c16a8184b&hub.lease_seconds=2592000&hub.mode='
-            .'subscribe&hub.topic=http%3A%2F%2Fwww.example.com%2Ftopic&hub.veri'
-            .'fy=sync&hub.verify=async&hub.verify_token=abc',
-            $this->_client->getLastResponse()->getBody());
+            . 'cb966edab3a4c4d56213c16a8184b&hub.lease_seconds=2592000&hub.mode='
+            . 'subscribe&hub.topic=http%3A%2F%2Fwww.example.com%2Ftopic&hub.veri'
+            . 'fy=sync&hub.verify=async&hub.verify_token=abc',
+            $this->_client->getLastResponse()->getBody()
+        );
     }
 
     public function testUnsubscriptionRequestSendsExpectedPostData()
@@ -109,13 +112,15 @@ class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends TestCase
         $this->_subscriber->unsubscribeAll();
         $this->assertEquals(
             'hub.callback=http%3A%2F%2Fwww.example.com%2Fcallback%3Fxhub.subscription%3D5536df06b5d'
-            .'cb966edab3a4c4d56213c16a8184b&hub.mode=unsubscribe&hub.topic=http'
-            .'%3A%2F%2Fwww.example.com%2Ftopic&hub.verify=sync&hub.verify=async'
-            .'&hub.verify_token=abc',
-            $this->_client->getLastResponse()->getBody());
+            . 'cb966edab3a4c4d56213c16a8184b&hub.mode=unsubscribe&hub.topic=http'
+            . '%3A%2F%2Fwww.example.com%2Ftopic&hub.verify=sync&hub.verify=async'
+            . '&hub.verify_token=abc',
+            $this->_client->getLastResponse()->getBody()
+        );
     }
 
-    protected function _getCleanMock($className) {
+    protected function _getCleanMock($className)
+    {
         $class = new ReflectionClass($className);
         $methods = $class->getMethods();
         $stubMethods = [];
@@ -130,5 +135,4 @@ class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends TestCase
         );
         return $mocked;
     }
-
 }

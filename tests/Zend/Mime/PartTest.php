@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -94,7 +96,7 @@ class Zend_Mime_PartTest extends TestCase
         $original = file_get_contents($testfile);
 
         // Test Base64
-        $fp = fopen($testfile,'rb');
+        $fp = fopen($testfile, 'rb');
         $this->assertTrue(is_resource($fp));
         $part = new Zend_Mime_Part($fp);
         $part->encoding = Zend_Mime::ENCODING_BASE64;
@@ -102,10 +104,10 @@ class Zend_Mime_PartTest extends TestCase
         $this->assertTrue(is_resource($fp2));
         $encoded = stream_get_contents($fp2);
         fclose($fp);
-        $this->assertEquals(base64_decode($encoded),$original);
+        $this->assertEquals(base64_decode($encoded), $original);
 
         // test QuotedPrintable
-        $fp = fopen($testfile,'rb');
+        $fp = fopen($testfile, 'rb');
         $this->assertTrue(is_resource($fp));
         $part = new Zend_Mime_Part($fp);
         $part->encoding = Zend_Mime::ENCODING_QUOTEDPRINTABLE;
@@ -113,7 +115,7 @@ class Zend_Mime_PartTest extends TestCase
         $this->assertTrue(is_resource($fp2));
         $encoded = stream_get_contents($fp2);
         fclose($fp);
-        $this->assertEquals(quoted_printable_decode($encoded),$original);
+        $this->assertEquals(quoted_printable_decode($encoded), $original);
     }
     
     /**
@@ -123,5 +125,4 @@ class Zend_Mime_PartTest extends TestCase
     {
         $this->assertEquals($this->testText, $this->part->getRawContent());
     }
-    
 }

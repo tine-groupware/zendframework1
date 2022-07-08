@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,8 +53,8 @@ class Zend_Controller_Request_HttpTestCaseTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Controller_Request_HttpTestCaseTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Request_HttpTestCaseTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -64,8 +66,8 @@ class Zend_Controller_Request_HttpTestCaseTest extends TestCase
     protected function setUp(): void
     {
         $this->request = new Zend_Controller_Request_HttpTestCase();
-        $_GET    = [];
-        $_POST   = [];
+        $_GET = [];
+        $_POST = [];
         $_COOKIE = [];
     }
 
@@ -218,7 +220,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends TestCase
     public function testShouldAllowSpecifyingRequestHeaders()
     {
         $headers = [
-            'Content-Type'     => 'text/html',
+            'Content-Type' => 'text/html',
             'Content-Encoding' => 'utf-8',
         ];
         $this->request->setHeaders($headers);

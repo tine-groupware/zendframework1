@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -61,8 +63,8 @@ class Zend_Cloud_Infrastructure_FactoryTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testGetInfrastructureAdapterKey()
@@ -70,18 +72,19 @@ class Zend_Cloud_Infrastructure_FactoryTest extends TestCase
         $this->assertTrue(is_string(Zend_Cloud_Infrastructure_Factory::INFRASTRUCTURE_ADAPTER_KEY));
     }
 
-    public function testGetAdapterWithConfig() {
+    public function testGetAdapterWithConfig()
+    {
         // EC2 adapter
         $Ec2Adapter = Zend_Cloud_Infrastructure_Factory::getAdapter(
-                                    new Zend_Config(Zend_Cloud_Infrastructure_Adapter_Ec2Test::getConfigArray())
-                                );
+            new Zend_Config(Zend_Cloud_Infrastructure_Adapter_Ec2Test::getConfigArray())
+        );
 
         $this->assertEquals('Zend_Cloud_Infrastructure_Adapter_Ec2', get_class($Ec2Adapter));
         
         // Rackspace adapter
         $rackspaceAdapter = Zend_Cloud_Infrastructure_Factory::getAdapter(
-                                    new Zend_Config(Zend_Cloud_Infrastructure_Adapter_RackspaceTest::getConfigArray())
-                                );
+            new Zend_Config(Zend_Cloud_Infrastructure_Adapter_RackspaceTest::getConfigArray())
+        );
 
         $this->assertEquals('Zend_Cloud_Infrastructure_Adapter_Rackspace', get_class($rackspaceAdapter));
     }

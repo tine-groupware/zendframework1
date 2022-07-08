@@ -45,8 +45,8 @@ require_once 'CommonExtendedBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
-
+class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest
+{
     protected $_instance;
     protected $_instance2;
     protected $_cache_dir;
@@ -81,10 +81,9 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         $this->expectNotice();
         $this->expectNoticeMessage("'hashed_directory_umask' is deprecated -> please use 'hashed_directory_perm' instead");
         $cache = new Zend_Cache_Backend_File([
-            'cache_dir'              => $this->_cache_dir,
+            'cache_dir' => $this->_cache_dir,
             'hashed_directory_umask' => 0700,
         ]);
-    
     }
 
     public function testSetDeprecatedCacheFileUmask()
@@ -93,7 +92,7 @@ class Zend_Cache_FileBackendTest extends Zend_Cache_CommonExtendedBackendTest {
         $this->expectNotice();
         $this->expectNoticeMessage("'cache_file_umask' is deprecated -> please use 'cache_file_perm' instead");
         $cache = new Zend_Cache_Backend_File([
-                'cache_dir'        => $this->_cache_dir,
+                'cache_dir' => $this->_cache_dir,
                 'cache_file_umask' => 0700,
         ]);
     }

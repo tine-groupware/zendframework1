@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -62,8 +64,8 @@ class Zend_Filter_DirTest extends TestCase
     public function testBasic()
     {
         $valuesExpected = [
-            'filename'              => '.',
-            '/path/to/filename'     => '/path/to',
+            'filename' => '.',
+            '/path/to/filename' => '/path/to',
             '/path/to/filename.ext' => '/path/to'
             ];
         foreach ($valuesExpected as $input => $output) {

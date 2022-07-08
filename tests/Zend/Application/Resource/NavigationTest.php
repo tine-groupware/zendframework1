@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_NavigationTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -108,8 +110,8 @@ class Zend_Application_Resource_NavigationTest extends TestCase
 
     public function testContainerIsStoredInViewhelper()
     {
-           $options = ['pages'=> [new Zend_Navigation_Page_Mvc([
-            'action'     => 'index',
+        $options = ['pages' => [new Zend_Navigation_Page_Mvc([
+            'action' => 'index',
             'controller' => 'index'])]];
 
         $this->bootstrap->registerPluginResource('view');
@@ -119,25 +121,25 @@ class Zend_Application_Resource_NavigationTest extends TestCase
         $view = $this->bootstrap->getPluginResource('view')->getView();
         $number = $view->getHelper('navigation')->navigation()->count();
 
-        $this->assertEquals($number,1);
+        $this->assertEquals($number, 1);
         $this->bootstrap->unregisterPluginResource('view');
     }
 
     public function testContainerIsStoredInRegistry()
     {
-           $options = ['pages'=> [new Zend_Navigation_Page_Mvc([
-            'action'     => 'index',
+        $options = ['pages' => [new Zend_Navigation_Page_Mvc([
+            'action' => 'index',
             'controller' => 'index'])], 'storage' => ['registry' => true]];
 
         $resource = new Zend_Application_Resource_Navigation($options);
         $resource->setBootstrap($this->bootstrap)->init();
 
         $key = Zend_Application_Resource_Navigation::DEFAULT_REGISTRY_KEY;
-        $this->assertEquals(Zend_Registry::isRegistered($key),true);
+        $this->assertEquals(Zend_Registry::isRegistered($key), true);
         $container = Zend_Registry::get($key);
         $number = $container->count();
 
-        $this->assertEquals($number,1);
+        $this->assertEquals($number, 1);
     }
 
     /**
@@ -149,9 +151,9 @@ class Zend_Application_Resource_NavigationTest extends TestCase
 
         $bootstrap = new ZfAppBootstrapCustomView($this->application);
         $bootstrap->registerPluginResource('view');
-         $view = $bootstrap->bootstrap('view')->view;
+        $view = $bootstrap->bootstrap('view')->view;
 
-         $this->assertEquals($view->setInMethodByTest,true);
+        $this->assertEquals($view->setInMethodByTest, true);
     }
 
     /**
@@ -163,8 +165,8 @@ class Zend_Application_Resource_NavigationTest extends TestCase
         $this->bootstrap->getPluginResource('view')->getView();
 
         $options = ['defaultPageType' => 'foobar',
-                         'pages'=> [[
-            			 'action'     => 'index',
+                         'pages' => [[
+                         'action' => 'index',
                          'controller' => 'index']]];
 
         $results = [];
@@ -173,7 +175,7 @@ class Zend_Application_Resource_NavigationTest extends TestCase
         try {
             $resource->setBootstrap($this->bootstrap)->init();
             $this->fail('An exception should have been thrown but wasn\'t');
-        } catch(Zend_Exception $e) {
+        } catch (Zend_Exception $e) {
             $this->assertTrue(true);
         }
 
@@ -190,8 +192,8 @@ class Zend_Application_Resource_NavigationTest extends TestCase
         $this->bootstrap->getPluginResource('view')->getView();
 
         $options1 = [
-           'pages'=> [new Zend_Navigation_Page_Mvc([
-            'action'     => 'index',
+           'pages' => [new Zend_Navigation_Page_Mvc([
+            'action' => 'index',
             'controller' => 'index'])],
            'storage' => ['registry' => true]];
         $options = [$options1,
@@ -201,14 +203,15 @@ class Zend_Application_Resource_NavigationTest extends TestCase
 
         $results = [];
         $key = Zend_Application_Resource_Navigation::DEFAULT_REGISTRY_KEY;
-        foreach($options as $option) {
+        foreach ($options as $option) {
             $resource = new Zend_Application_Resource_Navigation($option);
             $resource->setBootstrap($this->bootstrap)->init();
-            $results[] = Zend_Registry::get($key) instanceof Zend_Navigation;;
-            Zend_Registry::set($key,null);
+            $results[] = Zend_Registry::get($key) instanceof Zend_Navigation;
+            ;
+            Zend_Registry::set($key, null);
         }
 
-        $this->assertEquals([true,true,true,false],$results);
+        $this->assertEquals([true, true, true, false], $results);
         $this->bootstrap->unregisterPluginResource('view');
     }
 }

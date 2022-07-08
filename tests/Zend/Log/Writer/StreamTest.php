@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,8 +47,8 @@ class Zend_Log_Writer_StreamTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testConstructorThrowsWhenResourceIsNotStream()
@@ -168,7 +170,7 @@ class Zend_Log_Writer_StreamTest extends TestCase
         $formatter = new Zend_Log_Formatter_Simple($expected);
         $writer->setFormatter($formatter);
 
-        $writer->write(['bar'=>'baz']);
+        $writer->write(['bar' => 'baz']);
         rewind($stream);
         $contents = stream_get_contents($stream);
         fclose($stream);
@@ -179,10 +181,10 @@ class Zend_Log_Writer_StreamTest extends TestCase
     public function testFactoryStream()
     {
         $cfg = ['log' => ['memory' => [
-            'writerName'   => "Mock",
+            'writerName' => "Mock",
             'writerParams' => [
                 'stream' => 'php://memory',
-                'mode'   => 'a'
+                'mode' => 'a'
             ]
         ]]];
 
@@ -193,9 +195,9 @@ class Zend_Log_Writer_StreamTest extends TestCase
     public function testFactoryUrl()
     {
         $cfg = ['log' => ['memory' => [
-            'writerName'   => "Mock",
+            'writerName' => "Mock",
             'writerParams' => [
-                'url'  => 'http://localhost',
+                'url' => 'http://localhost',
                 'mode' => 'a'
             ]
         ]]];

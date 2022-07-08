@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -62,8 +64,8 @@ class Zend_Filter_StringTrimTest extends TestCase
     {
         $valuesExpected = [
             'string' => 'string',
-            ' str '  => 'str',
-            "\ns\t"  => 's'
+            ' str ' => 'str',
+            "\ns\t" => 's'
             ];
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals($output, $this->_filter->filter($input));

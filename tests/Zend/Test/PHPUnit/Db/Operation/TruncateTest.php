@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+
 use PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -45,7 +47,7 @@ class Zend_Test_PHPUnit_Db_Operation_TruncateTest extends TestCase
 
     public function testTruncateTablesExecutesAdapterQuery()
     {
-        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/truncateFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__) . "/_files/truncateFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->at(0))
@@ -70,7 +72,7 @@ class Zend_Test_PHPUnit_Db_Operation_TruncateTest extends TestCase
     {
         $this->expectException('PHPUnit_Extensions_Database_Operation_Exception');
 
-        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__) . "/_files/insertFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())->method('query')->will($this->throwException(new Exception()));
@@ -98,7 +100,7 @@ class Zend_Test_PHPUnit_Db_Operation_TruncateTest extends TestCase
         $testAdapter = new Zend_Test_DbAdapter();
         $connection = new Zend_Test_PHPUnit_Db_Connection($testAdapter, "schema");
 
-        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/truncateFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__) . "/_files/truncateFixture.xml");
 
         $this->operation->execute($connection, $dataSet);
 

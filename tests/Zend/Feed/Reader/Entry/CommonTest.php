@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Feed/Reader.php';
  */
 class Zend_Feed_Reader_Entry_CommonTest extends TestCase
 {
-
     protected $_feedSamplePath = null;
 
     protected function setUp(): void
@@ -53,7 +54,7 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testGetsDomDocumentObject()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
         $this->assertTrue($entry->getDomDocument() instanceof DOMDocument);
@@ -62,7 +63,7 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testGetsDomXpathObject()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
         $this->assertTrue($entry->getXpath() instanceof DOMXPath);
@@ -71,7 +72,7 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testGetsXpathPrefixString()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
         $this->assertEquals('//atom:entry[1]', $entry->getXpathPrefix());
@@ -80,7 +81,7 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testGetsDomElementObject()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
         $this->assertTrue($entry->getElement() instanceof DOMElement);
@@ -89,16 +90,16 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testSaveXmlOutputsXmlStringForEntry()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
-        $this->assertEquals($entry->saveXml(), file_get_contents($this->_feedSamplePath.'/atom_rewrittenbydom.xml'));
+        $this->assertEquals($entry->saveXml(), file_get_contents($this->_feedSamplePath . '/atom_rewrittenbydom.xml'));
     }
 
     public function testGetsNamedExtension()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
         $this->assertTrue($entry->getExtension('Atom') instanceof Zend_Feed_Reader_Extension_Atom_Entry);
@@ -107,7 +108,7 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testReturnsNullIfExtensionDoesNotExist()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
         $this->assertEquals(null, $entry->getExtension('Foo'));
@@ -119,7 +120,7 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testReturnsEncodingOfFeed()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom.xml')
+            file_get_contents($this->_feedSamplePath . '/atom.xml')
         );
         $entry = $feed->current();
         $this->assertEquals('UTF-8', $entry->getEncoding());
@@ -131,11 +132,9 @@ class Zend_Feed_Reader_Entry_CommonTest extends TestCase
     public function testReturnsEncodingOfFeedAsUtf8IfUndefined()
     {
         $feed = Zend_Feed_Reader::importString(
-            file_get_contents($this->_feedSamplePath.'/atom_noencodingdefined.xml')
+            file_get_contents($this->_feedSamplePath . '/atom_noencodingdefined.xml')
         );
         $entry = $feed->current();
         $this->assertEquals('UTF-8', $entry->getEncoding());
     }
-
-
 }

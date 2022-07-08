@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -120,5 +122,4 @@ class Zend_Feed_IteratorTest extends TestCase
             $last = $current;
         }
     }
-
 }

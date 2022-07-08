@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,7 +50,7 @@ class Zend_Service_ReCaptcha_AllTests
      */
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     /**
@@ -64,7 +66,6 @@ class Zend_Service_ReCaptcha_AllTests
             constant('TESTS_ZEND_SERVICE_RECAPTCHA_ENABLED') &&
             defined('TESTS_ZEND_SERVICE_RECAPTCHA_PUBLIC_KEY') &&
             defined('TESTS_ZEND_SERVICE_RECAPTCHA_PRIVATE_KEY')) {
-
             $suite->addTestSuite('Zend_Service_ReCaptcha_ReCaptchaTest');
             $suite->addTestSuite('Zend_Service_ReCaptcha_ResponseTest');
         }
@@ -73,7 +74,6 @@ class Zend_Service_ReCaptcha_AllTests
             constant('TESTS_ZEND_SERVICE_RECAPTCHA_ENABLED') &&
             defined('TESTS_ZEND_SERVICE_RECAPTCHA_MAILHIDE_PUBLIC_KEY') &&
             defined('TESTS_ZEND_SERVICE_RECAPTCHA_MAILHIDE_PRIVATE_KEY')) {
-
             $suite->addTestSuite('Zend_Service_ReCaptcha_MailHideTest');
         }
 

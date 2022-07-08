@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -42,9 +44,9 @@ class Zend_Search_Lucene_FieldTest extends TestCase
 
         $this->assertEquals($field->boost, 1);
         $this->assertEquals($field->encoding, '');
-        $this->assertEquals($field->isBinary,    true);
-        $this->assertEquals($field->isIndexed,   false);
-        $this->assertEquals($field->isStored,    true);
+        $this->assertEquals($field->isBinary, true);
+        $this->assertEquals($field->isIndexed, false);
+        $this->assertEquals($field->isStored, true);
         $this->assertEquals($field->isTokenized, false);
 
         $this->assertEquals($field->name, 'field');
@@ -57,9 +59,9 @@ class Zend_Search_Lucene_FieldTest extends TestCase
 
         $this->assertEquals($field->boost, 1);
         $this->assertEquals($field->encoding, '');
-        $this->assertEquals($field->isBinary,    false);
-        $this->assertEquals($field->isIndexed,   true);
-        $this->assertEquals($field->isStored,    true);
+        $this->assertEquals($field->isBinary, false);
+        $this->assertEquals($field->isIndexed, true);
+        $this->assertEquals($field->isStored, true);
         $this->assertEquals($field->isTokenized, false);
 
         $this->assertEquals($field->name, 'field');
@@ -72,9 +74,9 @@ class Zend_Search_Lucene_FieldTest extends TestCase
 
         $this->assertEquals($field->boost, 1);
         $this->assertEquals($field->encoding, '');
-        $this->assertEquals($field->isBinary,    false);
-        $this->assertEquals($field->isIndexed,   true);
-        $this->assertEquals($field->isStored,    true);
+        $this->assertEquals($field->isBinary, false);
+        $this->assertEquals($field->isIndexed, true);
+        $this->assertEquals($field->isStored, true);
         $this->assertEquals($field->isTokenized, true);
 
         $this->assertEquals($field->name, 'field');
@@ -87,9 +89,9 @@ class Zend_Search_Lucene_FieldTest extends TestCase
 
         $this->assertEquals($field->boost, 1);
         $this->assertEquals($field->encoding, '');
-        $this->assertEquals($field->isBinary,    false);
-        $this->assertEquals($field->isIndexed,   false);
-        $this->assertEquals($field->isStored,    true);
+        $this->assertEquals($field->isBinary, false);
+        $this->assertEquals($field->isIndexed, false);
+        $this->assertEquals($field->isStored, true);
         $this->assertEquals($field->isTokenized, false);
 
         $this->assertEquals($field->name, 'field');
@@ -102,9 +104,9 @@ class Zend_Search_Lucene_FieldTest extends TestCase
 
         $this->assertEquals($field->boost, 1);
         $this->assertEquals($field->encoding, '');
-        $this->assertEquals($field->isBinary,    false);
-        $this->assertEquals($field->isIndexed,   true);
-        $this->assertEquals($field->isStored,    false);
+        $this->assertEquals($field->isBinary, false);
+        $this->assertEquals($field->isIndexed, true);
+        $this->assertEquals($field->isStored, false);
         $this->assertEquals($field->isTokenized, true);
 
         $this->assertEquals($field->name, 'field');
@@ -122,4 +124,3 @@ class Zend_Search_Lucene_FieldTest extends TestCase
         $this->assertEquals($field->getUtf8Value(), 'Words with umlauts: åãü...');
     }
 }
-

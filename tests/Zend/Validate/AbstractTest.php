@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,8 +55,8 @@ class Zend_Validate_AbstractTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Validate_AbstractTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Validate_AbstractTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     public function clearRegistry()
@@ -253,11 +255,15 @@ class Zend_Validate_AbstractTest extends TestCase
     {
         $messages = $this->validator->getMessageTemplates();
         $this->assertEquals(
-            ['fooMessage' => '%value% was passed'], $messages);
+            ['fooMessage' => '%value% was passed'],
+            $messages
+        );
 
         $this->assertEquals(
             [
-                Zend_Validate_AbstractTest_Concrete::FOO_MESSAGE => '%value% was passed'], $messages);
+                Zend_Validate_AbstractTest_Concrete::FOO_MESSAGE => '%value% was passed'],
+            $messages
+        );
     }
 
     public function testMaximumErrorMessageLength()
@@ -297,7 +303,7 @@ class Zend_Validate_AbstractTest extends TestCase
 
 class Zend_Validate_AbstractTest_Concrete extends Zend_Validate_Abstract
 {
-    const FOO_MESSAGE = 'fooMessage';
+    public const FOO_MESSAGE = 'fooMessage';
 
     protected $_messageTemplates = [
         'fooMessage' => '%value% was passed',

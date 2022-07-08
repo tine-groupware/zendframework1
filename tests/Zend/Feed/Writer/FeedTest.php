@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Feed/Writer/Feed.php';
  */
 class Zend_Feed_Writer_FeedTest extends TestCase
 {
-
     protected $_feedSamplePath = null;
 
     protected function setUp(): void
@@ -44,23 +45,23 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testAddsAuthorName()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->addAuthor('Joe');
-        $this->assertEquals(['name'=>'Joe'], $writer->getAuthor());
+        $this->assertEquals(['name' => 'Joe'], $writer->getAuthor());
     }
 
     public function testAddsAuthorEmail()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->addAuthor('Joe', 'joe@example.com');
-        $this->assertEquals(['name'=>'Joe', 'email' => 'joe@example.com'], $writer->getAuthor());
+        $this->assertEquals(['name' => 'Joe', 'email' => 'joe@example.com'], $writer->getAuthor());
     }
 
     public function testAddsAuthorUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->addAuthor('Joe', null, 'http://www.example.com');
-        $this->assertEquals(['name'=>'Joe', 'uri' => 'http://www.example.com'], $writer->getAuthor());
+        $this->assertEquals(['name' => 'Joe', 'uri' => 'http://www.example.com'], $writer->getAuthor());
     }
 
     /**
@@ -68,7 +69,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddAuthorThrowsExceptionOnInvalidName()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->addAuthor('');
             $this->fail();
@@ -81,7 +82,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddAuthorThrowsExceptionOnInvalidEmail()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->addAuthor('Joe', '');
             $this->fail();
@@ -94,7 +95,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddAuthorThrowsExceptionOnInvalidUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->addAuthor('Joe', null, 'notauri');
             $this->fail();
@@ -104,23 +105,23 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testAddsAuthorNameFromArray()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->addAuthor(['name'=>'Joe']);
-        $this->assertEquals(['name'=>'Joe'], $writer->getAuthor());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->addAuthor(['name' => 'Joe']);
+        $this->assertEquals(['name' => 'Joe'], $writer->getAuthor());
     }
 
     public function testAddsAuthorEmailFromArray()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->addAuthor(['name'=>'Joe','email'=>'joe@example.com']);
-        $this->assertEquals(['name'=>'Joe', 'email' => 'joe@example.com'], $writer->getAuthor());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->addAuthor(['name' => 'Joe', 'email' => 'joe@example.com']);
+        $this->assertEquals(['name' => 'Joe', 'email' => 'joe@example.com'], $writer->getAuthor());
     }
 
     public function testAddsAuthorUriFromArray()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->addAuthor(['name'=>'Joe','uri'=>'http://www.example.com']);
-        $this->assertEquals(['name'=>'Joe', 'uri' => 'http://www.example.com'], $writer->getAuthor());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->addAuthor(['name' => 'Joe', 'uri' => 'http://www.example.com']);
+        $this->assertEquals(['name' => 'Joe', 'uri' => 'http://www.example.com'], $writer->getAuthor());
     }
 
     /**
@@ -128,9 +129,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddAuthorThrowsExceptionOnInvalidNameFromArray()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
-            $writer->addAuthor(['name'=>'']);
+            $writer->addAuthor(['name' => '']);
             $this->fail();
         } catch (Zend_Feed_Exception $e) {
         }
@@ -141,9 +142,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddAuthorThrowsExceptionOnInvalidEmailFromArray()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
-            $writer->addAuthor(['name'=>'Joe','email'=>'']);
+            $writer->addAuthor(['name' => 'Joe', 'email' => '']);
             $this->fail();
         } catch (Zend_Feed_Exception $e) {
         }
@@ -154,9 +155,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddAuthorThrowsExceptionOnInvalidUriFromArray()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
-            $writer->addAuthor(['name'=>'Joe','uri'=>'notauri']);
+            $writer->addAuthor(['name' => 'Joe', 'uri' => 'notauri']);
             $this->fail();
         } catch (Zend_Feed_Exception $e) {
         }
@@ -167,9 +168,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddAuthorThrowsExceptionIfNameOmittedFromArray()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
-            $writer->addAuthor(['uri'=>'notauri']);
+            $writer->addAuthor(['uri' => 'notauri']);
             $this->fail();
         } catch (Zend_Feed_Exception $e) {
         }
@@ -177,17 +178,17 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testAddsAuthorsFromArrayOfAuthors()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->addAuthors([
-            ['name'=>'Joe','uri'=>'http://www.example.com'],
-            ['name'=>'Jane','uri'=>'http://www.example.com']
+            ['name' => 'Joe', 'uri' => 'http://www.example.com'],
+            ['name' => 'Jane', 'uri' => 'http://www.example.com']
         ]);
-        $this->assertEquals(['name'=>'Jane', 'uri' => 'http://www.example.com'], $writer->getAuthor(1));
+        $this->assertEquals(['name' => 'Jane', 'uri' => 'http://www.example.com'], $writer->getAuthor(1));
     }
 
     public function testSetsCopyright()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setCopyright('Copyright (c) 2009 Paddy Brady');
         $this->assertEquals('Copyright (c) 2009 Paddy Brady', $writer->getCopyright());
     }
@@ -197,7 +198,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetCopyrightThrowsExceptionOnInvalidParam()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setCopyright('');
             $this->fail();
@@ -207,15 +208,15 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetDateCreatedDefaultsToCurrentTime()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateCreated();
-        $dateNow = new Zend_Date;
+        $dateNow = new Zend_Date();
         $this->assertTrue($dateNow->isLater($writer->getDateCreated()) || $dateNow->equals($writer->getDateCreated()));
     }
 
     public function testSetDateCreatedUsesGivenUnixTimestamp()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateCreated(1234567890);
         $myDate = new Zend_Date('1234567890', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateCreated()));
@@ -226,7 +227,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetDateCreatedUsesGivenUnixTimestampThatIsLessThanTenDigits()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateCreated(123456789);
         $myDate = new Zend_Date('123456789', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateCreated()));
@@ -237,7 +238,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetDateCreatedUsesGivenUnixTimestampThatIsAVerySmallInteger()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateCreated(123);
         $myDate = new Zend_Date('123', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateCreated()));
@@ -245,7 +246,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetDateCreatedUsesZendDateObject()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateCreated(new Zend_Date('1234567890', Zend_Date::TIMESTAMP));
         $myDate = new Zend_Date('1234567890', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateCreated()));
@@ -253,15 +254,15 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetDateModifiedDefaultsToCurrentTime()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateModified();
-        $dateNow = new Zend_Date;
+        $dateNow = new Zend_Date();
         $this->assertTrue($dateNow->isLater($writer->getDateModified()) || $dateNow->equals($writer->getDateModified()));
     }
 
     public function testSetDateModifiedUsesGivenUnixTimestamp()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateModified(1234567890);
         $myDate = new Zend_Date('1234567890', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateModified()));
@@ -272,7 +273,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetDateModifiedUsesGivenUnixTimestampThatIsLessThanTenDigits()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateModified(123456789);
         $myDate = new Zend_Date('123456789', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateModified()));
@@ -283,7 +284,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetDateModifiedUsesGivenUnixTimestampThatIsAVerySmallInteger()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateModified(123);
         $myDate = new Zend_Date('123', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateModified()));
@@ -291,7 +292,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetDateModifiedUsesZendDateObject()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDateModified(new Zend_Date('1234567890', Zend_Date::TIMESTAMP));
         $myDate = new Zend_Date('1234567890', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getDateModified()));
@@ -302,7 +303,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetDateCreatedThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setDateCreated('abc');
             $this->fail();
@@ -315,7 +316,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetDateModifiedThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setDateModified('abc');
             $this->fail();
@@ -325,27 +326,27 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetDateCreatedReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getDateCreated()));
     }
 
     public function testGetDateModifiedReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getDateModified()));
     }
 
     public function testSetLastBuildDateDefaultsToCurrentTime()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setLastBuildDate();
-        $dateNow = new Zend_Date;
+        $dateNow = new Zend_Date();
         $this->assertTrue($dateNow->isLater($writer->getLastBuildDate()) || $dateNow->equals($writer->getLastBuildDate()));
     }
 
     public function testSetLastBuildDateUsesGivenUnixTimestamp()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setLastBuildDate(1234567890);
         $myDate = new Zend_Date('1234567890', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getLastBuildDate()));
@@ -356,7 +357,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetLastBuildDateUsesGivenUnixTimestampThatIsLessThanTenDigits()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setLastBuildDate(123456789);
         $myDate = new Zend_Date('123456789', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getLastBuildDate()));
@@ -367,7 +368,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetLastBuildDateUsesGivenUnixTimestampThatIsAVerySmallInteger()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setLastBuildDate(123);
         $myDate = new Zend_Date('123', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getLastBuildDate()));
@@ -375,7 +376,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetLastBuildDateUsesZendDateObject()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setLastBuildDate(new Zend_Date('1234567890', Zend_Date::TIMESTAMP));
         $myDate = new Zend_Date('1234567890', Zend_Date::TIMESTAMP);
         $this->assertTrue($myDate->equals($writer->getLastBuildDate()));
@@ -386,7 +387,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetLastBuildDateThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setLastBuildDate('abc');
             $this->fail();
@@ -396,19 +397,19 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetLastBuildDateReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getLastBuildDate()));
     }
 
     public function testGetCopyrightReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getCopyright()));
     }
 
     public function testSetsDescription()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setDescription('abc');
         $this->assertEquals('abc', $writer->getDescription());
     }
@@ -418,7 +419,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetDescriptionThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setDescription('');
             $this->fail();
@@ -428,34 +429,34 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetDescriptionReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getDescription()));
     }
 
     public function testSetsId()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setId('http://www.example.com/id');
         $this->assertEquals('http://www.example.com/id', $writer->getId());
     }
 
     public function testSetsIdAcceptsUrns()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setId('urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6');
         $this->assertEquals('urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6', $writer->getId());
     }
 
     public function testSetsIdAcceptsSimpleTagUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setId('tag:example.org,2010:/foo/bar/');
         $this->assertEquals('tag:example.org,2010:/foo/bar/', $writer->getId());
     }
 
     public function testSetsIdAcceptsComplexTagUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setId('tag:diveintomark.org,2004-05-27:/archives/2004/05/27/howto-atom-linkblog');
         $this->assertEquals('tag:diveintomark.org,2004-05-27:/archives/2004/05/27/howto-atom-linkblog', $writer->getId());
     }
@@ -465,7 +466,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetIdThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setId('');
             $this->fail();
@@ -478,7 +479,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetIdThrowsExceptionOnInvalidUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setId('http://');
             $this->fail();
@@ -488,13 +489,13 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetIdReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getId()));
     }
 
     public function testSetsLanguage()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setLanguage('abc');
         $this->assertEquals('abc', $writer->getLanguage());
     }
@@ -504,7 +505,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetLanguageThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setLanguage('');
             $this->fail();
@@ -514,13 +515,13 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetLanguageReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getLanguage()));
     }
 
     public function testSetsLink()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setLink('http://www.example.com/id');
         $this->assertEquals('http://www.example.com/id', $writer->getLink());
     }
@@ -530,7 +531,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetLinkThrowsExceptionOnEmptyString()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setLink('');
             $this->fail();
@@ -543,7 +544,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetLinkThrowsExceptionOnInvalidUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setLink('http://');
             $this->fail();
@@ -553,13 +554,13 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetLinkReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getLink()));
     }
 
     public function testSetsEncoding()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setEncoding('utf-16');
         $this->assertEquals('utf-16', $writer->getEncoding());
     }
@@ -569,7 +570,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetEncodingThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setEncoding('');
             $this->fail();
@@ -579,13 +580,13 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetEncodingReturnsUtf8IfNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertEquals('UTF-8', $writer->getEncoding());
     }
 
     public function testSetsTitle()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setTitle('abc');
         $this->assertEquals('abc', $writer->getTitle());
     }
@@ -595,7 +596,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetTitleThrowsExceptionOnInvalidParameter()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setTitle('');
             $this->fail();
@@ -605,29 +606,29 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetTitleReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getTitle()));
     }
 
     public function testSetsGeneratorName()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->setGenerator(['name'=>'ZFW']);
-        $this->assertEquals(['name'=>'ZFW'], $writer->getGenerator());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->setGenerator(['name' => 'ZFW']);
+        $this->assertEquals(['name' => 'ZFW'], $writer->getGenerator());
     }
 
     public function testSetsGeneratorVersion()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->setGenerator(['name'=>'ZFW', 'version' => '1.0']);
-        $this->assertEquals(['name'=>'ZFW', 'version' => '1.0'], $writer->getGenerator());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->setGenerator(['name' => 'ZFW', 'version' => '1.0']);
+        $this->assertEquals(['name' => 'ZFW', 'version' => '1.0'], $writer->getGenerator());
     }
 
     public function testSetsGeneratorUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->setGenerator(['name'=>'ZFW', 'uri'=>'http://www.example.com']);
-        $this->assertEquals(['name'=>'ZFW', 'uri' => 'http://www.example.com'], $writer->getGenerator());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->setGenerator(['name' => 'ZFW', 'uri' => 'http://www.example.com']);
+        $this->assertEquals(['name' => 'ZFW', 'uri' => 'http://www.example.com'], $writer->getGenerator());
     }
 
     /**
@@ -635,7 +636,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorThrowsExceptionOnInvalidName()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setGenerator([]);
             $this->fail();
@@ -648,9 +649,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorThrowsExceptionOnInvalidVersion()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
-            $writer->setGenerator(['name'=>'ZFW', 'version'=>'']);
+            $writer->setGenerator(['name' => 'ZFW', 'version' => '']);
             $this->fail('Should have failed since version is empty');
         } catch (Zend_Feed_Exception $e) {
         }
@@ -661,9 +662,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorThrowsExceptionOnInvalidUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
-            $writer->setGenerator(['name'=>'ZFW','uri'=>'notauri']);
+            $writer->setGenerator(['name' => 'ZFW', 'uri' => 'notauri']);
             $this->fail();
         } catch (Zend_Feed_Exception $e) {
         }
@@ -674,9 +675,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorName_Deprecated()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setGenerator('ZFW');
-        $this->assertEquals(['name'=>'ZFW'], $writer->getGenerator());
+        $this->assertEquals(['name' => 'ZFW'], $writer->getGenerator());
     }
 
     /**
@@ -684,9 +685,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorVersion_Deprecated()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setGenerator('ZFW', '1.0');
-        $this->assertEquals(['name'=>'ZFW', 'version' => '1.0'], $writer->getGenerator());
+        $this->assertEquals(['name' => 'ZFW', 'version' => '1.0'], $writer->getGenerator());
     }
 
     /**
@@ -694,9 +695,9 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorUri_Deprecated()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setGenerator('ZFW', null, 'http://www.example.com');
-        $this->assertEquals(['name'=>'ZFW', 'uri' => 'http://www.example.com'], $writer->getGenerator());
+        $this->assertEquals(['name' => 'ZFW', 'uri' => 'http://www.example.com'], $writer->getGenerator());
     }
 
     /**
@@ -705,7 +706,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorThrowsExceptionOnInvalidName_Deprecated()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setGenerator('');
             $this->fail();
@@ -719,7 +720,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorThrowsExceptionOnInvalidVersion_Deprecated()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setGenerator('ZFW', '');
             $this->fail();
@@ -733,7 +734,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsGeneratorThrowsExceptionOnInvalidUri_Deprecated()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setGenerator('ZFW', null, 'notauri');
             $this->fail();
@@ -743,15 +744,15 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetGeneratorReturnsNullIfDateNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getGenerator()));
     }
 
     public function testSetsFeedLink()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setFeedLink('http://www.example.com/rss', 'RSS');
-        $this->assertEquals(['rss'=>'http://www.example.com/rss'], $writer->getFeedLinks());
+        $this->assertEquals(['rss' => 'http://www.example.com/rss'], $writer->getFeedLinks());
     }
 
     /**
@@ -759,7 +760,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsFeedLinkThrowsExceptionOnInvalidType()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setFeedLink('http://www.example.com/rss', 'abc');
             $this->fail();
@@ -772,7 +773,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsFeedLinkThrowsExceptionOnInvalidUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setFeedLink('http://', 'rss');
             $this->fail();
@@ -782,13 +783,13 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetFeedLinksReturnsNullIfNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getFeedLinks()));
     }
 
     public function testSetsBaseUrl()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setBaseUrl('http://www.example.com');
         $this->assertEquals('http://www.example.com', $writer->getBaseUrl());
     }
@@ -798,7 +799,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testSetsBaseUrlThrowsExceptionOnInvalidUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->setBaseUrl('http://');
             $this->fail();
@@ -808,20 +809,20 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetBaseUrlReturnsNullIfNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getBaseUrl()));
     }
 
     public function testAddsHubUrl()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->addHub('http://www.example.com/hub');
         $this->assertEquals(['http://www.example.com/hub'], $writer->getHubs());
     }
 
     public function testAddsManyHubUrls()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->addHubs(['http://www.example.com/hub', 'http://www.example.com/hub2']);
         $this->assertEquals(['http://www.example.com/hub', 'http://www.example.com/hub2'], $writer->getHubs());
     }
@@ -831,7 +832,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddingHubUrlThrowsExceptionOnInvalidUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->addHub('http://');
             $this->fail();
@@ -841,29 +842,29 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testAddingHubUrlReturnsNullIfNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getHubs()));
     }
 
     public function testCreatesNewEntryDataContainer()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $entry = $writer->createEntry();
         $this->assertTrue($entry instanceof Zend_Feed_Writer_Entry);
     }
 
     public function testAddsCategory()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->addCategory(['term'=>'cat_dog']);
-        $this->assertEquals([['term'=>'cat_dog']], $writer->getCategories());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->addCategory(['term' => 'cat_dog']);
+        $this->assertEquals([['term' => 'cat_dog']], $writer->getCategories());
     }
 
     public function testAddsManyCategories()
     {
-        $writer = new Zend_Feed_Writer_Feed;
-        $writer->addCategories([['term'=>'cat_dog'],['term'=>'cat_mouse']]);
-        $this->assertEquals([['term'=>'cat_dog'],['term'=>'cat_mouse']], $writer->getCategories());
+        $writer = new Zend_Feed_Writer_Feed();
+        $writer->addCategories([['term' => 'cat_dog'], ['term' => 'cat_mouse']]);
+        $this->assertEquals([['term' => 'cat_dog'], ['term' => 'cat_mouse']], $writer->getCategories());
     }
 
     /**
@@ -871,7 +872,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddingCategoryWithoutTermThrowsException()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->addCategory(['label' => 'Cats & Dogs', 'scheme' => 'http://www.example.com/schema1']);
             $this->fail();
@@ -884,7 +885,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
      */
     public function testAddingCategoryWithInvalidUriAsSchemeThrowsException()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         try {
             $writer->addCategory(['term' => 'cat_dog', 'scheme' => 'http://']);
             $this->fail();
@@ -896,7 +897,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetsImageUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => 'http://www.example.com/logo.gif'
         ]);
@@ -908,7 +909,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
     public function testSetsImageUriThrowsExceptionOnEmptyUri()
     {
         $this->expectException(Zend_Feed_Exception::class);
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => ''
         ]);
@@ -917,14 +918,14 @@ class Zend_Feed_Writer_FeedTest extends TestCase
     public function testSetsImageUriThrowsExceptionOnMissingUri()
     {
         $this->expectException(Zend_Feed_Exception::class);
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([]);
     }
 
     public function testSetsImageUriThrowsExceptionOnInvalidUri()
     {
         $this->expectException(Zend_Feed_Exception::class);
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => 'http://'
         ]);
@@ -932,7 +933,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetsImageLink()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => 'http://www.example.com/logo.gif',
             'link' => 'http://www.example.com'
@@ -945,7 +946,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetsImageTitle()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => 'http://www.example.com/logo.gif',
             'title' => 'Image title'
@@ -958,7 +959,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetsImageHeight()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => 'http://www.example.com/logo.gif',
             'height' => '88'
@@ -971,7 +972,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetsImageWidth()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => 'http://www.example.com/logo.gif',
             'width' => '88'
@@ -984,7 +985,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetsImageDescription()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setImage([
             'uri' => 'http://www.example.com/logo.gif',
             'description' => 'Image description'
@@ -999,7 +1000,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testSetsIconUri()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setIcon([
             'uri' => 'http://www.example.com/logo.gif'
         ]);
@@ -1011,7 +1012,7 @@ class Zend_Feed_Writer_FeedTest extends TestCase
     public function testSetsIconUriThrowsExceptionOnEmptyUri()
     {
         $this->expectException(Zend_Feed_Exception::class);
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setIcon([
             'uri' => ''
         ]);
@@ -1020,14 +1021,14 @@ class Zend_Feed_Writer_FeedTest extends TestCase
     public function testSetsIconUriThrowsExceptionOnMissingUri()
     {
         $this->expectException(Zend_Feed_Exception::class);
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setIcon([]);
     }
 
     public function testSetsIconUriThrowsExceptionOnInvalidUri()
     {
         $this->expectException(Zend_Feed_Exception::class);
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $writer->setIcon([
             'uri' => 'http://'
         ]);
@@ -1035,13 +1036,13 @@ class Zend_Feed_Writer_FeedTest extends TestCase
 
     public function testGetCategoriesReturnsNullIfNotSet()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $this->assertTrue(is_null($writer->getCategories()));
     }
 
     public function testAddsAndOrdersEntriesByDateIfRequested()
     {
-        $writer = new Zend_Feed_Writer_Feed;
+        $writer = new Zend_Feed_Writer_Feed();
         $entry = $writer->createEntry();
         $entry->setDateCreated(1234567890);
         $entry2 = $writer->createEntry();
@@ -1051,5 +1052,4 @@ class Zend_Feed_Writer_FeedTest extends TestCase
         $writer->orderByDate();
         $this->assertEquals(1230000000, $writer->getEntry(1)->getDateCreated()->get(Zend_Date::TIMESTAMP));
     }
-
 }

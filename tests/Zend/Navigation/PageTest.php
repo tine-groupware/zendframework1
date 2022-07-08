@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,7 +45,6 @@ class Zend_Navigation_PageTest extends TestCase
      */
     protected function setUp(): void
     {
-
     }
 
     /**
@@ -169,8 +170,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetAndGetFragmentIdentifier()
     {
         $page = Zend_Navigation_Page::factory([
-            'uri'                => '#',
-            'fragment'           => 'foo',
+            'uri' => '#',
+            'fragment' => 'foo',
         ]);
         
         $this->assertEquals('foo', $page->getFragment());
@@ -186,11 +187,12 @@ class Zend_Navigation_PageTest extends TestCase
                             'Zend_Navigation_Exception was not thrown');
             } catch (Zend_Navigation_Exception $e) {
                 $this->assertStringContainsString(
-                    'Invalid argument: $fragment', $e->getMessage()
+                    'Invalid argument: $fragment',
+                    $e->getMessage()
                 );
             }
         }
-    } 
+    }
 
     public function testSetAndGetId()
     {
@@ -303,7 +305,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'label' => 'foo',
-            'uri'   => '#',
+            'uri' => '#',
         ]);
         
         $this->assertEquals(null, $page->getAccesskey());
@@ -329,22 +331,22 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'label' => 'bar',
-            'uri'   => '#',
-            'rel'   => [
+            'uri' => '#',
+            'rel' => [
                 'prev' => 'foo',
                 'next' => 'baz'
             ],
-            'rev'   => [
+            'rev' => [
                 'alternate' => 'bat'
             ]
         ]);
 
         $expected = [
-            'rel'   => [
+            'rel' => [
                 'prev' => 'foo',
                 'next' => 'baz'
             ],
-            'rev'   => [
+            'rev' => [
                 'alternate' => 'bat'
             ]
         ];
@@ -361,22 +363,22 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory(new Zend_Config([
             'label' => 'bar',
-            'uri'   => '#',
-            'rel'   => [
+            'uri' => '#',
+            'rel' => [
                 'prev' => 'foo',
                 'next' => 'baz'
             ],
-            'rev'   => [
+            'rev' => [
                 'alternate' => 'bat'
             ]
         ]));
 
         $expected = [
-            'rel'   => [
+            'rel' => [
                 'prev' => 'foo',
                 'next' => 'baz'
             ],
-            'rev'   => [
+            'rev' => [
                 'alternate' => 'bat'
             ]
         ];
@@ -393,12 +395,12 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'label' => 'bar',
-            'uri'   => '#',
-            'rel'   => [
+            'uri' => '#',
+            'rel' => [
                 'prev' => 'foo',
                 'next' => 'baz'
             ],
-            'rev'   => [
+            'rev' => [
                 'next' => 'foo'
             ]
         ]);
@@ -448,7 +450,7 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetResourceString()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'  => 'uri',
+            'type' => 'uri',
             'label' => 'hello'
         ]);
 
@@ -459,8 +461,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetResourceNoParam()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello',
+            'type' => 'uri',
+            'label' => 'hello',
             'resource' => 'foo'
         ]);
 
@@ -471,8 +473,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetResourceNull()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello',
+            'type' => 'uri',
+            'label' => 'hello',
             'resource' => 'foo'
         ]);
 
@@ -483,8 +485,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetResourceInterface()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello'
+            'type' => 'uri',
+            'label' => 'hello'
         ]);
 
         require_once 'Zend/Acl/Resource.php';
@@ -497,8 +499,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetResourceShouldThrowExceptionWhenGivenInteger()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello'
+            'type' => 'uri',
+            'label' => 'hello'
         ]);
 
         try {
@@ -513,8 +515,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetResourceShouldThrowExceptionWhenGivenObject()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello'
+            'type' => 'uri',
+            'label' => 'hello'
         ]);
 
         try {
@@ -529,8 +531,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetPrivilegeNoParams()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello',
+            'type' => 'uri',
+            'label' => 'hello',
             'privilege' => 'foo'
         ]);
 
@@ -541,8 +543,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetPrivilegeNull()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello',
+            'type' => 'uri',
+            'label' => 'hello',
             'privilege' => 'foo'
         ]);
 
@@ -553,8 +555,8 @@ class Zend_Navigation_PageTest extends TestCase
     public function testSetPrivilegeString()
     {
         $page = Zend_Navigation_Page::factory([
-            'type'     => 'uri',
-            'label'    => 'hello',
+            'type' => 'uri',
+            'label' => 'hello',
             'privilege' => 'foo'
         ]);
 
@@ -589,15 +591,15 @@ class Zend_Navigation_PageTest extends TestCase
     public function testIsActiveWithRecursiveTrueShouldReturnTrueIfChildActive()
     {
         $page = new Zend_Navigation_Page_Uri([
-            'label'  => 'Page 1',
+            'label' => 'Page 1',
             'active' => false,
-            'pages'  => [
+            'pages' => [
                 new Zend_Navigation_Page_Uri([
-                    'label'  => 'Page 1.1',
+                    'label' => 'Page 1.1',
                     'active' => false,
-                    'pages'  => [
+                    'pages' => [
                         new Zend_Navigation_Page_Uri([
-                            'label'  => 'Page 1.1',
+                            'label' => 'Page 1.1',
                             'active' => true
                         ])
                     ]
@@ -612,15 +614,15 @@ class Zend_Navigation_PageTest extends TestCase
     public function testGetActiveWithRecursiveTrueShouldReturnTrueIfChildActive()
     {
         $page = new Zend_Navigation_Page_Uri([
-            'label'  => 'Page 1',
+            'label' => 'Page 1',
             'active' => false,
-            'pages'  => [
+            'pages' => [
                 new Zend_Navigation_Page_Uri([
-                    'label'  => 'Page 1.1',
+                    'label' => 'Page 1.1',
                     'active' => false,
-                    'pages'  => [
+                    'pages' => [
                         new Zend_Navigation_Page_Uri([
-                            'label'  => 'Page 1.1',
+                            'label' => 'Page 1.1',
                             'active' => true
                         ])
                     ]
@@ -683,14 +685,14 @@ class Zend_Navigation_PageTest extends TestCase
     public function testIsVisibleRecursiveTrueShouldReturnFalseIfParentInivisble()
     {
         $page = new Zend_Navigation_Page_Uri([
-            'label'  => 'Page 1',
+            'label' => 'Page 1',
             'visible' => false,
-            'pages'  => [
+            'pages' => [
                 new Zend_Navigation_Page_Uri([
-                    'label'  => 'Page 1.1',
-                    'pages'  => [
+                    'label' => 'Page 1.1',
+                    'pages' => [
                         new Zend_Navigation_Page_Uri([
-                            'label'  => 'Page 1.1'
+                            'label' => 'Page 1.1'
                         ])
                     ]
                 ])
@@ -705,14 +707,14 @@ class Zend_Navigation_PageTest extends TestCase
     public function testGetVisibleRecursiveTrueShouldReturnFalseIfParentInivisble()
     {
         $page = new Zend_Navigation_Page_Uri([
-            'label'  => 'Page 1',
+            'label' => 'Page 1',
             'visible' => false,
-            'pages'  => [
+            'pages' => [
                 new Zend_Navigation_Page_Uri([
-                    'label'  => 'Page 1.1',
-                    'pages'  => [
+                    'label' => 'Page 1.1',
+                    'pages' => [
                         new Zend_Navigation_Page_Uri([
-                            'label'  => 'Page 1.1'
+                            'label' => 'Page 1.1'
                         ])
                     ]
                 ])
@@ -746,7 +748,7 @@ class Zend_Navigation_PageTest extends TestCase
 
         /**
          * ZF-10146
-         * 
+         *
          * @link http://framework.zend.com/issues/browse/ZF-10146
          */
         $page->setVisible('False');
@@ -835,21 +837,21 @@ class Zend_Navigation_PageTest extends TestCase
         $page->setOptions($options);
 
         $expected = [
-            'label'       => 'bar',
-            'action'      => 'baz',
-            'controller'  => 'bat',
-            'module'      => 'test',
+            'label' => 'bar',
+            'action' => 'baz',
+            'controller' => 'bat',
+            'module' => 'test',
             'resetParams' => false,
-            'id'          => 'foo-test'
+            'id' => 'foo-test'
         ];
 
         $actual = [
-            'label'       => $page->getLabel(),
-            'action'      => $page->getAction(),
-            'controller'  => $page->getController(),
-            'module'      => $page->getModule(),
+            'label' => $page->getLabel(),
+            'action' => $page->getAction(),
+            'controller' => $page->getController(),
+            'module' => $page->getModule(),
             'resetParams' => $page->getResetParams(),
-            'id'          => $page->getId()
+            'id' => $page->getId()
         ];
 
         $this->assertEquals($expected, $actual);
@@ -875,21 +877,21 @@ class Zend_Navigation_PageTest extends TestCase
         $page->setConfig(new Zend_Config($options));
 
         $expected = [
-            'label'       => 'bar',
-            'action'      => 'baz',
-            'controller'  => 'bat',
-            'module'      => 'test',
+            'label' => 'bar',
+            'action' => 'baz',
+            'controller' => 'bat',
+            'module' => 'test',
             'resetParams' => false,
-            'id'          => 'foo-test'
+            'id' => 'foo-test'
         ];
 
         $actual = [
-            'label'       => $page->getLabel(),
-            'action'      => $page->getAction(),
-            'controller'  => $page->getController(),
-            'module'      => $page->getModule(),
+            'label' => $page->getLabel(),
+            'action' => $page->getAction(),
+            'controller' => $page->getController(),
+            'module' => $page->getModule(),
             'resetParams' => $page->getResetParams(),
-            'id'          => $page->getId()
+            'id' => $page->getId()
         ];
 
         $this->assertEquals($expected, $actual);
@@ -921,7 +923,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'label' => 'page',
-            'uri'   => '#'
+            'uri' => '#'
         ]);
 
         $page->addRel('alternate', 'foo');
@@ -944,7 +946,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'label' => 'page',
-            'uri'   => '#'
+            'uri' => '#'
         ]);
 
         $page->addRel('alternate', 'foo');
@@ -969,7 +971,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rel'  => [
+            'rel' => [
                 'foo' => 'bar',
                 'baz' => 'bat'
             ]
@@ -984,7 +986,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rel'  => [
+            'rel' => [
                 'foo' => 'bar',
                 'baz' => 'bat'
             ]
@@ -999,7 +1001,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rel'  => [
+            'rel' => [
                 'foo' => 'bar',
                 'baz' => 'bat'
             ]
@@ -1027,7 +1029,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rev'  => [
+            'rev' => [
                 'foo' => 'bar',
                 'baz' => 'bat'
             ]
@@ -1042,7 +1044,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rev'  => [
+            'rev' => [
                 'foo' => 'bar',
                 'baz' => 'bat'
             ]
@@ -1057,7 +1059,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rev'  => [
+            'rev' => [
                 'foo' => 'bar',
                 'baz' => 'bat'
             ]
@@ -1085,7 +1087,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rel'  => [
+            'rel' => [
                 'foo' => 'bar'
             ]
         ]);
@@ -1097,7 +1099,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rev'  => [
+            'rev' => [
                 'foo' => 'bar'
             ]
         ]);
@@ -1109,7 +1111,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rel'  => [
+            'rel' => [
                 'alternate' => 'foo',
                 'foo' => 'bar'
             ]
@@ -1123,7 +1125,7 @@ class Zend_Navigation_PageTest extends TestCase
     {
         $page = Zend_Navigation_Page::factory([
             'type' => 'uri',
-            'rev'  => [
+            'rev' => [
                 'alternate' => 'foo',
                 'foo' => 'bar'
             ]
@@ -1202,7 +1204,7 @@ class Zend_Navigation_PageTest extends TestCase
         );
 
         $attribs = [
-             'rel'   => 'nofollow',
+             'rel' => 'nofollow',
              'style' => 'font-weight: bold;',
         ];
 
@@ -1241,7 +1243,7 @@ class Zend_Navigation_PageTest extends TestCase
 
         $page->setCustomHtmlAttribs(
             [
-                 'rel'   => 'nofollow',
+                 'rel' => 'nofollow',
                  'style' => 'font-weight: bold;',
             ]
         );
@@ -1254,30 +1256,30 @@ class Zend_Navigation_PageTest extends TestCase
     public function testToArrayMethod()
     {
         $options = [
-            'label'    => 'foo',
-            'uri'      => 'http://www.example.com/foo.html',
+            'label' => 'foo',
+            'uri' => 'http://www.example.com/foo.html',
             'fragment' => 'bar',
-            'id'       => 'my-id',
-            'class'    => 'my-class',
-            'title'    => 'my-title',
-            'target'   => 'my-target',
+            'id' => 'my-id',
+            'class' => 'my-class',
+            'title' => 'my-title',
+            'target' => 'my-target',
             'accesskey' => 'f',
-            'rel'      => [],
-            'rev'      => [],
-            'order'    => 100,
-            'active'   => true,
-            'visible'  => false,
+            'rel' => [],
+            'rev' => [],
+            'order' => 100,
+            'active' => true,
+            'visible' => false,
 
             'resource' => 'joker',
             'privilege' => null,
 
-            'foo'      => 'bar',
-            'meaning'  => 42,
+            'foo' => 'bar',
+            'meaning' => 42,
 
-            'pages'    => [
+            'pages' => [
                 [
                     'label' => 'foo.bar',
-                    'uri'   => 'http://www.example.com/foo.html',
+                    'uri' => 'http://www.example.com/foo.html',
                     'fragment' => null,
                     'id' => null,
                     'class' => null,
@@ -1297,7 +1299,7 @@ class Zend_Navigation_PageTest extends TestCase
                 ],
                 [
                     'label' => 'foo.baz',
-                    'uri'   => 'http://www.example.com/foo.html',
+                    'uri' => 'http://www.example.com/foo.html',
                     'fragment' => null,
                     'id' => null,
                     'class' => null,
@@ -1318,7 +1320,7 @@ class Zend_Navigation_PageTest extends TestCase
             ],
 
             'customHtmlAttribs' => [
-                'rel'   => 'nofollow',
+                'rel' => 'nofollow',
                 'style' => 'font-weight: bold;',
             ],
         ];
@@ -1374,10 +1376,10 @@ class Zend_Navigation_PageTest extends TestCase
                         'Zend_Navigation_Exception was not thrown');
         } catch (Zend_Navigation_Exception $e) {
             $this->assertSame(
-                'Invalid argument: Unable to determine class to instantiate', 
+                'Invalid argument: Unable to determine class to instantiate',
                 $e->getMessage()
             );
-}
+        }
         
         // With label
         try {
@@ -1389,7 +1391,7 @@ class Zend_Navigation_PageTest extends TestCase
         } catch (Zend_Navigation_Exception $e) {
             $this->assertSame(
                 'Invalid argument: Unable to determine class to instantiate'
-                . ' (Page label: Foo)', 
+                . ' (Page label: Foo)',
                 $e->getMessage()
             );
         }

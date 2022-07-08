@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,7 +47,6 @@ require_once 'Zend/Amf/Response/Http.php';
  */
 class Zend_Amf_Response_HttpTest extends TestCase
 {
-    
     /**
      * Runs the test methods of this class.
      *
@@ -53,8 +54,8 @@ class Zend_Amf_Response_HttpTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Amf_Response_HttpTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Amf_Response_HttpTest");
+        $result = (new TestRunner())->run($suite);
     }
     
     /**
@@ -67,7 +68,6 @@ class Zend_Amf_Response_HttpTest extends TestCase
         $req = new ZF11783_ExposeIsIeOverSsl();
         $this->assertFalse($req->isIeOverSsl());
     }
-
 }
 
 /**
@@ -76,7 +76,8 @@ class Zend_Amf_Response_HttpTest extends TestCase
  */
 class ZF11783_ExposeIsIeOverSsl extends Zend_Amf_Response_Http
 {
-    public function isIeOverSsl() {
+    public function isIeOverSsl()
+    {
         return parent::isIeOverSsl();
     }
 }
@@ -85,5 +86,3 @@ class ZF11783_ExposeIsIeOverSsl extends Zend_Amf_Response_Http
 if (PHPUnit_MAIN_METHOD == 'Zend_Amf_Response_HttpTest::main') {
     Zend_Amf_Response_HttpTest::main();
 }
-
-

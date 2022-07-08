@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -65,8 +67,8 @@ class Zend_NavigationTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_NavigationTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_NavigationTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -94,5 +96,4 @@ class Zend_NavigationTest extends TestCase
         $this->assertEquals('page1', $pages[1]['uri']);
         $this->assertEquals('page2', $pages[2]['uri']);
     }
-
 }

@@ -1,6 +1,8 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Runner\BaseTestRunner;
+
 /**
  * Zend Framework
  *
@@ -38,7 +40,6 @@ require_once 'Zend/Service/WindowsAzure/Storage/Table.php';
  */
 class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
 {
-
     protected static $uniqId = 0;
 
     public function __construct()
@@ -64,9 +65,11 @@ class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
             return;
         }
         $storageClient = $this->createStorageInstance();
-        for ($i = 1; $i <= self::$uniqId; $i++)
-        {
-            try { $storageClient->deleteTable(TESTS_ZEND_SERVICE_WINDOWSAZURE_SESSIONHANDLER_TABLENAME_PREFIX . $i); } catch (Exception $e) { }
+        for ($i = 1; $i <= self::$uniqId; $i++) {
+            try {
+                $storageClient->deleteTable(TESTS_ZEND_SERVICE_WINDOWSAZURE_SESSIONHANDLER_TABLENAME_PREFIX . $i);
+            } catch (Exception $e) {
+            }
         }
     }
 
@@ -155,10 +158,10 @@ class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
         $sessionHandler->open();
 
         $sessionId = $this->session_id();
-        $sessionData = serialize( 'PHPAzure' );
+        $sessionData = serialize('PHPAzure');
         $sessionHandler->write($sessionId, $sessionData);
 
-        $result = unserialize( $sessionHandler->read($sessionId) );
+        $result = unserialize($sessionHandler->read($sessionId));
 
         $this->assertEquals('PHPAzure', $result);
     }
@@ -175,7 +178,7 @@ class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
             $sessionHandler->open();
 
             $sessionId = $this->session_id();
-            $sessionData = serialize( 'PHPAzure' );
+            $sessionData = serialize('PHPAzure');
             $sessionHandler->write($sessionId, $sessionData);
 
 
@@ -195,7 +198,7 @@ class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
         $sessionHandler->open();
 
         $sessionId = $this->session_id();
-        $sessionData = serialize( 'PHPAzure' );
+        $sessionData = serialize('PHPAzure');
         $sessionHandler->write($sessionId, $sessionData);
 
         $result = $sessionHandler->destroy($sessionId);
@@ -216,7 +219,7 @@ class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
         $sessionHandler->open();
 
         $sessionId = $this->session_id();
-        $sessionData = serialize( 'PHPAzure' );
+        $sessionData = serialize('PHPAzure');
         $sessionHandler->write($sessionId, $sessionData);
 
         sleep(1); // let time() tick
@@ -233,4 +236,3 @@ class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
         return md5(self::$uniqId);
     }
 }
-

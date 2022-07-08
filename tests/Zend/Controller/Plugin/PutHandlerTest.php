@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -66,9 +68,8 @@ class Zend_Controller_Plugin_PutHandlerTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Plugin_PutHandlerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Plugin_PutHandlerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -80,8 +81,8 @@ class Zend_Controller_Plugin_PutHandlerTest extends TestCase
     protected function setUp(): void
     {
         Zend_Controller_Front::getInstance()->resetInstance();
-        $this->request  = new Zend_Controller_Request_HttpTestCase();
-        $this->plugin   = new Zend_Controller_Plugin_PutHandler();
+        $this->request = new Zend_Controller_Request_HttpTestCase();
+        $this->plugin = new Zend_Controller_Plugin_PutHandler();
 
         $this->plugin->setRequest($this->request);
     }
@@ -101,4 +102,3 @@ class Zend_Controller_Plugin_PutHandlerTest extends TestCase
 if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_PutHandlerTest::main") {
     Zend_Controller_Plugin_PutHandlerTest::main();
 }
-

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -67,9 +69,8 @@ class Zend_View_Helper_HeadStyleTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_HeadStyleTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_HeadStyleTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -125,19 +126,23 @@ class Zend_View_Helper_HeadStyleTest extends TestCase
         try {
             $this->helper->append('foo');
             $this->fail('Non-style value should not append');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
         try {
             $this->helper->offsetSet(5, 'foo');
             $this->fail('Non-style value should not offsetSet');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
         try {
             $this->helper->prepend('foo');
             $this->fail('Non-style value should not prepend');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
         try {
             $this->helper->set('foo');
             $this->fail('Non-style value should not set');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testOverloadAppendStyleAppendsStyleToStack()
@@ -195,10 +200,10 @@ class Zend_View_Helper_HeadStyleTest extends TestCase
     public function testCanBuildStyleTagsWithAttributes()
     {
         $this->helper->setStyle('a {}', [
-            'lang'  => 'us_en',
+            'lang' => 'us_en',
             'title' => 'foo',
             'media' => 'projection',
-            'dir'   => 'rtol',
+            'dir' => 'rtol',
             'bogus' => 'unused'
         ]);
         $value = $this->helper->getValue();
@@ -221,10 +226,10 @@ class Zend_View_Helper_HeadStyleTest extends TestCase
     public function testRenderedStyleTagsContainHtmlEscaping()
     {
         $this->helper->setStyle('a {}', [
-            'lang'  => 'us_en',
+            'lang' => 'us_en',
             'title' => 'foo',
             'media' => 'screen',
-            'dir'   => 'rtol',
+            'dir' => 'rtol',
             'bogus' => 'unused'
         ]);
         $value = $this->helper->toString();
@@ -276,8 +281,8 @@ class Zend_View_Helper_HeadStyleTest extends TestCase
                      ->headStyle($style2, 'PREPEND')
                      ->headStyle($style3, 'APPEND');
         $html = $this->helper->toString();
-        $doc  = new DOMDocument;
-        $dom  = $doc->loadHtml($html);
+        $doc = new DOMDocument();
+        $dom = $doc->loadHtml($html);
         $this->assertTrue(($dom !== false));
 
         $styles = substr_count($html, '<style type="text/css"');
@@ -318,7 +323,8 @@ class Zend_View_Helper_HeadStyleTest extends TestCase
         try {
             $this->helper->bogusMethod();
             $this->fail('Invalid method should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     /**
@@ -329,7 +335,8 @@ class Zend_View_Helper_HeadStyleTest extends TestCase
         try {
             $this->helper->appendStyle();
             $this->fail('Too few arguments should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testIndentationIsHonored()
@@ -376,14 +383,14 @@ h1 {
     {
         $this->helper->headStyle()->captureStart();
         echo "Captured text";
-            try {
-                $this->helper->headStyle()->captureStart();
-                $this->helper->headStyle()->captureEnd();
-                $this->fail('Nested capturing should fail');
-            } catch (Zend_View_Exception $e) {
-                $this->helper->headStyle()->captureEnd();
-                $this->assertStringContainsString('Cannot nest', $e->getMessage());
-            }
+        try {
+            $this->helper->headStyle()->captureStart();
+            $this->helper->headStyle()->captureEnd();
+            $this->fail('Nested capturing should fail');
+        } catch (Zend_View_Exception $e) {
+            $this->helper->headStyle()->captureEnd();
+            $this->assertStringContainsString('Cannot nest', $e->getMessage());
+        }
     }
 
     public function testMediaAttributeAsArray()
@@ -400,7 +407,6 @@ a {
         $this->assertStringContainsString('    <!--', $string);
         $this->assertStringContainsString('    a {', $string);
         $this->assertStringContainsString(' media="screen,projection"', $string);
-
     }
 
     public function testMediaAttributeAsCommaSeperatedString()
@@ -417,7 +423,6 @@ a {
         $this->assertStringContainsString('    <!--', $string);
         $this->assertStringContainsString('    a {', $string);
         $this->assertStringContainsString(' media="screen,projection"', $string);
-
     }
 
     public function testConditionalScript()
@@ -435,7 +440,6 @@ a {
      */
     public function testContainerMaintainsCorrectOrderOfItems()
     {
-
         $style1 = 'a {display: none;}';
         $this->helper->offsetSetStyle(10, $style1);
 
@@ -464,7 +468,7 @@ a {
     {
         $style = 'a{display:none;}';
         $this->helper->appendStyle($style, [
-        	'conditional' => 'IE 8'
+            'conditional' => 'IE 8'
         ]);
         $value = $this->helper->toString();
 

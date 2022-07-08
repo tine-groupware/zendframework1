@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -68,11 +70,11 @@ class Zend_Validate_CcnumTest extends TestCase
     public function testBasic()
     {
         $valuesExpected = [
-            '4929000000006'    => true,
+            '4929000000006' => true,
             '5404000000000001' => true,
-            '374200000000004'  => true,
+            '374200000000004' => true,
             '4444555566667777' => false,
-            'ABCDEF'           => false
+            'ABCDEF' => false
             ];
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $this->_validator->isValid($input));

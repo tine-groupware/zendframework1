@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,7 +40,6 @@ require_once 'Zend/CodeGenerator/Php/Docblock/Tag.php';
  */
 class Zend_CodeGenerator_Php_Docblock_TagTest extends TestCase
 {
-
     /**
      * @var Zend_CodeGenerator_Php_Docblock_Tag
      */
@@ -65,5 +66,4 @@ class Zend_CodeGenerator_Php_Docblock_TagTest extends TestCase
         $this->_tag->setDescription('Foo foo foo');
         $this->assertEquals('Foo foo foo', $this->_tag->getDescription());
     }
-
 }

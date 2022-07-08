@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,9 +54,8 @@ class Zend_Json_Server_Smd_ServiceTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Json_Server_Smd_ServiceTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Json_Server_Smd_ServiceTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -203,11 +204,11 @@ class Zend_Json_Server_Smd_ServiceTest extends TestCase
 
     public function testParamsShouldAcceptArrayOfTypes()
     {
-        $type   = ['integer', 'string'];
+        $type = ['integer', 'string'];
         $this->service->addParam($type);
         $params = $this->service->getParams();
-        $param  = array_shift($params);
-        $test   = $param['type'];
+        $param = array_shift($params);
+        $test = $param['type'];
         $this->assertTrue(is_array($test));
         $this->assertEquals($type, $test);
     }
@@ -215,7 +216,7 @@ class Zend_Json_Server_Smd_ServiceTest extends TestCase
     public function testInvalidParamTypeShouldThrowException()
     {
         try {
-            $this->service->addParam(new stdClass);
+            $this->service->addParam(new stdClass());
             $this->fail('Invalid param type should throw exception');
         } catch (Zend_Json_Server_Exception $e) {
             $this->assertStringContainsString('Invalid param type', $e->getMessage());
@@ -244,14 +245,14 @@ class Zend_Json_Server_Smd_ServiceTest extends TestCase
         $this->service->addParam(
             'integer',
             [
-                'name'        => 'foo',
-                'optional'    => false,
-                'default'     => 1,
+                'name' => 'foo',
+                'optional' => false,
+                'default' => 1,
                 'description' => 'Foo parameter',
             ]
         );
         $params = $this->service->getParams();
-        $param  = array_shift($params);
+        $param = array_shift($params);
         $this->assertEquals('foo', $param['name']);
         $this->assertFalse($param['optional']);
         $this->assertEquals(1, $param['default']);
@@ -317,7 +318,7 @@ class Zend_Json_Server_Smd_ServiceTest extends TestCase
     public function testInvalidReturnTypeShouldThrowException()
     {
         try {
-            $this->service->setReturn(new stdClass);
+            $this->service->setReturn(new stdClass());
             $this->fail('Invalid return type should throw exception');
         } catch (Zend_Json_Server_Exception $e) {
             $this->assertStringContainsString('Invalid param type', $e->getMessage());
@@ -335,7 +336,7 @@ class Zend_Json_Server_Smd_ServiceTest extends TestCase
     {
         $this->setupSmdValidationObject();
         $json = $this->service->toJson();
-        $smd  = Zend_Json::decode($json);
+        $smd = Zend_Json::decode($json);
 
         $this->assertTrue(array_key_exists('foo', $smd));
         $this->assertTrue(is_array($smd['foo']));

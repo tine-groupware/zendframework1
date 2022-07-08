@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -62,15 +64,15 @@ class Zend_Validate_DigitsTest extends TestCase
     public function testExpectedResultsWithBasicInputValues()
     {
         $valuesExpected = [
-            'abc123'  => false,
+            'abc123' => false,
             'abc 123' => false,
-            'abcxyz'  => false,
+            'abcxyz' => false,
             'AZ@#4.3' => false,
-            '1.23'    => false,
-            '0x9f'    => false,
-            '123'     => true,
-            '09'      => true,
-            ''        => false
+            '1.23' => false,
+            '0x9f' => false,
+            '123' => true,
+            '09' => true,
+            '' => false
             ];
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $this->_validator->isValid($input));

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -110,7 +112,7 @@ class Zend_Tool_Framework_Action_RepositoryTest extends TestCase
     {
         $this->_repository->addAction(new Zend_Tool_Framework_Action_Base('Foo'));
         $this->_repository->addAction(new Zend_Tool_Framework_Action_Base('Bar'));
-        $i=0;
+        $i = 0;
         foreach ($this->_repository as $action) {
             $i++;
             $this->assertEquals('Zend_Tool_Framework_Action_Base', get_class($action));
@@ -122,7 +124,7 @@ class Zend_Tool_Framework_Action_RepositoryTest extends TestCase
     {
         $this->_repository->addAction(new Zend_Tool_Framework_Action_Base('Foo'));
         $this->_repository->addAction(new Zend_Tool_Framework_Action_Base('Bar'));
-        $i=0;
+        $i = 0;
         foreach ($this->_repository->getActions() as $action) {
             $i++;
             $this->assertEquals('Zend_Tool_Framework_Action_Base', get_class($action));
@@ -134,7 +136,4 @@ class Zend_Tool_Framework_Action_RepositoryTest extends TestCase
     {
         $this->assertNull($this->_repository->process());
     }
-
-
-
 }

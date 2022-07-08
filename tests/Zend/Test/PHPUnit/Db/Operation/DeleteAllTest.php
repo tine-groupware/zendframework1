@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\Framework\TestCase;
+
 use PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet;
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -45,7 +47,7 @@ class Zend_Test_PHPUnit_Db_Operation_DeleteAllTest extends TestCase
 
     public function testDeleteAll()
     {
-        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/truncateFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__) . "/_files/truncateFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->at(0))
@@ -64,12 +66,12 @@ class Zend_Test_PHPUnit_Db_Operation_DeleteAllTest extends TestCase
     {
         $this->expectException('PHPUnit_Extensions_Database_Operation_Exception');
 
-        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/truncateFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__) . "/_files/truncateFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())
                     ->method('delete')
-                    ->will($this->throwException(new Exception));
+                    ->will($this->throwException(new Exception()));
 
         $connection = new Zend_Test_PHPUnit_Db_Connection($testAdapter, "schema");
 

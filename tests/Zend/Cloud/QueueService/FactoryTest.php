@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -58,8 +60,8 @@ class Zend_Cloud_QueueService_FactoryTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testGetQueueAdapterKey()
@@ -89,7 +91,7 @@ class Zend_Cloud_QueueService_FactoryTest extends TestCase
     {
         // No need to overdo it; we'll test the array config with just one adapter.
         $zqConfig = [Zend_Cloud_QueueService_Factory::QUEUE_ADAPTER_KEY =>
-        					     'Zend_Cloud_QueueService_Adapter_ZendQueue',
+                                 'Zend_Cloud_QueueService_Adapter_ZendQueue',
                             Zend_Cloud_QueueService_Adapter_ZendQueue::ADAPTER => "Array"];
 
         $zq = Zend_Cloud_QueueService_Factory::getAdapter($zqConfig);

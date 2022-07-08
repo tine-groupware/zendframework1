@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,20 +40,20 @@ class Zend_Config_YamlTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->_iniFileConfig             = dirname(__FILE__) . '/_files/config.yaml';
-        $this->_iniFileAllSectionsConfig  = dirname(__FILE__) . '/_files/allsections.yaml';
-        $this->_iniFileCircularConfig     = dirname(__FILE__) . '/_files/circular.yaml';
-        $this->_nonReadableConfig         = dirname(__FILE__) . '/_files/nonreadable.yaml';
-        $this->_iniFileInvalid            = dirname(__FILE__) . '/_files/invalid.yaml';
+        $this->_iniFileConfig = dirname(__FILE__) . '/_files/config.yaml';
+        $this->_iniFileAllSectionsConfig = dirname(__FILE__) . '/_files/allsections.yaml';
+        $this->_iniFileCircularConfig = dirname(__FILE__) . '/_files/circular.yaml';
+        $this->_nonReadableConfig = dirname(__FILE__) . '/_files/nonreadable.yaml';
+        $this->_iniFileInvalid = dirname(__FILE__) . '/_files/invalid.yaml';
         $this->_iniFileSameNameKeysConfig = dirname(__FILE__) . '/_files/array.yaml';
-        $this->_badIndentationConfig      = dirname(__FILE__) . '/_files/badindentation.yaml';
-        $this->_booleansConfig            = dirname(__FILE__) . '/_files/booleans.yaml';
-        $this->_constantsConfig           = dirname(__FILE__) . '/_files/constants.yaml';
-        $this->_yamlInlineCommentsConfig  = dirname(__FILE__) . '/_files/inlinecomments.yaml';
-        $this->_yamlIndentedCommentsConfig  = dirname(__FILE__) . '/_files/indentedcomments.yaml';
-        $this->_yamlListConstantsConfig     = dirname(__FILE__) . '/_files/listconstants.yaml';
-        $this->_listBooleansConfig          = dirname(__FILE__) . '/_files/listbooleans.yaml';
-        $this->_yamlSingleQuotedString    = dirname(__FILE__) . '/_files/zf11934.yaml';
+        $this->_badIndentationConfig = dirname(__FILE__) . '/_files/badindentation.yaml';
+        $this->_booleansConfig = dirname(__FILE__) . '/_files/booleans.yaml';
+        $this->_constantsConfig = dirname(__FILE__) . '/_files/constants.yaml';
+        $this->_yamlInlineCommentsConfig = dirname(__FILE__) . '/_files/inlinecomments.yaml';
+        $this->_yamlIndentedCommentsConfig = dirname(__FILE__) . '/_files/indentedcomments.yaml';
+        $this->_yamlListConstantsConfig = dirname(__FILE__) . '/_files/listconstants.yaml';
+        $this->_listBooleansConfig = dirname(__FILE__) . '/_files/listbooleans.yaml';
+        $this->_yamlSingleQuotedString = dirname(__FILE__) . '/_files/zf11934.yaml';
     }
 
     public function testLoadSingleSection()
@@ -124,11 +126,10 @@ class Zend_Config_YamlTest extends TestCase
 
     public function testZF413_MultiSections()
     {
-        $config = new Zend_Config_Yaml($this->_iniFileAllSectionsConfig, ['staging','other_staging']);
+        $config = new Zend_Config_Yaml($this->_iniFileAllSectionsConfig, ['staging', 'other_staging']);
 
         $this->assertEquals('otherStaging', $config->only_in);
         $this->assertEquals('staging', $config->hostname);
-
     }
 
     public function testZF413_AllSections()
@@ -148,8 +149,8 @@ class Zend_Config_YamlTest extends TestCase
         $this->assertEquals('all', $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
 
-        $config = new Zend_Config_Yaml($this->_iniFileAllSectionsConfig, ['staging','other_staging']);
-        $this->assertEquals(['staging','other_staging'], $config->getSectionName());
+        $config = new Zend_Config_Yaml($this->_iniFileAllSectionsConfig, ['staging', 'other_staging']);
+        $this->assertEquals(['staging', 'other_staging'], $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
     }
 
@@ -166,7 +167,7 @@ class Zend_Config_YamlTest extends TestCase
     public function testErrorNoFile()
     {
         try {
-            $config = new Zend_Config_Yaml('','');
+            $config = new Zend_Config_Yaml('', '');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertStringContainsString('Filename is not set', $expected->getMessage());
@@ -176,19 +177,18 @@ class Zend_Config_YamlTest extends TestCase
     public function testErrorNoSectionFound()
     {
         try {
-            $config = new Zend_Config_Yaml($this->_iniFileConfig,['all', 'notthere']);
+            $config = new Zend_Config_Yaml($this->_iniFileConfig, ['all', 'notthere']);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
 
         try {
-            $config = new Zend_Config_Yaml($this->_iniFileConfig,'notthere');
+            $config = new Zend_Config_Yaml($this->_iniFileConfig, 'notthere');
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertStringContainsString('cannot be found', $expected->getMessage());
         }
-
     }
 
     public function testZF3196_InvalidIniFile()
@@ -199,7 +199,6 @@ class Zend_Config_YamlTest extends TestCase
         } catch (Zend_Config_Exception $expected) {
             $this->assertMatchesRegularExpression('/(Error parsing|syntax error, unexpected)/', $expected->getMessage());
         }
-
     }
 
     public function testZF2285_MultipleKeysOfTheSameName()
@@ -231,9 +230,9 @@ class Zend_Config_YamlTest extends TestCase
     {
         $config = new Zend_Config_Yaml($this->_iniFileAllSectionsConfig, 'debug', [
             'allow_modifications' => true,
-            'skip_extends'        => true,
-            'yaml_decoder'        => [$this, 'yamlDecoder'],
-            'foo'                 => 'bar', // ignored
+            'skip_extends' => true,
+            'yaml_decoder' => [$this, 'yamlDecoder'],
+            'foo' => 'bar', // ignored
         ]);
         $this->assertNull($config->name); // verifies extends were skipped
         $config->foo = 'bar';
@@ -330,7 +329,9 @@ class Zend_Config_YamlTest extends TestCase
             define('ZEND_CONFIG_YAML_ENV_PATH', dirname(__FILE__));
         }
         $config = new Zend_Config_Yaml(
-            $this->_constantsConfig, 'production', ['ignore_constants' => true]
+            $this->_constantsConfig,
+            'production',
+            ['ignore_constants' => true]
         );
         $this->assertEquals('ZEND_CONFIG_YAML_ENV', $config->env);
         $this->assertEquals('ZEND_CONFIG_YAML_ENV_PATH/test/this', $config->path);
@@ -377,7 +378,7 @@ class Zend_Config_YamlTest extends TestCase
     {
         if (!defined('ZEND_CONFIG_YAML_TEST_PATH')) {
             define('ZEND_CONFIG_YAML_TEST_PATH', 'testing');
-        }        
+        }
         $config = new Zend_Config_Yaml($this->_yamlListConstantsConfig, 'production');
 
         $this->assertEquals(ZEND_CONFIG_YAML_TEST_PATH, $config->paths->{0});

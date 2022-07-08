@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -38,13 +40,13 @@ require_once 'Zend/Service/Delicious.php';
  */
 class Zend_Service_Delicious_PrivateDataTest extends TestCase
 {
-    const TEST_UNAME = 'zfTestUser';
-    const TEST_PASS  = 'zfuser';
+    public const TEST_UNAME = 'zfTestUser';
+    public const TEST_PASS = 'zfuser';
 
-    private static $TEST_POST_TITLE  = 'test - title';
-    private static $TEST_POST_URL    = 'http://zfdev.com/unittests/delicious/test_url_1';
-    private static $TEST_POST_NOTES  = 'test - note';
-    private static $TEST_POST_TAGS   = ['testTag1','testTag2'];
+    private static $TEST_POST_TITLE = 'test - title';
+    private static $TEST_POST_URL = 'http://zfdev.com/unittests/delicious/test_url_1';
+    private static $TEST_POST_NOTES = 'test - note';
+    private static $TEST_POST_TAGS = ['testTag1', 'testTag2'];
     private static $TEST_POST_SHARED = false;
 
     /**

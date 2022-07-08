@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,9 +39,7 @@ require_once 'Zend/Reflection/Docblock/Tag/Param.php';
  */
 class Zend_Reflection_Docblock_Tag_ParamTest extends TestCase
 {
-
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -74,14 +74,14 @@ class Zend_Reflection_Docblock_Tag_ParamTest extends TestCase
 
         $this->assertEquals($paramTag->getType(), 'int', 'Second Match Failed');
         $this->assertEquals($paramTag->getVariableName(), '$var', 'Third Match Failed');
-        $this->assertEquals($paramTag->getDescription(),'Description of $var', 'Final Match Failed');
+        $this->assertEquals($paramTag->getDescription(), 'Description of $var', 'Final Match Failed');
     }
 
     /**
      * @group ZF-8307
      */
     public function testNamespaceInParam()
-    {    
+    {
         $classReflection = new Zend_Reflection_Class('Zend_Reflection_Docblock_Param_WithNamespace');
         $paramTag = $classReflection->getMethod('doSomething')->getDocblock()->getTag('param');
 
@@ -102,4 +102,3 @@ class Zend_Reflection_Docblock_Tag_ParamTest extends TestCase
         $this->assertEquals('An array of strings', $param->getDescription());
     }
 }
-

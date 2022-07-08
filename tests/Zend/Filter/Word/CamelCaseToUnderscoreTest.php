@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,16 +51,16 @@ class Zend_Filter_Word_CamelCaseToUnderscoreTest extends TestCase
      * @access public
      * @static
      */
-    public static function main() {
-
-        $suite  = new TestSuite("Zend_Filter_Word_CamelCaseToUnderscoreTest");
-        $result = (new TestRunner)->run($suite);
+    public static function main()
+    {
+        $suite = new TestSuite("Zend_Filter_Word_CamelCaseToUnderscoreTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithUnderscores()
     {
-        $string   = 'CamelCasedWords';
-        $filter   = new Zend_Filter_Word_CamelCaseToUnderscore();
+        $string = 'CamelCasedWords';
+        $filter = new Zend_Filter_Word_CamelCaseToUnderscore();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -68,21 +70,21 @@ class Zend_Filter_Word_CamelCaseToUnderscoreTest extends TestCase
     public function testFilterSeperatingNumbersToUnterscore()
     {
         $string = 'PaTitle';
-        $filter   = new Zend_Filter_Word_CamelCaseToUnderscore();
+        $filter = new Zend_Filter_Word_CamelCaseToUnderscore();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
         $this->assertEquals('Pa_Title', $filtered);
 
         $string = 'Pa2Title';
-        $filter   = new Zend_Filter_Word_CamelCaseToUnderscore();
+        $filter = new Zend_Filter_Word_CamelCaseToUnderscore();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
         $this->assertEquals('Pa2_Title', $filtered);
 
         $string = 'Pa2aTitle';
-        $filter   = new Zend_Filter_Word_CamelCaseToUnderscore();
+        $filter = new Zend_Filter_Word_CamelCaseToUnderscore();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);

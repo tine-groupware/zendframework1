@@ -39,7 +39,6 @@ require_once 'Zend/Db/Select/TestCommon.php';
  */
 abstract class Zend_Db_Table_Select_TestCommon extends Zend_Db_Select_TestCommon
 {
-
     protected $_runtimeIncludePath = null;
 
     /**
@@ -51,10 +50,10 @@ abstract class Zend_Db_Table_Select_TestCommon extends Zend_Db_Select_TestCommon
     {
         parent::setUp();
 
-        $this->_table['accounts']      = $this->_getTable('My_ZendDbTable_TableAccounts');
-        $this->_table['bugs']          = $this->_getTable('My_ZendDbTable_TableBugs');
+        $this->_table['accounts'] = $this->_getTable('My_ZendDbTable_TableAccounts');
+        $this->_table['bugs'] = $this->_getTable('My_ZendDbTable_TableBugs');
         $this->_table['bugs_products'] = $this->_getTable('My_ZendDbTable_TableBugsProducts');
-        $this->_table['products']      = $this->_getTable('My_ZendDbTable_TableProducts');
+        $this->_table['products'] = $this->_getTable('My_ZendDbTable_TableProducts');
     }
 
     protected function tearDown(): void

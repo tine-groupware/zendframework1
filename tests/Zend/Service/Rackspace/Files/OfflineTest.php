@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,8 +37,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Service_Rackspace_Files
  */
-class Zend_Service_Rackspace_Files_OfflineTest
-    extends TestCase
+class Zend_Service_Rackspace_Files_OfflineTest extends TestCase
 {
     /**
      * Reference to RackspaceFiles
@@ -100,11 +101,12 @@ class Zend_Service_Rackspace_Files_OfflineTest
             self::loadResponse('../../_files/testAuthenticate')
         );
         $this->assertTrue(
-            $this->rackspace->authenticate(), 'Authentication failed'
+            $this->rackspace->authenticate(),
+            'Authentication failed'
         );
 
         $this->metadata = [
-            'foo'  => 'bar',
+            'foo' => 'bar',
             'foo2' => 'bar2'
         ];
 
@@ -183,7 +185,7 @@ class Zend_Service_Rackspace_Files_OfflineTest
     public function testStoreObject()
     {
         $content = 'This is a test!';
-        $result  = $this->rackspace->storeObject(
+        $result = $this->rackspace->storeObject(
             'zf-unit-test',
             'zf-object-test',
             $content,
@@ -234,7 +236,7 @@ class Zend_Service_Rackspace_Files_OfflineTest
             'zf-unit-test',
             [
                 'delimiter' => '/',
-                'prefix'    => 'dir/',
+                'prefix' => 'dir/',
             ]
         );
         $this->assertTrue($objects !== false);

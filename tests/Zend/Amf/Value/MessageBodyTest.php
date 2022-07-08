@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +50,8 @@ class Zend_Amf_Value_MessageBodyTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Amf_Value_MessageBodyTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Amf_Value_MessageBodyTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void

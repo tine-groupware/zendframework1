@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -89,19 +91,19 @@ class Zend_XmlRpc_FaultTest extends TestCase
     {
         $dom = new DOMDocument('1.0', 'UTF-8');
         $response = $dom->appendChild($dom->createElement('methodResponse'));
-        $fault  = $response->appendChild($dom->createElement('fault'));
-        $value  = $fault->appendChild($dom->createElement('value'));
+        $fault = $response->appendChild($dom->createElement('fault'));
+        $value = $fault->appendChild($dom->createElement('value'));
         $struct = $value->appendChild($dom->createElement('struct'));
 
         $member1 = $struct->appendChild($dom->createElement('member'));
-            $member1->appendChild($dom->createElement('name', 'faultCode'));
-            $value1 = $member1->appendChild($dom->createElement('value'));
-            $value1->appendChild($dom->createElement('int', 1000));
+        $member1->appendChild($dom->createElement('name', 'faultCode'));
+        $value1 = $member1->appendChild($dom->createElement('value'));
+        $value1->appendChild($dom->createElement('int', 1000));
 
         $member2 = $struct->appendChild($dom->createElement('member'));
-            $member2->appendChild($dom->createElement('name', 'faultString'));
-            $value2 = $member2->appendChild($dom->createElement('value'));
-            $value2->appendChild($dom->createElement('string', 'Error string'));
+        $member2->appendChild($dom->createElement('name', 'faultString'));
+        $value2 = $member2->appendChild($dom->createElement('value'));
+        $value2->appendChild($dom->createElement('string', 'Error string'));
 
         return $dom->saveXml();
     }
@@ -110,18 +112,18 @@ class Zend_XmlRpc_FaultTest extends TestCase
     {
         $dom = new DOMDocument('1.0', 'UTF-8');
         $response = $dom->appendChild($dom->createElement('methodResponse'));
-        $fault  = $response->appendChild($dom->createElement('fault'));
-        $value  = $fault->appendChild($dom->createElement('value'));
+        $fault = $response->appendChild($dom->createElement('fault'));
+        $value = $fault->appendChild($dom->createElement('value'));
         $struct = $value->appendChild($dom->createElement('struct'));
 
         $member1 = $struct->appendChild($dom->createElement('member'));
-            $member1->appendChild($dom->createElement('name', 'faultCode'));
-            $value1 = $member1->appendChild($dom->createElement('value'));
-            $value1->appendChild($dom->createElement('int', 1000));
+        $member1->appendChild($dom->createElement('name', 'faultCode'));
+        $value1 = $member1->appendChild($dom->createElement('value'));
+        $value1->appendChild($dom->createElement('int', 1000));
 
         $member2 = $struct->appendChild($dom->createElement('member'));
-            $member2->appendChild($dom->createElement('name', 'faultString'));
-            $value2 = $member2->appendChild($dom->createElement('value', 'Error string'));
+        $member2->appendChild($dom->createElement('name', 'faultString'));
+        $value2 = $member2->appendChild($dom->createElement('value', 'Error string'));
 
         return $dom->saveXml();
     }
@@ -184,7 +186,10 @@ class Zend_XmlRpc_FaultTest extends TestCase
                 . '<member><name>faultCode</name><value><int>610</int></value></member>'
                 . '</struct></value></fault></methodResponse>');
         $this->assertSame(
-            'Invalid method class', $this->_fault->getMessage(), 'If empty fault string is given, resolve the code');
+            'Invalid method class',
+            $this->_fault->getMessage(),
+            'If empty fault string is given, resolve the code'
+        );
 
         $this->_fault->loadXml('<methodResponse><fault><value><struct>'
                 . '<member><name>faultCode</name><value><int>1234</int></value></member>'

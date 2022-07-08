@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -39,7 +41,6 @@ require_once 'Zend/Service/Amazon/Ec2/Keypair.php';
  */
 class Zend_Service_Amazon_Ec2_KeypairTest extends TestCase
 {
-
     /**
      * @var Zend_Service_Amazon_Ec2_Keypair
      */
@@ -60,8 +61,6 @@ class Zend_Service_Amazon_Ec2_KeypairTest extends TestCase
         ]);
         $this->adapter = $adapter;
         Zend_Service_Amazon_Ec2_Keypair::setHttpClient($client);
-
-
     }
 
     /**
@@ -196,16 +195,16 @@ class Zend_Service_Amazon_Ec2_KeypairTest extends TestCase
 
         $arrKeys = [
             [
-                'keyName'       => 'example-key-name',
-                'keyFingerprint'=> '1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f'
+                'keyName' => 'example-key-name',
+                'keyFingerprint' => '1f:51:ae:28:bf:89:e9:d8:1f:25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f'
             ],
             [
-                'keyName'       => 'zend-test-key',
-                'keyFingerprint'=> '25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f:1f:51:ae:28:bf:89:e9:d8:1f'
+                'keyName' => 'zend-test-key',
+                'keyFingerprint' => '25:5d:37:2d:7d:b8:ca:9f:f5:f1:6f:1f:51:ae:28:bf:89:e9:d8:1f'
             ]
         ];
 
-        foreach($response as $k => $r) {
+        foreach ($response as $k => $r) {
             $this->assertSame($arrKeys[$k], $r);
         }
     }
@@ -266,4 +265,3 @@ class Zend_Service_Amazon_Ec2_KeypairTest extends TestCase
         $this->assertTrue($response);
     }
 }
-

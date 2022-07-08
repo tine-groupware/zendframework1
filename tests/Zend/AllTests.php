@@ -1,7 +1,8 @@
 <?php
 
-use PHPUnit\TextUI\TestRunner;
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -135,7 +136,7 @@ class Zend_AllTests
         //     ob_end_flush();
         // }
 
-        (new TestRunner)->run(self::suite(), $arguments);
+        (new TestRunner())->run(self::suite(), $arguments);
     }
 
     /**

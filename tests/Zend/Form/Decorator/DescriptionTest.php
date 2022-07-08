@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,9 +54,8 @@ class Zend_Form_Decorator_DescriptionTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_DescriptionTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_DescriptionTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -196,10 +197,10 @@ class Zend_Form_Decorator_DescriptionTest extends TestCase
             [
                  'adapter' => 'array',
                  'content' => [
-                     'firstDescription'  => 'secondDescription',
+                     'firstDescription' => 'secondDescription',
                      'secondDescription' => 'thirdDescription',
                  ],
-                 'locale'  => 'en'
+                 'locale' => 'en'
             ]
         );
         // Create element

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -162,7 +164,7 @@ class Zend_XmlRpc_BigIntegerValueTest extends TestCase
     public function testMarschalBigIntegerFromCryptObjectThrowsException()
     {
         try {
-            Zend_XmlRpc_Value::getXmlRpcValue(new Zend_Crypt_Math_BigInteger);
+            Zend_XmlRpc_Value::getXmlRpcValue(new Zend_Crypt_Math_BigInteger());
             $this->fail('expected Zend_XmlRpc_Value_Exception has not been thrown');
         } catch (Zend_XmlRpc_Value_Exception $exception) {
             if (strpos($exception->getMessage(), 'Zend_Crypt_Math_BigInteger') === false) {

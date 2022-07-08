@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_ModulesTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -146,9 +148,9 @@ class Zend_Application_Resource_ModulesTest extends TestCase
         $resource->init();
         $bootstraps = $resource->getExecutedBootstraps();
         $this->assertEquals(4, count((array)$bootstraps));
-        $this->assertArrayHasKey('bar',     (array)$bootstraps);
+        $this->assertArrayHasKey('bar', (array)$bootstraps);
         $this->assertArrayHasKey('foo-bar', (array)$bootstraps);
-        $this->assertArrayHasKey('foo',     (array)$bootstraps);
+        $this->assertArrayHasKey('foo', (array)$bootstraps);
         $this->assertArrayHasKey('default', (array)$bootstraps);
     }
 
@@ -167,9 +169,9 @@ class Zend_Application_Resource_ModulesTest extends TestCase
         $resource->setBootstrap($this->bootstrap);
         $bootstraps = $resource->init();
         $this->assertEquals(4, count((array)$bootstraps));
-        $this->assertArrayHasKey('bar',     (array)$bootstraps);
+        $this->assertArrayHasKey('bar', (array)$bootstraps);
         $this->assertArrayHasKey('foo-bar', (array)$bootstraps);
-        $this->assertArrayHasKey('foo',     (array)$bootstraps);
+        $this->assertArrayHasKey('foo', (array)$bootstraps);
         $this->assertArrayHasKey('default', (array)$bootstraps);
     }
     
@@ -205,8 +207,7 @@ class Zend_Application_Resource_ModulesTest extends TestCase
 }
 
 require_once 'Zend/Application/Resource/Modules.php';
-class ZendTest_Application_Resource_ModulesHalf
-    extends Zend_Application_Resource_Modules 
+class ZendTest_Application_Resource_ModulesHalf extends Zend_Application_Resource_Modules
 {
     protected function bootstrapBootstraps($bootstraps)
     {

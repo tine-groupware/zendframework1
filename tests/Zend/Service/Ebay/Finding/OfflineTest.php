@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -73,7 +75,7 @@ class Zend_Service_Ebay_OfflineTest extends TestCase
         $this->assertEquals('foo', $this->_finding->getOption(Zend_Service_Ebay_Finding::OPTION_APP_ID));
 
         $options = [
-            Zend_Service_Ebay_Finding::OPTION_APP_ID    => 'app-id',
+            Zend_Service_Ebay_Finding::OPTION_APP_ID => 'app-id',
             Zend_Service_Ebay_Finding::OPTION_GLOBAL_ID => 'EBAY-GB',
             'foo' => 'bar'
         ];

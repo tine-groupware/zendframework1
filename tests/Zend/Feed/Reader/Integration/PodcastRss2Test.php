@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +36,6 @@ require_once 'Zend/Feed/Reader.php';
  */
 class Zend_Feed_Reader_Integration_PodcastRss2Test extends TestCase
 {
-
     protected $_feedSamplePath = null;
 
     protected function setUp(): void
@@ -42,12 +43,12 @@ class Zend_Feed_Reader_Integration_PodcastRss2Test extends TestCase
         Zend_Feed_Reader::reset();
         $this->_feedSamplePath = dirname(__FILE__) . '/_files/podcast.xml';
         $this->_options = Zend_Date::setOptions();
-        foreach($this->_options as $k=>$v) {
+        foreach ($this->_options as $k => $v) {
             if (is_null($v)) {
                 unset($this->_options[$k]);
             }
         }
-        Zend_Date::setOptions(['format_type'=>'iso']);
+        Zend_Date::setOptions(['format_type' => 'iso']);
     }
 
     protected function tearDown(): void
@@ -290,9 +291,9 @@ class Zend_Feed_Reader_Integration_PodcastRss2Test extends TestCase
         $entry = $feed->current();
 
         $expected = new stdClass();
-        $expected->url    = 'http://example.com/podcasts/everything/AllAboutEverythingEpisode3.m4a';
+        $expected->url = 'http://example.com/podcasts/everything/AllAboutEverythingEpisode3.m4a';
         $expected->length = '8727310';
-        $expected->type   = 'audio/x-m4a';
+        $expected->type = 'audio/x-m4a';
 
         $this->assertEquals($expected, $entry->getEnclosure());
     }

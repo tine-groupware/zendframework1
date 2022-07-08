@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -66,10 +68,8 @@ class Zend_Mobile_Push_AbstractTest extends TestCase
 
 class Zend_Mobile_Push_AbstractProxy extends Zend_Mobile_Push_Abstract
 {
-    
 }
 
 class Zend_Mobile_Push_AbstractProxy_Message extends Zend_Mobile_Push_Message_Abstract
 {
-
 }

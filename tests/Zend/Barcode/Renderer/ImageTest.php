@@ -35,7 +35,6 @@ require_once 'Zend/Barcode/Object/Code39.php';
  */
 class Zend_Barcode_Renderer_ImageTest extends Zend_Barcode_Renderer_TestCommon
 {
-
     protected function setUp(): void
     {
         if (!extension_loaded('gd')) {
@@ -82,7 +81,7 @@ class Zend_Barcode_Renderer_ImageTest extends Zend_Barcode_Renderer_TestCommon
     public function testBadHeight()
     {
         $this->expectException(Zend_Barcode_Renderer_Exception::class);
-        $this->_renderer->setHeight(- 1);
+        $this->_renderer->setHeight(-1);
     }
 
     public function testGoodWidth()
@@ -97,17 +96,19 @@ class Zend_Barcode_Renderer_ImageTest extends Zend_Barcode_Renderer_TestCommon
     public function testBadWidth()
     {
         $this->expectException(Zend_Barcode_Renderer_Exception::class);
-        $this->_renderer->setWidth(- 1);
+        $this->_renderer->setWidth(-1);
     }
 
     public function testAllowedImageType()
     {
-        $types = ['gif' => 'gif' , 'jpg' => 'jpeg' , 'jpeg' => 'jpeg' ,
+        $types = ['gif' => 'gif', 'jpg' => 'jpeg', 'jpeg' => 'jpeg',
                 'png' => 'png'];
         foreach ($types as $type => $expectedType) {
             $this->_renderer->setImageType($type);
-            $this->assertSame($expectedType,
-                    $this->_renderer->getImageType());
+            $this->assertSame(
+                $expectedType,
+                $this->_renderer->getImageType()
+            );
         }
     }
 
@@ -126,8 +127,10 @@ class Zend_Barcode_Renderer_ImageTest extends Zend_Barcode_Renderer_TestCommon
         $resource = $this->_renderer->draw();
         if (PHP_VERSION_ID < 80000) {
             $this->assertTrue(gettype($resource) == 'resource', 'Image must be a resource');
-            $this->assertTrue(get_resource_type($resource) == 'gd',
-                'Image must be a GD resource');
+            $this->assertTrue(
+                get_resource_type($resource) == 'gd',
+                'Image must be a GD resource'
+            );
         } else {
             $this->assertTrue(get_class($resource) === 'GdImage');
         }
@@ -144,8 +147,10 @@ class Zend_Barcode_Renderer_ImageTest extends Zend_Barcode_Renderer_TestCommon
         $resource = $this->_renderer->draw();
         if (PHP_VERSION_ID < 80000) {
             $this->assertTrue(gettype($resource) == 'resource', 'Image must be a resource');
-            $this->assertTrue(get_resource_type($resource) == 'gd',
-                'Image must be a GD resource');
+            $this->assertTrue(
+                get_resource_type($resource) == 'gd',
+                'Image must be a GD resource'
+            );
         } else {
             $this->assertTrue(get_class($resource) === 'GdImage');
         }

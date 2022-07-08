@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Gdata_Photos_PhotosTagEntryTest extends TestCase
 {
-
     protected $tagEntry = null;
 
     /**
@@ -46,8 +47,9 @@ class Zend_Gdata_Photos_PhotosTagEntryTest extends TestCase
     protected function setUp(): void
     {
         $tagEntryText = file_get_contents(
-                '_files/TestTagEntry.xml',
-                true);
+            '_files/TestTagEntry.xml',
+            true
+        );
         $this->tagEntry = new Zend_Gdata_Photos_TagEntry($tagEntryText);
     }
 
@@ -97,8 +99,12 @@ class Zend_Gdata_Photos_PhotosTagEntryTest extends TestCase
 
         // Assert that the entry's ID is correct
         $this->assertTrue($entry->getId() instanceof Zend_Gdata_App_Extension_Id);
-        $this->verifyProperty2($entry, "id", "text",
-                "http://picasaweb.google.com/data/entry/api/user/sample.user/tag/tag");
+        $this->verifyProperty2(
+            $entry,
+            "id",
+            "text",
+            "http://picasaweb.google.com/data/entry/api/user/sample.user/tag/tag"
+        );
     }
 
     /**
@@ -111,8 +117,12 @@ class Zend_Gdata_Photos_PhotosTagEntryTest extends TestCase
 
         // Assert that the entry's updated date is correct
         $this->assertTrue($entry->getUpdated() instanceof Zend_Gdata_App_Extension_Updated);
-        $this->verifyProperty2($entry, "updated", "text",
-                "1970-01-01T00:01:01.000Z");
+        $this->verifyProperty2(
+            $entry,
+            "updated",
+            "text",
+            "1970-01-01T00:01:01.000Z"
+        );
     }
 
     /**
@@ -127,5 +137,4 @@ class Zend_Gdata_Photos_PhotosTagEntryTest extends TestCase
         $this->assertTrue($entry->getTitle() instanceof Zend_Gdata_App_Extension_Title);
         $this->verifyProperty2($entry, "title", "text", "tag");
     }
-
 }

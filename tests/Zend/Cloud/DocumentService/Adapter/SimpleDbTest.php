@@ -1,6 +1,8 @@
 <?php
+
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -47,8 +49,7 @@ require_once 'Zend/Config.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
-    extends Zend_Cloud_DocumentService_TestCase
+class Zend_Cloud_DocumentService_Adapter_SimpleDbTest extends Zend_Cloud_DocumentService_TestCase
 {
     /**
      * Period to wait for propagation in seconds
@@ -60,7 +61,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
 
     protected $_clientType = 'Zend_Service_Amazon_SimpleDb';
 
-	/**
+    /**
      * Runs the test methods of this class.
      *
      * @access public
@@ -68,8 +69,8 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
      */
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testUpdateDocumentMergeAll()
@@ -82,8 +83,12 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
         $this->_commonDocument->insertDocument($name, $doc);
         $doc1 = $this->_makeDocument($data[1]);
         $this->_wait();
-        $this->_commonDocument->updateDocument($name, $doc->getID(), $doc1,
-            [Zend_Cloud_DocumentService_Adapter_SimpleDb::MERGE_OPTION => true]);
+        $this->_commonDocument->updateDocument(
+            $name,
+            $doc->getID(),
+            $doc1,
+            [Zend_Cloud_DocumentService_Adapter_SimpleDb::MERGE_OPTION => true]
+        );
         $this->_wait();
 
         $fetchdoc = $this->_commonDocument->fetchDocument($name, $doc->getID());
@@ -106,9 +111,13 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
         $this->_commonDocument->insertDocument($name, $doc);
         $doc1 = $this->_makeDocument($data[1]);
         $this->_wait();
-        $this->_commonDocument->updateDocument($name, $doc->getID(), $doc1,
+        $this->_commonDocument->updateDocument(
+            $name,
+            $doc->getID(),
+            $doc1,
             [Zend_Cloud_DocumentService_Adapter_SimpleDb::MERGE_OPTION =>
-                ["year" => true, "pages" => true]]);
+                ["year" => true, "pages" => true]]
+        );
         $this->_wait();
 
         $fetchdoc = $this->_commonDocument->fetchDocument($name, $doc->getID());
@@ -122,7 +131,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
         $this->_commonDocument->deleteCollection($name);
     }
 
-    static function getConfigArray()
+    public static function getConfigArray()
     {
         return [
                 Zend_Cloud_DocumentService_Factory::DOCUMENT_ADAPTER_KEY => 'Zend_Cloud_DocumentService_Adapter_SimpleDb',
@@ -149,36 +158,36 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
     {
         return [
             [
-	        	parent::ID_FIELD => "0385333498",
-	        	"name" =>	"The Sirens of Titan",
-	        	"author" =>	"Kurt Vonnegut",
-	        	"year"	=> 1959,
-	        	"pages" =>	336,
-	        	"keyword" => ["Book", "Paperback"]
-	        	],
+                parent::ID_FIELD => "0385333498",
+                "name" => "The Sirens of Titan",
+                "author" => "Kurt Vonnegut",
+                "year" => 1959,
+                "pages" => 336,
+                "keyword" => ["Book", "Paperback"]
+                ],
             [
-	        	parent::ID_FIELD => "0802131786",
-	        	"name" =>	"Tropic of Cancer",
-	        	"author" =>	"Henry Miller",
-	        	"year"	=> 1934,
-	        	"pages" =>	318,
-	        	"keyword" => ["Book"]
-	        	],
+                parent::ID_FIELD => "0802131786",
+                "name" => "Tropic of Cancer",
+                "author" => "Henry Miller",
+                "year" => 1934,
+                "pages" => 318,
+                "keyword" => ["Book"]
+                ],
             [
-	        	parent::ID_FIELD => "B000T9886K",
-	        	"name" =>	"In Between",
-	        	"author" =>	"Paul Van Dyk",
-	        	"year"	=> 2007,
-	        	"keyword" => ["CD", "Music"]
-	        	],
-	        [
-	        	parent::ID_FIELD => "1579124585",
-	        	"name" =>	"The Right Stuff",
-	        	"author" =>	"Tom Wolfe",
-	        	"year"	=> 1979,
-	        	"pages" =>	304,
-	        	"keyword" => ["American", "Book", "Hardcover"]
-	        	],
+                parent::ID_FIELD => "B000T9886K",
+                "name" => "In Between",
+                "author" => "Paul Van Dyk",
+                "year" => 2007,
+                "keyword" => ["CD", "Music"]
+                ],
+            [
+                parent::ID_FIELD => "1579124585",
+                "name" => "The Right Stuff",
+                "author" => "Tom Wolfe",
+                "year" => 1979,
+                "pages" => 304,
+                "keyword" => ["American", "Book", "Hardcover"]
+                ],
         ];
     }
 
@@ -186,7 +195,6 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
     {
         return "select * from $domain where itemName() = '$s1' OR itemName() = '$s2'";
     }
-
 }
 
 if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_DocumentService_Adapter_SimpleDbTest::main') {

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -43,11 +45,13 @@ class Zend_Tool_Project_Provider_ControllerTest extends TestCase
     /**
      *
      * @group ZF-8305
-     */   
+     */
     public function testHasResourceWithNonexistentModuleDiesFatalError()
     {
-        $this->assertFalse(Zend_Tool_Project_Provider_Controller::hasResource(new Zend_Tool_Project_Profile(),
-                'NewController', 'NonexistentModule'));
+        $this->assertFalse(Zend_Tool_Project_Provider_Controller::hasResource(
+            new Zend_Tool_Project_Profile(),
+            'NewController',
+            'NonexistentModule'
+        ));
     }
-
 }

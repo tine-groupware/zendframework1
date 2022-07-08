@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -538,7 +540,8 @@ class Zend_Service_Yahoo_OfflineTest extends TestCase
      * @group ZF-3636
      * @doesNotPerformAssertions
      */
-    public function testWebResultCache(){
+    public function testWebResultCache()
+    {
         // create empty result eg. without cache section
         $domDoc = new DOMDocument();
         $element = $domDoc->createElement('Result');

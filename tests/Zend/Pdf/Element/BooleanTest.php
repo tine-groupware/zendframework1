@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -55,7 +57,7 @@ class Zend_Pdf_Element_BooleanTest extends TestCase
 
     public function testGetType()
     {
-        $boolObj = new Zend_Pdf_Element_Boolean((boolean) 100);
+        $boolObj = new Zend_Pdf_Element_Boolean((bool) 100);
         $this->assertEquals($boolObj->getType(), Zend_Pdf_Element::TYPE_BOOL);
     }
 

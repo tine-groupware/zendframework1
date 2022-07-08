@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_DojoTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -104,8 +106,8 @@ class Zend_Application_Resource_DojoTest extends TestCase
     public function testOptionsPassedToResourceAreUsedToSetDojosContainerState()
     {
         $options = [
-            'requireModules'     => ['DojoTest'],
-            'localPath'          => '/ofc/ZF/Rules/',
+            'requireModules' => ['DojoTest'],
+            'localPath' => '/ofc/ZF/Rules/',
         ];
 
         $resource = new Zend_Application_Resource_Dojo($options);
@@ -116,7 +118,7 @@ class Zend_Application_Resource_DojoTest extends TestCase
 
         $test = [
             'requireModules' => $dojo->getModules(),
-            'localPath'      => $dojo->getLocalPath()
+            'localPath' => $dojo->getLocalPath()
         ];
         $this->assertEquals($options, $test);
     }

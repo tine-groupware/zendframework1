@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -47,10 +49,11 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
 class Zend_Rest_TestController extends Zend_Rest_Controller
 {
     public $testValue = '';
-    public function __construct(Zend_Controller_Request_Abstract $request,
-                                Zend_Controller_Response_Abstract $response,
-                                array $invokeArgs = [])
-    {
+    public function __construct(
+        Zend_Controller_Request_Abstract $request,
+        Zend_Controller_Response_Abstract $response,
+        array $invokeArgs = []
+    ) {
         $this->testValue = '';
     }
     public function indexAction()
@@ -77,7 +80,6 @@ class Zend_Rest_TestController extends Zend_Rest_Controller
     {
         $this->testValue = 'deleteAction';
     }
-
 }
 /**
  * @category   Zend
@@ -99,9 +101,8 @@ class Zend_Rest_ControllerTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Rest_ControllerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Rest_ControllerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void

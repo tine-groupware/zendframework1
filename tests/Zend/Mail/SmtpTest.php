@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -48,11 +50,11 @@ class Zend_Mail_SmtpTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->_params = ['host'     => TESTS_ZEND_MAIL_SMTP_HOST,
-                               'port'     => TESTS_ZEND_MAIL_SMTP_PORT,
+        $this->_params = ['host' => TESTS_ZEND_MAIL_SMTP_HOST,
+                               'port' => TESTS_ZEND_MAIL_SMTP_PORT,
                                'username' => TESTS_ZEND_MAIL_SMTP_USER,
                                'password' => TESTS_ZEND_MAIL_SMTP_PASSWORD,
-                               'auth'     => TESTS_ZEND_MAIL_SMTP_AUTH];
+                               'auth' => TESTS_ZEND_MAIL_SMTP_AUTH];
     }
 
     /**

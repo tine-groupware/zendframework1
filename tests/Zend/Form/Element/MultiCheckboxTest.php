@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Form_Element_MultiCheckboxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Form_Element_MultiCheckboxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Element_MultiCheckboxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -121,10 +123,10 @@ class Zend_Form_Element_MultiCheckboxTest extends TestCase
     public function testCanDisableIndividualMultiCheckboxOptions()
     {
         $this->element->setMultiOptions([
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
-                'bat'  => 'Bat',
+                'foo' => 'Foo',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
+                'bat' => 'Bat',
                 'test' => 'Test',
             ])
             ->setAttrib('disable', ['baz', 'test']);
@@ -146,10 +148,10 @@ class Zend_Form_Element_MultiCheckboxTest extends TestCase
     public function testSpecifiedSeparatorIsUsedWhenRendering()
     {
         $this->element->setMultiOptions([
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
-                'bat'  => 'Bat',
+                'foo' => 'Foo',
+                'bar' => 'Bar',
+                'baz' => 'Baz',
+                'bat' => 'Bat',
                 'test' => 'Test',
             ])
             ->setSeparator('--FooBarFunSep--');
@@ -181,8 +183,8 @@ class Zend_Form_Element_MultiCheckboxTest extends TestCase
             'elements' => [
                 '100_1' => ['MultiCheckbox', [
                     'multiOptions' => [
-                        '100_1_1'  => 'Agriculture',
-                        '100_1_2'  => 'Automotive',
+                        '100_1_1' => 'Agriculture',
+                        '100_1_2' => 'Automotive',
                         '100_1_12' => 'Chemical',
                         '100_1_13' => 'Communications',
                     ],
@@ -295,7 +297,7 @@ class Zend_Form_Element_MultiCheckboxTest extends TestCase
         $this->element->setRegisterInArrayValidator(true);
     
         $this->assertTrue($this->element->isValid(['foo']));
-        $this->assertTrue($this->element->isValid(['foo','baz']));
+        $this->assertTrue($this->element->isValid(['foo', 'baz']));
         
         $this->element->setAllowEmpty(true);
         $this->assertTrue($this->element->isValid([]));

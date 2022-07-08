@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -61,7 +63,8 @@ class Zend_Service_Amazon_Ec2_AbstractTest extends TestCase
         try {
             $class = new TestAmamzonEc2Abstract();
             $this->fail('Exception should be thrown when no keys are passed in.');
-        } catch(Zend_Service_Amazon_Exception $zsae) {}
+        } catch (Zend_Service_Amazon_Exception $zsae) {
+        }
     }
 
     public function testSetRegion()
@@ -99,7 +102,6 @@ class Zend_Service_Amazon_Ec2_AbstractTest extends TestCase
 
 class TestAmamzonEc2Abstract extends Zend_Service_Amazon_Ec2_Abstract
 {
-
     public function returnRegion()
     {
         return $this->_region;
@@ -110,4 +112,3 @@ class TestAmamzonEc2Abstract extends Zend_Service_Amazon_Ec2_Abstract
         return $this->signParameters($params);
     }
 }
-

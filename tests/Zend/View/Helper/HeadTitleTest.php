@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -67,8 +69,8 @@ class Zend_View_Helper_HeadTitleTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_HeadTitleTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_HeadTitleTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -223,9 +225,9 @@ class Zend_View_Helper_HeadTitleTest extends TestCase
         $this->assertEquals('<title>Message 1 (en)</title>', $this->helper->toString());
     }
 
-   /**
-    * @group ZF-8036
-    */
+    /**
+     * @group ZF-8036
+     */
     public function testHeadTitleZero()
     {
         $this->helper->headTitle('0');

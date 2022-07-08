@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -59,8 +61,8 @@ class Zend_Dojo_Form_Element_NumberTextBoxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_Form_Element_NumberTextBoxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_Form_Element_NumberTextBoxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -74,7 +76,7 @@ class Zend_Dojo_Form_Element_NumberTextBoxTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view    = $this->getView();
+        $this->view = $this->getView();
         $this->element = $this->getElement();
         $this->element->setView($this->view);
     }

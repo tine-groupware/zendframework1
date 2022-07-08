@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +52,8 @@ class Zend_Server_Method_CallbackTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Server_Method_CallbackTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Server_Method_CallbackTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -144,8 +146,8 @@ class Zend_Server_Method_CallbackTest extends TestCase
     public function testConstructorShouldSetStateFromOptions()
     {
         $options = [
-            'type'   => 'static',
-            'class'  => 'Foo',
+            'type' => 'static',
+            'class' => 'Foo',
             'method' => 'bar',
         ];
         $callback = new Zend_Server_Method_Callback($options);

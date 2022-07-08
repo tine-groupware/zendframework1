@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -222,7 +224,7 @@ class Zend_Validate_BarcodeTest extends TestCase
         $this->assertTrue($barcode->isValid('00075678164124'));
         $this->assertTrue($barcode->isValid('Test93Test93Test'));
 
-// @TODO: CODE39 EXTENDED CHECKSUM VALIDATION MISSING
+        // @TODO: CODE39 EXTENDED CHECKSUM VALIDATION MISSING
 //        $barcode->setChecksum(true);
 //        $this->assertTrue($barcode->isValid('159AZH'));
 //        $this->assertFalse($barcode->isValid('159AZG'));
@@ -245,7 +247,7 @@ class Zend_Validate_BarcodeTest extends TestCase
         $this->assertTrue($barcode->isValid('TEST93+'));
         $this->assertTrue($barcode->isValid('Test93+'));
 
-// @TODO: CODE93 EXTENDED CHECKSUM VALIDATION MISSING
+        // @TODO: CODE93 EXTENDED CHECKSUM VALIDATION MISSING
 //        $barcode->setChecksum(true);
 //        $this->assertTrue($barcode->isValid('CODE 93E0'));
 //        $this->assertFalse($barcode->isValid('CODE 93E1'));

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -21,7 +23,7 @@ use PHPUnit\Framework\TestCase;
  * @version    $Id$
  */
 
-error_reporting( E_ALL | E_STRICT ); // now required for each test suite
+error_reporting(E_ALL | E_STRICT); // now required for each test suite
 
 /**
  * Zend_Json
@@ -553,7 +555,8 @@ EOT;
      *  @group ZF-3257
      */
 
-    public function testUsingXML8() {
+    public function testUsingXML8()
+    {
 
         // Set the XML contents that will be tested here.
         $xmlStringContents = <<<EOT
@@ -584,7 +587,6 @@ EOT;
 
         $this->assertSame("bar", $phpArray['a']['@text'], "The text element of a is not correct");
         $this->assertSame("foo", $phpArray['a']['b']['@attributes']['id'], "The id attribute of b is not correct");
-
     }
 
     /**
@@ -592,7 +594,7 @@ EOT;
      * @dataProvider providerNestingDepthIsHandledProperly
      */
     public function testNestingDepthIsHandledProperlyWhenNestingDepthExceedsMaximum($xmlStringContents)
-    {        
+    {
         $this->expectException(Zend_Json_Exception::class);
         Zend_Json::$maxRecursionDepthAllowed = 1;
         Zend_Json::fromXml($xmlStringContents, true);
@@ -603,14 +605,14 @@ EOT;
      * @dataProvider providerNestingDepthIsHandledProperly
      */
     public function testNestingDepthIsHandledProperlyWhenNestingDepthDoesNotExceedMaximum($xmlStringContents)
-    {   
+    {
         try {
             Zend_Json::$maxRecursionDepthAllowed = 25;
             $jsonString = Zend_Json::fromXml($xmlStringContents, true);
             $jsonArray = Zend_Json::decode($jsonString);
             $this->assertNotNull($jsonArray, "JSON decode result is NULL");
             $this->assertSame('A', $jsonArray['response']['message_type']['defaults']['close_rules']['after_responses']);
-        } catch ( Zend_Json_Exception $ex ) {
+        } catch (Zend_Json_Exception $ex) {
             $this->fail('Zend_Json::fromXml does not implement recursion check properly');
         }
     }
@@ -661,7 +663,4 @@ EOT;
 EOT;
         return [[$xmlStringContents]];
     }
-
 } // End of class Zend_Json_JsonXMLTest
-
-

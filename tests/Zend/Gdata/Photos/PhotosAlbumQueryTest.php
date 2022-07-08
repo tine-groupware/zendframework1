@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Gdata_Photos_PhotosAlbumQueryTest extends TestCase
 {
-
     /**
       * Check the consistency of an album feed request
       */
@@ -69,7 +70,7 @@ class Zend_Gdata_Photos_PhotosAlbumQueryTest extends TestCase
       * Check for thrown exceptions upon improper albumname/id setting
       */
     public function testAlbumQueryExceptions()
-      {
+    {
         $query = new Zend_Gdata_Photos_AlbumQuery();
         $query->setUser("sample.user");
 
@@ -87,7 +88,7 @@ class Zend_Gdata_Photos_PhotosAlbumQueryTest extends TestCase
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Gdata_App_InvalidArgumentException);
         }
-      }
+    }
 
     /**
       * Check the consistency of an album feed request
@@ -195,5 +196,4 @@ class Zend_Gdata_Photos_PhotosAlbumQueryTest extends TestCase
         // Assert that the generated query matches the correct one
         $this->assertEquals($queryString, $generatedString);
     }
-
 }

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -55,9 +57,8 @@ class Zend_View_Helper_HtmlListTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_View_Helper_HtmlListTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_HtmlListTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -147,7 +148,7 @@ class Zend_View_Helper_HtmlListTest extends TestCase
 
         $this->assertStringContainsString('<ul>' . Zend_View_Helper_HtmlList::EOL, $list);
         $this->assertStringContainsString('</ul>' . Zend_View_Helper_HtmlList::EOL, $list);
-        $this->assertStringContainsString('one<ul>' . Zend_View_Helper_HtmlList::EOL.'<li>four', $list);
+        $this->assertStringContainsString('one<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>four', $list);
         $this->assertStringContainsString('<li>six</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>' .
             Zend_View_Helper_HtmlList::EOL . '</li>' . Zend_View_Helper_HtmlList::EOL . '<li>two', $list);
     }
@@ -222,7 +223,6 @@ class Zend_View_Helper_HtmlListTest extends TestCase
         foreach ($items[1] as $item) {
             $this->assertMatchesRegularExpression('#<ul[^>]*?class="foo"[^>]*>.*?(<li>' . $item . ')#s', $list);
         }
-
     }
 
     /**

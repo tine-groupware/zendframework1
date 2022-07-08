@@ -3,6 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,8 +51,8 @@ class Zend_Controller_Action_Helper_NamespaceTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Controller_Action_Helper_NamespaceTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Controller_Action_Helper_NamespaceTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -66,7 +67,7 @@ class Zend_Controller_Action_Helper_NamespaceTest extends TestCase
         require_once dirname(__FILE__) . '/../../_files/Helpers/NamespacedHelper.php';
         
         $className = 'MyApp\Controller\Action\Helper\NamespacedHelper';
-        $helper = new $className;
+        $helper = new $className();
         $this->assertEquals('NamespacedHelper', $helper->getName());
     }
 }

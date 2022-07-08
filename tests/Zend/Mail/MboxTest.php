@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -201,15 +203,15 @@ class Zend_Mail_MboxTest extends TestCase
         $this->assertEquals('Simple Message', $subject);
     }
 
-/*
-    public function testFetchTopBody()
-    {
-        $mail = new Zend_Mail_Storage_Mbox(array('filename' => $this->_mboxFile));
+    /*
+        public function testFetchTopBody()
+        {
+            $mail = new Zend_Mail_Storage_Mbox(array('filename' => $this->_mboxFile));
 
-        $content = $mail->getHeader(3, 1)->getContent();
-        $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
-    }
-*/
+            $content = $mail->getHeader(3, 1)->getContent();
+            $this->assertEquals('Fair river! in thy bright, clear flow', trim($content));
+        }
+    */
 
     public function testFetchMessageHeader()
     {
@@ -327,7 +329,7 @@ class Zend_Mail_MboxTest extends TestCase
                 $this->markTestSkipped('seems like you are root and we therefore cannot test the error handling');
             }
             $this->fail('no exception while waking with non readable file');
-         }
+        }
     }
 
     public function testUniqueId()
@@ -342,7 +344,7 @@ class Zend_Mail_MboxTest extends TestCase
             $this->assertEquals($num, $id);
 
             if ($mail->getNumberByUniqueId($id) != $num) {
-                    $this->fail('reverse lookup failed');
+                $this->fail('reverse lookup failed');
             }
         }
     }
@@ -359,5 +361,4 @@ class Zend_Mail_MboxTest extends TestCase
         $this->assertEquals($mail->getMessage(2)->subject, 'test2');
         $this->assertEquals($mail->getMessage(2)->getContent(), '');
     }
-
 }

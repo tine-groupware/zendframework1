@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -66,8 +68,8 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_HorizontalSliderTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_HorizontalSliderTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -81,7 +83,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_HorizontalSlider();
         $this->helper->setView($this->view);
     }
@@ -110,8 +112,8 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
             'elementId',
             '',
             [
-                'minimum'        => -10,
-                'maximum'        => 10,
+                'minimum' => -10,
+                'maximum' => 10,
                 'discreteValues' => 11,
                 'topDecoration' => [
                     'labels' => [
@@ -240,8 +242,8 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
             'elementId',
             '',
             [
-                'minimum'        => -10,
-                'maximum'        => 10,
+                'minimum' => -10,
+                'maximum' => 10,
                 'discreteValues' => 11,
                 'topDecoration' => [
                     'labels' => [
@@ -271,7 +273,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
      */
     public function testShouldCreateAppropriateIdsForElementsInSubForms()
     {
-        $form = new Zend_Dojo_Form;
+        $form = new Zend_Dojo_Form();
         $form->setDecorators([
             'FormElements',
             ['TabContainer', [
@@ -286,14 +288,14 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
 
         $sliderForm = new Zend_Dojo_Form_SubForm();
         $sliderForm->setAttribs([
-            'name'   => 'slidertab',
+            'name' => 'slidertab',
             'legend' => 'Slider Elements',
         ]);
 
         $sliderForm->addElement(
-                'HorizontalSlider',
-                'slide1',
-                [
+            'HorizontalSlider',
+            'slide1',
+            [
                     'label' => 'Slide me:',
                     'minimum' => 0,
                     'maximum' => 25,
@@ -303,7 +305,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
                     'topDecorationLabels' => ['0%', '50%', '100%'],
                     'topDecorationParams' => ['style' => 'padding-bottom: 20px;']
                 ]
-            );
+        );
 
         $form->addSubForm($sliderForm, 'slidertab')
              ->setView($this->getView());

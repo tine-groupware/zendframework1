@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -40,7 +42,6 @@ require_once '_files/ProviderFullFeatured.php';
  */
 class Zend_Tool_Framework_Provider_AbstractTest extends TestCase
 {
-
     protected $_request = null;
     protected $_response = null;
     protected $_registry = null;
@@ -63,5 +64,4 @@ class Zend_Tool_Framework_Provider_AbstractTest extends TestCase
         $this->assertTrue(array_shift($returnInternals) === $this->_request);
         $this->assertTrue(array_shift($returnInternals) === $this->_response);
     }
-
 }

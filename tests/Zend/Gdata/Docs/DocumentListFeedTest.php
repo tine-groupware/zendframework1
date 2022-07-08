@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,12 +37,12 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Docs_DocumentListFeedTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->docFeed = new Zend_Gdata_Docs_DocumentListFeed(
-                file_get_contents(dirname(__FILE__) . '/_files/TestDataDocumentListFeedSample.xml'),
-                true);
+            file_get_contents(dirname(__FILE__) . '/_files/TestDataDocumentListFeedSample.xml'),
+            true
+        );
     }
 
     public function testToAndFromString()
@@ -48,8 +50,7 @@ class Zend_Gdata_Docs_DocumentListFeedTest extends TestCase
         // There should be 2 entries in the feed.
         $this->assertTrue(count($this->docFeed->entries) == 2);
         $this->assertTrue($this->docFeed->entries->count() == 2);
-        foreach($this->docFeed->entries as $entry)
-        {
+        foreach ($this->docFeed->entries as $entry) {
             $this->assertTrue($entry instanceof Zend_Gdata_Docs_DocumentListEntry);
         }
 
@@ -59,10 +60,8 @@ class Zend_Gdata_Docs_DocumentListFeedTest extends TestCase
         $newDocFeed->transferFromDom($doc->documentElement);
 
         $this->assertTrue(count($newDocFeed->entries) == count($this->docFeed->entries));
-        foreach($newDocFeed->entries as $entry)
-        {
+        foreach ($newDocFeed->entries as $entry) {
             $this->assertTrue($entry instanceof Zend_Gdata_Docs_DocumentListEntry);
         }
     }
-
 }

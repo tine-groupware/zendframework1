@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -70,8 +72,8 @@ class Zend_Application_Resource_TranslateTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -153,8 +155,10 @@ class Zend_Application_Resource_TranslateTest extends TestCase
     public function testTranslationIsAddedIfRegistryKeyExistsAlready()
     {
         $options1 = ['foo' => 'bar'];
-        $options2 = array_merge_recursive($this->_translationOptions,
-                                          ['data' => ['message4' => 'bericht4']]);
+        $options2 = array_merge_recursive(
+            $this->_translationOptions,
+            ['data' => ['message4' => 'bericht4']]
+        );
 
         $translate = new Zend_Translate(Zend_Translate::AN_ARRAY, $options1);
         Zend_Registry::set('Zend_Translate', $translate);
@@ -247,10 +251,10 @@ class Zend_Application_Resource_TranslateTest extends TestCase
      */
     public function testLogFactory()
     {
-        $options                    = $this->_translationOptions;
-        $options['log'][0]          = new Zend_Log_Writer_Mock();
+        $options = $this->_translationOptions;
+        $options['log'][0] = new Zend_Log_Writer_Mock();
         $options['logUntranslated'] = true;
-        $options['locale']          = 'en';
+        $options['locale'] = 'en';
 
         $resource = new Zend_Application_Resource_Translate($options);
         $resource->setBootstrap($this->bootstrap);

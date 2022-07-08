@@ -41,7 +41,6 @@ require_once 'Zend/Db/TestSetup.php';
  */
 abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -50,7 +49,7 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 
     protected function tearDown(): void
     {
-        if($this->_db instanceof Zend_Db_Adapter_Abstract) {
+        if ($this->_db instanceof Zend_Db_Adapter_Abstract) {
             $this->_db->getProfiler()->setEnabled(false);
         }
         parent::tearDown();
@@ -178,7 +177,7 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 
         // analyze query profiles
         $profiles = $this->_db->getProfiler()->getQueryProfiles();
-        $this->assertTrue(is_array($profiles), 'Expected array, got '.gettype($profiles));
+        $this->assertTrue(is_array($profiles), 'Expected array, got ' . gettype($profiles));
         $this->assertEquals(1, count($profiles), 'Expected to find 1 profile');
         $qp = $profiles[0];
         $this->assertTrue($qp instanceof Zend_Db_Profiler_Query);
@@ -200,7 +199,7 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
 
         // analyze query profiles
         $profiles = $this->_db->getProfiler()->getQueryProfiles();
-        $this->assertTrue(is_array($profiles), 'Expected array, got '.gettype($profiles));
+        $this->assertTrue(is_array($profiles), 'Expected array, got ' . gettype($profiles));
         $this->assertEquals(2, count($profiles), 'Expected to find 2 profiles');
         $qp = $profiles[1];
         $this->assertTrue($qp instanceof Zend_Db_Profiler_Query);
@@ -238,8 +237,11 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
         $this->assertTrue(is_array($qps), 'Expecting some query profiles, got none');
         foreach ($qps as $qp) {
             $qtype = $qp->getQueryType();
-            $this->assertEquals($queryType, $qtype,
-                "Found query type $qtype, which should have been filtered out");
+            $this->assertEquals(
+                $queryType,
+                $qtype,
+                "Found query type $qtype, which should have been filtered out"
+            );
         }
 
         $prof->setEnabled(false);
@@ -264,6 +266,4 @@ abstract class Zend_Db_Profiler_TestCommon extends Zend_Db_TestSetup
     {
         $this->_testProfilerSetFilterQueryTypeCommon(Zend_Db_Profiler::SELECT);
     }
-
-
 }

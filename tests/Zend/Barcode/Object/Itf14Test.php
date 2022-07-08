@@ -34,7 +34,6 @@ require_once 'Zend/Barcode/Object/Itf14.php';
  */
 class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
 {
-
     protected function _getBarcodeObject($options = null)
     {
         return new Zend_Barcode_Object_Itf14($options);
@@ -146,7 +145,8 @@ class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
         $this->_object->setStretchText(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Itf14_0000123456789_stretchtext_instructions');
+            'Itf14_0000123456789_stretchtext_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -156,7 +156,8 @@ class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Itf14_0000123456789_border_instructions');
+            'Itf14_0000123456789_border_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -166,7 +167,8 @@ class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBearerBars(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Itf14_0000123456789_bearerbar_instructions');
+            'Itf14_0000123456789_bearerbar_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -176,7 +178,8 @@ class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
         $this->_object->setOrientation(60);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Itf14_0000123456789_oriented_instructions');
+            'Itf14_0000123456789_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -187,7 +190,8 @@ class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
         $this->_object->setStretchText(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Itf14_0000123456789_stretchtext_oriented_instructions');
+            'Itf14_0000123456789_stretchtext_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -198,7 +202,8 @@ class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBorder(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Itf14_0000123456789_border_oriented_instructions');
+            'Itf14_0000123456789_border_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 
@@ -209,7 +214,8 @@ class Zend_Barcode_Object_Itf14Test extends Zend_Barcode_Object_TestCommon
         $this->_object->setWithBearerBars(true);
         $this->_object->draw();
         $instructions = $this->loadInstructionsFile(
-                'Itf14_0000123456789_bearerbar_oriented_instructions');
+            'Itf14_0000123456789_bearerbar_oriented_instructions'
+        );
         $this->assertEquals($instructions, $this->_object->getInstructions());
     }
 

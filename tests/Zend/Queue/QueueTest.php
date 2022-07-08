@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_Queue_QueueTest extends TestCase
     {
         // Test Zend_Config
         $this->config = [
-            'name'      => 'queue1',
-            'params'    => [],
+            'name' => 'queue1',
+            'params' => [],
         ];
 
         $this->queue = new Zend_Queue('array', $this->config);
@@ -80,9 +82,9 @@ class Zend_Queue_QueueTest extends TestCase
     {
         // Test Zend_Config
         $config = [
-            'name'      => 'queue1',
-            'params'    => [],
-            'adapter'   => 'array'
+            'name' => 'queue1',
+            'params' => [],
+            'adapter' => 'array'
         ];
 
         require_once "Zend/Config.php";
@@ -213,7 +215,7 @@ class Zend_Queue_QueueTest extends TestCase
             'isExists'
         ];
 
-        foreach ( array_values($func) as $f ) {
+        foreach (array_values($func) as $f) {
             $this->assertTrue(isset($list[$f]));
             $this->assertTrue(is_bool($list[$f]));
         }
@@ -222,9 +224,9 @@ class Zend_Queue_QueueTest extends TestCase
     public function test_isSupported()
     {
         $list = $this->queue->getCapabilities();
-        foreach ( $list as $function => $result ) {
+        foreach ($list as $function => $result) {
             $this->assertTrue(is_bool($result));
-            if ( $result ) {
+            if ($result) {
                 $this->assertTrue($this->queue->isSupported($function));
             } else {
                 $this->assertFalse($this->queue->isSupported($function));

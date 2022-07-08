@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -62,8 +64,8 @@ class Zend_Dojo_DojoTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_DojoTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_DojoTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -100,7 +102,7 @@ class Zend_Dojo_DojoTest extends TestCase
                 ->addElement('text', 'bat');
         $form->addDisplayGroup(['foo', 'bar'], 'foobar')
              ->addSubForm($subForm, 'sub')
-             ->setView(new Zend_View);
+             ->setView(new Zend_View());
         return $form;
     }
 
@@ -153,7 +155,7 @@ class Zend_Dojo_DojoTest extends TestCase
 
     public function testEnableViewShouldSetAppropriateViewHelperPaths()
     {
-        $view = new Zend_View;
+        $view = new Zend_View();
         Zend_Dojo::enableView($view);
         $helperLoader = $view->getPluginLoader('helper');
         $paths = $helperLoader->getPaths('Zend_Dojo_View_Helper');

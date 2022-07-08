@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -148,19 +150,19 @@ class Zend_Validate_IsbnTest extends TestCase
      */
     public function testInitialization()
     {
-        $options = ['type'      => Zend_Validate_Isbn::AUTO,
+        $options = ['type' => Zend_Validate_Isbn::AUTO,
                          'separator' => ' '];
         $validator = new Zend_Validate_Isbn($options);
         $this->assertTrue($validator->getType() == Zend_Validate_Isbn::AUTO);
         $this->assertTrue($validator->getSeparator() == ' ');
 
-        $options = ['type'      => Zend_Validate_Isbn::ISBN10,
+        $options = ['type' => Zend_Validate_Isbn::ISBN10,
                          'separator' => '-'];
         $validator = new Zend_Validate_Isbn($options);
         $this->assertTrue($validator->getType() == Zend_Validate_Isbn::ISBN10);
         $this->assertTrue($validator->getSeparator() == '-');
 
-        $options = ['type'      => Zend_Validate_Isbn::ISBN13,
+        $options = ['type' => Zend_Validate_Isbn::ISBN13,
                          'separator' => ''];
         $validator = new Zend_Validate_Isbn($options);
         $this->assertTrue($validator->getType() == Zend_Validate_Isbn::ISBN13);

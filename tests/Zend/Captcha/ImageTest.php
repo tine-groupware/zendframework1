@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,9 +52,8 @@ class Zend_Captcha_ImageTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Captcha_ImageTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Captcha_ImageTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -67,10 +68,10 @@ class Zend_Captcha_ImageTest extends TestCase
             $this->markTestSkipped('The GD extension is not available.');
             return;
         }
-        if(!function_exists("imagepng")) {
+        if (!function_exists("imagepng")) {
             $this->markTestSkipped("Image CAPTCHA requires PNG support");
         }
-        if(!function_exists("imageftbbox")) {
+        if (!function_exists("imageftbbox")) {
             $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
         }
 
@@ -78,16 +79,18 @@ class Zend_Captcha_ImageTest extends TestCase
             unset($this->word);
         }
         $this->testDir = $this->_getTmpDir() . '/ZF_test_images';
-        if(!is_dir($this->testDir)) {
+        if (!is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
-        $this->element = new Zend_Form_Element_Captcha('captchaI',
-                    ['captcha' => ['Image',
+        $this->element = new Zend_Form_Element_Captcha(
+            'captchaI',
+            ['captcha' => ['Image',
                                              'sessionClass' => 'Zend_Captcha_ImageTest_SessionContainer',
                                              'imgDir' => $this->testDir,
-                                             'font' => dirname(__FILE__). '/../Pdf/_fonts/Vera.ttf']
-                         ]);
-        $this->captcha =  $this->element->getCaptcha();
+                                             'font' => dirname(__FILE__) . '/../Pdf/_fonts/Vera.ttf']
+                         ]
+        );
+        $this->captcha = $this->element->getCaptcha();
     }
 
     /**
@@ -99,12 +102,11 @@ class Zend_Captcha_ImageTest extends TestCase
     protected function tearDown(): void
     {
         // remove chaptcha images
-        foreach(new DirectoryIterator($this->testDir) as $file) {
-            if(!$file->isDot() && !$file->isDir()) {
-                    unlink($file->getPathname());
+        foreach (new DirectoryIterator($this->testDir) as $file) {
+            if (!$file->isDot() && !$file->isDir()) {
+                unlink($file->getPathname());
             }
         }
-
     }
 
     /**
@@ -122,11 +124,11 @@ class Zend_Captcha_ImageTest extends TestCase
                 $tmpdir = realpath($_ENV['TMP']);
             } elseif (!empty($_ENV['TMPDIR'])) {
                 $tmpdir = realpath($_ENV['TMPDIR']);
-            } else if (!empty($_ENV['TEMP'])) {
+            } elseif (!empty($_ENV['TEMP'])) {
                 $tmpdir = realpath($_ENV['TEMP']);
             } else {
                 // Attemp to detect by creating a temporary file
-                $tempFile = tempnam(md5(uniqid(rand(), TRUE)), '');
+                $tempFile = tempnam(md5(uniqid(rand(), true)), '');
                 if ($tempFile) {
                     $tmpdir = realpath(dirname($tempFile));
                     unlink($tempFile);
@@ -196,7 +198,7 @@ class Zend_Captcha_ImageTest extends TestCase
     public function testCaptchaCreatesImage()
     {
         $this->element->render($this->getView());
-        $this->assertTrue(file_exists($this->testDir."/".$this->captcha->getId().".png"));
+        $this->assertTrue(file_exists($this->testDir . "/" . $this->captcha->getId() . ".png"));
     }
 
     public function testCaptchaSetExpiration()
@@ -209,7 +211,7 @@ class Zend_Captcha_ImageTest extends TestCase
     public function testCaptchaImageCleanup()
     {
         $this->element->render($this->getView());
-        $filename = $this->testDir."/".$this->captcha->getId().".png";
+        $filename = $this->testDir . "/" . $this->captcha->getId() . ".png";
         $this->assertTrue(file_exists($filename));
         $this->captcha->setExpiration(1);
         $this->captcha->setGcFreq(1);
@@ -225,7 +227,7 @@ class Zend_Captcha_ImageTest extends TestCase
     public function testCaptchaImageCleanupOnlyCaptchaFilesIdentifiedByTheirSuffix()
     {
         $this->element->render($this->getView());
-        $filename = $this->testDir."/".$this->captcha->getId().".png";
+        $filename = $this->testDir . "/" . $this->captcha->getId() . ".png";
         $this->assertTrue(file_exists($filename));
         //Create other cache file
         $otherFile = $this->testDir . "/zf10006.cache";
@@ -270,8 +272,10 @@ class Zend_Captcha_ImageTest extends TestCase
 
     public function testAdapterElementName()
     {
-        $this->assertEquals($this->captcha->getName(),
-        $this->element->getName());
+        $this->assertEquals(
+            $this->captcha->getName(),
+            $this->element->getName()
+        );
     }
 
     public function testGenerateIsRandomised()
@@ -290,8 +294,10 @@ class Zend_Captcha_ImageTest extends TestCase
     public function testRenderSetsValue()
     {
         $this->testCaptchaIsRendered();
-        $this->assertEquals($this->captcha->getId(),
-        $this->element->getValue());
+        $this->assertEquals(
+            $this->captcha->getId(),
+            $this->element->getValue()
+        );
     }
 
     public function testLabelIsNull()
@@ -355,13 +361,13 @@ class Zend_Captcha_ImageTest extends TestCase
      */
     public function testImageTagRenderedProperlyBasedUponDoctype()
     {
-        $this->testCaptchaIsRendered();        
+        $this->testCaptchaIsRendered();
         $view = new Zend_View();
         
-        $view->doctype('XHTML1_STRICT');        
+        $view->doctype('XHTML1_STRICT');
         $this->assertMatchesRegularExpression('#/>$#', $this->captcha->render($view));
         
-        $view->doctype('HTML4_STRICT');        
+        $view->doctype('HTML4_STRICT');
         $this->assertMatchesRegularExpression('#[^/]>$#', $this->captcha->render($view));
     }
 }
@@ -390,7 +396,7 @@ class Zend_Captcha_ImageTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== self::$_word))  {
+        if (('word' == $name) && (null !== self::$_word)) {
             return true;
         }
 

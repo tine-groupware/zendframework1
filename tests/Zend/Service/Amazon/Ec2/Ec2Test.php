@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Service/Amazon/Ec2.php';
  */
 class Zend_Service_Amazon_Ec2_Ec2Test extends TestCase
 {
-
     /**
      * @var Zend_Service_Amazon_Ec2
      */
@@ -95,6 +96,4 @@ class Zend_Service_Amazon_Ec2_Ec2Test extends TestCase
         $object = Zend_Service_Amazon_Ec2::factory('security', 'access_key', 'secret_access_key');
         $this->assertTrue($object instanceof Zend_Service_Amazon_Ec2_Securitygroups);
     }
-
 }
-

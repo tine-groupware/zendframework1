@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -580,7 +582,9 @@ class Zend_Filter_BooleanTest extends TestCase
     public function testSettingLocalePerConstructorString()
     {
         $filter = new Zend_Filter_Boolean(
-            'all', true, 'de'
+            'all',
+            true,
+            'de'
         );
 
         $this->assertFalse($filter->filter(false));
@@ -613,7 +617,7 @@ class Zend_Filter_BooleanTest extends TestCase
     {
         require_once 'Zend/Config.php';
         $options = ['type' => 'all', 'locale' => 'de'];
-        $config  = new Zend_Config($options);
+        $config = new Zend_Config($options);
 
         $filter = new Zend_Filter_Boolean(
             $config

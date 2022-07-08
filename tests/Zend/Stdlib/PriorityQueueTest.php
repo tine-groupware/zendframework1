@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,8 +42,8 @@ class Zend_Stdlib_PriorityQueueTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -79,7 +81,7 @@ class Zend_Stdlib_PriorityQueueTest extends TestCase
             'baz',
             'bat',
         ];
-        $test     = $this->queue->toArray();
+        $test = $this->queue->toArray();
         $this->assertSame($expected, $test, var_export($test, 1));
     }
 
@@ -91,7 +93,7 @@ class Zend_Stdlib_PriorityQueueTest extends TestCase
             2,
             1,
         ];
-        $test     = $this->queue->toArray(Zend_Stdlib_PriorityQueue::EXTR_PRIORITY);
+        $test = $this->queue->toArray(Zend_Stdlib_PriorityQueue::EXTR_PRIORITY);
         $this->assertSame($expected, $test, var_export($test, 1));
     }
 
@@ -103,7 +105,7 @@ class Zend_Stdlib_PriorityQueueTest extends TestCase
             ['data' => 'baz', 'priority' => 2],
             ['data' => 'bat', 'priority' => 1],
         ];
-        $test     = $this->queue->toArray(Zend_Stdlib_PriorityQueue::EXTR_BOTH);
+        $test = $this->queue->toArray(Zend_Stdlib_PriorityQueue::EXTR_BOTH);
         $this->assertSame($expected, $test, var_export($test, 1));
     }
 

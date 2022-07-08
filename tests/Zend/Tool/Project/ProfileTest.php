@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,8 +38,7 @@ require_once 'Zend/Tool/Project/Profile.php';
  */
 class Zend_Tool_Project_ProfileTest extends TestCase
 {
-
-    protected $_projectDirectory   = null;
+    protected $_projectDirectory = null;
     protected $_projectProfileFile = null;
 
     /**
@@ -47,7 +48,7 @@ class Zend_Tool_Project_ProfileTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->_projectDirectory   = dirname(__FILE__) . '/_files/project1/';
+        $this->_projectDirectory = dirname(__FILE__) . '/_files/project1/';
         $this->_projectProfileFile = dirname(__FILE__) . '/_files/.zfproject.xml.orig';
 
         $this->_removeProjectFiles();
@@ -58,7 +59,7 @@ class Zend_Tool_Project_ProfileTest extends TestCase
         $contextRegistry->addContextsFromDirectory(dirname(__FILE__) . '/../../../../library/Zend/Tool/Project/Context/Zf/', 'Zend_Tool_Project_Context_Zf_');
 
         $this->_standardProfileFromData = new Zend_Tool_Project_Profile();
-        $this->_standardProfileFromData->setAttribute('profileData',      file_get_contents($this->_projectProfileFile));
+        $this->_standardProfileFromData->setAttribute('profileData', file_get_contents($this->_projectProfileFile));
         $this->_standardProfileFromData->setAttribute('projectDirectory', $this->_projectDirectory);
     }
 
@@ -69,7 +70,6 @@ class Zend_Tool_Project_ProfileTest extends TestCase
 
     public function testAttibuteGettersAndSettersWork()
     {
-
         $profile = new Zend_Tool_Project_Profile(['foo' => 'bar']);
         $profile->setAttributes(['baz' => 'BAZ']);
         $profile->setAttribute('boof', 'foob');
@@ -77,7 +77,6 @@ class Zend_Tool_Project_ProfileTest extends TestCase
         $this->assertEquals('foob', $profile->getAttribute('boof'));
         $this->assertContains('bar', $profile->getAttributes());
         $this->assertContains('BAZ', $profile->getAttributes());
-
     }
 
     public function testProfileLoadsFromExistingFileGivenProjectDirectory()
@@ -98,10 +97,9 @@ class Zend_Tool_Project_ProfileTest extends TestCase
 
     public function testProfileLoadsFromExistingFileGivenProfileFile()
     {
-
         $profile = new Zend_Tool_Project_Profile([
             'projectProfileFile' => $this->_projectProfileFile,
-            'projectDirectory'   => $this->_projectDirectory
+            'projectDirectory' => $this->_projectDirectory
             ]);
         $profile->loadFromFile();
 
@@ -113,7 +111,6 @@ class Zend_Tool_Project_ProfileTest extends TestCase
 
     public function testProfileFromVariousSourcesIsLoadableFromFile()
     {
-
         $profile = new Zend_Tool_Project_Profile();
 
         // no options, should return false
@@ -142,7 +139,6 @@ class Zend_Tool_Project_ProfileTest extends TestCase
 
     public function testLoadFromDataIsSameAsLoadFromFile()
     {
-
         $profile = new Zend_Tool_Project_Profile(['projectProfileFile' => $this->_projectProfileFile]);
         $profile->setAttribute('projectDirectory', $this->_projectDirectory);
         $profile->loadFromFile();
@@ -174,7 +170,7 @@ class Zend_Tool_Project_ProfileTest extends TestCase
     {
         $profile = new Zend_Tool_Project_Profile([
             'projectProfileFile' => $this->_projectProfileFile,
-            'projectDirectory'   => $this->_projectDirectory
+            'projectDirectory' => $this->_projectDirectory
             ]);
         $profile->loadFromFile();
 
@@ -187,7 +183,6 @@ class Zend_Tool_Project_ProfileTest extends TestCase
 
         $this->assertEquals('Zend_Tool_Project_Profile_Resource', get_class($publicIndexFile));
         $this->assertEquals('Zend_Tool_Project_Context_Zf_PublicIndexFile', get_class($publicIndexFile->getContext()));
-
     }
 
     public function testProfileCanRecursivelyCreateParentFirst()
@@ -266,13 +261,11 @@ class Zend_Tool_Project_ProfileTest extends TestCase
         $rdi = new RecursiveDirectoryIterator($this->_projectDirectory);
 
         foreach (new RecursiveIteratorIterator($rdi, RecursiveIteratorIterator::CHILD_FIRST) as $dirIteratorItem) {
-
             $basename = $dirIteratorItem->getBasename();
             if (stristr($dirIteratorItem->getPathname(), '.svn')
                 || stristr($dirIteratorItem->getPathname(), '.gitignore')
                 || '.' === $basename
-                || '..' === $basename)
-            {
+                || '..' === $basename) {
                 continue;
             }
 

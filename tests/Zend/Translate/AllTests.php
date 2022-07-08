@@ -1,6 +1,8 @@
 <?php
-use PHPUnit\TextUI\TestRunner;
+
 use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,7 +42,7 @@ class Zend_Translate_AllTests
 {
     public static function main()
     {
-        (new TestRunner)->run(self::suite());
+        (new TestRunner())->run(self::suite());
     }
 
     public static function suite()
@@ -56,4 +58,3 @@ class Zend_Translate_AllTests
 if (PHPUnit_MAIN_METHOD == 'Zend_Translate_AllTests::main') {
     Zend_Translate_AllTests::main();
 }
-

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +44,8 @@ class Zend_EventManager_FilterChainTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -51,7 +53,7 @@ class Zend_EventManager_FilterChainTest extends TestCase
         if (isset($this->message)) {
             unset($this->message);
         }
-        $this->filterchain = new Zend_EventManager_FilterChain;
+        $this->filterchain = new Zend_EventManager_FilterChain();
     }
 
     public function testSubscribeShouldReturnCallbackHandler()
@@ -62,7 +64,7 @@ class Zend_EventManager_FilterChainTest extends TestCase
 
     public function testSubscribeShouldAddCallbackHandlerToFilters()
     {
-        $handler  = $this->filterchain->attach([$this, __METHOD__]);
+        $handler = $this->filterchain->attach([$this, __METHOD__]);
         $handlers = $this->filterchain->getFilters();
         $this->assertEquals(1, count($handlers));
         $this->assertTrue($handlers->contains($handler));
@@ -149,7 +151,7 @@ class Zend_EventManager_FilterChainTest extends TestCase
         if (isset($params['string'])) {
             $params['string'] = trim($params['string']);
         }
-        $return =  $chain->next($context, $params, $chain);
+        $return = $chain->next($context, $params, $chain);
         return $return;
     }
 

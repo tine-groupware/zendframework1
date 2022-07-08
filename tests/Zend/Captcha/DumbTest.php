@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +50,8 @@ class Zend_Captcha_DumbTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Captcha_DumbTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Captcha_DumbTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -73,7 +75,7 @@ class Zend_Captcha_DumbTest extends TestCase
                 ]
             ]
         );
-        $this->captcha =  $this->element->getCaptcha();
+        $this->captcha = $this->element->getCaptcha();
     }
 
     /**
@@ -88,9 +90,9 @@ class Zend_Captcha_DumbTest extends TestCase
 
     public function testRendersWordInReverse()
     {
-        $id   = $this->captcha->generate('test');
+        $id = $this->captcha->generate('test');
         $word = $this->captcha->getWord();
-        $html = $this->captcha->render(new Zend_View);
+        $html = $this->captcha->render(new Zend_View());
         $this->assertStringContainsString(strrev($word), $html);
         $this->assertStringNotContainsString($word, $html);
     }
@@ -119,8 +121,8 @@ class Zend_Captcha_DumbTest extends TestCase
     {
         $this->captcha->setLabel('Testing 123');
 
-        $id   = $this->captcha->generate('test');
-        $html = $this->captcha->render(new Zend_View);
+        $id = $this->captcha->generate('test');
+        $html = $this->captcha->render(new Zend_View());
         $this->assertStringContainsString('Testing 123', $html);
     }
 }
@@ -149,7 +151,7 @@ class Zend_Captcha_DumbTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== self::$_word))  {
+        if (('word' == $name) && (null !== self::$_word)) {
             return true;
         }
 

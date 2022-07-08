@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,9 +38,8 @@ require_once 'Zend/Locale.php';
  */
 class resources_languages_Zend_ValidateTest extends TestCase
 {
-
-    protected $_langDir      = null;
-    protected $_languages    = [];
+    protected $_langDir = null;
+    protected $_languages = [];
     protected $_translations = [];
 
     protected function setUp(): void
@@ -46,7 +47,7 @@ class resources_languages_Zend_ValidateTest extends TestCase
         $this->_langDir = dirname(dirname(dirname(dirname(__FILE__))))
                         . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'languages';
         if (!is_readable($this->_langDir)) {
-            throw new Exception('Language resource directory "'.$this->_langDir.'" not readable.');
+            throw new Exception('Language resource directory "' . $this->_langDir . '" not readable.');
         }
 
         // Show only a specific translation?
@@ -110,7 +111,7 @@ class resources_languages_Zend_ValidateTest extends TestCase
     public function testEnglishKeySameAsValue()
     {
         $errors = [];
-        $cnt    = 0;
+        $cnt = 0;
         foreach ($this->_translations['en'] as $key => $value) {
             if ($key !== $value) {
                 ++$cnt;
@@ -130,7 +131,7 @@ class resources_languages_Zend_ValidateTest extends TestCase
     public function testTranslationAvailableInEnglish()
     {
         $errors = [];
-        $cnt    = 0;
+        $cnt = 0;
         foreach ($this->_translations as $lang => $translation) {
             if ($lang == 'en') {
                 continue;
@@ -156,7 +157,7 @@ class resources_languages_Zend_ValidateTest extends TestCase
     public function testTranslationDiffersFromEnglish()
     {
         $errors = [];
-        $cnt    = 0;
+        $cnt = 0;
         foreach ($this->_translations as $lang => $translation) {
             if ($lang == 'en') {
                 continue;
@@ -182,7 +183,7 @@ class resources_languages_Zend_ValidateTest extends TestCase
     public function testPlaceholder()
     {
         $errors = [];
-        $cnt    = 0;
+        $cnt = 0;
         foreach ($this->_translations as $lang => $translation) {
             if ($lang == 'en') { // not needed to test - see testEnglishKeySameAsValue
                 continue;
@@ -211,7 +212,7 @@ class resources_languages_Zend_ValidateTest extends TestCase
     public function testAllTranslated()
     {
         $errors = [];
-        $cnt    = 0;
+        $cnt = 0;
         foreach ($this->_translations as $lang => $translation) {
             foreach ($this->_translations['en'] as $key => $value) {
                 if ($lang == 'en') {

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -59,8 +61,8 @@ class Zend_Server_DefinitionTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Server_DefinitionTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Server_DefinitionTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -158,7 +160,7 @@ class Zend_Server_DefinitionTest extends TestCase
         $method = [
             'name' => 'foo.bar',
             'callback' => [
-                'type'     => 'function',
+                'type' => 'function',
                 'function' => 'bar',
             ],
             'prototypes' => [
@@ -186,7 +188,7 @@ class Zend_Server_DefinitionTest extends TestCase
         $method = [
             'name' => 'foo.bar',
             'callback' => [
-                'type'     => 'function',
+                'type' => 'function',
                 'function' => 'bar',
             ],
             'prototypes' => [

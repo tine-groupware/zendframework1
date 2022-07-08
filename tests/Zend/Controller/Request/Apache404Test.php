@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -59,9 +61,8 @@ class Zend_Controller_Request_Apache404Test extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Request_Apache404Test");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Request_Apache404Test");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -77,7 +78,7 @@ class Zend_Controller_Request_Apache404Test extends TestCase
     public function testRedirectUrlSelectedOverRequestUri()
     {
         $_SERVER['REDIRECT_URL'] = '/foo/bar';
-        $_SERVER['REQUEST_URI']  = '/baz/bat';
+        $_SERVER['REQUEST_URI'] = '/baz/bat';
 
         $request = new Zend_Controller_Request_Apache404();
         $requestUri = $request->getRequestUri();
@@ -90,9 +91,9 @@ class Zend_Controller_Request_Apache404Test extends TestCase
      */
     public function testRedirectQueryStringShouldBeParsedIntoGetVars()
     {
-        $_SERVER['REDIRECT_URL']         = '/foo/bar';
+        $_SERVER['REDIRECT_URL'] = '/foo/bar';
         $_SERVER['REDIRECT_QUERY_STRING'] = 'baz=bat&bat=delta';
-        $_SERVER['REQUEST_URI']          = '/baz/bat';
+        $_SERVER['REQUEST_URI'] = '/baz/bat';
 
         $request = new Zend_Controller_Request_Apache404();
         $requestUri = $request->getRequestUri();

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,13 +38,12 @@ require_once 'Zend/Version.php';
  */
 class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
 {
-
     protected $_validWriter = null;
     protected $_validEntry = null;
 
     protected function setUp(): void
     {
-        $this->_validWriter = new Zend_Feed_Writer_Feed;
+        $this->_validWriter = new Zend_Feed_Writer_Feed();
 
         $this->_validWriter->setType('rss');
 
@@ -52,7 +53,8 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
         $this->_validEntry = $this->_validWriter->createEntry();
         $this->_validEntry->setTitle('This is a test entry.');
         $this->_validEntry->setDescription('This is a test entry description.');
-        $this->_validEntry->setLink('http://www.example.com/1');;
+        $this->_validEntry->setLink('http://www.example.com/1');
+        ;
         $this->_validWriter->addEntry($this->_validEntry);
     }
 
@@ -176,7 +178,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
 
     public function testEntryIncludesLinkToHtmlVersionOfFeed()
     {
-        $renderer= new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
+        $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
         $this->assertEquals('http://www.example.com/1', $entry->getLink());
@@ -189,7 +191,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
         $author = $entry->getAuthor();
-        $this->assertEquals(['name'=>'Jane'], $entry->getAuthor());
+        $this->assertEquals(['name' => 'Jane'], $entry->getAuthor());
     }
 
     public function testEntryAuthorCharDataEncoding()
@@ -199,7 +201,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
         $author = $entry->getAuthor();
-        $this->assertEquals(['name'=>'<>&\'"áéíóú'], $entry->getAuthor());
+        $this->assertEquals(['name' => '<>&\'"áéíóú'], $entry->getAuthor());
     }
 
     public function testEntryHoldsAnyEnclosureAdded()
@@ -311,8 +313,8 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
     {
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $this->_validEntry->setCommentFeedLinks([
-            ['uri'=>'http://www.example.com/atom/id/1','type'=>'atom'],
-            ['uri'=>'http://www.example.com/rss/id/1','type'=>'rss'],
+            ['uri' => 'http://www.example.com/atom/id/1', 'type' => 'atom'],
+            ['uri' => 'http://www.example.com/rss/id/1', 'type' => 'rss'],
         ]);
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
@@ -324,15 +326,15 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
     public function testCategoriesCanBeSet()
     {
         $this->_validEntry->addCategories([
-            ['term'=>'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2']
+            ['term' => 'cat_dog', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2']
         ]);
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
         $expected = [
-            ['term'=>'cat_dog', 'label' => 'cat_dog', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
+            ['term' => 'cat_dog', 'label' => 'cat_dog', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
         ];
         $this->assertEquals($expected, (array) $entry->getCategories());
     }
@@ -343,15 +345,15 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
     public function testCategoriesCharDataEncoding()
     {
         $this->_validEntry->addCategories([
-            ['term'=>'<>&\'"áéíóú', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2']
+            ['term' => '<>&\'"áéíóú', 'label' => 'Cats & Dogs', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2']
         ]);
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $feed = Zend_Feed_Reader::importString($renderer->render()->saveXml());
         $entry = $feed->current();
         $expected = [
-            ['term'=>'<>&\'"áéíóú', 'label' => '<>&\'"áéíóú', 'scheme' => 'http://example.com/schema1'],
-            ['term'=>'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
+            ['term' => '<>&\'"áéíóú', 'label' => '<>&\'"áéíóú', 'scheme' => 'http://example.com/schema1'],
+            ['term' => 'cat_dog2', 'label' => 'cat_dog2', 'scheme' => null]
         ];
         $this->assertEquals($expected, (array) $entry->getCategories());
     }
@@ -368,5 +370,4 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
         $xmlString = $renderer->render()->saveXml();
         $this->assertStringContainsString('<category><![CDATA[This is a test category]]></category>', $xmlString);
     }
-
 }

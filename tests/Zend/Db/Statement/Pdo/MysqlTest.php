@@ -34,7 +34,6 @@ require_once 'Zend/Db/Statement/Pdo/TestCommon.php';
  */
 class Zend_Db_Statement_Pdo_MysqlTest extends Zend_Db_Statement_Pdo_TestCommon
 {
-
     public function testStatementNextRowset()
     {
         $select = $this->_db->select()
@@ -43,8 +42,10 @@ class Zend_Db_Statement_Pdo_MysqlTest extends Zend_Db_Statement_Pdo_TestCommon
         try {
             $stmt->nextRowset();
         } catch (Zend_Db_Statement_Exception $e) {
-            $this->assertTrue($e instanceof Zend_Db_Statement_Exception,
-                'Expecting object of type Zend_Db_Statement_Exception, got '.get_class($e));
+            $this->assertTrue(
+                $e instanceof Zend_Db_Statement_Exception,
+                'Expecting object of type Zend_Db_Statement_Exception, got ' . get_class($e)
+            );
             $this->assertEquals('SQLSTATE[HYC00]: Optional feature not implemented', $e->getMessage());
         }
         $stmt->closeCursor();
@@ -94,5 +95,4 @@ class Zend_Db_Statement_Pdo_MysqlTest extends Zend_Db_Statement_Pdo_TestCommon
     {
         return 'Pdo_Mysql';
     }
-
 }

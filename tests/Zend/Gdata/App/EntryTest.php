@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +39,6 @@ require_once 'Zend/Gdata/HttpClient.php';
  */
 class Zend_Gdata_App_EntryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->enryText = $this->loadResponse(
@@ -86,43 +87,43 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $enryXml = $this->enry->saveXML();
         $newEntry = new Zend_Gdata_App_Entry();
         $newEntry->transferFromXML($enryXml);
-/*
-        $this->assertEquals(1, count($newEntry->entry));
-        $this->assertEquals('dive into mark', $newEntry->title->text);
-        $this->assertEquals('text', $newEntry->title->type);
-        $this->assertEquals('2005-07-31T12:29:29Z', $newEntry->updated->text);
-        $this->assertEquals('tag:example.org,2003:3', $newEntry->id->text);
-        $this->assertEquals(2, count($newEntry->link));
-        $this->assertEquals('http://example.org/',
-                $newEntry->getAlternateLink()->href);
-        $this->assertEquals('en',
-                $newEntry->getAlternateLink()->hrefLang);
-        $this->assertEquals('text/html',
-                $newEntry->getAlternateLink()->type);
-        $this->assertEquals('http://example.org/enry.atom',
-                $newEntry->getSelfLink()->href);
-        $this->assertEquals('application/atom+xml',
-                $newEntry->getSelfLink()->type);
-        $this->assertEquals('Copyright (c) 2003, Mark Pilgrim',
-                $newEntry->rights->text);
-        $entry = $newEntry->entry[0];
-        $this->assertEquals('Atom draft-07 snapshot', $entry->title->text);
-        $this->assertEquals('tag:example.org,2003:3.2397',
-                $entry->id->text);
-        $this->assertEquals('2005-07-31T12:29:29Z', $entry->updated->text);
-        $this->assertEquals('2003-12-13T08:29:29-04:00',
-                $entry->published->text);
-        $this->assertEquals('Mark Pilgrim',
-                $entry->author[0]->name->text);
-        $this->assertEquals('http://example.org/',
-                $entry->author[0]->uri->text);
-        $this->assertEquals(2, count($entry->contributor));
-        $this->assertEquals('Sam Ruby',
-                $entry->contributor[0]->name->text);
-        $this->assertEquals('Joe Gregorio',
-                $entry->contributor[1]->name->text);
-        $this->assertEquals('xhtml', $entry->content->type);
-*/
+        /*
+                $this->assertEquals(1, count($newEntry->entry));
+                $this->assertEquals('dive into mark', $newEntry->title->text);
+                $this->assertEquals('text', $newEntry->title->type);
+                $this->assertEquals('2005-07-31T12:29:29Z', $newEntry->updated->text);
+                $this->assertEquals('tag:example.org,2003:3', $newEntry->id->text);
+                $this->assertEquals(2, count($newEntry->link));
+                $this->assertEquals('http://example.org/',
+                        $newEntry->getAlternateLink()->href);
+                $this->assertEquals('en',
+                        $newEntry->getAlternateLink()->hrefLang);
+                $this->assertEquals('text/html',
+                        $newEntry->getAlternateLink()->type);
+                $this->assertEquals('http://example.org/enry.atom',
+                        $newEntry->getSelfLink()->href);
+                $this->assertEquals('application/atom+xml',
+                        $newEntry->getSelfLink()->type);
+                $this->assertEquals('Copyright (c) 2003, Mark Pilgrim',
+                        $newEntry->rights->text);
+                $entry = $newEntry->entry[0];
+                $this->assertEquals('Atom draft-07 snapshot', $entry->title->text);
+                $this->assertEquals('tag:example.org,2003:3.2397',
+                        $entry->id->text);
+                $this->assertEquals('2005-07-31T12:29:29Z', $entry->updated->text);
+                $this->assertEquals('2003-12-13T08:29:29-04:00',
+                        $entry->published->text);
+                $this->assertEquals('Mark Pilgrim',
+                        $entry->author[0]->name->text);
+                $this->assertEquals('http://example.org/',
+                        $entry->author[0]->uri->text);
+                $this->assertEquals(2, count($entry->contributor));
+                $this->assertEquals('Sam Ruby',
+                        $entry->contributor[0]->name->text);
+                $this->assertEquals('Joe Gregorio',
+                        $entry->contributor[1]->name->text);
+                $this->assertEquals('xhtml', $entry->content->type);
+        */
     }
 
     public function testCanSetAndGetEtag()
@@ -156,13 +157,17 @@ class Zend_Gdata_App_EntryTest extends TestCase
 
         $c = new Zend_Gdata_HttpClient();
         $s->setHttpClient($c);
-        $this->assertEquals($this->enry->getHttpClient(),
-                $s->getHttpClient());
+        $this->assertEquals(
+            $this->enry->getHttpClient(),
+            $s->getHttpClient()
+        );
 
         $c = new Zend_Http_Client();
         $s->setHttpClient($c);
-        $this->assertEquals($this->enry->getHttpClient(),
-                $s->getHttpClient($c));
+        $this->assertEquals(
+            $this->enry->getHttpClient(),
+            $s->getHttpClient($c)
+        );
     }
 
     public function testSetHttpClientPushesIntoServiceInstance()
@@ -172,13 +177,17 @@ class Zend_Gdata_App_EntryTest extends TestCase
 
         $c = new Zend_Gdata_HttpClient();
         $this->enry->setHttpClient($c);
-        $this->assertEquals(get_class($s->getHttpClient()),
-                'Zend_Gdata_HttpClient');
+        $this->assertEquals(
+            get_class($s->getHttpClient()),
+            'Zend_Gdata_HttpClient'
+        );
 
         $c = new Zend_Http_Client();
         $this->enry->setHttpClient($c);
-        $this->assertEquals(get_class($s->getHttpClient()),
-                'Zend_Http_Client');
+        $this->assertEquals(
+            get_class($s->getHttpClient()),
+            'Zend_Http_Client'
+        );
     }
 
     public function testSaveSupportsGdataV2()
@@ -191,8 +200,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->enry->setService($this->service);
 
         // Set a URL for posting, so that save() will work
-        $editLink = new Zend_Gdata_App_extension_Link('http://example.com',
-                'edit');
+        $editLink = new Zend_Gdata_App_extension_Link(
+            'http://example.com',
+            'edit'
+        );
         $this->enry->setLink([$editLink]);
 
         // Perform a (mock) save
@@ -202,11 +213,14 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $headers = $this->adapter->popRequest()->headers;
         $found = false;
         foreach ($headers as $header) {
-            if ($header == 'GData-Version: 2')
+            if ($header == 'GData-Version: 2') {
                 $found = true;
+            }
         }
-        $this->assertTrue($found,
-                'GData-Version header missing or incorrect.');
+        $this->assertTrue(
+            $found,
+            'GData-Version header missing or incorrect.'
+        );
     }
 
     public function testDeleteSupportsGdataV2()
@@ -219,8 +233,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->enry->setService($this->service);
 
         // Set a URL for posting, so that save() will work
-        $editLink = new Zend_Gdata_App_extension_Link('http://example.com',
-                'edit');
+        $editLink = new Zend_Gdata_App_extension_Link(
+            'http://example.com',
+            'edit'
+        );
         $this->enry->setLink([$editLink]);
 
         // Perform a (mock) save
@@ -230,11 +246,14 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $headers = $this->adapter->popRequest()->headers;
         $found = false;
         foreach ($headers as $header) {
-            if ($header == 'GData-Version: 2')
+            if ($header == 'GData-Version: 2') {
                 $found = true;
+            }
         }
-        $this->assertTrue($found,
-                'GData-Version header missing or incorrect.');
+        $this->assertTrue(
+            $found,
+            'GData-Version header missing or incorrect.'
+        );
     }
 
     public function testIfMatchHeaderCanBeSetOnSave()
@@ -245,20 +264,27 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
-        $newEntry = $entry->save(null, null,
-                ['If-Match' => $etagOverride]);
+        $newEntry = $entry->save(
+            null,
+            null,
+            ['If-Match' => $etagOverride]
+        );
         $headers = $this->adapter->popRequest()->headers;
         $found = false;
         foreach ($headers as $header) {
-            if ($header == 'If-Match: ' . $etagOverride)
+            if ($header == 'If-Match: ' . $etagOverride) {
                 $found = true;
+            }
         }
-        $this->assertTrue($found,
-                'If-Match header not found or incorrect');
+        $this->assertTrue(
+            $found,
+            'If-Match header not found or incorrect'
+        );
     }
 
     public function testIfNoneMatchHeaderCanBeSetOnSave()
@@ -269,20 +295,27 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
-        $newEntry = $entry->save(null, null,
-                ['If-None-Match' => $etagOverride]);
+        $newEntry = $entry->save(
+            null,
+            null,
+            ['If-None-Match' => $etagOverride]
+        );
         $headers = $this->adapter->popRequest()->headers;
         $found = false;
         foreach ($headers as $header) {
-            if ($header == 'If-None-Match: ' . $etagOverride)
+            if ($header == 'If-None-Match: ' . $etagOverride) {
                 $found = true;
+            }
         }
-        $this->assertTrue($found,
-                'If-None-Match header not found or incorrect');
+        $this->assertTrue(
+            $found,
+            'If-None-Match header not found or incorrect'
+        );
     }
 
     public function testCanSetUriOnSave()
@@ -303,9 +336,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $newEntry = $entry->save(null, $className);
         $this->assertEquals($className, get_class($newEntry));
     }
@@ -316,19 +350,23 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload();
         $headers = $this->adapter->popRequest()->headers;
         $found = false;
         foreach ($headers as $header) {
-            if ($header == 'If-None-Match: ' . $etag)
+            if ($header == 'If-None-Match: ' . $etag) {
                 $found = true;
+            }
         }
-        $this->assertTrue($found,
-                'If-None-Match header not found or incorrect');
+        $this->assertTrue(
+            $found,
+            'If-None-Match header not found or incorrect'
+        );
     }
 
     public function testIfNoneMatchCanBeSetOnReload()
@@ -338,20 +376,27 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
-        $newEntry = $entry->reload(null, null,
-                ['If-None-Match' => $etagOverride]);
+        $newEntry = $entry->reload(
+            null,
+            null,
+            ['If-None-Match' => $etagOverride]
+        );
         $headers = $this->adapter->popRequest()->headers;
         $found = false;
         foreach ($headers as $header) {
-            if ($header == 'If-None-Match: ' . $etagOverride)
+            if ($header == 'If-None-Match: ' . $etagOverride) {
                 $found = true;
+            }
         }
-        $this->assertTrue($found,
-                'If-None-Match header not found or incorrect');
+        $this->assertTrue(
+            $found,
+            'If-None-Match header not found or incorrect'
+        );
     }
 
     public function testReloadReturnsEntryObject()
@@ -360,9 +405,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload();
         $this->assertEquals('Zend_Gdata_App_Entry', get_class($newEntry));
@@ -374,9 +420,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload();
         $this->assertEquals('Hello world', $newEntry->title->text);
@@ -387,9 +434,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $newEntry = $entry->reload();
         $this->assertEquals('Zend_Gdata_App_Entry', get_class($newEntry));
     }
@@ -402,9 +450,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                $expectedUri,
-                'edit',
-                'application/atom+xml')];
+            $expectedUri,
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload();
         $requestUri = $this->adapter->popRequest()->uri;
@@ -421,9 +470,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload($uriOverride);
         $requestUri = $this->adapter->popRequest()->uri;
@@ -439,9 +489,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse('HTTP/1.1 304 Not Modified');
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload();
         $this->assertEquals(null, $newEntry);
@@ -455,9 +506,10 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $this->adapter->setResponse($this->httpEntrySample);
         $entry = $this->service->newEntry();
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload(null, $className);
         $this->assertEquals($className, get_class($newEntry));
@@ -469,12 +521,13 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $etag = 'ABCD1234';
         $this->service->setMajorProtocolVersion(2);
         $this->adapter->setResponse($this->httpEntrySample);
-        $entry = new $className;
+        $entry = new $className();
         $entry->setService($this->service);
         $entry->link = [new Zend_Gdata_App_Extension_Link(
-                'http://www.example.com',
-                'edit',
-                'application/atom+xml')];
+            'http://www.example.com',
+            'edit',
+            'application/atom+xml'
+        )];
         $entry->setEtag($etag);
         $newEntry = $entry->reload();
         $this->assertEquals($className, get_class($newEntry));
@@ -622,5 +675,4 @@ class Zend_Gdata_App_EntryTest extends TestCase
         $result = $entry->lookupNamespace($prefix, null, 1);
         $this->assertEquals($testString21, $result);
     }
-
 }

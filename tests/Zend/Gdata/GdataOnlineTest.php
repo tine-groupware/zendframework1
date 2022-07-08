@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -60,10 +62,13 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $entry->content = $this->gdata->newContent('Blog post content...');
         $insertedEntry = $this->gdata->insertEntry($entry, $postUrl);
         $this->assertEquals('PHP test blog post', $insertedEntry->title->text);
-        $this->assertEquals('Blog post content...',
-                $insertedEntry->content->text);
+        $this->assertEquals(
+            'Blog post content...',
+            $insertedEntry->content->text
+        );
         $this->assertTrue(
-                strpos($insertedEntry->getEditLink()->href, 'http') === 0);
+            strpos($insertedEntry->getEditLink()->href, 'http') === 0
+        );
         $this->gdata->delete($insertedEntry);
     }
 
@@ -76,7 +81,8 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $entry->content = $this->gdata->newContent('Blog post content...');
         $insertedEntry = $this->gdata->insertEntry($entry, $postUrl);
         $this->assertTrue(
-                strpos($insertedEntry->getEditLink()->href, 'http') === 0);
+            strpos($insertedEntry->getEditLink()->href, 'http') === 0
+        );
         $this->gdata->delete($insertedEntry->getEditLink()->href);
     }
 
@@ -90,19 +96,27 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $entry->content = $this->gdata->newContent('Blog post content...');
 
         /* testing getText and __toString */
-        $this->assertEquals("PHP test blog post",
-                $entry->title->getText());
-        $this->assertEquals(" PHP test blog post ",
-                $entry->title->getText(false));
-        $this->assertEquals($entry->title->getText(),
-            $entry->title->__toString());
+        $this->assertEquals(
+            "PHP test blog post",
+            $entry->title->getText()
+        );
+        $this->assertEquals(
+            " PHP test blog post ",
+            $entry->title->getText(false)
+        );
+        $this->assertEquals(
+            $entry->title->getText(),
+            $entry->title->__toString()
+        );
 
         $insertedEntry = $this->gdata->insertEntry($entry, $postUrl);
         $retrievedEntryQuery = $this->gdata->newQuery(
-                $insertedEntry->getSelfLink()->href);
+            $insertedEntry->getSelfLink()->href
+        );
         $retrievedEntry = $this->gdata->getEntry($retrievedEntryQuery);
         $this->assertTrue(
-                strpos($retrievedEntry->getEditLink()->href, 'http') === 0);
+            strpos($retrievedEntry->getEditLink()->href, 'http') === 0
+        );
         $this->gdata->delete($retrievedEntry);
     }
 
@@ -115,18 +129,25 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $entry->content = $this->gdata->newContent('Blog post content...');
         $insertedEntry = $this->gdata->insertEntry($entry, $postUrl);
         $this->assertTrue(
-                strpos($insertedEntry->getEditLink()->href, 'http') === 0);
+            strpos($insertedEntry->getEditLink()->href, 'http') === 0
+        );
         $insertedEntry->title->text = 'PHP test blog post modified';
         $updatedEntry = $this->gdata->updateEntry($insertedEntry);
-        $this->assertEquals('PHP test blog post modified',
-                $updatedEntry->title->text);
+        $this->assertEquals(
+            'PHP test blog post modified',
+            $updatedEntry->title->text
+        );
         $updatedEntry->title->text = 'PHP test blog post modified twice';
         // entry->saveXML() and entry->getXML() should be the same
-        $this->assertEquals($updatedEntry->saveXML(),
-                $updatedEntry->getXML());
+        $this->assertEquals(
+            $updatedEntry->saveXML(),
+            $updatedEntry->getXML()
+        );
         $newlyUpdatedEntry = $this->gdata->updateEntry($updatedEntry);
-        $this->assertEquals('PHP test blog post modified twice',
-                $updatedEntry->title->text);
+        $this->assertEquals(
+            'PHP test blog post modified twice',
+            $updatedEntry->title->text
+        );
         $updatedEntry->delete();
     }
 
@@ -199,13 +220,17 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $albumEntry = $gd->newEntry();
         $albumEntry->setTitle($gd->newTitle('My New Test Album'));
         $albumEntry->setCategory([$gd->newCategory(
-                'http://schemas.google.com/photos/2007#album',
-                'http://schemas.google.com/g/2005#kind'
-                )]);
-        $createdAlbumEntry = $gd->insertEntry($albumEntry,
-                'http://picasaweb.google.com/data/feed/api/user/default');
-        $this->assertEquals('My New Test Album',
-                $createdAlbumEntry->title->text);
+            'http://schemas.google.com/photos/2007#album',
+            'http://schemas.google.com/g/2005#kind'
+        )]);
+        $createdAlbumEntry = $gd->insertEntry(
+            $albumEntry,
+            'http://picasaweb.google.com/data/feed/api/user/default'
+        );
+        $this->assertEquals(
+            'My New Test Album',
+            $createdAlbumEntry->title->text
+        );
         $albumUrl = $createdAlbumEntry->getLink('http://schemas.google.com/g/2005#feed')->href;
 
         // post the photo to the new album, without any metadata
@@ -213,8 +238,10 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         // add a slug header to the media file source
         $fs->setSlug('Going to the park');
         $createdPhotoBinaryOnly = $gd->insertEntry($fs, $albumUrl);
-        $this->assertEquals('Going to the park',
-                $createdPhotoBinaryOnly->title->text);
+        $this->assertEquals(
+            'Going to the park',
+            $createdPhotoBinaryOnly->title->text
+        );
 
         // post the photo to the new album along with the entry
         // remove slug header from the media file source
@@ -227,12 +254,14 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $mediaEntry->setTitle($gd->newTitle('My New Test Photo'));
         $mediaEntry->setSummary($gd->newSummary('My New Test Photo Summary'));
         $mediaEntry->setCategory([$gd->newCategory(
-                'http://schemas.google.com/photos/2007#photo ',
-                'http://schemas.google.com/g/2005#kind'
-                )]);
+            'http://schemas.google.com/photos/2007#photo ',
+            'http://schemas.google.com/g/2005#kind'
+        )]);
         $createdPhotoMultipart = $gd->insertEntry($mediaEntry, $albumUrl);
-        $this->assertEquals('My New Test Photo',
-                $createdPhotoMultipart->title->text);
+        $this->assertEquals(
+            'My New Test Photo',
+            $createdPhotoMultipart->title->text
+        );
 
         // cleanup and remove the album
         // first we wait 5 seconds
@@ -245,12 +274,12 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         }
     }
 
-    function testIsAuthenticated()
+    public function testIsAuthenticated()
     {
         $this->assertTrue($this->gdata->isAuthenticated());
     }
 
-    function testRetrieveNextAndPreviousFeedsFromService()
+    public function testRetrieveNextAndPreviousFeedsFromService()
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');
         $pass = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_PASSWORD');
@@ -261,7 +290,8 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
 
         $feed = $gd->getFeed(
             'http://gdata.youtube.com/feeds/api/standardfeeds/recently_featured',
-            'Zend_Gdata_App_Feed');
+            'Zend_Gdata_App_Feed'
+        );
 
         $this->assertNotNull($feed);
         $this->assertTrue($feed instanceof Zend_Gdata_App_Feed);
@@ -278,10 +308,9 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $this->assertNotNull($previousFeed);
         $this->assertTrue($previousFeed instanceof Zend_Gdata_App_Feed);
         $this->assertEquals($previousFeed->count(), 25);
-
     }
 
-    function testRetrieveNextFeedAndPreviousFeedsFromFeed()
+    public function testRetrieveNextFeedAndPreviousFeedsFromFeed()
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');
         $pass = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_PASSWORD');
@@ -292,7 +321,8 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
 
         $feed = $gd->getFeed(
             'http://gdata.youtube.com/feeds/api/standardfeeds/recently_featured',
-            'Zend_Gdata_App_Feed');
+            'Zend_Gdata_App_Feed'
+        );
 
         $nextFeed = $feed->getNextFeed();
 
@@ -305,7 +335,6 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $this->assertNotNull($previousFeed);
         $this->assertTrue($previousFeed instanceof Zend_Gdata_App_Feed);
         $this->assertEquals($previousFeed->count(), 25);
-
     }
 
     public function testDisableXMLToObjectMappingReturnsStringForFeed()
@@ -313,7 +342,8 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $gdata = new Zend_Gdata();
         $gdata->useObjectMapping(false);
         $xmlString = $gdata->getFeed(
-            'http://gdata.youtube.com/feeds/api/standardfeeds/top_rated');
+            'http://gdata.youtube.com/feeds/api/standardfeeds/top_rated'
+        );
         $this->assertEquals('string', gettype($xmlString));
     }
 
@@ -322,7 +352,8 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $gdata = new Zend_Gdata();
         $gdata->useObjectMapping(false);
         $xmlString = $gdata->getFeed(
-            'http://gdata.youtube.com/feeds/api/videos/O4SWAfisH-8');
+            'http://gdata.youtube.com/feeds/api/videos/O4SWAfisH-8'
+        );
         $this->assertEquals('string', gettype($xmlString));
     }
 
@@ -331,12 +362,13 @@ class Zend_Gdata_GdataOnlineTest extends TestCase
         $gdata = new Zend_Gdata();
         $gdata->useObjectMapping(false);
         $xmlString = $gdata->getEntry(
-            'http://gdata.youtube.com/feeds/api/videos/O4SWAfisH-8');
+            'http://gdata.youtube.com/feeds/api/videos/O4SWAfisH-8'
+        );
         $this->assertEquals('string', gettype($xmlString));
         $gdata->useObjectMapping(true);
         $entry = $gdata->getEntry(
-            'http://gdata.youtube.com/feeds/api/videos/O4SWAfisH-8');
+            'http://gdata.youtube.com/feeds/api/videos/O4SWAfisH-8'
+        );
         $this->assertTrue($entry instanceof Zend_Gdata_Entry);
     }
-
 }

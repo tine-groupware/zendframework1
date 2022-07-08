@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -74,7 +76,7 @@ class Zend_Mail_MboxFolderTest extends TestCase
 
         $this->_params = [];
         $this->_params['dirname'] = $this->_tmpdir;
-        $this->_params['folder']  = 'INBOX';
+        $this->_params['folder'] = 'INBOX';
 
         foreach ($this->_subdirs as $dir) {
             if ($dir != '.') {
@@ -236,9 +238,9 @@ class Zend_Mail_MboxFolderTest extends TestCase
         $mail = new Zend_Mail_Storage_Folder_Mbox($this->_params);
         $iterator = new RecursiveIteratorIterator($mail->getFolders(), RecursiveIteratorIterator::SELF_FIRST);
         // we search for this folder because we can't assume a order while iterating
-        $search_folders = [DIRECTORY_SEPARATOR . 'subfolder'                                => 'subfolder',
+        $search_folders = [DIRECTORY_SEPARATOR . 'subfolder' => 'subfolder',
                                 DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'test' => 'test',
-                                DIRECTORY_SEPARATOR . 'INBOX'                                    => 'INBOX'];
+                                DIRECTORY_SEPARATOR . 'INBOX' => 'INBOX'];
         $found_folders = [];
 
         foreach ($iterator as $localName => $folder) {
@@ -258,9 +260,9 @@ class Zend_Mail_MboxFolderTest extends TestCase
         $mail = new Zend_Mail_Storage_Folder_Mbox($this->_params);
         $iterator = new RecursiveIteratorIterator($mail->getFolders(), RecursiveIteratorIterator::SELF_FIRST);
         // we search for this folder because we can't assume a order while iterating
-        $search_folders = [DIRECTORY_SEPARATOR . 'subfolder'                                => 'subfolder',
+        $search_folders = [DIRECTORY_SEPARATOR . 'subfolder' => 'subfolder',
                                 DIRECTORY_SEPARATOR . 'subfolder' . DIRECTORY_SEPARATOR . 'test' => 'test',
-                                DIRECTORY_SEPARATOR . 'INBOX'                                    => 'INBOX'];
+                                DIRECTORY_SEPARATOR . 'INBOX' => 'INBOX'];
         $found_folders = [];
 
         foreach ($iterator as $localName => $folder) {

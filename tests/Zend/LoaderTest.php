@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -55,9 +57,8 @@ class Zend_LoaderTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_LoaderTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_LoaderTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -299,8 +300,8 @@ class Zend_LoaderTest extends TestCase
         $this->assertStringContainsString('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
-        $found       = false;
-        foreach($autoloaders as $function) {
+        $found = false;
+        foreach ($autoloaders as $function) {
             if (is_array($function)) {
                 $class = $function[0];
                 if ($class == 'Zend_Loader_Autoloader') {
@@ -324,8 +325,8 @@ class Zend_LoaderTest extends TestCase
         $this->assertStringContainsString('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
-        $expected    = ['Zend_Loader_MyLoader', 'autoload'];
-        $found       = false;
+        $expected = ['Zend_Loader_MyLoader', 'autoload'];
+        $found = false;
         foreach ($autoloaders as $function) {
             if ($expected == $function) {
                 $found = true;
@@ -348,7 +349,7 @@ class Zend_LoaderTest extends TestCase
         $this->assertStringContainsString('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
-        $found       = false;
+        $found = false;
         foreach ($autoloaders as $function) {
             if (is_array($function)) {
                 $class = $function[0];
@@ -361,20 +362,24 @@ class Zend_LoaderTest extends TestCase
         $this->assertTrue($found, "Failed to register Zend_Loader_Autoloader with spl_autoload");
 
         $autoloaders = Zend_Loader_Autoloader::getInstance()->getAutoloaders();
-        $found       = false;
-        $expected    = ['Zend_Loader_MyOverloader', 'autoload'];
+        $found = false;
+        $expected = ['Zend_Loader_MyOverloader', 'autoload'];
         $this->assertTrue(in_array($expected, $autoloaders, true), 'Failed to register My_Loader_MyOverloader with Zend_Loader_Autoloader: ' . var_export($autoloaders, 1));
 
         // try to instantiate a class that is known not to be loaded
         $obj = new Zend_Loader_AutoloadableClass();
 
         // now it should be loaded
-        $this->assertTrue(class_exists('Zend_Loader_AutoloadableClass'),
-            'Expected Zend_Loader_AutoloadableClass to be loaded');
+        $this->assertTrue(
+            class_exists('Zend_Loader_AutoloadableClass'),
+            'Expected Zend_Loader_AutoloadableClass to be loaded'
+        );
 
         // and we verify it is the correct type
-        $this->assertTrue($obj instanceof Zend_Loader_AutoloadableClass,
-            'Expected to instantiate Zend_Loader_AutoloadableClass, got '.get_class($obj));
+        $this->assertTrue(
+            $obj instanceof Zend_Loader_AutoloadableClass,
+            'Expected to instantiate Zend_Loader_AutoloadableClass, got ' . get_class($obj)
+        );
 
         spl_autoload_unregister($function);
     }
@@ -421,7 +426,7 @@ class Zend_LoaderTest extends TestCase
         Zend_Loader::registerAutoload('Zend_Loader_MyOverloader');
         $this->assertStringContainsString('deprecated', $this->error);
 
-        $expected    = ['Zend_Loader_MyOverloader', 'autoload'];
+        $expected = ['Zend_Loader_MyOverloader', 'autoload'];
         $autoloaders = Zend_Loader_Autoloader::getInstance()->getAutoloaders();
         $this->assertTrue(in_array($expected, $autoloaders, true), 'Failed to register autoloader');
 
@@ -490,7 +495,7 @@ class Zend_LoaderTest extends TestCase
         }
 
         $pharFile = dirname(__FILE__) . '/Loader/_files/Zend_LoaderTest.phar';
-        $phar     = new Phar($pharFile, 0, 'zlt.phar');
+        $phar = new Phar($pharFile, 0, 'zlt.phar');
         $incPath = 'phar://zlt.phar'
                  . PATH_SEPARATOR . $this->includePath;
         set_include_path($incPath);
@@ -508,7 +513,7 @@ class Zend_LoaderTest extends TestCase
         }
 
         $pharFile = dirname(__FILE__) . '/Loader/_files/Zend_LoaderTest.phar';
-        $phar     = new Phar($pharFile, 0, 'zlt.phar');
+        $phar = new Phar($pharFile, 0, 'zlt.phar');
         $incPath = 'phar://zlt.phar'
                  . PATH_SEPARATOR . $this->includePath;
         set_include_path($incPath);

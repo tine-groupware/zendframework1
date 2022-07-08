@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,8 +58,8 @@ class Zend_Controller_Dispatcher_StandardTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Controller_Dispatcher_StandardTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Dispatcher_StandardTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -71,7 +73,7 @@ class Zend_Controller_Dispatcher_StandardTest extends TestCase
         $this->_dispatcher = new Zend_Controller_Dispatcher_Standard();
         $this->_dispatcher->setControllerDirectory([
             'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'admin'   => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
+            'admin' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
         ]);
     }
 
@@ -108,7 +110,7 @@ class Zend_Controller_Dispatcher_StandardTest extends TestCase
     {
         $expected = [
             'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'admin'   => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
+            'admin' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
         ];
         $dirs = $this->_dispatcher->getControllerDirectory();
         $this->assertEquals($expected, $dirs);
@@ -456,7 +458,7 @@ class Zend_Controller_Dispatcher_StandardTest extends TestCase
             ->addControllerDirectory(
                 dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'controllers',
                 'foo'
-        );
+            );
 
         $request = new Zend_Controller_Request_Http();
         $request->setModuleName('foo');

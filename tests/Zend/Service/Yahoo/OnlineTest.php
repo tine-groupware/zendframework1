@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -336,7 +338,7 @@ class Zend_Service_Yahoo_OnlineTest extends TestCase
         try {
             $this->_yahoo->webSearch('php', ['region' => 'oops']);
             $this->fail('Expected Zend_Service_Exception not thrown');
-        }catch (Zend_Service_Exception $e) {
+        } catch (Zend_Service_Exception $e) {
             $this->assertStringContainsString("Invalid value for option 'region': oops", $e->getMessage());
         }
     }

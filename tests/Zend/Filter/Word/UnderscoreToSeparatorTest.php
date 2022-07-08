@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,15 +53,14 @@ class Zend_Filter_Word_UnderscoreToSeparatorTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Filter_Word_UnderscoreToSeparatorTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Filter_Word_UnderscoreToSeparatorTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsDefaultSeparator()
     {
-        $string   = 'underscore_separated_words';
-        $filter   = new Zend_Filter_Word_UnderscoreToSeparator();
+        $string = 'underscore_separated_words';
+        $filter = new Zend_Filter_Word_UnderscoreToSeparator();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -68,14 +69,13 @@ class Zend_Filter_Word_UnderscoreToSeparatorTest extends TestCase
 
     public function testFilterSeparatesCamelCasedWordsProvidedSeparator()
     {
-        $string   = 'underscore_separated_words';
-        $filter   = new Zend_Filter_Word_UnderscoreToSeparator(':=:');
+        $string = 'underscore_separated_words';
+        $filter = new Zend_Filter_Word_UnderscoreToSeparator(':=:');
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
         $this->assertEquals('underscore:=:separated:=:words', $filtered);
     }
-
 }
 
 // Call Zend_Filter_Word_UnderscoreToSeparatorTest::main() if this source file is executed directly.

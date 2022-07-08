@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -108,31 +110,34 @@ class Zend_Pdf_DrawingTest extends TestCase
               ->drawCircle(85, 375, 25);
 
         // Draw sectors
-        $page2->drawCircle(200, 375, 25, 2*M_PI/3, -M_PI/6)
+        $page2->drawCircle(200, 375, 25, 2 * M_PI / 3, -M_PI / 6)
               ->setFillColor(new Zend_Pdf_Color_Cmyk(1, 0, 0, 0))
-              ->drawCircle(200, 375, 25, M_PI/6, 2*M_PI/3)
+              ->drawCircle(200, 375, 25, M_PI / 6, 2 * M_PI / 3)
               ->setFillColor(new Zend_Pdf_Color_Rgb(1, 1, 0))
-              ->drawCircle(200, 375, 25, -M_PI/6, M_PI/6);
+              ->drawCircle(200, 375, 25, -M_PI / 6, M_PI / 6);
 
         // Draw ellipse
         $page2->setFillColor(new Zend_Pdf_Color_Html('Red'))
               ->drawEllipse(250, 400, 400, 350)
               ->setFillColor(new Zend_Pdf_Color_Cmyk(1, 0, 0, 0))
-              ->drawEllipse(250, 400, 400, 350, M_PI/6, 2*M_PI/3)
+              ->drawEllipse(250, 400, 400, 350, M_PI / 6, 2 * M_PI / 3)
               ->setFillColor(new Zend_Pdf_Color_Rgb(1, 1, 0))
-              ->drawEllipse(250, 400, 400, 350, -M_PI/6, M_PI/6);
+              ->drawEllipse(250, 400, 400, 350, -M_PI / 6, M_PI / 6);
 
         // Draw and fill polygon
         $page2->setFillColor(new Zend_Pdf_Color_Rgb(1, 0, 1));
         $x = [];
         $y = [];
         for ($count = 0; $count < 8; $count++) {
-            $x[] = 140 + 25*cos(3*M_PI_4*$count);
-            $y[] = 375 + 25*sin(3*M_PI_4*$count);
+            $x[] = 140 + 25 * cos(3 * M_PI_4 * $count);
+            $y[] = 375 + 25 * sin(3 * M_PI_4 * $count);
         }
-        $page2->drawPolygon($x, $y,
-                            Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE,
-                            Zend_Pdf_Page::FILL_METHOD_EVEN_ODD);
+        $page2->drawPolygon(
+            $x,
+            $y,
+            Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE,
+            Zend_Pdf_Page::FILL_METHOD_EVEN_ODD
+        );
 
         // Draw line
         $page2->setLineWidth(0.5)
@@ -140,9 +145,9 @@ class Zend_Pdf_DrawingTest extends TestCase
 
         // -----------------------------------------------------------------------------------
         $page3->translate(200, 10)
-              ->rotate(10, 10, M_PI_2/9)
+              ->rotate(10, 10, M_PI_2 / 9)
               ->scale(0.7, 1.2)
-              ->skew(60, 350, M_PI_2/9, -M_PI_2/9);
+              ->skew(60, 350, M_PI_2 / 9, -M_PI_2 / 9);
 
         // Use font object for another page
         $page3->setFont($font, 24)
@@ -171,31 +176,34 @@ class Zend_Pdf_DrawingTest extends TestCase
               ->drawCircle(85, 375, 25);
 
         // Draw sectors
-        $page3->drawCircle(200, 375, 25, 2*M_PI/3, -M_PI/6)
+        $page3->drawCircle(200, 375, 25, 2 * M_PI / 3, -M_PI / 6)
               ->setFillColor(new Zend_Pdf_Color_Cmyk(1, 0, 0, 0))
-              ->drawCircle(200, 375, 25, M_PI/6, 2*M_PI/3)
+              ->drawCircle(200, 375, 25, M_PI / 6, 2 * M_PI / 3)
               ->setFillColor(new Zend_Pdf_Color_Rgb(1, 1, 0))
-              ->drawCircle(200, 375, 25, -M_PI/6, M_PI/6);
+              ->drawCircle(200, 375, 25, -M_PI / 6, M_PI / 6);
 
         // Draw ellipse
         $page3->setFillColor(new Zend_Pdf_Color_Html('Red'))
               ->drawEllipse(250, 400, 400, 350)
               ->setFillColor(new Zend_Pdf_Color_Cmyk(1, 0, 0, 0))
-              ->drawEllipse(250, 400, 400, 350, M_PI/6, 2*M_PI/3)
+              ->drawEllipse(250, 400, 400, 350, M_PI / 6, 2 * M_PI / 3)
               ->setFillColor(new Zend_Pdf_Color_Rgb(1, 1, 0))
-              ->drawEllipse(250, 400, 400, 350, -M_PI/6, M_PI/6);
+              ->drawEllipse(250, 400, 400, 350, -M_PI / 6, M_PI / 6);
 
         // Draw and fill polygon
         $page3->setFillColor(new Zend_Pdf_Color_Rgb(1, 0, 1));
         $x = [];
         $y = [];
         for ($count = 0; $count < 8; $count++) {
-            $x[] = 140 + 25*cos(3*M_PI_4*$count);
-            $y[] = 375 + 25*sin(3*M_PI_4*$count);
+            $x[] = 140 + 25 * cos(3 * M_PI_4 * $count);
+            $y[] = 375 + 25 * sin(3 * M_PI_4 * $count);
         }
-        $page3->drawPolygon($x, $y,
-                            Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE,
-                            Zend_Pdf_Page::FILL_METHOD_EVEN_ODD);
+        $page3->drawPolygon(
+            $x,
+            $y,
+            Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE,
+            Zend_Pdf_Page::FILL_METHOD_EVEN_ODD
+        );
 
         // Draw line
         $page3->setLineWidth(0.5)
@@ -315,7 +323,7 @@ class Zend_Pdf_DrawingTest extends TestCase
             $page->drawText("'The quick brown fox jumps over the lazy dog'", 100, 360);
 
             $ascent = $font->getAscent();
-            $this->assertTrue( abs(1 - $font->getCoveredPercentage('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxwz')) < 0.00001 );
+            $this->assertTrue(abs(1 - $font->getCoveredPercentage('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxwz')) < 0.00001);
             $descent = $font->getDescent();
 
             $font->getFontName(Zend_Pdf_Font::NAME_FULL, 'en');
@@ -338,8 +346,8 @@ class Zend_Pdf_DrawingTest extends TestCase
             $font->getFontName(Zend_Pdf_Font::NAME_LICENSE, 'en');
             $font->getFontName(Zend_Pdf_Font::NAME_LICENSE_URL, 'en');
 
-            $type       = $font->getFontType();
-            $lineGap    = $font->getLineGap();
+            $type = $font->getFontType();
+            $lineGap = $font->getLineGap();
             $lineHeight = $font->getLineHeight();
             $this->assertTrue($font->getResource() instanceof Zend_Pdf_Element_Object);
             $font->getStrikePosition();
@@ -368,7 +376,7 @@ class Zend_Pdf_DrawingTest extends TestCase
                  ->drawText($example, 100, 360, 'UTF-16BE');
 
             $ascent = $font->getAscent();
-            $this->assertTrue( abs(1 - $font->getCoveredPercentage($example, 'UTF-16BE')) < 0.00001 );
+            $this->assertTrue(abs(1 - $font->getCoveredPercentage($example, 'UTF-16BE')) < 0.00001);
             $descent = $font->getDescent();
 
             $font->getFontName(Zend_Pdf_Font::NAME_FULL, 'en');
@@ -391,8 +399,8 @@ class Zend_Pdf_DrawingTest extends TestCase
             $font->getFontName(Zend_Pdf_Font::NAME_LICENSE, 'en');
             $font->getFontName(Zend_Pdf_Font::NAME_LICENSE_URL, 'en');
 
-            $type       = $font->getFontType();
-            $lineGap    = $font->getLineGap();
+            $type = $font->getFontType();
+            $lineGap = $font->getLineGap();
             $lineHeight = $font->getLineHeight();
             $this->assertTrue($font->getResource() instanceof Zend_Pdf_Element_Object);
             $font->getStrikePosition();
@@ -427,7 +435,7 @@ class Zend_Pdf_DrawingTest extends TestCase
                  ->drawText("'The quick brown fox jumps over the lazy dog'", 100, 360);
 
             $ascent = $font->getAscent();
-            $this->assertTrue( abs(1 - $font->getCoveredPercentage('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxwz')) < 0.00001 );
+            $this->assertTrue(abs(1 - $font->getCoveredPercentage('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxwz')) < 0.00001);
             $descent = $font->getDescent();
 
             $font->getFontName(Zend_Pdf_Font::NAME_FULL, 'en');
@@ -450,8 +458,8 @@ class Zend_Pdf_DrawingTest extends TestCase
             $font->getFontName(Zend_Pdf_Font::NAME_LICENSE, 'en');
             $font->getFontName(Zend_Pdf_Font::NAME_LICENSE_URL, 'en');
 
-            $type       = $font->getFontType();
-            $lineGap    = $font->getLineGap();
+            $type = $font->getFontType();
+            $lineGap = $font->getLineGap();
             $lineHeight = $font->getLineHeight();
             $this->assertTrue($font->getResource() instanceof Zend_Pdf_Element_Object);
             $font->getStrikePosition();
@@ -526,17 +534,18 @@ class Zend_Pdf_DrawingTest extends TestCase
 
         $newPages = [];
 
-        $fontList  = [];
+        $fontList = [];
         $fontNames = [];
         foreach ($pdf1->pages as $page) {
             $pageFonts = $page->extractFonts();
             foreach ($pageFonts as $font) {
-                $fontList[]  = $font;
+                $fontList[] = $font;
                 $fontNames[] = $font->getFontName(Zend_Pdf_Font::NAME_POSTSCRIPT, 'en', 'UTF-8');
             }
         }
 
-        $this->assertEquals([Zend_Pdf_Font::FONT_COURIER,
+        $this->assertEquals(
+            [Zend_Pdf_Font::FONT_COURIER,
                                   Zend_Pdf_Font::FONT_HELVETICA_BOLD,
                                   Zend_Pdf_Font::FONT_TIMES_BOLD_ITALIC,
                                   'BitstreamVeraSans-Bold',
@@ -549,7 +558,8 @@ class Zend_Pdf_DrawingTest extends TestCase
                                   'BitstreamVeraSerif-Bold',
                                   'BitstreamVeraSerif-Roman',
                                   'BitstreamVeraSans-Roman'],
-                            $fontNames);
+            $fontNames
+        );
 
         $pdf1->pages[] = ($page = $pdf1->newPage(Zend_Pdf_Page::SIZE_A4));
         $yPosition = 700;
@@ -563,7 +573,8 @@ class Zend_Pdf_DrawingTest extends TestCase
         foreach ($pdf1->extractFonts() as $font) {
             $fontNames1[] = $font->getFontName(Zend_Pdf_Font::NAME_POSTSCRIPT, 'en', 'UTF-8');
         }
-        $this->assertEquals([Zend_Pdf_Font::FONT_COURIER,
+        $this->assertEquals(
+            [Zend_Pdf_Font::FONT_COURIER,
                                   Zend_Pdf_Font::FONT_HELVETICA_BOLD,
                                   Zend_Pdf_Font::FONT_TIMES_BOLD_ITALIC,
                                   'BitstreamVeraSans-Bold',
@@ -576,7 +587,8 @@ class Zend_Pdf_DrawingTest extends TestCase
                                   'BitstreamVeraSerif-Bold',
                                   'BitstreamVeraSerif-Roman',
                                   'BitstreamVeraSans-Roman'],
-                            $fontNames1);
+            $fontNames1
+        );
 
         $page = reset($pdf1->pages);
         $font = $page->extractFont(Zend_Pdf_Font::FONT_COURIER);

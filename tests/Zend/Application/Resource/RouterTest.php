@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_RouterTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -110,13 +112,13 @@ class Zend_Application_Resource_RouterTest extends TestCase
     {
         $options = ['routes' => [
             'archive' => [
-                'route'    => 'archive/:year/*',
+                'route' => 'archive/:year/*',
                 'defaults' => [
                     'controller' => 'archive',
-                    'action'     => 'show',
-                    'year'       => 2000,
+                    'action' => 'show',
+                    'year' => 2000,
                 ],
-                'reqs'     => [
+                'reqs' => [
                     'year' => '\d+',
                 ],
             ],
@@ -125,7 +127,7 @@ class Zend_Application_Resource_RouterTest extends TestCase
         $resource = new Zend_Application_Resource_Router($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $router   = $resource->getRouter();
+        $router = $resource->getRouter();
         $this->assertTrue($router->hasRoute('archive'));
         $route = $router->getRoute('archive');
         $this->assertTrue($route instanceof Zend_Controller_Router_Route);

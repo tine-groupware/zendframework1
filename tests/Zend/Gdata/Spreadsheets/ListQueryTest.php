@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_ListQueryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->docQuery = new Zend_Gdata_Spreadsheets_ListQuery();
@@ -106,5 +107,4 @@ class Zend_Gdata_Spreadsheets_ListQueryTest extends TestCase
         $this->docQuery->setReverse(null);
         $this->assertTrue($this->docQuery->getReverse() == null);
     }
-
 }

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -64,9 +66,8 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Action_Helper_ContextSwitchTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Action_Helper_ContextSwitchTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -326,7 +327,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
     public function testCanAddContext()
     {
         $this->helper->addContext('foobar', [
-            'suffix'  => 'foo.bar',
+            'suffix' => 'foo.bar',
             'headers' => ['Content-Type' => 'application/x-foobar', 'X-Foo' => 'Bar'],
         ]);
         $context = $this->helper->getContext('foobar');
@@ -362,11 +363,11 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
     {
         $this->helper->addContexts([
             'foobar' => [
-                'suffix'  => 'foo.bar',
+                'suffix' => 'foo.bar',
                 'headers' => ['Content-Type' => 'application/x-foobar', 'X-Foo' => 'Bar'],
             ],
             'barbaz' => [
-                'suffix'  => 'bar.baz',
+                'suffix' => 'bar.baz',
                 'headers' => ['Content-Type' => 'application/x-barbaz', 'X-Bar' => 'Baz'],
             ]
         ]);
@@ -377,17 +378,17 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
     public function testCanOverwriteManyContextsAtOnce()
     {
         $this->helper->setContexts([
-            'xml'    => [
-                'suffix'    => ['suffix' => 'xml', 'prependViewRendererSuffix' => false],
-                'headers'   => ['Content-Type' => 'application/xml'],
+            'xml' => [
+                'suffix' => ['suffix' => 'xml', 'prependViewRendererSuffix' => false],
+                'headers' => ['Content-Type' => 'application/xml'],
                 'callbacks' => ['TRIGGER_INIT' => 'foobar']
             ],
             'foobar' => [
-                'suffix'  => 'foo.bar',
+                'suffix' => 'foo.bar',
                 'headers' => ['Content-Type' => 'application/x-foobar', 'X-Foo' => 'Bar'],
             ],
             'barbaz' => [
-                'suffix'  => 'bar.baz',
+                'suffix' => 'bar.baz',
                 'headers' => ['Content-Type' => 'application/x-barbaz', 'X-Bar' => 'Baz'],
             ]
         ]);
@@ -663,7 +664,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
         $this->controller->dispatch('barAction');
 
         $headers = $this->response->getHeaders();
-        $found   = false;
+        $found = false;
         foreach ($headers as $header) {
             if ($header['name'] == 'Content-Type') {
                 if ($header['value'] == 'application/json') {
@@ -693,7 +694,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
 
 
         $headers = $this->response->getHeaders();
-        $found   = false;
+        $found = false;
         foreach ($headers as $header) {
             if ($header['name'] == 'Content-Type') {
                 if ($header['value'] == 'application/json') {
@@ -848,7 +849,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
         try {
             $this->helper->setAutoJsonSerialization(true);
             $this->helper->postJsonContext();
-        } catch(Zend_Controller_Action_Exception $zcae) {
+        } catch (Zend_Controller_Action_Exception $zcae) {
             $this->fail('Exception should be throw when view does not implement getVars() method');
         }
     }
@@ -866,7 +867,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
             $this->helper->setAutoJsonSerialization(true);
             $this->helper->postJsonContext();
             $this->fail('Exception should be throw when view does not implement getVars() method');
-        } catch(Zend_Controller_Action_Exception $zcae) {
+        } catch (Zend_Controller_Action_Exception $zcae) {
         }
     }
 
@@ -919,7 +920,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
         $expected = [
             'foo' => ['xml'],
             'bar' => ['xml', 'json'],
-            'all' => ['json','xml']
+            'all' => ['json', 'xml']
         ];
         $actual = $this->helper->getActionContexts(null);
         $this->assertEquals($expected, $actual);
@@ -972,37 +973,48 @@ class Zend_Controller_Action_Helper_ContextSwitchTest_LayoutOverride extends Zen
 class Zend_Controller_Action_Helper_ContextSwitchText_CustomView implements Zend_View_Interface
 {
     public function getEngine()
-    {}
+    {
+    }
 
     public function setScriptPath($path)
-    {}
+    {
+    }
 
     public function getScriptPaths()
-    {}
+    {
+    }
 
     public function setBasePath($path, $classPrefix = 'Zend_View')
-    {}
+    {
+    }
 
     public function addBasePath($path, $classPrefix = 'Zend_View')
-    {}
+    {
+    }
 
     public function __set($key, $val)
-    {}
+    {
+    }
 
     public function __isset($key)
-    {}
+    {
+    }
 
     public function __unset($key)
-    {}
+    {
+    }
 
     public function assign($spec, $value = null)
-    {}
+    {
+    }
 
     public function clearVars()
-    {}
+    {
+    }
 
     public function render($name)
-    {}
+    {
+    }
 }
 
 // Call Zend_Controller_Action_Helper_ContextSwitchTest::main() if this source file is executed directly.

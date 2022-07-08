@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -46,8 +48,8 @@ class Zend_Application_Resource_ViewTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -111,7 +113,7 @@ class Zend_Application_Resource_ViewTest extends TestCase
         require_once 'Zend/Application/Resource/View.php';
         $resource = new Zend_Application_Resource_View($options);
         $resource->init();
-        $view  = $resource->getView();
+        $view = $resource->getView();
         $paths = $view->getScriptPaths();
         $this->assertContains(dirname(__FILE__) . '/', $paths, var_export($paths, 1));
     }
@@ -121,7 +123,7 @@ class Zend_Application_Resource_ViewTest extends TestCase
         $options = ['doctype' => 'XHTML1_FRAMESET'];
         $resource = new Zend_Application_Resource_View($options);
         $resource->init();
-        $view  = $resource->getView();
+        $view = $resource->getView();
         $this->assertEquals('XHTML1_FRAMESET', $view->doctype()->getDoctype());
     }
 
@@ -186,7 +188,7 @@ class Zend_Application_Resource_ViewTest extends TestCase
      */
     public function testSetMetaCharsetShouldOnlyAvailableForHtml5()
     {
-    	$charset = 'UTF-8';
+        $charset = 'UTF-8';
         $options = [
             'doctype' => 'XHTML1_STRICT',
             'charset' => $charset,

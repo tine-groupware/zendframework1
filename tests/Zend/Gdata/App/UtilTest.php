@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,7 +38,6 @@ require_once 'Zend/Gdata/App/Exception.php';
  */
 class Zend_Gdata_App_UtilTest extends TestCase
 {
-
     public function testFormatTimestampFromString()
     {
         // assert that a correctly formatted timestamp is not modified
@@ -162,7 +163,8 @@ class Zend_Gdata_App_UtilTest extends TestCase
         );
     }
 
-    public function testFindGreatestBoundedValueReturnsMax() {
+    public function testFindGreatestBoundedValueReturnsMax()
+    {
         $data = [-1 => null,
                       0 => null,
                       1 => null,
@@ -174,7 +176,8 @@ class Zend_Gdata_App_UtilTest extends TestCase
         $this->assertEquals(5, $result);
     }
 
-    public function testFindGreatestBoundedValueReturnsMaxWhenBounded() {
+    public function testFindGreatestBoundedValueReturnsMaxWhenBounded()
+    {
         $data = [-1 => null,
                       0 => null,
                       1 => null,
@@ -186,7 +189,8 @@ class Zend_Gdata_App_UtilTest extends TestCase
         $this->assertEquals(3, $result);
     }
 
-    public function testFindGreatestBoundedValueReturnsMaxWhenUnbounded() {
+    public function testFindGreatestBoundedValueReturnsMaxWhenUnbounded()
+    {
         $data = [-1 => null,
                       0 => null,
                       1 => null,
@@ -198,7 +202,8 @@ class Zend_Gdata_App_UtilTest extends TestCase
         $this->assertEquals(5, $result);
     }
 
-    public function testFindGreatestBoundedValueReturnsZeroWhenZeroBounded() {
+    public function testFindGreatestBoundedValueReturnsZeroWhenZeroBounded()
+    {
         $data = [-1 => null,
                       0 => null,
                       1 => null,
@@ -210,7 +215,8 @@ class Zend_Gdata_App_UtilTest extends TestCase
         $this->assertEquals(0, $result);
     }
 
-    public function testFindGreatestBoundedValueFailsWhenNegativelyBounded() {
+    public function testFindGreatestBoundedValueFailsWhenNegativelyBounded()
+    {
         $data = [-1 => null,
                       0 => null,
                       1 => null,
@@ -226,5 +232,4 @@ class Zend_Gdata_App_UtilTest extends TestCase
         }
         $this->assertFalse($failed, 'Exception not raised.');
     }
-
 }

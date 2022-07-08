@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Runner\Version;
+
 /**
  * Zend Framework
  *
@@ -44,9 +46,9 @@ error_reporting(E_ALL | E_STRICT);
  * Determine the root, library, and tests directories of the framework
  * distribution.
  */
-$zfRoot        = realpath(dirname(dirname(__FILE__)));
+$zfRoot = realpath(dirname(dirname(__FILE__)));
 $zfCoreLibrary = "$zfRoot/library";
-$zfCoreTests   = "$zfRoot/tests";
+$zfCoreTests = "$zfRoot/tests";
 
 /*
  * Prepend the Zend Framework library/ and tests/ directories to the
@@ -85,4 +87,3 @@ unset($zfRoot, $zfCoreLibrary, $zfCoreTests, $path);
 
 // Suppress DateTime warnings
 date_default_timezone_set(@date_default_timezone_get());
-

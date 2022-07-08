@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Server_Reflection_MethodTest extends TestCase
     protected function setUp(): void
     {
         $this->_classRaw = new ReflectionClass('Zend_Server_Reflection');
-        $this->_method   = $this->_classRaw->getMethod('reflectClass');
-        $this->_class    = new Zend_Server_Reflection_Class($this->_classRaw);
+        $this->_method = $this->_classRaw->getMethod('reflectClass');
+        $this->_class = new Zend_Server_Reflection_Class($this->_classRaw);
     }
 
     /**
@@ -109,6 +111,4 @@ class Zend_Server_Reflection_MethodTest extends TestCase
         $this->assertEquals($r->getName(), $u->getName());
         $this->assertEquals($r->getDeclaringClass()->getName(), $u->getDeclaringClass()->getName());
     }
-
-
 }

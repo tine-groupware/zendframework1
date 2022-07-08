@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,37 +37,43 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_Gapps_LoginTest extends TestCase
 {
-
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         $this->loginText = file_get_contents(
-                'Zend/Gdata/Gapps/_files/LoginElementSample1.xml',
-                true);
+            'Zend/Gdata/Gapps/_files/LoginElementSample1.xml',
+            true
+        );
         $this->login = new Zend_Gdata_Gapps_Extension_Login();
     }
 
-    public function testEmptyLoginShouldHaveNoExtensionElements() {
+    public function testEmptyLoginShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->login->extensionElements));
         $this->assertTrue(count($this->login->extensionElements) == 0);
     }
 
-    public function testEmptyLoginShouldHaveNoExtensionAttributes() {
+    public function testEmptyLoginShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->login->extensionAttributes));
         $this->assertTrue(count($this->login->extensionAttributes) == 0);
     }
 
-    public function testSampleLoginShouldHaveNoExtensionElements() {
+    public function testSampleLoginShouldHaveNoExtensionElements()
+    {
         $this->login->transferFromXML($this->loginText);
         $this->assertTrue(is_array($this->login->extensionElements));
         $this->assertTrue(count($this->login->extensionElements) == 0);
     }
 
-    public function testSampleLoginShouldHaveNoExtensionAttributes() {
+    public function testSampleLoginShouldHaveNoExtensionAttributes()
+    {
         $this->login->transferFromXML($this->loginText);
         $this->assertTrue(is_array($this->login->extensionAttributes));
         $this->assertTrue(count($this->login->extensionAttributes) == 0);
     }
 
-    public function testNormalLoginShouldHaveNoExtensionElements() {
+    public function testNormalLoginShouldHaveNoExtensionElements()
+    {
         $this->login->username = "johndoe";
         $this->login->password = "abcdefg1234567890";
         $this->login->hashFunctionName = "Foo";
@@ -111,7 +119,8 @@ class Zend_Gdata_Gapps_LoginTest extends TestCase
         $this->assertEquals(false, $newLogin2->agreedToTerms);
     }
 
-    public function testEmptyLoginToAndFromStringShouldMatch() {
+    public function testEmptyLoginToAndFromStringShouldMatch()
+    {
         $loginXml = $this->login->saveXML();
         $newLogin = new Zend_Gdata_Gapps_Extension_Login();
         $newLogin->transferFromXML($loginXml);
@@ -119,7 +128,8 @@ class Zend_Gdata_Gapps_LoginTest extends TestCase
         $this->assertTrue($loginXml == $newLoginXml);
     }
 
-    public function testLoginWithValueToAndFromStringShouldMatch() {
+    public function testLoginWithValueToAndFromStringShouldMatch()
+    {
         $this->login->username = "johndoe";
         $this->login->password = "abcdefg1234567890";
         $this->login->hashFunctionName = "Foo";
@@ -139,13 +149,13 @@ class Zend_Gdata_Gapps_LoginTest extends TestCase
         $this->assertEquals(true, $this->login->admin);
         $this->assertEquals(true, $this->login->changePasswordAtNextLogin);
         $this->assertEquals(false, $this->login->agreedToTerms);
-
     }
 
-    public function testExtensionAttributes() {
+    public function testExtensionAttributes()
+    {
         $extensionAttributes = $this->login->extensionAttributes;
-        $extensionAttributes['foo1'] = ['name'=>'foo1', 'value'=>'bar'];
-        $extensionAttributes['foo2'] = ['name'=>'foo2', 'value'=>'rab'];
+        $extensionAttributes['foo1'] = ['name' => 'foo1', 'value' => 'bar'];
+        $extensionAttributes['foo2'] = ['name' => 'foo2', 'value' => 'rab'];
         $this->login->extensionAttributes = $extensionAttributes;
         $this->assertEquals('bar', $this->login->extensionAttributes['foo1']['value']);
         $this->assertEquals('rab', $this->login->extensionAttributes['foo2']['value']);
@@ -156,7 +166,8 @@ class Zend_Gdata_Gapps_LoginTest extends TestCase
         $this->assertEquals('rab', $newLogin->extensionAttributes['foo2']['value']);
     }
 
-    public function testConvertFullLoginToAndFromString() {
+    public function testConvertFullLoginToAndFromString()
+    {
         $this->login->transferFromXML($this->loginText);
         $this->assertEquals("SusanJones-1321", $this->login->username);
         $this->assertEquals("123\$\$abc", $this->login->password);
@@ -166,5 +177,4 @@ class Zend_Gdata_Gapps_LoginTest extends TestCase
         $this->assertEquals(false, $this->login->changePasswordAtNextLogin);
         $this->assertEquals(true, $this->login->agreedToTerms);
     }
-
 }

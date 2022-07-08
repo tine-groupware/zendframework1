@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +50,8 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Captcha_ReCaptchaTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Captcha_ReCaptchaTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -73,7 +75,7 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
                 ]
             ]
         );
-        $this->captcha =  $this->element->getCaptcha();
+        $this->captcha = $this->element->getCaptcha();
     }
 
     /**
@@ -90,12 +92,12 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     {
         $options = [
             'privKey' => 'privateKey',
-            'pubKey'  => 'publicKey',
-            'ssl'     => true,
-            'xhtml'   => true,
+            'pubKey' => 'publicKey',
+            'ssl' => true,
+            'xhtml' => true,
         ];
         $captcha = new Zend_Captcha_ReCaptcha($options);
-        $test    = $captcha->getOptions();
+        $test = $captcha->getOptions();
         $compare = ['privKey' => $options['privKey'], 'pubKey' => $options['pubKey']];
         $this->assertEquals($compare, $test);
 
@@ -111,7 +113,7 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     public function testShouldAllowSpecifyingServiceObject()
     {
         $captcha = new Zend_Captcha_ReCaptcha();
-        $try     = new Zend_Service_ReCaptcha();
+        $try = new Zend_Service_ReCaptcha();
         $this->assertNotSame($captcha->getService(), $try);
         $captcha->setService($try);
         $this->assertSame($captcha->getService(), $try);
@@ -135,7 +137,7 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     /** @group ZF-7654 */
     public function testConstructorShouldAllowSettingLangOptionOnServiceObject()
     {
-        $options = ['lang'=>'fr'];
+        $options = ['lang' => 'fr'];
         $captcha = new Zend_Captcha_ReCaptcha($options);
         $this->assertEquals('fr', $captcha->getService()->getOption('lang'));
     }
@@ -143,7 +145,7 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     /** @group ZF-7654 */
     public function testConstructorShouldAllowSettingThemeOptionOnServiceObject()
     {
-        $options = ['theme'=>'black'];
+        $options = ['theme' => 'black'];
         $captcha = new Zend_Captcha_ReCaptcha($options);
         $this->assertEquals('black', $captcha->getService()->getOption('theme'));
     }
@@ -151,7 +153,7 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     /** @group ZF-7654 */
     public function testAllowsSettingLangOptionOnServiceObject()
     {
-        $captcha = new Zend_Captcha_ReCaptcha;
+        $captcha = new Zend_Captcha_ReCaptcha();
         $captcha->setOption('lang', 'fr');
         $this->assertEquals('fr', $captcha->getService()->getOption('lang'));
     }
@@ -159,7 +161,7 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     /** @group ZF-7654 */
     public function testAllowsSettingThemeOptionOnServiceObject()
     {
-        $captcha = new Zend_Captcha_ReCaptcha;
+        $captcha = new Zend_Captcha_ReCaptcha();
         $captcha->setOption('theme', 'black');
         $this->assertEquals('black', $captcha->getService()->getOption('theme'));
     }
@@ -167,13 +169,13 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     /** @group ZF-10991 */
     public function testRenderWillUseElementNameWhenRenderingNoScriptFields()
     {
-        $captcha = new Zend_Captcha_ReCaptcha;
-        $pubKey  = 'pubKey';
+        $captcha = new Zend_Captcha_ReCaptcha();
+        $pubKey = 'pubKey';
         $privKey = 'privKey';
         $captcha->setPubkey($pubKey)
                 ->setPrivkey($privKey);
         $element = new Zend_Form_Element_Captcha('captcha', [
-            'captcha'   => $captcha,
+            'captcha' => $captcha,
             'belongsTo' => 'contact',
         ]);
         $view = new Zend_View();
@@ -185,7 +187,7 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     /** @group ZF-10991 */
     public function testUsesReCaptchaSpecificDecorator()
     {
-        $captcha = new Zend_Captcha_ReCaptcha;
+        $captcha = new Zend_Captcha_ReCaptcha();
         $this->assertEquals('Captcha_ReCaptcha', $captcha->getDecorator());
     }
 
@@ -196,10 +198,10 @@ class Zend_Captcha_ReCaptchaTest extends TestCase
     {
         $options = [
             'instructions_visual' => 'Wpisz dwa wyrazy:',
-            'instructions_audio'  => 'Wpisz uslyszany tekst:'
+            'instructions_audio' => 'Wpisz uslyszany tekst:'
         ];
 
-        $captcha = new Zend_Captcha_ReCaptcha;
+        $captcha = new Zend_Captcha_ReCaptcha();
         $captcha->setOption('custom_translations', $options);
         $this->assertEquals(
             $options,
@@ -232,7 +234,7 @@ class Zend_Captcha_ReCaptchaTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== self::$_word))  {
+        if (('word' == $name) && (null !== self::$_word)) {
             return true;
         }
 

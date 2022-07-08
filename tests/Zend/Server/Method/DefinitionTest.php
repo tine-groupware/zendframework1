@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,8 +58,8 @@ class Zend_Server_Method_DefinitionTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Server_Method_DefinitionTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Server_Method_DefinitionTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -97,7 +99,7 @@ class Zend_Server_Method_DefinitionTest extends TestCase
     public function testSetCallbackShouldAcceptArray()
     {
         $callback = [
-            'type'     => 'function',
+            'type' => 'function',
             'function' => 'foo',
         ];
         $this->definition->setCallback($callback);
@@ -137,7 +139,7 @@ class Zend_Server_Method_DefinitionTest extends TestCase
     public function testObjectShouldBeMutable()
     {
         $this->assertNull($this->definition->getObject());
-        $object = new stdClass;
+        $object = new stdClass();
         $this->definition->setObject($object);
         $this->assertEquals($object, $this->definition->getObject());
     }
@@ -158,7 +160,7 @@ class Zend_Server_Method_DefinitionTest extends TestCase
     public function testInvokeArgumentsShouldBeMutable()
     {
         $this->testInvokeArgumentsShouldBeEmptyArrayByDefault();
-        $args = ['foo', ['bar', 'baz'], new stdClass];
+        $args = ['foo', ['bar', 'baz'], new stdClass()];
         $this->definition->setInvokeArguments($args);
         $this->assertSame($args, $this->definition->getInvokeArguments());
     }
@@ -173,12 +175,12 @@ class Zend_Server_Method_DefinitionTest extends TestCase
     public function testDefinitionShouldAllowAddingSinglePrototypes()
     {
         $this->testPrototypesShouldBeEmptyArrayByDefault();
-        $prototype1 = new Zend_Server_Method_Prototype;
+        $prototype1 = new Zend_Server_Method_Prototype();
         $this->definition->addPrototype($prototype1);
         $test = $this->definition->getPrototypes();
         $this->assertSame($prototype1, $test[0]);
 
-        $prototype2 = new Zend_Server_Method_Prototype;
+        $prototype2 = new Zend_Server_Method_Prototype();
         $this->definition->addPrototype($prototype2);
         $test = $this->definition->getPrototypes();
         $this->assertSame($prototype1, $test[0]);
@@ -187,8 +189,8 @@ class Zend_Server_Method_DefinitionTest extends TestCase
 
     public function testDefinitionShouldAllowAddingMultiplePrototypes()
     {
-        $prototype1 = new Zend_Server_Method_Prototype;
-        $prototype2 = new Zend_Server_Method_Prototype;
+        $prototype1 = new Zend_Server_Method_Prototype();
+        $prototype2 = new Zend_Server_Method_Prototype();
         $prototypes = [$prototype1, $prototype2];
         $this->definition->addPrototypes($prototypes);
         $this->assertSame($prototypes, $this->definition->getPrototypes());
@@ -198,8 +200,8 @@ class Zend_Server_Method_DefinitionTest extends TestCase
     {
         $this->testDefinitionShouldAllowAddingMultiplePrototypes();
 
-        $prototype1 = new Zend_Server_Method_Prototype;
-        $prototype2 = new Zend_Server_Method_Prototype;
+        $prototype1 = new Zend_Server_Method_Prototype();
+        $prototype2 = new Zend_Server_Method_Prototype();
         $prototypes = [$prototype1, $prototype2];
         $this->assertNotSame($prototypes, $this->definition->getPrototypes());
         $this->definition->setPrototypes($prototypes);
@@ -208,11 +210,11 @@ class Zend_Server_Method_DefinitionTest extends TestCase
 
     public function testDefintionShouldSerializeToArray()
     {
-        $name       = 'foo.bar';
-        $callback   = ['function' => 'foo', 'type' => 'function'];
+        $name = 'foo.bar';
+        $callback = ['function' => 'foo', 'type' => 'function'];
         $prototypes = [['returnType' => 'struct', 'parameters' => ['string', 'array']]];
         $methodHelp = 'foo bar';
-        $object     = new stdClass;
+        $object = new stdClass();
         $invokeArgs = ['foo', ['bar', 'baz']];
         $this->definition->setName($name)
                          ->setCallback($callback)
@@ -232,11 +234,11 @@ class Zend_Server_Method_DefinitionTest extends TestCase
     public function testPassingOptionsToConstructorShouldSetObjectState()
     {
         $options = [
-            'name'            => 'foo.bar',
-            'callback'        => ['function' => 'foo', 'type' => 'function'],
-            'prototypes'      => [['returnType' => 'struct', 'parameters' => ['string', 'array']]],
-            'methodHelp'      => 'foo bar',
-            'object'          => new stdClass,
+            'name' => 'foo.bar',
+            'callback' => ['function' => 'foo', 'type' => 'function'],
+            'prototypes' => [['returnType' => 'struct', 'parameters' => ['string', 'array']]],
+            'methodHelp' => 'foo bar',
+            'object' => new stdClass(),
             'invokeArguments' => ['foo', ['bar', 'baz']],
         ];
         $definition = new Zend_Server_Method_Definition($options);

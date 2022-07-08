@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -55,8 +57,8 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_View_Helper_FormCheckboxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormCheckboxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -65,7 +67,7 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry['Zend_View_Helper_Doctype']);
         }
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormCheckbox();
         $this->helper->setView($this->view);
     }
@@ -90,9 +92,9 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
     public function testCanDisableCheckbox()
     {
         $html = $this->helper->formCheckbox([
-            'name'   => 'foo',
-            'value'  => 'bar',
-            'attribs'=> ['disable' => true]
+            'name' => 'foo',
+            'value' => 'bar',
+            'attribs' => ['disable' => true]
         ]);
         $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $html);
     }
@@ -103,9 +105,9 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
     public function testCheckboxNotDisabled()
     {
         $html = $this->helper->formCheckbox([
-            'name'   => 'foo',
-            'value'  => 'bar',
-            'attribs'=> ['disable' => false]
+            'name' => 'foo',
+            'value' => 'bar',
+            'attribs' => ['disable' => false]
         ]);
         $this->assertStringNotContainsString('disabled="disabled"', $html);
     }
@@ -113,9 +115,9 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
     public function testCanSelectCheckbox()
     {
         $html = $this->helper->formCheckbox([
-            'name'   => 'foo',
-            'value'  => 'bar',
-            'attribs'=> ['checked' => true]
+            'name' => 'foo',
+            'value' => 'bar',
+            'attribs' => ['checked' => true]
         ]);
         $this->assertMatchesRegularExpression('/<input[^>]*?(checked="checked")/', $html);
         $count = substr_count($html, 'checked');
@@ -128,19 +130,19 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
     public function testNameBracketsStrippedWhenCreatingId()
     {
         $html = $this->helper->formCheckbox([
-            'name'  => 'foo[]',
+            'name' => 'foo[]',
             'value' => 'bar'
         ]);
         $this->assertMatchesRegularExpression('/<input[^>]*?(id="foo")/', $html);
 
         $html = $this->helper->formCheckbox([
-            'name'  => 'foo[bar]',
+            'name' => 'foo[bar]',
             'value' => 'bar'
         ]);
         $this->assertMatchesRegularExpression('/<input[^>]*?(id="foo-bar")/', $html);
 
         $html = $this->helper->formCheckbox([
-            'name'  => 'foo[bar][baz]',
+            'name' => 'foo[bar][baz]',
             'value' => 'bar'
         ]);
         $this->assertMatchesRegularExpression('/<input[^>]*?(id="foo-bar-baz")/', $html);
@@ -152,7 +154,7 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
     public function testDoesNotRenderHiddenElementsForCheckboxArray()
     {
         $html = $this->helper->formCheckbox([
-            'name'  => 'foo[]',
+            'name' => 'foo[]',
             'value' => 'bar'
         ]);
         $this->assertDoesNotMatchRegularExpression('/<input[^>]*?(type="hidden")/', $html);
@@ -168,7 +170,7 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
             'bar',
             ['checked' => true],
             [
-                'checked'   => 'bar',
+                'checked' => 'bar',
                 'unChecked' => 'baz'
             ]
         );
@@ -186,7 +188,7 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
             'bar',
             ['checked' => false],
             [
-                'checked'   => 'bar',
+                'checked' => 'bar',
                 'unChecked' => 'baz'
             ]
         );
@@ -287,22 +289,22 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
 
     public function testIntValueIsChecked()
     {
-        $test = $this->helper->formCheckbox('foo', '1', [], ['checked'=>1, 'unchecked'=>0]);
+        $test = $this->helper->formCheckbox('foo', '1', [], ['checked' => 1, 'unchecked' => 0]);
         $this->assertStringContainsString('checked="checked"', $test);
 
-        $test = $this->helper->formCheckbox('foo', '1', [], [1,0]);
+        $test = $this->helper->formCheckbox('foo', '1', [], [1, 0]);
         $this->assertStringContainsString('checked="checked"', $test);
 
-        $test = $this->helper->formCheckbox('foo', 1, [], ['checked'=>1, 'unchecked'=>0]);
+        $test = $this->helper->formCheckbox('foo', 1, [], ['checked' => 1, 'unchecked' => 0]);
         $this->assertStringContainsString('checked="checked"', $test);
 
-        $test = $this->helper->formCheckbox('foo', 1, [], [1,0]);
+        $test = $this->helper->formCheckbox('foo', 1, [], [1, 0]);
         $this->assertStringContainsString('checked="checked"', $test);
 
-        $test = $this->helper->formCheckbox('foo', 0, [], ['checked'=>1, 'unchecked'=>0]);
+        $test = $this->helper->formCheckbox('foo', 0, [], ['checked' => 1, 'unchecked' => 0]);
         $this->assertStringNotContainsString('checked="checked"', $test);
 
-        $test = $this->helper->formCheckbox('foo', 0, [], [1,0]);
+        $test = $this->helper->formCheckbox('foo', 0, [], [1, 0]);
         $this->assertStringNotContainsString('checked="checked"', $test);
     }
 
@@ -325,7 +327,8 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
 
         $html = $this->helper->formCheckbox(
             'foo',
-            'bar');
+            'bar'
+        );
 
         $this->assertSame(
             '<input type="hidden" name="foo" value="0"><input type="checkbox" name="foo" id="foo" value="bar">',
@@ -351,4 +354,3 @@ class Zend_View_Helper_FormCheckboxTest extends TestCase
 if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormCheckboxTest::main") {
     Zend_View_Helper_FormCheckboxTest::main();
 }
-

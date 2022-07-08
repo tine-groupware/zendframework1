@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,8 +51,8 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -115,7 +117,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $dir   = $front->getControllerDirectory('default');
+        $dir = $front->getControllerDirectory('default');
         $this->assertEquals(dirname(__FILE__), $dir);
     }
 
@@ -129,7 +131,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $dir   = $front->getControllerDirectory('foo');
+        $dir = $front->getControllerDirectory('foo');
         $this->assertEquals(dirname(__FILE__), $dir);
     }
 
@@ -147,7 +149,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $dirs  = $front->getControllerDirectory();
+        $dirs = $front->getControllerDirectory();
         $this->assertEquals([
             'foo' => dirname(__FILE__),
             'bar' => dirname(__FILE__),
@@ -162,7 +164,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $dir   = $front->getModuleControllerDirectoryName();
+        $dir = $front->getModuleControllerDirectoryName();
         $this->assertEquals('foo', $dir);
     }
 
@@ -175,9 +177,9 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $dir   = $front->getControllerDirectory();
+        $dir = $front->getControllerDirectory();
         $expected = [
-            'bar'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'bar' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'bar' . DIRECTORY_SEPARATOR . 'controllers',
             'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
@@ -186,10 +188,10 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
             'foo-bar' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'foo-bar' . DIRECTORY_SEPARATOR . 'controllers',
-            'foo'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'foo' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'foo' . DIRECTORY_SEPARATOR . 'controllers',
-            'baz'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'baz' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'baz' . DIRECTORY_SEPARATOR . 'controllers',
             'zfappbootstrap' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
@@ -213,9 +215,9 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $dir   = $front->getControllerDirectory();
+        $dir = $front->getControllerDirectory();
         $expected = [
-            'bar'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'bar' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'bar' . DIRECTORY_SEPARATOR . 'controllers',
             'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
@@ -224,19 +226,19 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
             'foo-bar' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'foo-bar' . DIRECTORY_SEPARATOR . 'controllers',
-            'foo'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'foo' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'foo' . DIRECTORY_SEPARATOR . 'controllers',
-            'baz'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'baz' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                        . 'baz' . DIRECTORY_SEPARATOR . 'controllers',
             'zfappbootstrap' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                               . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR
                               . 'zfappbootstrap' . DIRECTORY_SEPARATOR . 'controllers',
-            'bat'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'bat' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'more_modules' . DIRECTORY_SEPARATOR
                        . 'bat' . DIRECTORY_SEPARATOR . 'controllers',
-            'foobaz'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
+            'foobaz' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR
                        . '_files' . DIRECTORY_SEPARATOR . 'more_modules' . DIRECTORY_SEPARATOR
                        . 'foobaz' . DIRECTORY_SEPARATOR . 'controllers',
         ];
@@ -252,7 +254,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $test  = $front->getDefaultControllerName();
+        $test = $front->getDefaultControllerName();
         $this->assertEquals('foo', $test);
     }
 
@@ -264,7 +266,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $test  = $front->getDefaultAction();
+        $test = $front->getDefaultAction();
         $this->assertEquals('foo', $test);
     }
 
@@ -276,7 +278,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $test  = $front->getDefaultModule();
+        $test = $front->getDefaultModule();
         $this->assertEquals('foo', $test);
     }
 
@@ -288,7 +290,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $test  = $front->getBaseUrl();
+        $test = $front->getBaseUrl();
         $this->assertEquals('/foo', $test);
     }
 
@@ -304,7 +306,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         ]);
         $resource->init();
         $front = $resource->getFrontController();
-        $test  = $front->getParams();
+        $test = $front->getParams();
         $this->assertEquals($params, $test);
     }
 
@@ -373,8 +375,8 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
         $plugins = $front->getPlugins();
 
         $this->assertEquals(count($expected), count($plugins));
-        foreach($expected as $index => $class) {
-        	$this->assertEquals($class, get_class($plugins[$index]));
+        foreach ($expected as $index => $class) {
+            $this->assertEquals($class, get_class($plugins[$index]));
         }
     }
 
@@ -414,7 +416,9 @@ class Zend_Application_Resource_FrontcontrollerTest extends TestCase
 }
 
 require_once 'Zend/Controller/Dispatcher/Standard.php';
-class ZF9724_Dispatcher extends Zend_Controller_Dispatcher_Standard {}
+class ZF9724_Dispatcher extends Zend_Controller_Dispatcher_Standard
+{
+}
 
 if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_FrontcontrollerTest::main') {
     Zend_Application_Resource_FrontcontrollerTest::main();

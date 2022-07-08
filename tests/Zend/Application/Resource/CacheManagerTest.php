@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -64,8 +66,8 @@ class Zend_Application_Resource_CacheManagerTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -107,7 +109,6 @@ class Zend_Application_Resource_CacheManagerTest extends TestCase
 
     public function testInitializationCreatesCacheManagerInstance()
     {
-
         $resource = new Zend_Application_Resource_Cachemanager([]);
         $resource->init();
         $this->assertTrue($resource->getCachemanager() instanceof Zend_Cache_Manager);
@@ -135,7 +136,6 @@ class Zend_Application_Resource_CacheManagerTest extends TestCase
         $manager = $resource->init();
         $cacheTemplate = $manager->getCacheTemplate('page');
         $this->assertEquals('/foo', $cacheTemplate['backend']['options']['cache_dir']);
-
     }
 
     public function testShouldCreateNewCacheTemplateIfConfigNotMatchesADefaultTemplate()
@@ -227,16 +227,16 @@ class Zend_Application_Resource_CacheManagerTest extends TestCase
         $options = [
             'zf9737' => [
                 'frontend' => [
-                    'name'                 => 'custom-naming',
+                    'name' => 'custom-naming',
                     'customFrontendNaming' => false],
-                'backend' => ['name'                    => 'Zend_Cache_Backend_Custom_Naming',
-                                   'customBackendNaming'     => true],
+                'backend' => ['name' => 'Zend_Cache_Backend_Custom_Naming',
+                                   'customBackendNaming' => true],
                 'frontendBackendAutoload' => true]
         ];
 
         $resource = new Zend_Application_Resource_Cachemanager($options);
-        $manager  = $resource->init();
-        $cache    = $manager->getCache('zf9737');
+        $manager = $resource->init();
+        $cache = $manager->getCache('zf9737');
         $this->assertTrue($cache->getBackend() instanceof Zend_Cache_Backend_Custom_Naming);
         $this->assertTrue($cache instanceof Zend_Cache_Frontend_CustomNaming);
     }
@@ -251,7 +251,7 @@ class Zend_Application_Resource_CacheManagerTest extends TestCase
                 'frontend' => [
                     'options' => [
                         'logging' => true,
-                        'logger'  => [
+                        'logger' => [
                             new Zend_Log_Writer_Mock()
                         ]
                     ]

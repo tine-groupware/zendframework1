@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,7 +37,6 @@ require_once 'Zend/Gdata/Books/CollectionEntry.php';
  */
 class Zend_Gdata_Books_CollectionEntryTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->gdata = new Zend_Gdata_Books_CollectionEntry();
@@ -45,5 +46,4 @@ class Zend_Gdata_Books_CollectionEntryTest extends TestCase
     {
         $this->assertTrue(true);
     }
-
 }

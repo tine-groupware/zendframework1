@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -75,15 +77,18 @@ class Zend_Validate_DateTest extends TestCase
             '2007-02-30' => false,
             '2007-02-99' => false,
             '9999-99-99' => false,
-            0            => false,
+            0 => false,
             999999999999 => false,
             'Jan 1 2007' => false,
-            'asdasda'    => false,
-            'sdgsdg'     => false
+            'asdasda' => false,
+            'sdgsdg' => false
             ];
         foreach ($valuesExpected as $input => $result) {
-            $this->assertEquals($result, $this->_validator->isValid($input),
-                                "'$input' expected to be " . ($result ? '' : 'in') . 'valid');
+            $this->assertEquals(
+                $result,
+                $this->_validator->isValid($input),
+                "'$input' expected to be " . ($result ? '' : 'in') . 'valid'
+            );
         }
     }
 
@@ -168,7 +173,7 @@ class Zend_Validate_DateTest extends TestCase
             '1.Juli.2008' => true,
             '2008/20/03' => false,
             '99/99/2000' => false,
-            0            => false,
+            0 => false,
             999999999999 => false,
             'Jan 1 2007' => false
             ];
@@ -236,7 +241,7 @@ class Zend_Validate_DateTest extends TestCase
      */
     public function testArrayVerification()
     {
-        $date  = new Zend_Date();
+        $date = new Zend_Date();
         $array = $date->toArray();
         $this->assertTrue($this->_validator->isValid($array), "array expected to be valid");
     }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,7 +38,6 @@ require_once 'Zend/Feed.php';
  */
 class Zend_Feed_Entry_RssTest extends TestCase
 {
-
     public function testContentEncodedSupport()
     {
         $feed = Zend_Feed::importFile(dirname(__FILE__) . '/../_files/TestFeedEntryRssContentEncoded.xml');
@@ -49,11 +50,11 @@ class Zend_Feed_Entry_RssTest extends TestCase
         $this->assertStringContainsString(
             'http://framework.zend.com/fisheye/changelog/Zend_Framework/?cs=7757',
             $item->content->__toString()
-            );
+        );
         $this->assertStringContainsString(
             'http://framework.zend.com/fisheye/changelog/Zend_Framework/?cs=7757',
             $item->content()
-            );
+        );
         $item->content = 'foo';
         $this->assertEquals('foo', $item->content->__toString());
     }
@@ -64,7 +65,7 @@ class Zend_Feed_Entry_RssTest extends TestCase
         $this->assertTrue($feed instanceof Zend_Feed_Rss);
 
         $feed->next();
-        $item =  $feed->current();
+        $item = $feed->current();
         $this->assertTrue($item instanceof Zend_Feed_Entry_Rss);
         $this->assertFalse(isset($item->content));
         $this->assertNull($item->content());

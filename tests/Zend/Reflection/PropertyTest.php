@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,8 +39,7 @@ require_once 'Zend/Reflection/Property.php';
  */
 class Zend_Reflection_PropertyTest extends TestCase
 {
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -54,7 +55,4 @@ class Zend_Reflection_PropertyTest extends TestCase
         $property = new Zend_Reflection_Property('Zend_Reflection_TestSampleClass2', '_prop1');
         $this->assertEquals(get_class($property->getDeclaringClass()), 'Zend_Reflection_Class');
     }
-
-
 }
-

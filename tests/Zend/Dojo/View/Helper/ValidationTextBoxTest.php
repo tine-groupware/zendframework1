@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Dojo_View_Helper_ValidationTextBoxTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_ValidationTextBoxTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_ValidationTextBox();
         $this->helper->setView($this->view);
     }
@@ -104,8 +106,8 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends TestCase
             'elementId',
             '2008-07-07',
             [
-                'required'    => true,
-                'regExp'      => '[\w]+',
+                'required' => true,
+                'regExp' => '[\w]+',
             ],
             []
         );
@@ -149,8 +151,8 @@ class Zend_Dojo_View_Helper_ValidationTextBoxTest extends TestCase
             'elementId',
             '2008-07-07',
             [
-                'required'    => false,
-                'regExp'      => '[\w]+',
+                'required' => false,
+                'regExp' => '[\w]+',
             ],
             []
         );

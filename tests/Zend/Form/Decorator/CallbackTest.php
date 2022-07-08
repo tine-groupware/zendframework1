@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,9 +52,8 @@ class Zend_Form_Decorator_CallbackTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Form_Decorator_CallbackTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_CallbackTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -104,7 +105,7 @@ class Zend_Form_Decorator_CallbackTest extends TestCase
         }
 
         try {
-            $o = new stdClass;
+            $o = new stdClass();
             $this->decorator->setCallback($o);
             $this->fail('Only string or array callbacks should be allowed');
         } catch (Zend_Form_Exception $e) {
@@ -129,7 +130,7 @@ class Zend_Form_Decorator_CallbackTest extends TestCase
     public function testRenderCallsFunctionCallback()
     {
         $callback = 'Zend_Form_Decorator_CallbackTest_TestCallback';
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(['callback' => $callback])
@@ -144,7 +145,7 @@ class Zend_Form_Decorator_CallbackTest extends TestCase
     public function testRenderCallsMethodCallback()
     {
         $callback = ['Zend_Form_Decorator_CallbackTest_TestCallbackClass', 'direct'];
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(['callback' => $callback])
@@ -160,7 +161,7 @@ class Zend_Form_Decorator_CallbackTest extends TestCase
     public function testRenderCanPrepend()
     {
         $callback = 'Zend_Form_Decorator_CallbackTest_TestCallback';
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(['callback' => $callback, 'placement' => 'prepend'])
@@ -176,7 +177,7 @@ class Zend_Form_Decorator_CallbackTest extends TestCase
     public function testRenderCanReplaceContent()
     {
         $callback = 'Zend_Form_Decorator_CallbackTest_TestCallback';
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(['callback' => $callback, 'placement' => false])
@@ -191,12 +192,12 @@ class Zend_Form_Decorator_CallbackTest extends TestCase
 
 function Zend_Form_Decorator_CallbackTest_TestCallback($content, $element, array $options)
 {
-    $name  = $element->getName();
+    $name = $element->getName();
     $label = '';
     if (method_exists($element, 'getLabel')) {
         $label = $element->getLabel();
     }
-    $html =<<<EOH
+    $html = <<<EOH
 $label: $name
 
 EOH;
@@ -207,12 +208,12 @@ class Zend_Form_Decorator_CallbackTest_TestCallbackClass
 {
     public static function direct($content, $element, array $options)
     {
-        $name  = $element->getName();
+        $name = $element->getName();
         $label = '';
         if (method_exists($element, 'getLabel')) {
             $label = $element->getLabel();
         }
-        $html =<<<EOH
+        $html = <<<EOH
 Item "$label": $name
 
 EOH;

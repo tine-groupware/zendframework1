@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,8 +38,7 @@ require_once 'Zend/Reflection/Class.php';
  */
 class Zend_Reflection_ClassTest extends TestCase
 {
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -51,7 +52,6 @@ class Zend_Reflection_ClassTest extends TestCase
 
     public function testMethodReturns()
     {
-
         $reflectionClass = new Zend_Reflection_Class('Zend_Reflection_TestSampleClass2');
 
         $methodByName = $reflectionClass->getMethod('getProp1');
@@ -85,7 +85,6 @@ class Zend_Reflection_ClassTest extends TestCase
         $parent = $reflectionClass->getParentClass();
         $this->assertEquals('Zend_Reflection_Class', get_class($parent));
         $this->assertEquals('ArrayObject', $parent->getName());
-
     }
 
     public function testInterfaceReturn()
@@ -97,7 +96,6 @@ class Zend_Reflection_ClassTest extends TestCase
 
         $interface = array_shift($interfaces);
         $this->assertEquals('Zend_Reflection_TestSampleClassInterface', $interface->getName());
-
     }
 
     public function testGetContentsReturnsContents()
@@ -145,5 +143,4 @@ EOS;
         $reflectionClass = new Zend_Reflection_Class('Zend_Reflection_TestSampleClass2');
         $this->assertStringContainsString('TestSampleClass.php', $reflectionClass->getDeclaringFile()->getFileName()); //ns(, $reflectionClass->getDeclaringFile());
     }
-
 }

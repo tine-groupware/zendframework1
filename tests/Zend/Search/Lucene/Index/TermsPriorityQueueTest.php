@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -689,7 +691,5 @@ class Zend_Search_Lucene_Index_TermsPriorityQueueTest extends TestCase
                                 new Zend_Search_Lucene_Index_Term('pear', 'path'),
                                 new Zend_Search_Lucene_Index_Term('wishlist', 'path')
                                ]);
-
     }
 }
-

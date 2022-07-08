@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,13 +53,13 @@ class Zend_Validate_IdenticalTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite('Zend_Validate_IdenticalTest');
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite('Zend_Validate_IdenticalTest');
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
     {
-        $this->validator = new Zend_Validate_Identical;
+        $this->validator = new Zend_Validate_Identical();
     }
 
     public function testTokenInitiallyNull()

@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Application_Resource_LogTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -108,7 +110,7 @@ class Zend_Application_Resource_LogTest extends TestCase
     {
         $stream = fopen('php://memory', 'w+', false);
         $options = ['memory' => [
-            'writerName'   => 'Stream',
+            'writerName' => 'Stream',
             'writerParams' => [
                 'stream' => $stream,
             ]
@@ -118,7 +120,7 @@ class Zend_Application_Resource_LogTest extends TestCase
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
 
-        $log      = $resource->getLog();
+        $log = $resource->getLog();
         $this->assertTrue($log instanceof Zend_Log);
 
         $log->log($message = 'logged-message', Zend_Log::INFO);
@@ -134,10 +136,10 @@ class Zend_Application_Resource_LogTest extends TestCase
     {
         $options = [
             'stream' => [
-                'writerName'   => 'Stream',
+                'writerName' => 'Stream',
                 'writerParams' => [
                     'stream' => "php://memory",
-                    'mode'   => 'a'
+                    'mode' => 'a'
                 ],
                 'filterName' => 'Priority',
                 'filterParams' => [

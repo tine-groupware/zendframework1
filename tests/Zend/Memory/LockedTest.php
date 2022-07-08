@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -78,14 +80,14 @@ class Zend_Memory_Container_LockedTest extends TestCase
         $memObject = new Zend_Memory_Container_Locked('0123456789');
 
         // It's always locked
-        $this->assertTrue((boolean)$memObject->isLocked());
+        $this->assertTrue((bool)$memObject->isLocked());
 
         $memObject->lock();
-        $this->assertTrue((boolean)$memObject->isLocked());
+        $this->assertTrue((bool)$memObject->isLocked());
 
         $memObject->unlock();
         // It's always locked
-        $this->assertTrue((boolean)$memObject->isLocked());
+        $this->assertTrue((bool)$memObject->isLocked());
     }
 
     /**

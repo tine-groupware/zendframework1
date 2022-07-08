@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -70,15 +72,15 @@ class Zend_Service_Ebay_Finding_OnlineTest extends TestCase
 
     public function testResponseTypeFinds()
     {
-        $services =  ['findItemsAdvanced'     => ['tolkien'],
-                           'findItemsByCategory'   => ['10181'],
-                           'findItemsByKeywords'   => ['harry+potter'],
-                           'findItemsByProduct'    => ['53039031'],
+        $services = ['findItemsAdvanced' => ['tolkien'],
+                           'findItemsByCategory' => ['10181'],
+                           'findItemsByKeywords' => ['harry+potter'],
+                           'findItemsByProduct' => ['53039031'],
                            'findItemsInEbayStores' => ["Laura_Chen's_Small_Store"]];
 
-        $item     = null;
+        $item = null;
         $category = null;
-        $store    = null;
+        $store = null;
         foreach ($services as $service => $params) {
             $response = call_user_func_array([$this->_finding, $service], $params);
             $this->assertTrue($response instanceof Zend_Service_Ebay_Finding_Response_Items);

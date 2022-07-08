@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -60,8 +62,8 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -75,7 +77,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends TestCase
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
     }
 
     /**
@@ -111,7 +113,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends TestCase
     public function testHelperInDeclarativeModeShouldRegisterDojoTypeAsModule()
     {
         $content = $this->view->customDijit('foo', 'content', ['dojoType' => 'custom.Dijit']);
-        $dojo    = $this->view->dojo();
+        $dojo = $this->view->dojo();
         $modules = $dojo->getModules();
         $this->assertContains('custom.Dijit', $modules);
     }
@@ -120,7 +122,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends TestCase
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $content = $this->view->customDijit('foo', 'content', ['dojoType' => 'custom.Dijit']);
-        $dojo    = $this->view->dojo();
+        $dojo = $this->view->dojo();
         $modules = $dojo->getModules();
         $this->assertContains('custom.Dijit', $modules);
     }
@@ -172,8 +174,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends TestCase
     }
 }
 
-class Zend_Dojo_View_Helper_CustomDijitTest_FooContentPane
-    extends Zend_Dojo_View_Helper_CustomDijit
+class Zend_Dojo_View_Helper_CustomDijitTest_FooContentPane extends Zend_Dojo_View_Helper_CustomDijit
 {
     protected $_defaultDojoType = 'foo.ContentPane';
 

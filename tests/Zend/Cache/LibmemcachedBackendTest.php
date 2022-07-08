@@ -39,8 +39,8 @@ require_once 'CommonExtendedBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTest {
-
+class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBackendTest
+{
     protected $_instance;
 
     public function __construct($name = null, array $data = [], $dataName = '')
@@ -50,20 +50,20 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
 
     public function setUp($notag = true): void
     {
-        if(!class_exists('Memcached')) {
+        if (!class_exists('Memcached')) {
             $this->markTestSkipped('Memcached is not installed, skipping test');
             return;
         }
 
         $serverValid = [
-            'host'   => TESTS_ZEND_CACHE_LIBMEMCACHED_HOST,
-            'port'   => TESTS_ZEND_CACHE_LIBMEMCACHED_PORT,
+            'host' => TESTS_ZEND_CACHE_LIBMEMCACHED_HOST,
+            'port' => TESTS_ZEND_CACHE_LIBMEMCACHED_PORT,
             'weight' => TESTS_ZEND_CACHE_LIBMEMCACHED_WEIGHT
         ];
         $options = [
             'servers' => [$serverValid],
-            'client'  => [
-                'no_block'                 => false, // set Memcached client option by name
+            'client' => [
+                'no_block' => false, // set Memcached client option by name
                 Memcached::OPT_TCP_NODELAY => false, // set Memcached client option by value
             ],
         ];
@@ -129,8 +129,8 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     public function testConstructorWithAnAlternativeSyntax()
     {
         $server = [
-            'host'   => TESTS_ZEND_CACHE_LIBMEMCACHED_HOST,
-            'port'   => TESTS_ZEND_CACHE_LIBMEMCACHED_PORT,
+            'host' => TESTS_ZEND_CACHE_LIBMEMCACHED_HOST,
+            'port' => TESTS_ZEND_CACHE_LIBMEMCACHED_PORT,
             'weight' => TESTS_ZEND_CACHE_LIBMEMCACHED_WEIGHT
         ];
         $options = [
@@ -144,19 +144,27 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
     /**
      * @doesNotPerformAssertions
      */
-    public function testGetWithAnExpiredCacheId() {}
+    public function testGetWithAnExpiredCacheId()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeMatchingTags2() {}
+    public function testCleanModeMatchingTags2()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeNotMatchingTags2() {}
+    public function testCleanModeNotMatchingTags2()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
-    public function testCleanModeNotMatchingTags3() {}
+    public function testCleanModeNotMatchingTags3()
+    {
+    }
     /**
      * @doesNotPerformAssertions
      */
@@ -182,7 +190,6 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
      */
     public function testSaveWithSpecificLifeTime()
     {
-
         $this->_instance->setDirectives(['logging' => false]);
         parent::testSaveWithSpecificLifeTime();
         $this->_instance->setDirectives(['logging' => true]);
@@ -213,7 +220,4 @@ class Zend_Cache_LibmemcachedBackendTest extends Zend_Cache_CommonExtendedBacken
         $this->_instance->setDirectives(['logging' => false]);
         parent::testGetFillingPercentageOnEmptyBackend();
     }
-
 }
-
-

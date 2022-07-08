@@ -22,6 +22,7 @@
 namespace Zend\JsonTest\ZF11356;
 
 use ArrayIterator;
+
 /**
  * Namespaced Class for use in Zend_JsonTest::testEncoderEscapesNamespacedClassNamesProperly
  *

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -52,7 +54,7 @@ abstract class Zend_Db_TestSetup extends TestCase
      */
     protected $_db = null;
 
-    public abstract function getDriver();
+    abstract public function getDriver();
 
     /**
      * Subclasses should call parent::setUp() before
@@ -86,8 +88,10 @@ abstract class Zend_Db_TestSetup extends TestCase
             $this->_db->getConnection();
         } catch (Zend_Exception $e) {
             $this->_db = null;
-            $this->assertTrue($e instanceof Zend_Db_Adapter_Exception,
-                'Expecting Zend_Db_Adapter_Exception, got ' . get_class($e));
+            $this->assertTrue(
+                $e instanceof Zend_Db_Adapter_Exception,
+                'Expecting Zend_Db_Adapter_Exception, got ' . get_class($e)
+            );
             $this->markTestSkipped($e->getMessage());
         } catch (Throwable $e) {
             // DB2 constants
@@ -107,5 +111,4 @@ abstract class Zend_Db_TestSetup extends TestCase
         $this->_db->closeConnection();
         $this->_db = null;
     }
-
 }

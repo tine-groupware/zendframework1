@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -249,14 +251,14 @@ ECS;
     public function testZF6289_NonSectionElementsAndSectionJumbling()
     {
         $config = new Zend_Config([
-            'one'   => 'element',
-            'two'   => ['type' => 'section'],
+            'one' => 'element',
+            'two' => ['type' => 'section'],
             'three' => 'element',
-            'four'  => ['type' => 'section'],
-            'five'  => 'element'
+            'four' => ['type' => 'section'],
+            'five' => 'element'
         ]);
 
-        $writer = new Zend_Config_Writer_Ini;
+        $writer = new Zend_Config_Writer_Ini();
         $iniString = $writer->setConfig($config)->render($config);
 
         $expected = <<<ECS

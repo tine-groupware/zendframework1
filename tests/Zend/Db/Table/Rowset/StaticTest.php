@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,7 +34,6 @@ use PHPUnit\Framework\TestCase;
  */
 class Zend_Db_Table_Rowset_StaticTest extends TestCase
 {
-
     public function testStatic()
     {
         $this->markTestIncomplete('Static table tests are not implemented yet');
@@ -43,5 +43,4 @@ class Zend_Db_Table_Rowset_StaticTest extends TestCase
     {
         return 'Static';
     }
-
 }

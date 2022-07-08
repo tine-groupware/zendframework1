@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -116,5 +118,4 @@ class Zend_Validate_Sitemap_LocTest extends TestCase
             $this->assertStringContainsString('String expected', current($messages));
         }
     }
-
 }

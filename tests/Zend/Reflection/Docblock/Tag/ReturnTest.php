@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,8 +38,7 @@ require_once 'Zend/Reflection/File.php';
  */
 class Zend_Reflection_Docblock_Tag_ReturnTest extends TestCase
 {
-
-    static protected $_sampleClassFileRequired = false;
+    protected static $_sampleClassFileRequired = false;
 
     protected function setUp(): void
     {
@@ -63,7 +64,7 @@ class Zend_Reflection_Docblock_Tag_ReturnTest extends TestCase
         $paramTag = $classReflection->getMethod('doSomething')->getDocblock()->getTag('return');
 
         $this->assertEquals($paramTag->getType(), 'string', 'Second Match Failed');
-        $this->assertEquals($paramTag->getDescription(),'Description of return value', 'Final Match Failed');
+        $this->assertEquals($paramTag->getDescription(), 'Description of return value', 'Final Match Failed');
     }
 
     /**

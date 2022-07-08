@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_Validate_File_MimeTypeTest extends TestCase
      */
     public static function main()
     {
-        $suite  = new TestSuite("Zend_Validate_File_MimeTypeTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Validate_File_MimeTypeTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -78,16 +80,16 @@ class Zend_Validate_File_MimeTypeTest extends TestCase
 
         $filetest = dirname(__FILE__) . '/_files/picture.jpg';
         $files = [
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0
         ];
 
         foreach ($valuesExpected as $element) {
-            $options   = array_shift($element);
-            $expected  = array_shift($element);
+            $options = array_shift($element);
+            $expected = array_shift($element);
             $validator = new Zend_Validate_File_MimeType($options);
             $validator->enableHeaderCheck();
             $this->assertEquals(
@@ -166,7 +168,7 @@ class Zend_Validate_File_MimeTypeTest extends TestCase
     {
         $validator = new Zend_Validate_File_MimeType('image/gif');
         if (!empty($_ENV['MAGIC'])) {
-            $mimetype  = $validator->getMagicFile();
+            $mimetype = $validator->getMagicFile();
             $this->assertEquals($_ENV['MAGIC'], $mimetype);
         }
 
@@ -213,16 +215,16 @@ class Zend_Validate_File_MimeTypeTest extends TestCase
 
         $filetest = dirname(__FILE__) . '/_files/picture.jpg';
         $files = [
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0
         ];
 
         foreach ($valuesExpected as $element) {
-            $options   = array_shift($element);
-            $expected  = array_shift($element);
+            $options = array_shift($element);
+            $expected = array_shift($element);
             $validator = new Zend_Validate_File_MimeType($options);
             $validator->enableHeaderCheck();
             $this->assertEquals(
@@ -269,10 +271,10 @@ class Zend_Validate_File_MimeTypeTest extends TestCase
 
         $filetest = dirname(__FILE__) . '/_files/picture.jpg';
         $files = [
-            'name'     => 'picture.jpg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0
         ];
 
         $validator = new Zend_Validate_File_MimeType(['image/jpeg', 'image/jpeg; charset=binary']);

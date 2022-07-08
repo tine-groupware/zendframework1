@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -51,9 +53,8 @@ class Zend_Json_Server_ErrorTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Json_Server_ErrorTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Json_Server_ErrorTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -90,7 +91,7 @@ class Zend_Json_Server_ErrorTest extends TestCase
 
     public function testCodeShouldBeLimitedToStandardIntegers()
     {
-        foreach ([true, 'foo', [], new stdClass, 2.0, 25] as $code) {
+        foreach ([true, 'foo', [], new stdClass(), 2.0, 25] as $code) {
             $this->error->setCode($code);
             $this->assertEquals(Zend_Json_Server_Error::ERROR_OTHER, $this->error->getCode());
         }
@@ -119,7 +120,7 @@ class Zend_Json_Server_ErrorTest extends TestCase
 
     public function testSetMessageToNonScalarShouldSilentlyFail()
     {
-        foreach ([[], new stdClass] as $message) {
+        foreach ([[], new stdClass()] as $message) {
             $this->error->setMessage($message);
             $this->assertNull($this->error->getMessage());
         }
@@ -132,7 +133,7 @@ class Zend_Json_Server_ErrorTest extends TestCase
 
     public function testShouldAllowArbitraryData()
     {
-        foreach ([true, 'foo', 2, 2.0, [], new stdClass] as $datum) {
+        foreach ([true, 'foo', 2, 2.0, [], new stdClass()] as $datum) {
             $this->error->setData($datum);
             $this->assertEquals($datum, $this->error->getData());
         }

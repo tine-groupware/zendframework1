@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,19 +37,18 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_WorksheetFeedTest extends TestCase
 {
-
     protected function setUp(): void
     {
         $this->wksFeed = new Zend_Gdata_Spreadsheets_WorksheetFeed(
-                file_get_contents(dirname(__FILE__) . '/_files/TestDataWorksheetFeedSample1.xml'),
-                true);
+            file_get_contents(dirname(__FILE__) . '/_files/TestDataWorksheetFeedSample1.xml'),
+            true
+        );
     }
 
     public function testToAndFromString()
     {
         $this->assertTrue(count($this->wksFeed->entries) == 1);
-        foreach($this->wksFeed->entries as $entry)
-        {
+        foreach ($this->wksFeed->entries as $entry) {
             $this->assertTrue($entry instanceof Zend_Gdata_Spreadsheets_WorksheetEntry);
         }
 
@@ -57,10 +58,8 @@ class Zend_Gdata_Spreadsheets_WorksheetFeedTest extends TestCase
         $newWksFeed->transferFromDom($doc->documentElement);
 
         $this->assertTrue(count($newWksFeed->entries) == 1);
-        foreach($newWksFeed->entries as $entry)
-        {
+        foreach ($newWksFeed->entries as $entry) {
             $this->assertTrue($entry instanceof Zend_Gdata_Spreadsheets_WorksheetEntry);
         }
     }
-
 }

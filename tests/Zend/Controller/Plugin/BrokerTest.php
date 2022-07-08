@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -64,9 +66,8 @@ class Zend_Controller_Plugin_BrokerTest extends TestCase
      */
     public static function main()
     {
-
-        $suite  = new TestSuite("Zend_Controller_Plugin_BrokerTest");
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_Controller_Plugin_BrokerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -185,9 +186,9 @@ class Zend_Controller_Plugin_BrokerTest extends TestCase
 
     public function testBrokerCatchesExceptions()
     {
-        $request  = new Zend_Controller_Request_Http('http://framework.zend.com/empty');
+        $request = new Zend_Controller_Request_Http('http://framework.zend.com/empty');
         $response = new Zend_Controller_Response_Cli();
-        $broker   = new Zend_Controller_Plugin_Broker();
+        $broker = new Zend_Controller_Plugin_Broker();
         $broker->setRequest($request);
         $broker->setResponse($response);
         $broker->registerPlugin(new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin());
@@ -212,10 +213,10 @@ class Zend_Controller_Plugin_BrokerTest extends TestCase
 
     public function testRegisterPluginStackOrderIsSane()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $plugin1  = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
-        $plugin2  = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
-        $plugin3  = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $plugin1 = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin2 = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
+        $plugin3 = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
         $broker->registerPlugin($plugin1, 5);
         $broker->registerPlugin($plugin2, -5);
         $broker->registerPlugin($plugin3, 2);
@@ -230,9 +231,9 @@ class Zend_Controller_Plugin_BrokerTest extends TestCase
      */
     public function testRegisterPluginThrowsExceptionOnDuplicateStackIndex()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $plugin1  = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
-        $plugin2  = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $plugin1 = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin2 = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
         $broker->registerPlugin($plugin1, 5);
         try {
             $broker->registerPlugin($plugin2, 5);
@@ -243,10 +244,10 @@ class Zend_Controller_Plugin_BrokerTest extends TestCase
 
     public function testRegisterPluginStackOrderWithAutmaticNumbersIncrementsCorrectly()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $plugin1  = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
-        $plugin2  = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
-        $plugin3  = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $plugin1 = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin2 = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
+        $plugin3 = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
         $broker->registerPlugin($plugin1, 2);
         $broker->registerPlugin($plugin2, 3);
         $broker->registerPlugin($plugin3);
@@ -262,13 +263,13 @@ class Zend_Controller_Plugin_BrokerTest extends TestCase
      */
     public function testRegisterPluginSetsRequestAndResponse()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $request  = new Zend_Controller_Request_Simple();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $request = new Zend_Controller_Request_Simple();
         $response = new Zend_Controller_Response_Cli();
         $broker->setRequest($request);
         $broker->setResponse($response);
 
-        $plugin   = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
         $broker->registerPlugin($plugin);
 
         $this->assertSame($request, $plugin->getRequest());

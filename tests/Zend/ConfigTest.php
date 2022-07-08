@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -81,8 +83,7 @@ class Zend_ConfigTest extends TestCase
             ];
 
         $this->_leadingdot = ['.test' => 'dot-test'];
-        $this->_invalidkey = [' ' => 'test', ''=>'test2'];
-
+        $this->_invalidkey = [' ' => 'test', '' => 'test2'];
     }
 
     public function testLoadSingleSection()
@@ -121,9 +122,8 @@ class Zend_ConfigTest extends TestCase
         $this->assertEquals('anothername', $config->one->two->three);
 
         // create a new multi-level key
-        $config->does = ['not'=> ['exist' => 'yet']];
+        $config->does = ['not' => ['exist' => 'yet']];
         $this->assertEquals('yet', $config->does->not->exist);
-
     }
 
     public function testNoModifications()
@@ -168,7 +168,7 @@ class Zend_ConfigTest extends TestCase
         // top level
         $config = new Zend_Config($this->_all);
         $var = '';
-        foreach ($config as $key=>$value) {
+        foreach ($config as $key => $value) {
             if (is_string($value)) {
                 $var .= "\nkey = $key, value = $value";
             }
@@ -177,7 +177,7 @@ class Zend_ConfigTest extends TestCase
 
         // 1 nest
         $var = '';
-        foreach ($config->db as $key=>$value) {
+        foreach ($config->db as $key => $value) {
             $var .= "\nkey = $key, value = $value";
         }
         $this->assertStringContainsString('key = host, value = 127.0.0.1', $var);
@@ -185,7 +185,7 @@ class Zend_ConfigTest extends TestCase
         // 2 nests
         $config = new Zend_Config($this->_menuData1);
         $var = '';
-        foreach ($config->button->b1 as $key=>$value) {
+        foreach ($config->button->b1 as $key => $value) {
             $var .= "\nkey = $key, value = $value";
         }
         $this->assertStringContainsString('key = L1, value = button1-1', $var);
@@ -235,10 +235,10 @@ class Zend_ConfigTest extends TestCase
     public function testZF402()
     {
         $configArray = [
-            'data1'  => 'someValue',
-            'data2'  => 'someValue',
+            'data1' => 'someValue',
+            'data2' => 'someValue',
             'false1' => false,
-            'data3'  => 'someValue'
+            'data3' => 'someValue'
             ];
         $config = new Zend_Config($configArray);
         $this->assertTrue(count($config) === count($configArray));
@@ -275,7 +275,6 @@ class Zend_ConfigTest extends TestCase
         $value = $config->get('notthere', 'default');
         $this->assertTrue($value === 'default');
         $this->assertTrue($config->notThere === null);
-
     }
 
     public function testUnsetException()
@@ -306,7 +305,6 @@ class Zend_ConfigTest extends TestCase
 
         $this->assertFalse(isset($config->hostname));
         $this->assertFalse(isset($config->db->name));
-
     }
 
     public function testMerge()
@@ -314,15 +312,15 @@ class Zend_ConfigTest extends TestCase
         $stdArray = [
             'test_feature' => false,
             'some_files' => [
-                'foo'=>'dir/foo.xml',
-                'bar'=>'dir/bar.xml',
+                'foo' => 'dir/foo.xml',
+                'bar' => 'dir/bar.xml',
             ],
             2 => 123,
         ];
         $stdConfig = new Zend_Config($stdArray, true);
 
         $devArray = [
-            'test_feature'=>true,
+            'test_feature' => true,
             'some_files' => [
                'bar' => 'myDir/bar.xml',
                'baz' => 'myDir/baz.xml',
@@ -338,7 +336,6 @@ class Zend_ConfigTest extends TestCase
         $this->assertEquals('myDir/baz.xml', $stdConfig->some_files->baz);
         $this->assertEquals('dir/foo.xml', $stdConfig->some_files->foo);
         $this->assertEquals(456, $stdConfig->{2});
-
     }
 
     /**
@@ -405,7 +402,6 @@ class Zend_ConfigTest extends TestCase
 
         $this->assertEquals('override', $newConfig->key->nested, '$newConfig is not overridden');
         $this->assertEquals('parent', $parent->key->nested, '$parent has been overridden');
-
     }
 
     /**
@@ -414,24 +410,23 @@ class Zend_ConfigTest extends TestCase
      */
     public function testMergeHonoursAllowModificationsFlagAtAllLevels()
     {
-        $config = new Zend_Config(['key' => ['nested' => 'yes'], 'key2'=>'yes'], false);
+        $config = new Zend_Config(['key' => ['nested' => 'yes'], 'key2' => 'yes'], false);
         $config2 = new Zend_Config([], true);
 
         $config2->merge($config);
         try {
             $config2->key2 = 'no';
-        }  catch (Zend_Config_Exception $e) {
+        } catch (Zend_Config_Exception $e) {
             $this->fail('Unexpected exception at top level has been raised: ' . $e->getMessage());
         }
         $this->assertEquals('no', $config2->key2);
 
         try {
             $config2->key->nested = 'no';
-        }  catch (Zend_Config_Exception $e) {
+        } catch (Zend_Config_Exception $e) {
             $this->fail('Unexpected exception on nested object has been raised: ' . $e->getMessage());
         }
         $this->assertEquals('no', $config2->key->nested);
-
     }
 
     /**
@@ -441,14 +436,13 @@ class Zend_ConfigTest extends TestCase
     public function testUnsettingFirstElementDuringForeachDoesNotSkipAnElement()
     {
         $config = new Zend_Config([
-            'first'  => [1],
+            'first' => [1],
             'second' => [2],
-            'third'  => [3]
+            'third' => [3]
         ], true);
 
         $keyList = [];
-        foreach ($config as $key => $value)
-        {
+        foreach ($config as $key => $value) {
             $keyList[] = $key;
             if ($key == 'first') {
                 unset($config->$key); // uses magic Zend_Config::__unset() method
@@ -467,14 +461,13 @@ class Zend_ConfigTest extends TestCase
     public function testUnsettingAMiddleElementDuringForeachDoesNotSkipAnElement()
     {
         $config = new Zend_Config([
-            'first'  => [1],
+            'first' => [1],
             'second' => [2],
-            'third'  => [3]
+            'third' => [3]
         ], true);
 
         $keyList = [];
-        foreach ($config as $key => $value)
-        {
+        foreach ($config as $key => $value) {
             $keyList[] = $key;
             if ($key == 'second') {
                 unset($config->$key); // uses magic Zend_Config::__unset() method
@@ -493,14 +486,13 @@ class Zend_ConfigTest extends TestCase
     public function testUnsettingLastElementDuringForeachDoesNotSkipAnElement()
     {
         $config = new Zend_Config([
-            'first'  => [1],
+            'first' => [1],
             'second' => [2],
-            'third'  => [3]
+            'third' => [3]
         ], true);
 
         $keyList = [];
-        foreach ($config as $key => $value)
-        {
+        foreach ($config as $key => $value) {
             $keyList[] = $key;
             if ($key == 'third') {
                 unset($config->$key); // uses magic Zend_Config::__unset() method
@@ -528,7 +520,7 @@ class Zend_ConfigTest extends TestCase
 
     public function testZF6995_toArrayDoesNotDisturbInternalIterator()
     {
-        $config = new Zend_Config(range(1,10));
+        $config = new Zend_Config(range(1, 10));
         $config->rewind();
         $this->assertEquals(1, $config->current());
 
@@ -536,4 +528,3 @@ class Zend_ConfigTest extends TestCase
         $this->assertEquals(1, $config->current());
     }
 }
-

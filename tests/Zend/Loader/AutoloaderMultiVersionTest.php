@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,8 +46,8 @@ class Zend_Loader_AutoloaderMultiVersionTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -66,12 +68,12 @@ class Zend_Loader_AutoloaderMultiVersionTest extends TestCase
         }
 
         Zend_Loader_Autoloader::resetInstance();
-        $this->path        = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH');
-        $this->latest      = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST');
+        $this->path = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH');
+        $this->latest = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST');
         $this->latestMajor = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MAJOR');
         $this->latestMinor = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR');
-        $this->specific    = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC');
-        $this->autoloader  = Zend_Loader_Autoloader::getInstance();
+        $this->specific = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC');
+        $this->autoloader = Zend_Loader_Autoloader::getInstance();
     }
 
     protected function tearDown(): void
@@ -208,7 +210,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends TestCase
                 $value = array_shift($parts);
                 break;
             case 'minor':
-                $value  = array_shift($parts);
+                $value = array_shift($parts);
                 $value .= '.' . array_shift($parts);
                 break;
         }

@@ -1,5 +1,7 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -176,9 +178,9 @@ class Zend_Server_Reflection_FunctionTest extends TestCase
         $r = new Zend_Server_Reflection_Function($function);
 
         $prototypes = $r->getPrototypes();
-        $prototype  = $prototypes[0];
+        $prototype = $prototypes[0];
         $params = $prototype->getParameters();
-        $param  = $params[0];
+        $param = $params[0];
         $this->assertStringContainsString('Some description', $param->getDescription(), var_export($param, 1));
     }
 }

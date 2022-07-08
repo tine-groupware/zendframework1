@@ -1,7 +1,9 @@
 <?php
+
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\TestSuite;
 use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -47,8 +49,8 @@ class Zend_Log_Writer_AbstractTest extends TestCase
 
     public static function main()
     {
-        $suite  = new TestSuite(__CLASS__);
-        $result = (new TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
     protected function setUp(): void
@@ -99,7 +101,7 @@ class Zend_Log_Writer_AbstractTest_Concrete extends Zend_Log_Writer_Abstract
     {
     }
 
-    static public function factory($config)
+    public static function factory($config)
     {
     }
 }
