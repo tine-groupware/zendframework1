@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -50,12 +53,12 @@ class Zend_Ldap_Node_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Ldap_Node');
+        $suite = new TestSuite('Zend Framework - Zend_Ldap_Node');
 
         $suite->addTestSuite('Zend_Ldap_Node_OfflineTest');
         $suite->addTestSuite('Zend_Ldap_Node_AttributeIterationTest');
@@ -76,7 +79,7 @@ class Zend_Ldap_Node_AllTests
     }
 }
 
-class Zend_Ldap_Node_SkipOnlineTests extends \PHPUnit\Framework\TestCase
+class Zend_Ldap_Node_SkipOnlineTests extends TestCase
 {
     protected function setUp(): void
     {

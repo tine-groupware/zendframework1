@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Mobile/Push/Message/Gcm.php';
  * @group      Zend_Mobile_Push
  * @group      Zend_Mobile_Push_Gcm
  */
-class Zend_Mobile_Push_Response_GcmTest extends \PHPUnit\Framework\TestCase
+class Zend_Mobile_Push_Response_GcmTest extends TestCase
 {
     public function testConstructor()
     {
@@ -63,7 +64,7 @@ class Zend_Mobile_Push_Response_GcmTest extends \PHPUnit\Framework\TestCase
 
     public function testConstructorThrowsExceptionOnBadOrEmptyJsonString()
     {
-        $this->expectException(\Zend_Mobile_Push_Exception_ServerUnavailable::class);
+        $this->expectException(Zend_Mobile_Push_Exception_ServerUnavailable::class);
         $response = new Zend_Mobile_Push_Response_Gcm('{bad');
     }
 

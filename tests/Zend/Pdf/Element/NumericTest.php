@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Pdf/Element/Numeric.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Pdf
  */
-class Zend_Pdf_Element_NumericTest extends \PHPUnit\Framework\TestCase
+class Zend_Pdf_Element_NumericTest extends TestCase
 {
     public function testPDFNumeric()
     {

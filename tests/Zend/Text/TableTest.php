@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -39,7 +42,7 @@ require_once 'Zend/Text/Table/Decorator/Ascii.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Text
  */
-class Zend_Text_TableTest extends \PHPUnit\Framework\TestCase
+class Zend_Text_TableTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +51,8 @@ class Zend_Text_TableTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Text_TableTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Text_TableTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function tearDown(): void

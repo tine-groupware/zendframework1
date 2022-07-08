@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -47,7 +50,7 @@ require_once dirname(__FILE__) . '/../../_files/modules/bar/controllers/IndexCon
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Action_Helper_ViewRendererTest extends TestCase
 {
     /**
      * Base path to controllers, views
@@ -87,8 +90,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

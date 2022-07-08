@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_Sqs
  */
-class Zend_Service_Amazon_Sqs_OnlineTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Amazon_Sqs_OnlineTest extends TestCase
 {
     /**
      * Reference to Amazon service consumer object
@@ -116,7 +117,7 @@ class Zend_Service_Amazon_Sqs_OnlineTest extends \PHPUnit\Framework\TestCase
 }
 
 
-class Zend_Service_Amazon_Sqs_OnlineTest_Skip extends \PHPUnit\Framework\TestCase
+class Zend_Service_Amazon_Sqs_OnlineTest_Skip extends TestCase
 {
     protected function setUp(): void
     {

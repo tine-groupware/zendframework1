@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -66,7 +67,7 @@ class Custom_Object {
     }
 }
 
-class Zend_Queue_CustomTest extends \PHPUnit\Framework\TestCase
+class Zend_Queue_CustomTest extends TestCase
 {
     public function test_behavior()
     {

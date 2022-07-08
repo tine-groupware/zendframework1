@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -39,12 +41,12 @@ class Zend_Dojo_View_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Dojo_View');
+        $suite = new TestSuite('Zend Framework - Zend_Dojo_View');
 
         $suite->addTest(Zend_Dojo_View_Helper_AllTests::suite());
 

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Cache.php';
  * @group      Zend_Feed
  * @group      Zend_Feed_Reader
  */
-class Zend_Feed_ReaderTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_ReaderTest extends TestCase
 {
 
     protected $_feedSamplePath = null;
@@ -177,7 +178,7 @@ class Zend_Feed_ReaderTest extends \PHPUnit\Framework\TestCase
      */
     public function testImportsUriAndThrowsExceptionIfNotAFeed()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         if (!defined('TESTS_ZEND_FEED_READER_ONLINE_ENABLED')
             || !constant('TESTS_ZEND_FEED_READER_ONLINE_ENABLED')
         ) {

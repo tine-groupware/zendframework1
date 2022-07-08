@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Mail/Storage/Writable/Maildir.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mail
  */
-class Zend_Mail_MaildirWritableTest extends \PHPUnit\Framework\TestCase
+class Zend_Mail_MaildirWritableTest extends TestCase
 {
     protected $_params;
     protected $_originalDir;

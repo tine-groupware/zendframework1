@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -34,12 +37,12 @@ require_once 'Zend/Amf/Parse/TypeLoader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_TypeloaderTest extends \PHPUnit\Framework\TestCase
+class Zend_Amf_TypeloaderTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_ResponseTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Amf_ResponseTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

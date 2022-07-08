@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Oauth/Http/Utility.php';
  * @group      Zend_Oauth
  * @group      Zend_Oauth_Http
  */
-class Zend_Oauth_Http_UtilityTest extends \PHPUnit\Framework\TestCase
+class Zend_Oauth_Http_UtilityTest extends TestCase
 {
     // see: http://wiki.oauth.net/TestCases (Parameter Encoding Tests)
 

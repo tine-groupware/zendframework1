@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -39,7 +42,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Router_Route_HostnameTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,8 +53,8 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_HostnameTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Router_Route_HostnameTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testCorrectStaticHostMatch()

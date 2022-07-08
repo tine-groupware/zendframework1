@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -44,7 +47,7 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Text
  */
-class Zend_Text_FigletTest extends \PHPUnit\Framework\TestCase
+class Zend_Text_FigletTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -53,8 +56,8 @@ class Zend_Text_FigletTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Text_FigletTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Text_FigletTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testStandardAlignLeft()
@@ -134,7 +137,7 @@ class Zend_Text_FigletTest extends \PHPUnit\Framework\TestCase
 
     public function testIncorrectEncoding()
     {
-        $this->expectException(\Zend_Text_Figlet_Exception::class);
+        $this->expectException(Zend_Text_Figlet_Exception::class);
         $this->markTestSkipped('Test case not reproducible on all setups');
         $figlet  = new Zend_Text_Figlet();
 

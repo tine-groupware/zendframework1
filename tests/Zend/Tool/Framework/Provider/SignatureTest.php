@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -46,7 +47,7 @@ require_once '_files/ProviderFullFeaturedBadSpecialties2.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Provider
  */
-class Zend_Tool_Framework_Provider_SignatureTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Provider_SignatureTest extends TestCase
 {
 
     protected $_registry = null;
@@ -119,7 +120,7 @@ class Zend_Tool_Framework_Provider_SignatureTest extends \PHPUnit\Framework\Test
 
     public function testGetSpecialtiesReturnsParsedSpecialtiesThrowsExceptionOnBadPropertyValue()
     {
-        $this->expectException(\Zend_Tool_Framework_Provider_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Provider_Exception::class);
         $signature = new Zend_Tool_Framework_Provider_Signature(new Zend_Tool_Framework_Provider_ProviderFullFeaturedBadSpecialties());
         $signature->setRegistry($this->_registry);
         $signature->process();
@@ -127,7 +128,7 @@ class Zend_Tool_Framework_Provider_SignatureTest extends \PHPUnit\Framework\Test
 
     public function testGetSpecialtiesReturnsParsedSpecialtiesThrowsExceptionOnBadReturnValue()
     {
-        $this->expectException(\Zend_Tool_Framework_Provider_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Provider_Exception::class);
         $signature = new Zend_Tool_Framework_Provider_Signature(new Zend_Tool_Framework_Provider_ProviderFullFeaturedBadSpecialties2());
         $signature->setRegistry($this->_registry);
         $signature->process();

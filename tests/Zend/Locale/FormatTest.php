@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Error\Notice;
 /**
  * Zend Framework
  *
@@ -33,7 +35,7 @@ require_once 'Zend/Locale/Format.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Locale
  */
-class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
+class Zend_Locale_FormatTest extends TestCase
 {
     /**
      * teardown / cleanup
@@ -1112,7 +1114,7 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
             Zend_Locale_Format::setOptions(['date_format' => 'yyyy-MM-dd']);
 
             $this->assertTrue(Zend_Locale_Format::checkDateFormat('2011-10-21', []));
-        } catch ( \PHPUnit\Framework\Error\Notice $ex ) {
+        } catch ( Notice $ex ) {
             $this->fail('Zend_Locale_Format::checkDateFormat emitted unexpected E_NOTICE');
         }
     }

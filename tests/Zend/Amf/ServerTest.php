@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -45,14 +48,14 @@ require_once 'Zend/Session.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
+class Zend_Amf_ServerTest extends TestCase
 {
     protected $_server;
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_ServerTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Amf_ServerTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -105,19 +108,19 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testSetClassShouldRaiseExceptionOnInvalidClassname()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         $this->_server->setClass('foobar');
     }
 
     public function testSetClassShouldRaiseExceptionOnInvalidClasstype()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         $this->_server->setClass(['foobar']);
     }
 
     public function testSetClassShouldRaiseExceptionOnDuplicateMethodName()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         $this->_server->setClass('Zend_Amf_testclass', 'tc');
         $this->_server->setClass('Zend_Amf_testclassPrivate', 'tc');
     }
@@ -180,13 +183,13 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testAddFunctionShouldRaiseExceptionForInvalidFunctionName()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         $this->_server->addFunction(true);
     }
 
     public function testAddFunctionShouldRaiseExceptionOnDuplicateMethodName()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         $this->_server->addFunction('Zend_Amf_Server_testFunction', 'tc');
         $this->_server->addFunction('Zend_Amf_Server_testFunction', 'tc');
     }
@@ -724,7 +727,7 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testSetRequestShouldRaiseExceptionOnInvalidStringClassName()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         $this->_server->setRequest('Zend_Amf_ServerTest_BogusRequest');
     }
 
@@ -737,7 +740,7 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testSetRequestShouldRaiseExceptionOnInvalidRequestObjects()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         require_once 'Zend/XmlRpc/Request.php';
         $request = new Zend_XmlRpc_Request;
         $this->_server->setRequest($request);
@@ -753,7 +756,7 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testSetResponseShouldRaiseExceptionOnInvalidStringClassName()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         $this->_server->setResponse('Zend_Amf_ServerTest_BogusResponse');
     }
 
@@ -766,7 +769,7 @@ class Zend_Amf_ServerTest extends \PHPUnit\Framework\TestCase
 
     public function testSetResponseShouldRaiseExceptionOnInvalidResponseObjects()
     {
-        $this->expectException(\Zend_Amf_Server_Exception::class);
+        $this->expectException(Zend_Amf_Server_Exception::class);
         require_once 'Zend/XmlRpc/Response.php';
         $response = new Zend_XmlRpc_Response;
         $this->_server->setResponse($response);

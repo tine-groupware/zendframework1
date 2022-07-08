@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Reflection/File.php';
  * @group      Zend_Reflection
  * @group      Zend_Reflection_Docblock
  */
-class Zend_Reflection_DocblockTest extends \PHPUnit\Framework\TestCase
+class Zend_Reflection_DocblockTest extends TestCase
 {
 
 

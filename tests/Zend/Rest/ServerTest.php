@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -41,7 +44,7 @@ require_once 'Zend/Rest/Server.php';
  * @group      Zend_Rest
  * @group      Zend_Rest_Server
  */
-class Zend_Rest_ServerTest extends \PHPUnit\Framework\TestCase
+class Zend_Rest_ServerTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +54,8 @@ class Zend_Rest_ServerTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_ServerTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Rest_ServerTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

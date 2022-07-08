@@ -141,28 +141,28 @@ class Zend_Ldap_Node_RootDseTest extends Zend_Ldap_OnlineTestCase
 
     public function testSetterWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           $root=$this->_getLdap()->getRootDse();
           $root->objectClass='illegal';
     }
 
     public function testOffsetSetWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           $root=$this->_getLdap()->getRootDse();
           $root['objectClass']='illegal';
     }
 
     public function testUnsetterWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           $root=$this->_getLdap()->getRootDse();
           unset($root->objectClass);
     }
 
     public function testOffsetUnsetWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           $root=$this->_getLdap()->getRootDse();
           unset($root['objectClass']);
     }

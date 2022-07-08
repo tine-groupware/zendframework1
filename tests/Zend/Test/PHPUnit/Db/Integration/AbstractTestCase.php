@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet;
 /**
  * Zend Framework
  *
@@ -38,7 +40,7 @@ require_once "Zend/Test/PHPUnit/Db/DataSet/DbRowset.php";
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Test
  */
-abstract class Zend_Test_PHPUnit_Db_Integration_AbstractTestCase extends \PHPUnit\Framework\TestCase
+abstract class Zend_Test_PHPUnit_Db_Integration_AbstractTestCase extends TestCase
 {
     /**
      * @var Zend_Db_Adapter_Abstract
@@ -71,7 +73,7 @@ abstract class Zend_Test_PHPUnit_Db_Integration_AbstractTestCase extends \PHPUni
         $dataSet = new Zend_Test_PHPUnit_Db_DataSet_DbTableDataSet();
         $dataSet->addTable($fooTable);
 
-        $xmlDataSet = new \PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet(
+        $xmlDataSet = new FlatXmlDataSet(
             dirname(__FILE__)."/_files/sqliteIntegrationFixture.xml"
         );
 
@@ -92,7 +94,7 @@ abstract class Zend_Test_PHPUnit_Db_Integration_AbstractTestCase extends \PHPUni
 
     public function testSimpleTesterSetupAndRowsetEquals()
     {
-        $dataSet = new \PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet(
+        $dataSet = new FlatXmlDataSet(
             dirname(__FILE__)."/_files/sqliteIntegrationFixture.xml"
         );
         $fooDataTable = $dataSet->getTable("foo");

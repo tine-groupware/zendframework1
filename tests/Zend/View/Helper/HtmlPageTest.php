@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -37,7 +40,7 @@ require_once 'Zend/View/Helper/HtmlPage.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HtmlPageTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_HtmlPageTest extends TestCase
 {
     /**
      * @var Zend_View_Helper_HtmlPage
@@ -53,8 +56,8 @@ class Zend_View_Helper_HtmlPageTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlPageTest");
-        (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_View_Helper_HtmlPageTest");
+        (new TestRunner)->run($suite);
     }
 
     /**

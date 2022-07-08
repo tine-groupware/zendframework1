@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -51,7 +54,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_Decorator_DijitElementTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_Form_Decorator_DijitElementTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -60,8 +63,8 @@ class Zend_Dojo_Form_Decorator_DijitElementTest extends \PHPUnit\Framework\TestC
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Decorator_DijitElementTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_Form_Decorator_DijitElementTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -181,7 +184,7 @@ class Zend_Dojo_Form_Decorator_DijitElementTest extends \PHPUnit\Framework\TestC
 
     public function testRenderingShouldThrowExceptionWhenNoViewObjectRegistered()
     {
-        $this->expectException(\Zend_Form_Decorator_Exception::class);
+        $this->expectException(Zend_Form_Decorator_Exception::class);
         $element = new Zend_Dojo_Form_Element_TextBox(
             'foo',
             [

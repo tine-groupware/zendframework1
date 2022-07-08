@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Service/Amazon/Ec2/Keypair.php';
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_Ec2
  */
-class Zend_Service_Amazon_Ec2_KeypairTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Amazon_Ec2_KeypairTest extends TestCase
 {
 
     /**

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -28,7 +29,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Gdata
  */
-class Zend_Gdata_SkipOnlineTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_SkipOnlineTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -41,7 +42,7 @@ class Zend_Gdata_SkipOnlineTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-class Zend_Gdata_SkipClientLoginTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_SkipClientLoginTest extends TestCase
 {
     protected function setUp(): void
     {

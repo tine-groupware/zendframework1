@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Tool/Framework/Action/Base.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Action
  */
-class Zend_Tool_Framework_Action_BaseTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Action_BaseTest extends TestCase
 {
 
     public function testBaseActionCanGetNameViaConstructor()

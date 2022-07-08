@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Db
  */
-abstract class Zend_Db_Skip_CommonTest extends \PHPUnit\Framework\TestCase
+abstract class Zend_Db_Skip_CommonTest extends TestCase
 {
     public $message = null;
 

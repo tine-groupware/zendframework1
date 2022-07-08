@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -37,7 +40,7 @@ require_once 'Zend/Controller/Response/Exception.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Response
  */
-class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Response_HttpTest extends TestCase
 {
     /**
      * @var Zend_Http_Response
@@ -53,8 +56,8 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Response_HttpTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Response_HttpTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

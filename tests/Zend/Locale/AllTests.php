@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -49,12 +51,12 @@ class Zend_Locale_AllTests
             setlocale(LC_ALL, TESTS_ZEND_LOCALE_FORMAT_SETLOCALE);
         }
 
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Locale');
+        $suite = new TestSuite('Zend Framework - Zend_Locale');
 
         $suite->addTestSuite('Zend_Locale_DataTest');
         $suite->addTestSuite('Zend_Locale_FormatTest');

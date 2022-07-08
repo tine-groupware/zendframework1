@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -38,7 +39,7 @@ require_once 'Zend/Soap/Wsdl/Strategy/ArrayOfTypeSequence.php';
  * @group      Zend_Soap
  * @group      Zend_Soap_Wsdl
  */
-class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends \PHPUnit\Framework\TestCase
+class Zend_Soap_Wsdl_ArrayOfTypeSequenceStrategyTest extends TestCase
 {
     private $wsdl;
     private $strategy;

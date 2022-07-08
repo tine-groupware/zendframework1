@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -37,7 +40,7 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_TranslateTest extends \PHPUnit\Framework\TestCase
+class Zend_Application_Resource_TranslateTest extends TestCase
 {
     /**
      * @var array
@@ -67,8 +70,8 @@ class Zend_Application_Resource_TranslateTest extends \PHPUnit\Framework\TestCas
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -221,7 +224,7 @@ class Zend_Application_Resource_TranslateTest extends \PHPUnit\Framework\TestCas
      */
     public function testToUseTheTwoKeysContentAndDataShouldThrowsException()
     {
-        $this->expectException(\Zend_Application_Resource_Exception::class);
+        $this->expectException(Zend_Application_Resource_Exception::class);
         $options = [
             'adapter' => 'array',
             'content' => [

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,12 +41,12 @@ require_once 'Zend/Config.php';
  * @group      Zend_Tag
  * @group      Zend_Tag_Cloud
  */
-class Zend_Tag_Cloud_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
+class Zend_Tag_Cloud_Decorator_HtmlTagTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testDefaultOutput()

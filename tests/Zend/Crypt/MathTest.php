@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Crypt/Exception.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Crypt
  */
-class Zend_Crypt_MathTest extends \PHPUnit\Framework\TestCase
+class Zend_Crypt_MathTest extends TestCase
 {
 
     public function testRand()

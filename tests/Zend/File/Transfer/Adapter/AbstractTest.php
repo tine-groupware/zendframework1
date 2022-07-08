@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -43,7 +46,7 @@ require_once 'Zend/Validate/File/Extension.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_File
  */
-class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCase
+class Zend_File_Transfer_Adapter_AbstractTest extends TestCase
 {
     /**
      * @var Zend_File_Transfer_Adapter_AbstractTest_MockAdapter
@@ -57,8 +60,8 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_File_Transfer_Adapter_AbstractTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_File_Transfer_Adapter_AbstractTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -84,7 +87,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
 
     public function testAdapterShouldThrowExceptionWhenRetrievingPluginLoaderOfInvalidType()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->getPluginLoader('bogus');
     }
 
@@ -103,7 +106,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
 
     public function testAddingInvalidPluginLoaderTypeToAdapterShouldRaiseException()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $loader = new Zend_Loader_PluginLoader();
         $this->adapter->setPluginLoader($loader, 'bogus');
     }
@@ -129,7 +132,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
 
     public function testPassingInvalidTypeWhenAddingPrefixPathToAdapterShouldThrowException()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->addPrefixPath('Foo', 'Foo', 'bogus');
     }
 
@@ -185,7 +188,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
 
     public function testAdapterhShouldRaiseExceptionWhenAddingInvalidValidatorType()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->addValidator(new Zend_Filter_BaseName);
     }
 
@@ -384,7 +387,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
 
     public function testAdapterhShouldRaiseExceptionWhenAddingInvalidFilterType()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->addFilter(new Zend_Validate_File_Extension('jpg'));
     }
 
@@ -575,37 +578,37 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
 
     public function testGetAdditionalFileInfosForUnknownFile()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $files = $this->adapter->getFileInfo('unknown');
     }
 
     public function testGetUnknownOption()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->setOptions(['unknownOption' => 'unknown']);
     }
 
     public function testGetFileIsNotImplemented()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->getFile();
     }
 
     public function testAddFileIsNotImplemented()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->addFile('foo');
     }
 
     public function testGetTypeIsNotImplemented()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->getType();
     }
 
     public function testAddTypeIsNotImplemented()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->addType('foo');
     }
 

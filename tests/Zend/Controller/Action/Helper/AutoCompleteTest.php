@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -49,7 +52,7 @@ require_once 'Zend/Layout.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_AutoCompleteTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Action_Helper_AutoCompleteTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -60,8 +63,8 @@ class Zend_Controller_Action_Helper_AutoCompleteTest extends \PHPUnit\Framework\
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_AutoCompleteTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Action_Helper_AutoCompleteTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

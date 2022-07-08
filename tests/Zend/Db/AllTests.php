@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -43,12 +45,12 @@ class Zend_Db_AllTests
 
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Db');
+        $suite = new TestSuite('Zend Framework - Zend_Db');
 
         /**
          * Static tests should always be enabled,
@@ -159,7 +161,7 @@ class Zend_Db_AllTests
         $skipTest->message = $message;
 
         if (self::$_skipTestSuite === null) {
-            self::$_skipTestSuite = new \PHPUnit\Framework\TestSuite('Zend_Db skipped test suites');
+            self::$_skipTestSuite = new TestSuite('Zend_Db skipped test suites');
         }
 
         self::$_skipTestSuite->addTest($skipTest);

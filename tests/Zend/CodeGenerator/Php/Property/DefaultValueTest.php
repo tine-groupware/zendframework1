@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/CodeGenerator/Php/Property/DefaultValue.php';
  * @group Zend_CodeGenerator
  * @group Zend_CodeGenerator_Php
  */
-class Zend_CodeGenerator_Php_Property_DefaultValueTest extends \PHPUnit\Framework\TestCase
+class Zend_CodeGenerator_Php_Property_DefaultValueTest extends TestCase
 {
 
     public function testPropertyDefaultValueConstructor()

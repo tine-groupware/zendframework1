@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Service/Ebay/Finding.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Ebay_Finding_OnlineTest extends TestCase
 {
     /**
      * @var Zend_Service_Ebay_Finding
@@ -180,7 +181,7 @@ class Zend_Service_Ebay_Finding_OnlineTest extends \PHPUnit\Framework\TestCase
  * @group      Zend_Service
  * @group      Zend_Service_Ebay
  */
-class Zend_Service_Ebay_Finding_OnlineSkipTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Ebay_Finding_OnlineSkipTest extends TestCase
 {
     protected function setUp(): void
     {

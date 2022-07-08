@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -41,7 +44,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
-class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Plugin_ActionStackTest extends TestCase
 {
     public $key       = 'Zend_Controller_Plugin_ActionStack';
     public $registry;
@@ -55,8 +58,8 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_ActionStackTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Plugin_ActionStackTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

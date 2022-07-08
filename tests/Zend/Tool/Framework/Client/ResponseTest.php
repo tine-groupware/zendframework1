@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -38,7 +39,7 @@ require_once 'Zend/Tool/Framework/Client/Response/ContentDecorator/Separator.php
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Client
  */
-class Zend_Tool_Framework_Client_ResponseTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Client_ResponseTest extends TestCase
 {
 
     /**
@@ -94,7 +95,7 @@ class Zend_Tool_Framework_Client_ResponseTest extends \PHPUnit\Framework\TestCas
 
     public function testSetCallbackThrowsExceptionOnInvalidCallback()
     {
-        $this->expectException(\Zend_Tool_Framework_Client_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Client_Exception::class);
         $this->_response->setContentCallback(5);
     }
 

@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -40,12 +42,12 @@ class Zend_Text_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Text');
+        $suite = new TestSuite('Zend Framework - Zend_Text');
 
         $suite->addTestSuite('Zend_Text_FigletTest');
         $suite->addTestSuite('Zend_Text_TableTest');

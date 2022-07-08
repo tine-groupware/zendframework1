@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -47,12 +50,12 @@ require_once 'Zend/Loader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  */
-class Zend_ViewTest extends \PHPUnit\Framework\TestCase
+class Zend_ViewTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_ViewTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_ViewTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -1093,7 +1096,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
      */
     public function testRegisterHelperShouldThrowExceptionIfNotProvidedAnObject()
     {
-        $this->expectException(\Zend_View_Exception::class);
+        $this->expectException(Zend_View_Exception::class);
         $view = new Zend_View();
         $view->registerHelper('Foo', 'foo');
     }
@@ -1103,7 +1106,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
      */
     public function testRegisterHelperShouldThrowExceptionIfProvidedANonHelperObject()
     {
-        $this->expectException(\Zend_View_Exception::class);
+        $this->expectException(Zend_View_Exception::class);
         $view   = new Zend_View();
         $helper = new stdClass;
         $view->registerHelper($helper, 'foo');

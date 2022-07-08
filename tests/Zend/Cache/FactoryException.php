@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Extensions\ExceptionTestCase;
 /**
  * Zend Framework
  *
@@ -29,7 +30,7 @@ require_once 'Zend/Cache.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cache_FactoryException extends \PHPUnit\Extensions\ExceptionTestCase
+class Zend_Cache_FactoryException extends ExceptionTestCase
 {
     function setUp(){
         $this->setExpectedException('Zend_Cache_Exception');

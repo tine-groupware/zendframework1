@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Gdata/HttpClient.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_AuthSub
  */
-class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_AuthSubTest extends TestCase
 {
     /**
      * Dummy token used during testing
@@ -149,7 +150,7 @@ class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
 
     public function testAuthSubSessionTokenCatchesFailedResult()
     {        
-        $this->expectException(\Zend_Gdata_App_AuthException::class);
+        $this->expectException(Zend_Gdata_App_AuthException::class);
         $adapter = new Zend_Http_Client_Adapter_Test();
         $adapter->setResponse("HTTP/1.1 500 Internal Server Error\r\n\r\nInternal Server Error");
         
@@ -162,7 +163,7 @@ class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
     
     public function testAuthSubSessionTokenCatchesHttpClientException()
     {        
-        $this->expectException(\Zend_Gdata_App_HttpException::class);
+        $this->expectException(Zend_Gdata_App_HttpException::class);
         $adapter = new Zend_Http_Client_Adapter_Test();
         $adapter->setNextRequestWillFail(true);
         
@@ -201,7 +202,7 @@ class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
 
     public function testAuthSubRevokeTokenCatchesHttpClientException()
     {
-        $this->expectException(\Zend_Gdata_App_HttpException::class);
+        $this->expectException(Zend_Gdata_App_HttpException::class);
         $adapter = new Zend_Http_Client_Adapter_Test();
         $adapter->setNextRequestWillFail(true);
         
@@ -231,7 +232,7 @@ class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
     
     public function testGetAuthSubTokenInfoCatchesHttpClientException()
     {
-        $this->expectException(\Zend_Gdata_App_HttpException::class);
+        $this->expectException(Zend_Gdata_App_HttpException::class);
         $adapter = new Zend_Http_Client_Adapter_Test();
         $adapter->setNextRequestWillFail(true);
         
@@ -254,7 +255,7 @@ class Zend_Gdata_AuthSubTest extends \PHPUnit\Framework\TestCase
      */
     public function testAuthSubGetHttpClientShouldThrowExceptionOnVanillaHttpClient()
     {
-        $this->expectException(\Zend_Gdata_App_HttpException::class);
+        $this->expectException(Zend_Gdata_App_HttpException::class);
         $client = new Zend_Http_Client();
         $client->setUri('http://example.com/AuthSub');
         $gdclient = Zend_Gdata_AuthSub::getHttpClient('FakeToken', $client);

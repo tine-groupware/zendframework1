@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -39,7 +40,7 @@ require_once dirname(__FILE__) . '/TestAsset/PopulatedStorage.php';
  * @group      Zend_Http
  * @group      Zend_Http_UserAgent
  */
-class Zend_Http_UserAgentTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_UserAgentTest extends TestCase
 {
 
     protected function setUp(): void

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -42,7 +43,7 @@ require_once 'Zend/Config/Writer/Json.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Config_Writer_JsonTest extends \PHPUnit\Framework\TestCase
+class Zend_Config_Writer_JsonTest extends TestCase
 {
     protected $_tempName;
 

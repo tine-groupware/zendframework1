@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -38,7 +39,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Http
  * @group      Zend_Http_Client
  */
-class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_Client_StaticTest extends TestCase
 {
     /**
      * Common HTTP client
@@ -108,7 +109,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidUriStringException()
     {
-        $this->expectException(\Zend_Uri_Exception::class);
+        $this->expectException(Zend_Uri_Exception::class);
         $this->_client->setUri('httpp://__invalid__.com');
     }
 
@@ -156,7 +157,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidHeaderExcept()
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         $this->_client->setHeaders('Ina_lid* Hea%der', 'is not good');
     }
 
@@ -208,7 +209,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testExceptUnsupportedAuthDynamic()
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         $this->_client->setAuth('shahar', '1234', 'SuperStrongAlgo');
     }
 
@@ -218,7 +219,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testExceptUnsupportedAuthStatic()
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         Zend_Http_Client::encodeAuthHeader('shahar', '1234', 'SuperStrongAlgo');
     }
 
@@ -281,7 +282,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetInvalidCookieJar()
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         $this->_client->setCookieJar('cookiejar');
     }
 
@@ -382,7 +383,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testConfigSetInvalid($config)
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         $this->_client->setConfig($config);
     }
 
@@ -454,7 +455,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidPostContentType()
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         $this->_client->setEncType('x-foo/something-fake');
         $this->_client->setParameterPost('parameter', 'value');
 
@@ -467,7 +468,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testSocketErrorException()
     {
-        $this->expectException(\Zend_Http_Client_Adapter_Exception::class);
+        $this->expectException(Zend_Http_Client_Adapter_Exception::class);
         // Try to connect to an invalid host
         $this->_client->setUri('http://255.255.255.255');
 
@@ -501,7 +502,7 @@ class Zend_Http_Client_StaticTest extends \PHPUnit\Framework\TestCase
      */
     public function testSettingInvalidMethodThrowsException($method)
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         $this->_client->setMethod($method);
     }
 

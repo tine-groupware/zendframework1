@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Filter/Word/UnderscoreToSeparator.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\TestCase
+class Zend_Filter_Word_UnderscoreToSeparatorTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +52,8 @@ class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\Test
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_UnderscoreToSeparatorTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Filter_Word_UnderscoreToSeparatorTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsDefaultSeparator()

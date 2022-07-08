@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -51,7 +52,7 @@ require_once 'Zend/Pdf/ElementFactory.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Pdf
  */
-class Zend_Pdf_ActionTest extends \PHPUnit\Framework\TestCase
+class Zend_Pdf_ActionTest extends TestCase
 {
     protected function setUp(): void
     {

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -30,7 +31,7 @@ require_once 'Zend/Mobile/Push/Message/Abstract.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mobile
  */
-class Zend_Mobile_Push_Message_AbstractTest extends \PHPUnit\Framework\TestCase
+class Zend_Mobile_Push_Message_AbstractTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -47,7 +48,7 @@ class Zend_Mobile_Push_Message_AbstractTest extends \PHPUnit\Framework\TestCase
 
     public function testSetTokenThrowsExceptionOnNonStringToken()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $this->msg->setToken(['dummy']);
     }
 
@@ -61,7 +62,7 @@ class Zend_Mobile_Push_Message_AbstractTest extends \PHPUnit\Framework\TestCase
 
     public function testSetIdThrowsExceptionOnNonScalar()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $this->msg->setId(['foo']);
     }
 
@@ -81,7 +82,7 @@ class Zend_Mobile_Push_Message_AbstractTest extends \PHPUnit\Framework\TestCase
 
     public function testSetOptionsThrowsExceptionOnMissingMethod()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $this->msg->setOptions([
             'thisMethodDoesNotExist' => 'value'
         ]);

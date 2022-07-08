@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -35,7 +38,7 @@ require_once 'Zend/Amf/Value/Messaging/ArrayCollection.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Value_ArrayCollectionTest extends \PHPUnit\Framework\TestCase
+class Zend_Amf_Value_ArrayCollectionTest extends TestCase
 {
 
 
@@ -56,8 +59,8 @@ class Zend_Amf_Value_ArrayCollectionTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Value_ArrayCollectionTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Amf_Value_ArrayCollectionTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

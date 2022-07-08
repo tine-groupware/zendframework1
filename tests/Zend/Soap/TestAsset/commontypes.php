@@ -621,7 +621,7 @@ class Zend_Soap_TestAsset_TestLocalSoapClient extends SoapClient
         parent::__construct($wsdl, $options);
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function __doRequest($request, $location, $action, $version, $one_way = 0)
     {
         ob_start();

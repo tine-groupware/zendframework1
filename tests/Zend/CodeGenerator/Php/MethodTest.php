@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -38,7 +39,7 @@ require_once '_files/TestSampleSingleClass.php';
  * @group Zend_CodeGenerator
  * @group Zend_CodeGenerator_Php
  */
-class Zend_CodeGenerator_Php_MethodTest extends \PHPUnit\Framework\TestCase
+class Zend_CodeGenerator_Php_MethodTest extends TestCase
 {
 
 

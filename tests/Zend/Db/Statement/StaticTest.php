@@ -1,4 +1,6 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -19,10 +21,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id $
  */
-
-
-
-
 /**
  * @category   Zend
  * @package    Zend_Db
@@ -32,7 +30,7 @@
  * @group      Zend_Db
  * @group      Zend_Db_Statement
  */
-class Zend_Db_Statement_StaticTest extends \PHPUnit\Framework\TestCase
+class Zend_Db_Statement_StaticTest extends TestCase
 {
 
     public function testStatic()

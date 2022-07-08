@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -40,7 +41,7 @@ require_once __DIR__ . '/StreamObject.php';
  * @group      Zend_Http
  * @group      Zend_Http_Response
  */
-class Zend_Http_ResponseTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_ResponseTest extends TestCase
 {
     /** @var null|string */
     private $tempFile;

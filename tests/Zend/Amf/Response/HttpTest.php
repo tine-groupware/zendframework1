@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -40,7 +43,7 @@ require_once 'Zend/Amf/Response/Http.php';
  * @group      Zend_Amf
  * @group      Zend_Amf_Response
  */
-class Zend_Amf_Response_HttpTest extends \PHPUnit\Framework\TestCase
+class Zend_Amf_Response_HttpTest extends TestCase
 {
     
     /**
@@ -50,8 +53,8 @@ class Zend_Amf_Response_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Response_HttpTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Amf_Response_HttpTest");
+        $result = (new TestRunner)->run($suite);
     }
     
     /**

@@ -61,7 +61,7 @@ class Zend_Barcode_Object_PlanetTest extends Zend_Barcode_Object_TestCommon
 
     public function testSetTextWithoutGoodNumberOfCharacters()
     {
-        $this->expectException(\Zend_Barcode_Object_Exception::class);
+        $this->expectException(Zend_Barcode_Object_Exception::class);
         $this->_object->setText('1234');
         $this->_object->getText();
     }
@@ -94,7 +94,7 @@ class Zend_Barcode_Object_PlanetTest extends Zend_Barcode_Object_TestCommon
 
     public function testBadTextDetectedIfChecksumWished()
     {
-        $this->expectException(\Zend_Barcode_Object_Exception::class);
+        $this->expectException(Zend_Barcode_Object_Exception::class);
         $this->_object->setText('a');
         $this->_object->setWithChecksum(true);
         $this->_object->getText();

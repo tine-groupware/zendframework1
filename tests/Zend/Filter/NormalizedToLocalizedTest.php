@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Filter/NormalizedToLocalized.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_NormalizedToLocalizedTest extends \PHPUnit\Framework\TestCase
+class Zend_Filter_NormalizedToLocalizedTest extends TestCase
 {
     /**
      * Ensures that the filter follows expected behavior

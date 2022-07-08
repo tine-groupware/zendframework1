@@ -80,25 +80,25 @@ class Zend_Ldap_Node_SchemaTest extends Zend_Ldap_OnlineTestCase
 
     public function testSetterWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           $this->_schema->objectClass='illegal';
     }
 
     public function testOffsetSetWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           $this->_schema['objectClass']='illegal';
     }
 
     public function testUnsetterWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           unset($this->_schema->objectClass);
     }
 
     public function testOffsetUnsetWillThrowException()
     {
-          $this->expectException(\BadMethodCallException::class);
+          $this->expectException(BadMethodCallException::class);
           unset($this->_schema['objectClass']);
     }
 

@@ -2,13 +2,16 @@
 
 namespace Zfns;
 
-class Writer extends \Zend_Log_Writer_Abstract
+use Zend_Log_Writer_Abstract;
+use Zend_Config;
+use Zend_Log_FactoryInterface;
+class Writer extends Zend_Log_Writer_Abstract
 {
     /**
      * Construct a Zend_Log driver
      *
-     * @param  array|\Zend_Config $config
-     * @return \Zend_Log_FactoryInterface
+     * @param array|Zend_Config $config
+     * @return Zend_Log_FactoryInterface
      */
     static public function factory($config)
     {

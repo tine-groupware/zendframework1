@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/OpenId/Provider/Storage/File.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_OpenId
  */
-class Zend_OpenId_Provider_Storage_FileTest extends \PHPUnit\Framework\TestCase
+class Zend_OpenId_Provider_Storage_FileTest extends TestCase
 {
     const HANDLE   = "d41d8cd98f00b204e9800998ecf8427e";
     const MAC_FUNC = "sha256";

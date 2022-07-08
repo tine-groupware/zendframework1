@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -45,7 +46,7 @@ require_once 'Zend/Queue/Adapter/Array.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Queue
  */
-class Zend_Queue_QueueTest extends \PHPUnit\Framework\TestCase
+class Zend_Queue_QueueTest extends TestCase
 {
     protected function setUp(): void
     {

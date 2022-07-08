@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -39,7 +42,7 @@ require_once 'Zend/Controller/Response/HttpTestCase.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Response
  */
-class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Response_HttpTestCaseTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +51,8 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Response_HttpTestCaseTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Response_HttpTestCaseTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

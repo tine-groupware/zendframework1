@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/Currency.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Currency
  */
-class Zend_CurrencyTest extends \PHPUnit\Framework\TestCase
+class Zend_CurrencyTest extends TestCase
 {
 
     protected function setUp(): void

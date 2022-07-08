@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -45,7 +48,7 @@ require_once 'Zend/Loader/PluginLoader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Decorator_AbstractTest extends \PHPUnit\Framework\TestCase
+class Zend_Form_Decorator_AbstractTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -55,8 +58,8 @@ class Zend_Form_Decorator_AbstractTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_AbstractTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Form_Decorator_AbstractTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

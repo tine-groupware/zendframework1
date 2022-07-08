@@ -1,7 +1,7 @@
 <?php
 
-
-class Zend_Pdf_Filter_Compression_FlateTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+class Zend_Pdf_Filter_Compression_FlateTest extends TestCase
 {
     protected function setUp(): void
     {

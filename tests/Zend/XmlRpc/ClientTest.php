@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -42,7 +43,7 @@ require_once 'Zend/Http/Client.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_ClientTest extends \PHPUnit\Framework\TestCase
+class Zend_XmlRpc_ClientTest extends TestCase
 {
     /**
      * @var Zend_Http_Client_Adapter_Abstract

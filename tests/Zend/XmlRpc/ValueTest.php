@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Runner\Version;
 /**
  * Zend Framework
  *
@@ -45,7 +47,7 @@ require_once 'Zend/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_ValueTest extends \PHPUnit\Framework\TestCase
+class Zend_XmlRpc_ValueTest extends TestCase
 {
     public $xmlRpcDateFormat = 'Ymd\\TH:i:s';
 
@@ -613,7 +615,7 @@ class Zend_XmlRpc_ValueTest extends \PHPUnit\Framework\TestCase
 
     public function testMarshalDateTimeFromInvalidString()
     {
-        $phpunitVersion = \PHPUnit\Runner\Version::id();
+        $phpunitVersion = Version::id();
         if (version_compare($phpunitVersion, '3.7.0', '<=')) {
             $this->markTestSkipped('Cannot expect generic exceptions prior to PHPUnit 3.7.');
         }

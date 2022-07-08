@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Locale/Data.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Locale
  */
-class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
+class Zend_Locale_DataTest extends TestCase
 {
 
     private $_cache = null;

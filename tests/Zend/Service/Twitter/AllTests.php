@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -44,17 +46,17 @@ class Zend_Service_Twitter_AllTests
      */
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return \PHPUnit\Framework\TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Service_Twitter');
+        $suite = new TestSuite('Zend Framework - Zend_Service_Twitter');
 
         $suite->addTestSuite('Zend_Service_Twitter_TwitterTest');
 

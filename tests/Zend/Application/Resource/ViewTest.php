@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -39,12 +42,12 @@ require_once 'Zend/Application/Resource/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
+class Zend_Application_Resource_ViewTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

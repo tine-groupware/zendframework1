@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -45,12 +47,12 @@ class Zend_Service_Ebay_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Service_Ebay');
+        $suite = new TestSuite('Zend Framework - Zend_Service_Ebay');
         $suite->addTestSuite('Zend_Service_Ebay_AbstractTest');
         $suite->addTest(Zend_Service_Ebay_Finding_AllTests::suite());
         return $suite;

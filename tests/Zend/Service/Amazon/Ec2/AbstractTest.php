@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Service/Amazon/Ec2/Abstract.php';
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_Ec2
  */
-class Zend_Service_Amazon_Ec2_AbstractTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Amazon_Ec2_AbstractTest extends TestCase
 {
     /**
      * Prepares the environment before running a test.

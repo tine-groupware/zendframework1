@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Ldap/Dn.php';
  * @group      Zend_Ldap
  * @group      Zend_Ldap_Dn
  */
-class Zend_Ldap_Dn_CreationTest extends \PHPUnit\Framework\TestCase
+class Zend_Ldap_Dn_CreationTest extends TestCase
 {
     public function testDnCreation()
     {

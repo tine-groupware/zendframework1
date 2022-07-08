@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/XmlRpc/Server/Cache.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_Server_CacheTest extends \PHPUnit\Framework\TestCase
+class Zend_XmlRpc_Server_CacheTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +50,8 @@ class Zend_XmlRpc_Server_CacheTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_XmlRpc_Server_CacheTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_XmlRpc_Server_CacheTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

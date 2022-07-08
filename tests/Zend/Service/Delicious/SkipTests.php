@@ -1,4 +1,6 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -19,8 +21,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
-
 /**
  * @category   Zend
  * @package    Zend_Service_Delicious
@@ -30,7 +30,7 @@
  * @group      Zend_Service
  * @group      Zend_Service_Delicious
  */
-class Zend_Service_Delicious_SkipTests extends \PHPUnit\Framework\TestCase
+class Zend_Service_Delicious_SkipTests extends TestCase
 {
     protected function setUp(): void
     {

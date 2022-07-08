@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Service_Rackspace_Files
  */
 class Zend_Service_Rackspace_Files_OfflineTest
-    extends \PHPUnit\Framework\TestCase
+    extends TestCase
 {
     /**
      * Reference to RackspaceFiles

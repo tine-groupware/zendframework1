@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Measure/Lightness.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_LightnessTest extends \PHPUnit\Framework\TestCase
+class Zend_Measure_LightnessTest extends TestCase
 {
     /**
      * test for Lightness initialisation

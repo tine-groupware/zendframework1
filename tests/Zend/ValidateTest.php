@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -43,7 +44,7 @@ require_once 'Zend/Translate.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
+class Zend_ValidateTest extends TestCase
 {
     /**
      * Zend_Validate object
@@ -155,7 +156,7 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
      */
     public function testStaticFactoryClassNotFound()
     {
-        $this->expectException(\Zend_Validate_Exception::class);
+        $this->expectException(Zend_Validate_Exception::class);
         Zend_Validate::is('1234', 'UnknownValidator');
     }
 

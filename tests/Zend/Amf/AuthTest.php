@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -43,7 +46,7 @@ require_once 'Zend/Acl/Role.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_AuthTest extends \PHPUnit\Framework\TestCase
+class Zend_Amf_AuthTest extends TestCase
 {
 
     /**
@@ -55,8 +58,8 @@ class Zend_Amf_AuthTest extends \PHPUnit\Framework\TestCase
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_AuthTest");
-        (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Amf_AuthTest");
+        (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

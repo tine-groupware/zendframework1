@@ -146,37 +146,37 @@ class Zend_Ldap_CopyRenameTest extends Zend_Ldap_OnlineTestCase
 
     public function testRenameSourceNotExists()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $this->_getLdap()->rename($this->_createDn('ou=DoesNotExist,'), $this->_newDn, false);
     }
 
     public function testRenameTargetExists()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $this->_getLdap()->rename($this->_orgDn, $this->_createDn('ou=Test1,'), false);
     }
 
     public function testRenameTargetParentNotExists()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $this->_getLdap()->rename($this->_orgDn, $this->_createDn('ou=Test1,ou=ParentDoesNotExist,'), false);
     }
 
     public function testRenameEmulationSourceNotExists()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $this->_getLdap()->rename($this->_createDn('ou=DoesNotExist,'), $this->_newDn, false, true);
     }
 
     public function testRenameEmulationTargetExists()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $this->_getLdap()->rename($this->_orgDn, $this->_createDn('ou=Test1,'), false, true);
     }
 
     public function testRenameEmulationTargetParentNotExists()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $this->_getLdap()->rename($this->_orgDn, $this->_createDn('ou=Test1,ou=ParentDoesNotExist,'),
             false, true);
     }

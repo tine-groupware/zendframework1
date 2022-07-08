@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/Crypt/Hmac.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Crypt
  */
-class Zend_Crypt_HmacTest extends \PHPUnit\Framework\TestCase
+class Zend_Crypt_HmacTest extends TestCase
 {
 
     // MD5 tests taken from RFC 2202

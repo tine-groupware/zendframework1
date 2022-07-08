@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -26,7 +27,7 @@ require_once 'Zend/Service/ShortUrl/TinyUrlCom.php';
  * @package  Zend_Service
  * @subpackage  UnitTests
  */
-class Zend_Service_ShortUrl_TinyUrlComTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_ShortUrl_TinyUrlComTest extends TestCase
 {
     /**
      * Zend_Service_TinyUrlCom object

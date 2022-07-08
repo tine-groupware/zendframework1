@@ -56,7 +56,7 @@ class Zend_Barcode_Renderer_PdfTest extends Zend_Barcode_Renderer_TestCommon
 
     public function testObjectPdfResource()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $pdfResource = new StdClass();
         $this->_renderer->setResource($pdfResource);
     }

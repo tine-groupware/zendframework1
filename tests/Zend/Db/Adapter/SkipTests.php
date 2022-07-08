@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -30,7 +31,7 @@
  * @group      Zend_Db
  * @group      Zend_Db_Adapter
  */
-abstract class Zend_Db_Adapter_Skip_CommonTest extends \PHPUnit\Framework\TestCase
+abstract class Zend_Db_Adapter_Skip_CommonTest extends TestCase
 {
     abstract public function getDriver();
 

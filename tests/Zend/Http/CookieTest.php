@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Http/Cookie.php';
  * @group      Zend_Http
  * @group      Zend_Http_Cookie
  */
-class Zend_Http_CookieTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_CookieTest extends TestCase
 {
     /**
      * Cookie creation and data accessors tests
@@ -45,7 +46,7 @@ class Zend_Http_CookieTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetInvalidName($char)
     {
-        $this->expectException(\Zend_Http_Exception::class);
+        $this->expectException(Zend_Http_Exception::class);
         $cookie = new Zend_Http_Cookie("cookie_$char", 'foo', 'example.com');
     }
 

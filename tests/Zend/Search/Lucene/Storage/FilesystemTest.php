@@ -1,4 +1,6 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -18,8 +20,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
-
 /**
  * @category   Zend
  * @package    Zend_Search_Lucene
@@ -27,8 +27,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Search_Lucene
  */
-
-class FilesystemTest extends \PHPUnit\Framework\TestCase
+class FilesystemTest extends TestCase
 {
     private $testFile;
 

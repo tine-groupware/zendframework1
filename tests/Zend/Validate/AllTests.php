@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -72,17 +74,17 @@ class Zend_Validate_AllTests
      */
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return \PHPUnit\Framework\TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Validate');
+        $suite = new TestSuite('Zend Framework - Zend_Validate');
 
         $suite->addTestSuite('Zend_Validate_AbstractTest');
         $suite->addTestSuite('Zend_Validate_AlnumTest');

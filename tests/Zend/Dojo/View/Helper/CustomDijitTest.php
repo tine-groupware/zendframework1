@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -48,7 +51,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_View
  */
-class Zend_Dojo_View_Helper_CustomDijitTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_View_Helper_CustomDijitTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -57,8 +60,8 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -95,7 +98,7 @@ class Zend_Dojo_View_Helper_CustomDijitTest extends \PHPUnit\Framework\TestCase
 
     public function testHelperShouldRaiseExceptionIfNoDojoTypePassed()
     {
-        $this->expectException(\Zend_Dojo_View_Exception::class);
+        $this->expectException(Zend_Dojo_View_Exception::class);
         $this->view->customDijit('foo');
     }
 

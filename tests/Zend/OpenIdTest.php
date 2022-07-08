@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -39,7 +40,7 @@ require_once 'Zend/OpenId/ResponseHelper.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_OpenId
  */
-class Zend_OpenIdTest extends \PHPUnit\Framework\TestCase
+class Zend_OpenIdTest extends TestCase
 {
     private $_serverVariables;
 

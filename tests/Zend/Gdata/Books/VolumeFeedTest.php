@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Gdata/Books.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Books
  */
-class Zend_Gdata_Books_VolumeFeedTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_Books_VolumeFeedTest extends TestCase
 {
 
     protected function setUp(): void {

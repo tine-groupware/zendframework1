@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -41,7 +44,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
-class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Plugin_PutHandlerTest extends TestCase
 {
     /**
      * Request object
@@ -64,8 +67,8 @@ class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_PutHandlerTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Plugin_PutHandlerTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -37,7 +38,7 @@ require_once '_files/ProviderFullFeatured.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Provider
  */
-class Zend_Tool_Framework_Provider_AbstractTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Provider_AbstractTest extends TestCase
 {
 
     protected $_request = null;

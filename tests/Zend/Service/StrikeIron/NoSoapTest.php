@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Service/StrikeIron/BaseTest.php';
  * @group      Zend_Service
  * @group      Zend_Service_StrikeIron
  */
-class Zend_Service_StrikeIron_NoSoapTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_StrikeIron_NoSoapTest extends TestCase
 {
 
     protected function setUp(): void

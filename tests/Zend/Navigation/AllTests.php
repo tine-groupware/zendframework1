@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -41,12 +43,12 @@ class Zend_Navigation_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Navigation');
+        $suite = new TestSuite('Zend Framework - Zend_Navigation');
 
         $suite->addTestSuite('Zend_Navigation_ContainerTest');
         $suite->addTestSuite('Zend_Navigation_PageFactoryTest');

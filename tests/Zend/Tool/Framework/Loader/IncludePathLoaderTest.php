@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Tool/Framework/Provider/Repository.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Loader
  */
-class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Loader_IncludePathLoaderTest extends TestCase
 {
 
     /**

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once "Zend/Test/DbStatement.php";
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Test
  */
-class Zend_Test_DbAdapterTest extends \PHPUnit\Framework\TestCase
+class Zend_Test_DbAdapterTest extends TestCase
 {
     /**
      * @var Zend_Test_DbAdapter

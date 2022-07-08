@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -78,7 +79,7 @@ class test
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_ClassFrontendTest extends \PHPUnit\Framework\TestCase
+class Zend_Cache_ClassFrontendTest extends TestCase
 {
     private $_instance1;
     private $_instance2;

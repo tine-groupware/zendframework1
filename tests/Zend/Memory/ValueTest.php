@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -58,7 +59,7 @@ class Zend_Memory_Container_Movable_Dummy extends Zend_Memory_Container_Movable
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Memory
  */
-class Zend_Memory_ValueTest extends \PHPUnit\Framework\TestCase
+class Zend_Memory_ValueTest extends TestCase
 {
     /**
      * tests the Value object creation

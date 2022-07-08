@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Feed/Reader.php';
  * @group      Zend_Feed
  * @group      Zend_Feed_Reader
  */
-class Zend_Feed_Reader_Feed_AtomSourceTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_Reader_Feed_AtomSourceTest extends TestCase
 {
 
     protected $_feedSamplePath = null;

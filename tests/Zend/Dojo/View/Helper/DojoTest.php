@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -48,7 +51,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_View
  */
-class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_View_Helper_DojoTest extends TestCase
 {
     /**
      * @var Zend_Dojo_View_Helper_Dojo_Container
@@ -62,8 +65,8 @@ class Zend_Dojo_View_Helper_DojoTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_DojoTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_View_Helper_DojoTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -548,7 +551,7 @@ function() {
 
     public function testAddingDuplicateProgrammaticDijitsShouldRaiseExceptions()
     {
-        $this->expectException(\Zend_Dojo_View_Exception::class);
+        $this->expectException(Zend_Dojo_View_Exception::class);
         $this->helper->addDijit('foo', ['dojoType' => 'dijit.form.Form']);
         $this->helper->addDijit('foo', ['dojoType' => 'dijit.form.ComboBox']);
     }
@@ -795,7 +798,7 @@ function() {
 
     public function testCallingMethodThatDoesNotExistInContainerShouldRaiseException()
     {
-        $this->expectException(\Zend_Dojo_View_Exception::class);
+        $this->expectException(Zend_Dojo_View_Exception::class);
         $dojo = new Zend_Dojo_View_Helper_Dojo();
         $dojo->bogus();
     }

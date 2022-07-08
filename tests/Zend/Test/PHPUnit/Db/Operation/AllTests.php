@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -40,12 +42,12 @@ class Zend_Test_PHPUnit_Db_Operation_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     static public function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Test_PHPUnit_Db_Operation');
+        $suite = new TestSuite('Zend Framework - Zend_Test_PHPUnit_Db_Operation');
 
         $suite->addTestSuite('Zend_Test_PHPUnit_Db_Operation_InsertTest');
         $suite->addTestSuite('Zend_Test_PHPUnit_Db_Operation_TruncateTest');

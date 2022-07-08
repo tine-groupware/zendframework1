@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -84,7 +87,7 @@ class Zend_Rest_TestController extends Zend_Rest_Controller
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  */
-class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
+class Zend_Rest_ControllerTest extends TestCase
 {
     protected $_testController;
 
@@ -97,8 +100,8 @@ class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_ControllerTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Rest_ControllerTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

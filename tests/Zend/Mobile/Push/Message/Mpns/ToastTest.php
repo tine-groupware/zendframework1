@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Mobile/Push/Message/Mpns/Toast.php';
  * @group      Zend_Mobile_Push
  * @group      Zend_Mobile_Push_Mpns
  */
-class Zend_Mobile_Push_Message_Mpns_ToastTest extends \PHPUnit\Framework\TestCase
+class Zend_Mobile_Push_Message_Mpns_ToastTest extends TestCase
 {
     private $_msg;
 
@@ -50,14 +51,14 @@ class Zend_Mobile_Push_Message_Mpns_ToastTest extends \PHPUnit\Framework\TestCas
 
     public function testSetTokenNonStringThrowsException()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $token = ['foo' => 'bar'];
         $this->_msg->setToken($token);
     }
 
     public function testSetTokenInvalidUrlThrowsException()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $token = 'notaurl';
         $this->_msg->setToken($token);
     }
@@ -76,7 +77,7 @@ class Zend_Mobile_Push_Message_Mpns_ToastTest extends \PHPUnit\Framework\TestCas
 
     public function testSetTitleThrowsExceptionOnNonString()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $title = ['foo' => 'bar'];
         $this->_msg->setTitle($title);
     }
@@ -90,7 +91,7 @@ class Zend_Mobile_Push_Message_Mpns_ToastTest extends \PHPUnit\Framework\TestCas
 
     public function testSetMessageThrowsExceptionOnNonString()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $msg = ['foo' => 'bar'];
         $this->_msg->setMessage($msg);
     }
@@ -104,7 +105,7 @@ class Zend_Mobile_Push_Message_Mpns_ToastTest extends \PHPUnit\Framework\TestCas
 
     public function testSetParamsThrowsExceptionOnNonString()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $params = ['foo' => 'bar'];
         $this->_msg->setParams($params);
     }

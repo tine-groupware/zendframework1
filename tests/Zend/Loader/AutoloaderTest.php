@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,12 +45,12 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
+class Zend_Loader_AutoloaderTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -130,7 +133,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
 
     public function testSpecifyingInvalidDefaultAutoloaderShouldRaiseException()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->autoloader->setDefaultAutoloader(uniqid());
     }
 
@@ -158,7 +161,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
 
     public function testRegisteringInvalidNamespaceSpecShouldRaiseException()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $o = new stdClass;
         $this->autoloader->registerNamespace($o);
     }
@@ -180,7 +183,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
 
     public function testUnregisteringInvalidNamespaceSpecShouldRaiseException()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $o = new stdClass;
         $this->autoloader->unregisterNamespace($o);
     }

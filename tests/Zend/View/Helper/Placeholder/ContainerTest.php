@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -39,7 +42,7 @@ require_once 'Zend/View/Helper/Placeholder/Container.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_Placeholder_ContainerTest extends TestCase
 {
     /**
      * @var Zend_View_Helper_Placeholder_Container
@@ -54,8 +57,8 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -37,7 +38,7 @@ require_once 'Zend/Session/SaveHandler/DbTable.php';
  * @group      Zend_Session
  * @group      Zend_Db_Table
  */
-class Zend_Session_SaveHandler_DbTableTest extends \PHPUnit\Framework\TestCase
+class Zend_Session_SaveHandler_DbTableTest extends TestCase
 {
     /**
      * @var array
@@ -689,7 +690,7 @@ class Zend_Session_SaveHandler_DbTableTest extends \PHPUnit\Framework\TestCase
 /**
  * This class is used by Zend_Session_SaveHandler_AllTests to produce one skip message when pdo_sqlite is unavailable
  */
-class Zend_Session_SaveHandler_DbTableTestSkip extends \PHPUnit\Framework\TestCase
+class Zend_Session_SaveHandler_DbTableTestSkip extends TestCase
 {
     /**
      * @doesNotPerformAssertions

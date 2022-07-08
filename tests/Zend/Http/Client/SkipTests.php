@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -29,7 +30,7 @@
  * @group      Zend_Http
  * @group      Zend_Http_Client
  */
-class Zend_Http_Client_Skip_SocketTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_Client_Skip_SocketTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -54,7 +55,7 @@ class Zend_Http_Client_Skip_SocketTest extends \PHPUnit\Framework\TestCase
  * @group      Zend_Http
  * @group      Zend_Http_Client
  */
-class Zend_Http_Client_Skip_ProxyAdapterTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_Client_Skip_ProxyAdapterTest extends TestCase
 {
     protected function setUp(): void
     {

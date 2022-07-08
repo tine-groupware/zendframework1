@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once dirname(__FILE__) . '/_files/MockAssertion.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
+class Zend_Acl_AclTest extends TestCase
 {
     /**
      * ACL object for each test method

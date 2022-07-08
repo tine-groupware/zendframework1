@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Photos
  */
-class Zend_Gdata_Photos_PhotosCommentEntryTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_Photos_PhotosCommentEntryTest extends TestCase
 {
 
     protected $commentEntry = null;

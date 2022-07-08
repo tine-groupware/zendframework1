@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Http/Client.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Spreadsheets
  */
-class Zend_Gdata_Spreadsheets_ListFeedTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_Spreadsheets_ListFeedTest extends TestCase
 {
 
     protected function setUp(): void

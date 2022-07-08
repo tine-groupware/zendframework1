@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Http
  * @group      Zend_Http_Client
  */
-class Zend_Http_Client_TestAdapterTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_Client_TestAdapterTest extends TestCase
 {
     /**
      * Test adapter
@@ -66,7 +67,7 @@ class Zend_Http_Client_TestAdapterTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetConfigThrowsOnInvalidConfig()
     {
-        $this->expectException(\Zend_Http_Client_Adapter_Exception::class);
+        $this->expectException(Zend_Http_Client_Adapter_Exception::class);
         $this->adapter->setConfig('foo');
     }
 

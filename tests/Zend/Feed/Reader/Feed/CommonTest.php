@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_Feed
  * @group      Zend_Feed_Reader
  */
-class Zend_Feed_Reader_Feed_CommonTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_Reader_Feed_CommonTest extends TestCase
 {
 
     protected $_feedSamplePath = null;

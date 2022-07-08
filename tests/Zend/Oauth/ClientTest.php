@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -39,7 +40,7 @@ class Test_Oauth_Client extends Zend_Oauth_Client {
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Oauth
  */
-class Zend_Oauth_ClientTest extends \PHPUnit\Framework\TestCase
+class Zend_Oauth_ClientTest extends TestCase
 {
     protected function setUp(): void
     {

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Gdata.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_OpenSearch
  */
-class Zend_Gdata_OpenSearchTotalResultsTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_OpenSearchTotalResultsTest extends TestCase
 {
 
     protected function setUp(): void {

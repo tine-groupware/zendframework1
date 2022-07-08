@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -37,12 +40,12 @@ require_once 'Zend/Json.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dojo
  */
-class Zend_Dojo_BuildLayerTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_BuildLayerTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -70,7 +73,7 @@ class Zend_Dojo_BuildLayerTest extends \PHPUnit\Framework\TestCase
 
     public function testRetrievingDojoHelperShouldRaiseExceptionWhenNoViewPresent()
     {
-        $this->expectException(\Zend_Dojo_Exception::class);
+        $this->expectException(Zend_Dojo_Exception::class);
         $build = new Zend_Dojo_BuildLayer();
         $build->getDojoHelper();
     }
@@ -137,7 +140,7 @@ class Zend_Dojo_BuildLayerTest extends \PHPUnit\Framework\TestCase
 
     public function testSettingLayerNameToInvalidFormatShouldRaiseException()
     {
-        $this->expectException(\Zend_Dojo_Exception::class);
+        $this->expectException(Zend_Dojo_Exception::class);
         $build = new Zend_Dojo_BuildLayer();
         $build->setLayerName('customFoo#bar');
     }

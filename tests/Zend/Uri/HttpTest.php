@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -39,7 +40,7 @@ require_once 'Zend/Uri/Http.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Uri
  */
-class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
+class Zend_Uri_HttpTest extends TestCase
 {
 
     protected function setUp(): void
@@ -83,7 +84,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testFromStringInvalidScheme()
     {
-        $this->expectException(\Zend_Uri_Exception::class);
+        $this->expectException(Zend_Uri_Exception::class);
         Zend_Uri_Http::fromString('ftp://example.com/file');
     }
 

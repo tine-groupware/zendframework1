@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Gdata/TestUtility/MockHttpClient.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_App
  */
-class Zend_Gdata_AppTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_AppTest extends TestCase
 {
     protected function setUp(): void
     {

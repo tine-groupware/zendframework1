@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,13 +45,13 @@ require_once 'Zend/Captcha/ReCaptcha.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_CaptchaTest extends \PHPUnit\Framework\TestCase
+class Zend_Form_Element_CaptchaTest extends TestCase
 {
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_CaptchaTest');
-        (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite('Zend_Form_Element_CaptchaTest');
+        (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -74,7 +77,7 @@ class Zend_Form_Element_CaptchaTest extends \PHPUnit\Framework\TestCase
 
     public function testConstructionShouldRequireCaptchaDetails()
     {
-        $this->expectException(\Zend_Form_Exception::class);
+        $this->expectException(Zend_Form_Exception::class);
         $this->element = new Zend_Form_Element_Captcha('foo');
     }
 

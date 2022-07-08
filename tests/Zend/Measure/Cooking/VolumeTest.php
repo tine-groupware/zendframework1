@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Measure/Cooking/Volume.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Measure
  */
-class Zend_Measure_Cooking_VolumeTest extends \PHPUnit\Framework\TestCase
+class Zend_Measure_Cooking_VolumeTest extends TestCase
 {
     /**
      * test for Mass initialisation

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Feed.php';
  * @group      Zend_Feed
  */
 
-class AtomTest extends \PHPUnit\Framework\TestCase
+class AtomTest extends TestCase
 {
     public function testConstructorElementException()
     {

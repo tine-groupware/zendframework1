@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -40,7 +43,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Router_Route_ModuleTest extends TestCase
 {
 
     protected $_request;
@@ -56,8 +59,8 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_ModuleTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Router_Route_ModuleTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

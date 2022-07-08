@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -38,12 +40,12 @@ class Zend_CodeGenerator_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_CodeGenerator');
+        $suite = new TestSuite('Zend Framework - Zend_CodeGenerator');
 
         $suite->addTest(Zend_CodeGenerator_Php_AllTests::suite());
 

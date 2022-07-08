@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -39,7 +40,7 @@ require_once 'Zend/Ldap/Exception.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Ldap
  */
-class Zend_Ldap_OfflineTest extends \PHPUnit\Framework\TestCase
+class Zend_Ldap_OfflineTest extends TestCase
 {
     /**
      * Zend_Ldap instance

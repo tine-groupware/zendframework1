@@ -1,5 +1,8 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 if (!defined("PHPUnit_MAIN_METHOD")) {
     define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_Helper_CacheTest::main");
 }
@@ -16,7 +19,7 @@ require_once 'Zend/Cache/Backend.php';
 /**
  * Test class for Zend_Controller_Action_Helper_Cache
  */
-class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Action_Helper_CacheTest extends TestCase
 {
 
     protected $_requestUriOld;
@@ -28,8 +31,8 @@ class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCas
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_CacheTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Action_Helper_CacheTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

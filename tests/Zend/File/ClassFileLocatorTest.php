@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/File/ClassFileLocator.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_File
  */
-class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
+class Zend_File_ClassFileLocatorTest extends TestCase
 {
 
     public function testConstructorThrowsInvalidArgumentExceptionForInvalidStringDirectory()

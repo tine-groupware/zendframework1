@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -23,7 +24,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
 require_once 'Zend/Cloud/Infrastructure/Adapter/Rackspace.php';
 require_once 'Zend/Cloud/Infrastructure/Factory.php';
 
-class Zend_Cloud_Infrastructure_Adapter_RackspaceTest extends \PHPUnit\Framework\TestCase
+class Zend_Cloud_Infrastructure_Adapter_RackspaceTest extends TestCase
 {
     /**
      * Timeout in seconds for status change

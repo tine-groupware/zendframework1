@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -37,7 +40,7 @@ require_once 'Zend/Validate/EmailAddress.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
+class Zend_Validate_EmailAddressTest extends TestCase
 {
     /**
      * Default instance created for all test methods
@@ -53,8 +56,8 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

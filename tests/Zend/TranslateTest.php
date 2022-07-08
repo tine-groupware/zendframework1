@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,7 +45,7 @@ require_once 'Zend/Translate/Plural.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
-class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
+class Zend_TranslateTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +54,8 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_TranslateTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_TranslateTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

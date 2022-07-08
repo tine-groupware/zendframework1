@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -37,7 +40,7 @@ require_once 'Zend/Navigation.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
-class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
+class Zend_NavigationTest extends TestCase
 {
     /**
      * @var     Zend_Navigation
@@ -62,8 +65,8 @@ class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_NavigationTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_NavigationTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

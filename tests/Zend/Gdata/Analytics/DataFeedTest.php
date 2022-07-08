@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Http/Client.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Analytics
  */
-class Zend_Gdata_Analytics_DataFeedTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_Analytics_DataFeedTest extends TestCase
 {
     public $testData = [
         'foobarbaz.de' => 12,

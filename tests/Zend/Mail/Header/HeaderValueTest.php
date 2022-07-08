@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -25,7 +26,7 @@
  */
 require_once 'Zend/Mail/Header/HeaderValue.php';
 
-class Zend_Mail_Header_HeaderValueTest extends \PHPUnit\Framework\TestCase
+class Zend_Mail_Header_HeaderValueTest extends TestCase
 {
     /**
      * Data for filter value

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -41,7 +44,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  */
-class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_ActionTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +55,8 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_ActionTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_ActionTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

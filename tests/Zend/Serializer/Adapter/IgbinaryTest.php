@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Serializer/Adapter/Igbinary.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Serializer_Adapter_IgbinaryTest extends \PHPUnit\Framework\TestCase
+class Zend_Serializer_Adapter_IgbinaryTest extends TestCase
 {
 
     private $_adapter;
@@ -154,7 +155,7 @@ class Zend_Serializer_Adapter_IgbinaryTest extends \PHPUnit\Framework\TestCase
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Serializer_Adapter_IgbinarySkipTest extends \PHPUnit\Framework\TestCase
+class Zend_Serializer_Adapter_IgbinarySkipTest extends TestCase
 {
     public $message = null;
 

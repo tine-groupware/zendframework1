@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -58,7 +61,7 @@ require_once 'Zend/Uri/Http.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Router_RewriteTest extends TestCase
 {
     protected $_router;
 
@@ -71,8 +74,8 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_RewriteTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Router_RewriteTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void {
@@ -762,7 +765,7 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
      */
     public function testCallingAssembleWithNullArgumentShouldThrowException()
     {
-        $this->expectException(\Zend_Controller_Router_Exception::class);
+        $this->expectException(Zend_Controller_Router_Exception::class);
         $this->_router->assemble(null);
     }
 }

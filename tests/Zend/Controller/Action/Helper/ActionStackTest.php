@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,7 +45,7 @@ require_once 'Zend/Controller/Request/Simple.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Action_Helper_ActionStackTest extends TestCase
 {
 
     /**
@@ -64,8 +67,8 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ActionStackTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Action_Helper_ActionStackTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

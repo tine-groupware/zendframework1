@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -56,7 +57,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Service
  * @group      Zend_Service_Amazon
  */
-class Zend_Service_Amazon_OfflineTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Amazon_OfflineTest extends TestCase
 {
     /**
      * Reference to Amazon service consumer object

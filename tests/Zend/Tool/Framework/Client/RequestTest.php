@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Tool/Framework/Client/Request.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Client
  */
-class Zend_Tool_Framework_Client_RequestTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Client_RequestTest extends TestCase
 {
 
     /**

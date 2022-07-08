@@ -1,4 +1,6 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -19,9 +21,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
 //require_once 'Zend/Oauth/Signature/Rsa.php';
-
 /**
  * @category   Zend
  * @package    Zend_Oauth
@@ -31,7 +31,7 @@
  * @group      Zend_Oauth
  * @group      Zend_Oauth_Signature
  */
-class Zend_Oauth_Signature_RsaTest extends \PHPUnit\Framework\TestCase
+class Zend_Oauth_Signature_RsaTest extends TestCase
 {
 
     public function testSignatureWithoutAccessSecretIsHashedWithConsumerSecret() 

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Gdata/ClientLogin.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_App
  */
-class Zend_Gdata_App_HttpExceptionTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_App_HttpExceptionTest extends TestCase
 {
 
     protected function setUp(): void

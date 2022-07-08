@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,7 +45,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_FormTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_Form_FormTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +54,8 @@ class Zend_Dojo_Form_FormTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_FormTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_Form_FormTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

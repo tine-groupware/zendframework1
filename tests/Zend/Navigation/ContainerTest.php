@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/Controller/Request/Http.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
-class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
+class Zend_Navigation_ContainerTest extends TestCase
 {
     /**
      * Prepares the environment before running a test.

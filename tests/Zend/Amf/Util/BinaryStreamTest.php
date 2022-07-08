@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -36,7 +39,7 @@ require_once 'Zend/Amf/Util/BinaryStream.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Util_BinaryStreamTest extends \PHPUnit\Framework\TestCase
+class Zend_Amf_Util_BinaryStreamTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -45,19 +48,19 @@ class Zend_Amf_Util_BinaryStreamTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Amf_Util_BinaryStreamTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Amf_Util_BinaryStreamTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testConstructorShouldThrowExceptionForInvalidStream()
     {
-        $this->expectException(\Zend_Amf_Exception::class);
+        $this->expectException(Zend_Amf_Exception::class);
         $test = new Zend_Amf_Util_BinaryStream(['foo', 'bar']);
     }
 
     public function testReadBytesShouldRaiseExceptionForBufferUnderrun()
     {
-        $this->expectException(\Zend_Amf_Exception::class);
+        $this->expectException(Zend_Amf_Exception::class);
         $string = 'this is a short stream';
         $stream = new Zend_Amf_Util_BinaryStream($string);
         $length = strlen($string);

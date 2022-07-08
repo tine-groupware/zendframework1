@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet;
 /**
  * Zend Framework
  *
@@ -32,7 +34,7 @@ require_once "Zend/Test/PHPUnit/Db/Operation/Insert.php";
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Test
  */
-class Zend_Test_PHPUnit_Db_Operation_InsertTest extends \PHPUnit\Framework\TestCase
+class Zend_Test_PHPUnit_Db_Operation_InsertTest extends TestCase
 {
     private $operation = null;
 
@@ -43,7 +45,7 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends \PHPUnit\Framework\TestC
 
     public function testInsertDataSetUsingAdapterInsert()
     {
-        $dataSet = new \PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->at(0))
@@ -65,7 +67,7 @@ class Zend_Test_PHPUnit_Db_Operation_InsertTest extends \PHPUnit\Framework\TestC
     {
         $this->expectException('PHPUnit_Extensions_Database_Operation_Exception');
 
-        $dataSet = new \PHPUnit\Extensions\Database\DataSet\FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
+        $dataSet = new FlatXmlDataSet(dirname(__FILE__)."/_files/insertFixture.xml");
 
         $testAdapter = $this->createMock('Zend_Test_DbAdapter');
         $testAdapter->expects($this->any())->method('insert')->will($this->throwException(new Exception()));

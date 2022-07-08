@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -48,7 +49,7 @@ require_once 'Zend/Http/Client.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Feed
  */
-class Zend_Feed_ImportTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_ImportTest extends TestCase
 {
     protected $_client;
     protected $_feedDir;

@@ -87,7 +87,7 @@ class Zend_Ldap_CrudTest extends Zend_Ldap_OnlineTestCase
 
     public function testIllegalAdd()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $dn=$this->_createDn('ou=TestCreated,ou=Node2,');
         $data=[
             'ou' => 'TestCreated',
@@ -126,7 +126,7 @@ class Zend_Ldap_CrudTest extends Zend_Ldap_OnlineTestCase
 
     public function testIllegalDelete()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $dn=$this->_createDn('ou=TestCreated,');
         $this->_getLdap()->delete($dn);
     }
@@ -242,7 +242,7 @@ class Zend_Ldap_CrudTest extends Zend_Ldap_OnlineTestCase
 
     public function testPrepareLdapEntryArrayArrayData()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $data=[
             'a1' => [['account']]];
         Zend_Ldap::prepareLdapEntryArray($data);
@@ -250,7 +250,7 @@ class Zend_Ldap_CrudTest extends Zend_Ldap_OnlineTestCase
 
     public function testPrepareLdapEntryArrayObjectData()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $class=new stdClass();
         $class->a='b';
         $data=[

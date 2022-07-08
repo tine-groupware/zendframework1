@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Tool/Framework/Manifest/ProviderMetadata.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Manifest
  */
-class Zend_Tool_Framework_Manifest_ProviderMetadataTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Manifest_ProviderMetadataTest extends TestCase
 {
 
     /**

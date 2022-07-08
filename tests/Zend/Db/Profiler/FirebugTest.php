@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -48,7 +51,7 @@ require_once 'Zend/Controller/Response/Http.php';
  * @group      Zend_Db
  * @group      Zend_Db_Profiler
  */
-class Zend_Db_Profiler_FirebugTest extends \PHPUnit\Framework\TestCase
+class Zend_Db_Profiler_FirebugTest extends TestCase
 {
 
     protected $_controller = null;
@@ -66,8 +69,8 @@ class Zend_Db_Profiler_FirebugTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Db_Profiler_FirebugTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Db_Profiler_FirebugTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

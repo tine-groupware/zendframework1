@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -30,7 +31,7 @@ require_once "Zend/Test/PHPUnit/Db/Connection.php";
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Test
  */
-abstract class Zend_Test_PHPUnit_Db_DataSet_DataSetTestCase extends \PHPUnit\Framework\TestCase
+abstract class Zend_Test_PHPUnit_Db_DataSet_DataSetTestCase extends TestCase
 {
     /**
      * @var \PHPUnit\Extensions\Database\DB\IDatabaseConnection

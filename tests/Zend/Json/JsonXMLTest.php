@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Json.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Json
  */
-class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
+class Zend_Json_JsonXMLTest extends TestCase
 {
     /**
      * xml2json Test 1
@@ -592,7 +593,7 @@ EOT;
      */
     public function testNestingDepthIsHandledProperlyWhenNestingDepthExceedsMaximum($xmlStringContents)
     {        
-        $this->expectException(\Zend_Json_Exception::class);
+        $this->expectException(Zend_Json_Exception::class);
         Zend_Json::$maxRecursionDepthAllowed = 1;
         Zend_Json::fromXml($xmlStringContents, true);
     }

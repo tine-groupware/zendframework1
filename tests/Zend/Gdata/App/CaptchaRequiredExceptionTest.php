@@ -1,5 +1,6 @@
 <?php
-/**
+use PHPUnit\Framework\TestCase;
+ /**
  * Zend Framework
  *
  * LICENSE
@@ -31,7 +32,7 @@
  * @group      Zend_Gdata
  * @group      Zend_Gdata_App
  */
-class Zend_Gdata_App_CaptchaRequiredExceptionTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_App_CaptchaRequiredExceptionTest extends TestCase
 {
 
     protected function setUp(): void {

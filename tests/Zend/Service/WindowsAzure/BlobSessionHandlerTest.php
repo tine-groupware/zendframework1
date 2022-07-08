@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -52,8 +54,8 @@ class Zend_Service_WindowsAzure_BlobSessionHandlerTest extends Zend_Service_Wind
     public static function main()
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_SESSIONHANDLER_RUNTESTS) {
-            $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_BlobSessionHandlerTest");
-            $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+            $suite  = new TestSuite("Zend_Service_WindowsAzure_BlobSessionHandlerTest");
+            $result = (new TestRunner)->run($suite);
         }
     }
     

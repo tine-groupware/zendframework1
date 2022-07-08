@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -43,12 +46,12 @@ class Zend_Auth_Adapter_Ldap_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Auth_Adapter_Ldap');
+        $suite = new TestSuite('Zend Framework - Zend_Auth_Adapter_Ldap');
 
         $suite->addTestSuite('Zend_Auth_Adapter_Ldap_OfflineTest');
 
@@ -71,7 +74,7 @@ class Zend_Auth_Adapter_Ldap_AllTests
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Auth
  */
-class Zend_Auth_Adapter_Ldap_SkipOnlineTests extends \PHPUnit\Framework\TestCase
+class Zend_Auth_Adapter_Ldap_SkipOnlineTests extends TestCase
 {
     protected function setUp(): void
     {

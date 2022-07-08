@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Service_Rackspace_Files
  */
-class Zend_Service_Rackspace_Files_OnlineTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Rackspace_Files_OnlineTest extends TestCase
 {
     /**
      * Reference to Rackspace Files object

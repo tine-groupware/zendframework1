@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -38,7 +39,7 @@ require_once 'Zend/View/Helper/Placeholder.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_RenderToPlaceholderTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_RenderToPlaceholderTest extends TestCase
 {
 
     protected $_view = null;

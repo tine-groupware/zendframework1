@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -37,7 +38,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_TimeSync
  */
-class Zend_TimeSyncTest extends \PHPUnit\Framework\TestCase
+class Zend_TimeSyncTest extends TestCase
 {
     public $timeservers = [
         // invalid servers

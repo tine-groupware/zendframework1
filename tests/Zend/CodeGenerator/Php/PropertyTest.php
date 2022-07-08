@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Reflection/Class.php';
  * @group Zend_CodeGenerator
  * @group Zend_CodeGenerator_Php
  */
-class Zend_CodeGenerator_Php_PropertyTest extends \PHPUnit\Framework\TestCase
+class Zend_CodeGenerator_Php_PropertyTest extends TestCase
 {
 
     protected function setUp(): void

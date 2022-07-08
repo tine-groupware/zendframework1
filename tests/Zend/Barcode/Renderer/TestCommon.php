@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -30,7 +31,7 @@ require_once 'Zend/Config.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestCase
+abstract class Zend_Barcode_Renderer_TestCommon extends TestCase
 {
 
     /**
@@ -61,7 +62,7 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testSetInvalidBarcodeObject()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $barcode = new StdClass();
         $this->_renderer->setBarcode($barcode);
     }
@@ -74,13 +75,13 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testModuleSizeAsString()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setModuleSize('abc');
     }
 
     public function testModuleSizeLessThan0()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setModuleSize(-0.5);
     }
 
@@ -103,7 +104,7 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testBadHorizontalPosition()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setHorizontalPosition('none');
     }
 
@@ -118,7 +119,7 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testBadVerticalPosition()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setVerticalPosition('none');
     }
 
@@ -133,7 +134,7 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testBadLeftOffset()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setLeftOffset(- 1);
     }
 
@@ -148,7 +149,7 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testBadTopOffset()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->setTopOffset(- 1);
     }
 
@@ -196,7 +197,7 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testRendererWithUnknownInstructionProvideByObject()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         require_once dirname(__FILE__) . '/../Object/_files/BarcodeTest.php';
         $object = new Zend_Barcode_Object_Test();
         $object->setText('test');
@@ -207,7 +208,7 @@ abstract class Zend_Barcode_Renderer_TestCommon extends \PHPUnit\Framework\TestC
 
     public function testBarcodeObjectProvided()
     {
-        $this->expectException(\Zend_Barcode_Renderer_Exception::class);
+        $this->expectException(Zend_Barcode_Renderer_Exception::class);
         $this->_renderer->draw();
     }
 

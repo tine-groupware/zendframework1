@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -39,7 +42,7 @@ require_once 'Zend/View/Helper/FormImage.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_FormImageTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +52,8 @@ class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormImageTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_View_Helper_FormImageTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

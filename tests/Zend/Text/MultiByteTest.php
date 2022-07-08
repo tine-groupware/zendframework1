@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Text/MultiByte.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Text
  */
-class Zend_Text_MultiByteTest extends \PHPUnit\Framework\TestCase
+class Zend_Text_MultiByteTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +50,8 @@ class Zend_Text_MultiByteTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Text_MultiByteTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Text_MultiByteTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

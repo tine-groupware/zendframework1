@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Gdata/Calendar.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Calendar
  */
-class Zend_Gdata_Calendar_LinkTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_Calendar_LinkTest extends TestCase
 {
 
     protected function setUp(): void {

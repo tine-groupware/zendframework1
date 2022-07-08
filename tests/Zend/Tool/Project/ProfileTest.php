@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Tool/Project/Profile.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Action
  */
-class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Project_ProfileTest extends TestCase
 {
 
     protected $_projectDirectory   = null;
@@ -225,7 +226,7 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
 
     public function testProfileThrowsExceptionOnLoadFromData()
     {
-        $this->expectException(\Zend_Tool_Project_Exception::class);
+        $this->expectException(Zend_Tool_Project_Exception::class);
         $profile = new Zend_Tool_Project_Profile();
 
         // missing data from attributes should throw exception here
@@ -234,7 +235,7 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
 
     public function testProfileThrowsExceptionOnLoadFromFile()
     {
-        $this->expectException(\Zend_Tool_Project_Exception::class);
+        $this->expectException(Zend_Tool_Project_Exception::class);
         $profile = new Zend_Tool_Project_Profile();
 
         // missing file path or project path
@@ -243,7 +244,7 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
 
     public function testProfileThrowsExceptionOnStoreToFile()
     {
-        $this->expectException(\Zend_Tool_Project_Exception::class);
+        $this->expectException(Zend_Tool_Project_Exception::class);
         $profile = new Zend_Tool_Project_Profile();
 
         // missing file path or project path
@@ -252,7 +253,7 @@ class Zend_Tool_Project_ProfileTest extends \PHPUnit\Framework\TestCase
 
     public function testProfileThrowsExceptionOnLoadFromFileWithBadPathForProfileFile()
     {
-        $this->expectException(\Zend_Tool_Project_Exception::class);
+        $this->expectException(Zend_Tool_Project_Exception::class);
         $profile = new Zend_Tool_Project_Profile();
         $profile->setAttribute('projectProfileFile', '/path/should/not/exist');
 

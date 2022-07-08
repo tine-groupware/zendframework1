@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -54,7 +57,7 @@ require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Front
  */
-class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_FrontTest extends TestCase
 {
     protected $_controller = null;
 
@@ -67,8 +70,8 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_FrontTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_FrontTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -773,7 +776,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         try {
             $this->_controller->dispatch($request, $response);
             $this->fail('Should have thrown');
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->assertSame(
                 'IndexController::produceTypeError(): Return value must be of type IndexController, stdClass returned',
                 $e->getMessage()

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Oauth/Http/UserAuthorization.php';
  * @group      Zend_Oauth
  * @group      Zend_Oauth_Http
  */
-class Zend_Oauth_Http_UserAuthorizationTest extends \PHPUnit\Framework\TestCase
+class Zend_Oauth_Http_UserAuthorizationTest extends TestCase
 {
 
     protected $stubConsumer = null;

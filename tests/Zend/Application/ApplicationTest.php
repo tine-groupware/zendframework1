@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,12 +41,12 @@ require_once 'Zend/Application.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
+class Zend_Application_ApplicationTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -257,7 +260,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 
     public function testPassingArrayBootstrapWithoutPathOptionShouldRaiseException()
     {
-        $this->expectException(\Zend_Application_Exception::class);
+        $this->expectException(Zend_Application_Exception::class);
         $this->application->setOptions([
             'bootstrap' => [
                 'class' => 'ZfAppBootstrap',
@@ -268,7 +271,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 
     public function testPassingInvalidBootstrapOptionShouldRaiseException()
     {
-        $this->expectException(\Zend_Application_Exception::class);
+        $this->expectException(Zend_Application_Exception::class);
         $this->application->setOptions([
             'bootstrap' => new stdClass(),
         ]);
@@ -277,7 +280,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 
     public function testPassingInvalidOptionsArgumentToConstructorShouldRaiseException()
     {
-        $this->expectException(\Zend_Application_Exception::class);
+        $this->expectException(Zend_Application_Exception::class);
         $application = new Zend_Application('testing', new stdClass());
     }
 
@@ -370,7 +373,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 
     public function testPassingInvalidStringOptionToConstructorShouldRaiseException()
     {
-        $this->expectException(\Zend_Application_Exception::class);
+        $this->expectException(Zend_Application_Exception::class);
         $application = new Zend_Application('testing', dirname(__FILE__) . '/_files/appconfig');
     }
 
@@ -396,7 +399,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 
     public function testApplicationShouldRaiseExceptionIfBootstrapFileDoesNotContainBootstrapClass()
     {
-        $this->expectException(\Zend_Application_Exception::class);
+        $this->expectException(Zend_Application_Exception::class);
         $this->application->setOptions([
             'bootstrap' => [
                 'path'  => dirname(__FILE__) . '/_files/ZfAppNoBootstrap.php',
@@ -408,7 +411,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 
     public function testApplicationShouldRaiseExceptionWhenBootstrapClassNotOfCorrectType()
     {
-        $this->expectException(\Zend_Application_Exception::class);
+        $this->expectException(Zend_Application_Exception::class);
         $this->application->setOptions([
             'bootstrap' => [
                 'path'  => dirname(__FILE__) . '/_files/ZfAppBadBootstrap.php',

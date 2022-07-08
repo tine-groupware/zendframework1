@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -39,7 +42,7 @@ require_once 'Zend/Validate/Identical.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
+class Zend_Validate_IdenticalTest extends TestCase
 {
     /**
      * @var Zend_Validate_Identical
@@ -48,8 +51,8 @@ class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite('Zend_Validate_IdenticalTest');
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

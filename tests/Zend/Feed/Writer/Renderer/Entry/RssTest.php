@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Version.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_Writer_Renderer_Entry_RssTest extends TestCase
 {
 
     protected $_validWriter = null;
@@ -95,7 +96,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
 
     public function testEntryTitleIfMissingThrowsExceptionIfDescriptionAlsoMissing()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $this->_validEntry->remove('title');
         $this->_validEntry->remove('description');
@@ -121,7 +122,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
 
     public function testEntryDescriptionIfMissingThrowsExceptionIfAlsoNoTitle()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $this->_validEntry->remove('description');
         $this->_validEntry->remove('title');
@@ -219,7 +220,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
 
     public function testAddsEnclosureThrowsExceptionOnMissingType()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $this->_validEntry->setEnclosure([
             'uri' => 'http://example.com/audio.mp3',
@@ -230,7 +231,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
 
     public function testAddsEnclosureThrowsExceptionOnMissingLength()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $this->_validEntry->setEnclosure([
             'type' => 'audio/mpeg',
@@ -241,7 +242,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
 
     public function testAddsEnclosureThrowsExceptionOnNonNumericLength()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $this->_validEntry->setEnclosure([
             'type' => 'audio/mpeg',
@@ -253,7 +254,7 @@ class Zend_Feed_Writer_Renderer_Entry_RssTest extends \PHPUnit\Framework\TestCas
 
     public function testAddsEnclosureThrowsExceptionOnNegativeLength()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $renderer = new Zend_Feed_Writer_Renderer_Feed_Rss($this->_validWriter);
         $this->_validEntry->setEnclosure([
             'type' => 'audio/mpeg',

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Version.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_Writer_Renderer_Feed_AtomTest extends TestCase
 {
 
     protected $_validWriter = null;
@@ -104,7 +105,7 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
 
     public function testFeedTitleIfMissingThrowsException()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validWriter->remove('title');
         $atomFeed->render();
@@ -162,7 +163,7 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
 
     public function testFeedUpdatedDateIfMissingThrowsException()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validWriter->remove('dateModified');
         $atomFeed->render();
@@ -255,7 +256,7 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
 
     public function testFeedLinkToHtmlVersionOfFeedIfMissingThrowsExceptionIfIdMissing()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validWriter->remove('link');
         $atomFeed->render();
@@ -271,7 +272,7 @@ class Zend_Feed_Writer_Renderer_Feed_AtomTest extends \PHPUnit\Framework\TestCas
 
     public function testFeedLinkToXmlAtomWhereTheFeedWillBeAvailableIfMissingThrowsException()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $atomFeed = new Zend_Feed_Writer_Renderer_Feed_Atom($this->_validWriter);
         $this->_validWriter->remove('feedLinks');
         $atomFeed->render();

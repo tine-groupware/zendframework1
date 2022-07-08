@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Extensions\Database\DataSet\CompositeDataSet;
+use PHPUnit\Extensions\Database\ITester;
+use PHPUnit\Extensions\Database\DB\IDatabaseConnection;
 /**
  * Zend Framework
  *
@@ -67,17 +70,17 @@ class Zend_Test_PHPUnit_Db_TestCaseTest extends Zend_Test_PHPUnit_DatabaseTestCa
      */
     protected function getDataSet()
     {
-        return new \PHPUnit\Extensions\Database\DataSet\CompositeDataSet([]);
+        return new CompositeDataSet([]);
     }
 
     public function testDatabaseTesterIsInitialized()
     {
-        $this->assertTrue($this->databaseTester instanceof \PHPUnit\Extensions\Database\ITester);
+        $this->assertTrue($this->databaseTester instanceof ITester);
     }
 
     public function testDatabaseTesterNestsDefaultConnection()
     {
-        $this->assertTrue($this->databaseTester->getConnection() instanceof \PHPUnit\Extensions\Database\DB\IDatabaseConnection);
+        $this->assertTrue($this->databaseTester->getConnection() instanceof IDatabaseConnection);
     }
 
     public function testCheckZendDbConnectionConvenienceMethodReturnType()

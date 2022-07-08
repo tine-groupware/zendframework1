@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once dirname(__FILE__) . '/../_files/My/ZendDbTable/Row/TestMockRow.php'
  * @group      Zend_Db_Table
  * @group      Zend_Db_Table_Row
  */
-class Zend_Db_Table_Row_StaticTest extends \PHPUnit\Framework\TestCase
+class Zend_Db_Table_Row_StaticTest extends TestCase
 {
     public function testTableRowTransformColumnNotUsedInConstructor()
     {

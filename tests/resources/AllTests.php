@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -38,7 +40,7 @@ class resources_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     /**
@@ -46,11 +48,11 @@ class resources_AllTests
      *
      * All tests except those that require output buffering.
      *
-     * @return \PHPUnit\Framework\TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - resources');
+        $suite = new TestSuite('Zend Framework - resources');
 
         $suite->addTest(resources_languages_AllTests::suite());
 

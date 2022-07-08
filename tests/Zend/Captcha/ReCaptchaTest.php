@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -36,7 +39,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
-class Zend_Captcha_ReCaptchaTest extends \PHPUnit\Framework\TestCase
+class Zend_Captcha_ReCaptchaTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -45,8 +48,8 @@ class Zend_Captcha_ReCaptchaTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Captcha_ReCaptchaTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Captcha_ReCaptchaTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

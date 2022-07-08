@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -43,12 +45,12 @@ class Zend_Json_Server_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Json_Server');
+        $suite = new TestSuite('Zend Framework - Zend_Json_Server');
 
         $suite->addTestSuite('Zend_Json_Server_CacheTest');
         $suite->addTestSuite('Zend_Json_Server_ErrorTest');

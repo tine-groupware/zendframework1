@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Validate/File/Upload.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
+class Zend_Validate_File_UploadTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +50,8 @@ class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_UploadTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Validate_File_UploadTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

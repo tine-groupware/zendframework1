@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -42,12 +44,12 @@ class Zend_Validate_Sitemap_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Validate_Sitemap');
+        $suite = new TestSuite('Zend Framework - Zend_Validate_Sitemap');
 
         $suite->addTestSuite('Zend_Validate_Sitemap_ChangefreqTest');
         $suite->addTestSuite('Zend_Validate_Sitemap_LastmodTest');

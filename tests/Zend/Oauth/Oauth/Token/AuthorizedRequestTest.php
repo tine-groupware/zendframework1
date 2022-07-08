@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Oauth/Token/AuthorizedRequest.php';
  * @group      Zend_Oauth
  * @group      Zend_Oauth_Token
  */
-class Zend_Oauth_Token_AuthorizedRequestTest extends \PHPUnit\Framework\TestCase
+class Zend_Oauth_Token_AuthorizedRequestTest extends TestCase
 {
 
     public function testConstructorSetsInputData()

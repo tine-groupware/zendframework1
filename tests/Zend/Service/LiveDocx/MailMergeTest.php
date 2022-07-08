@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Service/LiveDocx/MailMerge.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id: $
  */
-class Zend_Service_LiveDocx_MailMergeTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_LiveDocx_MailMergeTest extends TestCase
 {
     const TEST_TEMPLATE_1 = 'phpunit-template.docx';
     const TEST_TEMPLATE_2 = 'phpunit-template-block-fields.doc';
@@ -53,8 +56,8 @@ class Zend_Service_LiveDocx_MailMergeTest extends \PHPUnit\Framework\TestCase
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -109,7 +112,7 @@ class Zend_Service_LiveDocx_MailMergeTest extends \PHPUnit\Framework\TestCase
 
     public function testLoginUsernamePasswordException()
     {
-        $this->expectException(\Zend_Service_LiveDocx_Exception::class);
+        $this->expectException(Zend_Service_LiveDocx_Exception::class);
         $phpLiveDocx = new Zend_Service_LiveDocx_MailMerge();
         $phpLiveDocx->setUsername('phpunitInvalidUsername');
         $phpLiveDocx->setPassword('phpunitInvalidPassword');
@@ -118,7 +121,7 @@ class Zend_Service_LiveDocx_MailMergeTest extends \PHPUnit\Framework\TestCase
 
     public function testLoginUsernamePasswordSoapClientException()
     {
-        $this->expectException(\Zend_Service_LiveDocx_Exception::class);
+        $this->expectException(Zend_Service_LiveDocx_Exception::class);
         $phpLiveDocx = new Zend_Service_LiveDocx_MailMerge();
         $phpLiveDocx->setUsername('phpunitInvalidUsername');
         $phpLiveDocx->setPassword('phpunitInvalidPassword');

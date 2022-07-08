@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Pdf.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Pdf
  */
-class Zend_Pdf_ProcessingTest extends \PHPUnit\Framework\TestCase
+class Zend_Pdf_ProcessingTest extends TestCase
 {
     protected function setUp(): void
     {

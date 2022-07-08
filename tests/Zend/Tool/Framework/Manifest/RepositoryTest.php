@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -46,7 +47,7 @@ require_once '_files/ManifestBadMetadata.php';
  * @group Zend_Tool_Framework
  * @group Zend_Tool_Framework_Manifest
  */
-class Zend_Tool_Framework_Manifest_RepositoryTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_Manifest_RepositoryTest extends TestCase
 {
     /**
      * @var Zend_Tool_Framework_Registry
@@ -114,7 +115,7 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends \PHPUnit\Framework\Tes
 
     public function testAddManifestThrowsExceptionOnBadGetProviders()
     {
-        $this->expectException(\Zend_Tool_Framework_Manifest_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Manifest_Exception::class);
         $this->_repository->addManifest(new Zend_Tool_Framework_Manifest_ManifestBadProvider());
     }
 
@@ -131,7 +132,7 @@ class Zend_Tool_Framework_Manifest_RepositoryTest extends \PHPUnit\Framework\Tes
 
     public function testProcessThrowsExceptionOnBadMetadata()
     {
-        $this->expectException(\Zend_Tool_Framework_Manifest_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Manifest_Exception::class);
         $this->_repository->addManifest(new Zend_Tool_Framework_Manifest_ManifestBadMetadata());
         $this->_repository->process();
     }

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Db/Table/Abstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Pubsubhubbub_SubscriberTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_Pubsubhubbub_SubscriberTest extends TestCase
 {
 
     protected $_subscriber = null;
@@ -295,7 +296,7 @@ class Zend_Feed_Pubsubhubbub_SubscriberTest extends \PHPUnit\Framework\TestCase
 
     public function testGetStorageThrowsExceptionIfNoneSet()
     {
-        $this->expectException(\Zend_Feed_Pubsubhubbub_Exception::class);
+        $this->expectException(Zend_Feed_Pubsubhubbub_Exception::class);
         $this->_subscriber->getStorage();
     }
 

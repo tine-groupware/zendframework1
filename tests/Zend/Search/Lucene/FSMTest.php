@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -117,7 +118,7 @@ class Zend_Search_Lucene_FSM_testFSMClass extends Zend_Search_Lucene_FSM
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Search_Lucene
  */
-class Zend_Search_Lucene_FSMTest extends \PHPUnit\Framework\TestCase
+class Zend_Search_Lucene_FSMTest extends TestCase
 {
     public function testCreate()
     {

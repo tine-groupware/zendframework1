@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Service/SlideShare.php';
  * @group      Zend_Service
  * @group      Zend_Service_SlideShare
  */
-class Zend_Service_SlideShareTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_SlideShareTest extends TestCase
 {
     /**
      * The Slide share object instance

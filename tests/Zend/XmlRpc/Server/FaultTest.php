@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -40,7 +43,7 @@ require_once 'Zend/XmlRpc/Server/Exception.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_Server_FaultTest extends \PHPUnit\Framework\TestCase
+class Zend_XmlRpc_Server_FaultTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,8 +54,8 @@ class Zend_XmlRpc_Server_FaultTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_XmlRpc_Server_FaultTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_XmlRpc_Server_FaultTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

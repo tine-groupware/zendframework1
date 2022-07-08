@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -38,7 +39,7 @@ require_once 'Zend/Mail/Protocol/Smtp.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mail
  */
-class Zend_Mail_SmtpProtocolTest extends \PHPUnit\Framework\TestCase
+class Zend_Mail_SmtpProtocolTest extends TestCase
 {
     /**
      * @var Zend_Mail_Protocol_Smtp
@@ -66,7 +67,7 @@ class Zend_Mail_SmtpProtocolTest extends \PHPUnit\Framework\TestCase
      */
     public function testHeloIsOnlyAllowedOncePerSession()
     {
-        $this->expectException(\Zend_Mail_Protocol_Exception::class);
+        $this->expectException(Zend_Mail_Protocol_Exception::class);
         $this->_connectAndEhlo(); // do it once
         $this->_protocol->helo(); // do it again
     }
@@ -267,7 +268,7 @@ class Zend_Mail_SmtpProtocolTest extends \PHPUnit\Framework\TestCase
      */
     public function testRcptThrowsExceptionOnUnexpectedResponse()
     {
-        $this->expectException(\Zend_Mail_Protocol_Exception::class);
+        $this->expectException(Zend_Mail_Protocol_Exception::class);
         $p = $this->_protocol;
         $expectedDialog = $this->_connectAndEhlo();
 
@@ -311,7 +312,7 @@ class Zend_Mail_SmtpProtocolTest extends \PHPUnit\Framework\TestCase
      */
     public function testDataBeforeRcptThrowsException()
     {
-        $this->expectException(\Zend_Mail_Protocol_Exception::class);
+        $this->expectException(Zend_Mail_Protocol_Exception::class);
         $this->_connectAndEhlo();
 
         $this->_protocol->data('foo');

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/OpenId/Provider/User/Session.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_OpenId
  */
-class Zend_OpenId_Provider_User_SessionTest extends \PHPUnit\Framework\TestCase
+class Zend_OpenId_Provider_User_SessionTest extends TestCase
 {
     const USER1     = "test_user1";
     const USER2     = "test_user2";

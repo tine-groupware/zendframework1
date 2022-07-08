@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -62,8 +64,8 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -127,7 +129,7 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
      */
     public function testSetConfigInvalidConfig($config)
     {
-        $this->expectException(\Zend_Http_Client_Adapter_Exception::class);
+        $this->expectException(Zend_Http_Client_Adapter_Exception::class);
         $this->_adapter->setConfig($config);
     }
 
@@ -139,7 +141,7 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
      */
     public function testSettingInvalidCurlOption()
     {
-        $this->expectException(\Zend_Http_Exception::class);
+        $this->expectException(Zend_Http_Exception::class);
         $config = [
             'adapter'     => 'Zend_Http_Client_Adapter_Curl',
             'curloptions' => [CURLOPT_CLOSEPOLICY => true],
@@ -177,7 +179,7 @@ class Zend_Http_Client_CurlTest extends Zend_Http_Client_CommonHttpTests
      */
     public function testRedirectPostToGetWithCurlFollowLocationOptionLeadsToTimeout()
     {
-        $this->expectException(\Zend_Http_Client_Exception::class);
+        $this->expectException(Zend_Http_Client_Exception::class);
         $adapter = new Zend_Http_Client_Adapter_Curl();
         $this->client->setAdapter($adapter);
         $adapter->setConfig([

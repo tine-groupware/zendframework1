@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -48,7 +51,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_Element_TimeTextBoxTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_Form_Element_TimeTextBoxTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -57,8 +60,8 @@ class Zend_Dojo_Form_Element_TimeTextBoxTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Element_TimeTextBoxTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_Form_Element_TimeTextBoxTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -136,7 +139,7 @@ class Zend_Dojo_Form_Element_TimeTextBoxTest extends \PHPUnit\Framework\TestCase
 
     public function testClickableIncrementMutatorShouldRaiseExceptionOnInvalidFormat()
     {
-        $this->expectException(\Zend_Form_Element_Exception::class);
+        $this->expectException(Zend_Form_Element_Exception::class);
         $this->element->setClickableIncrement('en-US');
     }
 
@@ -152,7 +155,7 @@ class Zend_Dojo_Form_Element_TimeTextBoxTest extends \PHPUnit\Framework\TestCase
 
     public function testVisibleIncrementMutatorShouldRaiseExceptionOnInvalidFormat()
     {
-        $this->expectException(\Zend_Form_Element_Exception::class);
+        $this->expectException(Zend_Form_Element_Exception::class);
         $this->element->setVisibleIncrement('en-US');
     }
 
@@ -168,7 +171,7 @@ class Zend_Dojo_Form_Element_TimeTextBoxTest extends \PHPUnit\Framework\TestCase
 
     public function testVisibleRangeMutatorShouldRaiseExceptionOnInvalidFormat()
     {
-        $this->expectException(\Zend_Form_Element_Exception::class);
+        $this->expectException(Zend_Form_Element_Exception::class);
         $this->element->setVisibleRange('en-US');
     }
 

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -36,7 +37,7 @@ require_once 'Zend/Rest/Client/Result.php';
  * @group      Zend_Rest
  * @group      Zend_Rest_Result
  */
-class Zend_Rest_ResultTest extends \PHPUnit\Framework\TestCase
+class Zend_Rest_ResultTest extends TestCase
 {
     static $path;
 

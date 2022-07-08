@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -38,7 +39,7 @@ require_once 'Zend/Search/Lucene/Storage/File/Memory.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Search_Lucene
  */
-class Zend_Search_Lucene_Storage_FileTest extends \PHPUnit\Framework\TestCase
+class Zend_Search_Lucene_Storage_FileTest extends TestCase
 {
     public function testFilesystem()
     {

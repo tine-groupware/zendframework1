@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,7 +45,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  */
-class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
+class Zend_Rest_RouteTest extends TestCase
 {
 
     protected $_front;
@@ -58,8 +61,8 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_RouteTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Rest_RouteTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

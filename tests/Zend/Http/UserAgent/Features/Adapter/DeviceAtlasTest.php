@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -28,7 +29,7 @@ require_once 'Zend/Http/UserAgent/Features/Adapter/DeviceAtlas.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Http_UserAgent_Features_Adapter_DeviceAtlasTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_UserAgent_Features_Adapter_DeviceAtlasTest extends TestCase
 {
 
     protected function setUp(): void

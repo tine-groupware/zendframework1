@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -44,7 +47,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_GravatarTest extends TestCase
 {
     /**
      * @var Zend_View_Helper_Gravatar
@@ -61,8 +64,8 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_GravatarTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_View_Helper_GravatarTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

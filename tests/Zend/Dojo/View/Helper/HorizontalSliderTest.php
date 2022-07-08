@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -54,7 +57,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_View
  */
-class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_View_Helper_HorizontalSliderTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -63,8 +66,8 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_View_Helper_HorizontalSliderTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_View_Helper_HorizontalSliderTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -227,7 +230,7 @@ class Zend_Dojo_View_Helper_HorizontalSliderTest extends \PHPUnit\Framework\Test
 
     public function testSliderShouldRaiseExceptionIfMissingRequiredParameters()
     {
-        $this->expectException(\Zend_Dojo_View_Exception::class);
+        $this->expectException(Zend_Dojo_View_Exception::class);
         $this->helper->prepareSlider('foo', 4);
     }
 

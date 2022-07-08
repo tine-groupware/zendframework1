@@ -1,5 +1,8 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_NamespaceTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Action_Helper_NamespaceTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +50,8 @@ class Zend_Controller_Action_Helper_NamespaceTest extends \PHPUnit\Framework\Tes
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_NamespaceTest');
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite('Zend_Controller_Action_Helper_NamespaceTest');
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

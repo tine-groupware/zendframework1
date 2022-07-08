@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -45,12 +47,12 @@ class Zend_Service_WindowsAzure_Credentials_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(__CLASS__);
+        $suite = new TestSuite(__CLASS__);
 
         $suite->addTestSuite('Zend_Service_WindowsAzure_Credentials_SharedKeyTest');
         $suite->addTestSuite('Zend_Service_WindowsAzure_Credentials_SharedKeyLiteTest');

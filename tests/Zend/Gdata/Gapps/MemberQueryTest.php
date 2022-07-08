@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Gdata/Gapps/MemberQuery.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Gapps
  */
-class Zend_Gdata_Gapps_MemberQueryTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_Gapps_MemberQueryTest extends TestCase
 {
 
     protected function setUp(): void

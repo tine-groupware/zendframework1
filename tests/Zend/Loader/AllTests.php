@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -45,12 +47,12 @@ class Zend_Loader_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Loader');
+        $suite = new TestSuite('Zend Framework - Zend_Loader');
 
         $suite->addTestSuite('Zend_Loader_AutoloaderTest');
         $suite->addTestSuite('Zend_Loader_AutoloaderFactoryClassMapLoaderTest');

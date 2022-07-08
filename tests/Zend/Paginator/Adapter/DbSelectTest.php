@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -46,7 +47,7 @@ require_once dirname(__FILE__) . '/../_files/TestTable.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
-class Zend_Paginator_Adapter_DbSelectTest extends \PHPUnit\Framework\TestCase
+class Zend_Paginator_Adapter_DbSelectTest extends TestCase
 {
     /**
      * @var Zend_Paginator_Adapter_DbSelect

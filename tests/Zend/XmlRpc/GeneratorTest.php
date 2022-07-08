@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\ExpectationFailedException;
 /**
  * Zend Framework
  *
@@ -32,7 +34,7 @@ require_once 'Zend/XmlRpc/TestProvider.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_GeneratorTest extends \PHPUnit\Framework\TestCase
+class Zend_XmlRpc_GeneratorTest extends TestCase
 {
     /**
      * @dataProvider Zend_XmlRpc_TestProvider::provideGenerators
@@ -92,7 +94,7 @@ class Zend_XmlRpc_GeneratorTest extends \PHPUnit\Framework\TestCase
         $variant2 = '<element>&lt;&gt;&amp;&quot;\'€</element>';
         try {
             $this->assertXml($variant1, $generator);
-        } catch (\PHPUnit\Framework\ExpectationFailedException $e) {
+        } catch (ExpectationFailedException $e) {
             $this->assertXml($variant2, $generator);
         }
     }

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -27,7 +28,7 @@ require_once 'Zend/Service/ShortUrl/MetamarkNet.php';
  * @subpackage  UnitTests
  * @see http://metamark.net/docs/api/rest.html
  */
-class Zend_Service_ShortUrl_MetamarkNetTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_ShortUrl_MetamarkNetTest extends TestCase
 {
     /**
      * Zend_Service_ShortUrl_MetamarkNet object

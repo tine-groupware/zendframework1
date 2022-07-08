@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -66,8 +68,8 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDbTest
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testUpdateDocumentMergeAll()

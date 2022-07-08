@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\Error;
 /**
  * Zend Framework
  *
@@ -159,7 +160,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
 
     public function testTableRelationshipFindParentRowErrorOnBadString()
     {
-        $this->expectException(\PHPUnit\Framework\Error::class);
+        $this->expectException(Error::class);
         $bug_id = $this->_db->quoteIdentifier('bug_id', true);
 
         $table = $this->_table['bugs'];
@@ -172,7 +173,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
 
     public function testTableRelationshipFindParentRowExceptionOnBadClass()
     {
-        $this->expectException(\Zend_Db_Table_Exception::class);
+        $this->expectException(Zend_Db_Table_Exception::class);
         $bug_id = $this->_db->quoteIdentifier('bug_id', true);
 
         $table = $this->_table['bugs'];
@@ -262,7 +263,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
 
     public function testTableRelationshipFindManyToManyRowsetErrorOnBadClassNameAsString()
     {
-        $this->expectException(\PHPUnit\Framework\Error::class);
+        $this->expectException(Error::class);
         $table = $this->_table['bugs'];
 
         $originRows = $table->find(1);
@@ -275,7 +276,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
 
     public function testTableRelationshipFindManyToManyRowsetErrorOnBadClassNameAsStringForIntersection()
     {
-        $this->expectException(\PHPUnit\Framework\Error::class);
+        $this->expectException(Error::class);
         $table = $this->_table['bugs'];
 
         $originRows = $table->find(1);
@@ -288,7 +289,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
     public function testTableRelationshipFindManyToManyRowsetExceptionOnBadClassAsString()
     {
 
-        $this->expectException(\Zend_Db_Table_Exception::class);
+        $this->expectException(Zend_Db_Table_Exception::class);
         $table = $this->_table['bugs'];
 
         $originRows = $table->find(1);
@@ -302,7 +303,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
 
     public function testTableRelationshipFindManyToManyRowsetExceptionOnBadClassAsStringForIntersection()
     {
-        $this->expectException(\Zend_Db_Table_Exception::class);
+        $this->expectException(Zend_Db_Table_Exception::class);
         $table = $this->_table['bugs'];
 
         $originRows = $table->find(1);
@@ -414,7 +415,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
 
     public function testTableRelationshipFindDependentRowsetPhpError()
     {
-        $this->expectException(\PHPUnit\Framework\Error::class);
+        $this->expectException(Error::class);
         $table = $this->_table['bugs'];
 
         $parentRows = $table->find(1);

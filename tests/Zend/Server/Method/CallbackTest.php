@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Server/Method/Callback.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Server
  */
-class Zend_Server_Method_CallbackTest extends \PHPUnit\Framework\TestCase
+class Zend_Server_Method_CallbackTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +50,8 @@ class Zend_Server_Method_CallbackTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Server_Method_CallbackTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Server_Method_CallbackTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -122,7 +125,7 @@ class Zend_Server_Method_CallbackTest extends \PHPUnit\Framework\TestCase
 
     public function testSettingTypeShouldThrowExceptionWhenInvalidTypeProvided()
     {
-        $this->expectException(\Zend_Server_Exception::class);
+        $this->expectException(Zend_Server_Exception::class);
         $this->callback->setType('bogus');
     }
 

@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -44,12 +46,12 @@ class Zend_Ldap_Dn_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Ldap_Dn');
+        $suite = new TestSuite('Zend Framework - Zend_Ldap_Dn');
 
         $suite->addTestSuite('Zend_Ldap_Dn_EscapingTest');
         $suite->addTestSuite('Zend_Ldap_Dn_ExplodingTest');

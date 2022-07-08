@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -34,14 +37,14 @@ require_once 'Zend/Dojo/Data.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dojo
  */
-class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_DataTest extends TestCase
 {
     public $dojoData;
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_DataTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_DataTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -83,7 +86,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
 
     public function testSetIdentifierShouldThrowExceptionOnInvalidType()
     {
-        $this->expectException(\Zend_Dojo_Exception::class);
+        $this->expectException(Zend_Dojo_Exception::class);
         $this->dojoData->setIdentifier(true);
     }
 
@@ -287,7 +290,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
 
     public function testAddItemsShouldThrowExceptionForInvalidItems()
     {
-        $this->expectException(\Zend_Dojo_Exception::class);
+        $this->expectException(Zend_Dojo_Exception::class);
         $this->dojoData->addItems('foo');
     }
 
@@ -454,7 +457,7 @@ class Zend_Dojo_DataTest extends \PHPUnit\Framework\TestCase
 
     public function testFromJsonShouldThrowExceptionOnInvalidData()
     {
-        $this->expectException(\Zend_Dojo_Exception::class);
+        $this->expectException(Zend_Dojo_Exception::class);
         $this->dojoData->fromJson(new stdClass);
     }
 
@@ -548,31 +551,31 @@ class Zend_Dojo_DataTest_DataCollection implements Iterator
         }
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current($this->items);
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key($this->items);
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->items);
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->items);
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function valid()
     {
         return (bool) $this->current();

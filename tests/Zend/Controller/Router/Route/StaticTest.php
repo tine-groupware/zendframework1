@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Controller/Router/Route/Static.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Router_Route_StaticTest extends TestCase
 {
 
     public function testStaticMatch()

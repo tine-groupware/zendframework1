@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Translate.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
+class Zend_Form_Element_ButtonTest extends TestCase
 {
     /**
      * @var Zend_Form_Element_Button
@@ -53,8 +56,8 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_ButtonTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Form_Element_ButtonTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

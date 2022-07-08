@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/CodeGenerator/Php/Docblock/Tag.php';
  * @group Zend_CodeGenerator
  * @group Zend_CodeGenerator_Php
  */
-class Zend_CodeGenerator_Php_Docblock_TagTest extends \PHPUnit\Framework\TestCase
+class Zend_CodeGenerator_Php_Docblock_TagTest extends TestCase
 {
 
     /**

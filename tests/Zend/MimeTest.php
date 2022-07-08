@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Mime.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mime
  */
-class Zend_MimeTest extends \PHPUnit\Framework\TestCase
+class Zend_MimeTest extends TestCase
 {
     public function testBoundary()
     {

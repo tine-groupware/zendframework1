@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,12 +45,12 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Uri
  */
-class Zend_UriTest extends \PHPUnit\Framework\TestCase
+class Zend_UriTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_UriTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_UriTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -124,7 +127,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetConfigInvalid()
     {
-        $this->expectException(\Zend_Uri_Exception::class);
+        $this->expectException(Zend_Uri_Exception::class);
         Zend_Uri::setConfig('This should cause an exception');
     }
 
@@ -217,13 +220,13 @@ class Zend_Uri_Mock extends Zend_Uri
 {
     protected function __construct($scheme, $schemeSpecific = '') { }
     public function getUri() { }
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function valid() { }
 }
 class Zend_Uri_ExceptionCausing extends Zend_Uri
 {
     protected function __construct($scheme, $schemeSpecific = '') { }
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function valid() { }
     public function getUri()
     {

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -48,7 +51,7 @@ require_once 'Zend/Oauth/Consumer.php';
  * @group      Zend_Service
  * @group      Zend_Service_Twitter
  */
-class Zend_Service_Twitter_TwitterTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Twitter_TwitterTest extends TestCase
 {
 
     /**
@@ -58,8 +61,8 @@ class Zend_Service_Twitter_TwitterTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

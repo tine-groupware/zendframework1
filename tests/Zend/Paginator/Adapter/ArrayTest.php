@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -37,7 +38,7 @@ require_once 'Zend/Paginator/Adapter/Array.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
-class Zend_Paginator_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
+class Zend_Paginator_Adapter_ArrayTest extends TestCase
 {
     /**
      * @var Zend_Paginator_Adapter_Array

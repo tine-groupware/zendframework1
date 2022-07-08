@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Filter/Word/SeparatorToCamelCase.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_Word_SeparatorToCamelCaseTest extends \PHPUnit\Framework\TestCase
+class Zend_Filter_Word_SeparatorToCamelCaseTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +51,8 @@ class Zend_Filter_Word_SeparatorToCamelCaseTest extends \PHPUnit\Framework\TestC
      */
     public static function main() {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_SeparatorToCamelCaseTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Filter_Word_SeparatorToCamelCaseTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithSpacesByDefault()

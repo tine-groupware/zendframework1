@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -44,7 +47,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_BaseUrlTest extends TestCase
 {
     /**
      * Previous baseUrl before changing
@@ -65,8 +68,8 @@ class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_BaseUrlTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_View_Helper_BaseUrlTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -40,7 +43,7 @@ require_once 'Zend/Controller/Request/Apache404.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
-class Zend_Controller_Request_Apache404Test extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Request_Apache404Test extends TestCase
 {
     /**
      * Copy of $_SERVER
@@ -57,8 +60,8 @@ class Zend_Controller_Request_Apache404Test extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_Apache404Test");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Request_Apache404Test");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

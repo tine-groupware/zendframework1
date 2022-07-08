@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Filter/Digits.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_DigitsTest extends \PHPUnit\Framework\TestCase
+class Zend_Filter_DigitsTest extends TestCase
 {
     /**
      * Zend_Filter_Digits object extended for checking whether Unicode PCRE is enabled

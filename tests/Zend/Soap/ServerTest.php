@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -41,7 +42,7 @@ require_once dirname(__FILE__) . '/TestAsset/commontypes.php';
  * @group      Zend_Soap
  * @group      Zend_Soap_Server
  */
-class Zend_Soap_ServerTest extends \PHPUnit\Framework\TestCase
+class Zend_Soap_ServerTest extends TestCase
 {
     protected function setUp(): void
     {
@@ -1040,7 +1041,7 @@ class Zend_Soap_Server_TestLocalSoapClient extends SoapClient
         parent::__construct($wsdl, $options);
     }
 
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     function __doRequest($request, $location, $action, $version, $one_way = 0)
     {
         ob_start();

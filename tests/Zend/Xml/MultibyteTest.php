@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -43,12 +46,12 @@ require_once 'Zend/Xml/Exception.php';
  * @group      Zend_Xml
  * @group      ZF2015-06
  */
-class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
+class Zend_Xml_MultibyteTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
  
     public function multibyteEncodings()

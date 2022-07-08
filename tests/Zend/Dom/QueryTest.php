@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/Dom/Query.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dom
  */
-class Zend_Dom_QueryTest extends \PHPUnit\Framework\TestCase
+class Zend_Dom_QueryTest extends TestCase
 {
     public $html;
 
@@ -49,8 +52,8 @@ class Zend_Dom_QueryTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dom_QueryTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dom_QueryTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

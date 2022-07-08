@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,18 +33,18 @@ require_once 'Zend/Mobile/Push/Message/Gcm.php';
  * @group      Zend_Mobile_Push
  * @group      Zend_Mobile_Push_Gcm
  */
-class Zend_Mobile_Push_Message_GcmTest extends \PHPUnit\Framework\TestCase
+class Zend_Mobile_Push_Message_GcmTest extends TestCase
 {
     public function testAddDataThrowsExceptionOnNonStringKey()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $msg = new Zend_Mobile_Push_Message_Gcm();
         $msg->addData([], 'value');
     }
 
     public function testAddDataThrowsExceptionOnNonScalarValue()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $msg = new Zend_Mobile_Push_Message_Gcm();
         $msg->addData('key', new stdClass);
     }
@@ -89,7 +90,7 @@ class Zend_Mobile_Push_Message_GcmTest extends \PHPUnit\Framework\TestCase
 
     public function testDelayWhileIdleThrowsExceptionOnInvalidValue()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $msg = new Zend_Mobile_Push_Message_Gcm();
         $msg->setDelayWhileIdle('true');
     }
@@ -111,7 +112,7 @@ class Zend_Mobile_Push_Message_GcmTest extends \PHPUnit\Framework\TestCase
 
     public function testTtlThrowsExceptionOnInvalidValue()
     {
-        $this->expectException(\Zend_Mobile_Push_Message_Exception::class);
+        $this->expectException(Zend_Mobile_Push_Message_Exception::class);
         $msg = new Zend_Mobile_Push_Message_Gcm();
         $msg->setTtl('foo');
     }

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -43,7 +44,7 @@ require_once 'Zend/Config/Writer/Ini.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
-class Zend_Config_Writer_IniTest extends \PHPUnit\Framework\TestCase
+class Zend_Config_Writer_IniTest extends TestCase
 {
     protected $_tempName;
 

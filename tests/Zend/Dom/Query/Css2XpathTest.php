@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Dom/Query/Css2Xpath.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dom
  */
-class Zend_Dom_Query_Css2XpathTest extends \PHPUnit\Framework\TestCase
+class Zend_Dom_Query_Css2XpathTest extends TestCase
 {
     /** @doesNotPerformAssertions */
     public function testTransformShouldBeCalledStatically()

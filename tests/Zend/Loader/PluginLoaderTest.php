@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -37,7 +40,7 @@ require_once 'Zend/Loader/PluginLoader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
+class Zend_Loader_PluginLoaderTest extends TestCase
 {
     protected $_includeCache;
 
@@ -49,8 +52,8 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Loader_PluginLoaderTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Loader_PluginLoaderTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -398,7 +401,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
      */
     public function testPluginLoaderShouldThrowExceptionWhenPathDoesNotExist()
     {
-        $this->expectException(\Zend_Loader_PluginLoader_Exception::class);
+        $this->expectException(Zend_Loader_PluginLoader_Exception::class);
         $cacheFile = dirname(__FILE__) . '/_filesDoNotExist/includeCache.inc.php';
         $this->testIncludeCacheShouldBeNullByDefault();
         Zend_Loader_PluginLoader::setIncludeFileCache($cacheFile);

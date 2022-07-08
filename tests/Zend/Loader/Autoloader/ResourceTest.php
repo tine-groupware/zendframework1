@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -50,12 +53,12 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
+class Zend_Loader_Autoloader_ResourceTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(__CLASS__);
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite(__CLASS__);
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void
@@ -104,19 +107,19 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
 
     public function testAutoloaderInstantiationShouldRaiseExceptionWithoutNamespace()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $loader = new Zend_Loader_Autoloader_Resource(['basePath' => dirname(__FILE__)]);
     }
 
     public function testAutoloaderInstantiationShouldRaiseExceptionWithoutBasePath()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $loader = new Zend_Loader_Autoloader_Resource(['namespace' => 'Foo']);
     }
 
     public function testAutoloaderInstantiationShouldRaiseExceptionWhenInvalidOptionsTypeProvided()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $loader = new Zend_Loader_Autoloader_Resource('foo');
     }
 
@@ -148,13 +151,13 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
 
     public function testInitialResourceTypeDefinitionShouldRequireNamespace()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->addResourceType('foo', 'foo');
     }
 
     public function testPassingNonStringPathWhenAddingResourceTypeShouldRaiseAnException()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->addResourceType('foo', ['foo'], 'Foo');
     }
 
@@ -189,13 +192,13 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
 
     public function testAddingMultipleResourceTypesShouldRaiseExceptionWhenReceivingNonArrayItem()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->addResourceTypes(['foo' => 'bar']);
     }
 
     public function testAddingMultipleResourceTypesShouldRaiseExceptionWhenMissingResourcePath()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->addResourceTypes(['model' => ['namespace' => 'Model']]);
     }
 
@@ -261,13 +264,13 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
 
     public function testLoadShouldRaiseExceptionWhenNotTypePassedAndNoDefaultSpecified()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->load('Foo');
     }
 
     public function testLoadShouldRaiseExceptionWhenResourceTypeDoesNotExist()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->load('Foo', 'model');
     }
 
@@ -321,19 +324,19 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
 
     public function testMethodOverloadingShouldRaiseExceptionForNonGetterMethodCalls()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->lalalalala();
     }
 
     public function testMethodOverloadingShouldRaiseExceptionWhenRequestedResourceDoesNotExist()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->getModel('Foo');
     }
 
     public function testMethodOverloadingShouldRaiseExceptionWhenNoArgumentPassed()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->loader->addResourceTypes([
             'model' => ['path' => 'models', 'namespace' => 'Model'],
         ]);

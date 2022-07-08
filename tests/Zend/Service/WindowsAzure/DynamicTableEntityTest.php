@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -44,12 +47,12 @@ require_once 'Zend/Service/WindowsAzure/Storage/DynamicTableEntity.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_WindowsAzure_DynamicTableEntityTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_WindowsAzure_DynamicTableEntityTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_DynamicTableEntityTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Service_WindowsAzure_DynamicTableEntityTest");
+        $result = (new TestRunner)->run($suite);
     }
     
     /**

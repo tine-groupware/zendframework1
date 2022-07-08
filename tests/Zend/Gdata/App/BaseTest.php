@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Gdata/App/MockBase.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_App
  */
-class Zend_Gdata_App_BaseTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_App_BaseTest extends TestCase
 {
     /**
      * @var string

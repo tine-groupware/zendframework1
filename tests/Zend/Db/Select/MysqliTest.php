@@ -50,7 +50,7 @@ class Zend_Db_Select_MysqliTest extends Zend_Db_Select_TestCommon
      */
     public function testSelectQueryWithBinds()
     {
-        $this->expectException(\Zend_Db_Statement_Exception::class);
+        $this->expectException(Zend_Db_Statement_Exception::class);
         parent::testSelectQueryWithBinds();
     }
 

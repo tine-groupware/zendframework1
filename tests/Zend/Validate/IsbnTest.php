@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Validate/Isbn.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
+class Zend_Validate_IsbnTest extends TestCase
 {
     /**
      * Ensures that the validator follows expected behavior

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ class Test_Http_Client_19485876 extends Zend_Http_Client {}
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Oauth
  */
-class Zend_OauthTest extends \PHPUnit\Framework\TestCase
+class Zend_OauthTest extends TestCase
 {
 
     protected function tearDown(): void

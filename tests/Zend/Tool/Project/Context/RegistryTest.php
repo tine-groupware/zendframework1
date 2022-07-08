@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Debug.php';
  * @group Zend_Tool
  * @group Zend_Tool_Project
  */
-class Zend_Tool_Project_Context_RepositoryTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Project_Context_RepositoryTest extends TestCase
 {
 
     protected function setUp(): void
@@ -68,13 +69,13 @@ class Zend_Tool_Project_Context_RepositoryTest extends \PHPUnit\Framework\TestCa
     public function testRegistryThrowsExceptionOnUnallowedContextOverwrite()
     {
 
-        $this->expectException(\Zend_Tool_Project_Context_Exception::class);
+        $this->expectException(Zend_Tool_Project_Context_Exception::class);
         Zend_Tool_Project_Context_Repository::getInstance()->addContextClass('Zend_Tool_Project_Context_System_ProjectDirectory');
     }
 
     public function testRegistryThrowsExceptionOnUnknownContextRequest()
     {
-        $this->expectException(\Zend_Tool_Project_Context_Exception::class);
+        $this->expectException(Zend_Tool_Project_Context_Exception::class);
         Zend_Tool_Project_Context_Repository::getInstance()->getContext('somethingUnknown');
     }
 

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -50,7 +53,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dojo
  */
-class Zend_Dojo_DojoTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_DojoTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -59,8 +62,8 @@ class Zend_Dojo_DojoTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_DojoTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_DojoTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -33,7 +36,7 @@ require_once 'Zend/Translate/Adapter/Tbx.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
-class Zend_Translate_Adapter_TbxTest extends \PHPUnit\Framework\TestCase
+class Zend_Translate_Adapter_TbxTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -42,8 +45,8 @@ class Zend_Translate_Adapter_TbxTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Translate_Adapter_TbxTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Translate_Adapter_TbxTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testCreate()

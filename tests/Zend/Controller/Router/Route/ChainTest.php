@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -69,7 +72,7 @@ require_once 'Zend/Config.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_ChainTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Router_Route_ChainTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -80,8 +83,8 @@ class Zend_Controller_Router_Route_ChainTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_ChainTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Router_Route_ChainTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     public function testChaining()

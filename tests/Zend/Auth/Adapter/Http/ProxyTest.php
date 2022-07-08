@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -52,7 +53,7 @@ require_once 'Zend/Controller/Response/Http.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Auth
  */
-class Zend_Auth_Adapter_Http_ProxyTest extends \PHPUnit\Framework\TestCase
+class Zend_Auth_Adapter_Http_ProxyTest extends TestCase
 {
     /**
      * Path to test files

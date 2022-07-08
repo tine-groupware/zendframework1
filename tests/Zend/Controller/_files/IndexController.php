@@ -107,7 +107,7 @@ class IndexController extends Zend_Controller_Action
 
     public function exceptionAction()
     {
-        throw new \Exception('This is an exception message');
+        throw new Exception('This is an exception message');
         $this->_response->appendBody('Exception action called');
     }
 

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Reflection/Parameter.php';
  * @group      Zend_Reflection
  * @group      Zend_Reflection_Parameter
  */
-class Zend_Reflection_ParameterTest extends \PHPUnit\Framework\TestCase
+class Zend_Reflection_ParameterTest extends TestCase
 {
 
     static protected $_sampleClassFileRequired = false;

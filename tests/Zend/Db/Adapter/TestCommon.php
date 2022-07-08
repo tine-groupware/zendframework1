@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\Constraint\IsInstanceOf;
 /**
  * Zend Framework
  *
@@ -1981,7 +1982,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     {
         $serialized = serialize($this->_db);
         $this->assertTrue(is_string($serialized));
-        $this->assertThat(unserialize($serialized), new \PHPUnit\Framework\Constraint\IsInstanceOf('Zend_Db_Adapter_Abstract'));
+        $this->assertThat(unserialize($serialized), new IsInstanceOf('Zend_Db_Adapter_Abstract'));
     }
 
     public function testAdapterSerializationFailsWhenNotAllowedToBeSerialized()

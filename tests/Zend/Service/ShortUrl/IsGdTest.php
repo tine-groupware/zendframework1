@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -26,7 +27,7 @@ require_once 'Zend/Service/ShortUrl/IsGd.php';
  * @package  Zend_Service
  * @subpackage  UnitTests
  */
-class Zend_Service_ShortUrl_IsGdTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_ShortUrl_IsGdTest extends TestCase
 {
     /**
      * Zend_Service_ShortUrl_IsGd object

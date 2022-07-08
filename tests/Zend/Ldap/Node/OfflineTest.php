@@ -74,7 +74,7 @@ class Zend_Ldap_Node_OfflineTest extends Zend_Ldap_TestCase
 
     public function testCreateFromArrayMissingDn()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $data=$this->_createTestArrayData();
         unset($data['dn']);
         $node=Zend_Ldap_Node::fromArray($data);
@@ -82,7 +82,7 @@ class Zend_Ldap_Node_OfflineTest extends Zend_Ldap_TestCase
 
     public function testCreateFromArrayIllegalDn()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $data=$this->_createTestArrayData();
         $data['dn']=5;
         $node=Zend_Ldap_Node::fromArray($data);
@@ -90,7 +90,7 @@ class Zend_Ldap_Node_OfflineTest extends Zend_Ldap_TestCase
 
     public function testCreateFromArrayMalformedDn()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $data=$this->_createTestArrayData();
         $data['dn']='name1,cn=name2,dc=example,dc=org';
         $node=Zend_Ldap_Node::fromArray($data);
@@ -326,14 +326,14 @@ class Zend_Ldap_Node_OfflineTest extends Zend_Ldap_TestCase
 
     public function testIllegalAttributeAccessRdnAttributeSet()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $node=$this->_createTestNode();
         $node->cn='test';
     }
 
     public function testIllegalAttributeAccessDnSet()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $node=$this->_createTestNode();
         $node->dn='test';
     }

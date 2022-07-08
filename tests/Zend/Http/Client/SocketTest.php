@@ -109,7 +109,7 @@ class Zend_Http_Client_SocketTest extends Zend_Http_Client_CommonHttpTests
      */
     public function testSetConfigInvalidConfig($config)
     {
-        $this->expectException(\Zend_Http_Client_Adapter_Exception::class);
+        $this->expectException(Zend_Http_Client_Adapter_Exception::class);
         $this->_adapter->setConfig($config);
     }
 
@@ -160,7 +160,7 @@ class Zend_Http_Client_SocketTest extends Zend_Http_Client_CommonHttpTests
      */
     public function testSetInvalidContextOptions($invalid)
     {
-        $this->expectException(\Zend_Http_Client_Adapter_Exception::class);
+        $this->expectException(Zend_Http_Client_Adapter_Exception::class);
         $adapter = new $this->config['adapter'];
         $adapter->setStreamContext($invalid);
     }

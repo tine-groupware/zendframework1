@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -56,7 +57,7 @@ class Zend_Mail_Storage_Mbox_OldMessage extends Zend_Mail_Storage_Mbox
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mail
  */
-class Zend_Mail_MboxMessageOldTest extends \PHPUnit\Framework\TestCase
+class Zend_Mail_MboxMessageOldTest extends TestCase
 {
     protected $_mboxOriginalFile;
     protected $_mboxFile;

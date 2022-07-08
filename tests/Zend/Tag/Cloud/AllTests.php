@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -40,12 +42,12 @@ class Zend_Tag_Cloud_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Tag_Cloud');
+        $suite = new TestSuite('Zend Framework - Zend_Tag_Cloud');
 
         $suite->addTestSuite('Zend_Tag_Cloud_CloudTest');
         $suite->addTest(Zend_Tag_Cloud_Decorator_AllTests::suite());

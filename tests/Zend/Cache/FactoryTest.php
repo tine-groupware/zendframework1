@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -42,7 +43,7 @@ class FooBarTestFrontend extends Zend_Cache_Core { }
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_FactoryTest extends \PHPUnit\Framework\TestCase
+class Zend_Cache_FactoryTest extends TestCase
 {
 
     protected function setUp(): void

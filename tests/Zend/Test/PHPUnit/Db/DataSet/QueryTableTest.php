@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Extensions\Database\DataSet\ITableMetaData;
 /**
  * Zend Framework
  *
@@ -118,7 +119,7 @@ class Zend_Test_PHPUnit_Db_DataSet_QueryTableTest extends Zend_Test_PHPUnit_Db_D
         $queryTable = new Zend_Test_PHPUnit_Db_DataSet_QueryTable("foo", null, $this->connectionMock);
 
         $metadata = $queryTable->getTableMetaData();
-        $this->assertTrue($metadata instanceof \PHPUnit\Extensions\Database\DataSet\ITableMetaData);
+        $this->assertTrue($metadata instanceof ITableMetaData);
         $this->assertEquals([], $metadata->getColumns());
         $this->assertEquals([], $metadata->getPrimaryKeys());
         $this->assertEquals("foo", $metadata->getTableName());

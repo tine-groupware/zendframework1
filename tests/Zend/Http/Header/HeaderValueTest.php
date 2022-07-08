@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Http/Header/HeaderValue.php';
  * @group      Zend_Http
  * @group      Zend_Http_Header
  */
-class Zend_Http_Header_HeaderValueTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_Header_HeaderValueTest extends TestCase
 {
     /**
      * Data for filter value

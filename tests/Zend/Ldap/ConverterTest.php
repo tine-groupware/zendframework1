@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Ldap/Converter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Ldap
  */
-class Zend_Ldap_ConverterTest extends \PHPUnit\Framework\TestCase
+class Zend_Ldap_ConverterTest extends TestCase
 {
     public function testAsc2hex32()
     {
@@ -226,7 +227,7 @@ class Zend_Ldap_ConverterTest extends \PHPUnit\Framework\TestCase
      */
     public function testFromLdapDateTimeThrowsException ($value)
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         Zend_Ldap_Converter::fromLdapDatetime($value);
     }
 

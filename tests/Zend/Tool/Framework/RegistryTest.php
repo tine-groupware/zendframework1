@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -44,7 +45,7 @@ require_once '_files/EmptyLoader.php';
  * @group Zend_Tool
  * @group Zend_Tool_Framework
  */
-class Zend_Tool_Framework_RegistryTest extends \PHPUnit\Framework\TestCase
+class Zend_Tool_Framework_RegistryTest extends TestCase
 {
 
     protected function setUp(): void
@@ -115,25 +116,25 @@ class Zend_Tool_Framework_RegistryTest extends \PHPUnit\Framework\TestCase
 
     public function testMagicGetThrowsExceptionOnNonExistentItem()
     {
-        $this->expectException(\Zend_Tool_Framework_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Exception::class);
         $foo = $this->_registry->foo;
     }
 
     public function testMagicSetThrowsExceptionOnNonExistentItem()
     {
-        $this->expectException(\Zend_Tool_Framework_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Exception::class);
         $this->_registry->foo = 'foo';
     }
 
     public function testIsObjectRegistryEnablableWillThrowExceptionsOnNonObject()
     {
-        $this->expectException(\Zend_Tool_Framework_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Exception::class);
         $this->_registry->isObjectRegistryEnablable('foo');
     }
 
     public function testEnableRegistryOnObjectWillThrowExceptionsOnNonObject()
     {
-        $this->expectException(\Zend_Tool_Framework_Exception::class);
+        $this->expectException(Zend_Tool_Framework_Exception::class);
         $this->_registry->enableRegistryOnObject(new ArrayObject());
     }
 

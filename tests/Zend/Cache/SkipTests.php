@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-abstract class Zend_Cache_BackendTest_SkipTests extends \PHPUnit\Framework\TestCase
+abstract class Zend_Cache_BackendTest_SkipTests extends TestCase
 {
 
     public $message = 'Skipped for unspecified reason';

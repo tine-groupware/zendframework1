@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -41,13 +44,13 @@ require_once 'Zend/Service/WindowsAzure/Storage/Queue.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_WindowsAzure_QueueStorageTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_WindowsAzure_QueueStorageTest extends TestCase
 {
     public static function main()
     {
         if (TESTS_ZEND_SERVICE_WINDOWSAZURE_QUEUE_RUNTESTS)  {
-            $suite  = new \PHPUnit\Framework\TestSuite("Zend_Service_WindowsAzure_QueueStorageTest");
-            $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+            $suite  = new TestSuite("Zend_Service_WindowsAzure_QueueStorageTest");
+            $result = (new TestRunner)->run($suite);
         }
     }
    

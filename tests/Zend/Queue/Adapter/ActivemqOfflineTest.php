@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/Queue/Stomp/Frame.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Queue
  */
-class Zend_Queue_Adapter_ActivemqOfflineTest extends \PHPUnit\Framework\TestCase
+class Zend_Queue_Adapter_ActivemqOfflineTest extends TestCase
 {
     /**
      * @group ZF-7948

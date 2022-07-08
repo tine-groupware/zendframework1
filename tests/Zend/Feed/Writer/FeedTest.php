@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -31,7 +32,7 @@ require_once 'Zend/Feed/Writer/Feed.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Feed_Writer_FeedTest extends \PHPUnit\Framework\TestCase
+class Zend_Feed_Writer_FeedTest extends TestCase
 {
 
     protected $_feedSamplePath = null;
@@ -906,7 +907,7 @@ class Zend_Feed_Writer_FeedTest extends \PHPUnit\Framework\TestCase
 
     public function testSetsImageUriThrowsExceptionOnEmptyUri()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setImage([
             'uri' => ''
@@ -915,14 +916,14 @@ class Zend_Feed_Writer_FeedTest extends \PHPUnit\Framework\TestCase
 
     public function testSetsImageUriThrowsExceptionOnMissingUri()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setImage([]);
     }
 
     public function testSetsImageUriThrowsExceptionOnInvalidUri()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setImage([
             'uri' => 'http://'
@@ -1009,7 +1010,7 @@ class Zend_Feed_Writer_FeedTest extends \PHPUnit\Framework\TestCase
 
     public function testSetsIconUriThrowsExceptionOnEmptyUri()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setIcon([
             'uri' => ''
@@ -1018,14 +1019,14 @@ class Zend_Feed_Writer_FeedTest extends \PHPUnit\Framework\TestCase
 
     public function testSetsIconUriThrowsExceptionOnMissingUri()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setIcon([]);
     }
 
     public function testSetsIconUriThrowsExceptionOnInvalidUri()
     {
-        $this->expectException(\Zend_Feed_Exception::class);
+        $this->expectException(Zend_Feed_Exception::class);
         $writer = new Zend_Feed_Writer_Feed;
         $writer->setIcon([
             'uri' => 'http://'

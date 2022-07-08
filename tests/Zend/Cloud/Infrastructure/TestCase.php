@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -40,7 +41,7 @@ require_once 'Zend/Cloud/Infrastructure/Instance.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Cloud_Infrastructure_TestCase extends \PHPUnit\Framework\TestCase
+abstract class Zend_Cloud_Infrastructure_TestCase extends TestCase
 {
     /**
      * Reference to Document adapter to test

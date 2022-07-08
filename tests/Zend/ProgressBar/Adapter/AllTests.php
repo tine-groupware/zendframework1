@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -40,12 +42,12 @@ class Zend_ProgressBar_Adapter_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_ProgressBar_Adapter');
+        $suite = new TestSuite('Zend Framework - Zend_ProgressBar_Adapter');
         $suite->addTestSuite('Zend_ProgressBar_Adapter_ConsoleTest');
         $suite->addTestSuite('Zend_ProgressBar_Adapter_JsPushTest');
         $suite->addTestSuite('Zend_ProgressBar_Adapter_JsPullTest');

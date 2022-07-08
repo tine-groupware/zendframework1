@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -40,12 +43,12 @@ class Zend_Ldap_Ldif_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Ldap_Ldif');
+        $suite = new TestSuite('Zend Framework - Zend_Ldap_Ldif');
 
         $suite->addTestSuite('Zend_Ldap_Ldif_SimpleEncoderTest');
         $suite->addTestSuite('Zend_Ldap_Ldif_SimpleDecoderTest');
@@ -61,7 +64,7 @@ class Zend_Ldap_Ldif_AllTests
     }
 }
 
-class Zend_Ldap_Ldif_SkipOnlineTests extends \PHPUnit\Framework\TestCase
+class Zend_Ldap_Ldif_SkipOnlineTests extends TestCase
 {
     protected function setUp(): void
     {

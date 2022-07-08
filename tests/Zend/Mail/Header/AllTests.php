@@ -1,4 +1,6 @@
 <?php
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -39,12 +41,12 @@ class Zend_Mail_Header_AllTests
 {
     public static function main()
     {
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite());
+        (new TestRunner)->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend_Mail_Header');
+        $suite = new TestSuite('Zend Framework - Zend_Mail_Header');
 
         $suite->addTestSuite('Zend_Mail_Header_HeaderNameTest');
         $suite->addTestSuite('Zend_Mail_Header_HeaderValueTest');

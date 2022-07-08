@@ -1,4 +1,6 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -19,10 +21,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
-
-
-
 /**
  * @category   Zend
  * @package    Zend_Cache
@@ -31,7 +29,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-abstract class Zend_Cache_CommonBackendTest extends \PHPUnit\Framework\TestCase {
+abstract class Zend_Cache_CommonBackendTest extends TestCase {
 
     protected $_instance;
     protected $_className;

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -48,7 +51,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_Element_DateTextBoxTest extends \PHPUnit\Framework\TestCase
+class Zend_Dojo_Form_Element_DateTextBoxTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -57,8 +60,8 @@ class Zend_Dojo_Form_Element_DateTextBoxTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Dojo_Form_Element_DateTextBoxTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Dojo_Form_Element_DateTextBoxTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**
@@ -157,7 +160,7 @@ class Zend_Dojo_Form_Element_DateTextBoxTest extends \PHPUnit\Framework\TestCase
 
     public function testFormatLengthMutatorShouldThrowExceptionWithInvalidFormatLength()
     {
-        $this->expectException(\Zend_Form_Element_Exception::class);
+        $this->expectException(Zend_Form_Element_Exception::class);
         $this->element->setFormatLength('foobar');
     }
 
@@ -174,7 +177,7 @@ class Zend_Dojo_Form_Element_DateTextBoxTest extends \PHPUnit\Framework\TestCase
 
     public function testSelectorMutatorShouldThrowExceptionWithInvalidSelector()
     {
-        $this->expectException(\Zend_Form_Element_Exception::class);
+        $this->expectException(Zend_Form_Element_Exception::class);
         $this->element->setSelector('foobar');
     }
 

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -41,7 +44,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Dispatcher
  */
-class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCase
+class Zend_Controller_Dispatcher_StandardTest extends TestCase
 {
     protected $_dispatcher;
 
@@ -53,8 +56,8 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Dispatcher_StandardTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Controller_Dispatcher_StandardTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     protected function setUp(): void

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Http/Client.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Gapps
  */
-class Zend_Gdata_GappsTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_GappsTest extends TestCase
 {
     const TEST_DOMAIN = 'nowhere.invalid';
 

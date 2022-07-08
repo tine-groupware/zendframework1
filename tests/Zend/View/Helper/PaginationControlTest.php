@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -38,7 +41,7 @@ require_once 'Zend/View/Helper/PaginationControl.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_PaginationControlTest extends TestCase
 {
     /**
      * @var Zend_View_Helper_PaginationControl
@@ -56,8 +59,8 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PaginationControlTest");
-        (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite = new TestSuite("Zend_View_Helper_PaginationControlTest");
+        (new TestRunner)->run($suite);
     }
 
     /**

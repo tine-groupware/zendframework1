@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -40,7 +41,7 @@ require_once 'Zend/Service/Delicious/Post.php';
  * @group      Zend_Service
  * @group      Zend_Service_Delicious
  */
-class Zend_Service_Delicious_PostTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Delicious_PostTest extends TestCase
 {
     const UNAME = 'zfTestUser';
     const PASS  = 'zfuser';

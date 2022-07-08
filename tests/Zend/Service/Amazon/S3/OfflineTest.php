@@ -1,4 +1,6 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -19,8 +21,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-
-
 /**
  * @category   Zend
  * @package    Zend_Service_Amazon_S3
@@ -31,7 +31,7 @@
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_S3
  */
-class Zend_Service_Amazon_S3_OfflineTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Amazon_S3_OfflineTest extends TestCase
 {
     protected function setUp(): void
     {

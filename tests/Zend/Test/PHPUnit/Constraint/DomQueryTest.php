@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
  * @group      Zend_Test
  * @group      Zend_Test_PHPUnit
  */
-class Zend_Test_PHPUnit_Constraint_DomQueryTest extends \PHPUnit\Framework\TestCase
+class Zend_Test_PHPUnit_Constraint_DomQueryTest extends TestCase
 {
     /**
      * @group ZF-4010

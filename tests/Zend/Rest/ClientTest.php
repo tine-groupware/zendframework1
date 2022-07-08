@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -37,7 +38,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Rest
  * @group      Zend_Rest_Client
  */
-class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
+class Zend_Rest_ClientTest extends TestCase
 {
     protected function setUp(): void
     {

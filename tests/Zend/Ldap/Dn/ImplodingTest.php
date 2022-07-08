@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/Ldap/Dn.php';
  * @group      Zend_Ldap
  * @group      Zend_Ldap_Dn
  */
-class Zend_Ldap_Dn_ImplodingTest extends \PHPUnit\Framework\TestCase
+class Zend_Ldap_Dn_ImplodingTest extends TestCase
 {
     public function testDnWithMultiValuedRdnRoundTrip()
     {
@@ -119,14 +120,14 @@ class Zend_Ldap_Dn_ImplodingTest extends \PHPUnit\Framework\TestCase
 
     public function testImplodeRdnInvalidOne()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $a=['cn'];
         Zend_Ldap_Dn::implodeRdn($a);
     }
 
     public function testImplodeRdnInvalidThree()
     {
-        $this->expectException(\Zend_Ldap_Exception::class);
+        $this->expectException(Zend_Ldap_Exception::class);
         $a=['cn' => 'value', 'ou'];
         Zend_Ldap_Dn::implodeRdn($a);
     }

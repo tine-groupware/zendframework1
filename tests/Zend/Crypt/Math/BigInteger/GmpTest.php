@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Crypt/Math/BigInteger/Bcmath.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Crypt
  */
-class Zend_Crypt_Math_BigInteger_GmpTest extends \PHPUnit\Framework\TestCase
+class Zend_Crypt_Math_BigInteger_GmpTest extends TestCase
 {
 
     private $_math = null;

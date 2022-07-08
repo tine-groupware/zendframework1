@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -32,7 +33,7 @@ require_once 'Zend/XmlRpc/Fault.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_FaultTest extends \PHPUnit\Framework\TestCase
+class Zend_XmlRpc_FaultTest extends TestCase
 {
     /**
      * Zend_XmlRpc_Fault object

@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Http/CookieJar.php';
  * @group      Zend_Http
  * @group      Zend_Http_CookieJar
  */
-class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
+class Zend_Http_CookieJarTest extends TestCase
 {
     public function loadResponse($filename)
     {
@@ -114,7 +115,7 @@ class Zend_Http_CookieJarTest extends \PHPUnit\Framework\TestCase
      */
     public function testExceptAddCookiesInvalidResponse($resp)
     {
-        $this->expectException(\Zend_Http_Exception::class);
+        $this->expectException(Zend_Http_Exception::class);
         $jar = new Zend_Http_Cookiejar();
         $jar->addCookiesFromResponse($resp, 'http://www.example.com');
     }

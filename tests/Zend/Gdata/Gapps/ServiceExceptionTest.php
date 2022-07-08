@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -33,7 +34,7 @@ require_once 'Zend/Gdata/Gapps.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Gapps
  */
-class Zend_Gdata_Gapps_ServiceExceptionTest extends \PHPUnit\Framework\TestCase
+class Zend_Gdata_Gapps_ServiceExceptionTest extends TestCase
 {
     protected $fixture;
     protected $data;
@@ -50,7 +51,7 @@ class Zend_Gdata_Gapps_ServiceExceptionTest extends \PHPUnit\Framework\TestCase
     }
 
     public function testCanThrowServiceException() {
-        $this->expectException(\Zend_Gdata_Gapps_ServiceException::class);
+        $this->expectException(Zend_Gdata_Gapps_ServiceException::class);
         throw $this->fixture;
     }
 

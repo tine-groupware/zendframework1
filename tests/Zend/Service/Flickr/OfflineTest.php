@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/Service/Flickr.php';
  * @group      Zend_Service
  * @group      Zend_Service_Flickr
  */
-class Zend_Service_Flickr_OfflineTest extends \PHPUnit\Framework\TestCase
+class Zend_Service_Flickr_OfflineTest extends TestCase
 {
     /**
      * Reference to Flickr service consumer object

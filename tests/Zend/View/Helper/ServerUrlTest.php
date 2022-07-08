@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -34,7 +35,7 @@ require_once 'Zend/View/Helper/ServerUrl.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_ServerUrlTest extends \PHPUnit\Framework\TestCase
+class Zend_View_Helper_ServerUrlTest extends TestCase
 {
     /**
      * Back up of $_SERVER

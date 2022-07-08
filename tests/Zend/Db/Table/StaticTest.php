@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * Zend Framework
  *
@@ -35,7 +36,7 @@ require_once 'Zend/Db/Table/TestCommon.php';
  * @group      Zend_Db
  * @group      Zend_Db_Table
  */
-class Zend_Db_Table_StaticTest extends \PHPUnit\Framework\TestCase
+class Zend_Db_Table_StaticTest extends TestCase
 {
 
     public function testStatic()

@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -41,7 +44,7 @@ require_once 'Zend/Registry.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
+class Zend_Validate_AbstractTest extends TestCase
 {
     /**
      * Runs this test suite
@@ -50,8 +53,8 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_AbstractTest');
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite('Zend_Validate_AbstractTest');
+        $result = (new TestRunner)->run($suite);
     }
 
     public function clearRegistry()

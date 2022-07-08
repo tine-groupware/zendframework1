@@ -1,4 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
 /**
  * Zend Framework
  *
@@ -42,7 +45,7 @@ require_once 'Zend/Server/Exception.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
-class Zend_Json_ServerTest extends \PHPUnit\Framework\TestCase
+class Zend_Json_ServerTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +55,8 @@ class Zend_Json_ServerTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
 
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Json_ServerTest");
-        $result = (new \PHPUnit\TextUI\TestRunner)->run($suite);
+        $suite  = new TestSuite("Zend_Json_ServerTest");
+        $result = (new TestRunner)->run($suite);
     }
 
     /**

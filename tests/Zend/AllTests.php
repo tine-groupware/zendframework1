@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\TestSuite;
 /**
  * Zend Framework
  *
@@ -133,7 +135,7 @@ class Zend_AllTests
         //     ob_end_flush();
         // }
 
-        (new \PHPUnit\TextUI\TestRunner)->run(self::suite(), $arguments);
+        (new TestRunner)->run(self::suite(), $arguments);
     }
 
     /**
@@ -142,11 +144,11 @@ class Zend_AllTests
      * These tests require no output be sent prior to running as they rely
      * on internal PHP functions.
      *
-     * @return \PHPUnit\Framework\TestSuite
+     * @return TestSuite
      */
     public static function suiteBuffered()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend - Buffered Test Suites');
+        $suite = new TestSuite('Zend Framework - Zend - Buffered Test Suites');
 
         // These tests require no output be sent prior to running as they rely
         // on internal PHP functions
@@ -163,11 +165,11 @@ class Zend_AllTests
      *
      * All tests except those that require output buffering.
      *
-     * @return \PHPUnit\Framework\TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend Framework - Zend');
+        $suite = new TestSuite('Zend Framework - Zend');
 
         // Running this early to ensure that the test suite hasn't used too
         // much memory by the time it gets to this test.
