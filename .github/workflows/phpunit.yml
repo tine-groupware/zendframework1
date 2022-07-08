@@ -10,10 +10,14 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Prevent issue of entrypoint issue on load docker image jakzal/phpqa:php8.0-alpine 
+      - name: Prevent entrypoint issue on load docker image jakzal/phpqa:php8.0-alpine 
         run: mv composer.json composer.json.bk
       - name: PHPUnit 9 on php 8.0
         uses: docker://jakzal/phpqa:php8.0-alpine
         with:
           args: /tools/phpunit --bootstrap tests/TestHelper.php tests/Zend/AllTests.php
+      # - name: PHPUnit 9 on php 8.1
+      #   uses: docker://jakzal/phpqa:php8.1-alpine
+      #   with:
+      #     args: /tools/phpunit --bootstrap tests/TestHelper.php tests/Zend/AllTests.php
           
