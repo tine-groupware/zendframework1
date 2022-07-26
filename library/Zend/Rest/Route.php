@@ -191,7 +191,7 @@ class Zend_Rest_Route extends Zend_Controller_Router_Route_Module
         // Digest URI params
         if ($numSegs = count($path)) {
             for ($i = 0; $i < $numSegs; $i = $i + 2) {
-                $key = urldecode($path[$i]);
+                $key = urldecode((string) $path[$i]);
                 $val = isset($path[$i + 1]) ? $path[$i + 1] : null;
                 $params[$key] = urldecode($val);
             }
