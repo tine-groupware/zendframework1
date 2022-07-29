@@ -351,6 +351,16 @@ class Zend_Pdf_ProcessingTest extends PHPUnit_Framework_TestCase
         // Test accessing protected variables and their default content
         $this->assertEquals(0, $pdfpage->_saveCount);
     }
+
+    public function testLoadPdfWithUnknownEncodingInProperties()
+    {
+        $pdf = Zend_Pdf::load(__DIR__ . '/_files/Word-Export.pdf');
+        // Changing a property is required to trigger the re-encoding of the existing properties
+        $pdf->properties['Title'] = 'Test-Title';
+        $pdf->render();
+
+        $this->assertInstanceOf(Zend_Pdf::class, $pdf);
+    }
 }
 
 
