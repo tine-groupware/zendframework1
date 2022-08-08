@@ -482,4 +482,11 @@ class Zend_Http_ResponseTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('imagetoolbar', $headers);
         $this->assertEmpty($headers['imagetoolbar']);
     }
+
+    public function testHttp2()
+    {
+        $response = Zend_Http_Response::fromString($this->readResponse('response_http2'));
+
+        $this->assertEquals("2", $response->getVersion());
+    }
 }

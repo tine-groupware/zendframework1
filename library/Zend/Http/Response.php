@@ -183,7 +183,7 @@ class Zend_Http_Response
         $this->body = $body;
 
         // Set the HTTP version
-        if (! preg_match('|^\d\.\d$|', $version)) {
+        if (! preg_match('|^\d(\.\d)?$|', $version)) {
             require_once 'Zend/Http/Exception.php';
             throw new Zend_Http_Exception("Invalid HTTP response version: $version");
         }
@@ -506,7 +506,7 @@ class Zend_Http_Response
         $last_header = null;
 
         foreach($lines as $index => $line) {
-            if ($index === 0 && preg_match('#^HTTP/\d+(?:\.\d+) [1-5]\d+#', $line)) {
+            if ($index === 0 && preg_match('#^HTTP/\d+(?:\.\d+)? [1-5]\d+#', $line)) {
                 // Status line; ignore
                 continue;
             }
@@ -690,6 +690,8 @@ class Zend_Http_Response
         $body    = self::extractBody($response_str);
         $version = self::extractVersion($response_str);
         $message = self::extractMessage($response_str);
+
+        var_dump($version);
 
         return new Zend_Http_Response($code, $headers, $body, $version, $message);
     }
