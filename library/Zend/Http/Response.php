@@ -691,8 +691,6 @@ class Zend_Http_Response
         $version = self::extractVersion($response_str);
         $message = self::extractMessage($response_str);
 
-        var_dump($version);
-
         return new Zend_Http_Response($code, $headers, $body, $version, $message);
     }
 }
