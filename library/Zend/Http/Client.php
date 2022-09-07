@@ -1426,7 +1426,7 @@ class Zend_Http_Client
      *
      * This method will try to detect the MIME type of a file. If the fileinfo
      * extension is available, it will be used. If not, the mime_magic
-     * extension which is deprected but is still available in many PHP setups
+     * extension which is deprecated but is still available in many PHP setups
      * will be tried.
      *
      * If neither extension is available, the default application/octet-stream
