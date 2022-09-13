@@ -161,7 +161,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_posts);
     }
@@ -173,7 +173,8 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      *
      * @return Zend_Service_Delicious_SimplePost
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return $this->_posts[$this->_iteratorKey];
     }
@@ -185,7 +186,8 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      *
      * @return int
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return $this->_iteratorKey;
     }
@@ -197,7 +199,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->_iteratorKey += 1;
     }
@@ -209,7 +211,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_iteratorKey = 0;
     }
@@ -221,7 +223,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         $numItems = $this->count();
 
@@ -240,7 +242,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      * @param   int     $offset
      * @return  bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return ($offset < $this->count());
     }
@@ -254,6 +256,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      * @throws  OutOfBoundsException
      * @return  Zend_Service_Delicious_SimplePost
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if ($this->offsetExists($offset)) {
@@ -272,7 +275,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      * @param   string  $value
      * @throws  Zend_Service_Delicious_Exception
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         /**
          * @see Zend_Service_Delicious_Exception
@@ -289,7 +292,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      * @param   int     $offset
      * @throws  Zend_Service_Delicious_Exception
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         /**
          * @see Zend_Service_Delicious_Exception

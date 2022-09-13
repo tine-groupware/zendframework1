@@ -118,7 +118,7 @@ class Zend_Reflection_ClassTest extends PHPUnit_Framework_TestCase
         return \$this->_prop2;
     }
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return array();
     }

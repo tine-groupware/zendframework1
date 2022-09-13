@@ -86,6 +86,7 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
      * @param int $offset
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         $currentOffset = $this->key();
@@ -102,16 +103,16 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
      * @param int $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
     }
 
     /**
      * Determine if a value of Iterator is set and is not NULL
      *
-     * @param int $offset
+     * @param bool $offset
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         if ($offset > 0 && $offset < $this->_count) {
             try {
@@ -136,7 +137,7 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
      *
      * @param int $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
     }
 }

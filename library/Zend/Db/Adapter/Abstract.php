@@ -1267,6 +1267,11 @@ abstract class Zend_Db_Adapter_Abstract
      */
     abstract public function limit($sql, $count, $offset = 0);
 
+    public function forUpdate(string $query): string
+    {
+        return $query . ' FOR UPDATE';
+    }
+
     /**
      * Check if the adapter supports real SQL parameters.
      *

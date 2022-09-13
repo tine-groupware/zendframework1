@@ -100,7 +100,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * 
          * @return int
          */
-        public function count()
+        public function count(): int
         {
             return $this->count;
         }
@@ -110,7 +110,8 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * 
          * @return mixed
          */
-        public function current()
+        #[\ReturnTypeWillChange]
+public function current()
         {
             if (!$this->stack) {
                 $this->rewind();
@@ -143,7 +144,8 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          *
          * @return mixed
          */
-        public function key()
+        #[\ReturnTypeWillChange]
+public function key()
         {
             if (!$this->stack) {
                 $this->rewind();
@@ -156,6 +158,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * 
          * @return void
          */
+        #[\ReturnTypeWillChange]
         public function next()
         {
             if (!$this->stack) {
@@ -170,7 +173,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * @param  mixed $index 
          * @return bool
          */
-        public function offsetExists($index)
+        public function offsetExists($index): bool
         {
             return array_key_exists($index, $this->data);
         }
@@ -182,6 +185,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * @return mixed
          * @throws OutOfRangeException
          */
+        #[\ReturnTypeWillChange]
         public function offsetGet($index)
         {
             if (!$this->offsetExists($index)) {
@@ -197,7 +201,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * @param  mixed $newval 
          * @return void
          */
-        public function offsetSet($index, $newval)
+        public function offsetSet($index, $newval): void
         {
             $this->data[$index] = $newval;
             $this->stack = false;
@@ -211,7 +215,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * @return void
          * @throws OutOfRangeException
          */
-        public function offsetUnset($index)
+        public function offsetUnset($index): void
         {
             if (!$this->offsetExists($index)) {
                 throw OutOfRangeException(sprintf('Invalid index ("%s") specified', $index));
@@ -263,7 +267,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          * 
          * @return void
          */
-        public function rewind()
+        public function rewind(): void
         {
             if (is_array($this->stack)) {
                 return reset($this->stack);
@@ -338,7 +342,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
          *
          * @return bool
          */
-        public function valid()
+        public function valid(): bool
         {
             $key = key($this->stack);
 

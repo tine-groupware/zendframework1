@@ -411,27 +411,29 @@ class Zend_View_Helper_PartialLoop_IteratorTest implements Iterator
         $this->items = $array;
     }
 
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return current($this->items);
     }
 
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return key($this->items);
     }
 
-    public function next()
+    public function next(): void
     {
         return next($this->items);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         return reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return (current($this->items) !== false);
     }
@@ -457,27 +459,29 @@ class Zend_View_Helper_PartialLoop_RecursiveIteratorTest implements Iterator
         return $this;
     }
 
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return current($this->items);
     }
 
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return key($this->items);
     }
 
-    public function next()
+    public function next(): void
     {
         return next($this->items);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         return reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return (current($this->items) !== false);
     }
@@ -514,27 +518,29 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator
         return $this->items;
     }
 
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return current($this->items);
     }
 
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return key($this->items);
     }
 
-    public function next()
+    public function next(): void
     {
         return next($this->items);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         return reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return (current($this->items) !== false);
     }

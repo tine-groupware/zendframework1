@@ -517,7 +517,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return bool current element has children/is multipart
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         $current = $this->current();
         return $current && $current instanceof Zend_Mail_Part && $current->isMultipart();
@@ -528,7 +528,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return Zend_Mail_Part same as self::current()
      */
-    public function getChildren()
+    public function getChildren(): ?RecursiveIterator
     {
         return $this->current();
     }
@@ -538,7 +538,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return bool check if there's a current element
      */
-    public function valid()
+    public function valid(): bool
     {
         if ($this->_countParts === null) {
             $this->countParts();
@@ -551,7 +551,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return null
      */
-    public function next()
+    public function next(): void
     {
         ++$this->_iterationPos;
     }
@@ -561,7 +561,8 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return string key/number of current part
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return $this->_iterationPos;
     }
@@ -571,7 +572,8 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return Zend_Mail_Part current part
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return $this->getPart($this->_iterationPos);
     }
@@ -581,7 +583,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return null
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->countParts();
         $this->_iterationPos = 1;

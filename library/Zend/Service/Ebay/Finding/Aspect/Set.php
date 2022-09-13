@@ -40,7 +40,8 @@ class Zend_Service_Ebay_Finding_Aspect_Set extends Zend_Service_Ebay_Finding_Set
      *
      * @return Zend_Service_Ebay_Finding_Aspect
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         // check node
         $node = $this->_nodes->item($this->_key);

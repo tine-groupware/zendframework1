@@ -111,7 +111,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->objects);
     }
@@ -122,7 +122,8 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      *
      * @return Zend_Service_Rackspace_Files_Object
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return $this->objects[$this->iteratorKey];
     }
@@ -133,7 +134,8 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      *
      * @return int
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return $this->iteratorKey;
     }
@@ -144,7 +146,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->iteratorKey += 1;
     }
@@ -155,7 +157,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->iteratorKey = 0;
     }
@@ -166,7 +168,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         $numItems = $this->count();
         if ($numItems > 0 && $this->iteratorKey < $numItems) {

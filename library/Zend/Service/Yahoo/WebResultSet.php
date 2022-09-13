@@ -56,7 +56,8 @@ class Zend_Service_Yahoo_WebResultSet extends Zend_Service_Yahoo_ResultSet
      *
      * @return Zend_Service_Yahoo_WebResult
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return new Zend_Service_Yahoo_WebResult($this->_results->item($this->_currentIndex));
     }

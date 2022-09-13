@@ -154,7 +154,7 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return Zend_View_Helper_Cycle
      */
-    public function next()
+    public function next(): void
     {
         $count = count($this->_data[$this->_name]);
         if ($this->_pointers[$this->_name] == ($count - 1))
@@ -184,7 +184,8 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return int
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         if ($this->_pointers[$this->_name] < 0)
             return 0;
@@ -197,7 +198,7 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return Zend_View_Helper_Cycle
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_pointers[$this->_name] = -1;
         return $this;
@@ -208,7 +209,7 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->_data[$this->_name][$this->key()]);
     }
@@ -218,7 +219,8 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return mixed
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return $this->_data[$this->_name][$this->key()];
     }

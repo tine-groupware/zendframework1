@@ -1315,7 +1315,7 @@ class Zend_Db_Select
     protected function _renderForupdate($sql)
     {
         if ($this->_parts[self::FOR_UPDATE]) {
-            $sql .= ' ' . self::SQL_FOR_UPDATE;
+            $sql = $this->_adapter->forUpdate($sql);
         }
 
         return $sql;

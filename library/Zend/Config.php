@@ -245,7 +245,7 @@ class Zend_Config implements Countable, Iterator
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->_count;
     }
@@ -255,7 +255,8 @@ class Zend_Config implements Countable, Iterator
      *
      * @return mixed
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         $this->_skipNextIteration = false;
         return current($this->_data);
@@ -266,7 +267,8 @@ class Zend_Config implements Countable, Iterator
      *
      * @return mixed
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return key($this->_data);
     }
@@ -275,7 +277,7 @@ class Zend_Config implements Countable, Iterator
      * Defined by Iterator interface
      *
      */
-    public function next()
+    public function next(): void
     {
         if ($this->_skipNextIteration) {
             $this->_skipNextIteration = false;
@@ -289,7 +291,7 @@ class Zend_Config implements Countable, Iterator
      * Defined by Iterator interface
      *
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_skipNextIteration = false;
         reset($this->_data);
@@ -301,7 +303,7 @@ class Zend_Config implements Countable, Iterator
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->_index < $this->_count;
     }
