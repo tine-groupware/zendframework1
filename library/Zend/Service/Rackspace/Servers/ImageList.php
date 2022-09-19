@@ -108,7 +108,7 @@ class Zend_Service_Rackspace_Servers_ImageList implements Countable, Iterator, A
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->images);
     }
@@ -119,7 +119,8 @@ class Zend_Service_Rackspace_Servers_ImageList implements Countable, Iterator, A
      *
      * @return Zend_Service_Rackspace_Servers_Image
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return $this->images[$this->iteratorKey];
     }
@@ -130,7 +131,8 @@ class Zend_Service_Rackspace_Servers_ImageList implements Countable, Iterator, A
      *
      * @return int
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return $this->iteratorKey;
     }
@@ -141,7 +143,7 @@ class Zend_Service_Rackspace_Servers_ImageList implements Countable, Iterator, A
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->iteratorKey += 1;
     }
@@ -152,7 +154,7 @@ class Zend_Service_Rackspace_Servers_ImageList implements Countable, Iterator, A
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->iteratorKey = 0;
     }
@@ -163,7 +165,7 @@ class Zend_Service_Rackspace_Servers_ImageList implements Countable, Iterator, A
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         $numItems = $this->count();
         if ($numItems > 0 && $this->iteratorKey < $numItems) {

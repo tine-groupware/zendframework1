@@ -308,4 +308,9 @@ class Zend_Db_Adapter_Pdo_Sqlite extends Zend_Db_Adapter_Pdo_Abstract
         }
         return parent::_quote($value);
     }
+    
+    public function forUpdate(string $query): string
+    {
+        return $query;
+    }
 }

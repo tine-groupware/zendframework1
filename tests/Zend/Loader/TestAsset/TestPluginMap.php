@@ -46,7 +46,7 @@ class ZendTest_Loader_TestAsset_TestPluginMap implements IteratorAggregate
      * 
      * @return Traversable
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->map);
     }

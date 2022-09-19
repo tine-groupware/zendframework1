@@ -331,7 +331,8 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return Zend_Tool_Project_Profile_Resource
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return current($this->_subResources);
     }
@@ -341,7 +342,8 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return int
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return key($this->_subResources);
     }
@@ -351,6 +353,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         return next($this->_subResources);
@@ -361,6 +364,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         return reset($this->_subResources);
@@ -371,7 +375,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return (bool) $this->current();
     }
@@ -381,7 +385,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return bool
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return (count($this->_subResources) > 0) ? true : false;
     }
@@ -391,7 +395,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return array
      */
-    public function getChildren()
+    public function getChildren(): ?RecursiveIterator
     {
         return $this->current();
     }
@@ -401,7 +405,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_subResources);
     }

@@ -120,7 +120,7 @@ class Zend_Ldap_Collection implements Iterator, Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->_iterator->count();
     }
@@ -132,7 +132,8 @@ class Zend_Ldap_Collection implements Iterator, Countable
      * @return array|null
      * @throws Zend_Ldap_Exception
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         if ($this->count() > 0) {
             if ($this->_current < 0) {
@@ -185,7 +186,8 @@ class Zend_Ldap_Collection implements Iterator, Countable
      *
      * @return int|null
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         if ($this->count() > 0) {
             if ($this->_current < 0) {
@@ -203,7 +205,7 @@ class Zend_Ldap_Collection implements Iterator, Countable
      *
      * @throws Zend_Ldap_Exception
      */
-    public function next()
+    public function next(): void
     {
         $this->_iterator->next();
         $this->_current++;
@@ -215,7 +217,7 @@ class Zend_Ldap_Collection implements Iterator, Countable
      *
      * @throws Zend_Ldap_Exception
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_iterator->rewind();
         $this->_current = 0;
@@ -228,7 +230,7 @@ class Zend_Ldap_Collection implements Iterator, Countable
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         if (isset($this->_cache[$this->_current])) {
             return true;

@@ -89,7 +89,7 @@ class Zend_Service_Nominatim_ResultSet implements SeekableIterator,Countable
      *
      * @return int Total number of results returned
      */
-    public function count()
+    public function count(): int
     {
         return $this->_total;
     }
@@ -99,7 +99,8 @@ class Zend_Service_Nominatim_ResultSet implements SeekableIterator,Countable
      *
      * @return Zend_Service_Nominatim_Result
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return new Zend_Service_Nominatim_Result($this->_results->place[$this->_currentIndex]);
     }
@@ -109,7 +110,8 @@ class Zend_Service_Nominatim_ResultSet implements SeekableIterator,Countable
      *
      * @return int
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return $this->_currentIndex;
     }
@@ -119,7 +121,7 @@ class Zend_Service_Nominatim_ResultSet implements SeekableIterator,Countable
      *
      * @return void
      */
-    public function next()
+    public function next(): void
     {
         $this->_currentIndex += 1;
     }
@@ -129,7 +131,7 @@ class Zend_Service_Nominatim_ResultSet implements SeekableIterator,Countable
      *
      * @return void
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_currentIndex = 0;
     }
@@ -156,7 +158,7 @@ class Zend_Service_Nominatim_ResultSet implements SeekableIterator,Countable
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return null !== $this->_results && $this->_currentIndex < $this->_total;
     }

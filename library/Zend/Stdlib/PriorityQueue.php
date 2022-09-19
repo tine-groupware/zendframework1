@@ -134,7 +134,7 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
      * 
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
@@ -171,7 +171,7 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
      * 
      * @return SplPriorityQueue
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         $queue = $this->getQueue();
         return clone $queue;

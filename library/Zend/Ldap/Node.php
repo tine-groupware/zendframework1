@@ -1012,7 +1012,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return boolean
      * @throws Zend_Ldap_Exception
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         if (!is_array($this->_children)) {
             if ($this->isAttached()) {
@@ -1033,7 +1033,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * @return Zend_Ldap_Node_ChildrenIterator
      * @throws Zend_Ldap_Exception
      */
-    public function getChildren()
+    public function getChildren(): ?RecursiveIterator
     {
         if (!is_array($this->_children)) {
             $this->_children = [];
@@ -1075,7 +1075,8 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      *
      * @return array
      */
-    public function current()
+    #[\ReturnTypeWillChange]
+public function current()
     {
         return $this;
     }
@@ -1086,7 +1087,8 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      *
      * @return string
      */
-    public function key()
+    #[\ReturnTypeWillChange]
+public function key()
     {
         return $this->getRdnString();
     }
@@ -1095,7 +1097,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * Move forward to next attribute.
      * Implements Iterator
      */
-    public function next()
+    public function next(): void
     {
         $this->_iteratorRewind = false;
     }
@@ -1104,7 +1106,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      * Rewind the Iterator to the first attribute.
      * Implements Iterator
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_iteratorRewind = true;
     }
@@ -1116,7 +1118,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      *
      * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->_iteratorRewind;
     }
