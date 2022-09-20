@@ -218,12 +218,12 @@ class Zend_Mime_Decode
         $field, $wantedPart = null, $firstName = 0
     )
     {
-        $wantedPart = strtolower($wantedPart);
-        $firstName  = strtolower($firstName);
+        $wantedPart = strtolower((string)$wantedPart);
+        $firstName  = strtolower((string)$firstName);
 
         // special case - a bit optimized
         if ($firstName === $wantedPart) {
-            $field = strtok($field, ';');
+            $field = strtok((string)$field, ';');
 
             return $field[0] == '"' ? substr($field, 1, -1) : $field;
         }
