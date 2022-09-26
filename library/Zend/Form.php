@@ -417,7 +417,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function setPluginLoader(Zend_Loader_PluginLoader_Interface $loader, $type = null)
     {
-        $type = strtoupper($type);
+        $type = $type === null ? null : strtoupper($type);
         switch ($type) {
             case self::DECORATOR:
             case self::ELEMENT:
@@ -445,7 +445,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function getPluginLoader($type = null)
     {
-        $type = strtoupper($type);
+        $type = $type === null ? null : strtoupper($type);
         if (!isset($this->_loaders[$type])) {
             switch ($type) {
                 case self::DECORATOR:
@@ -495,7 +495,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = $type === null ? null : strtoupper($type);
         switch ($type) {
             case self::DECORATOR:
             case self::ELEMENT:
