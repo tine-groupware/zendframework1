@@ -888,6 +888,9 @@ class Zend_Console_Getopt
      */
     protected function _addRulesModeGnu($rules)
     {
+        if (!$rules) {
+            return;
+        }
         $ruleArray = [];
 
         /**
