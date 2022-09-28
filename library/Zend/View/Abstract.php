@@ -140,6 +140,13 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     private $_strictVars = false;
 
     /**
+     * Data container
+     *
+     * @var array
+     */
+    private $_data = [];
+
+    /**
      * Constructor.
      *
      * @param array $config Configuration key-value pairs.
@@ -266,6 +273,10 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     public function __get($key)
     {
+        if ('_' != substr($key, 0, 1) && isset($this->_data[$key])) {
+            return $this->_data[$key];
+        }
+
         if ($this->_strictVars) {
             trigger_error('Key "' . $key . '" does not exist', E_USER_NOTICE);
         }
@@ -283,7 +294,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     public function __isset($key)
     {
         if ('_' != substr($key, 0, 1)) {
-            return isset($this->$key);
+            return isset($this->_data[$key]);
         }
 
         return false;
@@ -305,7 +316,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     public function __set($key, $val)
     {
         if ('_' != substr($key, 0, 1)) {
-            $this->$key = $val;
+            $this->_data[$key] = $val;
             return;
         }
 
@@ -323,8 +334,8 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     public function __unset($key)
     {
-        if ('_' != substr($key, 0, 1) && isset($this->$key)) {
-            unset($this->$key);
+        if ('_' != substr($key, 0, 1) && isset($this->_data[$key])) {
+            unset($this->_data[$key]);
         }
     }
 
@@ -836,21 +847,11 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     /**
      * Return list of all assigned variables
      *
-     * Returns all public properties of the object. Reflection is not used
-     * here as testing reflection properties for visibility is buggy.
-     *
      * @return array
      */
     public function getVars()
     {
-        $vars   = get_object_vars($this);
-        foreach ($vars as $key => $value) {
-            if ('_' == substr($key, 0, 1)) {
-                unset($vars[$key]);
-            }
-        }
-
-        return $vars;
+        return $this->_data;
     }
 
     /**
@@ -863,12 +864,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     public function clearVars()
     {
-        $vars   = get_object_vars($this);
-        foreach ($vars as $key => $value) {
-            if ('_' != substr($key, 0, 1)) {
-                unset($this->$key);
-            }
-        }
+        $this->_data = [];
     }
 
     /**
