@@ -98,13 +98,6 @@ class Zend_View extends Zend_View_Abstract
     private $_useStreamWrapper = false;
 
     /**
-     * Data container
-     *
-     * @var array
-     */
-    private $_data = [];
-
-    /**
      * Constructor
      *
      * Register Zend_View_Stream stream wrapper if short tags are disabled.
@@ -127,37 +120,6 @@ class Zend_View extends Zend_View_Abstract
         }
 
         parent::__construct($config);
-    }
-
-    /**
-     * Catch property change calls and prevent creation of dynamic properties (PHP 8.2)
-     *
-     * @param string $key
-     * @param mixed $val
-     */
-    public function __set($key, $val)
-    {
-        if (property_exists($this, $key)) {
-            $this->$key = $val;
-            return;
-        }
-
-        $this->_data[$key] = $val;
-    }
-
-    /**
-     * Catch property access calls and return the right values
-     *
-     * @param  string $key
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        if (property_exists($this, $key)) {
-            return $this->$key;
-        }
-
-        return $this->_data[$key] ?? null;
     }
 
     /**
