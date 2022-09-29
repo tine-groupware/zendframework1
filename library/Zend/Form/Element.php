@@ -206,6 +206,13 @@ class Zend_Form_Element implements Zend_Validate_Interface
     protected $_validatorRules = [];
 
     /**
+     * List of element attributes
+     *
+     * @var array
+     */
+    protected $_attributes = [];
+
+    /**
      * Element value
      * @var mixed
      */
@@ -869,9 +876,9 @@ class Zend_Form_Element implements Zend_Validate_Interface
         }
 
         if (null === $value) {
-            unset($this->$name);
+            unset($this->_attributes[$name]);
         } else {
-            $this->$name = $value;
+            $this->_attributes[$name] = $value;
         }
 
         return $this;
@@ -901,8 +908,8 @@ class Zend_Form_Element implements Zend_Validate_Interface
     public function getAttrib($name)
     {
         $name = (string) $name;
-        if (isset($this->$name)) {
-            return $this->$name;
+        if (isset($this->_attributes[$name])) {
+            return $this->_attributes[$name];
         }
 
         return null;
@@ -915,15 +922,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function getAttribs()
     {
-        $attribs = get_object_vars($this);
-        unset($attribs['helper']);
-        foreach ($attribs as $key => $value) {
-            if ('_' == substr($key, 0, 1)) {
-                unset($attribs[$key]);
-            }
-        }
-
-        return $attribs;
+        return $this->_attributes;
     }
 
     /**
@@ -963,11 +962,11 @@ class Zend_Form_Element implements Zend_Validate_Interface
             throw new Zend_Form_Exception(sprintf('Cannot retrieve value for protected/private property "%s"', $key));
         }
 
-        if (!isset($this->$key)) {
+        if (!isset($this->_attributes[$key])) {
             return null;
         }
 
-        return $this->$key;
+        return $this->_attributes[$key];
     }
 
     /**
@@ -980,6 +979,33 @@ class Zend_Form_Element implements Zend_Validate_Interface
     public function __set($key, $value)
     {
         $this->setAttrib($key, $value);
+    }
+
+    /**
+     * Check for set attribute
+     *
+     * @param  string $key
+     * @return bool
+     */
+    public function __isset($key)
+    {
+        return isset($this->_attributes[$key]);
+    }
+
+    /**
+     * Unset attribute
+     *
+     * @param  string $key
+     * @return void
+     */
+    public function __unset($key)
+    {
+        if ('_' == $key[0]) {
+            require_once 'Zend/Form/Exception.php';
+            throw new Zend_Form_Exception(sprintf('Cannot unset value for protected/private property "%s"', $key));
+        }
+
+        unset($this->_attributes[$name]);
     }
 
     /**
