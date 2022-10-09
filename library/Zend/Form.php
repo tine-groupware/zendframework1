@@ -495,7 +495,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = strtoupper((string) $type);
         switch ($type) {
             case self::DECORATOR:
             case self::ELEMENT:
