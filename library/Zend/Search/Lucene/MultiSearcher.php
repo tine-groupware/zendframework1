@@ -806,7 +806,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
     /**
      * Set callback for choosing target index.
      *
-     * @param callback $callback
+     * @param callable $callback
      * @throws Zend_Search_Lucene_Exception
      */
     public function setDocumentDistributorCallback($callback)
