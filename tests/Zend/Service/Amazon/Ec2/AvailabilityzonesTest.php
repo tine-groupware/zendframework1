@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -36,9 +39,8 @@ require_once 'Zend/Service/Amazon/Ec2/Availabilityzones.php';
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_Ec2
  */
-class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends PHPUnit_Framework_TestCase
+class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends TestCase
 {
-
     /**
      * @var Zend_Service_Amazon_Ec2_Availabilityzones
      */
@@ -47,7 +49,7 @@ class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends PHPUnit_Framework_Te
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -59,13 +61,12 @@ class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends PHPUnit_Framework_Te
         ]);
         $this->adapter = $adapter;
         Zend_Service_Amazon_Ec2_Availabilityzones::setHttpClient($client);
-
     }
 
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->adapter);
 
@@ -140,4 +141,3 @@ class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends PHPUnit_Framework_Te
         }
     }
 }
-

@@ -33,9 +33,8 @@
         }
     },
     "require-dev": {
-        "php-parallel-lint/php-parallel-lint": "1.0.0",
-        "phpunit/dbunit": "1.3.*",
-        "zf1s/phpunit": "3.7.39"
+        "phpunit/phpunit": "^9",
+        "php-parallel-lint/php-parallel-lint": "^1.3"
     },
     "archive": {
         "exclude": ["/demos", "/documentation", "/tests"]
@@ -45,6 +44,15 @@
     },
     "scripts": {
         "lint": "parallel-lint --exclude vendor --exclude tests/Zend/Loader/_files/ParseError.php .",
-        "test": "phpunit"
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit --bootstrap tests/TestHelper.php tests/Zend/AllTests.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Zend_": "tests/",
+            "resources_": "tests/"
+        }
     }
 }

@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,11 +38,11 @@ require_once 'Zend/Cache/Backend/Test.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
-
+class Zend_Cache_PageFrontendTest extends TestCase
+{
     private $_instance;
 
-    public function setUp()
+    protected function setUp(): void
     {
         if (!$this->_instance) {
             $this->_instance = new Zend_Cache_Frontend_Page([]);
@@ -48,16 +51,22 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
         }
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Frontend_Page(['lifetime' => 3600, 'caching' => true]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorUnimplementedOption()
     {
         try {
@@ -68,6 +77,9 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithBadDefaultOptions()
     {
         try {
@@ -81,6 +93,7 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
     /**
      * The only bad default options are non-string keys
      * @group ZF-5034
+     * @doesNotPerformAssertions
      */
     public function testConstructorWithBadDefaultOptions2()
     {
@@ -92,6 +105,9 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithBadRegexps()
     {
         try {
@@ -102,6 +118,9 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithBadRegexps2()
     {
         try {
@@ -115,6 +134,7 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
     /**
      * Only non-string keys should raise exceptions
      * @group ZF-5034
+     * @doesNotPerformAssertions
      */
     public function testConstructorWithBadRegexps3()
     {
@@ -136,6 +156,9 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
         $this->fail('Zend_Cache_Exception was expected but not thrown');
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithGoodRegexps()
     {
         $array = [
@@ -151,6 +174,9 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
         $test = new Zend_Cache_Frontend_Page(['regexps' => $array]);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithGoodDefaultOptions()
     {
         $test = new Zend_Cache_Frontend_Page(['default_options' => ['cache' => true]]);
@@ -198,6 +224,7 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @group ZF-10952
+     * @doesNotPerformAssertions
      */
     public function testNootice()
     {
@@ -208,4 +235,3 @@ class Zend_Cache_PageFrontendTest extends PHPUnit_Framework_TestCase {
         ob_get_clean();
     }
 }
-

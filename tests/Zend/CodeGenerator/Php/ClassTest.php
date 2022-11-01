@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,13 +38,12 @@ require_once 'Zend/CodeGenerator/Php/Class.php';
  * @group Zend_CodeGenerator
  * @group Zend_CodeGenerator_Php
  */
-class Zend_CodeGenerator_Php_ClassTest extends PHPUnit_Framework_TestCase
+class Zend_CodeGenerator_Php_ClassTest extends TestCase
 {
-
     public function testConstruction()
     {
         $class = new Zend_CodeGenerator_Php_Class();
-        $this->isInstanceOf($class, 'Zend_CodeGenerator_Php_Class');
+        $this->assertInstanceOf('Zend_CodeGenerator_Php_Class', $class);
     }
 
     public function testNameAccessors()
@@ -49,7 +51,6 @@ class Zend_CodeGenerator_Php_ClassTest extends PHPUnit_Framework_TestCase
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setName('TestClass');
         $this->assertEquals($codeGenClass->getName(), 'TestClass');
-
     }
 
     public function testAbstractAccessors()
@@ -76,7 +77,6 @@ class Zend_CodeGenerator_Php_ClassTest extends PHPUnit_Framework_TestCase
 
     public function testPropertyAccessors()
     {
-
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setProperties([
             ['name' => 'propOne'],
@@ -101,14 +101,14 @@ class Zend_CodeGenerator_Php_ClassTest extends PHPUnit_Framework_TestCase
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setProperty(['name' => 'prop3']);
 
-        $this->setExpectedException("Zend_CodeGenerator_Php_Exception");
+        $this->expectException("Zend_CodeGenerator_Php_Exception");
 
         $codeGenClass->setProperty(['name' => 'prop3']);
     }
 
     public function testSetProperty_NoArrayOrProperty_ThrowsException()
     {
-        $this->setExpectedException("Zend_CodeGenerator_Php_Exception");
+        $this->expectException("Zend_CodeGenerator_Php_Exception");
 
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setProperty("propertyName");
@@ -137,9 +137,10 @@ class Zend_CodeGenerator_Php_ClassTest extends PHPUnit_Framework_TestCase
 
     public function testSetMethod_NoMethodOrArray_ThrowsException()
     {
-        $this->setExpectedException("Zend_CodeGenerator_Php_Exception",
-            'setMethod() expects either an array of method options or an instance of Zend_CodeGenerator_Php_Method'
+        $this->expectException(
+            "Zend_CodeGenerator_Php_Exception"
         );
+        $this->expectExceptionMessage('setMethod() expects either an array of method options or an instance of Zend_CodeGenerator_Php_Method');
 
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setMethod("aMethodName");
@@ -155,7 +156,8 @@ class Zend_CodeGenerator_Php_ClassTest extends PHPUnit_Framework_TestCase
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
         $codeGenClass->setMethod($methodA);
 
-        $this->setExpectedException("Zend_CodeGenerator_Php_Exception", 'A method by name foo already exists in this class.');
+        $this->expectException("Zend_CodeGenerator_Php_Exception");
+        $this->expectExceptionMessage('A method by name foo already exists in this class.');
 
         $codeGenClass->setMethod($methodB);
     }
@@ -229,8 +231,8 @@ EOS;
      * @group ZF-7909 */
     public function testClassFromReflectionThatImplementsInterfaces()
     {
-        if(!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
-            require_once dirname(__FILE__)."/_files/ClassAndInterfaces.php";
+        if (!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
+            require_once dirname(__FILE__) . "/_files/ClassAndInterfaces.php";
         }
 
         require_once "Zend/Reflection/Class.php";
@@ -241,7 +243,7 @@ EOS;
 
         $code = $codeGen->generate();
         $expectedClassDef = 'class Zend_CodeGenerator_Php_ClassWithInterface implements Zend_Code_Generator_Php_OneInterface, Zend_Code_Generator_Php_TwoInterface';
-        $this->assertContains($expectedClassDef, $code);
+        $this->assertStringContainsString($expectedClassDef, $code);
     }
 
     /**
@@ -249,8 +251,8 @@ EOS;
      */
     public function testClassFromReflectionDiscardParentImplementedInterfaces()
     {
-        if(!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
-            require_once dirname(__FILE__)."/_files/ClassAndInterfaces.php";
+        if (!class_exists('Zend_CodeGenerator_Php_ClassWithInterface')) {
+            require_once dirname(__FILE__) . "/_files/ClassAndInterfaces.php";
         }
 
         require_once "Zend/Reflection/Class.php";
@@ -262,7 +264,7 @@ EOS;
         $code = $codeGen->generate();
 
         $expectedClassDef = 'class Zend_CodeGenerator_Php_NewClassWithInterface extends Zend_CodeGenerator_Php_ClassWithInterface implements Zend_Code_Generator_Php_ThreeInterface';
-        $this->assertContains($expectedClassDef, $code);
+        $this->assertStringContainsString($expectedClassDef, $code);
     }
 
     /**
@@ -271,7 +273,7 @@ EOS;
     public function testSetextendedclassShouldIgnoreEmptyClassnameOnGenerate()
     {
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
-        $codeGenClass->setName( 'MyClass' )
+        $codeGenClass->setName('MyClass')
                      ->setExtendedClass('');
 
         $expected = <<<CODE
@@ -282,7 +284,7 @@ class MyClass
 }
 
 CODE;
-        $this->assertEquals( $expected, $codeGenClass->generate() );
+        $this->assertEquals($expected, $codeGenClass->generate());
     }
 
     /**
@@ -291,7 +293,7 @@ CODE;
     public function testSetextendedclassShouldNotIgnoreNonEmptyClassnameOnGenerate()
     {
         $codeGenClass = new Zend_CodeGenerator_Php_Class();
-        $codeGenClass->setName( 'MyClass' )
+        $codeGenClass->setName('MyClass')
                      ->setExtendedClass('ParentClass');
 
         $expected = <<<CODE
@@ -302,7 +304,7 @@ class MyClass extends ParentClass
 }
 
 CODE;
-        $this->assertEquals( $expected, $codeGenClass->generate() );
+        $this->assertEquals($expected, $codeGenClass->generate());
     }
 
     /**
@@ -331,7 +333,6 @@ class My_Class
 }
 
 CODE;
-        $this->assertEquals( $expected, $codeGenClass->generate() );
+        $this->assertEquals($expected, $codeGenClass->generate());
     }
-
 }

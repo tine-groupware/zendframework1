@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -32,10 +35,9 @@ require_once 'Zend/Http/Client.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Books
  */
-class Zend_Gdata_BooksTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_BooksTest extends TestCase
 {
-
-    public function setUp()
+    protected function setUp(): void
     {
         $this->gdata = new Zend_Gdata_Books(new Zend_Http_Client());
     }
@@ -44,5 +46,4 @@ class Zend_Gdata_BooksTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue(true);
     }
-
 }

@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,7 +47,7 @@ require_once 'Zend/Layout.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_JsonTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -51,9 +56,8 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_JsonTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_View_Helper_JsonTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -62,7 +66,7 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         Zend_View_Helper_JsonTest_Layout::resetMvcInstance();
 
@@ -82,7 +86,7 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -157,7 +161,7 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
             ],
             [
                  'keepLayouts' => true,
-                 'encodeData'  => false,
+                 'encodeData' => false,
             ]
         );
         $this->assertTrue($layout->isEnabled());

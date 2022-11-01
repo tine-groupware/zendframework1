@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,7 +36,7 @@ require_once 'Zend/Validate/Float.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_FloatTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_FloatTest extends TestCase
 {
     /**
      * Zend_Validate_Float object
@@ -47,7 +50,7 @@ class Zend_Validate_FloatTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->_locale = setlocale(LC_ALL, 0); //backup locale
 
@@ -59,7 +62,7 @@ class Zend_Validate_FloatTest extends PHPUnit_Framework_TestCase
         $this->_validator = new Zend_Validate_Float();
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         //restore locale
         if (is_string($this->_locale) && strpos($this->_locale, ';')) {
@@ -138,7 +141,7 @@ class Zend_Validate_FloatTest extends PHPUnit_Framework_TestCase
     {
         setlocale(LC_ALL, 'de');
         $valid = new Zend_Validate_Float();
-        $this->assertTrue($valid->isValid(123,456));
+        $this->assertTrue($valid->isValid(123, 456));
         $this->assertTrue($valid->isValid('123,456'));
     }
 

@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -30,18 +33,19 @@ require_once 'Zend/Gdata/MediaMimeStream.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Gdata
  */
-class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_MediaMimeStreamTest extends TestCase
 {
-
-    public function setUp()
+    protected function setUp(): void
     {
         $this->locationOfFakeBinary =
             'Zend/Gdata/_files/MediaMimeStreamSample1.txt';
         $this->smallXMLString = '<xml><entry><title>foo</title></entry>';
         $this->testMediaType = 'video/mpeg';
         $this->mediaMimeStream = new Zend_Gdata_MediaMimeStream(
-            $this->smallXMLString, $this->locationOfFakeBinary,
-            $this->testMediaType);
+            $this->smallXMLString,
+            $this->locationOfFakeBinary,
+            $this->testMediaType
+        );
         $this->exceptedLenOfMimeMessage = 283;
     }
 
@@ -50,7 +54,9 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
         $exceptionThrown = false;
         try {
             $mediaMimeStream = new Zend_Gdata_MediaMimeStream(
-                $this->smallXMLString, '/non/existant/path/to/nowhere');
+                $this->smallXMLString,
+                '/non/existant/path/to/nowhere'
+            );
         } catch (Zend_Gdata_App_IOException $e) {
             $exceptionThrown = true;
         }
@@ -60,8 +66,10 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
 
     public function testGetTotalSize()
     {
-        $this->assertEquals($this->exceptedLenOfMimeMessage,
-            $this->mediaMimeStream->getTotalSize());
+        $this->assertEquals(
+            $this->exceptedLenOfMimeMessage,
+            $this->mediaMimeStream->getTotalSize()
+        );
     }
 
     public function testHasData()
@@ -73,8 +81,10 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
     {
         $pattern =
         '/multipart\/related;\sboundary=\"=_[a-z0-9]{32,}.*\"/';
-        $this->assertEquals(1, preg_match($pattern,
-            $this->mediaMimeStream->getContentType()));
+        $this->assertEquals(1, preg_match(
+            $pattern,
+            $this->mediaMimeStream->getContentType()
+        ));
     }
 
     /**
@@ -87,8 +97,10 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
      */
     public function testReadAll()
     {
-        $this->assertEquals($this->exceptedLenOfMimeMessage,
-            $this->mediaMimeStream->getTotalSize());
+        $this->assertEquals(
+            $this->exceptedLenOfMimeMessage,
+            $this->mediaMimeStream->getTotalSize()
+        );
         $outputArray = [];
         while ($this->mediaMimeStream->hasData()) {
             $outputArray = explode("\r\n", $this->mediaMimeStream->read(400));
@@ -96,23 +108,35 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
         $mimeBoundaryPattern = '/--=_[a-z0-9]{32,}/';
         $mimeClosingBoundaryPattern = '/--=_[a-z0-9]{32,}--/';
         $this->assertEquals('', $outputArray[0]);
-        $this->assertEquals(1,
-            preg_match($mimeBoundaryPattern, $outputArray[1]));
-        $this->assertEquals('Content-Type: application/atom+xml',
-            $outputArray[2]);
+        $this->assertEquals(
+            1,
+            preg_match($mimeBoundaryPattern, $outputArray[1])
+        );
+        $this->assertEquals(
+            'Content-Type: application/atom+xml',
+            $outputArray[2]
+        );
         $this->assertEquals('', $outputArray[3]);
         $this->assertEquals($this->smallXMLString, $outputArray[4]);
         $this->assertEquals('', $outputArray[5]);
-        $this->assertEquals(1,
-            preg_match($mimeBoundaryPattern, $outputArray[6]));
+        $this->assertEquals(
+            1,
+            preg_match($mimeBoundaryPattern, $outputArray[6])
+        );
         $this->assertEquals('Content-Type: video/mpeg', $outputArray[7]);
-        $this->assertEquals('Content-Transfer-Encoding: binary',
-            $outputArray[8]);
+        $this->assertEquals(
+            'Content-Transfer-Encoding: binary',
+            $outputArray[8]
+        );
         $this->assertEquals('', $outputArray[9]);
-        $this->assertEquals(file_get_contents($this->locationOfFakeBinary),
-            $outputArray[10]);
-        $this->assertEquals(1,
-            preg_match($mimeClosingBoundaryPattern, $outputArray[11]));
+        $this->assertEquals(
+            file_get_contents($this->locationOfFakeBinary),
+            $outputArray[10]
+        );
+        $this->assertEquals(
+            1,
+            preg_match($mimeClosingBoundaryPattern, $outputArray[11])
+        );
     }
 
     /**
@@ -124,12 +148,16 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
     public function testReadVariousBufferSizes()
     {
         $bufferSizesToTest = [2, 20, 33, 44, 88, 100, 201];
-        foreach($bufferSizesToTest as $sizeToTest) {
+        foreach ($bufferSizesToTest as $sizeToTest) {
             $mediaMimeStream = new Zend_Gdata_MediaMimeStream(
-                $this->smallXMLString, $this->locationOfFakeBinary,
-                $this->testMediaType);
-            $this->assertEquals($sizeToTest,
-                strlen($mediaMimeStream->read($sizeToTest)));
+                $this->smallXMLString,
+                $this->locationOfFakeBinary,
+                $this->testMediaType
+            );
+            $this->assertEquals(
+                $sizeToTest,
+                strlen($mediaMimeStream->read($sizeToTest))
+            );
         }
     }
 
@@ -142,8 +170,10 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
         while ($this->mediaMimeStream->hasData()) {
             $outputString .= $this->mediaMimeStream->read(1);
         }
-        $this->assertEquals($this->exceptedLenOfMimeMessage,
-            strlen($outputString));
+        $this->assertEquals(
+            $this->exceptedLenOfMimeMessage,
+            strlen($outputString)
+        );
     }
 
     /**
@@ -161,8 +191,10 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
         while ($this->mediaMimeStream->hasData()) {
             $outputString .= $this->mediaMimeStream->read(250);
         }
-        $this->assertEquals($this->exceptedLenOfMimeMessage,
-            strlen($outputString));
+        $this->assertEquals(
+            $this->exceptedLenOfMimeMessage,
+            strlen($outputString)
+        );
     }
 
     /**
@@ -179,8 +211,9 @@ class Zend_Gdata_MediaMimeStreamTest extends PHPUnit_Framework_TestCase
         while ($this->mediaMimeStream->hasData()) {
             $outputString .= $this->mediaMimeStream->read(230);
         }
-        $this->assertEquals($this->exceptedLenOfMimeMessage,
-            strlen($outputString));
+        $this->assertEquals(
+            $this->exceptedLenOfMimeMessage,
+            strlen($outputString)
+        );
     }
-
 }

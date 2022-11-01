@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,7 +45,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_FormSubmitTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +54,8 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_FormSubmitTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormSubmitTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -59,13 +64,13 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         if (Zend_Registry::isRegistered('Zend_View_Helper_Doctype')) {
             $registry = Zend_Registry::getInstance();
             unset($registry['Zend_View_Helper_Doctype']);
         }
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormSubmit();
         $this->helper->setView($this->view);
     }
@@ -76,7 +81,7 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->helper, $this->view);
     }
@@ -84,10 +89,10 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
     public function testRendersSubmitInput()
     {
         $html = $this->helper->formSubmit([
-            'name'    => 'foo',
-            'value'   => 'Submit!',
+            'name' => 'foo',
+            'value' => 'Submit!',
         ]);
-        $this->assertRegexp('/<input[^>]*?(type="submit")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(type="submit")/', $html);
     }
 
     /**
@@ -96,11 +101,11 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
     public function testCanDisableSubmitButton()
     {
         $html = $this->helper->formSubmit([
-            'name'    => 'foo',
-            'value'   => 'Submit!',
+            'name' => 'foo',
+            'value' => 'Submit!',
             'attribs' => ['disable' => true]
         ]);
-        $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
     /**
@@ -109,23 +114,23 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
     public function testValueAttributeIsAlwaysRendered()
     {
         $html = $this->helper->formSubmit([
-            'name'    => 'foo',
-            'value'   => '',
+            'name' => 'foo',
+            'value' => '',
         ]);
-        $this->assertRegexp('/<input[^>]*?(value="")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(value="")/', $html);
     }
 
     public function testRendersAsHtmlByDefault()
     {
         $test = $this->helper->formSubmit('foo', 'bar');
-        $this->assertNotContains(' />', $test);
+        $this->assertStringNotContainsString(' />', $test);
     }
 
     public function testCanRendersAsXHtml()
     {
         $this->view->doctype('XHTML1_STRICT');
         $test = $this->helper->formSubmit('foo', 'bar');
-        $this->assertContains(' />', $test);
+        $this->assertStringContainsString(' />', $test);
     }
 
     /**
@@ -134,7 +139,7 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit_Framework_TestCase
     public function testDoesNotOutputEmptyId()
     {
         $test = $this->helper->formSubmit('', 'bar');
-        $this->assertNotContains('id=""', $test);
+        $this->assertStringNotContainsString('id=""', $test);
     }
 }
 

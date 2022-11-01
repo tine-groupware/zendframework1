@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -41,7 +46,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Dispatcher
  */
-class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Dispatcher_StandardTest extends TestCase
 {
     protected $_dispatcher;
 
@@ -53,11 +58,11 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Dispatcher_StandardTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Controller_Dispatcher_StandardTest");
+        $result = (new TestRunner())->run($suite);
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         if (isset($this->error)) {
             unset($this->error);
@@ -68,11 +73,11 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $this->_dispatcher = new Zend_Controller_Dispatcher_Standard();
         $this->_dispatcher->setControllerDirectory([
             'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'admin'   => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
+            'admin' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
         ]);
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         unset($this->_dispatcher);
     }
@@ -105,7 +110,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     {
         $expected = [
             'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'admin'   => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
+            'admin' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
         ];
         $dirs = $this->_dispatcher->getControllerDirectory();
         $this->assertEquals($expected, $dirs);
@@ -197,7 +202,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
 
-        $this->assertContains('Index action called', $this->_dispatcher->getResponse()->getBody());
+        $this->assertStringContainsString('Index action called', $this->_dispatcher->getResponse()->getBody());
     }
 
     public function testDispatchValidControllerAndAction()
@@ -208,9 +213,12 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
 
-        $this->assertContains('Index action called', $this->_dispatcher->getResponse()->getBody());
+        $this->assertStringContainsString('Index action called', $this->_dispatcher->getResponse()->getBody());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testDispatchValidControllerWithInvalidAction()
     {
         $request = new Zend_Controller_Request_Http();
@@ -226,6 +234,9 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testDispatchInvalidController()
     {
         $request = new Zend_Controller_Request_Http();
@@ -308,9 +319,9 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $this->_dispatcher->dispatch($request, $response);
 
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertContains('Bar action called', $body);
-        $this->assertContains('preDispatch called', $body);
-        $this->assertContains('postDispatch called', $body);
+        $this->assertStringContainsString('Bar action called', $body);
+        $this->assertStringContainsString('preDispatch called', $body);
+        $this->assertStringContainsString('postDispatch called', $body);
     }
 
     public function testDispatchNoControllerUsesDefaults()
@@ -361,7 +372,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertContains("Admin_Foo::bar action called", $body, $body);
+        $this->assertStringContainsString("Admin_Foo::bar action called", $body, $body);
     }
 
     public function testModuleControllerInSubdirWithCamelCaseAction()
@@ -376,7 +387,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertContains("Admin_FooBar::bazBat action called", $body, $body);
+        $this->assertStringContainsString("Admin_FooBar::bazBat action called", $body, $body);
     }
 
     public function testUseModuleDefaultController()
@@ -392,7 +403,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertContains("Admin_Foo::index action called", $body, $body);
+        $this->assertStringContainsString("Admin_Foo::index action called", $body, $body);
     }
 
     public function testNoModuleOrControllerDefaultsCorrectly()
@@ -404,7 +415,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertContains("Index action called", $body, $body);
+        $this->assertStringContainsString("Index action called", $body, $body);
     }
 
     public function testOutputBuffering()
@@ -418,7 +429,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertContains("OB index action called", $body, $body);
+        $this->assertStringContainsString("OB index action called", $body, $body);
     }
 
     public function testDisableOutputBuffering()
@@ -447,7 +458,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
             ->addControllerDirectory(
                 dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'controllers',
                 'foo'
-        );
+            );
 
         $request = new Zend_Controller_Request_Http();
         $request->setModuleName('foo');
@@ -459,7 +470,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $this->_dispatcher->dispatch($request, $response);
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertContains("Foo_Admin_IndexController::indexAction() called", $body, $body);
+        $this->assertStringContainsString("Foo_Admin_IndexController::indexAction() called", $body, $body);
     }
 
     public function testDefaultModule()
@@ -502,8 +513,8 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         } catch (Exception $e) {
         }
         $body = $this->_dispatcher->getResponse()->getBody();
-        $this->assertNotContains("In exception action", $body, $body);
-        $this->assertNotContains("Foo", $body, $body);
+        $this->assertStringNotContainsString("In exception action", $body, $body);
+        $this->assertStringNotContainsString("Foo", $body, $body);
     }
 
     public function testGetDefaultControllerClassResetsRequestObject()
@@ -577,7 +588,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         $response = new Zend_Controller_Response_Cli();
         $dispatcher->dispatch($request, $response);
         $body = $dispatcher->getResponse()->getBody();
-        $this->assertContains("BazBat_FooController::indexAction() called", $body, $body);
+        $this->assertStringContainsString("BazBat_FooController::indexAction() called", $body, $body);
     }
 
     public function testLoadClassLoadsControllerInDefaultModuleWithModulePrefixWhenRequested()
@@ -627,7 +638,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
             $this->_dispatcher->dispatch($request, $response);
             $this->fail('Invalid camelCased action should raise exception');
         } catch (Zend_Controller_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
     }
 
@@ -649,7 +660,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
             $this->_dispatcher->dispatch($request, $response);
             $body = $this->_dispatcher->getResponse()->getBody();
             error_reporting($oldLevel);
-            $this->assertContains("Admin_FooBar::bazBat action called", $body, $body);
+            $this->assertStringContainsString("Admin_FooBar::bazBat action called", $body, $body);
         } catch (Zend_Controller_Exception $e) {
             error_reporting($oldLevel);
             $this->fail('camelCased actions should succeed when forced');
@@ -680,7 +691,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
             $body = $this->_dispatcher->getResponse()->getBody();
             restore_error_handler();
             $this->assertTrue(isset($this->error));
-            $this->assertContains('deprecated', $this->error);
+            $this->assertStringContainsString('deprecated', $this->error);
         } catch (Zend_Controller_Exception $e) {
             restore_error_handler();
             $this->fail('camelCased actions should succeed when forced');
@@ -699,7 +710,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         try {
             $class = $this->_dispatcher->getControllerClass($request);
         } catch (Zend_Controller_Exception $e) {
-            $this->assertContains('No default module', $e->getMessage());
+            $this->assertStringContainsString('No default module', $e->getMessage());
         }
     }
 }

@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -39,21 +44,21 @@ require_once 'Zend/Stdlib/CallbackHandler.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
+class Zend_EventManager_EventManagerTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         if (isset($this->message)) {
             unset($this->message);
         }
         $this->default = '';
-        $this->events  = new Zend_EventManager_EventManager;
+        $this->events = new Zend_EventManager_EventManager();
     }
 
     public function testAttachShouldReturnCallbackHandler()
@@ -64,7 +69,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
 
     public function testAttachShouldAddListenerToEvent()
     {
-        $listener  = $this->events->attach('test', [$this, __METHOD__]);
+        $listener = $this->events->attach('test', [$this, __METHOD__]);
         $listeners = $this->events->getListeners('test');
         $this->assertEquals(1, count($listeners));
         $this->assertContains($listener, $listeners);
@@ -109,7 +114,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
 
     public function testDetachShouldRemoveListenerFromEvent()
     {
-        $listener  = $this->events->attach('test', [$this, __METHOD__]);
+        $listener = $this->events->attach('test', [$this, __METHOD__]);
         $listeners = $this->events->getListeners('test');
         $this->assertContains($listener, $listeners);
         $this->events->detach($listener);
@@ -254,7 +259,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
     public function testAttachAggregateReturnsAttachOfListenerAggregate()
     {
         $aggregate = new Zend_EventManager_TestAsset_MockAggregate();
-        $method    = $this->events->attachAggregate($aggregate);
+        $method = $this->events->attachAggregate($aggregate);
         $this->assertSame('Zend_EventManager_TestAsset_MockAggregate::attach', $method);
     }
 
@@ -264,7 +269,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
         $listenerFooBar1 = $this->events->attach('foo.bar', [$this, 'returnTrue']);
         $listenerFooBar2 = $this->events->attach('foo.bar', [$this, 'returnTrue']);
         $listenerFooBaz1 = $this->events->attach('foo.baz', [$this, 'returnTrue']);
-        $listenerOther   = $this->events->attach('other', [$this, 'returnTrue']);
+        $listenerOther = $this->events->attach('other', [$this, 'returnTrue']);
 
         $aggregate = new Zend_EventManager_TestAsset_MockAggregate();
         $this->events->attachAggregate($aggregate);
@@ -294,7 +299,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
         $listenerFooBar1 = $this->events->attach('foo.bar', [$this, 'returnTrue']);
         $listenerFooBar2 = $this->events->attach('foo.bar', [$this, 'returnTrue']);
         $listenerFooBaz1 = $this->events->attach('foo.baz', [$this, 'returnTrue']);
-        $listenerOther   = $this->events->attach('other',   [$this, 'returnTrue']);
+        $listenerOther = $this->events->attach('other', [$this, 'returnTrue']);
 
         $aggregate = new Zend_EventManager_TestAsset_MockAggregate();
         $this->events->attach($aggregate);
@@ -371,7 +376,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
         $this->foo = 'FOO';
         $this->bar = 'BAR';
         $params = [ 'foo' => 'bar', 'bar' => 'baz'];
-        $args   = $this->events->prepareArgs($params);
+        $args = $this->events->prepareArgs($params);
         $this->events->attach('foo.bar', [$this, 'setParamFoo']);
         $this->events->attach('foo.bar', [$this, 'setParamBar']);
         $responses = $this->events->trigger('foo.bar', $this, $args);
@@ -497,7 +502,7 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Requires pecl/weakref');
         }
 
-        $functor = new Zend_EventManager_TestAsset_Functor;
+        $functor = new Zend_EventManager_TestAsset_Functor();
         $this->events->attach('test', $functor);
 
         unset($functor);
@@ -552,9 +557,9 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
 
     public function testListenersAttachedWithWildcardAreTriggeredForAllEvents()
     {
-        $this->test         = new stdClass;
+        $this->test = new stdClass();
         $this->test->events = [];
-        $callback           = [$this, 'setEventName'];
+        $callback = [$this, 'setEventName'];
 
         $this->events->attach('*', $callback);
         foreach (['foo', 'bar', 'baz'] as $event) {
@@ -565,10 +570,10 @@ class Zend_EventManager_EventManagerTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-12185
-     * @expectedException Zend_EventManager_Exception_InvalidArgumentException
      */
     public function testInvalidArgumentExceptionCanBeThrown()
     {
+        $this->expectException(Zend_EventManager_Exception_InvalidArgumentException::class);
         require_once "Zend/EventManager/Exception/InvalidArgumentException.php";
         throw new Zend_EventManager_Exception_InvalidArgumentException();
     }

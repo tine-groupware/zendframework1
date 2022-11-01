@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,7 +55,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_AjaxContextTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -60,9 +65,8 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_AjaxContextTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Controller_Action_Helper_AjaxContextTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -71,7 +75,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
             unset($_SERVER['HTTP_X_REQUESTED_WITH']);
@@ -111,7 +115,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
             unset($_SERVER['HTTP_X_REQUESTED_WITH']);
@@ -167,7 +171,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
         $this->assertEquals('xml.phtml', $this->viewRenderer->getViewSuffix());
 
         $headers = $this->response->getHeaders();
-        $found   = false;
+        $found = false;
         foreach ($headers as $header) {
             if ('Content-Type' == $header['name']) {
                 $found = true;
@@ -210,18 +214,18 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
         $helper = new Zend_Controller_Action_Helper_AjaxContext();
 
         $helper->setActionController(
-                    new Zend_Controller_Action_Helper_AjaxContextTestController(
-                        $request,
-                        $this->response,
-                        []
-                    )
+            new Zend_Controller_Action_Helper_AjaxContextTestController(
+                $request,
+                $this->response,
+                []
+            )
         );
 
         try {
             $helper->initContext();
             $this->assertTrue(true);
-        } catch(Exception $e) {
-            if($e->getMessage() == 'test testAjaxContextIsRequestDependent failed' ) {
+        } catch (Exception $e) {
+            if ($e->getMessage() == 'test testAjaxContextIsRequestDependent failed') {
                 $this->fail();
             } else {
                 throw $e;
@@ -230,16 +234,16 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
     }
 }
 
-class ZendTest_Controller_Request_SimpleMock_AjaxTest
-    extends Zend_Controller_Request_Simple
+class ZendTest_Controller_Request_SimpleMock_AjaxTest extends Zend_Controller_Request_Simple
 {
-         public function __call($method, $args) {
-             if($method == 'isXmlHttpRequest') {
-                 throw new exception('test testAjaxContextIsRequestDependent failed');
-             }
+    public function __call($method, $args)
+    {
+        if ($method == 'isXmlHttpRequest') {
+            throw new exception('test testAjaxContextIsRequestDependent failed');
+        }
 
-             return parent::__call($method, $args);
-         }
+        return parent::__call($method, $args);
+    }
 }
 
 class Zend_Controller_Action_Helper_AjaxContextTestController extends Zend_Controller_Action

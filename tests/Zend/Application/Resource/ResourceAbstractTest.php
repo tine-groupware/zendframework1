@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -37,15 +42,15 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_ResourceAbstractTest extends TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new TestRunner())->run($suite);
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -64,7 +69,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_T
         $this->bootstrap = new ZfAppBootstrap($this->application);
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();
@@ -99,7 +104,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_T
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options  = [
+        $options = [
             'foo' => 'bar',
         ];
         $resource->setOptions($options);
@@ -110,13 +115,13 @@ class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_T
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options1  = [
+        $options1 = [
             'foo' => 'bar',
         ];
-        $options2  = [
+        $options2 = [
             'bar' => 'baz',
         ];
-        $options3  = [
+        $options3 = [
             'foo' => 'BAR',
         ];
         $expected = $resource->mergeOptions($options1, $options2);
@@ -131,7 +136,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_T
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options  = [
+        $options = [
             'someArbitraryKey' => 'test',
         ];
         $resource->setOptions($options);
@@ -141,7 +146,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_T
     public function testConstructorAcceptsArrayConfiguration()
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
-        $options  = [
+        $options = [
             'foo' => 'bar',
         ];
         $resource = new Zend_Application_BootstrapTest_Resource_Foo($options);
@@ -151,7 +156,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_T
     public function testConstructorAcceptsZendConfigObject()
     {
         require_once dirname(__FILE__) . '/../_files/resources/Foo.php';
-        $options  = [
+        $options = [
             'foo' => 'bar',
         ];
         $config = new Zend_Config($options);
@@ -186,7 +191,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit_Framework_T
         ];
 
         $resource = new Zend_Application_BootstrapTest_Resource_Foo($options);
-        $stored   = $resource->getOptions();
+        $stored = $resource->getOptions();
         $this->assertSame($options, $stored);
     }
 }

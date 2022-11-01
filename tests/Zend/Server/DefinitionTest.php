@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -47,7 +52,7 @@ require_once 'Zend/Server/Method/Prototype.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Server
  */
-class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
+class Zend_Server_DefinitionTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -56,8 +61,8 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Server_DefinitionTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Server_DefinitionTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -66,7 +71,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->definition = new Zend_Server_Definition();
     }
@@ -77,7 +82,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -155,7 +160,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
         $method = [
             'name' => 'foo.bar',
             'callback' => [
-                'type'     => 'function',
+                'type' => 'function',
                 'function' => 'bar',
             ],
             'prototypes' => [
@@ -183,7 +188,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
         $method = [
             'name' => 'foo.bar',
             'callback' => [
-                'type'     => 'function',
+                'type' => 'function',
                 'function' => 'bar',
             ],
             'prototypes' => [

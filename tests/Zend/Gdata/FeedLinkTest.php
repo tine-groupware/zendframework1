@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -31,39 +34,45 @@ require_once 'Zend/Gdata.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Gdata
  */
-class Zend_Gdata_FeedLinkTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_FeedLinkTest extends TestCase
 {
-
-    public function setUp() {
+    protected function setUp(): void
+    {
         $this->feedLinkText = file_get_contents(
-                'Zend/Gdata/_files/FeedLinkElementSample1.xml',
-                true);
+            'Zend/Gdata/_files/FeedLinkElementSample1.xml',
+            true
+        );
         $this->feedLink = new Zend_Gdata_Extension_FeedLink();
     }
 
-    public function testEmptyFeedLinkShouldHaveNoExtensionElements() {
+    public function testEmptyFeedLinkShouldHaveNoExtensionElements()
+    {
         $this->assertTrue(is_array($this->feedLink->extensionElements));
         $this->assertTrue(count($this->feedLink->extensionElements) == 0);
     }
 
-    public function testEmptyFeedLinkShouldHaveNoExtensionAttributes() {
+    public function testEmptyFeedLinkShouldHaveNoExtensionAttributes()
+    {
         $this->assertTrue(is_array($this->feedLink->extensionAttributes));
         $this->assertTrue(count($this->feedLink->extensionAttributes) == 0);
     }
 
-    public function testSampleFeedLinkShouldHaveNoExtensionElements() {
+    public function testSampleFeedLinkShouldHaveNoExtensionElements()
+    {
         $this->feedLink->transferFromXML($this->feedLinkText);
         $this->assertTrue(is_array($this->feedLink->extensionElements));
         $this->assertTrue(count($this->feedLink->extensionElements) == 0);
     }
 
-    public function testSampleFeedLinkShouldHaveNoExtensionAttributes() {
+    public function testSampleFeedLinkShouldHaveNoExtensionAttributes()
+    {
         $this->feedLink->transferFromXML($this->feedLinkText);
         $this->assertTrue(is_array($this->feedLink->extensionAttributes));
         $this->assertTrue(count($this->feedLink->extensionAttributes) == 0);
     }
 
-    public function testNormalFeedLinkShouldHaveNoExtensionElements() {
+    public function testNormalFeedLinkShouldHaveNoExtensionElements()
+    {
         $this->feedLink->href = "http://www.google.com/calendar/feeds/default/private/full";
         $this->feedLink->rel = "via";
         $this->feedLink->countHint = "5";
@@ -97,7 +106,8 @@ class Zend_Gdata_FeedLinkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(false, $newFeedLink2->readOnly);
     }
 
-    public function testEmptyFeedLinkToAndFromStringShouldMatch() {
+    public function testEmptyFeedLinkToAndFromStringShouldMatch()
+    {
         $feedLinkXml = $this->feedLink->saveXML();
         $newFeedLink = new Zend_Gdata_Extension_FeedLink();
         $newFeedLink->transferFromXML($feedLinkXml);
@@ -105,7 +115,8 @@ class Zend_Gdata_FeedLinkTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($feedLinkXml == $newFeedLinkXml);
     }
 
-    public function testFeedLinkWithValueToAndFromStringShouldMatch() {
+    public function testFeedLinkWithValueToAndFromStringShouldMatch()
+    {
         $this->feedLink->href = "http://www.google.com/calendar/feeds/default/private/full";
         $this->feedLink->rel = "via";
         $this->feedLink->countHint = "5";
@@ -121,10 +132,11 @@ class Zend_Gdata_FeedLinkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(false, $this->feedLink->readOnly);
     }
 
-    public function testExtensionAttributes() {
+    public function testExtensionAttributes()
+    {
         $extensionAttributes = $this->feedLink->extensionAttributes;
-        $extensionAttributes['foo1'] = ['name'=>'foo1', 'value'=>'bar'];
-        $extensionAttributes['foo2'] = ['name'=>'foo2', 'value'=>'rab'];
+        $extensionAttributes['foo1'] = ['name' => 'foo1', 'value' => 'bar'];
+        $extensionAttributes['foo2'] = ['name' => 'foo2', 'value' => 'rab'];
         $this->feedLink->extensionAttributes = $extensionAttributes;
         $this->assertEquals('bar', $this->feedLink->extensionAttributes['foo1']['value']);
         $this->assertEquals('rab', $this->feedLink->extensionAttributes['foo2']['value']);
@@ -135,7 +147,8 @@ class Zend_Gdata_FeedLinkTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('rab', $newFeedLink->extensionAttributes['foo2']['value']);
     }
 
-    public function testConvertFullFeedLinkToAndFromString() {
+    public function testConvertFullFeedLinkToAndFromString()
+    {
         $this->feedLink->transferFromXML($this->feedLinkText);
         $this->assertEquals("http://www.google.com/calendar/feeds/default/private/full/3tsi3ag1q40bnsik88k25sgpss/comments", $this->feedLink->href);
         $this->assertEquals("http://schemas.google.com/g/2005#feed", $this->feedLink->rel);
@@ -144,5 +157,4 @@ class Zend_Gdata_FeedLinkTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->feedLink->feed instanceof Zend_Gdata_App_Feed);
         $this->assertEquals("Comments for: Sample Event", $this->feedLink->feed->title->text);
     }
-
 }

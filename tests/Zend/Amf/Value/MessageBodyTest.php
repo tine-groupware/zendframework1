@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -36,7 +41,7 @@ require_once 'Zend/Amf/Value/MessageBody.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Amf
  */
-class Zend_Amf_Value_MessageBodyTest extends PHPUnit_Framework_TestCase
+class Zend_Amf_Value_MessageBodyTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -45,11 +50,11 @@ class Zend_Amf_Value_MessageBodyTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Amf_Value_MessageBodyTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Amf_Value_MessageBodyTest");
+        $result = (new TestRunner())->run($suite);
     }
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->body = new Zend_Amf_Value_MessageBody('/foo', '/bar', 'data');
     }

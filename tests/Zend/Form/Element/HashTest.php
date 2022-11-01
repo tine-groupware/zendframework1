@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -37,7 +42,7 @@ require_once 'Zend/Form/Element/Hash.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_HashTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -46,9 +51,8 @@ class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_HashTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Form_Element_HashTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -57,7 +61,7 @@ class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         if (isset($this->hash)) {
             unset($this->hash);
@@ -77,7 +81,7 @@ class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -138,7 +142,7 @@ class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
     {
         $this->testGetHashReturnsHashValue();
         $this->assertEquals(32, strlen($this->hash));
-        $this->assertRegexp('/^[a-f0-9]{32}$/', $this->hash);
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{32}$/', $this->hash);
     }
 
     public function testLabelIsNull()
@@ -149,8 +153,8 @@ class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
     public function testSessionNameContainsSaltAndName()
     {
         $sessionName = $this->element->getSessionName();
-        $this->assertContains($this->element->getSalt(), $sessionName);
-        $this->assertContains($this->element->getName(), $sessionName);
+        $this->assertStringContainsString($this->element->getSalt(), $sessionName);
+        $this->assertStringContainsString($this->element->getName(), $sessionName);
     }
 
     public function getView()
@@ -186,13 +190,13 @@ class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
     public function testHashTokenIsRendered()
     {
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getHash(), $html);
+        $this->assertStringContainsString($this->element->getHash(), $html);
     }
 
     public function testHiddenInputRenderedByDefault()
     {
         $html = $this->element->render($this->getView());
-        $this->assertRegexp('/<input[^>]*?type="hidden"/', $html, $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?type="hidden"/', $html, $html);
     }
 
     /**
@@ -202,7 +206,7 @@ class Zend_Form_Element_HashTest extends PHPUnit_Framework_TestCase
     {
         $this->element->setView($this->getView());
         $html = $this->element->renderViewHelper();
-        $this->assertContains($this->element->getHash(), $html, 'Html is: ' . $html);
+        $this->assertStringContainsString($this->element->getHash(), $html, 'Html is: ' . $html);
     }
 
     /**
@@ -243,7 +247,7 @@ class Zend_Form_Element_HashTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('hash' == $name) && (null !== self::$_hash))  {
+        if (('hash' == $name) && (null !== self::$_hash)) {
             return true;
         }
 

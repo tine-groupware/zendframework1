@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,7 +45,7 @@ require_once 'Zend/Form/SubForm.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Decorator_PrepareElementsTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +54,8 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Decorator_PrepareElementsTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_PrepareElementsTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -59,7 +64,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->form = new Zend_Form();
         $this->form->setDecorators(['PrepareElements']);
@@ -72,7 +77,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 

@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -45,8 +48,7 @@ require_once 'Zend/Queue/Stomp/Client/Connection.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Queue
  */
-class Zend_Queue_Stomp_Connection_Mock
-    extends Zend_Queue_Stomp_Client_Connection
+class Zend_Queue_Stomp_Connection_Mock extends Zend_Queue_Stomp_Client_Connection
 {
     /**
      * open() opens a socket to the Stomp server
@@ -54,9 +56,11 @@ class Zend_Queue_Stomp_Connection_Mock
      * @param array $config ('scheme', 'host', 'port')
      * @return true;
      */
-    public function open($scheme, $host, $port)
+    public function open($scheme, $host, $port, $options = [])
     {
-        if ( $port == 0 )  return false;
+        if ($port == 0) {
+            return false;
+        }
         return true;
     }
 
@@ -104,7 +108,9 @@ class Zend_Queue_Stomp_Connection_Mock
      */
     public function read()
     {
-        if (! $this->canRead()) return false;
+        if (!$this->canRead()) {
+            return false;
+        }
         return array_shift($this->_buffer);
     }
 }
@@ -117,7 +123,7 @@ class Zend_Queue_Stomp_Connection_Mock
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Queue
  */
-class Zend_Queue_Stomp_ClientTest extends PHPUnit_Framework_TestCase
+class Zend_Queue_Stomp_ClientTest extends TestCase
 {
     public function testConstruct()
     {
@@ -150,7 +156,7 @@ class Zend_Queue_Stomp_ClientTest extends PHPUnit_Framework_TestCase
     {
         $frame = new Zend_Queue_Stomp_Frame();
         $frame->setCommand('testing');
-        $frame->setHeader('testing',1);
+        $frame->setHeader('testing', 1);
         $frame->setBody('hello world');
 
         $client = new Zend_Queue_Stomp_Client();

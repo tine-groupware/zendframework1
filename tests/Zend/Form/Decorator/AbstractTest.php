@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -45,7 +50,7 @@ require_once 'Zend/Loader/PluginLoader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Decorator_AbstractTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Decorator_AbstractTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -54,9 +59,8 @@ class Zend_Form_Decorator_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Decorator_AbstractTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_AbstractTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -65,7 +69,7 @@ class Zend_Form_Decorator_AbstractTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->decorator = new Zend_Form_Decorator_Errors();
     }
@@ -76,7 +80,7 @@ class Zend_Form_Decorator_AbstractTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -121,7 +125,7 @@ class Zend_Form_Decorator_AbstractTest extends PHPUnit_Framework_TestCase
     public function testSetElementAllowsDisplayGroups()
     {
         $loader = new Zend_Loader_PluginLoader(['Zend_Form_Decorator' => 'Zend/Form/Decorator']);
-        $group  = new Zend_Form_DisplayGroup('foo', $loader);
+        $group = new Zend_Form_DisplayGroup('foo', $loader);
         $this->decorator->setElement($group);
         $this->assertSame($group, $this->decorator->getElement());
     }
@@ -133,7 +137,7 @@ class Zend_Form_Decorator_AbstractTest extends PHPUnit_Framework_TestCase
             $this->decorator->setElement($config);
             $this->fail('Invalid element type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid element', $e->getMessage());
+            $this->assertStringContainsString('Invalid element', $e->getMessage());
         }
     }
 

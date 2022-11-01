@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Zend Framework
  *
@@ -39,9 +42,9 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Service
  * @group      Zend_Service_Akismet
  */
-class Zend_Service_AkismetTest extends PHPUnit_Framework_TestCase
+class Zend_Service_AkismetTest extends TestCase
 {
-    public function setUp()
+    protected function setUp(): void
     {
         $this->akismet = new Zend_Service_Akismet('somebogusapikey', 'http://framework.zend.com/wiki/');
         $adapter = new Zend_Http_Client_Adapter_Test();
@@ -52,9 +55,9 @@ class Zend_Service_AkismetTest extends PHPUnit_Framework_TestCase
         Zend_Service_Akismet::setHttpClient($client);
 
         $this->comment = [
-            'user_ip'         => '71.161.221.76',
-            'user_agent'      => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1)',
-            'comment_type'    => 'comment',
+            'user_ip' => '71.161.221.76',
+            'user_agent' => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1)',
+            'comment_type' => 'comment',
             'comment_content' => 'spam check'
         ];
     }
@@ -95,7 +98,7 @@ class Zend_Service_AkismetTest extends PHPUnit_Framework_TestCase
 
     public function testUserAgentDefaultMatchesFrameworkVersion()
     {
-        $this->assertContains('Zend Framework/' . Zend_Version::VERSION, $this->akismet->getUserAgent());
+        $this->assertStringContainsString('Zend Framework/' . Zend_Version::VERSION, $this->akismet->getUserAgent());
     }
 
     public function testVerifyKey()
@@ -123,6 +126,9 @@ class Zend_Service_AkismetTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->akismet->verifyKey());
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testIsSpamThrowsExceptionOnInvalidKey()
     {
         $response = "HTTP/1.0 200 OK\r\n"
@@ -173,6 +179,9 @@ class Zend_Service_AkismetTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->akismet->isSpam($this->comment));
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSubmitSpamThrowsExceptionOnInvalidKey()
     {
         $response = "HTTP/1.0 200 OK\r\n"
@@ -194,6 +203,9 @@ class Zend_Service_AkismetTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSubmitSpam()
     {
         $response = "HTTP/1.0 200 OK\r\n"
@@ -213,6 +225,9 @@ class Zend_Service_AkismetTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testSubmitHam()
     {
         $response = "HTTP/1.0 200 OK\r\n"

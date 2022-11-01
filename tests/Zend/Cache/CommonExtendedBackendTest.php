@@ -33,8 +33,8 @@ require_once 'CommonBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_CommonExtendedBackendTest extends Zend_Cache_CommonBackendTest {
-
+class Zend_Cache_CommonExtendedBackendTest extends Zend_Cache_CommonBackendTest
+{
     private $_capabilities;
 
     public function __construct($name = null, array $data = [], $dataName = '')
@@ -42,7 +42,7 @@ class Zend_Cache_CommonExtendedBackendTest extends Zend_Cache_CommonBackendTest 
         parent::__construct($name);
     }
 
-    public function setUp($notag = false)
+    public function setUp($notag = false): void
     {
         parent::setUp($notag);
         $this->_capabilities = $this->_instance->getCapabilities();
@@ -210,7 +210,4 @@ class Zend_Cache_CommonExtendedBackendTest extends Zend_Cache_CommonBackendTest 
         $this->assertTrue(isset($res['infinite_lifetime']));
         $this->assertTrue(isset($res['get_list']));
     }
-
 }
-
-

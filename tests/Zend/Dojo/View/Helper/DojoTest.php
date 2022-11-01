@@ -1,4 +1,8 @@
 <?php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,7 +52,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_View
  */
-class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_View_Helper_DojoTest extends TestCase
 {
     /**
      * @var Zend_Dojo_View_Helper_Dojo_Container
@@ -62,8 +66,8 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_View_Helper_DojoTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_DojoTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -72,10 +76,10 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         Zend_Registry::_unsetInstance();
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_Dojo_Container();
         $this->helper->setView($this->view);
         Zend_Registry::set('Zend_Dojo_View_Helper_Dojo', $this->helper);
@@ -88,7 +92,7 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -143,12 +147,13 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
             $this->helper->requireModule('foo#$!bar');
             $this->fail('Invalid module name should throw exception during registration');
         } catch (Zend_Dojo_View_Exception $e) {
-            $this->assertContains('invalid character', $e->getMessage());
+            $this->assertStringContainsString('invalid character', $e->getMessage());
         }
     }
 
     /**
      * @group ZF-3916
+     * @doesNotPerformAssertions
      */
     public function testRequireModuleShouldAllowDashAndUnderscoreCharacters()
     {
@@ -306,8 +311,8 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
         $this->helper->setDjConfigOption('parseOnLoad', true)
                      ->enable();
         $html = $this->helper->__toString();
-        $this->assertContains('var djConfig = ', $html, var_export($html, 1));
-        $this->assertContains('"parseOnLoad":', $html, $html);
+        $this->assertStringContainsString('var djConfig = ', $html, var_export($html, 1));
+        $this->assertStringContainsString('"parseOnLoad":', $html, $html);
     }
 
     public function testShouldAllowSpecifyingStylesheetByModuleName()
@@ -331,6 +336,7 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-3916
+     * @doesNotPerformAssertions
      */
     public function testAddingStylesheetModuleShouldAllowDashAndUnderscoreCharacters()
     {
@@ -345,7 +351,7 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
             $this->helper->addStylesheetModule('foo/bar/baz');
             $this->fail('invalid module designation should throw exception');
         } catch (Zend_Dojo_View_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
     }
 
@@ -354,7 +360,7 @@ class Zend_Dojo_View_Helper_DojoTest extends PHPUnit_Framework_TestCase
         $this->helper->enable()
                      ->addStylesheetModule('dijit.themes.tundra');
         $html = $this->helper->__toString();
-        $this->assertContains('dijit/themes/tundra/tundra.css', $html);
+        $this->assertStringContainsString('dijit/themes/tundra/tundra.css', $html);
     }
 
     public function testShouldAllowSpecifyingLocalStylesheet()
@@ -399,9 +405,9 @@ function() {
         $this->assertEquals(1, count($onLoad));
         $action = array_shift($onLoad);
         $this->assertTrue(is_string($action));
-        $this->assertContains('function() {', $action);
-        $this->assertContains('bar();', $action);
-        $this->assertContains('baz();', $action);
+        $this->assertStringContainsString('function() {', $action);
+        $this->assertStringContainsString('bar();', $action);
+        $this->assertStringContainsString('baz();', $action);
     }
 
     public function testShouldNotAllowSpecifyingDuplicateOnLoadActions()
@@ -439,7 +445,7 @@ function() {
     {
         $this->setupDojo();
         $html = $this->helper->__toString();
-        $doc  = new DOMDocument;
+        $doc = new DOMDocument();
         $doc->loadHTML($html);
         $xPath = new DOMXPath($doc);
         $results = $xPath->query('//script');
@@ -448,18 +454,18 @@ function() {
             $script = $doc->saveXML($results->item($i));
             switch ($i) {
                 case 0:
-                    $this->assertContains('var djConfig = ', $script);
-                    $this->assertContains('parseOnLoad', $script);
+                    $this->assertStringContainsString('var djConfig = ', $script);
+                    $this->assertStringContainsString('parseOnLoad', $script);
                     break;
                 case 1:
-                    $this->assertRegexp('#src="http://.+/dojo/[0-9.]+/dojo/dojo.xd.js"#', $script);
-                    $this->assertContains('/>', $script);
+                    $this->assertMatchesRegularExpression('#src="http://.+/dojo/[0-9.]+/dojo/dojo.xd.js"#', $script);
+                    $this->assertStringContainsString('/>', $script);
                     break;
                 case 2:
-                    $this->assertContains('dojo.registerModulePath("custom", "../custom")', $script, $script);
-                    $this->assertContains('dojo.require("dijit.layout.ContentPane")', $script, $script);
-                    $this->assertContains('dojo.require("custom.foo")', $script, $script);
-                    $this->assertContains('dojo.addOnLoad(foo)', $script, $script);
+                    $this->assertStringContainsString('dojo.registerModulePath("custom", "../custom")', $script, $script);
+                    $this->assertStringContainsString('dojo.require("dijit.layout.ContentPane")', $script, $script);
+                    $this->assertStringContainsString('dojo.require("custom.foo")', $script, $script);
+                    $this->assertStringContainsString('dojo.addOnLoad(foo)', $script, $script);
                     break;
             }
         }
@@ -467,11 +473,11 @@ function() {
         $results = $xPath->query('//style');
         $this->assertEquals(1, $results->length, $html);
         $style = $doc->saveXML($results->item(0));
-        $this->assertContains('@import', $style);
+        $this->assertStringContainsString('@import', $style);
         $this->assertEquals(2, substr_count($style, '@import'));
         $this->assertEquals(1, substr_count($style, 'http://ajax.googleapis.com/ajax/libs/dojo/'), $style);
-        $this->assertContains('css/custom.css', $style);
-        $this->assertContains('dijit/themes/tundra/tundra.css', $style);
+        $this->assertStringContainsString('css/custom.css', $style);
+        $this->assertStringContainsString('dijit/themes/tundra/tundra.css', $style);
     }
 
     public function testStringSerializationShouldBeDoctypeAware()
@@ -481,8 +487,8 @@ function() {
         $this->helper->setView($view);
         $this->setupDojo();
         $html = $this->helper->__toString();
-        $this->assertRegexp('|<style [^>]*>[\r\n]+\s*<!--|', $html);
-        $this->assertRegexp('|<script [^>]*>[\r\n]+\s*//<!--|', $html);
+        $this->assertMatchesRegularExpression('|<style [^>]*>[\r\n]+\s*<!--|', $html);
+        $this->assertMatchesRegularExpression('|<script [^>]*>[\r\n]+\s*//<!--|', $html);
 
         $this->helper = new Zend_Dojo_View_Helper_Dojo();
         $view->doctype('XHTML1_STRICT');
@@ -493,8 +499,8 @@ function() {
         /**
          * @todo should stylesheets be escaped as CDATA when isXhtml()?
          */
-        $this->assertRegexp('|<style [^>]*>[\r\n]+\s*<!--|', $html);
-        $this->assertRegexp('|<script [^>]*>[\r\n]+\s*//<!\[CDATA\[|', $html);
+        $this->assertMatchesRegularExpression('|<style [^>]*>[\r\n]+\s*<!--|', $html);
+        $this->assertMatchesRegularExpression('|<script [^>]*>[\r\n]+\s*//<!\[CDATA\[|', $html);
     }
 
     public function testDojoHelperContainerPersistsBetweenViewObjects()
@@ -544,11 +550,9 @@ function() {
         $this->assertEquals('dijit.form.Form', $dijit['params']['dojoType']);
     }
 
-    /**
-     * @expectedException Zend_Dojo_View_Exception
-     */
     public function testAddingDuplicateProgrammaticDijitsShouldRaiseExceptions()
     {
+        $this->expectException(Zend_Dojo_View_Exception::class);
         $this->helper->addDijit('foo', ['dojoType' => 'dijit.form.Form']);
         $this->helper->addDijit('foo', ['dojoType' => 'dijit.form.ComboBox']);
     }
@@ -641,11 +645,11 @@ function() {
     public function testShouldAllowRetrievingDijitsAsJsonArray()
     {
         $this->testShouldAllowAddingMultipleDijitsAtOnce();
-        $json  = $this->helper->dijitsToJson();
+        $json = $this->helper->dijitsToJson();
         $array = Zend_Json::decode($json);
         $this->assertTrue(is_array($array));
 
-        $keys  = [];
+        $keys = [];
         foreach ($array as $dijit) {
             $keys[] = $dijit['id'];
             $this->assertTrue(array_key_exists('params', $dijit));
@@ -660,7 +664,7 @@ function() {
         $this->testShouldAllowAddingMultipleDijitsAtOnce();
         $json = $this->helper->dijitsToJson();
         $html = $this->helper->__toString();
-        $this->assertContains($json, $html, $html);
+        $this->assertStringContainsString($json, $html, $html);
 
         $found = false;
         foreach ($this->helper->_getZendLoadActions() as $action) {
@@ -670,7 +674,7 @@ function() {
             }
         }
         $this->assertTrue($found, 'Dijit onload action not created');
-        $this->assertContains($action, $html);
+        $this->assertStringContainsString($action, $html);
     }
 
     public function testShouldAllowAddingArbitraryJsToPrimaryDojoScriptTag()
@@ -680,7 +684,7 @@ function() {
         $html = $this->helper->__toString();
         $found = false;
         if (preg_match_all('|<script[^>]*>(.*?)(</script>)|s', $html, $m)) {
-            foreach ($m[1] as $script)  {
+            foreach ($m[1] as $script) {
                 if (strstr($script, 'var foo = "bar";')) {
                     $found = true;
                     break;
@@ -716,7 +720,7 @@ function() {
         $this->helper->javascriptCaptureEnd();
         $js = $this->helper->getJavascript();
         $this->assertEquals(1, count($js));
-        $this->assertContains('var foo = "bar";', $js[0]);
+        $this->assertStringContainsString('var foo = "bar";', $js[0]);
     }
 
     public function testNoLayersShouldBeRegisteredByDefault()
@@ -774,7 +778,7 @@ function() {
         $this->setupDojo();
         $this->testShouldAllowAddingLayers();
         $html = $this->helper->__toString();
-        $doc  = new DOMDocument;
+        $doc = new DOMDocument();
         $doc->loadHTML($html);
         $xPath = new DOMXPath($doc);
         $results = $xPath->query('//script');
@@ -793,11 +797,9 @@ function() {
         $this->assertSame(['foo', 'bar'], $found);
     }
 
-    /**
-     * @expectedException Zend_Dojo_View_Exception
-     */
     public function testCallingMethodThatDoesNotExistInContainerShouldRaiseException()
     {
+        $this->expectException(Zend_Dojo_View_Exception::class);
         $dojo = new Zend_Dojo_View_Helper_Dojo();
         $dojo->bogus();
     }
@@ -834,7 +836,7 @@ function() {
         if (!preg_match('/(var djConfig = .*?(?:};))/s', $html, $matches)) {
             $this->fail('Failed to find djConfig settings: ' . $html);
         }
-        $this->assertNotContains('"parseOnLoad":true', $matches[1]);
+        $this->assertStringNotContainsString('"parseOnLoad":true', $matches[1]);
     }
 
     /**
@@ -866,10 +868,11 @@ function() {
         $this->helper->addOnLoad('zend.custom');
         $this->view->textBox('foo', 'bar');
         $test = $this->helper->__toString();
-        $this->assertRegexp('/zendDijits.*?(zend\.custom)/s', $test, 'Generated markup: ' . $test);
+        $this->assertMatchesRegularExpression('/zendDijits.*?(zend\.custom)/s', $test, 'Generated markup: ' . $test);
     }
 
-    public function testDojoViewHelperContainerAddOptionsPassesOnAllStringOptions() {
+    public function testDojoViewHelperContainerAddOptionsPassesOnAllStringOptions()
+    {
         $helper = $this->helper;
         $options = [
             'requireModules' => 'ZfTestRequiredModule',
@@ -896,19 +899,20 @@ function() {
         $this->assertTrue($helper->registerDojoStylesheet());
     }
 
-    public function testDojoViewHelperContainerAddOptionsPassesOnAllArrayOptions() {
+    public function testDojoViewHelperContainerAddOptionsPassesOnAllArrayOptions()
+    {
         $helper = $this->helper;
         $modulePaths = ['module1' => 'path1', 'module2' => 'path2'];
-        $layers = ['layer_two','layer_three'];
+        $layers = ['layer_two', 'layer_three'];
         $djConfig = ['foo1' => 'bar1', 'foo2' => 'bar2'];
         $stylesheetMods = ['test.one.style', 'test.two.style'];
         $stylesheets = ['style1', 'style2'];
         $options = [
-            'modulePaths'   => $modulePaths,
-            'layers'        => $layers,
-            'djConfig'      => $djConfig,
+            'modulePaths' => $modulePaths,
+            'layers' => $layers,
+            'djConfig' => $djConfig,
             'styleShEEtModules' => $stylesheetMods,
-            'stylesheets'   => $stylesheets,
+            'stylesheets' => $stylesheets,
             'registerdojostylesheet' => false
         ];
 
@@ -924,12 +928,14 @@ function() {
 
     public function testJsonExpressionRenders()
     {
-        $this->helper->addDijit('foo',
-                ['dojoType' => 'dijit.form.TextBox',
+        $this->helper->addDijit(
+            'foo',
+            ['dojoType' => 'dijit.form.TextBox',
                       'onChange' => new Zend_Json_Expr('function(){alert(\'foo\');}'),
-                      ]);
+                      ]
+        );
         $output = $this->helper->dijitsToJson();
-        $this->assertRegexp('#(function\\(\\){alert\\(\'foo\'\\);})#', $output);
+        $this->assertMatchesRegularExpression('#(function\\(\\){alert\\(\'foo\'\\);})#', $output);
     }
 
     /**
@@ -939,10 +945,10 @@ function() {
     {
         $helper = $this->helper;
         $options = [
-            'localPath'              => '',
-            'stylesheetmodules'      => 'test.stylesheet.module',
+            'localPath' => '',
+            'stylesheetmodules' => 'test.stylesheet.module',
             'registerdojostylesheet' => true,
-            'enable'                 => true,
+            'enable' => true,
         ];
         $helper->setOptions($options);
 
@@ -954,7 +960,7 @@ function() {
                   . '</style>';
 
         $actual = (string) $helper;
-        $end    = '</style>';
+        $end = '</style>';
         $actual = substr($actual, 0, strpos($actual, $end) + strlen($end));
 
         $this->assertEquals($expected, $actual);

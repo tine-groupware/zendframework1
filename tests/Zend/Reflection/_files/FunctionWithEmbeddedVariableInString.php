@@ -1,6 +1,7 @@
 <?php
 
-function firstOne() {
+function firstOne()
+{
     $substitute = "Testing";
     $varA = "${substitute} 123!";
     $varB = "{$substitute} 123!";
@@ -8,4 +9,6 @@ function firstOne() {
     $varD = "${substitute}";
 }
 
-function secondOne() {}
+function secondOne()
+{
+}

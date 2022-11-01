@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -54,7 +59,7 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_Form_Decorator_DijitContainerTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -63,8 +68,8 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_Test
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_Form_Decorator_DijitContainerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Dojo_Form_Decorator_DijitContainerTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -73,15 +78,15 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_Test
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
         $this->errors = [];
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->decorator = new Zend_Dojo_Form_Decorator_ContentPane();
-        $this->element   = $this->getElement();
+        $this->element = $this->getElement();
         $this->element->setView($this->view);
         $this->decorator->setElement($this->element);
     }
@@ -92,7 +97,7 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_Test
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -108,12 +113,12 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_Test
     {
         $element = new Zend_Dojo_Form_SubForm();
         $element->setAttribs([
-            'name'   => 'foo',
-            'style'  => 'width: 300px; height: 500px;',
-            'class'  => 'someclass',
+            'name' => 'foo',
+            'style' => 'width: 300px; height: 500px;',
+            'class' => 'someclass',
             'dijitParams' => [
                 'labelAttr' => 'foobar',
-                'typeAttr'  => 'barbaz',
+                'typeAttr' => 'barbaz',
             ],
         ]);
         return $element;
@@ -195,14 +200,12 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_Test
     public function testRenderingShouldCreateDijit()
     {
         $html = $this->decorator->render('');
-        $this->assertContains('dojoType="dijit.layout.ContentPane"', $html);
+        $this->assertStringContainsString('dojoType="dijit.layout.ContentPane"', $html);
     }
 
-    /**
-     * @expectedException Zend_Form_Decorator_Exception
-     */
     public function testAbsenceOfHelperShouldRaiseException()
     {
+        $this->expectException(Zend_Form_Decorator_Exception::class);
         $decorator = new Zend_Dojo_Form_Decorator_DijitContainerTest_Example();
         $helper = $decorator->getHelper();
     }
@@ -211,13 +214,13 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_Test
     {
         $element = new Zend_Dojo_Form_SubForm();
         $element->setAttribs([
-            'name'   => 'foo',
-            'style'  => 'width: 300px; height: 500px;',
-            'class'  => 'someclass',
+            'name' => 'foo',
+            'style' => 'width: 300px; height: 500px;',
+            'class' => 'someclass',
         ]);
         $dijitParams = [
             'labelAttr' => 'foobar',
-            'typeAttr'  => 'barbaz',
+            'typeAttr' => 'barbaz',
         ];
         $this->decorator->setElement($element);
         $this->decorator->setOption('dijitParams', $dijitParams);
@@ -231,15 +234,15 @@ class Zend_Dojo_Form_Decorator_DijitContainerTest extends PHPUnit_Framework_Test
     {
         $element = new Zend_Dojo_Form_SubForm();
         $element->setAttribs([
-                    'name'   => 'foo',
+                    'name' => 'foo',
                     'legend' => 'FooBar',
-                    'style'  => 'width: 300px; height: 500px;',
-                    'class'  => 'someclass',
+                    'style' => 'width: 300px; height: 500px;',
+                    'class' => 'someclass',
                 ])
                 ->setView($this->view);
         $this->decorator->setElement($element);
         $html = $this->decorator->render('');
-        $this->assertContains('FooBar', $html);
+        $this->assertStringContainsString('FooBar', $html);
     }
 }
 

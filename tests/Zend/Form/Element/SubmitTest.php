@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -41,7 +46,7 @@ require_once 'Zend/Translate/Adapter/Array.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_SubmitTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_SubmitTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,9 +55,8 @@ class Zend_Form_Element_SubmitTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_SubmitTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Form_Element_SubmitTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -61,7 +65,7 @@ class Zend_Form_Element_SubmitTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         Zend_Form::setDefaultTranslator(null);
@@ -74,7 +78,7 @@ class Zend_Form_Element_SubmitTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -133,7 +137,7 @@ class Zend_Form_Element_SubmitTest extends PHPUnit_Framework_TestCase
         $decorator = $this->element->getDecorator('ViewHelper');
         $decorator->setElement($this->element);
         $html = $decorator->render('');
-        $this->assertRegexp('/<(input|button)[^>]*?value="Submit Button"/', $html);
+        $this->assertMatchesRegularExpression('/<(input|button)[^>]*?value="Submit Button"/', $html);
     }
 
     public function testConstructorSetsLabelToNameIfNoLabelProvided()
@@ -232,9 +236,9 @@ class Zend_Form_Element_SubmitTest extends PHPUnit_Framework_TestCase
         $translator = new Zend_Translate_Adapter_Array(["bar" => "baz"], 'de');
         $this->element->setTranslator($translator);
         $html = $this->element->render(new Zend_View());
-        $this->assertContains('title', $html);
-        $this->assertContains('baz', $html);
-        $this->assertNotContains('bar', $html);
+        $this->assertStringContainsString('title', $html);
+        $this->assertStringContainsString('baz', $html);
+        $this->assertStringNotContainsString('bar', $html);
     }
 
     public function testTitleAttributeDoesNotGetTranslatedIfTranslatorIsDisabled()
@@ -245,9 +249,9 @@ class Zend_Form_Element_SubmitTest extends PHPUnit_Framework_TestCase
         // now disable translator and see if that works
         $this->element->setDisableTranslator(true);
         $html = $this->element->render(new Zend_View());
-        $this->assertContains('title', $html);
-        $this->assertContains('bar', $html);
-        $this->assertNotContains('baz', $html);
+        $this->assertStringContainsString('title', $html);
+        $this->assertStringContainsString('bar', $html);
+        $this->assertStringNotContainsString('baz', $html);
     }
 
     public function testSetDefaultIgnoredToTrueWhenNotDefined()

@@ -1,4 +1,9 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -39,7 +44,7 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
-class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Request_HttpTestCaseTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +53,8 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Request_HttpTestCaseTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Controller_Request_HttpTestCaseTest");
+        $result = (new TestRunner())->run($suite);
     }
 
     /**
@@ -58,11 +63,11 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
      *
      * @return void
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->request = new Zend_Controller_Request_HttpTestCase();
-        $_GET    = [];
-        $_POST   = [];
+        $_GET = [];
+        $_POST = [];
         $_COOKIE = [];
     }
 
@@ -72,7 +77,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
     }
 
@@ -215,7 +220,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
     public function testShouldAllowSpecifyingRequestHeaders()
     {
         $headers = [
-            'Content-Type'     => 'text/html',
+            'Content-Type' => 'text/html',
             'Content-Encoding' => 'utf-8',
         ];
         $this->request->setHeaders($headers);
