@@ -271,7 +271,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      * @param  string $key
      * @return null
      */
-    public function __get($key)
+    public function &__get($key)
     {
         if ('_' != substr($key, 0, 1) && isset($this->_data[$key])) {
             return $this->_data[$key];
