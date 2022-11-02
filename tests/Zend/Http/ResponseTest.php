@@ -198,7 +198,7 @@ class Zend_Http_ResponseTest extends TestCase
         $this->tempFile = tempnam(sys_get_temp_dir(), 'lhrs');
         $streamObject = new StreamObject($this->tempFile);
 
-        $response = new Zend_Http_Response_Stream(200, array());
+        $response = new Zend_Http_Response_Stream(200, []);
         $response->setCleanup(true);
         $response->setStreamName($streamObject);
 
