@@ -876,7 +876,10 @@ class Zend_Form_Element implements Zend_Validate_Interface
         }
 
         if (null === $value) {
+            unset($this->$name);
             unset($this->_attributes[$name]);
+        } else if (property_exists($this, $name)) {
+            $this->$name = $value;
         } else {
             $this->_attributes[$name] = $value;
         }
@@ -908,6 +911,11 @@ class Zend_Form_Element implements Zend_Validate_Interface
     public function getAttrib($name)
     {
         $name = (string) $name;
+
+        if (property_exists($this, $name)) {
+            return $this->$name;
+        }
+
         if (isset($this->_attributes[$name])) {
             return $this->_attributes[$name];
         }
@@ -922,7 +930,17 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function getAttribs()
     {
-        return $this->_attributes;
+        $attribs = $this->_attributes;
+
+        foreach (get_object_vars($this) as $key => $value) {
+            if ('_' != substr($key, 0, 1)) {
+                $attribs[$key] = $value;
+            }
+        }
+
+        unset($attribs['helper']);
+
+        return $attribs;
     }
 
     /**
@@ -1005,7 +1023,8 @@ class Zend_Form_Element implements Zend_Validate_Interface
             throw new Zend_Form_Exception(sprintf('Cannot unset value for protected/private property "%s"', $key));
         }
 
-        unset($this->_attributes[$name]);
+        unset($this->$key);
+        unset($this->_attributes[$key]);
     }
 
     /**
