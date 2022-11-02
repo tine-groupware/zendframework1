@@ -273,15 +273,18 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     public function &__get($key)
     {
+        $value = null;
         if ('_' != substr($key, 0, 1) && isset($this->_data[$key])) {
-            return $this->_data[$key];
+
+            $value = &$this->_data[$key];
+            return $value;
         }
 
         if ($this->_strictVars) {
             trigger_error('Key "' . $key . '" does not exist', E_USER_NOTICE);
         }
 
-        return null;
+        return $value;
     }
 
     /**
