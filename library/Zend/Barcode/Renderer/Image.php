@@ -219,8 +219,8 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
             throw $e;
         }
 
-        $barcodeWidth  = $this->_barcode->getWidth(true);
-        $barcodeHeight = $this->_barcode->getHeight(true);
+        $barcodeWidth  = (int) $this->_barcode->getWidth(true);
+        $barcodeHeight = (int) $this->_barcode->getHeight(true);
 
         if ($this->_resource !== null) {
             $foreColor       = $this->_barcode->getForeColor();
@@ -469,8 +469,8 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
                 $this->_resource,
                 $size,
                 $orientation,
-                $position[0] - ($width * cos(pi() * $orientation / 180)),
-                $position[1] + ($width * sin(pi() * $orientation / 180)),
+                $position[0] - (int) ($width * cos(pi() * $orientation / 180)),
+                $position[1] + (int) ($width * sin(pi() * $orientation / 180)),
                 $allocatedColor,
                 $font,
                 $text
