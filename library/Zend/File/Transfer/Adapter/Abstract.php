@@ -255,7 +255,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = strtoupper((string) $type);
         switch ($type) {
             case self::FILTER:
             case self::VALIDATE:
