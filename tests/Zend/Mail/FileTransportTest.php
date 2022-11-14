@@ -41,6 +41,7 @@ require_once 'Zend/Mail/Transport/File.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mail
  */
+#[AllowDynamicProperties]
 class Zend_Mail_FileTransportTest extends TestCase
 {
     protected $_params;

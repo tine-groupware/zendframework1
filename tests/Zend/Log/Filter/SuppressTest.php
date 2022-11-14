@@ -43,6 +43,7 @@ require_once 'Zend/Log/Filter/Suppress.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Log
  */
+#[AllowDynamicProperties]
 class Zend_Log_Filter_SuppressTest extends TestCase
 {
     public static function main()

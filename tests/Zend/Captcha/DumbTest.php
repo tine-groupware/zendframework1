@@ -41,6 +41,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
+#[AllowDynamicProperties]
 class Zend_Captcha_DumbTest extends TestCase
 {
     /**
@@ -127,6 +128,7 @@ class Zend_Captcha_DumbTest extends TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Captcha_DumbTest_SessionContainer
 {
     protected static $_word;

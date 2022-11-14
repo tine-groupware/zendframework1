@@ -37,6 +37,7 @@ require_once 'Zend/Filter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_FilterTest extends TestCase
 {
     /**

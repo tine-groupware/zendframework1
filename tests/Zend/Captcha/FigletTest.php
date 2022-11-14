@@ -42,6 +42,7 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
+#[AllowDynamicProperties]
 class Zend_Captcha_FigletTest extends TestCase
 {
     /**
@@ -326,6 +327,7 @@ class Zend_Captcha_FigletTest extends TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Captcha_FigletTest_SessionContainer
 {
     protected static $_word;

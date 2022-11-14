@@ -41,6 +41,7 @@ require_once 'Zend/Controller/Request/Http.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Request_HttpTest extends TestCase
 {
     /**

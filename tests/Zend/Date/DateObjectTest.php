@@ -36,6 +36,7 @@ require_once 'Zend/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Date
  */
+#[AllowDynamicProperties]
 class Zend_Date_DateObjectTest extends TestCase
 {
     protected function setUp(): void

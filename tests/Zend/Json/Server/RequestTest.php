@@ -42,6 +42,7 @@ require_once 'Zend/Json.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
+#[AllowDynamicProperties]
 class Zend_Json_Server_RequestTest extends TestCase
 {
     /**

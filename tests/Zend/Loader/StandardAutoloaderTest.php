@@ -38,6 +38,7 @@ require_once 'Zend/Loader/TestAsset/StandardAutoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class Zend_Loader_StandardAutoloaderTest extends TestCase
 {
     protected function setUp(): void

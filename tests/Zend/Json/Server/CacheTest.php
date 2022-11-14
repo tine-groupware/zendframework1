@@ -44,6 +44,7 @@ require_once 'Zend/Json/Server.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
+#[AllowDynamicProperties]
 class Zend_Json_Server_CacheTest extends TestCase
 {
     /**

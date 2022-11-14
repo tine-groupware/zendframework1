@@ -47,6 +47,7 @@ require_once 'Zend/Controller/Request/Http.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_UrlTest extends TestCase
 {
     /**
