@@ -45,6 +45,11 @@ require_once 'Zend/Form/Element/Checkbox.php';
 class Zend_Form_Element_CheckboxTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Checkbox
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

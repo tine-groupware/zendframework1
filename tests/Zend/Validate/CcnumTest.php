@@ -47,6 +47,11 @@ class Zend_Validate_CcnumTest extends TestCase
     protected $_validator;
 
     /**
+     * @var bool
+     */
+    protected $_errorOccured;
+
+    /**
      * Creates a new Zend_Validate_Ccnum object for each test method
      *
      * @return void

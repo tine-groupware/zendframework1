@@ -49,6 +49,11 @@ require_once 'Zend/Form/SubForm.php';
 class Zend_Form_Decorator_FieldsetTest extends TestCase
 {
     /**
+     * @var Zend_Form_Decorator_Fieldset
+     */
+    protected $decorator;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

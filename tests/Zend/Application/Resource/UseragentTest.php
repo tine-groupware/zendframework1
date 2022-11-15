@@ -45,6 +45,26 @@ require_once 'Zend/Application/Resource/UserAgent.php';
  */
 class Zend_Application_Resource_UseragentTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var ZfAppBootstrap
+     */
+    protected $bootstrap;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

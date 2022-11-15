@@ -57,6 +57,33 @@ require_once 'Zend/Config.php';
  */
 class Zend_Application_Module_AutoloaderTest extends TestCase
 {
+    protected $error;
+
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Application_Module_Autoloader
+     */
+    protected $loader;
+
+    /**
+     * @var array
+     */
+    protected $includePath;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

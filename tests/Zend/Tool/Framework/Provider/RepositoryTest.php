@@ -47,6 +47,11 @@ require_once '_files/ProviderAltName.php';
 class Zend_Tool_Framework_Provider_RepositoryTest extends TestCase
 {
     /**
+     * @var Zend_Tool_Framework_Registry
+     */
+    protected $_registry;
+
+    /**
      * @var Zend_Tool_Framework_Provider_Repository
      */
     protected $_repository = null;

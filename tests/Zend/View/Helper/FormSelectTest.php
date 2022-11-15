@@ -47,6 +47,16 @@ require_once 'Zend/View.php';
 class Zend_View_Helper_FormSelectTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_FormSelect
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

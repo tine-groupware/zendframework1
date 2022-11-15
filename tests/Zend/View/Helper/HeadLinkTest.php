@@ -66,6 +66,11 @@ class Zend_View_Helper_HeadLinkTest extends TestCase
     public $basePath;
 
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

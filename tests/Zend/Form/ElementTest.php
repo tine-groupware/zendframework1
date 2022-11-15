@@ -58,6 +58,11 @@ class Zend_Form_ElementTest extends TestCase
      */
     private $element;
 
+    /**
+     *@var string
+     */
+    private $error;
+
     public static function main()
     {
         $suite = new TestSuite('Zend_Form_ElementTest');

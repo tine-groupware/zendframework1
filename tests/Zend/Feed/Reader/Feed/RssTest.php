@@ -37,6 +37,11 @@ require_once 'Zend/Registry.php';
  */
 class Zend_Feed_Reader_Feed_RssTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $_options = [];
+
     protected $_feedSamplePath = null;
     
     protected $_expectedCats = [];

@@ -45,6 +45,11 @@ require_once 'Zend/Form/Element/Radio.php';
 class Zend_Form_Element_RadioTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Radio
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

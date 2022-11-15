@@ -49,6 +49,16 @@ require_once 'Zend/View.php';
 class Zend_Form_Decorator_FormErrorsTest extends TestCase
 {
     /**
+     * @var Zend_Form_Decorator_FormErrors
+     */
+    protected $decorator;
+
+    /**
+     * @var Zend_Form
+     */
+    protected $form;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

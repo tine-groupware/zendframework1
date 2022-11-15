@@ -52,6 +52,26 @@ require_once 'Zend/Db/Table.php';
  */
 class Zend_Application_Resource_MultidbTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var Zend_Application_Bootstrap_Bootstrap
+     */
+    protected $bootstrap;
+
     protected $_dbOptions = ['db1' => ['adapter' => 'pdo_mysql', 'dbname' => 'db1', 'password' => 'XXXX', 'username' => 'webuser'],
                                 'db2' => ['adapter' => 'pdo_pgsql', 'dbname' => 'db2', 'password' => 'notthatpublic', 'username' => 'dba']];
 

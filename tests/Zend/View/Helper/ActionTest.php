@@ -59,6 +59,31 @@ require_once 'Zend/View.php';
 class Zend_View_Helper_ActionTest extends TestCase
 {
     /**
+     * @var Zend_Controller_Request_Http
+     */
+    protected $request;
+
+    /**
+     * @var Zend_Controller_Response_Http
+     */
+    protected $response;
+
+    /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_Action
+     */
+    protected $helper;
+
+    /**
+     * @var array
+     */
+    protected $_origServer;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

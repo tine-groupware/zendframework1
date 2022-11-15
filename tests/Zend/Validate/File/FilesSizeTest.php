@@ -46,6 +46,10 @@ require_once 'Zend/Validate/File/FilesSize.php';
 class Zend_Validate_File_FilesSizeTest extends TestCase
 {
     /**
+     * @var bool
+     */
+    protected $multipleOptionsDetected;
+    /**
      * Runs the test methods of this class.
      *
      * @return void

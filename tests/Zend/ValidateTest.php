@@ -49,6 +49,11 @@ require_once 'Zend/Translate.php';
 class Zend_ValidateTest extends TestCase
 {
     /**
+     * @var bool
+     */
+    protected $_errorOccurred;
+
+    /**
      * Zend_Validate object
      *
      * @var Zend_Validate

@@ -43,6 +43,11 @@ require_once 'Zend/Paginator/Adapter/Iterator.php';
 class Zend_Paginator_Adapter_IteratorTest extends TestCase
 {
     /**
+     * @var Zend_Paginator
+     */
+    protected $_paginator;
+
+    /**
      * @var Zend_Paginator_Adapter_Iterator
      */
     private $_adapter;

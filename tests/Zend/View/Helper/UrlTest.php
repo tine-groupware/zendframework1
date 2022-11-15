@@ -54,6 +54,16 @@ require_once 'Zend/Controller/Request/Http.php';
 class Zend_View_Helper_UrlTest extends TestCase
 {
     /**
+     * @var Zend_Controller_Front
+     */
+    protected $front;
+
+    /**
+     * @var Zend_View_Helper_Url
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

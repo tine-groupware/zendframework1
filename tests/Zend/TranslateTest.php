@@ -50,6 +50,11 @@ require_once 'Zend/Translate/Plural.php';
 class Zend_TranslateTest extends TestCase
 {
     /**
+     * @var bool
+     */
+    protected $_errorOccured;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

@@ -66,6 +66,15 @@ class Zend_View_Helper_HeadMetaTest extends TestCase
     public $basePath;
 
     /**
+     * @var boolean
+     */
+    protected $error;
+
+    /**
+     * @var Zend_View
+     */
+    protected $view;
+    /**
      * Runs the test methods of this class.
      *
      * @return void

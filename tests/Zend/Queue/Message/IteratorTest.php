@@ -52,6 +52,23 @@ require_once 'Zend/Queue/Adapter/Null.php';
  */
 class Zend_Queue_Message_IteratorTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $options;
+
+    /**
+     * @var Zend_Queue
+     */
+    protected $queue;
+
+    protected $messages;
+
+    /**
+     * @var int
+     */
+    protected $message_count;
+
     protected function setUp(): void
     {
         // Test Zend_Config

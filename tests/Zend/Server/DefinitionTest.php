@@ -55,6 +55,11 @@ require_once 'Zend/Server/Method/Prototype.php';
 class Zend_Server_DefinitionTest extends TestCase
 {
     /**
+     * @var Zend_Server_Definition
+     */
+    protected $definition;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

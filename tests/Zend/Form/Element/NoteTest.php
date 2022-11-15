@@ -47,6 +47,11 @@ require_once 'Zend/Form/Element/Note.php';
 class Zend_Form_Element_NoteTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Note
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

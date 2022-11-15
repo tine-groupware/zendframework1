@@ -45,6 +45,11 @@ require_once 'Zend/Form/Element/Reset.php';
 class Zend_Form_Element_ResetTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Reset
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

@@ -69,6 +69,23 @@ require_once 'Zend/Application/Bootstrap/Bootstrap.php';
  */
 class Zend_Application_Bootstrap_BootstrapAbstractTest extends TestCase
 {
+    protected $error;
+
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

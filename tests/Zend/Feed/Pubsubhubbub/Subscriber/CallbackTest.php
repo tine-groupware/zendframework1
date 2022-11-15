@@ -43,6 +43,31 @@ class Zend_Feed_Pubsubhubbub_Subscriber_CallbackTest extends TestCase
 {
     protected $_originalServer = null;
 
+    /**
+     * @var array
+     */
+    protected $_get;
+
+    /**
+     * @var Zend_Feed_Pubsubhubbub_Subscriber_Callback
+     */
+    protected $_callback;
+
+    /**
+     * @var MockObject
+     */
+    protected $_adapter;
+
+    /**
+     * @var MockObject
+     */
+    protected $_tableGateway;
+
+    /**
+     * @var MockObject
+     */
+    protected $_rowset;
+
     protected function setUp(): void
     {
         $this->_callback = new Zend_Feed_Pubsubhubbub_Subscriber_Callback();

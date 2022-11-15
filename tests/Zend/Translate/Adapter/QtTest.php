@@ -41,6 +41,11 @@ require_once 'Zend/Translate/Adapter/Qt.php';
 class Zend_Translate_Adapter_QtTest extends TestCase
 {
     /**
+     * @var bool
+     */
+    protected $_errorOccurred;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

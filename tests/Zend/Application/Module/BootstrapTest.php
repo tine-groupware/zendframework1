@@ -44,6 +44,21 @@ require_once 'Zend/Loader/Autoloader.php';
  */
 class Zend_Application_Module_BootstrapTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

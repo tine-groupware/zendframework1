@@ -46,6 +46,26 @@ require_once 'Zend/Application/Resource/View.php';
  */
 class Zend_Application_Resource_ViewTest extends TestCase
 {
+    /**
+     * @var ZfAppBootstrap
+     */
+    protected $bootstrap;
+
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

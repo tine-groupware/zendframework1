@@ -46,6 +46,16 @@ require_once 'Zend/View.php';
 class Zend_Form_Element_PasswordTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Password
+     */
+    protected $element;
+
+    /**
+     * @var array
+     */
+    protected $errors;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

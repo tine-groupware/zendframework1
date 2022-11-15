@@ -48,6 +48,16 @@ require_once 'Zend/View/Helper/FormLabel.php';
 class Zend_View_Helper_FormLabelTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_FormLabel
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

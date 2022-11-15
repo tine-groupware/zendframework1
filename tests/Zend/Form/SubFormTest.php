@@ -45,6 +45,11 @@ require_once 'Zend/Version.php';
  */
 class Zend_Form_SubFormTest extends TestCase
 {
+    /**
+     * @var Zend_Form_SubForm
+     */
+    private $form;
+
     public static function main()
     {
         $suite = new TestSuite('Zend_Form_SubFormTest');

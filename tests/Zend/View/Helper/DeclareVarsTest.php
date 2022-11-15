@@ -45,6 +45,11 @@ require_once 'Zend/View/Helper/DeclareVars.php';
 class Zend_View_Helper_DeclareVarsTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

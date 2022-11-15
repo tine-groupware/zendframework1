@@ -51,6 +51,11 @@ require_once 'Zend/Validate/File/Upload.php';
 class Zend_File_Transfer_Adapter_HttpTest extends TestCase
 {
     /**
+     * @var Zend_File_Transfer_Adapter_HttpTest_MockAdapter
+     */
+    protected $adapter;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

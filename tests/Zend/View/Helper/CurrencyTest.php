@@ -58,6 +58,11 @@ class Zend_View_Helper_CurrencyTest extends TestCase
     public $helper;
 
     /**
+     * @var Zend_Cache_Core
+     */
+    protected $_cache;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

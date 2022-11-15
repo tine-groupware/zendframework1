@@ -49,6 +49,16 @@ require_once 'Zend/Registry.php';
 class Zend_Validate_AbstractTest extends TestCase
 {
     /**
+     * @var Zend_Validate_AbstractTest_Concrete
+     */
+    protected $validator;
+
+    /**
+     * @var bool
+     */
+    protected $_errorOccurred;
+
+    /**
      * Runs this test suite
      *
      * @return void

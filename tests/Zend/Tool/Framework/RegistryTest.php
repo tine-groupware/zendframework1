@@ -49,6 +49,11 @@ require_once '_files/EmptyLoader.php';
  */
 class Zend_Tool_Framework_RegistryTest extends TestCase
 {
+    /**
+     * @var Zend_Tool_Framework_Registry
+     */
+    protected $_registry;
+
     protected function setUp(): void
     {
         $this->_registry = new Zend_Tool_Framework_Registry();

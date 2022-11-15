@@ -53,6 +53,11 @@ require_once 'Zend/Loader/PluginLoader.php';
 class Zend_Form_Decorator_AbstractTest extends TestCase
 {
     /**
+     * @var Zend_Form_Decorator_Errors
+     */
+    protected $decorator;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

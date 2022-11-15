@@ -63,6 +63,8 @@ class Zend_LocaleTest extends TestCase
     private $_locale = null;
     private $errorHandler = null;
 
+    private $_errorOccurred = null;
+
     protected function setUp(): void
     {
         $this->_locale = setlocale(LC_ALL, 0);

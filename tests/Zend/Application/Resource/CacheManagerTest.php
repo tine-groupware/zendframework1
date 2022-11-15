@@ -64,6 +64,26 @@ require_once 'Zend/Cache/Core.php';
  */
 class Zend_Application_Resource_CacheManagerTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var Zend_Application_Bootstrap_Bootstrap
+     */
+    protected $bootstrap;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

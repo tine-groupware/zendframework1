@@ -53,6 +53,16 @@ require_once 'Zend/Queue/Adapter/Array.php';
  */
 abstract class Zend_Queue_QueueBaseTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $config;
+
+    /**
+     * @var Zend_Queue
+     */
+    protected $queue;
+
     protected function setUp(): void
     {
         // Test Zend_Config

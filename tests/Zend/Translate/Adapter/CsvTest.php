@@ -41,6 +41,11 @@ require_once 'Zend/Translate/Adapter/Csv.php';
 class Zend_Translate_Adapter_CsvTest extends TestCase
 {
     /**
+     * @var bool
+     */
+    protected $_errorOccurred;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

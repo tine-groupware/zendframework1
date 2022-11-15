@@ -46,6 +46,11 @@ require_once 'Zend/Server/Method/Parameter.php';
 class Zend_Server_Method_ParameterTest extends TestCase
 {
     /**
+     * @var Zend_Server_Method_Parameter
+     */
+    protected $parameter;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

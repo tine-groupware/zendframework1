@@ -44,6 +44,26 @@ require_once 'Zend/Loader/Autoloader.php';
  */
 class Zend_Application_Resource_LocaleTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var Zend_Application_Bootstrap_Bootstrap
+     */
+    protected $bootstrap;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

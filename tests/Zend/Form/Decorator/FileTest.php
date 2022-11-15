@@ -49,6 +49,16 @@ require_once 'Zend/View/Helper/FormElement.php';
 class Zend_Form_Decorator_FileTest extends TestCase
 {
     /**
+     * @var Zend_Form_Decorator_File
+     */
+    protected $decorator;
+
+    /**
+     * @var Zend_Form_Element_File
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

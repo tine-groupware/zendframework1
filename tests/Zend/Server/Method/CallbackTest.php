@@ -46,6 +46,11 @@ require_once 'Zend/Server/Method/Callback.php';
 class Zend_Server_Method_CallbackTest extends TestCase
 {
     /**
+     * @var Zend_Server_Method_Callback
+     */
+    protected $callback;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

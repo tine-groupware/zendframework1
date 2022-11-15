@@ -50,6 +50,16 @@ require_once 'Zend/Layout.php';
 class Zend_View_Helper_JsonTest extends TestCase
 {
     /**
+      * @var Zend_View_Helper_Json
+     */
+    protected $helper;
+
+    /**
+     * @var Zend_Controller_Response_Http
+     */
+    protected $response;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
