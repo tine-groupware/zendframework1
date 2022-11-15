@@ -42,6 +42,7 @@ require_once dirname(__FILE__) . '/TestAsset/PopulatedStorage.php';
  * @group      Zend_Http
  * @group      Zend_Http_UserAgent
  */
+#[AllowDynamicProperties]
 class Zend_Http_UserAgentTest extends TestCase
 {
     protected function setUp(): void

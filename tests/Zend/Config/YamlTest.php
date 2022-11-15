@@ -36,6 +36,7 @@ require_once 'Zend/Config/Yaml.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
+#[AllowDynamicProperties]
 class Zend_Config_YamlTest extends TestCase
 {
     protected function setUp(): void

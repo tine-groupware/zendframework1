@@ -46,6 +46,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  */
+#[AllowDynamicProperties]
 class Zend_Controller_ActionTest extends TestCase
 {
     /**

@@ -34,6 +34,7 @@ require_once 'Zend/Http/Client.php';
  * @group      Zend_Http
  * @group      Zend_Http_Client
  */
+#[AllowDynamicProperties]
 class Zend_Http_Client_ClientTest extends TestCase
 {
     /**

@@ -55,6 +55,7 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
+#[AllowDynamicProperties]
 class Zend_Loader_Autoloader_ResourceTest extends TestCase
 {
     public static function main()

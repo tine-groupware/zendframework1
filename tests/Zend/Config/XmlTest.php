@@ -36,6 +36,7 @@ require_once 'Zend/Config/Xml.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
+#[AllowDynamicProperties]
 class Zend_Config_XmlTest extends TestCase
 {
     protected $_xmlFileConfig;

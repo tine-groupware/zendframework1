@@ -55,6 +55,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_AjaxContextTest extends TestCase
 {
     /**
@@ -246,6 +247,7 @@ class ZendTest_Controller_Request_SimpleMock_AjaxTest extends Zend_Controller_Re
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_AjaxContextTestController extends Zend_Controller_Action
 {
     public $ajaxable = [

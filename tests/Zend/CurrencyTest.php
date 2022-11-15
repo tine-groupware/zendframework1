@@ -38,6 +38,7 @@ require_once 'Zend/Currency.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Currency
  */
+#[AllowDynamicProperties]
 class Zend_CurrencyTest extends TestCase
 {
     protected function setUp(): void
