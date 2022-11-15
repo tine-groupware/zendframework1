@@ -45,6 +45,11 @@ require_once 'Zend/View/Helper/HtmlObject.php';
 class Zend_View_Helper_HtmlObjectTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
      * @var Zend_View_Helper_HtmlObject
      */
     public $helper;

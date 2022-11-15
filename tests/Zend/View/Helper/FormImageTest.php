@@ -47,6 +47,16 @@ require_once 'Zend/View/Helper/FormImage.php';
 class Zend_View_Helper_FormImageTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_FormImage
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

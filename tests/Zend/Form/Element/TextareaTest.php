@@ -45,6 +45,11 @@ require_once 'Zend/Form/Element/Textarea.php';
 class Zend_Form_Element_TextareaTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Textarea
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

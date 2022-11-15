@@ -51,6 +51,16 @@ require_once 'Zend/View/Helper/FormTextarea.php';
 class Zend_View_Helper_FormTextareaTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_FormTextarea
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

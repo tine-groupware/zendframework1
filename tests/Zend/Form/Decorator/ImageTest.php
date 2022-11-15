@@ -50,6 +50,11 @@ require_once 'Zend/View.php';
 class Zend_Form_Decorator_ImageTest extends TestCase
 {
     /**
+     * @var Zend_Form_Decorator_Image
+     */
+    protected $decorator;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

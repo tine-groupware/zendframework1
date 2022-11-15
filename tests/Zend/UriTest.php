@@ -49,6 +49,26 @@ require_once 'Zend/Config.php';
  */
 class Zend_UriTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $notices;
+
+    /**
+     * @var int
+     */
+    protected $errorReporting;
+
+    /**
+     * @var string
+     */
+    protected $displayErrors;
+
+    /**
+     * @var string
+     */
+    protected $error;
+
     public static function main()
     {
         $suite = new TestSuite("Zend_UriTest");

@@ -49,6 +49,16 @@ require_once 'Zend/Captcha/ReCaptcha.php';
  */
 class Zend_Form_Element_CaptchaTest extends TestCase
 {
+    /**
+     * @var Zend_Form_Element_Captcha
+     */
+    protected $element;
+
+    /**
+     * @var Zend_Form
+     */
+    protected $form;
+
     public static function main()
     {
         $suite = new TestSuite('Zend_Form_Element_CaptchaTest');
@@ -454,6 +464,10 @@ class Zend_Form_Element_CaptchaTest extends TestCase
  */
 class Zend_Form_Element_CaptchaTest_SessionContainer
 {
+    protected $setExpirationHops;
+
+    protected $setExpirationSeconds;
+
     protected static $_word;
 
     public function __get($name)

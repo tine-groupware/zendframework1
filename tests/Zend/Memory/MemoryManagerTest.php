@@ -42,6 +42,11 @@ require_once 'Zend/Memory.php';
  */
 class Zend_Memory_MemoryManagerTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    protected $cacheDir;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

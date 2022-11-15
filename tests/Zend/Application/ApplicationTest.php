@@ -45,6 +45,32 @@ require_once 'Zend/Application.php';
  */
 class Zend_Application_ApplicationTest extends TestCase
 {
+
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var array
+     */
+    protected $iniOptions;
+
+    /**
+     * @var array
+     */
+    protected $includePath;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

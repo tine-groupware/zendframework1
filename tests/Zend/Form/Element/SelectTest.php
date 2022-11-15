@@ -45,6 +45,11 @@ require_once 'Zend/Form/Element/Select.php';
 class Zend_Form_Element_SelectTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Select
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

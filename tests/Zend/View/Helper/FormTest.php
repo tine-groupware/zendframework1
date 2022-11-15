@@ -47,6 +47,16 @@ require_once 'Zend/View/Helper/Form.php';
 class Zend_View_Helper_FormTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_Form
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

@@ -49,6 +49,16 @@ require_once 'Zend/Registry.php';
 class Zend_View_Helper_FormTextTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_FormText
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

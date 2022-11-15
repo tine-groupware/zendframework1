@@ -54,6 +54,26 @@ require_once 'Zend/Loader.php';
  */
 class Zend_ViewTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $notices;
+
+    /**
+     * @var int
+     */
+    protected $errorReporting;
+
+    /**
+     * @var string
+     */
+    protected $displayErrors;
+
+    /**
+     * @var Zend_View
+     */
+    protected $view;
+
     public static function main()
     {
         $suite = new TestSuite("Zend_ViewTest");

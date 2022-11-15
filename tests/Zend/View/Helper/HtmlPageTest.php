@@ -45,6 +45,11 @@ require_once 'Zend/View/Helper/HtmlPage.php';
 class Zend_View_Helper_HtmlPageTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
      * @var Zend_View_Helper_HtmlPage
      */
     public $helper;

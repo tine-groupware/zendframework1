@@ -49,6 +49,11 @@ require_once 'Zend/View.php';
 class Zend_Form_Decorator_ViewHelperTest extends TestCase
 {
     /**
+     * @var Zend_Form_Decorator_ViewHelper
+     */
+    protected $decorator;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

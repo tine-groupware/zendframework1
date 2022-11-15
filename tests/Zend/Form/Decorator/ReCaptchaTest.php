@@ -47,6 +47,16 @@ require_once 'Zend/View.php';
 class Zend_Form_Decorator_ReCaptchaTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Captcha
+     */
+    protected $element;
+
+    /**
+     * @var Zend_Form_Decorator_Captcha_ReCaptcha
+     */
+    protected $decorator;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

@@ -49,6 +49,16 @@ require_once 'Zend/View.php';
 class Zend_View_Helper_FormRadioTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_FormRadio
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

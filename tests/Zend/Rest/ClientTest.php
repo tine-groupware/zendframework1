@@ -42,6 +42,21 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Rest_ClientTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    protected $path;
+
+    /**
+     * @var Zend_Http_Client_Adapter_Test
+     */
+    protected $adapter;
+
+    /**
+     * @var Zend_Rest_Client
+     */
+    protected $rest;
+
     protected function setUp(): void
     {
         $this->path = dirname(__FILE__) . '/responses/';

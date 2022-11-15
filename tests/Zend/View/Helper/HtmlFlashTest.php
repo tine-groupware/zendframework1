@@ -45,6 +45,11 @@ require_once 'Zend/View/Helper/HtmlFlash.php';
 class Zend_View_Helper_HtmlFlashTest extends TestCase
 {
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
      * @var Zend_View_Helper_HtmlFlash
      */
     public $helper;

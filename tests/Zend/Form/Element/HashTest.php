@@ -45,6 +45,16 @@ require_once 'Zend/Form/Element/Hash.php';
 class Zend_Form_Element_HashTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Hash
+     */
+    protected $element;
+
+    /**
+     * @var string
+     */
+    protected $hash;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
@@ -226,6 +236,10 @@ class Zend_Form_Element_HashTest extends TestCase
 class Zend_Form_Element_HashTest_SessionContainer
 {
     protected static $_hash;
+
+    public $setExpirationHops;
+
+    public $setExpirationSeconds;
 
     public function __get($name)
     {

@@ -56,6 +56,16 @@ require_once 'Zend/View.php';
 class Zend_View_Helper_Placeholder_StandaloneContainerTest extends TestCase
 {
     /**
+     * @var Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo
+     */
+    protected $helper;
+
+    /**
+     * @var string
+     */
+    protected $basePath;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

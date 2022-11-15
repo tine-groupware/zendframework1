@@ -45,6 +45,11 @@ require_once 'Zend/Form/Element/MultiCheckbox.php';
 class Zend_Form_Element_MultiCheckboxTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_MultiCheckbox
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

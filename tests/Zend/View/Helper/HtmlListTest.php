@@ -50,6 +50,11 @@ class Zend_View_Helper_HtmlListTest extends TestCase
     public $helper;
 
     /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
      * Runs the test methods of this class.
      *
      * @access public

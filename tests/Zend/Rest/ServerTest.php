@@ -49,6 +49,11 @@ require_once 'Zend/Rest/Server.php';
 class Zend_Rest_ServerTest extends TestCase
 {
     /**
+     * @var array
+     */
+    protected $request;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
@@ -845,6 +850,8 @@ class Zend_Rest_Server_Test
 
 class Zend_Rest_Server_Test2
 {
+    protected $arg1;
+
     public function __construct($arg1 = 'unset')
     {
         $this->arg1 = $arg1;

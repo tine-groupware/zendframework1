@@ -49,6 +49,11 @@ require_once 'Zend/Translate/Adapter/Array.php';
 class Zend_Form_Element_SubmitTest extends TestCase
 {
     /**
+     * @var Zend_Form_Element_Submit
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

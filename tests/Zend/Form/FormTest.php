@@ -59,6 +59,21 @@ class Zend_Form_FormTest extends TestCase
      */
     public $form;
 
+    /**
+     * @var string
+     */
+    private $error;
+
+    /**
+     * @var array
+     */
+    private $elementValues;
+
+    /**
+     * @var string
+     */
+    private $html;
+
     public static function main()
     {
         $suite = new TestSuite('Zend_Form_FormTest');

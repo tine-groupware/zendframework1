@@ -58,6 +58,11 @@ require_once 'Zend/Config.php';
  */
 abstract class Zend_Queue_Adapter_AdapterTest extends TestCase
 {
+    /**
+     * @var bool
+     */
+    protected $error;
+
     protected function tearDown(): void
     {
         $this->error = false;

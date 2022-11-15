@@ -125,6 +125,10 @@ class Zend_PaginatorTest extends TestCase
         $result = (new TestRunner())->run($suite);
     }
 
+    protected $_dbConn;
+
+    protected $cacheDir;
+
     /**
      * Paginator instance
      *

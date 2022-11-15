@@ -50,6 +50,11 @@ require_once 'Zend/View.php';
 class Zend_Form_Decorator_LabelTest extends TestCase
 {
     /**
+     * @var Zend_Form_Decorator_Label
+     */
+    protected $decorator;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

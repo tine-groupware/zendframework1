@@ -41,6 +41,11 @@ require_once 'Zend/Translate/Adapter/Tmx.php';
 class Zend_Translate_Adapter_TmxTest extends TestCase
 {
     /**
+     * @var bool
+     */
+    protected $_errorOccurred;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
