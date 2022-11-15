@@ -789,7 +789,8 @@ class Zend_Console_Getopt
     protected function _parseShortOptionCluster(&$argv)
     {
         $flagCluster = ltrim(array_shift($argv), '-');
-        foreach (str_split($flagCluster) as $flag) {
+        $listFlagChar = $flagCluster === '' ?  [''] : str_split($flagCluster);
+        foreach ($listFlagChar as $flag) {
             $this->_parseSingleOption($flag, $argv);
         }
     }
