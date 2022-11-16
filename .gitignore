@@ -12,6 +12,7 @@ tests/Zend/Cache/zend_cache_tmp_dir*
 tests/Zend/Filter/_files/traversed.*
 tests/Zend/Filter/_files/app/tests/Zend/Filter/_files/zipextracted.txt
 tests/Zend/Mail/_files/test.tmp/INBOX
+tests/Zend/Paginator/_files/test-write-tmp.sqlite
 vendor/*
 composer.lock
 bin/dbunit
@@ -21,4 +22,3 @@ bin/parallel-lint
 .php_cs.cache
 .idea
 .vscode
-

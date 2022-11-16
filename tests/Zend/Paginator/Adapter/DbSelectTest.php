@@ -303,7 +303,9 @@ class Zend_Paginator_Adapter_DbSelectTest extends TestCase
      */
     public function testSelectHasAliasedColumns()
     {
-        $db = $this->_db;
+        $db = new Zend_Db_Adapter_Pdo_Sqlite([
+            'dbname' => dirname(__FILE__) . '/../_files/test-write-tmp.sqlite'
+        ]);
 
         $db->query('DROP TABLE IF EXISTS `sandboxTransaction`');
         $db->query('DROP TABLE IF EXISTS `sandboxForeign`');
