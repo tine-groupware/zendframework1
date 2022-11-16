@@ -3,6 +3,20 @@ name: PHPUnit-9
 on: [push, pull_request]
 
 jobs:
+  phpunit-php82:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download phpunit
+        run: |
+          wget -O phpunit https://phar.phpunit.de/phpunit-9.5.26.phar
+          chmod +x phpunit
+        shell: bash
+      - name: PHPUnit 9 on php 8.2
+        uses: docker://php:8.2-rc-cli-alpine
+        with:
+          args: -d memory_limit=-1 ./phpunit --bootstrap tests/TestHelper.php tests/Zend/AllTests.php
   phpunit-php81:
     runs-on: ubuntu-latest
     steps:
