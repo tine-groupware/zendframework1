@@ -94,7 +94,7 @@ class Zend_LocaleTest extends TestCase
             $locales = [];
             foreach (explode(';', $this->_locale) as $l) {
                 $tmp = explode('=', $l);
-                $locales[$tmp[0]] = $tmp[1];
+                $locales[$tmp[0]] = count($tmp) > 1 ? $tmp[1] : $tmp[0];
             }
             setlocale(LC_ALL, $locales);
             return;
