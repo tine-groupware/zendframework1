@@ -316,7 +316,7 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends TestCase
     }
 
     /**
-     *
+     * @doesNotPerformAssertions
      * @group ZF-3068
      */
     public function testDbTableAdapterUsesCaseFolding()
@@ -461,7 +461,8 @@ class Zend_Auth_Adapter_DbTable_BasicSqliteTest extends TestCase
         if (!empty($optionalParams)) {
             $params['options'] = $optionalParams;
         }
-
+        //https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.pdo
+        $params['driver_options'] = [PDO::ATTR_STRINGIFY_FETCHES => 1]; 
         $this->_db = new Zend_Db_Adapter_Pdo_Sqlite($params);
 
         $sqlCreate = 'CREATE TABLE [users] ( '
