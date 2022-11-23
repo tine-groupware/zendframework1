@@ -40,6 +40,8 @@ require_once 'Zend/Queue/Adapter/Db.php';
  */
 class Custom_DbForUpdate extends Zend_Queue_Adapter_Db
 {
+    protected $_msg_table;
+
     /**
      * Return the first element in the queue
      *
