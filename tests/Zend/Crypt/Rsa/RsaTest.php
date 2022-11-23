@@ -34,9 +34,23 @@ require_once 'Zend/Crypt/Rsa.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Crypt
  */
-#[AllowDynamicProperties]
 class Zend_Crypt_RsaTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $_testPemStringPublic;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_testCertificateString;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_testCertificatePath;
+
     protected $_testPemString = null;
 
     protected $_testPemPath = null;
