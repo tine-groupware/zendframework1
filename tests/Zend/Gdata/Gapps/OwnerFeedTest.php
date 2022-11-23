@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/OwnerFeed.php';
  */
 class Zend_Gdata_Gapps_OwnerFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_OwnerFeed|mixed
+     */
+    protected $emptyOwnerFeed;
+
     protected $ownerFeed = null;
 
     /**

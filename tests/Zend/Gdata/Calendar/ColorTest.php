@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_ColorTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $colorText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_Color|mixed
+     */
+    protected $color;
+
     protected function setUp(): void
     {
         $this->colorText = file_get_contents(

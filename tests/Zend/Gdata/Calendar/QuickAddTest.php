@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_QuickAddTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $quickAddText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_QuickAdd|mixed
+     */
+    protected $quickAdd;
+
     protected function setUp(): void
     {
         $this->quickAddText = file_get_contents(

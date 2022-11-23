@@ -39,6 +39,15 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Gdata_CalendarTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $eventFeedText;
+    /**
+     * @var \Zend_Gdata_Calendar_EventFeed|mixed
+     */
+    protected $eventFeed;
+
     protected function setUp(): void
     {
         $this->eventFeedText = file_get_contents(

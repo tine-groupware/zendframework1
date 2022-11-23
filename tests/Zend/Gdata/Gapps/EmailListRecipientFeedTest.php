@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/EmailListRecipientFeed.php';
  */
 class Zend_Gdata_Gapps_EmailListRecipientFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_EmailListRecipientFeed|mixed
+     */
+    protected $emptyEmailListRecipientFeed;
+
     protected $emailListRecipientFeed = null;
 
     /**

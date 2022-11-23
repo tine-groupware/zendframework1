@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_WorksheetEntryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets_WorksheetEntry|mixed
+     */
+    protected $wksEntry;
+
     protected function setUp(): void
     {
         $this->wksEntry = new Zend_Gdata_Spreadsheets_WorksheetEntry();

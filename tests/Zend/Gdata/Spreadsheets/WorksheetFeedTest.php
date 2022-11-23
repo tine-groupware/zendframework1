@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_WorksheetFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets_WorksheetFeed|mixed
+     */
+    protected $wksFeed;
+
     protected function setUp(): void
     {
         $this->wksFeed = new Zend_Gdata_Spreadsheets_WorksheetFeed(

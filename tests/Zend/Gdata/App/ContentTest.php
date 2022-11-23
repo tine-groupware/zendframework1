@@ -37,6 +37,21 @@ require_once 'Zend/Gdata/App.php';
  */
 class Zend_Gdata_App_ContentTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $contentText;
+
+    /**
+     * @var string|bool|mixed
+     */
+    protected $contentText2;
+
+    /**
+     * @var \Zend_Gdata_App_Extension_Content|mixed
+     */
+    protected $content;
+
     protected function setUp(): void
     {
         $this->contentText = file_get_contents(

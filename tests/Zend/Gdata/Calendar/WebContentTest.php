@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_WebContentTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $webContentText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_WebContent|mixed
+     */
+    protected $webContent;
+
     protected function setUp(): void
     {
         $this->webContentText = file_get_contents(

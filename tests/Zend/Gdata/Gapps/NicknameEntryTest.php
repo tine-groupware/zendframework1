@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Gapps.php';
  */
 class Zend_Gdata_Gapps_NicknameEntryTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $entryText;
+
+    /**
+     * @var \Zend_Gdata_Gapps_NicknameEntry|mixed
+     */
+    protected $entry;
+
     protected function setUp(): void
     {
         $this->entryText = file_get_contents(

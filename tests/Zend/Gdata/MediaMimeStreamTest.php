@@ -35,6 +35,31 @@ require_once 'Zend/Gdata/MediaMimeStream.php';
  */
 class Zend_Gdata_MediaMimeStreamTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $locationOfFakeBinary;
+
+    /**
+     * @var string|mixed
+     */
+    protected $smallXMLString;
+
+    /**
+     * @var string|mixed
+     */
+    protected $testMediaType;
+
+    /**
+     * @var \Zend_Gdata_MediaMimeStream|mixed
+     */
+    protected $mediaMimeStream;
+
+    /**
+     * @var int|mixed
+     */
+    protected $exceptedLenOfMimeMessage;
+
     protected function setUp(): void
     {
         $this->locationOfFakeBinary =

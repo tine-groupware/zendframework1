@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/GroupFeed.php';
  */
 class Zend_Gdata_Gapps_GroupFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_GroupFeed|mixed
+     */
+    protected $emptyGroupFeed;
+
     protected $groupFeed = null;
 
     /**

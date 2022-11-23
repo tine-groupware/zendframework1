@@ -37,6 +37,16 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_ListEntryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets_ListEntry|mixed
+     */
+    protected $listEntry;
+
+    /**
+     * @var mixed[]|\Zend_Gdata_Spreadsheets_Extension_Custom[]|mixed
+     */
+    protected $rowData;
+
     protected function setUp(): void
     {
         $this->listEntry = new Zend_Gdata_Spreadsheets_ListEntry();

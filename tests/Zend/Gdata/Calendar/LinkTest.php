@@ -38,6 +38,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_LinkTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $linkText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_Link|mixed
+     */
+    protected $link;
+
     protected function setUp(): void
     {
         $this->linkText = file_get_contents(

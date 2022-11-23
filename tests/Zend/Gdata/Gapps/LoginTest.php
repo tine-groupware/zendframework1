@@ -37,6 +37,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_Gapps_LoginTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $loginText;
+
+    /**
+     * @var \Zend_Gdata_Gapps_Extension_Login|mixed
+     */
+    protected $login;
+
     protected function setUp(): void
     {
         $this->loginText = file_get_contents(

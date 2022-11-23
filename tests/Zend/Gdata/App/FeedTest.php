@@ -38,6 +38,16 @@ require_once 'Zend/Gdata/App.php';
  */
 class Zend_Gdata_App_FeedTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $feedText;
+
+    /**
+     * @var \Zend_Gdata_App_Feed|mixed
+     */
+    protected $feed;
+
     protected function setUp(): void
     {
         $this->feedText = file_get_contents(

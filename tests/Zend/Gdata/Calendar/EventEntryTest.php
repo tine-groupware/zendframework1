@@ -38,6 +38,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_EventEntryTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $entryText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_EventEntry|mixed
+     */
+    protected $entry;
+
     protected function setUp(): void
     {
         $this->entryText = file_get_contents(

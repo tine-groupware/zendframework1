@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/NicknameFeed.php';
  */
 class Zend_Gdata_Gapps_NicknameFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_NicknameFeed|mixed
+     */
+    protected $emptyNicknameFeed;
+
     protected $nicknameFeed = null;
 
     /**

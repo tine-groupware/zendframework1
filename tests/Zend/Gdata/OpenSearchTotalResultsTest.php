@@ -37,6 +37,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_OpenSearchTotalResultsTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $openSearchTotalResultsText;
+
+    /**
+     * @var \Zend_Gdata_Extension_OpenSearchTotalResults|mixed
+     */
+
+     protected $openSearchTotalResults;
     protected function setUp(): void
     {
         $this->openSearchTotalResultsText = file_get_contents(

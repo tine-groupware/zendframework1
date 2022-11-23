@@ -39,6 +39,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_GappsTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps|mixed
+     */
+    protected $gdata;
+
     public const TEST_DOMAIN = 'nowhere.invalid';
 
     protected function setUp(): void

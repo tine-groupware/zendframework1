@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_WhereTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $whereText;
+
+    /**
+     * @var \Zend_Gdata_Extension_Where|mixed
+     */
+    protected $where;
+
     protected function setUp(): void
     {
         $this->whereText = file_get_contents(

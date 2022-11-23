@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_AttendeeStatusTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $attendeeStatusText;
+
+    /**
+     * @var \Zend_Gdata_Extension_AttendeeStatus|mixed
+     */
+    protected $attendeeStatus;
+
     protected function setUp(): void
     {
         $this->attendeeStatusText = file_get_contents(

@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/GroupQuery.php';
  */
 class Zend_Gdata_Gapps_GroupQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_GroupQuery|mixed
+     */
+    protected $query;
+
     protected function setUp(): void
     {
         $this->query = new Zend_Gdata_Gapps_GroupQuery();

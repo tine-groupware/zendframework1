@@ -38,6 +38,11 @@ require_once 'Zend/Gdata/ClientLogin.php';
  */
 class Zend_Gdata_BooksOnlineTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Books|mixed
+     */
+    protected $gdata;
+
     protected function setUp(): void
     {
         $user = constant('TESTS_ZEND_GDATA_CLIENTLOGIN_EMAIL');

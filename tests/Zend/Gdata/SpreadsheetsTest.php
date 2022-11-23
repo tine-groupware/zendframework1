@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_SpreadsheetsTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets
+     */
+    protected $gdata;
+
     protected function setUp(): void
     {
         $this->gdata = new Zend_Gdata_Spreadsheets(new Zend_Http_Client());

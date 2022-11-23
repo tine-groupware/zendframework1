@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_DocumentQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets_DocumentQuery|mixed
+     */
+    protected $docQuery;
+
     protected function setUp(): void
     {
         $this->docQuery = new Zend_Gdata_Spreadsheets_DocumentQuery();

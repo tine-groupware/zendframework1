@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_HiddenTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $hiddenText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_Hidden|mixed
+     */
+    protected $hidden;
+
     protected function setUp(): void
     {
         $this->hiddenText = file_get_contents(

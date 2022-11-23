@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/UserFeed.php';
  */
 class Zend_Gdata_Gapps_UserFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_UserFeed|mixed
+     */
+    protected $emptyUserFeed;
+
     protected $userFeed = null;
 
     /**

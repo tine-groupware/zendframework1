@@ -39,6 +39,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_CalendarOnlineTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Calendar|mixed
+     */
+    protected $gdata;
+
     public const GOOGLE_DEVELOPER_CALENDAR = 'developer-calendar@google.com';
     public const ZEND_CONFERENCE_EVENT = 'bn2h4o4mc3a03ci4t48j3m56pg';
 

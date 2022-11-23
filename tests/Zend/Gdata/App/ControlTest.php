@@ -38,6 +38,16 @@ require_once 'Zend/Gdata/App.php';
  */
 class Zend_Gdata_App_ControlTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $controlText;
+
+    /**
+     * @var \Zend_Gdata_App_Extension_Control|mixed
+     */
+    protected $control;
+
     protected function setUp(): void
     {
         $this->controlText = file_get_contents(

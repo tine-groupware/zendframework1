@@ -38,6 +38,16 @@ require_once 'Zend/Gdata/Docs/DocumentListEntry.php';
  */
 class Zend_Gdata_Docs_DocumentListEntryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Docs_DocumentListEntry|mixed
+     */
+    protected $doc;
+
+    /**
+     * @var \Zend_Gdata_Docs|mixed
+     */
+    protected $docsClient;
+
     protected function setUp(): void
     {
         $this->doc = new Zend_Gdata_Docs_DocumentListEntry(

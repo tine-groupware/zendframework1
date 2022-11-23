@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_TransparencyTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $transparencyText;
+
+    /**
+     * @var \Zend_Gdata_Extension_Transparency|mixed
+     */
+    protected $transparency;
+
     protected function setUp(): void
     {
         $this->transparencyText = file_get_contents(
