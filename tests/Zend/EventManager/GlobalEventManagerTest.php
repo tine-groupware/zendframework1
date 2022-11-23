@@ -39,9 +39,13 @@ require_once 'Zend/EventManager/EventManager.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 class Zend_EventManager_GlobalEventManagerTest extends TestCase
 {
+    /**
+     * @var \stdClass|mixed
+     */
+    protected $test;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

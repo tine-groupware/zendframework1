@@ -44,9 +44,38 @@ require_once 'Zend/Stdlib/CallbackHandler.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 class Zend_EventManager_EventManagerTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    protected $message;
+
+    /**
+     * @var string|mixed
+     */
+    protected $default;
+
+    /**
+     * @var \Zend_EventManager_EventManager|mixed
+     */
+    protected $events;
+
+    /**
+     * @var string|class-string<\FOO>|mixed
+     */
+    protected $foo;
+
+    /**
+     * @var string|mixed
+     */
+    protected $bar;
+
+    /**
+     * @var \stdClass|mixed
+     */
+    protected $test;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);
