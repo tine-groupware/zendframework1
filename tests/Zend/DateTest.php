@@ -56,9 +56,13 @@ require_once 'Zend/TimeSync.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Date
  */
-#[AllowDynamicProperties]
 class Zend_DateTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $originalTimezone;
+
     private $_cache = null;
     private $_orig = [];
 
