@@ -45,6 +45,11 @@ require_once 'Zend/Validate/EmailAddress.php';
 class Zend_Validate_EmailAddressTest extends TestCase
 {
     /**
+     * @var bool
+     */
+    protected $multipleOptionsDetected;
+
+    /**
      * Default instance created for all test methods
      *
      * @var Zend_Validate_EmailAddress
