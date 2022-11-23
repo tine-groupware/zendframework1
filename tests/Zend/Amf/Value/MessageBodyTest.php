@@ -44,6 +44,11 @@ require_once 'Zend/Amf/Value/MessageBody.php';
 class Zend_Amf_Value_MessageBodyTest extends TestCase
 {
     /**
+     * @var \Zend_Amf_Value_MessageBody|mixed
+     */
+    protected $body;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
