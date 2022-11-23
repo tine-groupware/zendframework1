@@ -39,6 +39,16 @@ require_once 'Zend/OpenId/Provider/User/Session.php';
  */
 class Zend_OpenId_Provider_User_SessionTest extends TestCase
 {
+    /**
+     * @var \Zend_OpenId_Provider_User_Session|mixed
+     */
+    protected $_user1;
+
+    /**
+     * @var \Zend_OpenId_Provider_User_Session|mixed
+     */
+    protected $_user2;
+
     public const USER1 = "test_user1";
     public const USER2 = "test_user2";
 
