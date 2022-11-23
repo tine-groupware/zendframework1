@@ -43,9 +43,18 @@ require_once 'Zend/Log/Writer/Stream.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Log
  */
-#[AllowDynamicProperties]
 class Zend_Log_Filter_ChainingTest extends TestCase
 {
+    /**
+     * @var resource|bool|mixed
+     */
+    protected $log;
+
+    /**
+     * @var \Zend_Log|mixed
+     */
+    protected $logger;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);
