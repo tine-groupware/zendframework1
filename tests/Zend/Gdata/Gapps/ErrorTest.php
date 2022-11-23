@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps.php';
  */
 class Zend_Gdata_Gapps_ErrorTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_Error|mixed
+     */
+    protected $error;
+
     protected function setUp(): void
     {
         $this->error = new Zend_Gdata_Gapps_Error();

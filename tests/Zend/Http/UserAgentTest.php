@@ -45,6 +45,17 @@ require_once dirname(__FILE__) . '/TestAsset/PopulatedStorage.php';
 #[AllowDynamicProperties]
 class Zend_Http_UserAgentTest extends TestCase
 {
+    /**
+     * @var mixed[]|array<string, string>|mixed|array<string, mixed>
+     */
+
+     protected $server;
+
+     /**
+     * @var array<string, array<string, string>>|mixed|array<string, string>|array<string, array<string, class-string<\Zend_Http_TestAsset_TestPluginLoader>>>|array<string, array<string, array<string, class-string<\Zend_Http_TestAsset_DesktopDevice>>>>|array<string, array<string, array<string, string>>>|array<string, array<string, array<string, class-string<\Zend_Http_TestAsset_InvalidDevice>>>>|array<string, mixed>
+     */
+    protected $config;
+
     protected function setUp(): void
     {
         Zend_Session::$_unitTestEnabled = true;

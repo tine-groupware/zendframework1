@@ -38,6 +38,11 @@ require_once 'Zend/Gdata/Gapps.php';
  */
 class Zend_Gdata_Gapps_ServiceExceptionTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $xmlSample;
+
     protected $fixture;
     protected $data;
 

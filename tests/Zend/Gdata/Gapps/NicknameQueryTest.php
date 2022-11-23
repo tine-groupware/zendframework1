@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/NicknameQuery.php';
  */
 class Zend_Gdata_Gapps_NicknameQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_NicknameQuery|mixed
+     */
+    protected $query;
+
     protected function setUp(): void
     {
         $this->query = new Zend_Gdata_Gapps_NicknameQuery();

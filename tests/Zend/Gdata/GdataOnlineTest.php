@@ -40,6 +40,11 @@ require_once 'Zend/Gdata/App/InvalidArgumentException.php';
  */
 class Zend_Gdata_GdataOnlineTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata|mixed
+     */
+    protected $gdata;
+
     private $blog = null; // blog ID from config
 
     protected function setUp(): void

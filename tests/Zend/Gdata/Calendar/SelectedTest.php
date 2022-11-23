@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_SelectedTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $selectedText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_Selected|mixed
+     */
+    protected $selected;
+
     protected function setUp(): void
     {
         $this->selectedText = file_get_contents(

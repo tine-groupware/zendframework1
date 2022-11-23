@@ -51,9 +51,23 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-#[AllowDynamicProperties]
 class Zend_Form_DisplayGroupTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    protected $error;
+
+    /**
+     * @var \Zend_Loader_PluginLoader|mixed
+     */
+    protected $loader;
+
+    /**
+     * @var \Zend_Form_DisplayGroup|mixed
+     */
+    protected $group;
+
     public static function main()
     {
         $suite = new TestSuite('Zend_Form_DisplayGroupTest');

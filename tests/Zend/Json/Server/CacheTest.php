@@ -44,9 +44,18 @@ require_once 'Zend/Json/Server.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
-#[AllowDynamicProperties]
 class Zend_Json_Server_CacheTest extends TestCase
 {
+    /**
+     * @var \Zend_Json_Server|mixed
+     */
+    protected $server;
+
+    /**
+     * @var string|bool|mixed
+     */
+    protected $cacheFile;
+
     /**
      * Runs the test methods of this class.
      *

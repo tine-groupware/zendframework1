@@ -40,6 +40,11 @@ require_once 'Zend/Stdlib/PriorityQueue.php';
  */
 class Zend_Stdlib_PriorityQueueTest extends TestCase
 {
+    /**
+     * @var \Zend_Stdlib_PriorityQueue|mixed
+     */
+    protected $queue;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

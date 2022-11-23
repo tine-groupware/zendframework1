@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_AccessLevelTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $accessLevelText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_AccessLevel|mixed
+     */
+    protected $accessLevel;
+
     protected function setUp(): void
     {
         $this->accessLevelText = file_get_contents(

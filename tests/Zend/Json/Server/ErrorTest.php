@@ -44,9 +44,13 @@ require_once 'Zend/Json.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
-#[AllowDynamicProperties]
 class Zend_Json_Server_ErrorTest extends TestCase
 {
+    /**
+     * @var \Zend_Json_Server_Error|mixed
+     */
+    protected $error;
+
     /**
      * Runs the test methods of this class.
      *

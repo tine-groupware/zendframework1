@@ -48,6 +48,8 @@ require_once 'Zend/Controller/Response/Cli.php';
  */
 class Zend_Controller_Dispatcher_StandardTest extends TestCase
 {
+    protected $error;
+
     protected $_dispatcher;
 
     /**

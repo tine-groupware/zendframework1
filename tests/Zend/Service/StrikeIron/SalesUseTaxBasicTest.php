@@ -45,6 +45,16 @@ require_once 'Zend/Service/StrikeIron/SalesUseTaxBasic.php';
  */
 class Zend_Service_StrikeIron_SalesUseTaxBasicTest extends TestCase
 {
+    /**
+     * @var \stdclass|mixed
+     */
+    protected $soapClient;
+
+    /**
+     * @var \Zend_Service_StrikeIron_SalesUseTaxBasic|mixed
+     */
+    protected $service;
+
     protected function setUp(): void
     {
         $this->soapClient = new stdclass();

@@ -42,6 +42,16 @@ require_once 'Zend/Service/Amazon/Ec2/Region.php';
 class Zend_Service_Amazon_Ec2_RegionTest extends TestCase
 {
     /**
+     * @var \Zend_Http_Client_Adapter_Test|mixed
+     */
+    protected $adapter;
+
+    /**
+     * @var null
+     */
+    protected $Zend_Service_Amazon_Ec2_Availabilityzones;
+
+    /**
      * @var Zend_Service_Amazon_Ec2_Availabilityzones
      */
     private $Zend_Service_Amazon_Ec2_Region;

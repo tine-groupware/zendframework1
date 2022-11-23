@@ -39,9 +39,18 @@ require_once 'Zend/Loader/ClassMapAutoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
-#[AllowDynamicProperties]
 class Zend_Loader_ClassMapAutoloaderTest extends TestCase
 {
+    /**
+     * @var mixed[]|mixed
+     */
+    protected $loaders;
+
+    /**
+     * @var string|bool|mixed
+     */
+    protected $includePath;
+
     /**
      * @var Zend_Loader_ClassMapAutoloader
      */

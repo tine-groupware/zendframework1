@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_ColCountTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets_Extension_ColCount|mixed
+     */
+    protected $colCount;
+
     protected function setUp(): void
     {
         $this->colCount = new Zend_Gdata_Spreadsheets_Extension_ColCount();

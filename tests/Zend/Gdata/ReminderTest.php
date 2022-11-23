@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_ReminderTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $reminderText;
+
+    /**
+     * @var \Zend_Gdata_Extension_Reminder|mixed
+     */
+    protected $reminder;
+
     protected function setUp(): void
     {
         $this->reminderText = file_get_contents(

@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/OwnerQuery.php';
  */
 class Zend_Gdata_Gapps_OwnerQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_OwnerQuery|mixed
+     */
+    protected $query;
+
     protected function setUp(): void
     {
         $this->query = new Zend_Gdata_Gapps_OwnerQuery();

@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Analytics.php';
 class Zend_GData_Analytics_AccountQueryTest extends TestCase
 {
     /**
+     * @var string|mixed
+     */
+    protected $queryBase;
+
+    /**
      * @var Zend_GData_Analytics_AccountQuery
      */
     public $accountQuery;

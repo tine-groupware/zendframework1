@@ -40,9 +40,18 @@ require_once 'Zend/Stdlib/CallbackHandler.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 class Zend_EventManager_FilterChainTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    protected $message;
+
+    /**
+     * @var \Zend_EventManager_FilterChain|mixed
+     */
+    protected $filterchain;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

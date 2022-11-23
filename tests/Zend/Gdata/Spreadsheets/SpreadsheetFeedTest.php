@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_SpreadsheetFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets_SpreadsheetFeed|mixed
+     */
+    protected $sprFeed;
+
     protected function setUp(): void
     {
         $this->sprFeed = new Zend_Gdata_Spreadsheets_SpreadsheetFeed(

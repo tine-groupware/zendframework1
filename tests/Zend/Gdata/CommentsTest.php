@@ -36,6 +36,15 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_CommentsTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $commentsText;
+    /**
+     * @var \Zend_Gdata_Extension_Comments|mixed
+     */
+    protected $comments;
+
     protected function setUp(): void
     {
         $this->commentsText = file_get_contents(

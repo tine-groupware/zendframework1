@@ -39,6 +39,30 @@ require_once 'Zend/Gdata/HttpClient.php';
  */
 class Zend_Gdata_App_EntryTest extends TestCase
 {
+    protected $enryText;
+
+    protected $httpEntrySample;
+
+    /**
+     * @var \Zend_Gdata_App_Entry|mixed
+     */
+    protected $enry;
+
+    /**
+     * @var \Test_Zend_Gdata_MockHttpClient|mixed
+     */
+    protected $adapter;
+
+    /**
+     * @var \Zend_Gdata_HttpClient|mixed
+     */
+    protected $client;
+
+    /**
+     * @var \Zend_Gdata_App|mixed
+     */
+    protected $service;
+
     protected function setUp(): void
     {
         $this->enryText = $this->loadResponse(

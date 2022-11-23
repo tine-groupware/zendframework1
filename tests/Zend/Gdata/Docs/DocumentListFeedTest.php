@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Docs_DocumentListFeedTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Docs_DocumentListFeed|mixed
+     */
+    protected $docFeed;
+
     protected function setUp(): void
     {
         $this->docFeed = new Zend_Gdata_Docs_DocumentListFeed(

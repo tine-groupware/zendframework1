@@ -38,6 +38,16 @@ require_once 'Zend/Gdata/App.php';
  */
 class Zend_Gdata_App_GeneratorTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $generatorText;
+
+    /**
+     * @var \Zend_Gdata_App_Extension_Generator|mixed
+     */
+    protected $generator;
+
     protected function setUp(): void
     {
         $this->generatorText = file_get_contents(

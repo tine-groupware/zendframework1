@@ -54,9 +54,33 @@ require_once 'Zend/Layout.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_AutoCompleteTest extends TestCase
 {
+    /**
+     * @var \Zend_Controller_Request_Http|mixed
+     */
+    protected $request;
+
+    /**
+     * @var \Zend_Controller_Response_Cli|mixed
+     */
+    protected $response;
+
+    /**
+     * @var \Zend_Controller_Front|mixed
+     */
+    protected $front;
+
+    /**
+     * @var \Zend_Controller_Action_Helper_Abstract|mixed
+     */
+    protected $viewRenderer;
+
+    /**
+     * @var \Zend_Layout|mixed
+     */
+    protected $layout;
+
     /**
      * Runs the test methods of this class.
      *

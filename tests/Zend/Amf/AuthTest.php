@@ -51,6 +51,11 @@ require_once 'Zend/Acl/Role.php';
 class Zend_Amf_AuthTest extends TestCase
 {
     /**
+     * @var \Zend_Acl|mixed
+     */
+    protected $_acl;
+
+    /**
      * Enter description here...
      *
      * @var Zend_Amf_Server
@@ -301,6 +306,14 @@ class WrongPassword extends Zend_Amf_Auth_Abstract
 
 class RightPassword extends Zend_Amf_Auth_Abstract
 {
+    /**
+     * @var mixed
+     */
+    protected $_name;
+    /**
+     * @var mixed
+     */
+    protected $_role;
     public function __construct($name, $role)
     {
         $this->_name = $name;

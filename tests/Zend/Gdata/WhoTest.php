@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_WhoTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $whoText;
+
+    /**
+     * @var \Zend_Gdata_Extension_Who|mixed
+     */
+    protected $who;
+
     protected function setUp(): void
     {
         $this->whoText = file_get_contents(

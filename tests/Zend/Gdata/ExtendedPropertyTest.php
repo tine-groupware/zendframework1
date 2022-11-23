@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_ExtendedPropertyTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $extendedPropertyText;
+
+    /**
+     * @var \Zend_Gdata_Extension_ExtendedProperty|mixed
+     */
+    protected $extendedProperty;
+
     protected function setUp(): void
     {
         $this->extendedPropertyText = file_get_contents(

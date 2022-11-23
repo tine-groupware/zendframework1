@@ -50,6 +50,16 @@ require_once 'Zend/Queue/Adapter/Array.php';
  */
 class Zend_Queue_QueueTest extends TestCase
 {
+    /**
+     * @var array<string, mixed[]>|array<string, string>|mixed|array<string, mixed>
+     */
+    protected $config;
+
+    /**
+     * @var \Zend_Queue|mixed
+     */
+    protected $queue;
+
     protected function setUp(): void
     {
         // Test Zend_Config

@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Calendar.php';
  */
 class Zend_Gdata_Calendar_TimezoneTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $timezoneText;
+
+    /**
+     * @var \Zend_Gdata_Calendar_Extension_Timezone|mixed
+     */
+    protected $timezone;
+
     protected function setUp(): void
     {
         $this->timezoneText = file_get_contents(

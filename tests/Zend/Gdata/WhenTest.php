@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_WhenTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $whenText;
+
+    /**
+     * @var \Zend_Gdata_Extension_When|mixed
+     */
+    protected $when;
+
     protected function setUp(): void
     {
         $this->whenText = file_get_contents(

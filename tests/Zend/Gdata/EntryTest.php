@@ -35,6 +35,46 @@ require_once 'Zend/Gdata/Entry.php';
  */
 class Zend_Gdata_EntryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Entry|mixed
+     */
+    protected $entry;
+
+    /**
+     * @var string|bool|mixed
+     */
+    protected $entryText;
+
+    /**
+     * @var string|mixed
+     */
+    protected $etagLocalName;
+
+    /**
+     * @var string|mixed
+     */
+    protected $expectedEtag;
+
+    /**
+     * @var string|mixed
+     */
+    protected $expectedMismatchExceptionMessage;
+
+    /**
+     * @var string|mixed
+     */
+    protected $gdNamespace;
+
+    /**
+     * @var string|mixed
+     */
+    protected $openSearchNamespacev1;
+
+    /**
+     * @var string|mixed
+     */
+    protected $openSearchNamespacev2;
+
     protected function setUp(): void
     {
         $this->entry = new Zend_Gdata_Entry();

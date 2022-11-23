@@ -43,9 +43,21 @@ require_once 'Zend/Dom/Query.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Dom
  */
-#[AllowDynamicProperties]
 class Zend_Dom_QueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Dom_Query|mixed
+     */
+    protected $query;
+
+    /**
+     * @var string
+     */
+    protected $error;
+
+    /**
+     * @var string
+     */
     public $html;
 
     /**

@@ -45,9 +45,13 @@ require_once 'Zend/Json.php';
  * @group      Zend_Json
  * @group      Zend_Json_Server
  */
-#[AllowDynamicProperties]
 class Zend_Json_Server_SmdTest extends TestCase
 {
+    /**
+     * @var \Zend_Json_Server_Smd|mixed
+     */
+    protected $smd;
+
     /**
      * Runs the test methods of this class.
      *

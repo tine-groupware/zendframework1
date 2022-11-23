@@ -39,6 +39,11 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
 class Zend_Service_Amazon_Sqs_OnlineTest extends TestCase
 {
     /**
+     * @var mixed
+     */
+    protected $_queue_name;
+
+    /**
      * Reference to Amazon service consumer object
      *
      * @var Zend_Service_Amazon_Sqs

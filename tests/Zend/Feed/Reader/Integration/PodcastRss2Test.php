@@ -36,6 +36,11 @@ require_once 'Zend/Feed/Reader.php';
  */
 class Zend_Feed_Reader_Integration_PodcastRss2Test extends TestCase
 {
+    /**
+     * @var mixed[]|void|mixed
+     */
+    protected $_options;
+
     protected $_feedSamplePath = null;
 
     protected function setUp(): void

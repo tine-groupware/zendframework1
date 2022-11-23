@@ -36,9 +36,79 @@ require_once 'Zend/Config/Yaml.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
-#[AllowDynamicProperties]
 class Zend_Config_YamlTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileConfig;
+
+    /**
+     * @var string|mixed
+     */
+
+     protected $_iniFileAllSectionsConfig;
+
+     /**
+     * @var string|mixed
+     */
+    protected $_iniFileCircularConfig;
+
+    /**
+     * @var string
+     */
+    protected $_nonReadableConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileInvalid;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileSameNameKeysConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_badIndentationConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_booleansConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_constantsConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_yamlInlineCommentsConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_yamlIndentedCommentsConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_yamlListConstantsConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_listBooleansConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_yamlSingleQuotedString;
+
     protected function setUp(): void
     {
         $this->_iniFileConfig = dirname(__FILE__) . '/_files/config.yaml';

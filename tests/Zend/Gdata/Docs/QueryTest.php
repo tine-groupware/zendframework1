@@ -38,6 +38,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Docs_QueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Docs_Query|mixed
+     */
+    protected $docQuery;
+
     protected function setUp(): void
     {
         $this->docQuery = new Zend_Gdata_Docs_Query();

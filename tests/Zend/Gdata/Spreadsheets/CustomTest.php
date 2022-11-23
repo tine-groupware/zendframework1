@@ -37,6 +37,11 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Spreadsheets_CustomTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Spreadsheets_Extension_Custom|mixed
+     */
+    protected $custom;
+
     protected function setUp(): void
     {
         $this->custom = new Zend_Gdata_Spreadsheets_Extension_Custom();

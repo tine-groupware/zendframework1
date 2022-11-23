@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/App.php';
  */
 class Zend_Gdata_App_AuthorTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $authorText;
+
+    /**
+     * @var \Zend_Gdata_App_Extension_Author|mixed
+     */
+    protected $author;
+
     protected function setUp(): void
     {
         $this->authorText = file_get_contents(

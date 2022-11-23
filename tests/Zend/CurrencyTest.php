@@ -38,9 +38,13 @@ require_once 'Zend/Currency.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Currency
  */
-#[AllowDynamicProperties]
 class Zend_CurrencyTest extends TestCase
 {
+    /**
+     * @var \Zend_Cache_Core|mixed
+     */
+    protected $_cache;
+
     protected function setUp(): void
     {
         require_once 'Zend/Cache.php';

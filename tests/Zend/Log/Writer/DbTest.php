@@ -41,9 +41,23 @@ require_once 'Zend/Log/Writer/Db.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Log
  */
-#[AllowDynamicProperties]
 class Zend_Log_Writer_DbTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $tableName;
+
+    /**
+     * @var \Zend_Log_Writer_DbTest_MockDbAdapter|mixed
+     */
+    protected $db;
+
+    /**
+     * @var \Zend_Log_Writer_Db|mixed
+     */
+    protected $writer;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

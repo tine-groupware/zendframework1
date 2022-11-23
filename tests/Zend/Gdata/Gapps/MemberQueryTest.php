@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/MemberQuery.php';
  */
 class Zend_Gdata_Gapps_MemberQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_MemberQuery|mixed
+     */
+    protected $query;
+
     protected function setUp(): void
     {
         $this->query = new Zend_Gdata_Gapps_MemberQuery();

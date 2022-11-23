@@ -49,9 +49,28 @@ require_once 'Zend/Log/FactoryInterface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Log
  */
-#[AllowDynamicProperties]
 class Zend_Log_LogTest extends TestCase
 {
+    /**
+     * @var resource|bool|mixed
+     */
+    protected $log;
+
+    /**
+     * @var \Zend_Log_Writer_Stream|mixed
+     */
+    protected $writer;
+
+    /**
+     * @var \Zend_Log_Writer_Mock|mixed
+     */
+    protected $errWriter;
+
+    /**
+     * @var bool|mixed
+     */
+    protected $expectingLogging;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

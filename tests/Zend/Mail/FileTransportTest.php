@@ -41,9 +41,12 @@ require_once 'Zend/Mail/Transport/File.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Mail
  */
-#[AllowDynamicProperties]
 class Zend_Mail_FileTransportTest extends TestCase
 {
+    /**
+     * @var bool|mixed
+     */
+    protected $createdTmpDir;
     protected $_params;
     protected $_transport;
     protected $_tmpdir;

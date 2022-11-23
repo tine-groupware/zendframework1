@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/EmailListQuery.php';
  */
 class Zend_Gdata_Gapps_EmailListQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_EmailListQuery|mixed
+     */
+    protected $query;
+
     protected function setUp(): void
     {
         $this->query = new Zend_Gdata_Gapps_EmailListQuery();

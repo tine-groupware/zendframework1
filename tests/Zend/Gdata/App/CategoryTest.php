@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/App.php';
  */
 class Zend_Gdata_App_CategoryTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $categoryText;
+
+    /**
+     * @var \Zend_Gdata_App_Extension_Category|mixed
+     */
+    protected $category;
+
     protected function setUp(): void
     {
         $this->categoryText = file_get_contents(

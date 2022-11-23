@@ -36,6 +36,11 @@ require_once 'Zend/Oauth/Http/AccessToken.php';
  */
 class Zend_Oauth_Http_AccessTokenTest extends TestCase
 {
+    /**
+     * @var \Test_Http_Utility_39745|mixed
+     */
+    protected $stubHttpUtility;
+
     protected $stubConsumer = null;
 
     protected function setUp(): void

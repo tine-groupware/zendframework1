@@ -42,6 +42,11 @@ require_once 'Zend/Service/Amazon/Ec2/Availabilityzones.php';
 class Zend_Service_Amazon_Ec2_AvailabilityzonesTest extends TestCase
 {
     /**
+     * @var \Zend_Http_Client_Adapter_Test|mixed
+     */
+    protected $adapter;
+
+    /**
      * @var Zend_Service_Amazon_Ec2_Availabilityzones
      */
     private $Zend_Service_Amazon_Ec2_Availabilityzones;

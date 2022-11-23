@@ -40,6 +40,8 @@ require_once 'Zend/Service/WindowsAzure/Storage/Table.php';
  */
 class Zend_Service_WindowsAzure_SessionHandlerTest extends TestCase
 {
+    protected $status;
+
     protected static $uniqId = 0;
 
     public function __construct()

@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_AttendeeTypeTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $attendeeTypeText;
+
+    /**
+     * @var \Zend_Gdata_Extension_AttendeeType|mixed
+     */
+    protected $attendeeType;
+
     protected function setUp(): void
     {
         $this->attendeeTypeText = file_get_contents(

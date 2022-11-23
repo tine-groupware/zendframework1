@@ -51,6 +51,11 @@ class Zend_ValidateTest extends TestCase
     /**
      * @var bool
      */
+    protected $error;
+
+    /**
+     * @var bool
+     */
     protected $_errorOccurred;
 
     /**

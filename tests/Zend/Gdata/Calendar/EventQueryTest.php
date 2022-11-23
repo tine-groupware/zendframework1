@@ -38,6 +38,10 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_Calendar_EventQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Calendar_EventQuery|mixed
+     */
+    protected $query;
     public const GOOGLE_DEVELOPER_CALENDAR = 'developer-calendar@google.com';
     public const ZEND_CONFERENCE_EVENT = 'bn2h4o4mc3a03ci4t48j3m56pg';
     public const ZEND_CONFERENCE_EVENT_COMMENT = 'i9q87onko1uphfs7i21elnnb4g';

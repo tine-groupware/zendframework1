@@ -36,6 +36,15 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_FeedLinkTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $feedLinkText;
+
+    /**
+     * @var \Zend_Gdata_Extension_FeedLink|mixed
+     */
+    protected $feedLink;
     protected function setUp(): void
     {
         $this->feedLinkText = file_get_contents(

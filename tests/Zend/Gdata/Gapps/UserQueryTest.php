@@ -37,6 +37,11 @@ require_once 'Zend/Gdata/Gapps/UserQuery.php';
  */
 class Zend_Gdata_Gapps_UserQueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Gapps_UserQuery|mixed
+     */
+    protected $query;
+
     protected function setUp(): void
     {
         $this->query = new Zend_Gdata_Gapps_UserQuery();

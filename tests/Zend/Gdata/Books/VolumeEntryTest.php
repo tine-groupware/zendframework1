@@ -37,6 +37,16 @@ require_once 'Zend/Gdata/Books.php';
  */
 class Zend_Gdata_Books_VolumeEntryTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $entryText;
+
+    /**
+     * @var \Zend_Gdata_Books_VolumeEntry|mixed
+     */
+    protected $entry;
+
     protected function setUp(): void
     {
         $this->entryText = file_get_contents(

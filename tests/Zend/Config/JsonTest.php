@@ -35,9 +35,28 @@ require_once 'Zend/Config/Json.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 class Zend_Config_JsonTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileMultipleInheritanceConfig;
+
+    /**
+     * @var string
+     */
+    protected $_nonReadableConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileNoSectionsConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileInvalid;
+
     protected $_iniFileConfig;
     protected $_iniFileAllSectionsConfig;
     protected $_iniFileCircularConfig;

@@ -56,9 +56,48 @@ require_once 'Zend/View/Interface.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_ContextSwitchTest extends TestCase
 {
+    /**
+     * @var \Zend_Controller_Front|mixed
+     */
+    protected $front;
+
+    /**
+     * @var \Zend_Layout|mixed
+     */
+    protected $layout;
+
+    /**
+     * @var \Zend_Controller_Action_Helper_ContextSwitch|mixed
+     */
+    protected $helper;
+
+    /**
+     * @var \Zend_Controller_Request_Http|mixed
+     */
+    protected $request;
+
+    /**
+     * @var \Zend_Controller_Response_Cli|mixed
+     */
+    protected $response;
+
+    /**
+     * @var \Zend_View|mixed
+     */
+    protected $view;
+
+    /**
+     * @var \Zend_Controller_Action_Helper_Abstract|mixed
+     */
+    protected $viewRenderer;
+
+    /**
+     * @var \Zend_Controller_Action_Helper_ContextSwitchTestController|mixed
+     */
+    protected $controller;
+
     /**
      * Runs the test methods of this class.
      *

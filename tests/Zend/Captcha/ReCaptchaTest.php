@@ -41,9 +41,20 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
-#[AllowDynamicProperties]
 class Zend_Captcha_ReCaptchaTest extends TestCase
 {
+    protected $word;
+
+    /**
+     * @var \Zend_Form_Element_Captcha|mixed
+     */
+    protected $element;
+
+    /**
+     * @var \Zend_Captcha_Adapter
+     */
+    protected $captcha;
+
     /**
      * Runs the test methods of this class.
      *

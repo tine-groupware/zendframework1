@@ -37,6 +37,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_Gapps_NameTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $theNameText;
+
+    /**
+     * @var \Zend_Gdata_Gapps_Extension_Name|mixed
+     */
+    protected $theName;
+
     protected function setUp(): void
     {
         $this->theNameText = file_get_contents(

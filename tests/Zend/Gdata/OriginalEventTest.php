@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_OriginalEventTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $originalEventText;
+
+    /**
+     * @var \Zend_Gdata_Extension_OriginalEvent|mixed
+     */
+    protected $originalEvent;
+
     protected function setUp(): void
     {
         $this->originalEventText = file_get_contents(

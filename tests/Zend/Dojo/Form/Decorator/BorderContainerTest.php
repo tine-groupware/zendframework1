@@ -59,6 +59,18 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
 class Zend_Dojo_Form_Decorator_BorderContainerTest extends TestCase
 {
     /**
+     * @var \Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var \Zend_Dojo_Form_Decorator_BorderContainer|mixed
+     */
+    protected $decorator;
+
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

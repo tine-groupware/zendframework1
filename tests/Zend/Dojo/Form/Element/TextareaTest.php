@@ -56,6 +56,16 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
 class Zend_Dojo_Form_Element_TextareaTest extends TestCase
 {
     /**
+     * @var \Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var \Zend_Dojo_Form_Element_Textarea
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

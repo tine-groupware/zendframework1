@@ -36,9 +36,18 @@ require_once 'Zend/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Date
  */
-#[AllowDynamicProperties]
 class Zend_Date_DateObjectTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $originalTimezone;
+
+    /**
+     * @var \Zend_Cache_Core|mixed
+     */
+    protected $_cache;
+
     protected function setUp(): void
     {
         $this->originalTimezone = date_default_timezone_get();

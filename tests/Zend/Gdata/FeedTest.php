@@ -37,6 +37,51 @@ require_once 'Zend/Gdata/App/Util.php';
  */
 class Zend_Gdata_FeedTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $etagLocalName;
+
+    /**
+     * @var string|mixed
+     */
+    protected $expectedEtag;
+
+    /**
+     * @var string|mixed
+     */
+    protected $expectedMismatchExceptionMessage;
+
+    /**
+     * @var \Zend_Gdata_Feed|mixed
+     */
+    protected $feed;
+
+    /**
+     * @var string|bool|mixed
+     */
+    protected $feedTextV1;
+
+    /**
+     * @var string|bool|mixed
+     */
+    protected $feedTextV2;
+
+    /**
+     * @var string|mixed
+     */
+    protected $gdNamespace;
+
+    /**
+     * @var string|mixed
+     */
+    protected $openSearchNamespacev1;
+
+    /**
+     * @var string|mixed
+     */
+    protected $openSearchNamespacev2;
+
     protected function setUp(): void
     {
         $this->etagLocalName = 'etag';

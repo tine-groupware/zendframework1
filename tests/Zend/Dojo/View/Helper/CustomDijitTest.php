@@ -56,6 +56,11 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
 class Zend_Dojo_View_Helper_CustomDijitTest extends TestCase
 {
     /**
+     * @var \Zend_View
+     */
+    protected $view;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

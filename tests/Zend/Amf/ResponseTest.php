@@ -51,6 +51,16 @@ require_once 'Zend/Date.php';
  */
 class Zend_Amf_ResponseTest extends TestCase
 {
+    /**
+     * @var \Zend_Amf_Value_MessageHeader|mixed
+     */
+    protected $header1;
+
+    /**
+     * @var \Zend_Amf_Value_MessageHeader|mixed
+     */
+    protected $header2;
+
     // The message response status code.
     public $responseURI = "/2/onResult";
 

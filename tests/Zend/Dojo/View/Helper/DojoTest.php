@@ -55,6 +55,11 @@ require_once 'Zend/View.php';
 class Zend_Dojo_View_Helper_DojoTest extends TestCase
 {
     /**
+     * @var \Zend_View
+     */
+    protected $view;
+
+    /**
      * @var Zend_Dojo_View_Helper_Dojo_Container
      */
     protected $helper;

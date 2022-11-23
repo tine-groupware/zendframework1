@@ -79,7 +79,7 @@ class Zend_Mail_MboxTest extends TestCase
 
     protected function tearDown(): void
     {
-        unlink($this->_mboxFile);
+        unlink((string) $this->_mboxFile);
     }
     /** @doesNotPerformAssertions */
     public function testLoadOk()

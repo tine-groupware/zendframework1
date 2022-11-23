@@ -45,6 +45,11 @@ require_once 'Zend/Amf/Adobe/Introspector.php';
  */
 class Zend_Amf_Adobe_IntrospectorTest extends TestCase
 {
+    /**
+     * @var \Zend_Amf_Adobe_Introspector|mixed
+     */
+    protected $introspector;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);

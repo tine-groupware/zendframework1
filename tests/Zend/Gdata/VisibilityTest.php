@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_VisibilityTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $visibilityText;
+
+    /**
+     * @var \Zend_Gdata_Extension_Visibility|mixed
+     */
+    protected $visibility;
+
     protected function setUp(): void
     {
         $this->visibilityText = file_get_contents(

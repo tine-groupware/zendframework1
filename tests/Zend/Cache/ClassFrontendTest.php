@@ -82,9 +82,18 @@ class test
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-#[AllowDynamicProperties]
 class Zend_Cache_ClassFrontendTest extends TestCase
 {
+    /**
+     * @var \Zend_Cache_Backend_Test|mixed
+     */
+    protected $_backend1;
+
+    /**
+     * @var \Zend_Cache_Backend_Test|mixed
+     */
+    protected $_backend2;
+
     private $_instance1;
     private $_instance2;
 

@@ -36,6 +36,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_RecurrenceExceptionTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $recurrenceExceptionText;
+
+    /**
+     * @var \Zend_Gdata_Extension_RecurrenceException|mixed
+     */
+    protected $recurrenceException;
+
     protected function setUp(): void
     {
         $this->recurrenceExceptionText = file_get_contents(

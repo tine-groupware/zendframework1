@@ -37,6 +37,16 @@ require_once 'Zend/Gdata.php';
  */
 class Zend_Gdata_OpenSearchStartIndexTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $openSearchStartIndexText;
+
+    /**
+     * @var \Zend_Gdata_Extension_OpenSearchStartIndex|mixed
+     */
+    protected $openSearchStartIndex;
+
     protected function setUp(): void
     {
         $this->openSearchStartIndexText = file_get_contents(

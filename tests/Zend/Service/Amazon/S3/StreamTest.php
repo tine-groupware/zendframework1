@@ -46,6 +46,36 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
 class Zend_Service_Amazon_S3_StreamTest extends TestCase
 {
     /**
+     * @var \Zend_Service_Amazon_S3|mixed
+     */
+    protected $_amazon;
+
+    /**
+     * @var string
+     */
+    protected $_nosuchbucket;
+
+    /**
+     * @var \Zend_Http_Client_Adapter_Socket|mixed
+     */
+    protected $_httpClientAdapterSocket;
+
+    /**
+     * @var mixed
+     */
+    protected $_bucket;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_bucketName;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_fileName;
+
+    /**
      * Sets up this test case
      *
      * @return void

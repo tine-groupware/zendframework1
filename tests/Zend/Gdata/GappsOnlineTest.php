@@ -40,6 +40,23 @@ require_once 'Zend/Http/Client.php';
  */
 class Zend_Gdata_GappsOnlineTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $id;
+    /**
+     * @var mixed
+     */
+    protected $domain;
+    /**
+     * @var \Zend_Gdata_Gapps|mixed
+     */
+    protected $gdata;
+    /**
+     * @var mixed[]|mixed
+     */
+    protected $autoDeletePool;
+
     public const GIVEN_NAME = 'Zend_Gdata';
     public const FAMILY_NAME = 'Automated Test Account';
     public const PASSWORD = '4ohtladfl;';
