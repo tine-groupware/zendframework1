@@ -58,6 +58,18 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  */
 class Zend_Dojo_Form_Decorator_AccordionContainerTest extends TestCase
 {
+    protected $view;
+
+    /**
+     * @var \Zend_Dojo_Form_Decorator_AccordionContainer|mixed
+     */
+    protected $decorator;
+
+    /**
+     * @var \Zend_Dojo_Form
+     */
+    protected $element;
+
     /**
      * Runs the test methods of this class.
      *

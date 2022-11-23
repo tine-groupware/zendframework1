@@ -56,6 +56,16 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
 class Zend_Dojo_View_Helper_TimeTextBoxTest extends TestCase
 {
     /**
+     * @var \Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var \Zend_Dojo_View_Helper_TimeTextBox|mixed
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

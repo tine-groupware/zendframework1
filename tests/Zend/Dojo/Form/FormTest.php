@@ -50,6 +50,11 @@ require_once 'Zend/View.php';
 class Zend_Dojo_Form_FormTest extends TestCase
 {
     /**
+     * @var \Zend_Dojo_Form|mixed
+     */
+    protected $form;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

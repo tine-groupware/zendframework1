@@ -55,6 +55,13 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  */
 class Zend_Dojo_View_Helper_StackContainerTest extends TestCase
 {
+    protected $view;
+
+    /**
+     * @var \Zend_Dojo_View_Helper_StackContainer|mixed
+     */
+    protected $helper;
+
     /**
      * Runs the test methods of this class.
      *

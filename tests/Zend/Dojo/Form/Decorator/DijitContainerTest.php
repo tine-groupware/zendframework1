@@ -62,6 +62,23 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
 class Zend_Dojo_Form_Decorator_DijitContainerTest extends TestCase
 {
     /**
+     * @var mixed[]|string[]|mixed
+     */
+    protected $errors;
+
+    protected $view;
+
+    /**
+     * @var \Zend_Dojo_Form_Decorator_ContentPane|mixed
+     */
+    protected $decorator;
+
+    /**
+     * @var \Zend_Dojo_Form
+     */
+    protected $element;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void

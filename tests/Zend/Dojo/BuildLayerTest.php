@@ -44,6 +44,11 @@ require_once 'Zend/Json.php';
  */
 class Zend_Dojo_BuildLayerTest extends TestCase
 {
+    /**
+     * @var \Zend_View|mixed
+     */
+    protected $view;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);
