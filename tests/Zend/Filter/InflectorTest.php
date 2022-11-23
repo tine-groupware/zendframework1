@@ -52,9 +52,23 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-#[AllowDynamicProperties]
 class Zend_Filter_InflectorTest extends TestCase
 {
+    /**
+     * @var \Zend_Filter_Inflector|mixed
+     */
+    protected $inflector;
+
+    /**
+     * @var \Zend_Loader_PluginLoader_Interface|mixed
+     */
+    protected $loader;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_context;
+
     /**
      * Runs the test methods of this class.
      *
