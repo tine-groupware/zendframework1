@@ -32,9 +32,13 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interface
 {
+    /**
+     * @var array<string, mixed>|array<string, object>
+     */
+    protected $_resources;
+
     /**
      * @var string Base path to resource classes
      */
