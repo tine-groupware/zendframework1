@@ -43,6 +43,11 @@ require_once 'Zend/Service/Amazon/Ec2/Instance.php';
 class Zend_Service_Amazon_Ec2_InstanceTest extends TestCase
 {
     /**
+     * @var \Zend_Http_Client_Adapter_Test|mixed
+     */
+    protected $adapter;
+
+    /**
      * @var Zend_Service_Amazon_Ec2_Instance
      */
     private $Zend_Service_Amazon_Ec2_Instance;

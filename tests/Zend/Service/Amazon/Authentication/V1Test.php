@@ -37,6 +37,11 @@ require_once 'Zend/Service/Amazon/Authentication/V1.php';
 class Zend_Service_Amazon_Authentication_V1Test extends TestCase
 {
     /**
+     * @var \Zend_Service_Amazon_Authentication_V1|null|mixed
+     */
+    protected $Zend_Service_Amazon_Authentication_V1;
+
+    /**
      * @var Zend_Service_Amazon_Authentication_V2
      */
     private $Zend_Service_Amazon_Authentication_V2;

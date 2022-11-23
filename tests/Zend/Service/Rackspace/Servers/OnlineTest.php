@@ -36,6 +36,11 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
 class Zend_Service_Rackspace_Servers_OnlineTest extends TestCase
 {
     /**
+     * @var string
+     */
+    protected $filename;
+
+    /**
      * Reference to Rackspace Servers object
      *
      * @var Zend_Service_Rackspace_Servers

@@ -41,6 +41,11 @@ require_once 'Zend/Service/StrikeIron/BaseTest.php';
  */
 class Zend_Service_StrikeIron_NoSoapTest extends TestCase
 {
+    /**
+     * @var \Zend_Service_StrikeIron_BaseTest_MockSoapClient|mixed
+     */
+    protected $soapClient;
+
     protected function setUp(): void
     {
         $this->soapClient = new Zend_Service_StrikeIron_BaseTest_MockSoapClient();
