@@ -48,6 +48,16 @@ require_once 'Zend/Registry.php';
 class Zend_View_Helper_AttributeJsEscapingTest extends TestCase
 {
     /**
+     * @var \Zend_View|mixed
+     */
+    protected $view;
+
+    /**
+     * @var \Zend_View_Helper_FormSubmit|mixed
+     */
+    protected $helper;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
