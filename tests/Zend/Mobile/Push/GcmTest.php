@@ -39,6 +39,26 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Mobile_Push_gcmTest extends TestCase
 {
+    /**
+     * @var \Zend_Http_Client_Adapter_Test|mixed
+     */
+    protected $adapter;
+
+    /**
+     * @var \Zend_Http_Client|mixed
+     */
+    protected $client;
+
+    /**
+     * @var \Zend_Mobile_Push_Gcm|mixed
+     */
+    protected $gcm;
+
+    /**
+     * @var \Zend_Mobile_Push_Message_Gcm|mixed
+     */
+    protected $message;
+
     protected function _createJSONResponse($id, $success, $failure, $ids, $results)
     {
         return json_encode([
