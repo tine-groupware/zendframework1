@@ -43,6 +43,31 @@ require_once 'Zend/Captcha/Adapter.php';
  */
 class Zend_Captcha_ImageTest extends TestCase
 {
+    /**
+     * @var mixed|string
+     */
+    protected $word;
+
+    /**
+     * @var string|mixed
+     */
+    protected $testDir;
+
+    /**
+     * @var \Zend_Form_Element_Captcha|mixed
+     */
+    protected $element;
+
+    /**
+     * @var \Zend_Captcha_Adapter|mixed
+     */
+    protected $captcha;
+
+    /**
+     * @var string
+     */
+    protected $id;
+
     protected $_tmpDir;
 
     /**
@@ -102,7 +127,7 @@ class Zend_Captcha_ImageTest extends TestCase
     protected function tearDown(): void
     {
         // remove chaptcha images
-        foreach (new DirectoryIterator($this->testDir) as $file) {
+        foreach (new DirectoryIterator((string) $this->testDir) as $file) {
             if (!$file->isDot() && !$file->isDir()) {
                 unlink($file->getPathname());
             }

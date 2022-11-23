@@ -42,9 +42,28 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
-#[AllowDynamicProperties]
 class Zend_Captcha_FigletTest extends TestCase
 {
+    /**
+     * @var mixed|string
+     */
+    protected $word;
+
+    /**
+     * @var \Zend_Form_Element_Captcha|mixed
+     */
+    protected $element;
+
+    /**
+     * @var \Zend_Captcha_Adapter|mixed
+     */
+    protected $captcha;
+
+    /**
+     * @var string
+     */
+    protected $id;
+
     /**
      * Runs the test methods of this class.
      *
