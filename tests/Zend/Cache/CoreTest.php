@@ -41,9 +41,13 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-#[AllowDynamicProperties]
 class Zend_Cache_CoreTest extends TestCase
 {
+    /**
+     * @var \Zend_Cache_Backend_Test|mixed
+     */
+    protected $_backend;
+
     private $_instance;
 
     protected function setUp(): void
