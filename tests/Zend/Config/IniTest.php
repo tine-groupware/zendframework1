@@ -36,9 +36,33 @@ require_once 'Zend/Config/Ini.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
-#[AllowDynamicProperties]
 class Zend_Config_IniTest extends TestCase
 {
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileMultipleInheritanceConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileSeparatorConfig;
+
+    /**
+     * @var string
+     */
+    protected $_nonReadableConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileNoSectionsConfig;
+
+    /**
+     * @var string|mixed
+     */
+    protected $_iniFileInvalid;
+
     protected $_iniFileConfig;
     protected $_iniFileAllSectionsConfig;
     protected $_iniFileCircularConfig;
