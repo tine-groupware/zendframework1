@@ -49,6 +49,11 @@ require_once 'Zend/Registry.php';
  */
 class Zend_Measure_TemperatureTest extends TestCase
 {
+    /**
+     * @var string|bool|mixed
+     */
+    protected $_locale;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);
