@@ -48,6 +48,16 @@ require_once 'Zend/Form/SubForm.php';
 class Zend_Form_Decorator_PrepareElementsTest extends TestCase
 {
     /**
+     * @var \Zend_Form|mixed
+     */
+    protected $form;
+
+    /**
+     * @var \Zend_Form_Decorator_Abstract|bool
+     */
+    protected $decorator;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
