@@ -46,9 +46,13 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  */
-#[AllowDynamicProperties]
 class Zend_Controller_ActionTest extends TestCase
 {
+    /**
+     * @var \Zend_Controller_ActionTest_TestController|mixed
+     */
+    protected $_controller;
+
     /**
      * Runs the test methods of this class.
      *

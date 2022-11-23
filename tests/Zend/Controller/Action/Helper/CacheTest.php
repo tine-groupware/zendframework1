@@ -20,9 +20,16 @@ require_once 'Zend/Cache/Backend.php';
 /**
  * Test class for Zend_Controller_Action_Helper_Cache
  */
-#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_CacheTest extends TestCase
 {
+    /**
+     * @var \Zend_Controller_Front|mixed
+     */
+    protected $front;
+    /**
+     * @var \Zend_Controller_Request_Http|mixed
+     */
+    protected $request;
     protected $_requestUriOld;
 
     /**

@@ -51,9 +51,21 @@ require_once 'Zend/Layout.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_JsonTest extends TestCase
 {
+    /**
+     * @var \Zend_Controller_Response_Http|mixed
+     */
+    protected $response;
+
+    /**
+     * @var \Zend_Controller_Action_Helper_ViewRenderer|mixed
+     */
+    protected $viewRenderer;
+    /**
+     * @var \Zend_Controller_Action_Helper_Json|mixed
+     */
+    protected $helper;
     /**
      * Runs the test methods of this class.
      *

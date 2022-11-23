@@ -49,9 +49,18 @@ require_once 'Zend/Controller/Response/Http.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_RedirectorTest extends TestCase
 {
+    /**
+     * @var \Zend_Controller_Router_Interface|mixed
+     */
+    protected $router;
+
+    /**
+     * @var array<string, mixed>|mixed
+     */
+    protected $_server;
+
     /**
      * @var Zend_Controller_Action_Helper_Redirector
      */
