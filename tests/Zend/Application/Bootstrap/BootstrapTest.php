@@ -42,9 +42,28 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-#[AllowDynamicProperties]
 class Zend_Application_Bootstrap_BootstrapTest extends TestCase
 {
+    /**
+     * @var mixed[]|mixed
+     */
+    protected $loaders;
+
+    /**
+     * @var \Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var \Zend_Application|mixed
+     */
+    protected $application;
+
+    /**
+     * @var \Zend_Application_Bootstrap_Bootstrap|mixed
+     */
+    protected $bootstrap;
+
     public static function main()
     {
         $suite = new TestSuite(__CLASS__);
