@@ -56,6 +56,11 @@ require_once 'Zend/Controller/Action.php';
 class Zend_Test_PHPUnit_ControllerTestCaseTest extends TestCase
 {
     /**
+     * @var \Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete|mixed
+     */
+    protected $testCase;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
