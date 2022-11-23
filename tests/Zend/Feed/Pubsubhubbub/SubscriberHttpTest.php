@@ -46,6 +46,8 @@ require_once 'Zend/Uri/Http.php';
  */
 class Zend_Feed_Pubsubhubbub_SubscriberHttpTest extends TestCase
 {
+    protected $_storage;
+
     protected $_subscriber = null;
 
     protected $_baseuri;
