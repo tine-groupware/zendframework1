@@ -45,6 +45,11 @@ class Test_Oauth_Client extends Zend_Oauth_Client
  */
 class Zend_Oauth_ClientTest extends TestCase
 {
+    /**
+     * @var \Zend_Oauth_Client|mixed
+     */
+    protected $client;
+
     protected function setUp(): void
     {
         $this->client = new Zend_Oauth_Client([]);
