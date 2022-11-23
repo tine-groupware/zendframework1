@@ -46,6 +46,21 @@ require_once 'Zend/XmlRpc/Request/Http.php';
 class Zend_XmlRpc_Request_HttpTest extends TestCase
 {
     /**
+     * @var string|mixed
+     */
+    protected $xml;
+
+    /**
+     * @var \Zend_XmlRpc_Request_Http|mixed
+     */
+    protected $request;
+
+    /**
+     * @var array<string, mixed>|mixed
+     */
+    protected $server;
+
+    /**
      * Runs the test methods of this class.
      *
      * @return void
@@ -189,6 +204,14 @@ EOT;
 
 class Zend_XmlRpc_Request_HttpTest_Extension extends Zend_XmlRpc_Request_Http
 {
+    /**
+     * @var string|null
+     */
+    protected $method;
+    /**
+     * @var mixed[]
+     */
+    protected $params;
     public function __construct($method = null, $params = null)
     {
         $this->method = $method;
