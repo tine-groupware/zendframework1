@@ -399,6 +399,8 @@ class Zend_Captcha_ImageTest extends TestCase
 
 class Zend_Captcha_ImageTest_SessionContainer
 {
+    public $setExpirationHops;
+    public $setExpirationSeconds;
     protected static $_word;
 
     public function __get($name)
