@@ -532,7 +532,7 @@ class Zend_Pdf_StringParser
 
 
     /**
-     * Read inderect object from a PDF stream
+     * Read indirect object from a PDF stream
      *
      * @param integer $offset
      * @param Zend_Pdf_Element_Reference_Context $context
