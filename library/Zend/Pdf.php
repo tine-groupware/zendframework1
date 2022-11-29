@@ -81,10 +81,14 @@ require_once 'Zend/Pdf/Element/String.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 class Zend_Pdf
 {
-  /**** Class Constants ****/
+    /**
+     * @var string
+     */
+    protected $_pdfHeaderVersion;
+
+    /**** Class Constants ****/
 
     /**
      * Version number of generated PDF documents.
