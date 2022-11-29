@@ -32,9 +32,13 @@ require_once 'Zend/Json.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 class Zend_Json_Decoder
 {
+    /**
+     * @var mixed|string|null|bool|int|float
+     */
+    protected $_tokenValue;
+
     /**
      * Parse tokens used to decode the JSON object. These are not
      * for public consumption, they are just used internally to the

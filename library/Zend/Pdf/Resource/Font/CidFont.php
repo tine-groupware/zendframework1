@@ -54,9 +54,13 @@ require_once 'Zend/Pdf/Resource/Font.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-#[AllowDynamicProperties]
 abstract class Zend_Pdf_Resource_Font_CidFont extends Zend_Pdf_Resource_Font
 {
+    /**
+     * @var mixed
+     */
+    protected $_isMonospaced;
+
     /**
      * Object representing the font's cmap (character to glyph map).
      * @var Zend_Pdf_Cmap

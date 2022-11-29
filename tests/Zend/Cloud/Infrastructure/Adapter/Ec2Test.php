@@ -247,7 +247,3 @@ class Zend_Cloud_Infrastructure_Adapter_Ec2Test extends TestCase
         $this->assertTrue($this->infrastructure->destroyInstance(self::$instanceId));
     }
 }
-
-if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_Infrastructure_Adapter_Ec2Test::main') {
-    Zend_Cloud_Infrastructure_Adapter_Ec2Test::main();
-}
