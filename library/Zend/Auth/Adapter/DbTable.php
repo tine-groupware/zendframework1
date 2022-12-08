@@ -158,9 +158,9 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
     /**
      * _setDbAdapter() - set the database adapter to be used for quering
      *
-     * @param Zend_Db_Adapter_Abstract
-     * @throws Zend_Auth_Adapter_Exception
+     * @param Zend_Db_Adapter_Abstract$zendDb
      * @return Zend_Auth_Adapter_DbTable
+     * @throws Zend_Auth_Adapter_Exception
      */
     protected function _setDbAdapter(Zend_Db_Adapter_Abstract $zendDb = null)
     {
