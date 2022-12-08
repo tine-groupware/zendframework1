@@ -1562,7 +1562,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             $value = $this->_db->quote(12.34, $typeName);
             $this->assertTrue(is_string($value));
             $this->assertEquals(
-                '12.34',
+                '12.340000',
                 $value,
                 "Incorrect quote() FLOAT_TYPE result"
             );
@@ -1570,7 +1570,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             $value = $this->_db->quote('12.34', $typeName);
             $this->assertTrue(is_string($value));
             $this->assertEquals(
-                '12.34',
+                '12.340000',
                 $value,
                 "Incorrect quote() FLOAT_TYPE result"
             );
@@ -1578,7 +1578,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             $value = $this->_db->quote('+12.34', $typeName);
             $this->assertTrue(is_string($value));
             $this->assertEquals(
-                '12.34',
+                '12.340000',
                 $value,
                 "Incorrect quote() FLOAT_TYPE result"
             );
@@ -1586,7 +1586,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             $value = $this->_db->quote('-12.34', $typeName);
             $this->assertTrue(is_string($value));
             $this->assertEquals(
-                '-12.34',
+                '-12.340000',
                 $value,
                 "Incorrect quote() FLOAT_TYPE result"
             );
@@ -1594,7 +1594,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             $value = $this->_db->quote('12.34abcd', $typeName);
             $this->assertTrue(is_string($value));
             $this->assertEquals(
-                '12.34',
+                '12.340000',
                 $value,
                 "Incorrect quote() FLOAT_TYPE result"
             );
@@ -1602,7 +1602,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
             $value = $this->_db->quote('abcd', $typeName);
             $this->assertTrue(is_string($value));
             $this->assertEquals(
-                '0',
+                '0.000000',
                 $value,
                 "Incorrect quote() FLOAT_TYPE result"
             );
