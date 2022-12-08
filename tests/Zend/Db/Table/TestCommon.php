@@ -239,7 +239,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
             ['name' => $tableName]
         );
         $info = $table->info();
-        $this->assertStringContainsString('name', array_keys($info));
+        $this->assertContains('name', array_keys($info));
         $this->assertEquals($tableName, $info['name']);
     }
 
