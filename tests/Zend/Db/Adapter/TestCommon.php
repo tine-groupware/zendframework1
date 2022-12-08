@@ -48,6 +48,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     /**
      * Test AUTO_QUOTE_IDENTIFIERS option
      * Case: Zend_Db::AUTO_QUOTE_IDENTIFIERS = true
+     * @doesNotPerformAssertions
      */
     public function testAdapterZendConfig()
     {
@@ -61,6 +62,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     /**
      * Test empty adapterNamespace issue
      * Case: Zend_Db::AUTO_QUOTE_IDENTIFIERS = true
+     * @doesNotPerformAssertions
      */
     public function testAdapterZendConfigEmptyNamespace()
     {
