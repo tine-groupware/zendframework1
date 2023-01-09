@@ -59,7 +59,7 @@ class Zend_Form_ElementTest extends TestCase
     private $element;
 
     /**
-     *@var string
+     * @var string
      */
     private $error;
 

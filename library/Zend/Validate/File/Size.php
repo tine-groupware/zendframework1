@@ -219,7 +219,7 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
      *
      * @param  integer $max The maximum filesize
      * @return Zend_Validate_File_Size Provides a fluent interface
-     *@throws Zend_Validate_Exception When max is smaller than min
+     * @throws Zend_Validate_Exception When max is smaller than min
      */
     public function setMax($max)
     {

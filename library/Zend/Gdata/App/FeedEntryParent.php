@@ -164,7 +164,7 @@ abstract class Zend_Gdata_App_FeedEntryParent extends Zend_Gdata_App_Base
      * will be used.
      *
      * @return Zend_Http_Client
-     *@deprecated Deprecated as of Zend Framework 1.7. Use
+     * @deprecated Deprecated as of Zend Framework 1.7. Use
      *             getService() instead.
      */
     public function getHttpClient()

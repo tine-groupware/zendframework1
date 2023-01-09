@@ -164,7 +164,7 @@ class Zend_Gdata_Calendar_EventQuery extends Zend_Gdata_Query
 
     /**
      * @return string|null comments
-     *@see $_comments;
+     * @see $_comments;
      */
     public function getComments()
     {
@@ -173,7 +173,7 @@ class Zend_Gdata_Calendar_EventQuery extends Zend_Gdata_Query
 
     /**
      * @return string|null event
-     *@see $_event;
+     * @see $_event;
      */
     public function getEvent()
     {

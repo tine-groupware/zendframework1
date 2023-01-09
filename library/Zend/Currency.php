@@ -299,7 +299,7 @@ class Zend_Currency
      * @param  string             $currency (Optional) Currency name
      * @param  string|Zend_Locale $locale   (Optional) Locale to display informations
      * @return array The extracted locale representation as string
-     *@throws Zend_Currency_Exception When locale contains no region
+     * @throws Zend_Currency_Exception When locale contains no region
      */
     private function _checkParams($currency = null, $locale = null)
     {

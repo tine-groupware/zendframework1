@@ -64,7 +64,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      *
      * @param  string|array $options
      * @return void
-     *@throws Zend_Validate_Exception
+     * @throws Zend_Validate_Exception
      */
     public function __construct($options)
     {
