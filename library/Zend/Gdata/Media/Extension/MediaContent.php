@@ -365,7 +365,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param string
+     * @param string $value
      * @return $this
      */
     public function setExpression($value)
@@ -383,7 +383,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param int
+     * @param int $value
      * @return $this
      */
     public function setBitrate($value)
@@ -401,7 +401,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param int
+     * @param int $value
      * @return $this
      */
     public function setFramerate($value)
@@ -419,7 +419,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param int
+     * @param int $value
      * @return $this
      */
     public function setSamplingrate($value)
@@ -437,7 +437,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param int
+     * @param int $value
      * @return $this
      */
     public function setChannels($value)
@@ -456,7 +456,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      *
-     * @param int
+     * @param int $value
      * @return $this
      */
     public function setDuration($value)
@@ -474,7 +474,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param int
+     * @param int $value
      * @return $this
      */
     public function setHeight($value)
@@ -492,7 +492,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param int
+     * @param int $value
      * @return $this
      */
     public function setWidth($value)
@@ -510,7 +510,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     }
 
     /**
-     * @param string
+     * @param string $value
      * @return $this
      */
     public function setLang($value)

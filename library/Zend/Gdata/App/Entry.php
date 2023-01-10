@@ -227,9 +227,9 @@ class Zend_Gdata_App_Entry extends Zend_Gdata_App_FeedEntryParent
      * by the server, or null if no changes exist. This does not
      * modify the current entry instance.
      *
-     * @param string|null The URI to send requests to, or null if $data
+     * @param string|null $uri The URI to send requests to, or null if $data
      *        contains the URI.
-     * @param string|null The name of the class that should we deserializing
+     * @param string|null $className The name of the class that should we deserializing
      *        the server response. If null, then 'Zend_Gdata_App_Entry' will
      *        be used.
      * @param array $extraHeaders Extra headers to add to the request, as an

@@ -46,6 +46,10 @@ class AllTests
             'configuration' => __DIR__ . '/phpunit.xml',
             'extensions' => [],
             'unavailableExtensions' => [],
+            'loadedExtensions' => [],
+            'notLoadedExtensions' => [],
+            'colors' => 'always',
+            'verbose' => true,
             // 'printer' => \PHPUnit\Util\TestDox\CliTestDoxPrinter::class
         ];
 
