@@ -805,7 +805,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      * @param  string|array The assignment strategy to use.
      * @param  mixed (Optional) If assigning a named variable, use this
      * as the value.
-     * @return Zend_View_Abstract Fluent interface
+     * @return $this
      * @throws Zend_View_Exception if $spec is neither a string nor an array,
      * or if an attempt to set a private or protected member is detected
      */

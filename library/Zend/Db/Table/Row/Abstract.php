@@ -664,7 +664,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
      * Sets all data in the row from an array.
      *
      * @param  array $data
-     * @return Zend_Db_Table_Row_Abstract Provides a fluent interface
+     * @return $this
      */
     public function setFromArray(array $data)
     {

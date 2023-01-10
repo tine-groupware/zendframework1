@@ -57,7 +57,7 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
      * Instantiates route based on passed Zend_Config structure
      *
      * @param  Zend_Config $config Configuration object
-     * @return static
+     * @return $this
      */
     public static function getInstance(Zend_Config $config)
     {
