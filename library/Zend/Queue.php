@@ -516,7 +516,7 @@ class Zend_Queue implements Countable
      * This is AN UNSUPPORTED FUNCTION
      *
      * @param  string           $name
-     * @return $this
+     * @return $this|false
      */
     protected function _setName($name)
     {

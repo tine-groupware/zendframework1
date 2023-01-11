@@ -63,7 +63,7 @@ class Zend_Auth
      *
      * Singleton pattern implementation
      *
-     * @return $this
+     * @return static
      */
     public static function getInstance()
     {
