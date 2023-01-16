@@ -558,7 +558,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      * Set a multifile element
      *
      * @param integer $count Number of file elements
-     * @return Zend_Form_Element_File Provides fluent interface
+     * @return $this
      */
     public function setMultiFile($count)
     {

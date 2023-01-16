@@ -545,7 +545,7 @@ class Zend_Currency
      *
      * @param  string|Zend_Locale $locale (Optional) Locale for parsing input
      * @throws Zend_Currency_Exception When the given locale does not exist
-     * @return Zend_Currency Provides fluent interface
+     * @return $this
      */
     public function setLocale($locale = null)
     {

@@ -243,7 +243,7 @@ class Zend_Gdata_App
      *
      * @param Zend_Http_Client $client The client to use for communication
      * @throws Zend_Gdata_App_HttpException
-     * @return Zend_Gdata_App Provides a fluent interface
+     * @return $this
      */
     public function setHttpClient($client,
         $applicationId = 'MyCompany-MyApp-1.0')

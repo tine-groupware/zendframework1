@@ -276,7 +276,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param string $value     The direct URL to the media object
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setUrl($value)
     {
@@ -294,7 +294,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setFileSize($value)
     {
@@ -312,7 +312,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param string $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setType($value)
     {
@@ -330,7 +330,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param string $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setMedium($value)
     {
@@ -348,7 +348,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param bool $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setIsDefault($value)
     {
@@ -366,7 +366,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param string $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setExpression($value)
     {
@@ -384,7 +384,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setBitrate($value)
     {
@@ -402,7 +402,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setFramerate($value)
     {
@@ -420,7 +420,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setSamplingrate($value)
     {
@@ -438,7 +438,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setChannels($value)
     {
@@ -457,7 +457,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     /**
      *
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setDuration($value)
     {
@@ -475,7 +475,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setHeight($value)
     {
@@ -493,7 +493,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param int $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setWidth($value)
     {
@@ -511,7 +511,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
 
     /**
      * @param string $value
-     * @return Zend_Gdata_Media_Extension_MediaContent  Provides a fluent interface
+     * @return $this
      */
     public function setLang($value)
     {
