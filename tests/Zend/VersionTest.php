@@ -59,8 +59,8 @@ class Zend_VersionTest extends TestCase
         $expect = -1;
         // unit test breaks if ZF version > 1.x
         for ($i = 0; $i <= 1; $i++) {
-            for ($j = 0; $j <= 21; $j++) {
-                for ($k = 0; $k < 20; $k++) {
+            for ($j = 0; $j <= 22; $j++) {
+                for ($k = 0; $k <= 99; $k++) {
                     foreach (['dev', 'pr', 'PR', 'alpha', 'a1', 'a2', 'beta', 'b1', 'b2', 'RC', 'RC1', 'RC2', 'RC3', '', 'pl1', 'PL1'] as $rel) {
                         $ver = "$i.$j.$k$rel";
                         $normalizedVersion = strtolower(Zend_Version::VERSION);
