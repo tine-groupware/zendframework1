@@ -93,7 +93,7 @@ class Zend_Db_Adapter_Pdo_Sqlite extends Zend_Db_Adapter_Pdo_Abstract
 
         if (PHP_VERSION_ID >= 80100) {
             // ensure $config['driver_options'] is an array
-            $config['driver_options'] = empty($config['driver_options']) ? array() : $config['driver_options'];
+            $config['driver_options'] = $config['driver_options'] ?? [];
             if (!isset($config['driver_options'][PDO::ATTR_STRINGIFY_FETCHES])) {
                 $config['driver_options'][PDO::ATTR_STRINGIFY_FETCHES] = true;
             }

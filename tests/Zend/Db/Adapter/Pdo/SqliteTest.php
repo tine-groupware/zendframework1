@@ -269,7 +269,7 @@ class Zend_Db_Adapter_Pdo_SqliteTest extends Zend_Db_Adapter_Pdo_TestCommon
     public function testAdapterZendConfigEmptyDriverOptions()
     {
         $params = $this->_util->getParams();
-        $params['driver_options'] = '';
+        $params['driver_options'] = [];
         $params = new Zend_Config($params);
 
         $db = Zend_Db::factory($this->getDriver(), $params);
@@ -278,9 +278,9 @@ class Zend_Db_Adapter_Pdo_SqliteTest extends Zend_Db_Adapter_Pdo_TestCommon
         $config = $db->getConfig();
 
         if (PHP_VERSION_ID >= 80100) {
-            $this->assertEquals(array(PDO::ATTR_STRINGIFY_FETCHES => true), $config['driver_options']);
+            $this->assertEquals([PDO::ATTR_STRINGIFY_FETCHES => true], $config['driver_options']);
         } else {
-            $this->assertEquals(array(), $config['driver_options']);
+            $this->assertEquals([], $config['driver_options']);
         }
     }
 }
