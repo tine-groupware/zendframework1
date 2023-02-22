@@ -331,6 +331,47 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
     {
         return 'Pdo_Mysql';
     }
+
+    public function testGivenBeforePhp81WhenFetchDataOnDigitFieldThenPdoMysqlWillReturnStringDigit()
+    {
+        $params = $this->_util->getParams();
+        $db = Zend_Db::factory($this->getDriver(), $params);
+        $db->getConnection();
+
+        $select = $this->_db->select();
+        $select->from('zfproducts');
+        $stmt = $this->_db->query($select);
+        $products = $stmt->fetchAll();
+
+        $productId = $products[0]['product_id'] ?? '-1';
+        $this->assertSame(
+            '1',
+            $productId,
+            "BC with php < 8.1, fetch numeric field type will return 'digit' string instead of int or float type in php >= 8.1.\nSee: https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.pdo.mysql"
+        );
+    }
+
+    /**
+     * https://www.php.net/manual/en/migration81.incompatible.php#migration81.incompatible.pdo.mysql
+     * @inheritDoc
+     */
+    public function testAdapterZendConfigEmptyDriverOptions()
+    {
+        $params = $this->_util->getParams();
+        $params['driver_options'] = [];
+        $params = new Zend_Config($params);
+
+        $db = Zend_Db::factory($this->getDriver(), $params);
+        $db->getConnection();
+
+        $config = $db->getConfig();
+
+        if (PHP_VERSION_ID >= 80100) {
+            $this->assertEquals([PDO::ATTR_STRINGIFY_FETCHES => true], $config['driver_options']);
+        } else {
+            $this->assertSame([], $config['driver_options']);
+        }
+    }
 }
 
 class ZendTest_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Mysql
