@@ -281,6 +281,19 @@ class Zend_View_Helper_PartialTest extends TestCase
         $test = $this->helper->setObjectKey('foo');
         $this->assertSame($this->helper, $test);
     }
+
+    public function testWhenSecondParamsIsViewModelThenPartialUseGetVarsToSetsViewVariables()
+    {
+        $view = new Zend_View([
+            'scriptPath' => $this->basePath . '/default/views/scripts'
+        ]);
+        $this->helper->setView($view);
+        $view->foo = 'partial script can access first';
+        $view->bar = 'partial script can access second';
+        $return = $this->helper->partial('partialVars.phtml', $view);
+        $this->assertStringContainsString(sprintf('%s: %s', 'foo', 'partial script can access first'), $return);
+        $this->assertStringContainsString(sprintf('%s: %s', 'bar', 'partial script can access second'), $return);
+    }
 }
 
 class Zend_View_Helper_PartialTest_Aggregate
