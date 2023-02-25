@@ -285,8 +285,25 @@ abstract class Zend_Mail_Protocol_Abstract
         $errorNum = 0;
         $errorStr = '';
 
-        // open connection
-        $this->_socket = @stream_socket_client($remote, $errorNum, $errorStr, self::TIMEOUT_CONNECTION);
+        $context = stream_context_create();
+
+        if (($result = $this->_setStreamContextVerifyPeer($this->_verifyPeer, $context)) === false) {
+            /**
+             * @see Zend_Mail_Protocol_Exception
+             */
+            require_once 'Zend/Mail/Protocol/Exception.php';
+            throw new Zend_Mail_Protocol_Exception('Could not set stream context verify_peer value');
+        }
+
+        if (($result = $this->_setStreamContextVerifyPeerName($this->_verifyPeerName, $context)) === false) {
+            /**
+             * @see Zend_Mail_Protocol_Exception
+             */
+            require_once 'Zend/Mail/Protocol/Exception.php';
+            throw new Zend_Mail_Protocol_Exception('Could not set stream context verify_peer_name value');
+        }
+
+        $this->_socket = stream_socket_client($remote, $errorNum, $errorStr, self::TIMEOUT_CONNECTION, STREAM_CLIENT_CONNECT, $context);
 
         if ($this->_socket === false) {
             if ($errorNum == 0) {
@@ -305,22 +322,6 @@ abstract class Zend_Mail_Protocol_Abstract
              */
             require_once 'Zend/Mail/Protocol/Exception.php';
             throw new Zend_Mail_Protocol_Exception('Could not set stream timeout');
-        }
-
-        if (($result = $this->_setStreamContextVerifyPeer($this->_verifyPeer)) === false) {
-            /**
-             * @see Zend_Mail_Protocol_Exception
-             */
-            require_once 'Zend/Mail/Protocol/Exception.php';
-            throw new Zend_Mail_Protocol_Exception('Could not set stream context verify_peer value');
-        }
-
-        if (($result = $this->_setStreamContextVerifyPeerName($this->_verifyPeerName)) === false) {
-            /**
-             * @see Zend_Mail_Protocol_Exception
-             */
-            require_once 'Zend/Mail/Protocol/Exception.php';
-            throw new Zend_Mail_Protocol_Exception('Could not set stream context verify_peer_name value');
         }
 
         return $result;
