@@ -477,32 +477,35 @@ abstract class Zend_Mail_Protocol_Abstract
      * Set stream timeout
      *
      * @param integer $timeout
+     * @param resource|null $context
      * @return boolean
      */
-    protected function _setStreamTimeout($timeout)
+    protected function _setStreamTimeout($timeout, $context = null)
     {
-        return stream_set_timeout($this->_socket, $timeout);
+        return stream_set_timeout($context ?? $this->_socket, $timeout);
     }
-
+    
     /**
      * Set stream SSL context verify_peer value
      *
      * @param bool $value
+     * @param resource|null $context
      * @return boolean
      */
-    protected function _setStreamContextVerifyPeer($value)
+    protected function _setStreamContextVerifyPeer($value, $context = null)
     {
-        return stream_context_set_option($this->_socket, 'ssl', 'verify_peer', $value);
+        return stream_context_set_option($context ?? $this->_socket, 'ssl', 'verify_peer', $value);
     }
 
     /**
      * Set stream SSL context verify_peer_name value
      *
      * @param bool $value
+     * @param resource|null $context
      * @return boolean
      */
-    protected function _setStreamContextVerifyPeerName($value)
+    protected function _setStreamContextVerifyPeerName($value, $context = null)
     {
-        return stream_context_set_option($this->_socket, 'ssl', 'verify_peer_name', $value);
+        return stream_context_set_option($context ?? $this->_socket, 'ssl', 'verify_peer_name', $value);
     }
 }
