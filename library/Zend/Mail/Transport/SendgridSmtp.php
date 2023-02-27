@@ -93,7 +93,7 @@ class Zend_Mail_Transport_SendgridSmtp extends Zend_Mail_Transport_Smtp
      * @param   array $options
      * @return  void
      */ 
-    public function setOptionsArray(array $options)
+    public function setOptions(array $options)
     {
         $this->apiOptions = $options;
     }
