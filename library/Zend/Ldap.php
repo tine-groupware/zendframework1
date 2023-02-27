@@ -147,7 +147,7 @@ class Zend_Ldap
      */
     public function getResource()
     {
-        if (!is_resource($this->_resource) || $this->_boundUser === false) {
+        if (!$this->_legacy_is_resource($this->_resource, 'LDAP\Connection') || $this->_boundUser === false) {
             $this->bind();
         }
         return $this->_resource;
@@ -665,7 +665,7 @@ class Zend_Ldap
             throw new Zend_Ldap_Exception(null, 'Invalid account filter');
         }
 
-        if (!is_resource($this->getResource())) {
+        if (!$this->_legacy_is_resource($this->getResource(), 'LDAP\Connection')) {
             $this->bind();
         }
 
@@ -707,7 +707,7 @@ class Zend_Ldap
      */
     public function disconnect()
     {
-        if (is_resource($this->_resource)) {
+        if ($this->_legacy_is_resource($this->_resource, 'LDAP\Connection')) {
             @ldap_unbind($this->_resource);
         }
         $this->_resource = null;
@@ -787,7 +787,7 @@ class Zend_Ldap
          */
         $resource = ($useUri) ? @ldap_connect($this->_connectString) : @ldap_connect($host, $port);
 
-        if (is_resource($resource) === true) {
+        if ($this->_legacy_is_resource($resource, 'LDAP\Connection') === true) {
             $this->_resource = $resource;
             $this->_boundUser = false;
 
@@ -880,7 +880,7 @@ class Zend_Ldap
             }
         }
 
-        if (!is_resource($this->_resource)) {
+        if (!$this->_legacy_is_resource($this->_resource, 'LDAP\Connection')) {
             $this->connect();
         }
 
@@ -1607,5 +1607,22 @@ class Zend_Ldap
             $this->_schema = Zend_Ldap_Node_Schema::create($this);
         }
         return $this->_schema;
+    }
+
+    /**
+     * Beginning from PHP 8.1 LDAP functions do not utilize resources anymoure but
+     * classes LDAP\* instead. This function replaces PHP's is_resource() for use 
+     * transparently with resources oder class names. 
+     *
+     * @param  resource|LDAP\*  $resource
+     * @param  string           $class
+     * @return bool
+     */
+    public function _legacy_is_resource($resource, $class)
+    {
+        if (defined('PHP_VERSION_ID') && (PHP_VERSION_ID >= 80100)) {
+            return is_a($resource, $class, true);
+        }
+        return is_resource($resource);
     }
 }
