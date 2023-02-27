@@ -1,6 +1,6 @@
 <?php
 
-class WN_Mail_Transport_SendgridSmtp extends WN_Mail_Transport_Smtp
+class Zend_Mail_Transport_SendgridSmtp extends Zend_Mail_Transport_Smtp
 {
     /**
      * ClickTracking status
@@ -18,13 +18,13 @@ class WN_Mail_Transport_SendgridSmtp extends WN_Mail_Transport_Smtp
 
     public function __construct($options)
     {
-         if (!isset($options['host'])) {
-             throw new Zend_Application_Resource_Exception(
-                 'A host is necessary for smtp transport,'
-                 . ' but none was given'
-             );
-         }
-         $this->setClickTracking($options['clicktrack'] ?? false);
+        if (!isset($options['host'])) {
+            throw new Zend_Application_Resource_Exception(
+                'A host is necessary for smtp transport,'
+                . ' but none was given'
+            );
+        }
+        $this->setClickTracking($options['clicktrack'] ?? false);
 
         $options['port'] = $options['port'] ?? 465;
         $options['username'] = $options['apikey'] ?? $options['username'];
@@ -37,7 +37,7 @@ class WN_Mail_Transport_SendgridSmtp extends WN_Mail_Transport_Smtp
      *
      * @param bool $status
      * @return void
-     * 
+     */ 
     public function setClickTracking($bool)
     {
         $this->clickTracking = $bool;
@@ -60,7 +60,7 @@ class WN_Mail_Transport_SendgridSmtp extends WN_Mail_Transport_Smtp
      * Get ClickTracking status
      *
      * @return bool
-     * 
+     */ 
     public function getClickTracking()
     {
         return $this->clickTracking;
@@ -71,7 +71,7 @@ class WN_Mail_Transport_SendgridSmtp extends WN_Mail_Transport_Smtp
      *
      * @param   string $key
      * @param   mixed $value
-     * 
+     */ 
     public function setOption($key, $value)
     {
         $this->apiOptions[$key] = $value;
@@ -81,7 +81,7 @@ class WN_Mail_Transport_SendgridSmtp extends WN_Mail_Transport_Smtp
      * Get API options
      *
      * @return array
-     * 
+     */ 
     public function getOptions()
     {
         return $this->apiOptions;
@@ -92,7 +92,7 @@ class WN_Mail_Transport_SendgridSmtp extends WN_Mail_Transport_Smtp
      *
      * @param   array $options
      * @return  void
-     * 
+     */ 
     public function setOptionsArray(array $options)
     {
         $this->apiOptions = $options;
