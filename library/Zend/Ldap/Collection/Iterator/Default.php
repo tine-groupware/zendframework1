@@ -103,7 +103,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
     public function close()
     {
         $isClosed = false;
-        if (is_resource($this->_resultId)) {
+        if ($this->_ldap->_legacy_is_resource($this->_resultId, 'LDAP\Result')) {
              $isClosed = @ldap_free_result($this->_resultId);
              $this->_resultId = null;
              $this->_current = null;
@@ -190,12 +190,12 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      * @throws Zend_Ldap_Exception
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
-        if (!is_resource($this->_current)) {
+        if (!$this->_ldap->_legacy_is_resource($this->_current, 'LDAP\ResultEntry')) {
             $this->rewind();
         }
-        if (!is_resource($this->_current)) {
+        if (!$this->_ldap->_legacy_is_resource($this->_current, 'LDAP\ResultEntry')) {
             return null;
         }
 
@@ -233,12 +233,12 @@ public function current()
      * @return string|null
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
-        if (!is_resource($this->_current)) {
+        if (!$this->_ldap->_legacy_is_resource($this->_current, 'LDAP\ResultEntry')) {
             $this->rewind();
         }
-        if (is_resource($this->_current)) {
+        if ($this->_ldap->_legacy_is_resource($this->_current, 'LDAP\ResultEntry')) {
             $currentDn = @ldap_get_dn($this->_ldap->getResource(), $this->_current);
             if ($currentDn === false) {
                 /** @see Zend_Ldap_Exception */
@@ -259,7 +259,7 @@ public function key()
      */
     public function next(): void
     {
-        if (is_resource($this->_current) && $this->_itemCount > 0) {
+        if ($this->_ldap->_legacy_is_resource($this->_current, 'LDAP\ResultEntry') && $this->_itemCount > 0) {
             $this->_current = @ldap_next_entry($this->_ldap->getResource(), $this->_current);
             /** @see Zend_Ldap_Exception */
             require_once 'Zend/Ldap/Exception.php';
@@ -285,7 +285,7 @@ public function key()
      */
     public function rewind(): void
     {
-        if (is_resource($this->_resultId)) {
+        if ($this->_ldap->_legacy_is_resource($this->_resultId, 'LDAP\Result')) {
             $this->_current = @ldap_first_entry($this->_ldap->getResource(), $this->_resultId);
             /** @see Zend_Ldap_Exception */
             require_once 'Zend/Ldap/Exception.php';
@@ -305,7 +305,7 @@ public function key()
      */
     public function valid(): bool
     {
-        return (is_resource($this->_current));
+        return ($this->_ldap->_legacy_is_resource($this->_current, 'LDAP\Result'));
     }
 
 }
