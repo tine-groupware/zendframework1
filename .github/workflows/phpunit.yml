@@ -120,15 +120,24 @@ jobs:
       
       - name: Provider config base on env for intergrate test
         run: cp tests/TestConfiguration.env.php tests/TestConfiguration.php
-          
-    
+
       - name: Install PHP with extensions
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          tools: phpunit:9
+          tools: cs2pr
           extensions: memcached, memcache
           ini-values: ${{ env.PHP_INI_VALUES }}
+        env:
+          # https://github.com/shivammathur/setup-php/issues/407#issuecomment-773675741
+          fail-fast: true
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Lint PHP source files
+        run: |
+          bin/parallel-lint --exclude vendor --exclude tests/Zend/Loader/_files/ParseError.php . --checkstyle | cs2pr
 
       - name: Setup LDAP
         run: |
@@ -136,5 +145,5 @@ jobs:
           tests/resources/openldap/docker-entrypoint-initdb.d/init.sh
 
       - name: "Run tests on PHP ${{ matrix.php-version }} (Experimental: ${{ matrix.experimental }})"
-        run: phpunit -c tests/phpunit.xml
+        run: bin/phpunit -c tests/phpunit.xml
         continue-on-error: ${{ matrix.experimental }}
