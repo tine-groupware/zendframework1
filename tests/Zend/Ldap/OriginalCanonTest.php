@@ -101,7 +101,7 @@ class Zend_Ldap_OriginalCanonTest extends TestCase
             $ldap->bind('invalid', 'invalid');
         } catch (Zend_Ldap_Exception $zle) {
             $msg = $zle->getMessage();
-            $this->assertTrue(strstr($msg, 'Invalid credentials') || strstr($msg, 'No such object'));
+            $this->assertTrue(strstr($msg, 'Invalid credentials') || strstr($msg, 'No object found for'));
         }
     }
     public function testDnCanon()

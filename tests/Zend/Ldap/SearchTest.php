@@ -408,6 +408,11 @@ class Zend_Ldap_SearchTest extends Zend_Ldap_OnlineTestCase
      */
     public function testReverseSortingWithSearchEntriesShortcutWithOptionsArray()
     {
+        if (PHP_VERSION_ID >= 70000) {
+            $this->markTestSkipped("Test skipped due to removal of ldap_sort from PHP: https://www.php.net/ldap_sort");
+            return;
+        }
+
         $lSorted = ['e', 'd', 'c', 'b', 'a'];
         $items = $this->_getLdap()->searchEntries([
             'filter' => '(l=*)',
