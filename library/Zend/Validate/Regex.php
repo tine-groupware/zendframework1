@@ -62,7 +62,7 @@ class Zend_Validate_Regex extends Zend_Validate_Abstract
     /**
      * Sets validator options
      *
-     * @param  string|Zend_Config $pattern
+     * @param  string|array|Zend_Config $pattern
      * @throws Zend_Validate_Exception On missing 'pattern' parameter
      */
     public function __construct($pattern)
