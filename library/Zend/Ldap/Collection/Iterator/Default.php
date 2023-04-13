@@ -305,7 +305,7 @@ class Zend_Ldap_Collection_Iterator_Default implements Iterator, Countable
      */
     public function valid(): bool
     {
-        return ($this->_ldap->_legacy_is_resource($this->_current, 'LDAP\Result'));
+        return ($this->_ldap->_legacy_is_resource($this->_current, 'LDAP\ResultEntry'));
     }
 
 }
