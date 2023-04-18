@@ -58,7 +58,7 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
      * @var string
      * @access public
      */
-    public $EOL = PHP_EOL;
+    public $EOL = "\r\n";
 
     /**
      * error information
