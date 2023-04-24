@@ -146,8 +146,7 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
     {
         switch ($mode) {
             case Zend_Cache::CLEANING_MODE_ALL:
-                return apcu_clear_cache('user');
-                break;
+                return apcu_clear_cache();
             case Zend_Cache::CLEANING_MODE_OLD:
                 $this->_log("Zend_Cache_Backend_Apc::clean() : CLEANING_MODE_OLD is unsupported by the Apc backend");
                 break;
@@ -158,7 +157,6 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
                 break;
             default:
                 Zend_Cache::throwException('Invalid mode for clean() method');
-                break;
         }
     }
 
