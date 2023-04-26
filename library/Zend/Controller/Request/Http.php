@@ -271,6 +271,8 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      * @param string $key
      * @param mixed $default Default value to use if key not found
      * @return mixed Returns null if key does not exist
+     *
+     * @phpstan-return ($key is null ? array<string, mixed> : mixed)
      */
     public function getQuery($key = null, $default = null)
     {
