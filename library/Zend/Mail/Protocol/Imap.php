@@ -799,8 +799,12 @@ class Zend_Mail_Protocol_Imap
         }
 
         foreach ($list as $item) {
-            if (count($item) !== 4 || $item[0] != 'LIST') {
+            if ($item[0] != 'LIST' || count($item) < 4 || count($item) > 5) {
                 continue;
+            }
+            if (count($item) === 5) {
+                // first char of name is a quote
+                $item[3] = '"' . str_replace('\"', '', $item[4]);
             }
             $result[$item[3]] = ['delim' => $item[2], 'flags' => $item[1]];
         }
