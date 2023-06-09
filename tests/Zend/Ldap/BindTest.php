@@ -1,6 +1,6 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Zend Framework
@@ -49,7 +49,7 @@ class Zend_Ldap_BindTest extends TestCase
     protected $_altUsername = TESTS_ZEND_LDAP_ALT_USERNAME;
     protected $_bindRequiresDn = false;
 
-    protected function setUp(): void
+    protected function set_up()
     {
         $this->_options = [
             'host' => TESTS_ZEND_LDAP_HOST,

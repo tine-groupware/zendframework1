@@ -1,6 +1,6 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Zend Framework
@@ -66,7 +66,7 @@ class Zend_DateTest extends TestCase
     private $_cache = null;
     private $_orig = [];
 
-    protected function setUp(): void
+    protected function set_up()
     {
         $this->originalTimezone = date_default_timezone_get();
         date_default_timezone_set('Indian/Maldives');
@@ -85,7 +85,7 @@ class Zend_DateTest extends TestCase
         Zend_Date::setOptions(['format_type' => 'iso']);
     }
 
-    protected function tearDown(): void
+    protected function tear_down()
     {
         Zend_Date::setOptions($this->_orig);
         $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);

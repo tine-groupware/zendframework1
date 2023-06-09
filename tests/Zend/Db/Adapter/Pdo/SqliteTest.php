@@ -116,7 +116,7 @@ class Zend_Db_Adapter_Pdo_SqliteTest extends Zend_Db_Adapter_Pdo_TestCommon
     protected function _testAdapterOptionCaseFoldingSetup(Zend_Db_Adapter_Abstract $db)
     {
         $db->getConnection();
-        $this->_util->setUp($db);
+        $this->_util->set_up($db);
     }
 
     /**
