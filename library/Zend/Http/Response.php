@@ -588,7 +588,7 @@ class Zend_Http_Response
      * @param string $body
      * @return string
      */
-    protected function decodeChunkedBody($body)
+    public static function decodeChunkedBody($body)
     {
         $decBody = '';
 
