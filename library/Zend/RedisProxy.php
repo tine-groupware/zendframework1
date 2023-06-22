@@ -35,6 +35,8 @@ if (defined('Redis::SCAN_NORETRY') && defined('Redis::SCAN_RETRY')) {
  *
  * @package     Tinebase
  * @subpackage  Backend
+ * @method Redis|bool restore(string $key, int $ttl, string $value, array|null $options = NULL)
+ * @link https://phpredis.github.io/phpredis/Redis.html
  */
 class Zend_RedisProxy extends Zend_RedisProxy_C3
 {
