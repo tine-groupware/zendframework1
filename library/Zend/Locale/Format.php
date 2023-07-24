@@ -517,8 +517,8 @@ class Zend_Locale_Format
             trigger_error("Sorry, your PCRE extension does not support UTF8 which is needed for the I18N core", E_USER_NOTICE);
         }
         
-        if(is_numeric($input)) {
-            return TRUE;
+        if($input === null ) {
+            return FALSE;
         }
 
         $options = self::_checkOptions($options) + self::$_options;
