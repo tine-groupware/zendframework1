@@ -48,18 +48,18 @@ class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest
         parent::__construct('Zend_Cache_Backend_Xcache', $data, $dataName);
     }
 
-    public function setUp($notag = true): void
+    public function set_up($notag = true)
     {
         $this->_instance = new Zend_Cache_Backend_Xcache([
             'user' => TESTS_ZEND_CACHE_XCACHE_USER,
             'password' => TESTS_ZEND_CACHE_XCACHE_PASSWORD
         ]);
-        parent::setUp($notag);
+        parent::set_up($notag);
     }
 
-    protected function tearDown(): void
+    protected function tear_down()
     {
-        parent::tearDown();
+        parent::tear_down();
         unset($this->_instance);
     }
 

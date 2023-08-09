@@ -140,7 +140,7 @@ class Zend_AllTests
         //     ob_end_flush();
         // }
 
-        (new TestRunner())->run(self::suite(), $arguments);
+        (new resources_Runner())->run(self::suite(), $arguments);
     }
 
     /**
@@ -263,6 +263,6 @@ class Zend_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_AllTests::main') {
     Zend_AllTests::main();
 }
