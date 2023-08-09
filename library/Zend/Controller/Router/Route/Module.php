@@ -261,7 +261,10 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
             $key = ($encode) ? urlencode($key) : $key;
             if (is_array($value)) {
                 foreach ($value as $arrayValue) {
-                    $arrayValue = ($encode) ? urlencode($arrayValue) : $arrayValue;
+                    if ($encode && !is_null($arrayValue)) {
+                        $arrayValue = urlencode($arrayValue);
+                    }
+                    
                     $url .= self::URI_DELIMITER . $key;
                     $url .= self::URI_DELIMITER . $arrayValue;
                 }
