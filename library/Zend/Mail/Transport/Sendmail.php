@@ -58,7 +58,7 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
      * @var string
      * @access public
      */
-    public $EOL = PHP_EOL;
+    public $EOL = "\r\n";
 
     /**
      * error information
@@ -97,13 +97,25 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
      */
     public function _sendMail()
     {
+        $recipients = $this->recipients;
+        $subject = $this->_mail->getSubject();
+        $body = $this->body;
+        $header = $this->header;
+        $isWindowsOs = strtoupper(substr(PHP_OS, 0, 3)) == 'WIN';
+        if (PHP_VERSION_ID < 80000 && !$isWindowsOs) {
+            $recipients = str_replace("\r\n", "\n", $recipients);
+            $subject = str_replace("\r\n", "\n", $subject);
+            $body = str_replace("\r\n", "\n", $body);
+            $header = str_replace("\r\n", "\n", $header);
+        }
+
         if ($this->parameters === null) {
             set_error_handler([$this, '_handleMailErrors']);
             $result = mail(
-                $this->recipients,
-                $this->_mail->getSubject(),
-                $this->body,
-                $this->header);
+                $recipients,
+                $subject,
+                $body,
+                $header);
             restore_error_handler();
         } else {
             if(!is_string($this->parameters)) {
@@ -120,16 +132,19 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
             }
 
             $fromEmailHeader = str_replace(' ', '', $this->parameters);
+            if (PHP_VERSION_ID < 80000 && !$isWindowsOs) {
+                $fromEmailHeader = str_replace("\r\n", "\n", $fromEmailHeader);
+            }
             // Sanitize the From header
             if (!Zend_Validate::is($fromEmailHeader, 'EmailAddress')) {
                 throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
             } else {
                 set_error_handler([$this, '_handleMailErrors']);
                 $result = mail(
-                    $this->recipients,
-                    $this->_mail->getSubject(),
-                    $this->body,
-                    $this->header,
+                    $recipients,
+                    $subject,
+                    $body,
+                    $header,
                     $fromEmailHeader);
                 restore_error_handler();
             }

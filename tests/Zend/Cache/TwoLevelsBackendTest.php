@@ -50,7 +50,7 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
         parent::__construct('Zend_Cache_Backend_TwoLevels', $data, $dataName);
     }
 
-    public function setUp($notag = false): void
+    public function set_up($notag = false)
     {
         @mkdir($this->getTmpDir());
         $this->_cache_dir = $this->getTmpDir() . DIRECTORY_SEPARATOR;
@@ -67,12 +67,12 @@ class Zend_Cache_TwoLevelsBackendTest extends Zend_Cache_CommonExtendedBackendTe
             'fast_backend_options' => $fastBackendOptions,
             'slow_backend_options' => $slowBackendOptions
         ]);
-        parent::setUp($notag);
+        parent::set_up($notag);
     }
 
-    protected function tearDown(): void
+    protected function tear_down()
     {
-        parent::tearDown();
+        parent::tear_down();
         unset($this->_instance);
     }
 
