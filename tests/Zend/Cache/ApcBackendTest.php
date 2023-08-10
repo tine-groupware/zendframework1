@@ -175,9 +175,6 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest
     {
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -185,9 +182,6 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest
         $this->_instance->setDirectives(['logging' => true]);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testSaveWithNullLifeTime()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -195,9 +189,6 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest
         $this->_instance->setDirectives(['logging' => true]);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testSaveWithSpecificLifeTime()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -205,9 +196,6 @@ class Zend_Cache_ApcBackendTest extends Zend_Cache_CommonExtendedBackendTest
         $this->_instance->setDirectives(['logging' => true]);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testGetMetadatas($notag = true)
     {
         parent::testGetMetadatas($notag);

@@ -74,7 +74,7 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
     {
         $tmp = apcu_fetch($id);
         if (is_array($tmp)) {
-            return $tmp[0];
+            return $tmp[0] ?? false;
         }
         return false;
     }
@@ -89,7 +89,7 @@ class Zend_Cache_Backend_Apc extends Zend_Cache_Backend implements Zend_Cache_Ba
     {
         $tmp = apcu_fetch($id);
         if (is_array($tmp)) {
-            return $tmp[1];
+            return $tmp[1] ?? false;
         }
         return false;
     }

@@ -33,6 +33,8 @@ jobs:
       TESTS_ZEND_CACHE_LIBMEMCACHED_HOST: 127.0.0.1
       TESTS_ZEND_CACHE_LIBMEMCACHED_PORT: 11211
 
+      TESTS_ZEND_CACHE_APC_ENABLED: true
+
       # https://hub.docker.com/r/bitnami/openldap
       LDAP_ROOT: "dc=example,dc=com"
       LDAP_ALLOW_ANON_BINDING: false
@@ -112,15 +114,15 @@ jobs:
           #bare for PHP >=7.2
           - php-extensions-bare: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring"
           #full for PHP <= 8.0
-          - php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt, rar"
+          - php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt, rar"
           - php-version: "7.1"
             php-extensions-bare: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer"
           - php-version: "8.1"
-            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt"
+            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt"
           - php-version: "8.2"
-            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt"
+            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt"
           - php-version: "8.3"
-            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite"
+            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite"
             experimental: true
 
     steps:
@@ -159,7 +161,7 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Lint PHP source files
         run: |
@@ -181,7 +183,7 @@ jobs:
           php-version: ${{ matrix.php-version }}
           tools: cs2pr
           extensions: ${{ matrix.php-extensions-full }}
-          ini-values: ${{ env.PHP_INI_VALUES }}
+          ini-values: ${{ env.PHP_INI_VALUES }}, apc.enable_cli=1
         env:
           # https://github.com/shivammathur/setup-php/issues/407#issuecomment-773675741
           fail-fast: true
