@@ -1919,11 +1919,20 @@ class Zend_Date extends Zend_Date_DateObject
             // date strings
             case self::ISO_8601:
                 
-                // do we have enough of a date? minimum is YYMMdd
-                if( strlen($date) <6) {
+                /////////////////////////////////////////////////
+                //first validate minimal lengts of given formats                
+                
+                // do we have enough of a date? minimum is Y-MM-dd
+                if( strpos($date, '-') !== FALSE && strlen($date) <9) {
                     require_once 'Zend/Date/Exception.php';
                     throw new Zend_Date_Exception("unsupported ISO8601 format ($date)", 0, null, $date);
                 }
+                
+                if( strpos($date, '-') === FALSE && strlen($date) <6) {
+                    require_once 'Zend/Date/Exception.php';
+                    throw new Zend_Date_Exception("unsupported ISO8601 format ($date)", 0, null, $date);
+                }
+                
                 
                 // (-)YYYY-MM-dd
                 preg_match('/^(-{0,1}\d{4})-(\d{2})-(\d{2})/', $date, $datematch);
