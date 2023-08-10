@@ -1918,6 +1918,13 @@ class Zend_Date extends Zend_Date_DateObject
 
             // date strings
             case self::ISO_8601:
+                
+                // do we have enough of a date? minimum is YYMMdd
+                if( strlen($date) <6) {
+                    require_once 'Zend/Date/Exception.php';
+                    throw new Zend_Date_Exception("unsupported ISO8601 format ($date)", 0, null, $date);
+                }
+                
                 // (-)YYYY-MM-dd
                 preg_match('/^(-{0,1}\d{4})-(\d{2})-(\d{2})/', $date, $datematch);
                 // (-)YY-MM-dd
@@ -1954,10 +1961,10 @@ class Zend_Date extends Zend_Date_DateObject
                 if (empty($timematch)) {
                     preg_match('/[T,\s]{0,1}(\d{2})(\d{2})/', $tmpdate, $timematch);
                 }
-                if (empty($datematch) && empty($timematch)) {
-                    require_once 'Zend/Date/Exception.php';
-                    throw new Zend_Date_Exception("unsupported ISO8601 format ($date)", 0, null, $date);
-                }
+                    if (empty($datematch) && empty($timematch)) {
+                        require_once 'Zend/Date/Exception.php';
+                        throw new Zend_Date_Exception("unsupported ISO8601 format ($date)", 0, null, $date);
+                    }
                 if (!empty($timematch)) {
                     $timeMatchCharCount = iconv_strlen($timematch[0], 'UTF-8');
                     $tmpdate = iconv_substr($tmpdate,
