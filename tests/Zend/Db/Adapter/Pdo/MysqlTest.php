@@ -387,7 +387,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
         $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-
+        putenv("BRING_BACK_TRANSACTION_LIKE_PHP7=0");
         $dbConnection->beginTransaction();
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
@@ -410,7 +410,10 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
         $dbConnection->commit();
-        $this->assertEquals(2, $dbConnection->fetchOne('SELECT COUNT(*) FROM MYTABLE'));
+
+        $actual     = $dbConnection->fetchOne('SELECT COUNT(*) FROM MYTABLE');
+        $expected   = 2;
+        $this->assertEquals($expected, $actual);
     }
 }
 

@@ -321,12 +321,24 @@ abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
         $this->_connection->beginTransaction();
     }
 
+    private function _isBringBackTransLikePhp7()
+    {
+        $brinkBackTransLikePhp7 = getenv('BRING_BACK_TRANSACTION_LIKE_PHP7', true);
+        if (false === $brinkBackTransLikePhp7) {
+            return true;
+        }
+        return 1 === (int) $brinkBackTransLikePhp7;
+    }
+
     /**
      * Commit a transaction.
      */
     protected function _commit()
     {
         $this->_connect();
+        if ( $this->_isBringBackTransLikePhp7() && !$this->_connection->inTransaction() ) {
+            return;
+        }
         $this->_connection->commit();
     }
 
