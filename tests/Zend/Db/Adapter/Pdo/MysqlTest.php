@@ -372,6 +372,27 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
             $this->assertSame([], $config['driver_options']);
         }
     }
+
+    /**
+     * @requires PHP >= 8
+     * @runInSeparateProcess
+     *
+     * https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.pdo-mysql
+     */
+    public function testSincePhp8WhenCommitWithAnyImplicitCommitBeforeWillRaisePdoException()
+    {
+        $this->expectException(PDOException::class);
+        $this->expectExceptionMessage('There is no active transaction');
+
+        $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
+        $dbConnection = $this->_db;
+        $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
+
+        $dbConnection->beginTransaction();
+        $dbConnection->query($implicitCommitStatement);
+        $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
+        $dbConnection->commit();
+    }
 }
 
 class ZendTest_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Mysql
