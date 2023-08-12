@@ -347,6 +347,9 @@ abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
      */
     protected function _rollBack() {
         $this->_connect();
+        if ( $this->_isBringBackTransLikePhp7() && !$this->_connection->inTransaction() ) {
+            return;
+        }
         $this->_connection->rollBack();
     }
 
