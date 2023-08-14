@@ -386,11 +386,12 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
         $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-        putenv("BRING_BACK_TRANSACTION_LIKE_PHP7=0");
+        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = false;
         $dbConnection->beginTransaction();
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
         $dbConnection->commit();
+        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = true;
     }
 
     /**
@@ -403,7 +404,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
         $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-        putenv("BRING_BACK_TRANSACTION_LIKE_PHP7=1"); //when usage you don't need set this line (this line try override side effect come from test case above)
+
         $dbConnection->beginTransaction();
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
@@ -427,11 +428,12 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
         $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-        putenv("BRING_BACK_TRANSACTION_LIKE_PHP7=0");
+        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = false;
         $dbConnection->beginTransaction();
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
         $dbConnection->rollBack();
+        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = true;
     }
 
     /**
@@ -444,7 +446,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
         $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-        putenv("BRING_BACK_TRANSACTION_LIKE_PHP7=1"); //when usage you don't need set this line (this line try override side effect come from test case above)
+
         $dbConnection->beginTransaction();
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
