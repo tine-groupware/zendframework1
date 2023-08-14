@@ -63,6 +63,12 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         'FLOAT' => Zend_Db::FLOAT_TYPE
     ];
 
+    protected function tear_down() 
+    {
+        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = true;
+        parent::tear_down();
+    }
+
     /**
      * Test AUTO_QUOTE_IDENTIFIERS option
      * Case: Zend_Db::AUTO_QUOTE_IDENTIFIERS = true
@@ -378,7 +384,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
      *
      * https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.pdo-mysql
      */
-    public function testSincePhp8WhenCommitWithAnyImplicitCommitBeforeWillRaisePdoException()
+    public function testSincePhp8WhenCallCommitAfterAnImplicitCommitWillRaisePdoException()
     {
         $this->expectException(PDOException::class);
         $this->expectExceptionMessage('There is no active transaction');
@@ -391,7 +397,6 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
         $dbConnection->commit();
-        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = true;
     }
 
     /**
@@ -399,7 +404,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
      *
      * https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.pdo-mysql
      */
-    public function testSincePhp8WhenCommitWithAnyImplicitCommitBeforeWithPatchCodeWillSilentErrorSamePhp7()
+    public function testSincePhp8WhenCallCommitAfterAnImplicitCommitInBackwardCompatibleModeWillSilentErrorSamePhp7()
     {
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
@@ -420,7 +425,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
      *
      * https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.pdo-mysql
      */
-    public function testSincePhp8WhenRollbackWithAnyImplicitCommitBeforeWillRaisePdoException()
+    public function testSincePhp8WhenCallRollbackAfterAnImplicitCommitWillRaisePdoException()
     {
         $this->expectException(PDOException::class);
         $this->expectExceptionMessage('There is no active transaction');
@@ -433,7 +438,6 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
         $dbConnection->rollBack();
-        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = true;
     }
 
     /**
@@ -441,7 +445,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
      *
      * https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.pdo-mysql
      */
-    public function testSincePhp8WhenRollbackWithAnyImplicitCommitBeforeWithPatchCodeWillSilentErrorSamePhp7()
+    public function testSincePhp8WhenCallRollbackAfterAnImplicitCommitInBackwardCompatibleModeWillSilentErrorSamePhp7()
     {
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
