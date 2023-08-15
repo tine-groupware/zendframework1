@@ -136,18 +136,21 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
                 $fromEmailHeader = str_replace("\r\n", "\n", $fromEmailHeader);
             }
             // Sanitize the From header
-            if (!Zend_Validate::is($fromEmailHeader, 'EmailAddress')) {
+            // https://github.com/Shardj/zf1-future/issues/326
+            // this is just quick-fix, we need to agree on how to sanitize all potential params used as 5th param to mail()
+            if ( empty($fromEmailHeader) === FALSE && Zend_Validate::is($fromEmailHeader, 'EmailAddress') === FALSE) {
                 throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
-            } else {
-                set_error_handler([$this, '_handleMailErrors']);
-                $result = mail(
-                    $recipients,
-                    $subject,
-                    $body,
-                    $header,
-                    $fromEmailHeader);
-                restore_error_handler();
             }
+            
+            set_error_handler([$this, '_handleMailErrors']);
+            $result = mail(
+                $recipients,
+                $subject,
+                $body,
+                $header,
+                $fromEmailHeader);
+            restore_error_handler();
+
         }
 
         if ($this->_errstr !== null || !$result) {
