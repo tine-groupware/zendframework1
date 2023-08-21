@@ -129,9 +129,7 @@ class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest
     public function testCleanModeNotMatchingTags3()
     {
     }
-    /**
-     * @doesNotPerformAssertions
-     */
+
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -139,9 +137,6 @@ class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest
         $this->_instance->setDirectives(['logging' => true]);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testSaveWithNullLifeTime()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -149,9 +144,6 @@ class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest
         $this->_instance->setDirectives(['logging' => true]);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
     public function testSaveWithSpecificLifeTime()
     {
         $this->_instance->setDirectives(['logging' => false]);
