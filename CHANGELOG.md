@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.23.3] - 2023-08-23
+### Added
+- Enabled testing of APCU for all PHP versions when running with all extensions enabled by @boenrobot in https://github.com/Shardj/zf1-future/pull/363
+    
+### Fixed
+- Finnish date translations by @Lodewyk in https://github.com/Shardj/zf1-future/pull/368
+- addressed 5th sendmail param validation using -f (#326) by @develart-projects in https://github.com/Shardj/zf1-future/pull/371
+
 ## [1.23.2] - 2023-08-15
 ### Fixed
 - corrected versioning and changelog
