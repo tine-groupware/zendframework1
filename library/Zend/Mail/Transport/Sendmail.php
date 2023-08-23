@@ -137,19 +137,31 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
             }
             // Sanitize the From header
             // https://github.com/Shardj/zf1-future/issues/326
-            // this is just quick-fix, we need to agree on how to sanitize all potential params used as 5th param to mail()
-            if ( empty($fromEmailHeader) === FALSE && Zend_Validate::is($fromEmailHeader, 'EmailAddress') === FALSE) {
-                throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
+            
+            if ( empty($fromEmailHeader) === FALSE ) { // nothing to worry about
+                goto processMail;
             }
             
-            set_error_handler([$this, '_handleMailErrors']);
-            $result = mail(
-                $recipients,
-                $subject,
-                $body,
-                $header,
-                $fromEmailHeader);
-            restore_error_handler();
+            // now we use 2 different approaches, based ond the usage context            
+            if( substr( $fromEmailHeader, 0, 2 ) === '-f' && substr_count($fromEmailHeader, '"') >2 ) { // we are considering just usage of double-quotes
+                
+                throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
+                
+            } elseif( Zend_Validate::is($fromEmailHeader, 'EmailAddress') === FALSE ) { // full email validation
+                
+                throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
+            }            
+            
+            processMail:
+            
+                set_error_handler([$this, '_handleMailErrors']);
+                $result = mail(
+                    $recipients,
+                    $subject,
+                    $body,
+                    $header,
+                    $fromEmailHeader);
+                restore_error_handler();
 
         }
 
