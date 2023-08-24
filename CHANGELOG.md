@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.23.5] - 2023-08-24
+### Fixed
+- further Zend Mail sendmail transport validation tweak
+
 ## [1.23.4] - 2023-08-24
 ### Fixed
 - corrected Zend Mail sendmail transport comparison
