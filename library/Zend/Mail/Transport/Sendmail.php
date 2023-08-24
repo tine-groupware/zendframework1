@@ -143,13 +143,17 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
             }
             
             // now we use 2 different approaches, based ond the usage context            
-            if( substr( $fromEmailHeader, 0, 2 ) === '-f' && substr_count($fromEmailHeader, '"') >2 ) { // we are considering just usage of double-quotes
+            if( substr( $fromEmailHeader, 0, 2 ) === '-f' ) {
                 
-                throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
+                if(substr_count($fromEmailHeader, '"') >2) { // we are considering just usage of double-quotes
+                    throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
+                }
+  
+            } else { // full email validation
                 
-            } elseif( Zend_Validate::is($fromEmailHeader, 'EmailAddress') === FALSE ) { // full email validation
-                
-                throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
+                if( Zend_Validate::is($fromEmailHeader, 'EmailAddress') === FALSE ) {
+                    throw new Zend_Mail_Transport_Exception('Potential code injection in From header');
+                }                
             }            
             
             processMail:
