@@ -138,7 +138,7 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
             // Sanitize the From header
             // https://github.com/Shardj/zf1-future/issues/326
             
-            if ( empty($fromEmailHeader) === FALSE ) { // nothing to worry about
+            if ( empty($fromEmailHeader) === TRUE ) { // nothing to worry about
                 goto processMail;
             }
             
