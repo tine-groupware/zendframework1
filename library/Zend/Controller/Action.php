@@ -92,6 +92,12 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
     public $view;
 
     /**
+     * compataibility for php 8.2 to stop error Deprecated: Creation of dynamic property 
+     * @var object 
+     */
+    public  $contexts = null; 
+    
+    /**
      * Helper Broker to assist in routing help requests to the proper object
      *
      * @var Zend_Controller_Action_HelperBroker
