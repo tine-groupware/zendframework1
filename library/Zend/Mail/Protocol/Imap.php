@@ -436,7 +436,7 @@ class Zend_Mail_Protocol_Imap
         }
 
         $this->_log(__METHOD__ . '::' . __LINE__ . ' IMAP request: ' . $line);
-        if (@fputs($this->_socket, $line . "\r\n") === false) {
+        if ($this->_socket === false || @fputs($this->_socket, $line . "\r\n") === false) {
             /**
              * @see Zend_Mail_Protocol_Exception
              */
