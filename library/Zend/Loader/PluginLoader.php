@@ -411,7 +411,12 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
             }
         }
 
-        if (!$found) {
+        while (!$found) {
+            if (class_exists($name)) {
+                $className = $name;
+                break;
+            }
+
             if (!$throwExceptions) {
                 return false;
             }
