@@ -357,7 +357,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
         }
 
         // If we got a 'transfer-encoding: chunked' header
-        if (isset($headers['transfer-encoding'])) {
+        if (isset($headers['transfer-encoding']) && is_string($headers['trasnsfer-encoding'])) {
 
             if (strtolower($headers['transfer-encoding']) == 'chunked') {
 
