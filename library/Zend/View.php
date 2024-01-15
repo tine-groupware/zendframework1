@@ -31,7 +31,7 @@ require_once 'Zend/View/Abstract.php';
  *
  * @category  Zend
  * @package   Zend_View
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2024 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  *
  * Convenience methods for build in helpers (@see __call):
@@ -82,17 +82,19 @@ require_once 'Zend/View/Abstract.php';
  * @method string translate($messageid = null)
  * @method string url(array $urlOptions = array(), $name = null, $reset = false, $encode = true)
  * @method Zend_Http_UserAgent userAgent(Zend_Http_UserAgent $userAgent = null)
+ *
  */
+#[AllowDynamicProperties]
 class Zend_View extends Zend_View_Abstract
 {
     /**
-     * Whether or not to use streams to mimic short tags
+     * Whether to use streams to mimic short tags
      * @var bool
      */
-    private $_useViewStream = false;
+    private $_useViewStream;
 
     /**
-     * Whether or not to use stream wrapper if short_open_tag is false
+     * Whether to use stream wrapper if short_open_tag is false
      * @var bool
      */
     private $_useStreamWrapper = false;
@@ -107,7 +109,7 @@ class Zend_View extends Zend_View_Abstract
      */
     public function __construct($config = [])
     {
-        $this->_useViewStream = (bool) ini_get('short_open_tag') ? false : true;
+        $this->_useViewStream = !(bool)ini_get('short_open_tag');
         if ($this->_useViewStream) {
             if (!in_array('zend.view', stream_get_wrappers())) {
                 require_once 'Zend/View/Stream.php';
@@ -146,8 +148,6 @@ class Zend_View extends Zend_View_Abstract
 
     /**
      * Includes the view script in a scope with only public $this variables.
-     *
-     * @param string The view script to execute.
      */
     protected function _run()
     {
