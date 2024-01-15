@@ -15,9 +15,8 @@
  * @category   Zend
  * @package    Zend_Service
  * @author     Lars Kneschke <l.kneschke@metaways.de>
- * @copyright  Copyright (c) 2009 Metaways Infosystems GmbH (http://www.metaways.de)
+ * @copyright  Copyright (c) 2009-2024 Metaways Infosystems GmbH (http://www.metaways.de)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
  */
 
 
@@ -26,17 +25,10 @@
  */
 require_once 'Zend/Http/Client.php';
 
-/**
- * @category   Zend
- * @package    Zend_Service
- * @author     Lars Kneschke <l.kneschke@metaways.de>
- * @copyright  Copyright (c) 2009 Metaways Infosystems GmbH (http://www.metaways.de)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Service_Nominatim
 {
     /**
-     * the url of the Tine 2.0 installation
+     * the url of the tine installation
      * 
      * @var string (for example http://demo.tine20.org/index.php)
      */
@@ -45,6 +37,10 @@ class Zend_Service_Nominatim
     protected $_httpClient;
     
     protected $_country;
+    protected $_street;
+    protected $_village;
+    protected $_postcode;
+    protected $_number;
     
     /**
      * constructor for Zend_Service_Tine20
@@ -148,19 +144,12 @@ class Zend_Service_Nominatim
         $this->_httpClient->setParameterGet('addressdetails', 1);
         $this->_httpClient->setParameterGet('osm_type', 'way');
 
-        // TODO allow to use Zend_Logger here
-//        if (Tinebase_Core::isLogLevel(Zend_Log::DEBUG)) Tinebase_Core::getLogger()->debug(__METHOD__ . '::' . __LINE__
-//            . ' Connecting to Nominatim with uri ' . $this->_httpClient->getUri(true));
-        
         $response = $this->_httpClient->request();
         $body = $response->getBody();
       
         # check xml validity!
         $isxml = @simplexml_load_string($body);
         if (! $isxml) {
-            // TODO allow to use Zend_Logger here
-//            if (Tinebase_Core::isLogLevel(Zend_Log::DEBUG)) Tinebase_Core::getLogger()->debug(__METHOD__ . '::' . __LINE__
-//                . ' response: ' . $body);
             throw new UnexpectedValueException('String could not be parsed as XML');
         }
         $xml = new SimpleXMLElement($body);
