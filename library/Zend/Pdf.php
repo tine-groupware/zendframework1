@@ -228,6 +228,8 @@ class Zend_Pdf
      */
     protected $_isNewDocument = true;
 
+    protected $_pdfHeaderVersion;
+
     /**
      * Request used memory manager
      *
@@ -252,8 +254,7 @@ class Zend_Pdf
     {
         self::$_memoryManager = $memoryManager;
     }
-
-
+    
     /**
      * Create new PDF document from a $source string
      *
