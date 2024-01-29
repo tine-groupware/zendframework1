@@ -106,7 +106,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_TimesBold extends Zend_Pdf_Resource
 
         $this->_isBold = true;
         $this->_isItalic = false;
-        $this->_isMonospaced = false;
+        $this->_isMonospace = false;
 
         $this->_underlinePosition = -100;
         $this->_underlineThickness = 50;

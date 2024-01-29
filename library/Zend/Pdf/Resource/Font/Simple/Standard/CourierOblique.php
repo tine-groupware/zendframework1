@@ -99,7 +99,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_CourierOblique extends Zend_Pdf_Res
 
         $this->_isBold = false;
         $this->_isItalic = true;
-        $this->_isMonospaced = true;
+        $this->_isMonospace = true;
 
         $this->_underlinePosition = -100;
         $this->_underlineThickness = 50;

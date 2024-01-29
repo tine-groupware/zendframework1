@@ -109,7 +109,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_HelveticaOblique extends Zend_Pdf_R
 
         $this->_isBold = false;
         $this->_isItalic = true;
-        $this->_isMonospaced = false;
+        $this->_isMonospace = false;
 
         $this->_underlinePosition = -100;
         $this->_underlineThickness = 50;

@@ -97,7 +97,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_Courier extends Zend_Pdf_Resource_F
 
         $this->_isBold = false;
         $this->_isItalic = false;
-        $this->_isMonospaced = true;
+        $this->_isMonospace = true;
 
         $this->_underlinePosition = -100;
         $this->_underlineThickness = 50;
