@@ -117,7 +117,7 @@ class Zend_Pdf_Resource_Font_Type0 extends Zend_Pdf_Resource_Font
 
         $this->_isBold       = $descendantFont->isBold();
         $this->_isItalic     = $descendantFont->isItalic();
-        $this->_isMonospaced = $descendantFont->isMonospace();
+        $this->_isMonospace = $descendantFont->isMonospace();
 
         $this->_underlinePosition  = $descendantFont->getUnderlinePosition();
         $this->_underlineThickness = $descendantFont->getUnderlineThickness();

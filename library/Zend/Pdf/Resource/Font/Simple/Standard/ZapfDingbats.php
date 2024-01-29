@@ -247,7 +247,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_ZapfDingbats extends Zend_Pdf_Resou
 
         $this->_isBold = false;
         $this->_isItalic = false;
-        $this->_isMonospaced = false;
+        $this->_isMonospace = false;
 
         $this->_underlinePosition = -100;
         $this->_underlineThickness = 50;

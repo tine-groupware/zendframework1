@@ -98,7 +98,7 @@ abstract class Zend_Pdf_Resource_Font_CidFont extends Zend_Pdf_Resource_Font
 
         $this->_isBold       = $fontParser->isBold;
         $this->_isItalic     = $fontParser->isItalic;
-        $this->_isMonospaced = $fontParser->isMonospaced;
+        $this->_isMonospace = $fontParser->isMonospaced;
 
         $this->_underlinePosition  = $fontParser->underlinePosition;
         $this->_underlineThickness = $fontParser->underlineThickness;
