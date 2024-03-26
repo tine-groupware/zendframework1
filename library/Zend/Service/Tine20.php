@@ -85,23 +85,32 @@ class Zend_Service_Tine20 extends Zend_Json_Client
     }
 
     /**
-     * login to Tine 2.0 installation 
-     * 
+     * login to tine installation
+     *
      * @param string $loginname
      * @param string $password
-     * @return array decoded JSON responce
+     * @return array decoded JSON response
+     * @throws Zend_Cache_Exception
+     * @throws Zend_Http_Client_Exception
      * @throws Zend_Service_Exception
      */
-    public function login($loginname, $password)
+    public function login($loginname, $password): array
     {
         $this->setSkipSystemLookup(true);
+
+        try {
+            $response = $this->call('Tinebase.login', array(
+                'username' => $loginname,
+                'password' => $password
+            ));
+        } catch (Zend_Json_Exception $zje) {
+            $response = [
+                'success' => false,
+                'errorMessage' => 'Could not parse response: ' . $zje->getMessage(),
+            ];
+        }
         
-        $response = $this->call('Tinebase.login', array(
-            'username'  => $loginname,
-            'password'  => $password
-        ));
-        
-        if($response['success'] !== true) {
+        if ($response['success'] !== true) {
             throw new Zend_Service_Exception($response['errorMessage']);
         }
         
