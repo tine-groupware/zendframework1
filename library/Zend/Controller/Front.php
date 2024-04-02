@@ -559,7 +559,7 @@ class Zend_Controller_Front
     /**
      * Retrieve the currently set base URL
      *
-     * @return string
+     * @return string|null
      */
     public function getBaseUrl()
     {
