@@ -527,8 +527,12 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
     protected function _authenticateValidateResult($resultIdentity)
     {
         $zendAuthCredentialMatchColumn = $this->_zendDb->foldCase('zend_auth_credential_match');
-
-        if ($resultIdentity[$zendAuthCredentialMatchColumn] != '1') {
+        
+        if (empty($resultIdentity)) {
+            $this->_authenticateResultInfo['code'] = Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND;
+            $this->_authenticateResultInfo['messages'][] = 'A record with the supplied identity could not be found.';
+            return $this->_authenticateCreateAuthResult();
+        } elseif ($resultIdentity[$zendAuthCredentialMatchColumn] != '1') {
             $this->_authenticateResultInfo['code'] = Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID;
             $this->_authenticateResultInfo['messages'][] = 'Supplied credential is invalid.';
             return $this->_authenticateCreateAuthResult();
