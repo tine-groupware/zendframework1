@@ -1,4 +1,4 @@
-name: PHPUnit-9
+name: PHPUnit
 
 on: [push, pull_request]
 
@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     env:
-      PHP_EXTENSIONS: none, posix, curl, dom, json, libxml, mbstring, openssl, tokenizer, xml, xmlwriter, ctype, iconv, simplexml, pdo_sqlite, pdo_mysql, fileinfo, json, zip, sqlite, soap, bcmath, mcrypt, igbinary, gd, bz2, lzf, rar, memcached, memcache
       PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
 
       TESTS_ZEND_DB_ADAPTER_PDO_MYSQL_ENABLED: true
@@ -34,7 +33,9 @@ jobs:
       TESTS_ZEND_CACHE_LIBMEMCACHED_HOST: 127.0.0.1
       TESTS_ZEND_CACHE_LIBMEMCACHED_PORT: 11211
 
-       # https://hub.docker.com/r/bitnami/openldap
+      TESTS_ZEND_CACHE_APC_ENABLED: true
+
+      # https://hub.docker.com/r/bitnami/openldap
       LDAP_ROOT: "dc=example,dc=com"
       LDAP_ALLOW_ANON_BINDING: false
       LDAP_SKIP_DEFAULT_TREE: "yes"
@@ -46,6 +47,7 @@ jobs:
       TESTS_ZEND_AUTH_ADAPTER_LDAP_ONLINE_ENABLED: true
 
       LOCALES: "fr_FR@euro fr_FR fr_BE.UTF-8 de en_US"
+      OPENSSL_CONF: "./tests/openssl.conf"
     services:
       memcache:
         image: memcached:1.6.17-alpine
@@ -60,7 +62,7 @@ jobs:
           MYSQL_DATABASE: ${{ env.TESTS_ZEND_DB_ADAPTER_MYSQL_DATABASE }}
           MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
         ports:
-           - 3306:3306
+          - 3306:3306
         options: >-
           --health-cmd "mysqladmin ping"
           --health-interval 10s
@@ -99,13 +101,28 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
           - "8.0"
           - "8.1"
           - "8.2"
         experimental:
           - false
         include:
+          #bare for PHP >=7.2
+          - php-extensions-bare: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring"
+          #full for PHP <= 8.0
+          - php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt, rar"
+          - php-version: "7.1"
+            php-extensions-bare: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer"
+          - php-version: "8.1"
+            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt"
+          - php-version: "8.2"
+            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite, mcrypt"
           - php-version: "8.3"
+            php-extensions-full: "none, iconv, json, libxml, xml, dom, simplexml, xmlwriter, tokenizer, mbstring, apcu, ctype, openssl, curl, gd, posix, pdo_sqlite, pdo_mysql, fileinfo, zip, sqlite, soap, bcmath, igbinary, bz2, lzf, memcached, memcache, ldap, sqlite"
             experimental: true
 
     steps:
@@ -118,32 +135,60 @@ jobs:
           echo "All languages..."
           locale -a
       
-      - name: Provider config base on env for intergrate test
+      - name: Provider config base on env for integrate test
         run: cp tests/TestConfiguration.env.php tests/TestConfiguration.php
 
-      - name: Install PHP with extensions
+      - name: Install PHP with minimal extensions
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
           tools: cs2pr
-          extensions: memcached, memcache
+          extensions: ${{ matrix.php-extensions-bare }}
           ini-values: ${{ env.PHP_INI_VALUES }}
         env:
           # https://github.com/shivammathur/setup-php/issues/407#issuecomment-773675741
           fail-fast: true
 
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
+
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Lint PHP source files
         run: |
           bin/parallel-lint --exclude vendor --exclude tests/Zend/Loader/_files/ParseError.php . --checkstyle | cs2pr
+
+      - name: "Run tests on PHP ${{ matrix.php-version }} (Experimental: ${{ matrix.experimental }}) with minimal extensions"
+        run: |
+          bin/phpunit -c tests/phpunit.xml
+        continue-on-error: ${{ matrix.experimental }}
 
       - name: Setup LDAP
         run: |
           sudo apt-get install -y libnss-ldap libpam-ldap ldap-utils
           tests/resources/openldap/docker-entrypoint-initdb.d/init.sh
 
-      - name: "Run tests on PHP ${{ matrix.php-version }} (Experimental: ${{ matrix.experimental }})"
-        run: bin/phpunit -c tests/phpunit.xml
+      - name: Install PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: cs2pr
+          extensions: ${{ matrix.php-extensions-full }}
+          ini-values: ${{ env.PHP_INI_VALUES }}, apc.enable_cli=1
+        env:
+          # https://github.com/shivammathur/setup-php/issues/407#issuecomment-773675741
+          fail-fast: true
+
+      - name: "Run tests on PHP ${{ matrix.php-version }} (Experimental: ${{ matrix.experimental }}) with extensions"
+        run: |
+          bin/phpunit -c tests/phpunit.xml
         continue-on-error: ${{ matrix.experimental }}

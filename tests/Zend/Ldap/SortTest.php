@@ -30,16 +30,16 @@
  */
 class Zend_Ldap_SortTest extends Zend_Ldap_OnlineTestCase
 {
-    protected function setUp()
+    protected function set_up()
     {
-        parent::setUp();
+        parent::set_up();
         $this->_prepareLdapServer();
     }
 
-    protected function tearDown()
+    protected function tear_down()
     {
         $this->_cleanupLdapServer();
-        parent::tearDown();
+        parent::tear_down();
     }
 
     /**
