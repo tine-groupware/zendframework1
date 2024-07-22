@@ -591,8 +591,15 @@ class Zend_Http_Response
     public static function decodeChunkedBody($body)
     {
         $decBody = '';
-
         $offset = 0;
+
+        // If mbstring overloads substr and strlen functions, we have to
+        // override it's internal encoding
+        if (function_exists('mb_internal_encoding') &&
+           ((int) ini_get('mbstring.func_overload')) & 2) {
+            $mbIntEnc = mb_internal_encoding();
+            mb_internal_encoding('ASCII');
+        }
 
         while (true) {
             if (! preg_match("/^([\da-fA-F]+)[^\r\n]*\r\n/sm", $body, $m, 0, $offset)) {
@@ -608,6 +615,10 @@ class Zend_Http_Response
             $cut      = strlen($m[0]);
             $decBody .= substr($body, $offset + $cut, $length);
             $offset += $cut + $length + 2;
+        }
+
+        if (isset($mbIntEnc)) {
+            mb_internal_encoding($mbIntEnc);
         }
 
         return $decBody;
