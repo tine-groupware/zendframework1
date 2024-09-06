@@ -143,7 +143,7 @@ public function key()
      * @throws OutOfBoundsException
      * @return void
      */
-    public function seek($index)
+    public function seek($index): void
     {
         $indexInt = (int) $index;
         if ($indexInt >= 0 && (null === $this->_results || $indexInt < $this->_total)) {
