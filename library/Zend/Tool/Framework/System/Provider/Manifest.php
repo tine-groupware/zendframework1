@@ -69,7 +69,7 @@ class Zend_Tool_Framework_System_Provider_Manifest
             if (!$metadataAttrs) {
                 $metadataAttrs = '(None)';
             } else {
-                $metadataAttrs = urldecode(http_build_query($metadataAttrs, null, ', '));
+                $metadataAttrs = urldecode(http_build_query($metadataAttrs, '', ', '));
             }
 
             if (!array_key_exists($metadataType, $metadataTree)) {
@@ -88,7 +88,7 @@ class Zend_Tool_Framework_System_Provider_Manifest
 
             $metadataValue = $metadata->getValue();
             if (is_array($metadataValue) && count($metadataValue) > 0) {
-                $metadataValue = urldecode(http_build_query($metadataValue, null, ', '));
+                $metadataValue = urldecode(http_build_query($metadataValue, '', ', '));
             } elseif (is_array($metadataValue)) {
                 $metadataValue = '(empty array)';
             }
