@@ -816,10 +816,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
         foreach( $this->_messages as $message ) {
             if (!$message->getDestroy()) {
-                $this->send($message->getMessage(),
-                            $message->getLabel(),
-                            $message->getStyle(),
-                            $message->getOptions());
+                static::send($message->getMessage(), $message->getLabel(), $message->getStyle(), $message->getOptions());
             }
         }
 
