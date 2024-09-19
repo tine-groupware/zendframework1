@@ -46,6 +46,7 @@ require_once 'Zend/Wildfire/Plugin/Interface.php';
  */
 class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 {
+    public $objectFilters;
     /**
      * Plain log style.
      */
