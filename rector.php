@@ -13,16 +13,15 @@ use Rector\Php71\Rector as Php71;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\ValueObject\PhpVersion;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([
+return RectorConfig::configure()
+    ->withPaths([
         __DIR__ . '/library',
         __DIR__ . '/tests',
-    ]);
-
-    // register a single rule
-    // https://github.com/rectorphp/rector/blob/main/docs/rector_rules_overview.md#completedynamicpropertiesrector
-    $rectorConfig->rule(CodeQuality\Class_\CompleteDynamicPropertiesRector::class);
-    $rectorConfig->skip([
+    ])
+    ->withRules([
+        CodeQuality\Class_\CompleteDynamicPropertiesRector::class
+    ])
+    ->withSkip([
         Php53\FuncCall\DirNameFileConstantToDirConstantRector::class,
         Php53\Ternary\TernaryToElvisRector::class,
         Php54\Array_\LongArrayToShortArrayRector::class,
@@ -37,11 +36,8 @@ return static function (RectorConfig $rectorConfig): void {
         Php71\FuncCall\RemoveExtraParametersRector::class,
         Php71\List_\ListToArrayDestructRector::class,
         __DIR__ . '/tests/Zend/Loader/_files/ParseError.php',
-    ]);
-
-    // define sets of rules
-    $rectorConfig->sets([
+    ])
+    ->withSets([
         LevelSetList::UP_TO_PHP_82
-    ]);
-    $rectorConfig->phpVersion(PhpVersion::PHP_71);
-};
+    ])
+    ->withPhpVersion(PhpVersion::PHP_71);
