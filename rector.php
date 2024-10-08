@@ -2,54 +2,42 @@
 
 declare(strict_types=1);
 
-use Rector\CodeQuality\Rector\Class_\CompleteDynamicPropertiesRector;
 use Rector\Config\RectorConfig;
-use Rector\Php53\Rector\FuncCall\DirNameFileConstantToDirConstantRector;
-use Rector\Php53\Rector\Ternary\TernaryToElvisRector;
-use Rector\Php54\Rector\Array_\LongArrayToShortArrayRector;
-use Rector\Php55\Rector\Class_\ClassConstantToSelfClassRector;
-use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
-use Rector\Php56\Rector\FuncCall\PowToExpRector;
-use Rector\Php70\Rector\FuncCall\MultiDirnameRector;
-use Rector\Php70\Rector\FuncCall\RandomFunctionRector;
-use Rector\Php70\Rector\StmtsAwareInterface\IfIssetToCoalescingRector;
-use Rector\Php70\Rector\Ternary\TernaryToNullCoalescingRector;
-use Rector\Php70\Rector\Variable\WrapVariableVariableNameInCurlyBracesRector;
-use Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector;
-use Rector\Php71\Rector\List_\ListToArrayDestructRector;
+use Rector\CodeQuality\Rector as CodeQuality;
+use Rector\Php53\Rector as Php53;
+use Rector\Php54\Rector as Php54;
+use Rector\Php55\Rector as Php55;
+use Rector\Php56\Rector as Php56;
+use Rector\Php70\Rector as Php70;
+use Rector\Php71\Rector as Php71;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\ValueObject\PhpVersion;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([
+return RectorConfig::configure()
+    ->withPaths([
         __DIR__ . '/library',
         __DIR__ . '/tests',
-    ]);
-
-    // register a single rule
-    // https://github.com/rectorphp/rector/blob/main/docs/rector_rules_overview.md#completedynamicpropertiesrector
-    $rectorConfig->rule(CompleteDynamicPropertiesRector::class);
-    $rectorConfig->skip([
-        MultiDirnameRector::class,
-        DirNameFileConstantToDirConstantRector::class,
-        ListToArrayDestructRector::class,
-        ClassConstantToSelfClassRector::class,
-        RemoveExtraParametersRector::class,
-        IfIssetToCoalescingRector::class,
-        StringClassNameToClassConstantRector::class,
-        TernaryToElvisRector::class,
-        RandomFunctionRector::class,
-        LongArrayToShortArrayRector::class,
-        WrapVariableVariableNameInCurlyBracesRector::class,
-        TernaryToNullCoalescingRector::class,
-        PowToExpRector::class,
+    ])
+    ->withRules([
+        CodeQuality\Class_\CompleteDynamicPropertiesRector::class
+    ])
+    ->withSkip([
+        Php53\FuncCall\DirNameFileConstantToDirConstantRector::class,
+        Php53\Ternary\TernaryToElvisRector::class,
+        Php54\Array_\LongArrayToShortArrayRector::class,
+        Php55\Class_\ClassConstantToSelfClassRector::class,
+        Php55\String_\StringClassNameToClassConstantRector::class,
+        Php56\FuncCall\PowToExpRector::class,
+        Php70\FuncCall\MultiDirnameRector::class,
+        Php70\FuncCall\RandomFunctionRector::class,
+        Php70\StmtsAwareInterface\IfIssetToCoalescingRector::class,
+        Php70\Ternary\TernaryToNullCoalescingRector::class,
+        Php70\Variable\WrapVariableVariableNameInCurlyBracesRector::class,
+        Php71\FuncCall\RemoveExtraParametersRector::class,
+        Php71\List_\ListToArrayDestructRector::class,
         __DIR__ . '/tests/Zend/Loader/_files/ParseError.php',
-    ]);
-    $a = pow(12, 23);
-
-    // define sets of rules
-    $rectorConfig->sets([
+    ])
+    ->withSets([
         LevelSetList::UP_TO_PHP_82
-    ]);
-    $rectorConfig->phpVersion(PhpVersion::PHP_71);
-};
+    ])
+    ->withPhpVersion(PhpVersion::PHP_71);
