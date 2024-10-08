@@ -114,7 +114,7 @@ class Zend_View_Helper_Navigation_Links
      * @return $this
      *                                               self
      */
-    public function links(Zend_Navigation_Container $container = null)
+    public function links(?Zend_Navigation_Container $container = null)
     {
         if (null !== $container) {
             $this->setContainer($container);
@@ -747,7 +747,7 @@ class Zend_View_Helper_Navigation_Links
      *                                               registered in the helper.
      * @return string                                helper output
      */
-    public function render(Zend_Navigation_Container $container = null)
+    public function render(?Zend_Navigation_Container $container = null)
     {
         if (null === $container) {
             $container = $this->getContainer();
