@@ -199,7 +199,11 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     protected $_validators = [];
 
-    protected array $_validatorBreakChainOnFailures = [];
+    /**
+     * Flags to break validation chain on failure.
+     * @var array
+     */
+    protected $_validatorBreakChainOnFailures = [];
 
     /**
      * Array of un-initialized validators
