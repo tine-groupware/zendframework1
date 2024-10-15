@@ -39,10 +39,11 @@ if (extension_loaded('soap')) {
  * @category   Zend
  * @package    Zend_Soap
  * @subpackage Client
+ *
+ * @property Zend_Soap_Server $server
  */
 class Zend_Soap_Client_Local extends Zend_Soap_Client
 {
-    public $server;
     /**
      * Server object
      *
