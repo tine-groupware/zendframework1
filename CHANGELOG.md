@@ -6,6 +6,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.24.1] - 2024-10-15
+
+### Added
+
+* Added TLS v1.3 protocol by @ADDISON74 in https://github.com/Shardj/zf1-future/pull/447
+* Updated github workflow by @sreichel in https://github.com/Shardj/zf1-future/pull/445
+
+### Fixed
+
+* Fix for very slow chunk processing for larger content in the http res… by @aleksandar-mitrev in https://github.com/Shardj/zf1-future/pull/354
+* Add check in DbTable Authentication Adapter for empty results when AmbiguityIdentity is TRUE by @rruchte in https://github.com/Shardj/zf1-future/pull/419
+* Fix deprecation message in php8 with null param with realpath() by @tsmgeek in https://github.com/Shardj/zf1-future/pull/413
+* Fix deprecated usage of string functions in `BaseUrl` helper. by @muli in https://github.com/Shardj/zf1-future/pull/410
+* Support for PHP 8.2 by @Fredthelead in https://github.com/Shardj/zf1-future/pull/438
+* PHP8.4: Implicitly nullable by @sreichel in https://github.com/Shardj/zf1-future/pull/442
+* Skip broken PhpUnit tests by @sreichel in https://github.com/Shardj/zf1-future/pull/443
+* Update composer.json homepage property by @B3none in https://github.com/Shardj/zf1-future/pull/432
+* PHPStan fixes by @thomaslauria in https://github.com/Shardj/zf1-future/pull/434
+* Fix "Undefined variable $c" in Zend_XmlRpc_Server::setResponseClass() by @lapiudevgit in https://github.com/Shardj/zf1-future/pull/451
+* Fix PHP Deprecated: Creation of dynamic property $zfBreakChainOnFailure from Zend_Form_Element by @hung202028 in https://github.com/Shardj/zf1-future/pull/440
+
 ## [1.24.0] - 2024-02-05
 - introduced BREAKING CHANGES doc.
 
