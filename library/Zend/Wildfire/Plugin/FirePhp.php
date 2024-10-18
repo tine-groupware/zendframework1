@@ -43,11 +43,10 @@ require_once 'Zend/Wildfire/Plugin/Interface.php';
  * @subpackage Plugin
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @property array $objectFilters
  */
 class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 {
+    public $objectFilters;
     /**
      * Plain log style.
      */

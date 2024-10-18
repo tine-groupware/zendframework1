@@ -26,11 +26,10 @@
  * @package    Zend_Pdf
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @property mixed $value
  */
 abstract class Zend_Pdf_Element
 {
+    public $value;
     public const TYPE_BOOL        = 1;
     public const TYPE_NUMERIC     = 2;
     public const TYPE_STRING      = 3;
