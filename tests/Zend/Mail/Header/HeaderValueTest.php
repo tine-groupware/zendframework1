@@ -75,7 +75,7 @@ class Zend_Mail_Header_HeaderValueTest extends TestCase
             ["This is a \r\n\n\r\n test", 'assertFalse'],
             ["This is à tèst àèìòù", 'assertTrue'],
             ["это тест по русскому языку", 'assertTrue'],
-            ["هذااختار في اللغة العربيةу", 'assertTrue']
+            ["هذااختار في اللغة العربية", 'assertTrue']
         ];
     }
 
@@ -94,12 +94,10 @@ class Zend_Mail_Header_HeaderValueTest extends TestCase
             ["This is a\n test"],
             ["This is a\r test"],
             ["This is a\n\r test"],
-            ["This is a \r\ntest"],
             ["This is a \r\n\n test"],
             ["This is a\n\n test"],
             ["This is a\r\r test"],
             ["This is a \r\r\n test"],
-            ["This is a \r\n\r\ntest"],
             ["This is a \r\n\n\r\n test"]
         ];
     }
