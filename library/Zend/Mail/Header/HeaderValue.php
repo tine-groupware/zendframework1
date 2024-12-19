@@ -92,10 +92,10 @@ final class Zend_Mail_Header_HeaderValue
     {
         $tot = strlen($value);
         $i = 0;
-    
+
         while ($i < $tot) {
             $ord = ord($value[$i]);
-    
+
             // Check for control characters (CR and LF) as per RFC 6532
             if ($ord === 13) { // Carriage Return (CR)
                 if ($i + 1 >= $tot || ord($value[$i + 1]) !== 10) { // Must be followed by Line Feed (LF)
@@ -106,29 +106,29 @@ final class Zend_Mail_Header_HeaderValue
             } elseif ($ord === 10) { // Standalone Line Feed (LF) is not allowed
                 return false;
             }
-    
+
             // Validate that the character is a valid UTF-8 character
             if (!self::isUtf8Character($value, $i, $tot)) {
                 return false;
             }
         }
-    
+
         return true;
     }
-    
+
     private static function isUtf8Character($value, &$i, $tot)
     {
         $byte = ord($value[$i]);
-    
+
         // ASCII character (1 byte): 0x00 - 0x7F
         if ($byte >= 0x00 && $byte <= 0x7F) {
             $i++;
             return true;
         }
-    
+
         // Determine the number of bytes in the UTF-8 character
         $numBytes = 0;
-    
+
         if ($byte >= 0xC2 && $byte <= 0xDF) { // 2-byte sequence
             $numBytes = 2;
         } elseif ($byte >= 0xE0 && $byte <= 0xEF) { // 3-byte sequence
@@ -138,14 +138,14 @@ final class Zend_Mail_Header_HeaderValue
         } else {
             return false; // Invalid byte for UTF-8
         }
-    
+
         // Validate the next numBytes - 1 bytes (must be of the format 10xxxxxx)
         for ($j = 1; $j < $numBytes; $j++) {
             if ($i + $j >= $tot || (ord($value[$i + $j]) & 0xC0) !== 0x80) {
                 return false; // Invalid UTF-8 sequence
             }
         }
-    
+
         $i += $numBytes; // Move the pointer forward by the number of bytes
         return true;
     }
