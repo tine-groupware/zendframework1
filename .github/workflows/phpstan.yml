@@ -5,17 +5,13 @@ on: [push, pull_request]
 jobs:
   phpstan:
     name: Analyze
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-        php-versions: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+    runs-on: [ubuntu-latest]
 
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: 7.4
 
       - uses: actions/checkout@v4
 
@@ -37,7 +33,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: .phpstan.cache
-          key: phpstan-result-cache-${{ matrix.php-versions }}-${{ github.run_id }}
+          key: phpstan-result-cache-${{ github.run_id }}
           restore-keys: |
             phpstan-result-cache-
 
@@ -49,4 +45,4 @@ jobs:
         if: always()
         with:
           path: .phpstan.cache
-          key: phpstan-result-cache-${{ matrix.php-versions }}-${{ github.run_id }}
+          key: phpstan-result-cache-${{ github.run_id }}

@@ -54,7 +54,8 @@
         "lint": "parallel-lint --exclude vendor --exclude tests/Zend/Loader/_files/ParseError.php .",
         "php-cs-fixer:test": "bin/php-cs-fixer fix --dry-run --diff",
         "php-cs-fixer:fix": "bin/php-cs-fixer fix",
-        "phpstan": "bin/phpstan analyze",
+        "phpstan": "XDEBUG_MODE=off php bin/phpstan analyze --configuration .phpstan.dist.neon",
+        "phpstan:baseline": "XDEBUG_MODE=off php bin/phpstan analyze --configuration .phpstan.dist.neon -b .phpstan.dist.baseline.neon",
         "rector:test": "bin/rector process --config .rector.php --dry-run",
         "rector:fix": "bin/rector process --config .rector.php",
         "test": [
@@ -65,7 +66,8 @@
     "scripts-descriptions": {
         "php-cs-fixer:test": "Run php-cs-fixer",
         "php-cs-fixer:fix": "Run php-cs-fixer and fix issues",
-        "phpstan": "Run phpcstan",
+        "phpstan": "Run phpstan",
+        "phpstan:baseline": "Run phpstan and update baseline",
         "rector:test": "Run rector",
         "rector:fix": "Run rector and fix issues"
     },
