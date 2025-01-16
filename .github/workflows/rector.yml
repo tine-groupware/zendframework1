@@ -31,4 +31,4 @@ jobs:
         run: composer install --prefer-dist --no-progress --ignore-platform-req=ext-*
 
       - name: Rector
-        run: php bin/rector process --dry-run
+        run: php bin/rector process --config .rector.php --dry-run
