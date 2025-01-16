@@ -1,0 +1,3007 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method Zend_Acl\:\:_roleDFSAllPrivileges\(\) invoked with 3 parameters, 1\-2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Acl.php
+
+		-
+			message: '#^Variable \$assertionValue might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Acl.php
+
+		-
+			message: '#^Variable \$backendObject might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cache.php
+
+		-
+			message: '#^Variable \$frontendObject might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Cache.php
+
+		-
+			message: '#^Method Zend_Cache_Backend\:\:getTmpDir\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_Apc\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/Apc.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_File\:\:_hash\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/File.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_File\:\:getFillingPercentage\(\) should return int but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/File.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_Libmemcached\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/Libmemcached.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_Memcached\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/Memcached.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_Sqlite\:\:getFillingPercentage\(\) should return int but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/Sqlite.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_TwoLevels\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/TwoLevels.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_WinCache\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/WinCache.php
+
+		-
+			message: '#^Constant XC_TYPE_VAR not found\.$#'
+			identifier: constant.notFound
+			count: 2
+			path: library/Zend/Cache/Backend/Xcache.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_Xcache\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/Xcache.php
+
+		-
+			message: '#^Function accelerator_license_info not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Cache/Backend/ZendPlatform.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_ZendPlatform\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/ZendPlatform.php
+
+		-
+			message: '#^Method Zend_Cache_Backend_ZendServer\:\:clean\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Backend/ZendServer.php
+
+		-
+			message: '#^Variable \$tmp might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cache/Frontend/Function.php
+
+		-
+			message: '#^Variable \$_COOKIE in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: library/Zend/Cache/Frontend/Page.php
+
+		-
+			message: '#^Method Zend_Cache_Manager\:\:getCache\(\) should return Zend_Cache_Core but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Manager.php
+
+		-
+			message: '#^Method Zend_Cache_Manager\:\:getCacheTemplate\(\) should return array but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cache/Manager.php
+
+		-
+			message: '#^Variable \$attr might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cloud/DocumentService/Adapter/SimpleDb.php
+
+		-
+			message: '#^Variable \$documentId in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Cloud/DocumentService/Adapter/SimpleDb.php
+
+		-
+			message: '#^Method Zend_Cloud_DocumentService_Adapter_WindowsAzure\:\:_validateCompositeKey\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Cloud/DocumentService/Adapter/WindowsAzure.php
+
+		-
+			message: '#^Access to undefined constant Zend_Cloud_Infrastructure_Instance\:\:SSH_KEY\.$#'
+			identifier: classConstant.notFound
+			count: 1
+			path: library/Zend/Cloud/Infrastructure/Adapter/AbstractAdapter.php
+
+		-
+			message: '#^Class Zend_Service_Amazon_Ec2_Availabilityzones referenced with incorrect case\: Zend_Service_Amazon_Ec2_AvailabilityZones\.$#'
+			identifier: class.nameCase
+			count: 1
+			path: library/Zend/Cloud/Infrastructure/Adapter/Ec2.php
+
+		-
+			message: '#^Variable \$total might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cloud/Infrastructure/Adapter/Rackspace.php
+
+		-
+			message: '#^Variable \$usage might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Cloud/Infrastructure/Adapter/Rackspace.php
+
+		-
+			message: '#^Variable \$used might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cloud/Infrastructure/Adapter/Rackspace.php
+
+		-
+			message: '#^Access to constant TIMEOUT_STATUS_CHANGE on an unknown class Adapter\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Cloud/Infrastructure/Instance.php
+
+		-
+			message: '#^Instantiated class Zend_Cloud_Storage_Exception not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: library/Zend/Cloud/QueueService/Adapter/WindowsAzure.php
+
+		-
+			message: '#^Undefined variable\: \$httpAdapter$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cloud/QueueService/Adapter/WindowsAzure.php
+
+		-
+			message: '#^Method Zend_Cloud_QueueService_Adapter_ZendQueue\:\:deleteQueue\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Cloud/QueueService/Adapter/ZendQueue.php
+
+		-
+			message: '#^Variable \$options might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cloud/StorageService/Adapter/Rackspace.php
+
+		-
+			message: '#^Result of method Zend_Cloud_StorageService_Adapter_WindowsAzure\:\:moveItem\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/Cloud/StorageService/Adapter/WindowsAzure.php
+
+		-
+			message: '#^Undefined variable\: \$destinationPath$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Cloud/StorageService/Adapter/WindowsAzure.php
+
+		-
+			message: '#^Result of method Zend_Controller_Action_Helper_ContextSwitch\:\:initContext\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: library/Zend/Controller/Action/Helper/AjaxContext.php
+
+		-
+			message: '#^Call to an undefined method Zend_Controller_Action_Helper_Cache\:\:getCache\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: library/Zend/Controller/Action/Helper/Cache.php
+
+		-
+			message: '#^Variable \$origModuleDir might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Controller/Action/Helper/ViewRenderer.php
+
+		-
+			message: '#^Variable \$origSuffix might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Controller/Action/Helper/ViewRenderer.php
+
+		-
+			message: '#^Method Zend_Controller_Plugin_ActionStack\:\:popStack\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Controller/Plugin/ActionStack.php
+
+		-
+			message: '#^Result of method Zend_Controller_Request_Http\:\:__set\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/Controller/Request/Http.php
+
+		-
+			message: '#^Variable \$_GET in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: library/Zend/Controller/Request/Http.php
+
+		-
+			message: '#^Variable \$_POST in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: library/Zend/Controller/Request/Http.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: library/Zend/Controller/Router/Route.php
+
+		-
+			message: '#^Variable \$translateMessages might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Controller/Router/Route.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: library/Zend/Controller/Router/Route/Chain.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: library/Zend/Controller/Router/Route/Hostname.php
+
+		-
+			message: '#^Method Zend_Controller_Router_Route_Module\:\:getDefault\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Controller/Router/Route/Module.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: library/Zend/Controller/Router/Route/Module.php
+
+		-
+			message: '#^Method Zend_Controller_Router_Route_Regex\:\:getDefault\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Controller/Router/Route/Regex.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: library/Zend/Controller/Router/Route/Regex.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: library/Zend/Controller/Router/Route/Static.php
+
+		-
+			message: '#^Method Zend_Crypt_Hmac\:\:_hash\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Crypt/Hmac.php
+
+		-
+			message: '#^Variable \$types might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Crypt/Hmac.php
+
+		-
+			message: '#^Constant MCRYPT_DEV_URANDOM not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Crypt/Math.php
+
+		-
+			message: '#^Variable \$hex might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Crypt/Math/BigInteger/Bcmath.php
+
+		-
+			message: '#^Variable \$hex might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Crypt/Math/BigInteger/Gmp.php
+
+		-
+			message: '#^Class Zend_Crypt_Rsa_Key_Public constructor invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Crypt/Rsa.php
+
+		-
+			message: '#^Static method Zend_Locale_Data\:\:clearCache\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Currency.php
+
+		-
+			message: '#^Variable \$found might not be defined\.$#'
+			identifier: variable.undefined
+			count: 11
+			path: library/Zend/Date.php
+
+		-
+			message: '#^Constant DB2_I5_NAMING_OFF not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Db/Adapter/Db2.php
+
+		-
+			message: '#^Constant DB2_I5_NAMING_ON not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Db/Adapter/Db2.php
+
+		-
+			message: '#^Variable \$identQuote might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Db/Adapter/Db2.php
+
+		-
+			message: '#^Variable \$result might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Db/Adapter/Mysqli.php
+
+		-
+			message: '#^Method Zend_Db_Adapter_Pdo_Ibm_Ids\:\:_getPrimaryInfo\(\) should return array but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Db/Adapter/Pdo/Ibm/Ids.php
+
+		-
+			message: '#^Variable \$type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Db/Adapter/Pdo/Mssql.php
+
+		-
+			message: '#^Result of method Zend_Db_Adapter_Abstract\:\:__construct\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: library/Zend/Db/Adapter/Pdo/Sqlite.php
+
+		-
+			message: '#^Variable \$type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Db/Adapter/Pdo/Sqlsrv.php
+
+		-
+			message: '#^Variable \$type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Db/Adapter/Sqlsrv.php
+
+		-
+			message: '#^Call to an undefined method Zend_Db_Statement\:\:_bindParam\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Db/Statement.php
+
+		-
+			message: '#^Call to an undefined method Zend_Db_Statement\:\:_execute\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/Db/Statement.php
+
+		-
+			message: '#^Method Zend_Db_Statement\:\:setAttribute\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Db/Statement.php
+
+		-
+			message: '#^Method Zend_Db_Statement\:\:setFetchMode\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Db/Statement.php
+
+		-
+			message: '#^Variable \$cacheId might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Db/Table/Abstract.php
+
+		-
+			message: '#^Result of method Zend_Db_Table_Row_Abstract\:\:__unset\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/Db/Table/Row/Abstract.php
+
+		-
+			message: '#^Result of method Zend_Db_Table_Row_Abstract\:\:_refresh\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/Db/Table/Row/Abstract.php
+
+		-
+			message: '#^Variable \$joinCond might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Db/Table/Row/Abstract.php
+
+		-
+			message: '#^Result of method Zend_Dojo_View_Helper_DijitContainer\:\:captureStart\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: library/Zend/Dojo/View/Helper/CustomDijit.php
+
+		-
+			message: '#^Variable \$stripParams might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Dojo/View/Helper/Dijit.php
+
+		-
+			message: '#^Variable \$attribs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Dojo/View/Helper/DijitContainer.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Dojo/View/Helper/DijitContainer.php
+
+		-
+			message: '#^Method Zend_Dojo_View_Helper_Slider\:\:_prepareDecoration\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Dojo/View/Helper/Slider.php
+
+		-
+			message: '#^Access to an undefined property Zend_Feed_Abstract\:\:\$_entryClassName\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Feed/Abstract.php
+
+		-
+			message: '#^Access to an undefined property Zend_Feed_Abstract\:\:\$_entryElementName\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Feed/Abstract.php
+
+		-
+			message: '#^Method Zend_Feed_Element\:\:__isset\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 2
+			path: library/Zend/Feed/Element.php
+
+		-
+			message: '#^Constructor of class Zend_Feed_Entry_Abstract has an unused parameter \$uri\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Feed/Entry/Abstract.php
+
+		-
+			message: '#^Call to an undefined method Zend_Feed_Entry_Atom\:\:id\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Feed/Entry/Atom.php
+
+		-
+			message: '#^Call to an undefined method Zend_Feed_Entry_Rss\:\:content\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Feed/Entry/Rss.php
+
+		-
+			message: '#^Variable \$authors on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
+			count: 1
+			path: library/Zend/Feed/Reader/Entry/Rss.php
+
+		-
+			message: '#^Variable \$authors on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
+			count: 1
+			path: library/Zend/Feed/Reader/Feed/Rss.php
+
+		-
+			message: '#^Variable \$flinks in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/Atom/Renderer/Feed.php
+
+		-
+			message: '#^Variable \$hubs in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/Atom/Renderer/Feed.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/DublinCore/Renderer/Entry.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/DublinCore/Renderer/Feed.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/ITunes/Renderer/Entry.php
+
+		-
+			message: '#^Variable \$keywords in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/ITunes/Renderer/Entry.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/ITunes/Renderer/Feed.php
+
+		-
+			message: '#^Variable \$cats in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/ITunes/Renderer/Feed.php
+
+		-
+			message: '#^Variable \$keywords in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/ITunes/Renderer/Feed.php
+
+		-
+			message: '#^Variable \$owners in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/ITunes/Renderer/Feed.php
+
+		-
+			message: '#^Variable \$links in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/Threading/Renderer/Entry.php
+
+		-
+			message: '#^Variable \$links in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Extension/WellFormedWeb/Renderer/Entry.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Renderer/Entry/Atom.php
+
+		-
+			message: '#^Variable \$data in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Renderer/Entry/Atom.php
+
+		-
+			message: '#^Variable \$data in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Renderer/Entry/Atom/Deleted.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Renderer/Entry/Rss.php
+
+		-
+			message: '#^Variable \$data in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Renderer/Entry/Rss.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Renderer/Feed/Atom/AtomAbstract.php
+
+		-
+			message: '#^Variable \$authors in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Feed/Writer/Renderer/Feed/Rss.php
+
+		-
+			message: '#^Call to an undefined method Zend_File_ClassFileLocator\:\:setInfoClass\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/File/ClassFileLocator.php
+
+		-
+			message: '#^Variable \$saveNamespace might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/File/ClassFileLocator.php
+
+		-
+			message: '#^Variable \$savedNamespace might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/File/ClassFileLocator.php
+
+		-
+			message: '#^Variable \$options might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/File/Transfer/Adapter/Abstract.php
+
+		-
+			message: '#^Variable \$validator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/File/Transfer/Adapter/Abstract.php
+
+		-
+			message: '#^Variable \$call might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/File/Transfer/Adapter/Http.php
+
+		-
+			message: '#^Method Zend_Filter_Boolean\:\:_getLocalizedQuestion\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 2
+			path: library/Zend/Filter/Boolean.php
+
+		-
+			message: '#^Instantiated class Archive_Tar not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: library/Zend/Filter/Compress/Tar.php
+
+		-
+			message: '#^Variable \$file might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Filter/Compress/Tar.php
+
+		-
+			message: '#^Constant MCRYPT_DEV_RANDOM not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Constant MCRYPT_DEV_URANDOM not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Constant MCRYPT_RAND not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_create_iv not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_enc_get_iv_size not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_enc_get_key_size not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_enc_get_supported_key_sizes not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_generic not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_generic_deinit not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_generic_init not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_list_algorithms not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_list_modes not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_module_close not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_module_open not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mcrypt_module_self_test not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Function mdecrypt_generic not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Filter/Encrypt/Mcrypt.php
+
+		-
+			message: '#^Variable \$keys might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/Filter/Encrypt/Openssl.php
+
+		-
+			message: '#^Variable \$decorator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form.php
+
+		-
+			message: '#^Variable \$elements might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Form.php
+
+		-
+			message: '#^Variable \$name might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Form.php
+
+		-
+			message: '#^Variable \$spec might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Form.php
+
+		-
+			message: '#^Variable \$subForm might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form.php
+
+		-
+			message: '#^Variable \$type might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form.php
+
+		-
+			message: '#^Method Zend_Form_Decorator_Errors\:\:render\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Form/Decorator/Errors.php
+
+		-
+			message: '#^Method Zend_Form_Decorator_FormErrors\:\:render\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Form/Decorator/FormErrors.php
+
+		-
+			message: '#^Result of method Zend_Form_Decorator_Image\:\:getTag\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/Form/Decorator/Image.php
+
+		-
+			message: '#^Call to an undefined method Zend_Form_Decorator_Label\:\:getOptPrefix\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Form/Decorator/Label.php
+
+		-
+			message: '#^Call to an undefined method Zend_Form_Decorator_Label\:\:getOptSuffix\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Form/Decorator/Label.php
+
+		-
+			message: '#^Call to an undefined method Zend_Form_Decorator_Label\:\:getReqPrefix\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Form/Decorator/Label.php
+
+		-
+			message: '#^Call to an undefined method Zend_Form_Decorator_Label\:\:getReqSuffix\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Form/Decorator/Label.php
+
+		-
+			message: '#^Method Zend_Form_Decorator_Label\:\:render\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Form/Decorator/Label.php
+
+		-
+			message: '#^Variable \$label in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Form/Decorator/Label.php
+
+		-
+			message: '#^Variable \$decorator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form/DisplayGroup.php
+
+		-
+			message: '#^Variable \$name might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Form/DisplayGroup.php
+
+		-
+			message: '#^Variable \$spec might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Form/DisplayGroup.php
+
+		-
+			message: '#^Variable \$decorator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form/Element.php
+
+		-
+			message: '#^Variable \$filter might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form/Element.php
+
+		-
+			message: '#^Variable \$name might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form/Element.php
+
+		-
+			message: '#^Variable \$pathSegment might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form/Element.php
+
+		-
+			message: '#^Variable \$spec might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form/Element.php
+
+		-
+			message: '#^Variable \$validator might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Form/Element.php
+
+		-
+			message: '#^Class Query not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: library/Zend/Gdata/Analytics.php
+
+		-
+			message: '#^Instantiated class Zend_Gdata_Analytics_Extension_Goal not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Gdata/Analytics/AccountEntry.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_App_Entry\:\:\$service\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/App/Entry.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_App_Feed\:\:\$entries\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Gdata/App/Feed.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_App_FeedSourceParent\:\:\$_entry\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Gdata/App/FeedSourceParent.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Calendar_Extension_WebContent\:\:\$height\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Calendar/Extension/WebContent.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Calendar_Extension_WebContent\:\:\$url\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Calendar/Extension/WebContent.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Calendar_Extension_WebContent\:\:\$width\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Calendar/Extension/WebContent.php
+
+		-
+			message: '#^Method Zend_Gdata_ClientLogin\:\:getHttpClient\(\) should return Zend_Gdata_HttpClient but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Gdata/ClientLogin.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Docs\:\:newMediaFileSource\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Docs.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Extension_Where\:\:\$entryLink\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Extension/Where.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newEmailList\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newEmailListEntry\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newEmailListQuery\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newEmailListRecipientEntry\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newEmailListRecipientQuery\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newGroupEntry\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newGroupQuery\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newLogin\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newMemberEntry\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newMemberQuery\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newName\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newNickname\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newNicknameEntry\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newNicknameQuery\(\)\.$#'
+			identifier: method.notFound
+			count: 3
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newOwnerEntry\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newProperty\(\)\.$#'
+			identifier: method.notFound
+			count: 10
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newQuota\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newUserEntry\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newUserQuery\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_Gapps\:\:newWho\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Method Zend_Gdata_Gapps\:\:get\(\) should return Zend_Http_Response but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Method Zend_Gdata_Gapps\:\:import\(\) should return Zend_Gdata_App_Feed but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Method Zend_Gdata_Gapps\:\:post\(\) should return Zend_Http_Response but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Method Zend_Gdata_Gapps\:\:put\(\) should return Zend_Http_Response but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Result of method Zend_Gdata_App\:\:delete\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Result of method Zend_Gdata_Gapps\:\:delete\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 2
+			path: library/Zend/Gdata/Gapps.php
+
+		-
+			message: '#^Method Zend_Gdata_App_Base\:\:__construct\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Gdata/Gapps/Error.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase has an unused parameter \$applicationId\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase has an unused parameter \$client\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase_Entry has an unused parameter \$element\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase/Entry.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase_Extension_BaseAttribute has an unused parameter \$name\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase/Extension/BaseAttribute.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase_Extension_BaseAttribute has an unused parameter \$text\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase/Extension/BaseAttribute.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase_Extension_BaseAttribute has an unused parameter \$type\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase/Extension/BaseAttribute.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase_Feed has an unused parameter \$element\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase/Feed.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Gbase_Query has an unused parameter \$url\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Gbase/Query.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health has an unused parameter \$applicationId\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health has an unused parameter \$client\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health has an unused parameter \$useH9Sandbox\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health_Extension_Ccr has an unused parameter \$element\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health/Extension/Ccr.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health_ProfileEntry has an unused parameter \$element\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health/ProfileEntry.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health_ProfileFeed has an unused parameter \$element\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health/ProfileFeed.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health_ProfileListEntry has an unused parameter \$element\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health/ProfileListEntry.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health_ProfileListFeed has an unused parameter \$element\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health/ProfileListFeed.php
+
+		-
+			message: '#^Constructor of class Zend_Gdata_Health_Query has an unused parameter \$url\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Gdata/Health/Query.php
+
+		-
+			message: '#^Call to an undefined method Zend_Gdata_HttpClient\:\:_streamingRequest\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Gdata/HttpClient.php
+
+		-
+			message: '#^Method Zend_Gdata_Extension\:\:__construct\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Gdata/Media/Extension/MediaGroup.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Photos_AlbumEntry\:\:\$_location\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Photos/AlbumEntry.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Photos_AlbumFeed\:\:\$_geoRssWhere\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Gdata/Photos/AlbumFeed.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Spreadsheets_CellFeed\:\:\$colCount\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Spreadsheets/CellFeed.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Spreadsheets_CellFeed\:\:\$rowCount\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Spreadsheets/CellFeed.php
+
+		-
+			message: '#^Access to an undefined property Zend_Gdata_Spreadsheets_ListEntry\:\:\$customByName\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Gdata/Spreadsheets/ListEntry.php
+
+		-
+			message: '#^Variable \$stream might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/Http/Client.php
+
+		-
+			message: '#^Method Zend_Http_Response_Stream\:\:readStream\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Http/Response/Stream.php
+
+		-
+			message: '#^Undefined variable\: \$headers$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Http/Response/Stream.php
+
+		-
+			message: '#^Variable \$headers in isset\(\) is never defined\.$#'
+			identifier: isset.variable
+			count: 1
+			path: library/Zend/Http/Response/Stream.php
+
+		-
+			message: '#^Variable \$path might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Http/UserAgent.php
+
+		-
+			message: '#^Variable \$prefix might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Http/UserAgent.php
+
+		-
+			message: '#^Call to static method getProperties\(\) on an unknown class Mobi_Mtld_DA_Api\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Http/UserAgent/Features/Adapter/DeviceAtlas.php
+
+		-
+			message: '#^Call to static method getTreeFromFile\(\) on an unknown class Mobi_Mtld_DA_Api\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Http/UserAgent/Features/Adapter/DeviceAtlas.php
+
+		-
+			message: '#^Instantiated class TeraWurfl not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Http/UserAgent/Features/Adapter/TeraWurfl.php
+
+		-
+			message: '#^Parameter \$wurflObj of method Zend_Http_UserAgent_Features_Adapter_TeraWurfl\:\:getAllCapabilities\(\) has invalid type TeraWurfl\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Http/UserAgent/Features/Adapter/TeraWurfl.php
+
+		-
+			message: '#^Variable \$features might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Http/UserAgent/Features/Adapter/TeraWurfl.php
+
+		-
+			message: '#^Variable \$method might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Json/Server.php
+
+		-
+			message: '#^Result of static method Zend_View_Helper_Placeholder_Registry\:\:getRegistry\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: library/Zend/Layout.php
+
+		-
+			message: '#^Method Zend_Ldap\:\:getNode\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Ldap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_ActiveDirectory\:\:\$ldapdisplayname\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/AttributeType/ActiveDirectory.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_OpenLdap\:\:\$_parents\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Ldap/Node/Schema/AttributeType/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_OpenLdap\:\:\$desc\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/AttributeType/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_OpenLdap\:\:\$max\-length\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/AttributeType/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_OpenLdap\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/AttributeType/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_OpenLdap\:\:\$oid\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/AttributeType/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_OpenLdap\:\:\$single\-value\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/AttributeType/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_OpenLdap\:\:\$syntax\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/AttributeType/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_ActiveDirectory\:\:\$ldapdisplayname\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/ActiveDirectory.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$_parents\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$abstract\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$auxiliary\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$desc\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$may\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$must\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$oid\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$structural\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_ObjectClass_OpenLdap\:\:\$sup\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Ldap/Node/Schema/ObjectClass/OpenLdap.php
+
+		-
+			message: '#^Result of method Zend_Loader_Autoloader\:\:_getVersionPath\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/Loader/Autoloader.php
+
+		-
+			message: '#^Method Zend_Loader_ClassMapAutoloader\:\:realPharPath\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Loader/ClassMapAutoloader.php
+
+		-
+			message: '#^Variable \$className might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/Loader/PluginLoader.php
+
+		-
+			message: '#^Result of method Zend_Loader_StandardAutoloader\:\:loadClass\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 5
+			path: library/Zend/Loader/StandardAutoloader.php
+
+		-
+			message: '#^Static method Zend_Locale_Data\:\:clearCache\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Locale.php
+
+		-
+			message: '#^Access to an undefined property Zend_Mail_Part\:\:\$contentType\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Mail/Part.php
+
+		-
+			message: '#^Variable \$data might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Mail/Protocol/Imap.php
+
+		-
+			message: '#^Method Zend_Mail_Storage_Folder_Maildir\:\:_buildFolderTree\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Mail/Storage/Folder/Maildir.php
+
+		-
+			message: '#^Access to an undefined property Zend_Mail_Storage_Pop3\:\:\$hasUniqueid\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Mail/Storage/Pop3.php
+
+		-
+			message: '#^Variable \$fh might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Mail/Storage/Writable/Maildir.php
+
+		-
+			message: '#^Call to an undefined method Zend_Oauth_Client\:\:getRealm\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Oauth/Client.php
+
+		-
+			message: '#^Call to an undefined method Zend_Oauth_Client\:\:getRequestMethod\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Oauth/Client.php
+
+		-
+			message: '#^Call to an undefined method Zend_Oauth_Client\:\:getRequestScheme\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Oauth/Client.php
+
+		-
+			message: '#^Call to an undefined method Zend_Oauth_Client\:\:getToken\(\)\.$#'
+			identifier: method.notFound
+			count: 4
+			path: library/Zend/Oauth/Client.php
+
+		-
+			message: '#^Call to an undefined method Zend_Oauth_Client\:\:setRequestMethod\(\)\.$#'
+			identifier: method.notFound
+			count: 6
+			path: library/Zend/Oauth/Client.php
+
+		-
+			message: '#^Call to an undefined method Zend_Oauth_Consumer\:\:getRequestMethod\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/Oauth/Consumer.php
+
+		-
+			message: '#^Variable \$token in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: library/Zend/Oauth/Consumer.php
+
+		-
+			message: '#^Call to an undefined method Zend_Oauth_Http\:\:_attemptRequest\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Oauth/Http.php
+
+		-
+			message: '#^Variable \$httpClient might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Oauth/Http/AccessToken.php
+
+		-
+			message: '#^Variable \$httpClient might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Oauth/Http/RequestToken.php
+
+		-
+			message: '#^Class Zend_Oauth_Client constructor invoked with 4 parameters, 1\-3 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Oauth/Token/Access.php
+
+		-
+			message: '#^Method Zend_OpenId\:\:getDhKeyDetails\(\) should return array but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/OpenId.php
+
+		-
+			message: '#^Variable \$bn_pub_key might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/OpenId.php
+
+		-
+			message: '#^Undefined variable\: \$destination$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Pdf/Annotation/Link.php
+
+		-
+			message: '#^Variable \$endAngle might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Pdf/Canvas/Abstract.php
+
+		-
+			message: '#^Variable \$path might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Pdf/Canvas/Abstract.php
+
+		-
+			message: '#^Variable \$subtableIndex might not be defined\.$#'
+			identifier: variable.undefined
+			count: 12
+			path: library/Zend/Pdf/Cmap/SegmentToDelta.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_Element\:\:\$value\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/Element.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_Element_Object_Stream\:\:\$dictionary\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/Element/Object/Stream.php
+
+		-
+			message: '#^Method Zend_Pdf_ElementFactory\:\:cleanEnumerationShiftCache\(\) should return int but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Pdf/ElementFactory.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font\:\:\$fontType\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$ascent\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$averageCharWidth\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$baselineAtZero\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$capitalHeight\.$#'
+			identifier: property.notFound
+			count: 3
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$cmap\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$descent\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$fontWeight\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$fontWidth\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$glyphWidths\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isAdobeLatinSubset\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isBold\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isEmbeddable\.$#'
+			identifier: property.notFound
+			count: 5
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isItalic\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isMonospaced\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isOrnamentalFont\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isSansSerifFont\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isScriptFont\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isSerifFont\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isSubsettable\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$isSymbolicFont\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$italicAngle\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$lineGap\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$metricDataFormat\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$names\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$numGlyphs\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$numberHMetrics\.$#'
+			identifier: property.notFound
+			count: 3
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$strikePosition\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$strikeThickness\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$subscriptXOffset\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$subscriptXSize\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$subscriptYOffset\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$subscriptYSize\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$superscriptXOffset\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$superscriptXSize\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$superscriptYOffset\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$superscriptYSize\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$underlinePosition\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$underlineThickness\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$unitsPerEm\.$#'
+			identifier: property.notFound
+			count: 3
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$useIntegerScaling\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$vendorID\.$#'
+			identifier: property.notFound
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$xHeight\.$#'
+			identifier: property.notFound
+			count: 3
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$xMax\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$xMin\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$yMax\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType\:\:\$yMin\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Variable \$cmapLength might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Variable \$cmapOffset might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Pdf/FileParser/Font/OpenType.php
+
+		-
+			message: '#^Access to an undefined property Zend_Pdf_FileParser_Font_OpenType_TrueType\:\:\$fontType\.$#'
+			identifier: property.notFound
+			count: 1
+			path: library/Zend/Pdf/FileParser/Font/OpenType/TrueType.php
+
+		-
+			message: '#^Variable \$hexCodeHigh might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Pdf/Filter/AsciiHex.php
+
+		-
+			message: '#^Constant this not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Pdf/Outline/Loaded.php
+
+		-
+			message: '#^Variable \$charCodesSequense might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Pdf/Resource/Font/CidFont.php
+
+		-
+			message: '#^Variable \$sequenceStartCode might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Pdf/Resource/Font/CidFont.php
+
+		-
+			message: '#^Method Zend_Pdf_Resource_Font_CidFont\:\:__construct\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Pdf/Resource/Font/CidFont/TrueType.php
+
+		-
+			message: '#^Class Zend_Pdf_FileParser_Font_OpenType_Type1 not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Pdf/Resource/Font/FontDescriptor.php
+
+		-
+			message: '#^Method Zend_Pdf_Resource_Font_Simple_Parsed\:\:__construct\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Pdf/Resource/Font/Simple/Parsed/TrueType.php
+
+		-
+			message: '#^Variable \$gsDictionary might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Pdf/Resource/GraphicsState.php
+
+		-
+			message: '#^Variable \$refOffset might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/Pdf/Resource/Image/Tiff.php
+
+		-
+			message: '#^Variable \$value might not be defined\.$#'
+			identifier: variable.undefined
+			count: 9
+			path: library/Zend/Pdf/Resource/Image/Tiff.php
+
+		-
+			message: '#^Method Zend_Pdf_Trailer_Keeper\:\:getLastFreeObject\(\) should return int but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Pdf/Trailer/Keeper.php
+
+		-
+			message: '#^Variable \$adapterName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Queue.php
+
+		-
+			message: '#^Constructor of class Zend_Queue_Adapter_Activemq has an unused parameter \$queue\.$#'
+			identifier: constructor.unusedParameter
+			count: 1
+			path: library/Zend/Queue/Adapter/Activemq.php
+
+		-
+			message: '#^Variable \$errno might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Queue/Adapter/Memcacheq.php
+
+		-
+			message: '#^Variable \$errstr might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Queue/Adapter/Memcacheq.php
+
+		-
+			message: '#^Class ZendAPI_Queue does not have a constructor and must be instantiated without any parameters\.$#'
+			identifier: new.noConstructor
+			count: 2
+			path: library/Zend/Queue/Adapter/PlatformJobQueue.php
+
+		-
+			message: '#^Class ZendAPI_Queue referenced with incorrect case\: ZendApi_Queue\.$#'
+			identifier: class.nameCase
+			count: 2
+			path: library/Zend/Queue/Adapter/PlatformJobQueue.php
+
+		-
+			message: '#^Class ZendAPI_Job does not have a constructor and must be instantiated without any parameters\.$#'
+			identifier: new.noConstructor
+			count: 1
+			path: library/Zend/Queue/Message/PlatformJob.php
+
+		-
+			message: '#^Class ZendAPI_Job referenced with incorrect case\: ZendApi_Job\.$#'
+			identifier: class.nameCase
+			count: 1
+			path: library/Zend/Queue/Message/PlatformJob.php
+
+		-
+			message: '#^Function serialize invoked with 3 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Queue/Message/PlatformJob.php
+
+		-
+			message: '#^Variable \$foundRealpath might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Reflection/File.php
+
+		-
+			message: '#^Variable \$firstLine might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/Reflection/Method.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: library/Zend/Rest/Route.php
+
+		-
+			message: '#^Variable \$isCompound might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene.php
+
+		-
+			message: '#^Variable \$segInfo might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Search/Lucene.php
+
+		-
+			message: '#^Variable \$segmentInfo might not be defined\.$#'
+			identifier: variable.undefined
+			count: 5
+			path: library/Zend/Search/Lucene.php
+
+		-
+			message: '#^Variable \$subResults might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene.php
+
+		-
+			message: '#^Method Zend_Search_Lucene_Document_Html\:\:highlightExtended\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Search/Lucene/Document/Html.php
+
+		-
+			message: '#^Function bitset_empty not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Function bitset_in not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Function bitset_incl not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Function bitset_to_array not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Function bitset_union not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Undefined variable\: \$fdtFile$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Variable \$dataOffset might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Variable \$docFreq might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Variable \$fileName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Variable \$skipOffset might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/SegmentInfo.php
+
+		-
+			message: '#^Variable \$docStoreIsCompoundFile might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/Writer.php
+
+		-
+			message: '#^Variable \$docStoreOffset might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/Writer.php
+
+		-
+			message: '#^Variable \$docStoreSegment might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/Writer.php
+
+		-
+			message: '#^Variable \$isCompound might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/Writer.php
+
+		-
+			message: '#^Variable \$normGens might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Index/Writer.php
+
+		-
+			message: '#^Undefined variable\: \$this$#'
+			identifier: variable.undefined
+			count: 8
+			path: library/Zend/Search/Lucene/MultiSearcher.php
+
+		-
+			message: '#^Variable \$termPositions might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/MultiSearcher.php
+
+		-
+			message: '#^Variable \$termDocs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Search/Lucene/Search/Query/MultiTerm.php
+
+		-
+			message: '#^Undefined variable\: \$ret$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Serializer/Adapter/PhpCode.php
+
+		-
+			message: '#^Result of method Zend_Serializer_Adapter_PythonPickle\:\:_write\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 3
+			path: library/Zend/Serializer/Adapter/PythonPickle.php
+
+		-
+			message: '#^Function wddx_deserialize not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Serializer/Adapter/Wddx.php
+
+		-
+			message: '#^Function wddx_serialize_value not found\.$#'
+			identifier: function.notFound
+			count: 2
+			path: library/Zend/Serializer/Adapter/Wddx.php
+
+		-
+			message: '#^Call to an undefined method Zend_Server_Reflection_Class\:\:getName\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Server/Reflection/Class.php
+
+		-
+			message: '#^Call to an undefined method Zend_Server_Reflection_Function_Abstract\:\:getName\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/Server/Reflection/Function/Abstract.php
+
+		-
+			message: '#^Call to an undefined method Zend_Server_Reflection_Method\:\:getName\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Server/Reflection/Method.php
+
+		-
+			message: '#^Variable \$region in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/Service/Amazon/Ec2/Abstract.php
+
+		-
+			message: '#^Method Zend_Service_Amazon_Abstract\:\:__construct\(\) invoked with 3 parameters, 0\-2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Service/Amazon/S3.php
+
+		-
+			message: '#^Variable \$params_out might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Service/Amazon/SimpleDb.php
+
+		-
+			message: '#^Method Zend_Service_Amazon_Abstract\:\:__construct\(\) invoked with 3 parameters, 0\-2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Service/Amazon/Sqs.php
+
+		-
+			message: '#^Variable \$method might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Service/LiveDocx/MailMerge.php
+
+		-
+			message: '#^Constant MCRYPT_MODE_CBC not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Service/ReCaptcha/MailHide.php
+
+		-
+			message: '#^Constant MCRYPT_RIJNDAEL_128 not found\.$#'
+			identifier: constant.notFound
+			count: 1
+			path: library/Zend/Service/ReCaptcha/MailHide.php
+
+		-
+			message: '#^Function mcrypt_encrypt not found\.$#'
+			identifier: function.notFound
+			count: 1
+			path: library/Zend/Service/ReCaptcha/MailHide.php
+
+		-
+			message: '#^Undefined variable\: \$affinityGroup$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Service/SqlAzure/Management/Client.php
+
+		-
+			message: '#^Cannot unset offset ''class'' on string\|null\.$#'
+			identifier: unset.offset
+			count: 1
+			path: library/Zend/Service/StrikeIron.php
+
+		-
+			message: '#^Undefined variable\: \$client$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/Service/WindowsAzure/CommandLine/Deployment.php
+
+		-
+			message: '#^Access to an undefined property Zend_Service_WindowsAzure_Diagnostics_ConfigurationInstance\:\:\$DataSources\.$#'
+			identifier: property.notFound
+			count: 37
+			path: library/Zend/Service/WindowsAzure/Diagnostics/ConfigurationInstance.php
+
+		-
+			message: '#^Path in require_once\(\) "Zend/Service/Management/Exception\.php" is not a file or it does not exist\.$#'
+			identifier: requireOnce.fileNotFound
+			count: 1
+			path: library/Zend/Service/WindowsAzure/Management/Client.php
+
+		-
+			message: '#^Method Zend_Service_WindowsAzure_SessionHandler\:\:destroy\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Service/WindowsAzure/SessionHandler.php
+
+		-
+			message: '#^Method Zend_Service_WindowsAzure_SessionHandler\:\:gc\(\) should return bool but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Service/WindowsAzure/SessionHandler.php
+
+		-
+			message: '#^Method Zend_Service_WindowsAzure_SessionHandler\:\:read\(\) should return string but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Service/WindowsAzure/SessionHandler.php
+
+		-
+			message: '#^Undefined variable\: \$type$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Service/WindowsAzure/Storage/DynamicTableEntity.php
+
+		-
+			message: '#^Result of static method Zend_Session_Abstract\:\:_namespaceUnset\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 2
+			path: library/Zend/Session/Namespace.php
+
+		-
+			message: '#^Variable \$xml might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Soap/Server.php
+
+		-
+			message: '#^Variable \$complexTypeName might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Soap/Wsdl/Strategy/ArrayOfTypeSequence.php
+
+		-
+			message: '#^Class WeakRef not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: library/Zend/Stdlib/CallbackHandler.php
+
+		-
+			message: '#^Instantiated class WeakRef not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: library/Zend/Stdlib/CallbackHandler.php
+
+		-
+			message: '#^Variable \$key might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Stdlib/PriorityQueue.php
+
+		-
+			message: '#^Call to sscanf contains 11 placeholders, 7 values given\.$#'
+			identifier: argument.sscanf
+			count: 1
+			path: library/Zend/Text/Figlet.php
+
+		-
+			message: '#^Variable \$lastSpace might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Text/Figlet.php
+
+		-
+			message: '#^Variable \$lastColumnWidths might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Text/Table.php
+
+		-
+			message: '#^Variable \$padMode might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Text/Table/Column.php
+
+		-
+			message: '#^Variable \$masterException might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/TimeSync.php
+
+		-
+			message: '#^Class Zend_Db_Adapter_Interface not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Tool/DatabaseSchemaProvider.php
+
+		-
+			message: '#^Variable \$displayActionNames might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Tool/Framework/Client/Console/HelpSystem.php
+
+		-
+			message: '#^Method Zend_Tool_Project_Context_Zf_ApplicationDirectory\:\:init\(\) should return Zend_Tool_Project_Context_Filesystem_Abstract but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Tool/Project/Context/Zf/ApplicationDirectory.php
+
+		-
+			message: '#^Method Zend_Tool_Project_Context_Zf_BootstrapFile\:\:init\(\) should return Zend_Tool_Project_Context_Filesystem_File but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Tool/Project/Context/Zf/BootstrapFile.php
+
+		-
+			message: '#^Method Zend_Tool_Project_Context_Zf_ControllerFile\:\:init\(\) should return Zend_Tool_Project_Context_Filesystem_File but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Tool/Project/Context/Zf/ControllerFile.php
+
+		-
+			message: '#^Method Zend_Tool_Project_Context_Zf_DbTableFile\:\:init\(\) should return Zend_Tool_Project_Context_Filesystem_File but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Tool/Project/Context/Zf/DbTableFile.php
+
+		-
+			message: '#^Method Zend_Tool_Project_Context_Zf_FormFile\:\:init\(\) should return Zend_Tool_Project_Context_Filesystem_File but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Tool/Project/Context/Zf/FormFile.php
+
+		-
+			message: '#^Method Zend_Tool_Project_Context_Zf_ModelFile\:\:init\(\) should return Zend_Tool_Project_Context_Filesystem_File but return statement is missing\.$#'
+			identifier: return.missing
+			count: 1
+			path: library/Zend/Tool/Project/Context/Zf/ModelFile.php
+
+		-
+			message: '#^Variable \$name might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Tool/Project/Profile/Resource/SearchConstraints.php
+
+		-
+			message: '#^Variable \$params might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Tool/Project/Profile/Resource/SearchConstraints.php
+
+		-
+			message: '#^Variable \$indexActionViewResource might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: library/Zend/Tool/Project/Provider/Controller.php
+
+		-
+			message: '#^Variable \$testFormResource might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Tool/Project/Provider/Form.php
+
+		-
+			message: '#^Variable \$currentChildResource might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Tool/Project/Provider/Module.php
+
+		-
+			message: '#^Variable \$name might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Tool/Project/Provider/Project.php
+
+		-
+			message: '#^Path in include\(\) "PHPUnit/Runner/Version\.php" is not a file or it does not exist\.$#'
+			identifier: include.fileNotFound
+			count: 1
+			path: library/Zend/Tool/Project/Provider/Test.php
+
+		-
+			message: '#^Variable \$libraryFileResource might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/Tool/Project/Provider/Test.php
+
+		-
+			message: '#^Variable \$number might not be defined\.$#'
+			identifier: variable.undefined
+			count: 4
+			path: library/Zend/Translate/Adapter.php
+
+		-
+			message: '#^Variable \$plocale might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Translate/Adapter.php
+
+		-
+			message: '#^Access to an undefined property Zend_Validate_EmailAddress\:\:\$localPart\.$#'
+			identifier: property.notFound
+			count: 5
+			path: library/Zend/Validate/EmailAddress.php
+
+		-
+			message: '#^Variable \$context in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: library/Zend/Validate/Identical.php
+
+		-
+			message: '#^Method Zend_View_Abstract\:\:_run\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/View/Abstract.php
+
+		-
+			message: '#^Variable \$storeVar might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Abstract.php
+
+		-
+			message: '#^Variable \$view in isset\(\) is never defined\.$#'
+			identifier: isset.variable
+			count: 1
+			path: library/Zend/View/Helper/DeclareVars.php
+
+		-
+			message: '#^Variable \$escape might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/Fieldset.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormButton.php
+
+		-
+			message: '#^Variable \$escape might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormButton.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormButton.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormCheckbox.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormCheckbox.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormFile.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormFile.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormImage.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormImage.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormLabel.php
+
+		-
+			message: '#^Variable \$escape might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormLabel.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormLabel.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormPassword.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormPassword.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormRadio.php
+
+		-
+			message: '#^Variable \$escape might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormRadio.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormRadio.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormReset.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormReset.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormSelect.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/View/Helper/FormSelect.php
+
+		-
+			message: '#^Variable \$multiple in empty\(\) always exists and is not falsy\.$#'
+			identifier: empty.variable
+			count: 1
+			path: library/Zend/View/Helper/FormSelect.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormSubmit.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormSubmit.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormText.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormText.php
+
+		-
+			message: '#^Variable \$disable might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormTextarea.php
+
+		-
+			message: '#^Variable \$id might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/FormTextarea.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadLink\:\:getIndent\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadLink.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadLink\:\:getSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadLink.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadLink\:\:getWhitespace\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadLink.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadLink\:\:setSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadLink.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadMeta\:\:getIndent\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadMeta.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadMeta\:\:getSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadMeta.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadMeta\:\:getWhitespace\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadMeta.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadMeta\:\:setSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadMeta.php
+
+		-
+			message: '#^Result of method Zend_View_Helper_HeadMeta\:\:append\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/View/Helper/HeadMeta.php
+
+		-
+			message: '#^Result of method Zend_View_Helper_HeadMeta\:\:offsetSet\(\) \(void\) is used\.$#'
+			identifier: method.void
+			count: 1
+			path: library/Zend/View/Helper/HeadMeta.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadScript\:\:getIndent\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadScript.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadScript\:\:getSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadScript.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadScript\:\:getWhitespace\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadScript.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadScript\:\:setSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadScript.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadStyle\:\:getIndent\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadStyle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadStyle\:\:getSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadStyle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadStyle\:\:getWhitespace\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadStyle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadStyle\:\:setSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadStyle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadTitle\:\:getIndent\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadTitle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadTitle\:\:getPostfix\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadTitle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadTitle\:\:getPrefix\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadTitle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadTitle\:\:getSeparator\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadTitle.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Helper_HeadTitle\:\:getWhitespace\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/View/Helper/HeadTitle.php
+
+		-
+			message: '#^Variable \$foundDepth might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: library/Zend/View/Helper/Navigation/Menu.php
+
+		-
+			message: '#^Result of static method Zend_View_Helper_Placeholder_Registry\:\:getRegistry\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: library/Zend/View/Helper/Placeholder.php
+
+		-
+			message: '#^Result of static method Zend_View_Helper_Placeholder_Registry\:\:getRegistry\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: library/Zend/View/Helper/Placeholder/Container/Standalone.php
+
+		-
+			message: '#^Cannot unset offset ''File'' on array\{Type\: string\|null, Label\?\: mixed\}\.$#'
+			identifier: unset.offset
+			count: 1
+			path: library/Zend/Wildfire/Plugin/FirePhp.php
+
+		-
+			message: '#^Cannot unset offset ''Line'' on array\{Type\: string\|null, Label\?\: mixed\}\.$#'
+			identifier: unset.offset
+			count: 1
+			path: library/Zend/Wildfire/Plugin/FirePhp.php
+
+		-
+			message: '#^Variable \$loadEntities might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: library/Zend/Xml/Security.php
+
+		-
+			message: '#^Call to an undefined method Zend_XmlRpc_Generator_GeneratorAbstract\:\:_init\(\)\.$#'
+			identifier: method.notFound
+			count: 2
+			path: library/Zend/XmlRpc/Generator/GeneratorAbstract.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''time'' \(''time'', ''time''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: library/Zend/XmlRpc/Server.php
+
+		-
+			message: '#^Call to an undefined method Zend_XmlRpc_Value\:\:_generateXml\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/XmlRpc/Value.php

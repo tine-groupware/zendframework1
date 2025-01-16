@@ -4,6 +4,10 @@ includes:
 parameters:
     paths:
         - library
+    excludePaths:
+        - library/Zend/Service/WindowsAzure/Log/Writer/WindowsAzure.php
+        - library/Zend/Stdlib/SplPriorityQueue.php
+        - library/Zend/Test/
     level: 1
     checkFunctionNameCase: true
     checkInternalClassCaseSensitivity: true
