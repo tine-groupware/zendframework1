@@ -42,7 +42,7 @@ jobs:
             phpstan-result-cache-
 
       - name: PHPStan Static Analysis
-        run: XDEBUG_MODE=off php bin/phpstan.phar analyze
+        run: XDEBUG_MODE=off php bin/phpstan.phar analyze --configuration .phpstan.dist.neon
 
       - name: Save result cache
         uses: actions/cache/save@v4
