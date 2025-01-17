@@ -8,7 +8,9 @@ parameters:
     paths:
         - library
     excludePaths:
+        - library/Zend/Db/Statement.php
         - library/Zend/Service/WindowsAzure/Log/Writer/WindowsAzure.php
+        - library/Zend/Soap/Client/Common.php
         - library/Zend/Stdlib/SplPriorityQueue.php
         - library/Zend/Test/
     level: 1

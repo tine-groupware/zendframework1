@@ -13,6 +13,12 @@ parameters:
 			path: library/Zend/Acl.php
 
 		-
+			message: '#^Function imagefilledpolygon invoked with 3 parameters, 4 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: library/Zend/Barcode/Renderer/Image.php
+
+		-
 			message: '#^Variable \$backendObject might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
@@ -337,12 +343,6 @@ parameters:
 			path: library/Zend/Crypt/Hmac.php
 
 		-
-			message: '#^Constant MCRYPT_DEV_URANDOM not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: library/Zend/Crypt/Math.php
-
-		-
 			message: '#^Variable \$hex might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
@@ -425,30 +425,6 @@ parameters:
 			identifier: variable.undefined
 			count: 1
 			path: library/Zend/Db/Adapter/Sqlsrv.php
-
-		-
-			message: '#^Call to an undefined method Zend_Db_Statement\:\:_bindParam\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: library/Zend/Db/Statement.php
-
-		-
-			message: '#^Call to an undefined method Zend_Db_Statement\:\:_execute\(\)\.$#'
-			identifier: method.notFound
-			count: 2
-			path: library/Zend/Db/Statement.php
-
-		-
-			message: '#^Method Zend_Db_Statement\:\:setAttribute\(\) should return bool but return statement is missing\.$#'
-			identifier: return.missing
-			count: 1
-			path: library/Zend/Db/Statement.php
-
-		-
-			message: '#^Method Zend_Db_Statement\:\:setFetchMode\(\) should return bool but return statement is missing\.$#'
-			identifier: return.missing
-			count: 1
-			path: library/Zend/Db/Statement.php
 
 		-
 			message: '#^Variable \$cacheId might not be defined\.$#'
@@ -719,102 +695,6 @@ parameters:
 			identifier: variable.undefined
 			count: 1
 			path: library/Zend/Filter/Compress/Tar.php
-
-		-
-			message: '#^Constant MCRYPT_DEV_RANDOM not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Constant MCRYPT_DEV_URANDOM not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Constant MCRYPT_RAND not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_create_iv not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_enc_get_iv_size not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_enc_get_key_size not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_enc_get_supported_key_sizes not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_generic not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_generic_deinit not found\.$#'
-			identifier: function.notFound
-			count: 2
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_generic_init not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_list_algorithms not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_list_modes not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_module_close not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_module_open not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mcrypt_module_self_test not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
-
-		-
-			message: '#^Function mdecrypt_generic not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Filter/Encrypt/Mcrypt.php
 
 		-
 			message: '#^Variable \$keys might not be defined\.$#'
@@ -1417,10 +1297,28 @@ parameters:
 			path: library/Zend/Layout.php
 
 		-
+			message: '#^Class LDAP\\Connection not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Ldap.php
+
+		-
 			message: '#^Method Zend_Ldap\:\:getNode\(\) invoked with 2 parameters, 1 required\.$#'
 			identifier: arguments.count
 			count: 1
 			path: library/Zend/Ldap.php
+
+		-
+			message: '#^Class LDAP\\Result not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Ldap/Collection/Iterator/Default.php
+
+		-
+			message: '#^Class LDAP\\ResultEntry not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: library/Zend/Ldap/Collection/Iterator/Default.php
 
 		-
 			message: '#^Access to an undefined property Zend_Ldap_Node_Schema_AttributeType_ActiveDirectory\:\:\$ldapdisplayname\.$#'
@@ -1697,12 +1595,6 @@ parameters:
 			identifier: variable.undefined
 			count: 12
 			path: library/Zend/Pdf/Cmap/SegmentToDelta.php
-
-		-
-			message: '#^Access to an undefined property Zend_Pdf_Element\:\:\$value\.$#'
-			identifier: property.notFound
-			count: 1
-			path: library/Zend/Pdf/Element.php
 
 		-
 			message: '#^Access to an undefined property Zend_Pdf_Element_Object_Stream\:\:\$dictionary\.$#'
@@ -2107,22 +1999,10 @@ parameters:
 			path: library/Zend/Queue/Adapter/Memcacheq.php
 
 		-
-			message: '#^Class ZendAPI_Queue does not have a constructor and must be instantiated without any parameters\.$#'
-			identifier: new.noConstructor
-			count: 2
-			path: library/Zend/Queue/Adapter/PlatformJobQueue.php
-
-		-
 			message: '#^Class ZendAPI_Queue referenced with incorrect case\: ZendApi_Queue\.$#'
 			identifier: class.nameCase
 			count: 2
 			path: library/Zend/Queue/Adapter/PlatformJobQueue.php
-
-		-
-			message: '#^Class ZendAPI_Job does not have a constructor and must be instantiated without any parameters\.$#'
-			identifier: new.noConstructor
-			count: 1
-			path: library/Zend/Queue/Message/PlatformJob.php
 
 		-
 			message: '#^Class ZendAPI_Job referenced with incorrect case\: ZendApi_Job\.$#'
@@ -2305,18 +2185,6 @@ parameters:
 			path: library/Zend/Serializer/Adapter/PythonPickle.php
 
 		-
-			message: '#^Function wddx_deserialize not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Serializer/Adapter/Wddx.php
-
-		-
-			message: '#^Function wddx_serialize_value not found\.$#'
-			identifier: function.notFound
-			count: 2
-			path: library/Zend/Serializer/Adapter/Wddx.php
-
-		-
 			message: '#^Call to an undefined method Zend_Server_Reflection_Class\:\:getName\(\)\.$#'
 			identifier: method.notFound
 			count: 1
@@ -2363,24 +2231,6 @@ parameters:
 			identifier: variable.undefined
 			count: 1
 			path: library/Zend/Service/LiveDocx/MailMerge.php
-
-		-
-			message: '#^Constant MCRYPT_MODE_CBC not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: library/Zend/Service/ReCaptcha/MailHide.php
-
-		-
-			message: '#^Constant MCRYPT_RIJNDAEL_128 not found\.$#'
-			identifier: constant.notFound
-			count: 1
-			path: library/Zend/Service/ReCaptcha/MailHide.php
-
-		-
-			message: '#^Function mcrypt_encrypt not found\.$#'
-			identifier: function.notFound
-			count: 1
-			path: library/Zend/Service/ReCaptcha/MailHide.php
 
 		-
 			message: '#^Undefined variable\: \$affinityGroup$#'
