@@ -978,6 +978,7 @@ class Zend_Locale_Data
                 []);
         }
 
+        $temp = null;
         $val = $value;
         if (is_array($value)) {
             $val = implode('_' , $value);
