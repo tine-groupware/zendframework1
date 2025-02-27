@@ -11707,18 +11707,6 @@ parameters:
 			path: library/Zend/Loader.php
 
 		-
-			message: '#^Negated boolean expression is always true\.$#'
-			identifier: booleanNot.alwaysTrue
-			count: 2
-			path: library/Zend/Loader.php
-
-		-
-			message: '#^Result of && is always true\.$#'
-			identifier: booleanAnd.alwaysTrue
-			count: 1
-			path: library/Zend/Loader.php
-
-		-
 			message: '#^Method Zend_Loader_Autoloader\:\:_autoload\(\) should return bool but returns string\.$#'
 			identifier: return.type
 			count: 1
