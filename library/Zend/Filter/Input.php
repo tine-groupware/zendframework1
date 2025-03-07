@@ -50,6 +50,7 @@ class Zend_Filter_Input
     const ESCAPE_FILTER         = 'escapeFilter';
     const FIELDS                = 'fields';
     const FILTER                = 'filter';
+    const FILTER_ARRAYS_FLAT    = 'filterArraysFlat';
     const FILTER_CHAIN          = 'filterChain';
     const MISSING_MESSAGE       = 'missingMessage';
     const INPUT_NAMESPACE       = 'inputNamespace';
@@ -155,6 +156,8 @@ class Zend_Filter_Input
      * @var Boolean
      */
     protected $_translatorDisabled = false;
+
+    protected $_filterArraysFlat = false;
 
     /**
      * @param array $filterRules
@@ -541,6 +544,9 @@ class Zend_Filter_Input
                         );
                     }
                     break;
+                case self::FILTER_ARRAYS_FLAT:
+                    $this->_filterArraysFlat = (bool)$value;
+                    break;
                 case self::FILTER_NAMESPACE:
                     if(is_string($value)) {
                         $value = [$value];
@@ -713,7 +719,7 @@ class Zend_Filter_Input
         if (!array_key_exists($field, $this->_data)) {
             return;
         }
-        if (is_array($this->_data[$field])) {
+        if (is_array($this->_data[$field]) && !$this->_filterArraysFlat) {
             foreach ($this->_data[$field] as $key => $value) {
                 $this->_data[$field][$key] = $filterRule[self::FILTER_CHAIN]->filter($value);
             }
@@ -998,7 +1004,11 @@ class Zend_Filter_Input
                 /** @todo according to this code default value can't be an array. It has to be reviewed */
                 if (!is_array($validatorRule[self::DEFAULT_VALUE])) {
                     // Default value is a scalar
-                    $data[$field] = $validatorRule[self::DEFAULT_VALUE];
+                    if (is_object($validatorRule[self::DEFAULT_VALUE]) && is_callable($validatorRule[self::DEFAULT_VALUE])) {
+                        $data[$field] = $validatorRule[self::DEFAULT_VALUE]();
+                    } else {
+                        $data[$field] = $validatorRule[self::DEFAULT_VALUE];
+                    }
                 } else {
                     // Default value is an array. Search for corresponding key
                     if (isset($validatorRule[self::DEFAULT_VALUE][$key])) {
