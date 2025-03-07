@@ -1000,15 +1000,14 @@ class Zend_Filter_Input
         foreach ((array) $validatorRule[self::FIELDS] as $key => $field) {
             if (array_key_exists($field, $this->_data)) {
                 $data[$field] = $this->_data[$field];
-            } else if (isset($validatorRule[self::DEFAULT_VALUE])) {
+            } else if ($defaultValue = $validatorRule[self::DEFAULT_VALUE] ?? false) {
                 /** @todo according to this code default value can't be an array. It has to be reviewed */
-                if (!is_array($validatorRule[self::DEFAULT_VALUE])) {
+                if (!is_array($defaultValue)) {
                     // Default value is a scalar
-                    if (is_object($validatorRule[self::DEFAULT_VALUE]) && is_callable($validatorRule[self::DEFAULT_VALUE])) {
-                        $data[$field] = $validatorRule[self::DEFAULT_VALUE]();
-                    } else {
-                        $data[$field] = $validatorRule[self::DEFAULT_VALUE];
-                    }
+                    $data[$field] = $validatorRule[self::DEFAULT_VALUE];
+                } elseif (is_callable($defaultValue[0] ?? null)) {
+                    $a = array_shift($defaultValue);
+                    $data[$field] = call_user_func_array($a, $defaultValue);
                 } else {
                     // Default value is an array. Search for corresponding key
                     if (isset($validatorRule[self::DEFAULT_VALUE][$key])) {
