@@ -221,7 +221,7 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
         }
 
         // ZF-8856: using set because add needs a second request if item already exists
-        $result = @$this->_memcache->set($id, [$data, time(), $lifetime], $flag, $lifetime);
+        $result = @$this->_memcache->set($id, [$data, time(), $lifetime], $flag, $lifetime ?? 0);
 
         if (count($tags) > 0) {
             $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_MEMCACHED_BACKEND);
