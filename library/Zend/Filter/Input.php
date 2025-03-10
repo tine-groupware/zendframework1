@@ -1000,18 +1000,25 @@ class Zend_Filter_Input
         foreach ((array) $validatorRule[self::FIELDS] as $key => $field) {
             if (array_key_exists($field, $this->_data)) {
                 $data[$field] = $this->_data[$field];
-            } else if ($defaultValue = $validatorRule[self::DEFAULT_VALUE] ?? false) {
+            } else if (array_key_exists(self::DEFAULT_VALUE, $validatorRule)) {
+                $defaultValue = $validatorRule[self::DEFAULT_VALUE];
                 /** @todo according to this code default value can't be an array. It has to be reviewed */
                 if (!is_array($defaultValue)) {
                     // Default value is a scalar
-                    $data[$field] = $validatorRule[self::DEFAULT_VALUE];
+                    $data[$field] = $defaultValue;
                 } elseif (is_callable($defaultValue[0] ?? null)) {
-                    $a = array_shift($defaultValue);
-                    $data[$field] = call_user_func_array($a, $defaultValue);
+                    $callable = array_shift($defaultValue);
+                    $data[$field] = call_user_func_array($callable, $defaultValue);
                 } else {
                     // Default value is an array. Search for corresponding key
-                    if (isset($validatorRule[self::DEFAULT_VALUE][$key])) {
-                        $data[$field] = $validatorRule[self::DEFAULT_VALUE][$key];
+                    if (array_key_exists($key, $defaultValue)) {
+                        $defaultValue = $defaultValue[$key];
+                        if (is_array($defaultValue) && is_callable($defaultValue[0] ?? null)) {
+                            $callable = array_shift($defaultValue);
+                            $data[$field] = call_user_func_array($callable, $defaultValue);
+                        } else {
+                            $data[$field] = $defaultValue;
+                        }
                     } else if ($validatorRule[self::PRESENCE] == self::PRESENCE_REQUIRED) {
                         // Default value array is provided, but it doesn't have an entry for current field
                         // and presence is required
