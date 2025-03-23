@@ -349,11 +349,11 @@ class Zend_Service_SqlAzure_Management_Client
 	 */
 	public function createServer($administratorLogin, $administratorPassword, $location)
 	{
-		if ($administratorLogin == '' || is_null($administratorLogin)) {
+		if (is_null($administratorLogin) || $administratorLogin == '') {
                     require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                     throw new Zend_Service_SqlAzure_Management_Exception('Administrator login should be specified.');
                 }
-		if ($administratorPassword == '' || is_null($administratorPassword)) {
+		if (is_null($administratorPassword) || $administratorPassword == '') {
                     require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                     throw new Zend_Service_SqlAzure_Management_Exception('Administrator password should be specified.');
                 }
@@ -430,7 +430,7 @@ class Zend_Service_SqlAzure_Management_Client
 	 */
 	public function dropServer($serverName)
 	{
-            if ($serverName == '' || is_null($serverName)) {
+            if (is_null($serverName) || $serverName == '') {
                 require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                 throw new Zend_Service_SqlAzure_Management_Exception('Server name should be specified.');
             }
@@ -452,11 +452,11 @@ class Zend_Service_SqlAzure_Management_Client
 	 */
 	public function setAdministratorPassword($serverName, $administratorPassword)
 	{
-            if ($serverName == '' || is_null($serverName)) {
+            if (is_null($serverName) || $serverName == '') {
 		require_once 'Zend/Service/SqlAzure/Management/Exception.php';
     		throw new Zend_Service_SqlAzure_Management_Exception('Server name should be specified.');
             }
-            if ($administratorPassword == '' || is_null($administratorPassword)) {
+            if (is_null($administratorPassword) || $administratorPassword == '') {
                 require_once 'Zend/Service/SqlAzure/Management/Exception.php';
     		throw new Zend_Service_SqlAzure_Management_Exception('Administrator password should be specified.');
             }
@@ -484,11 +484,11 @@ class Zend_Service_SqlAzure_Management_Client
 	 */
 	public function createFirewallRule($serverName, $ruleName, $startIpAddress, $endIpAddress)
 	{
-            if ($serverName == '' || is_null($serverName)) {
+            if (is_null($serverName) || $serverName == '') {
                 require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                 throw new Zend_Service_SqlAzure_Management_Exception('Server name should be specified.');
             }
-            if ($ruleName == '' || is_null($ruleName)) {
+            if (is_null($ruleName) || $ruleName == '') {
                 require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                 throw new Zend_Service_SqlAzure_Management_Exception('Rule name should be specified.');
             }
@@ -528,7 +528,7 @@ class Zend_Service_SqlAzure_Management_Client
 	 */
 	public function listFirewallRules($serverName)
 	{
-            if ($serverName == '' || is_null($serverName)) {
+            if (is_null($serverName) || $serverName == '') {
 		require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                 throw new Zend_Service_SqlAzure_Management_Exception('Server name should be specified.');
             }
@@ -575,11 +575,11 @@ class Zend_Service_SqlAzure_Management_Client
 	 */
 	public function deleteFirewallRule($serverName, $ruleName)
 	{
-		if ($serverName == '' || is_null($serverName)) {
+		if (is_null($serverName) || $serverName == '') {
 			require_once 'Zend/Service/SqlAzure/Management/Exception.php';
     		throw new Zend_Service_SqlAzure_Management_Exception('Server name should be specified.');
     	}
-		if ($ruleName == '' || is_null($ruleName)) {
+		if (is_null($ruleName) || $ruleName == '') {
 			require_once 'Zend/Service/SqlAzure/Management/Exception.php';
     		throw new Zend_Service_SqlAzure_Management_Exception('Rule name should be specified.');
     	}
