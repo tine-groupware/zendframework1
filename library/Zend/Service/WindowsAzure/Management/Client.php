@@ -437,7 +437,7 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('End time should be specified.');
     	}
-    	if ($operationResultFilter != '' && !is_null($operationResultFilter)) {
+    	if (!is_null($operationResultFilter) && $operationResultFilter != '') {
 	        $operationResultFilter = strtolower($operationResultFilter);
 	    	if ($operationResultFilter != 'succeeded' && $operationResultFilter != 'failed' && $operationResultFilter != 'inprogress') {
 				require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
@@ -448,13 +448,13 @@ class Zend_Service_WindowsAzure_Management_Client
     	$parameters = [];
     	$parameters[] = 'StartTime=' . $startTime;
     	$parameters[] = 'EndTime=' . $endTime;
-    	if ($objectIdFilter != '' && !is_null($objectIdFilter)) {
+    	if (!is_null($objectIdFilter) && $objectIdFilter != '') {
     		$parameters[] = 'ObjectIdFilter=' . $objectIdFilter;
     	}
-    	if ($operationResultFilter != '' && !is_null($operationResultFilter)) {
+    	if (!is_null($operationResultFilter) && $operationResultFilter != '') {
     		$parameters[] = 'OperationResultFilter=' . ucfirst($operationResultFilter);
     	}
-    	if ($continuationToken != '' && !is_null($continuationToken)) {
+    	if (!is_null($continuationToken) && $continuationToken != '') {
     		$parameters[] = 'ContinuationToken=' . $continuationToken;
     	}
 
