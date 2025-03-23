@@ -5683,12 +5683,6 @@ parameters:
 			path: library/Zend/Dojo/View/Helper/Slider.php
 
 		-
-			message: '#^Method Zend_Dojo_View_Helper_Slider\:\:_prepareDecoration\(\) should return string but return statement is missing\.$#'
-			identifier: return.missing
-			count: 1
-			path: library/Zend/Dojo/View/Helper/Slider.php
-
-		-
 			message: '#^Parameter \#1 \$id of method Zend_Dojo_View_Helper_Dijit\:\:_createLayoutContainer\(\) expects int, string given\.$#'
 			identifier: argument.type
 			count: 1
@@ -8212,6 +8206,24 @@ parameters:
 			message: '#^Access to an undefined property Zend_Form\|Zend_Form_Element\:\:\$options\.$#'
 			identifier: property.notFound
 			count: 2
+			path: library/Zend/Form/Decorator/ViewHelper.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Interface\:\:formMultiCheckbox\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Form/Decorator/ViewHelper.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Interface\:\:formRadio\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: library/Zend/Form/Decorator/ViewHelper.php
+
+		-
+			message: '#^Call to an undefined method Zend_View_Interface\:\:formSelect\(\)\.$#'
+			identifier: method.notFound
+			count: 1
 			path: library/Zend/Form/Decorator/ViewHelper.php
 
 		-
@@ -17185,12 +17197,6 @@ parameters:
 			path: library/Zend/Queue/Adapter/Activemq.php
 
 		-
-			message: '#^Constructor of class Zend_Queue_Adapter_Activemq has an unused parameter \$queue\.$#'
-			identifier: constructor.unusedParameter
-			count: 1
-			path: library/Zend/Queue/Adapter/Activemq.php
-
-		-
 			message: '#^PHPDoc tag @param references unknown parameter\: \$config$#'
 			identifier: parameter.notFound
 			count: 1
@@ -20287,7 +20293,7 @@ parameters:
 			path: library/Zend/Service/SlideShare/SlideShow.php
 
 		-
-			message: '#^Call to function is_null\(\) with bool will always evaluate to false\.$#'
+			message: '#^Call to function is_null\(\) with mixed will always evaluate to false\.$#'
 			identifier: function.impossibleType
 			count: 2
 			path: library/Zend/Service/SqlAzure/Management/Client.php
@@ -20639,6 +20645,12 @@ parameters:
 			identifier: method.childReturnType
 			count: 1
 			path: library/Zend/Service/WindowsAzure/Log/Formatter/WindowsAzure.php
+
+		-
+			message: '#^Call to function is_null\(\) with mixed will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 9
+			path: library/Zend/Service/WindowsAzure/Management/Client.php
 
 		-
 			message: '#^Method Zend_Service_WindowsAzure_Management_Client\:\:_convertXmlElementToDeploymentInstance\(\) should return Zend_Service_WindowsAzure_Management_DeploymentInstance but returns null\.$#'
@@ -24625,24 +24637,6 @@ parameters:
 			path: library/Zend/View/Helper/HeadLink.php
 
 		-
-			message: '#^Parameter \#1 \$value of method Zend_View_Helper_HeadLink\:\:append\(\) expects array, stdClass given\.$#'
-			identifier: argument.type
-			count: 1
-			path: library/Zend/View/Helper/HeadLink.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Zend_View_Helper_HeadLink\:\:prepend\(\) expects array, stdClass given\.$#'
-			identifier: argument.type
-			count: 1
-			path: library/Zend/View/Helper/HeadLink.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Zend_View_Helper_HeadLink\:\:set\(\) expects array, stdClass given\.$#'
-			identifier: argument.type
-			count: 1
-			path: library/Zend/View/Helper/HeadLink.php
-
-		-
 			message: '#^Result of method ArrayObject\<\(int\|string\),mixed\>\:\:append\(\) \(void\) is used\.$#'
 			identifier: method.void
 			count: 1
@@ -24700,12 +24694,6 @@ parameters:
 			message: '#^Call to an undefined method Zend_View_Interface\:\:doctype\(\)\.$#'
 			identifier: method.notFound
 			count: 3
-			path: library/Zend/View/Helper/HeadMeta.php
-
-		-
-			message: '#^Cannot access property \$type on string\.$#'
-			identifier: property.nonObject
-			count: 2
 			path: library/Zend/View/Helper/HeadMeta.php
 
 		-
@@ -24771,24 +24759,6 @@ parameters:
 		-
 			message: '#^PHPDoc tag @param references unknown parameter\: \$typeValue$#'
 			identifier: parameter.notFound
-			count: 1
-			path: library/Zend/View/Helper/HeadMeta.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Zend_View_Helper_HeadMeta\:\:append\(\) expects string, stdClass given\.$#'
-			identifier: argument.type
-			count: 1
-			path: library/Zend/View/Helper/HeadMeta.php
-
-		-
-			message: '#^Parameter \#1 \$value of method Zend_View_Helper_HeadMeta\:\:set\(\) expects string, stdClass given\.$#'
-			identifier: argument.type
-			count: 1
-			path: library/Zend/View/Helper/HeadMeta.php
-
-		-
-			message: '#^Parameter \#2 \$value of method Zend_View_Helper_HeadMeta\:\:offsetSet\(\) expects string, stdClass given\.$#'
-			identifier: argument.type
 			count: 1
 			path: library/Zend/View/Helper/HeadMeta.php
 
