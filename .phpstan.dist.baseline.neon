@@ -11245,12 +11245,6 @@ parameters:
 			path: library/Zend/Ldap/Attribute.php
 
 		-
-			message: '#^Parameter \#1 \$date of static method Zend_Ldap_Converter\:\:toLdapDateTime\(\) expects DateTimt\|int\|string\|Zend_Date, DateTime given\.$#'
-			identifier: argument.type
-			count: 1
-			path: library/Zend/Ldap/Attribute.php
-
-		-
 			message: '#^Call to function function_exists\(\) with callable\-string will always evaluate to true\.$#'
 			identifier: function.alreadyNarrowedType
 			count: 1
@@ -11320,18 +11314,6 @@ parameters:
 			message: '#^PHPDoc tag @param references unknown parameter\: \$ytpe$#'
 			identifier: parameter.notFound
 			count: 2
-			path: library/Zend/Ldap/Converter.php
-
-		-
-			message: '#^Parameter \#1 \$date of static method Zend_Ldap_Converter\:\:toLdapDateTime\(\) expects DateTimt\|int\|string\|Zend_Date, DateTime given\.$#'
-			identifier: argument.type
-			count: 1
-			path: library/Zend/Ldap/Converter.php
-
-		-
-			message: '#^Parameter \$date of method Zend_Ldap_Converter\:\:toLdapDateTime\(\) has invalid type DateTimt\.$#'
-			identifier: class.notFound
-			count: 1
 			path: library/Zend/Ldap/Converter.php
 
 		-
@@ -20305,9 +20287,9 @@ parameters:
 			path: library/Zend/Service/SlideShare/SlideShow.php
 
 		-
-			message: '#^Call to function is_null\(\) with mixed will always evaluate to false\.$#'
+			message: '#^Call to function is_null\(\) with bool will always evaluate to false\.$#'
 			identifier: function.impossibleType
-			count: 12
+			count: 2
 			path: library/Zend/Service/SqlAzure/Management/Client.php
 
 		-
@@ -20657,18 +20639,6 @@ parameters:
 			identifier: method.childReturnType
 			count: 1
 			path: library/Zend/Service/WindowsAzure/Log/Formatter/WindowsAzure.php
-
-		-
-			message: '#^Call to function is_null\(\) with 0\|0\.0\|''failed''\|''inprogress''\|''succeeded'' will always evaluate to false\.$#'
-			identifier: function.impossibleType
-			count: 1
-			path: library/Zend/Service/WindowsAzure/Management/Client.php
-
-		-
-			message: '#^Call to function is_null\(\) with mixed will always evaluate to false\.$#'
-			identifier: function.impossibleType
-			count: 84
-			path: library/Zend/Service/WindowsAzure/Management/Client.php
 
 		-
 			message: '#^Method Zend_Service_WindowsAzure_Management_Client\:\:_convertXmlElementToDeploymentInstance\(\) should return Zend_Service_WindowsAzure_Management_DeploymentInstance but returns null\.$#'
