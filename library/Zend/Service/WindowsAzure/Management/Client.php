@@ -429,11 +429,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function listSubscriptionOperations($startTime, $endTime, $objectIdFilter = null, $operationResultFilter = null, $continuationToken = null)
     {
-    	if ($startTime == '' || is_null($startTime)) {
+    	if (is_null($startTime) || $startTime == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Start time should be specified.');
     	}
-    	if ($endTime == '' || is_null($endTime)) {
+    	if (is_null($endTime) || $endTime == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('End time should be specified.');
     	}
@@ -2096,11 +2096,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function createAffinityGroup($name, $label, $description = '', $location = '')
     {
-    	if ($name == '' || is_null($name)) {
+    	if (is_null($name) || $name == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Affinity group name should be specified.');
     	}
-    	if ($label == '' || is_null($label)) {
+    	if (is_null($label) || $label == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label should be specified.');
     	}
@@ -2112,7 +2112,7 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Description is too long. The maximum length is 1024 characters.');
     	}
-    	if ($location == '' || is_null($location)) {
+    	if (is_null($location) || $location == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Location should be specified.');
     	}
@@ -2172,7 +2172,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function deleteAffinityGroup($name)
     {
-    	if ($name == '' || is_null($name)) {
+    	if (is_null($name) || $name == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Affinity group name should be specified.');
     	}
@@ -2196,7 +2196,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function getAffinityGroupProperties($affinityGroupName)
     {
-        if ($affinityGroupName == '' || is_null($affinityGroupName)) {
+        if (is_null($affinityGroupName) || $affinityGroupName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Affinity group name should be specified.');
     	}
