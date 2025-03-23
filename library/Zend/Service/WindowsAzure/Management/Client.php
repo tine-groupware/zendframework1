@@ -518,7 +518,7 @@ class Zend_Service_WindowsAzure_Management_Client
     	if ($requestId == '') {
     		$requestId = $this->getLastRequestId();
     	}
-    	if ($requestId == '' || is_null($requestId)) {
+    	if (is_null($requestId) || $requestId == '') {
     		return null;
     	}
 
@@ -540,7 +540,7 @@ class Zend_Service_WindowsAzure_Management_Client
 	 */
 	public function createBlobClientForService($serviceName, ?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
 	{
-		if ($serviceName == '' || is_null($serviceName)) {
+		if (is_null($serviceName) || $serviceName == '') {
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
 
@@ -566,7 +566,7 @@ class Zend_Service_WindowsAzure_Management_Client
 	 */
 	public function createTableClientForService($serviceName, ?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
 	{
-		if ($serviceName == '' || is_null($serviceName)) {
+		if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -591,7 +591,7 @@ class Zend_Service_WindowsAzure_Management_Client
 	 */
 	public function createQueueClientForService($serviceName, ?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
 	{
-		if ($serviceName == '' || is_null($serviceName)) {
+		if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -658,7 +658,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function getStorageAccountProperties($serviceName)
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
 
@@ -696,7 +696,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function getStorageAccountKeys($serviceName)
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -730,7 +730,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function regenerateStorageAccountKey($serviceName, $key = 'primary')
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -816,11 +816,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function createHostedService($serviceName, $label, $description = '', $location = null, $affinityGroup = null)
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($label == '' || is_null($label)) {
+    	if (is_null($label) || $label == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label should be specified.');
     	}
@@ -861,11 +861,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function updateHostedService($serviceName, $label, $description = '')
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($label == '' || is_null($label)) {
+    	if (is_null($label) || $label == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label should be specified.');
     	}
@@ -892,7 +892,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function deleteHostedService($serviceName)
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -918,7 +918,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function getHostedServiceProperties($serviceName)
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -977,7 +977,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function createDeployment($serviceName, $deploymentSlot, $name, $label, $packageUrl, $configuration, $startDeployment = false, $treatWarningsAsErrors = false)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -986,11 +986,11 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment slot should be production|staging.');
     	}
-    	if ($name == '' || is_null($name)) {
+    	if (is_null($name) || $name == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Name should be specified.');
     	}
-    	if ($label == '' || is_null($label)) {
+    	if (is_null($label) || $label == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label should be specified.');
     	}
@@ -998,11 +998,11 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label is too long. The maximum length is 100 characters.');
     	}
-    	if ($packageUrl == '' || is_null($packageUrl)) {
+    	if (is_null($packageUrl) || $packageUrl == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Package URL should be specified.');
     	}
-    	if ($configuration == '' || is_null($configuration)) {
+    	if (is_null($configuration) || $configuration == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Configuration should be specified.');
     	}
@@ -1037,7 +1037,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function getDeploymentBySlot($serviceName, $deploymentSlot)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1062,11 +1062,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function getDeploymentByDeploymentId($serviceName, $deploymentId)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-        if ($deploymentId == '' || is_null($deploymentId)) {
+        if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
@@ -1111,15 +1111,15 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function swapDeployment($serviceName, $productionDeploymentName, $sourceDeploymentName)
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($productionDeploymentName == '' || is_null($productionDeploymentName)) {
+    	if (is_null($productionDeploymentName) || $productionDeploymentName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Production Deployment ID should be specified.');
     	}
-    	if ($sourceDeploymentName == '' || is_null($sourceDeploymentName)) {
+    	if (is_null($sourceDeploymentName) || $sourceDeploymentName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Source Deployment ID should be specified.');
     	}
@@ -1145,7 +1145,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function deleteDeploymentBySlot($serviceName, $deploymentSlot)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1168,11 +1168,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function deleteDeploymentByDeploymentId($serviceName, $deploymentId)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($deploymentId == '' || is_null($deploymentId)) {
+    	if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
@@ -1207,7 +1207,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function updateDeploymentStatusBySlot($serviceName, $deploymentSlot, $status = 'running')
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1236,11 +1236,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function updateDeploymentStatusByDeploymentId($serviceName, $deploymentId, $status = 'running')
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($deploymentId == '' || is_null($deploymentId)) {
+    	if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
@@ -1356,7 +1356,7 @@ class Zend_Service_WindowsAzure_Management_Client
      * @throws Zend_Service_WindowsAzure_Management_Exception
      */
 	public function setInstanceCountBySlot($serviceName, $deploymentSlot, $roleName, $instanceCount) {
-	    if ($serviceName == '' || is_null($serviceName)) {
+	    if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1365,7 +1365,7 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment slot should be production|staging.');
     	}
-    	if ($roleName == '' || is_null($roleName)) {
+    	if (is_null($roleName) || $roleName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Role name name should be specified.');
     	}
@@ -1390,15 +1390,15 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function setInstanceCountByDeploymentId($serviceName, $deploymentId, $roleName, $instanceCount)
     {
-	    if ($serviceName == '' || is_null($serviceName)) {
+	    if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-        if ($deploymentId == '' || is_null($deploymentId)) {
+        if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
-    	if ($roleName == '' || is_null($roleName)) {
+    	if (is_null($roleName) || $roleName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Role name name should be specified.');
     	}
@@ -1465,7 +1465,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function configureDeploymentBySlot($serviceName, $deploymentSlot, $configuration)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1474,7 +1474,7 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment slot should be production|staging.');
     	}
-    	if ($configuration == '' || is_null($configuration)) {
+    	if (is_null($configuration) || $configuration == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Configuration name should be specified.');
     	}
@@ -1499,15 +1499,15 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function configureDeploymentByDeploymentId($serviceName, $deploymentId, $configuration)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($deploymentId == '' || is_null($deploymentId)) {
+    	if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
-    	if ($configuration == '' || is_null($configuration)) {
+    	if (is_null($configuration) || $configuration == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Configuration name should be specified.');
     	}
@@ -1559,7 +1559,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function upgradeDeploymentBySlot($serviceName, $deploymentSlot, $label, $packageUrl, $configuration, $mode = 'auto', $roleToUpgrade = null)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1568,7 +1568,7 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment slot should be production|staging.');
     	}
-    	if ($label == '' || is_null($label)) {
+    	if (is_null($label) || $label == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label should be specified.');
     	}
@@ -1576,11 +1576,11 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label is too long. The maximum length is 100 characters.');
     	}
-    	if ($packageUrl == '' || is_null($packageUrl)) {
+    	if (is_null($packageUrl) || $packageUrl == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Package URL should be specified.');
     	}
-    	if ($configuration == '' || is_null($configuration)) {
+    	if (is_null($configuration) || $configuration == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Configuration should be specified.');
     	}
@@ -1612,15 +1612,15 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function upgradeDeploymentByDeploymentId($serviceName, $deploymentId, $label, $packageUrl, $configuration, $mode = 'auto', $roleToUpgrade = null)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($deploymentId == '' || is_null($deploymentId)) {
+    	if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
-    	if ($label == '' || is_null($label)) {
+    	if (is_null($label) || $label == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label should be specified.');
     	}
@@ -1628,11 +1628,11 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label is too long. The maximum length is 100 characters.');
     	}
-    	if ($packageUrl == '' || is_null($packageUrl)) {
+    	if (is_null($packageUrl) || $packageUrl == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Package URL should be specified.');
     	}
-    	if ($configuration == '' || is_null($configuration)) {
+    	if (is_null($configuration) || $configuration == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Configuration should be specified.');
     	}
@@ -1688,7 +1688,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function walkUpgradeDomainBySlot($serviceName, $deploymentSlot, $upgradeDomain = 0)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1712,11 +1712,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function walkUpgradeDomainByDeploymentId($serviceName, $deploymentId, $upgradeDomain = 0)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($deploymentId == '' || is_null($deploymentId)) {
+    	if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
@@ -1757,7 +1757,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function rebootRoleInstanceBySlot($serviceName, $deploymentSlot, $roleInstanceName)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1766,7 +1766,7 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment slot should be production|staging.');
     	}
-        if ($roleInstanceName == '' || is_null($roleInstanceName)) {
+        if (is_null($roleInstanceName) || $roleInstanceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Role instance name should be specified.');
     	}
@@ -1786,15 +1786,15 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function rebootRoleInstanceByDeploymentId($serviceName, $deploymentId, $roleInstanceName)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($deploymentId == '' || is_null($deploymentId)) {
+    	if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
-        if ($roleInstanceName == '' || is_null($roleInstanceName)) {
+        if (is_null($roleInstanceName) || $roleInstanceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Role instance name should be specified.');
     	}
@@ -1814,7 +1814,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function reimageRoleInstanceBySlot($serviceName, $deploymentSlot, $roleInstanceName)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1823,7 +1823,7 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment slot should be production|staging.');
     	}
-        if ($roleInstanceName == '' || is_null($roleInstanceName)) {
+        if (is_null($roleInstanceName) || $roleInstanceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Role instance name should be specified.');
     	}
@@ -1843,15 +1843,15 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function reimageRoleInstanceByDeploymentId($serviceName, $deploymentId, $roleInstanceName)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($deploymentId == '' || is_null($deploymentId)) {
+    	if (is_null($deploymentId) || $deploymentId == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Deployment ID should be specified.');
     	}
-        if ($roleInstanceName == '' || is_null($roleInstanceName)) {
+        if (is_null($roleInstanceName) || $roleInstanceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Role instance name should be specified.');
     	}
@@ -1887,7 +1887,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function listCertificates($serviceName)
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
@@ -1937,7 +1937,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function getCertificate($serviceName, $algorithm = '', $thumbprint = '')
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name or certificate URL should be specified.');
     	}
@@ -1979,15 +1979,15 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function addCertificate($serviceName, $certificateData, $certificatePassword, $certificateFormat = 'pfx')
     {
-    	if ($serviceName == '' || is_null($serviceName)) {
+    	if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
     	}
-    	if ($certificateData == '' || is_null($certificateData)) {
+    	if (is_null($certificateData) || $certificateData == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Certificate data should be specified.');
     	}
-    	if ($certificatePassword == '' || is_null($certificatePassword)) {
+    	if (is_null($certificatePassword) || $certificatePassword == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Certificate password should be specified.');
     	}
@@ -2022,7 +2022,7 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function deleteCertificate($serviceName, $algorithm = '', $thumbprint = '')
     {
-        if ($serviceName == '' || is_null($serviceName)) {
+        if (is_null($serviceName) || $serviceName == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name or certificate URL should be specified.');
     	}
@@ -2137,11 +2137,11 @@ class Zend_Service_WindowsAzure_Management_Client
      */
     public function updateAffinityGroup($name, $label, $description = '')
     {
-    	if ($name == '' || is_null($name)) {
+    	if (is_null($name) || $name == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Affinity group name should be specified.');
     	}
-    	if ($label == '' || is_null($label)) {
+    	if (is_null($label) || $label == '') {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Label should be specified.');
     	}
