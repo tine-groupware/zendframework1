@@ -492,11 +492,11 @@ class Zend_Service_SqlAzure_Management_Client
                 require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                 throw new Zend_Service_SqlAzure_Management_Exception('Rule name should be specified.');
             }
-            if (is_null($startIpAddress || $startIpAddress == '') || !filter_var($startIpAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            if (is_null($startIpAddress) || $startIpAddress == '' || !filter_var($startIpAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
                 require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                 throw new Zend_Service_SqlAzure_Management_Exception('Start IP address should be specified.');
             }
-            if (is_null($endIpAddress || $endIpAddress == '') || !filter_var($endIpAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            if (is_null($endIpAddress) || $endIpAddress == '' || !filter_var($endIpAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
                 require_once 'Zend/Service/SqlAzure/Management/Exception.php';
                 throw new Zend_Service_SqlAzure_Management_Exception('End IP address should be specified.');
             }
