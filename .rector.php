@@ -38,6 +38,7 @@ return RectorConfig::configure()
         Php71\FuncCall\RemoveExtraParametersRector::class,
         Php71\List_\ListToArrayDestructRector::class,
         __DIR__ . '/tests/Zend/Loader/_files/ParseError.php',
+        __DIR__ . '/tests/Zend/Session/SessionTest.php',
     ])
     ->withConfiguredRule(RenameMethodRector::class, [
         new MethodCallRename('Zend_Acl', 'add', 'addResource'),
