@@ -10,6 +10,8 @@ use Rector\Php55\Rector as Php55;
 use Rector\Php56\Rector as Php56;
 use Rector\Php70\Rector as Php70;
 use Rector\Php71\Rector as Php71;
+use Rector\Renaming\Rector\MethodCall\RenameMethodRector;
+use Rector\Renaming\ValueObject\MethodCallRename;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\ValueObject\PhpVersion;
 
@@ -36,6 +38,10 @@ return RectorConfig::configure()
         Php71\FuncCall\RemoveExtraParametersRector::class,
         Php71\List_\ListToArrayDestructRector::class,
         __DIR__ . '/tests/Zend/Loader/_files/ParseError.php',
+        __DIR__ . '/tests/Zend/Session/SessionTest.php',
+    ])
+    ->withConfiguredRule(RenameMethodRector::class, [
+        new MethodCallRename('Zend_Acl', 'add', 'addResource'),
     ])
     ->withSets([
         LevelSetList::UP_TO_PHP_82

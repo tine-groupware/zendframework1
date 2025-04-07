@@ -249,7 +249,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
             $class = is_object($object)?get_class($object):$object;
             if(!$this->_acl->has($class)) {
                 require_once 'Zend/Acl/Resource.php';
-                $this->_acl->add(new Zend_Acl_Resource($class));
+                $this->_acl->addResource(new Zend_Acl_Resource($class));
             }
             $call = [$object, "initAcl"];
             if(is_callable($call) && !call_user_func($call, $this->_acl)) {
