@@ -77,6 +77,8 @@ class Zend_Service_Tine20 extends Zend_Json_Client
         }
         
         parent::__construct($url, $httpClient);
+
+        $this->getHttpClient()->setHeaders('X-TINE20-REQUEST-TYPE', 'JSON');
     }    
 
     public function setCache(Zend_Cache_Core $_cache)
