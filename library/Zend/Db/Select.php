@@ -250,7 +250,7 @@ class Zend_Db_Select
      * @param string $regexColumnExpr
      * @return void
      */
-    public function setRegexColumnExpr(string $regexColumnExpr): void {
+    public function setRegexColumnExpr($regexColumnExpr): void {
         $this->_regexColumnExpr = $regexColumnExpr;
     }
 
@@ -260,7 +260,7 @@ class Zend_Db_Select
      * @param string $regexColumnExprOrder
      * @return void
      */
-    public function setRegexColumnExprOrder(string $regexColumnExprOrder): void {
+    public function setRegexColumnExprOrder($regexColumnExprOrder): void {
         $this->_regexColumnExprOrder = $regexColumnExprOrder;
     }
 
@@ -270,7 +270,7 @@ class Zend_Db_Select
      * @param string $regexColumnExprGroup
      * @return void
      */
-    public function setRegexColumnExprGroup(string $regexColumnExprGroup): void {
+    public function setRegexColumnExprGroup($regexColumnExprGroup): void {
         $this->_regexColumnExprGroup = $regexColumnExprGroup;
     }
 
