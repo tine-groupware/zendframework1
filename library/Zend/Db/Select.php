@@ -486,7 +486,7 @@ class Zend_Db_Select
      * @param  string $cond Join on this condition.
      * @param  array|string $cols The columns to select from the joined table.
      * @param  string $schema The database name to specify, if any.
-     * @return Zend_Db_Select This Zend_Db_Select object.
+     * @return $this This Zend_Db_Select object.
      */
     public function joinStraight($name, $cond, $cols = self::SQL_WILDCARD, $schema = null)
     {
