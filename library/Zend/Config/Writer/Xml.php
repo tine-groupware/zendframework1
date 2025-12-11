@@ -95,7 +95,7 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
                     $branchName = $xml->getName();
                     $xml        = $parent;
 
-                    unset($parent->{$branchName});
+//                    unset($parent->{$branchName});
                 } else {
                     $branchType = 'string';
                 }

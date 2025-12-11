@@ -65,7 +65,6 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
 
     protected function tear_down() 
     {
-        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = true;
         parent::tear_down();
     }
 
@@ -392,32 +391,10 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
         $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = false;
         $dbConnection->beginTransaction();
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
         $dbConnection->commit();
-    }
-
-    /**
-     * @requires PHP >= 8
-     *
-     * https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.pdo-mysql
-     */
-    public function testSincePhp8WhenCallCommitAfterAnImplicitCommitInBackwardCompatibleModeWillSilentErrorSamePhp7()
-    {
-        $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
-        $dbConnection = $this->_db;
-        $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-
-        $dbConnection->beginTransaction();
-        $dbConnection->query($implicitCommitStatement);
-        $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
-        $dbConnection->commit();
-
-        $actual     = $dbConnection->fetchOne('SELECT COUNT(*) FROM MYTABLE');
-        $expected   = 2;
-        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -433,32 +410,10 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
         $dbConnection = $this->_db;
         $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-        Zend_Db_Adapter_Pdo_Abstract::$isTransactionInBackwardCompatibleMode = false;
         $dbConnection->beginTransaction();
         $dbConnection->query($implicitCommitStatement);
         $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
         $dbConnection->rollBack();
-    }
-
-    /**
-     * @requires PHP >= 8
-     *
-     * https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.pdo-mysql
-     */
-    public function testSincePhp8WhenCallRollbackAfterAnImplicitCommitInBackwardCompatibleModeWillSilentErrorSamePhp7()
-    {
-        $implicitCommitStatement = 'CREATE TABLE MYTABLE( myname TEXT)'; //https://dev.mysql.com/doc/refman/8.0/en/implicit-commit.html
-        $dbConnection = $this->_db;
-        $dbConnection->query('DROP TABLE IF EXISTS MYTABLE');
-
-        $dbConnection->beginTransaction();
-        $dbConnection->query($implicitCommitStatement);
-        $dbConnection->query('INSERT INTO MYTABLE(myname) VALUES ("1"),("2")');
-        $dbConnection->rollBack();
-
-        $actual     = $dbConnection->fetchOne('SELECT COUNT(*) FROM MYTABLE');
-        $expected   = 2; //rollback does not effect.
-        $this->assertEquals($expected, $actual);
     }
 }
 
