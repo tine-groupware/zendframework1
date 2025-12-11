@@ -44,8 +44,8 @@ jobs:
         mv library tine20/tine20/vendor/zendframework/zendframework1/
         cd tine20/tine20
         cp config.inc.github.php config.inc.php
-        cp install.properties.github install.properties
-        vendor/bin/phing tine-install
+        php -d include_path=.:${configdir} setup.php --install -- adminLoginName=github adminPassword=github adminEmailAddress=github@example.org acceptedTermsVersion=1000
+
     - name: Unit tests
       run: |
         cd tine20/tests/tine20
