@@ -211,7 +211,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
     /**
      * @var Zend_Auth_Adapter_Http_Ntlm_Resolver_Interface
      */
-    protected $_resolver;
+    public $_resolver;
     
     /**
      * @var string current client message

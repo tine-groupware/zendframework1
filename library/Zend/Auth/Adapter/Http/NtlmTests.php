@@ -1,13 +1,8 @@
 <?php
 
-require_once 'PHPUnit/Framework.php';
-set_include_path('.' . PATH_SEPARATOR . '../../../../library' . PATH_SEPARATOR . '../../../..' . PATH_SEPARATOR . get_include_path());
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
-require_once 'Zend/Loader/Autoloader.php';
-$autoloader = Zend_Loader_Autoloader::getInstance();
-$autoloader->setFallbackAutoloader(true);
-
-class NtlmTests extends PHPUnit_Framework_TestCase
+class NtlmTests extends TestCase
 {
     
     public function setUp()
