@@ -29,9 +29,9 @@
  */
 class Zend_Ldap_Dn implements ArrayAccess
 {
-    const ATTR_CASEFOLD_NONE  = 'none';
-    const ATTR_CASEFOLD_UPPER = 'upper';
-    const ATTR_CASEFOLD_LOWER = 'lower';
+    public const ATTR_CASEFOLD_NONE  = 'none';
+    public const ATTR_CASEFOLD_UPPER = 'upper';
+    public const ATTR_CASEFOLD_LOWER = 'lower';
 
     /**
      * The default case fold to use
@@ -198,7 +198,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      *
      * @param  int   $index
      * @param  array $value
-     * @return Zend_Ldap_Dn Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception if index is illegal
      */
     public function set($index, array $value)
@@ -214,7 +214,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      *
      * @param  int $index
      * @param  int $length
-     * @return Zend_Ldap_Dn Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception if index is illegal
      */
     public function remove($index, $length = 1)
@@ -232,7 +232,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * Append a DN part
      *
      * @param  array $value
-     * @return Zend_Ldap_Dn Provides a fluent interface
+     * @return $this
      */
     public function append(array $value)
     {
@@ -245,7 +245,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * Prepend a DN part
      *
      * @param  array $value
-     * @return Zend_Ldap_Dn Provides a fluent interface
+     * @return $this
      */
     public function prepend(array $value)
     {
@@ -259,7 +259,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      *
      * @param  int   $index
      * @param  array $value
-     * @return Zend_Ldap_Dn Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception if index is illegal
      */
     public function insert($index, array $value)
@@ -302,7 +302,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * Assert if value is in a correct RDN format
      *
      * @param  array $value
-     * @return boolean
+     * @return void
      * @throws Zend_Ldap_Exception
      */
     protected static function _assertRdn(array $value)
@@ -435,7 +435,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * @param  int $offset
      * @return array
      */
-    #[\ReturnTypeWillChange]
+     #[\ReturnTypeWillChange]
      public function offsetGet($offset)
      {
          return $this->get($offset, 1, null);
@@ -596,7 +596,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * @return array
      * @throws Zend_Ldap_Exception
      */
-    public static function explodeDn($dn, array &$keys = null, array &$vals = null,
+    public static function explodeDn($dn, ?array &$keys = null, ?array &$vals = null,
         $caseFold = self::ATTR_CASEFOLD_NONE)
     {
         $k = [];
@@ -634,7 +634,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      * @param  string $caseFold
      * @return boolean True if the DN was successfully parsed or false if the string is not a valid DN.
      */
-    public static function checkDn($dn, array &$keys = null, array &$vals = null,
+    public static function checkDn($dn, ?array &$keys = null, ?array &$vals = null,
         $caseFold = self::ATTR_CASEFOLD_NONE)
     {
         /* This is a classic state machine parser. Each iteration of the

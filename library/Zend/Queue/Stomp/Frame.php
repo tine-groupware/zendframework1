@@ -37,9 +37,9 @@ require_once 'Zend/Queue/Stomp/FrameInterface.php';
 class Zend_Queue_Stomp_Frame
     implements Zend_Queue_Stomp_FrameInterface
 {
-    const END_OF_FRAME   = "\x00\n";
-    const CONTENT_LENGTH = 'content-length';
-    const EOL            = "\n";
+    public const END_OF_FRAME   = "\x00\n";
+    public const CONTENT_LENGTH = 'content-length';
+    public const EOL            = "\n";
 
     /**
      * Headers for the frame
@@ -86,7 +86,7 @@ class Zend_Queue_Stomp_Frame
      *
      * This is done to make the message sending more reliable.
      *
-     * @return boolean
+     * @return boolean|null
      */
     public function getAutoContentLength()
     {
@@ -237,7 +237,7 @@ class Zend_Queue_Stomp_Frame
     /**
      * Set the body for this frame
      *
-     * @param  string|null
+     * @param  string|null $command
      * @return Zend_Queue_Stomp_Frame
      * @throws Zend_Queue_Exception
      */

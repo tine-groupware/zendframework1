@@ -93,7 +93,8 @@ interface Zend_Search_Lucene_Interface extends Zend_Search_Lucene_Index_TermsStr
      *
      * @return integer
      */
-    public function count(): int;
+    #[\ReturnTypeWillChange]
+    public function count();
 
     /**
      * Returns one greater than the largest possible document number.
@@ -336,7 +337,7 @@ interface Zend_Search_Lucene_Interface extends Zend_Search_Lucene_Index_TermsStr
     public function docFreq(Zend_Search_Lucene_Index_Term $term);
 
     /**
-     * Retrive similarity used by index reader
+     * Retrieve similarity used by index reader
      *
      * @return Zend_Search_Lucene_Search_Similarity
      */

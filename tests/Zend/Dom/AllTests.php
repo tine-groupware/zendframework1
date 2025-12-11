@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,12 +44,12 @@ class Zend_Dom_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Dom');
+        $suite = new TestSuite('Zend Framework - Zend_Dom');
 
         $suite->addTestSuite('Zend_Dom_QueryTest');
         $suite->addTestSuite('Zend_Dom_Query_Css2XpathTest');
@@ -55,6 +59,6 @@ class Zend_Dom_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Dom_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Dom_AllTests::main') {
     Zend_Dom_AllTests::main();
 }

@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,10 +36,14 @@ require_once 'Zend/Http/Client.php';
  * @group      Zend_Gdata
  * @group      Zend_Gdata_Docs
  */
-class Zend_Gdata_Docs_QueryTest extends PHPUnit_Framework_TestCase
+class Zend_Gdata_Docs_QueryTest extends TestCase
 {
+    /**
+     * @var \Zend_Gdata_Docs_Query|mixed
+     */
+    protected $docQuery;
 
-    public function setUp()
+    protected function set_up()
     {
         $this->docQuery = new Zend_Gdata_Docs_Query();
     }

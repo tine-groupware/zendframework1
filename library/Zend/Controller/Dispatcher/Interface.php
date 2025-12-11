@@ -118,7 +118,7 @@ interface Zend_Controller_Dispatcher_Interface
      * only that parameter; if an array of parameter names is provided, clears
      * each.
      *
-     * @param null|string|array single key or array of keys for params to clear
+     * @param null|string|array $name single key or array of keys for params to clear
      * @return Zend_Controller_Dispatcher_Interface
      */
     public function clearParams($name = null);
@@ -129,7 +129,7 @@ interface Zend_Controller_Dispatcher_Interface
      * @param Zend_Controller_Response_Abstract|null $response
      * @return void
      */
-    public function setResponse(Zend_Controller_Response_Abstract $response = null);
+    public function setResponse(?Zend_Controller_Response_Abstract $response = null);
 
     /**
      * Retrieve the response object, if any

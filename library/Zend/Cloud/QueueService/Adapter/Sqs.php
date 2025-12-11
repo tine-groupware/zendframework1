@@ -37,13 +37,13 @@ class Zend_Cloud_QueueService_Adapter_Sqs
     /*
      * Options array keys for the SQS adapter.
      */
-    const AWS_ACCESS_KEY = 'aws_accesskey';
-    const AWS_SECRET_KEY = 'aws_secretkey';
+    public const AWS_ACCESS_KEY = 'aws_accesskey';
+    public const AWS_SECRET_KEY = 'aws_secretkey';
 
     /**
      * Defaults
      */
-    const CREATE_TIMEOUT = 30;
+    public const CREATE_TIMEOUT = 30;
 
     /**
      * SQS service instance.
@@ -235,7 +235,7 @@ class Zend_Cloud_QueueService_Adapter_Sqs
      * @param  string $queueId
      * @param  Zend_Cloud_QueueService_Message $message
      * @param  array  $options
-     * @return void
+     * @return bool
      */
     public function deleteMessage($queueId, $message, $options = null)
     {

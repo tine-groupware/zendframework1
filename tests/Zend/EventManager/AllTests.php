@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,12 +46,12 @@ class Zend_EventManager_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_EventManager');
+        $suite = new TestSuite('Zend Framework - Zend_EventManager');
 
         $suite->addTestSuite('Zend_EventManager_EventManagerTest');
         $suite->addTestSuite('Zend_EventManager_FilterChainTest');
@@ -59,6 +63,6 @@ class Zend_EventManager_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_EventManager_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_EventManager_AllTests::main') {
     Zend_EventManager_AllTests::main();
 }

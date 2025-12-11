@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -41,7 +46,7 @@ require_once 'Zend/Controller/Action/HelperBroker.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_LayoutTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_LayoutTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,9 +55,8 @@ class Zend_View_Helper_LayoutTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_LayoutTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_View_Helper_LayoutTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -61,7 +65,7 @@ class Zend_View_Helper_LayoutTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         Zend_Controller_Front::getInstance()->resetInstance();
         if (Zend_Controller_Action_HelperBroker::hasHelper('Layout')) {
@@ -80,7 +84,7 @@ class Zend_View_Helper_LayoutTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -133,6 +137,6 @@ class Zend_View_Helper_LayoutTest_Layout extends Zend_Layout
 }
 
 // Call Zend_View_Helper_LayoutTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_LayoutTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_View_Helper_LayoutTest::main") {
     Zend_View_Helper_LayoutTest::main();
 }

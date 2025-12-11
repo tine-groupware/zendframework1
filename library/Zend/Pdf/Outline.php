@@ -33,6 +33,12 @@
  */
 abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
 {
+    protected $_title;
+    protected $_color;
+    protected $_italic;
+    protected $_bold;
+    protected $_target;
+
     /**
      * True if outline is open.
      *
@@ -167,7 +173,7 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
      * Set outline options
      *
      * @param array $options
-     * @return Zend_Pdf_Action
+     * @return Zend_Pdf_Outline|Zend_Pdf_Outline_Loaded
      * @throws Zend_Pdf_Exception
      */
     public function setOptions(array $options)
@@ -282,8 +288,8 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
     abstract public function dumpOutline(Zend_Pdf_ElementFactory_Interface $factory,
                                                                            $updateNavigation,
                                                           Zend_Pdf_Element $parent,
-                                                          Zend_Pdf_Element $prev = null,
-                                                          SplObjectStorage $processedOutlines = null);
+                                                          ?Zend_Pdf_Element $prev = null,
+                                                          ?SplObjectStorage $processedOutlines = null);
 
 
     ////////////////////////////////////////////////////////////////////////
@@ -296,7 +302,7 @@ abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
      * @return Zend_Pdf_Outline
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return current($this->childOutlines);
     }
@@ -307,7 +313,7 @@ public function current()
      * @return integer
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return key($this->childOutlines);
     }
@@ -345,7 +351,7 @@ public function key()
      *
      * @return Zend_Pdf_Outline|null
      */
-    public function getChildren(): ?RecursiveIterator
+    public function getChildren(): ?\RecursiveIterator
     {
         return current($this->childOutlines);
     }

@@ -162,10 +162,10 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                                                     Default is null,
      *                                                     meaning container
      *                                                     will be reset.
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
+     * @return $this
      *                                                     returns self
      */
-    public function setContainer(Zend_Navigation_Container $container = null)
+    public function setContainer(?Zend_Navigation_Container $container = null)
     {
         $this->_container = $container;
         return $this;
@@ -213,7 +213,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                                                     depth. Default is
      *                                                     null, which sets
      *                                                     no minimum depth.
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
+     * @return $this
      *                                                     returns self
      */
     public function setMinDepth($minDepth = null)
@@ -246,7 +246,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                                                     depth. Default is
      *                                                     null, which sets no
      *                                                     maximum depth.
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
+     * @return $this
      *                                                     returns self
      */
     public function setMaxDepth($maxDepth = null)
@@ -275,7 +275,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *
      * @param  string|int $indent                          indentation string or
      *                                                     number of spaces
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
+     * @return $this
      *                                                     returns self
      */
     public function setIndent($indent)
@@ -322,7 +322,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                                              should be formatted. Default
      *                                              is true.
      *
-     * @return Zend_View_Helper_Navigation_Sitemap  fluent interface, returns
+     * @return $this
      *                                              self
      */
     public function setFormatOutput($formatOutput = true)
@@ -346,7 +346,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * Sets prefix for IDs when they are normalized
      *
      * @param   string $prefix                              Prefix for IDs
-     * @return  Zend_View_Helper_Navigation_HelperAbstract  fluent interface, returns self
+     * @return $this
      */
     public function setPrefixForId($prefix)
     {
@@ -378,7 +378,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * Skip the current prefix for IDs when they are normalized
      *
      * @param  bool $flag
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface, returns self
+     * @return $this
      */
     public function skipPrefixForId($flag = true)
     {
@@ -399,7 +399,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                                                     or null. Default is
      *                                                     null, which sets no
      *                                                     translator.
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
+     * @return $this
      *                                                     returns self
      */
     public function setTranslator($translator = null)
@@ -440,10 +440,9 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *
      * @param  Zend_Acl $acl                               [optional] ACL object.
      *                                                     Default is null.
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
-     *                                                     returns self
+     * @return $this
      */
-    public function setAcl(Zend_Acl $acl = null)
+    public function setAcl(?Zend_Acl $acl = null)
     {
         $this->_acl = $acl;
         return $this;
@@ -479,8 +478,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                                                     null, which will set
      *                                                     no role.
      * @throws Zend_View_Exception                         if $role is invalid
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
-     *                                                     returns self
+     * @return $this
      */
     public function setRole($role = null)
     {
@@ -526,8 +524,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * @param  bool $useAcl                                [optional] whether ACL
      *                                                     should be used.
      *                                                     Default is true.
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
-     *                                                     returns self
+     * @return $this
      */
     public function setUseAcl($useAcl = true)
     {
@@ -561,8 +558,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * Render invisible items?
      *
      * @param  bool $renderInvisible                       [optional] boolean flag
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface
-     *                                                     returns self
+     * @return $this
      */
     public function setRenderInvisible($renderInvisible = true)
     {
@@ -578,8 +574,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * @param  bool $useTranslator                         [optional] whether
      *                                                     translator should be
      *                                                     used. Default is true.
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
-     *                                                     returns self
+     * @return $this
      */
     public function setUseTranslator($useTranslator = true)
     {
@@ -922,7 +917,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * @return string           Normalized ID
      */
     protected function _normalizeId($value)
-    {        
+    {
         if (false === $this->_skipPrefixForId) {
             $prefix = $this->getPrefixForId();
 
@@ -943,7 +938,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                        sets no ACL object.
      * @return void
      */
-    public static function setDefaultAcl(Zend_Acl $acl = null)
+    public static function setDefaultAcl(?Zend_Acl $acl = null)
     {
         self::$_defaultAcl = $acl;
     }

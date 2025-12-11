@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -46,15 +50,13 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         $this->bootstrap = [$this, 'appBootstrap'];
-        parent::setUp();
     }
 
     public function appBootstrap()
@@ -84,10 +86,9 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->dispatch('/zend-layout-functional-test-test/missing-view-script');
         $this->assertEquals(trim($this->response->getBody()), "[DEFAULT_LAYOUT_START]\n[DEFAULT_LAYOUT_START]\n[DEFAULT_LAYOUT_END]\n(ErrorController::errorAction output)[DEFAULT_LAYOUT_END]");
     }
-
 }
 
 // Call Zend_Layout_FunctionalTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Layout_FunctionalTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Layout_FunctionalTest::main") {
     Zend_Layout_FunctionalTest::main();
 }

@@ -120,7 +120,8 @@ class Zend_Dom_Query_Result implements Iterator,Countable
      *
      * @return DOMNode|null
      */
-    public function rewind(): void
+    #[\ReturnTypeWillChange]
+    public function rewind()
     {
         $this->_position = 0;
         return $this->_nodeList->item(0);
@@ -142,10 +143,10 @@ class Zend_Dom_Query_Result implements Iterator,Countable
     /**
      * Iterator: return current element
      *
-     * @return DOMElement
+     * @return DOMNode|null
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return $this->_nodeList->item($this->_position);
     }
@@ -156,7 +157,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_position;
     }
@@ -166,7 +167,8 @@ public function key()
      *
      * @return DOMNode|null
      */
-    public function next(): void
+    #[\ReturnTypeWillChange]
+    public function next()
     {
         ++$this->_position;
         return $this->_nodeList->item($this->_position);

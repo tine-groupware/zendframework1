@@ -72,7 +72,7 @@ class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveI
      * @return Zend_Ldap_Node
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return current($this->_data);
     }
@@ -84,7 +84,7 @@ public function current()
      * @return string
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return key($this->_data);
     }
@@ -139,7 +139,7 @@ public function key()
      *
      * @return Zend_Ldap_Node_ChildrenIterator
      */
-    public function getChildren(): ?RecursiveIterator
+    public function getChildren(): ?\RecursiveIterator
     {
         if ($this->current() instanceof Zend_Ldap_Node) {
             return $this->current()->getChildren();

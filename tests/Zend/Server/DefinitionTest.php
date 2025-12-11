@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -47,8 +52,13 @@ require_once 'Zend/Server/Method/Prototype.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Server
  */
-class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
+class Zend_Server_DefinitionTest extends TestCase
 {
+    /**
+     * @var Zend_Server_Definition
+     */
+    protected $definition;
+
     /**
      * Runs the test methods of this class.
      *
@@ -56,8 +66,8 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Server_DefinitionTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Server_DefinitionTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -66,7 +76,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         $this->definition = new Zend_Server_Definition();
     }
@@ -77,7 +87,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -155,7 +165,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
         $method = [
             'name' => 'foo.bar',
             'callback' => [
-                'type'     => 'function',
+                'type' => 'function',
                 'function' => 'bar',
             ],
             'prototypes' => [
@@ -183,7 +193,7 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
         $method = [
             'name' => 'foo.bar',
             'callback' => [
-                'type'     => 'function',
+                'type' => 'function',
                 'function' => 'bar',
             ],
             'prototypes' => [
@@ -208,6 +218,6 @@ class Zend_Server_DefinitionTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Server_DefinitionTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Server_DefinitionTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Server_DefinitionTest::main") {
     Zend_Server_DefinitionTest::main();
 }

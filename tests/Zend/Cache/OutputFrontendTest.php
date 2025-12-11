@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -35,11 +38,16 @@ require_once 'Zend/Cache/Backend/Test.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_OutputFrontendTest extends PHPUnit_Framework_TestCase {
+class Zend_Cache_OutputFrontendTest extends TestCase
+{
+    /**
+     * @var \Zend_Cache_Backend_Test|mixed
+     */
+    protected $_backend;
 
     private $_instance;
 
-    public function setUp()
+    protected function set_up()
     {
         if (!$this->_instance) {
             $this->_instance = new Zend_Cache_Frontend_Output([]);
@@ -48,11 +56,14 @@ class Zend_Cache_OutputFrontendTest extends PHPUnit_Framework_TestCase {
         }
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Frontend_Output(['lifetime' => 3600, 'caching' => true]);
@@ -84,4 +95,3 @@ class Zend_Cache_OutputFrontendTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('foobar', $data);
     }
 }
-

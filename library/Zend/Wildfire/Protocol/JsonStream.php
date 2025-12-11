@@ -43,7 +43,7 @@ class Zend_Wildfire_Protocol_JsonStream
     /**
      * The protocol URI for this protocol
      */
-    const PROTOCOL_URI = 'http://meta.wildfirehq.org/Protocol/JsonStream/0.2';
+    public const PROTOCOL_URI = 'http://meta.wildfirehq.org/Protocol/JsonStream/0.2';
 
     /**
      * All messages to be sent.
@@ -127,7 +127,7 @@ class Zend_Wildfire_Protocol_JsonStream
     /**
      * Get all qued messages
      *
-     * @return mixed Returns qued messages or FALSE if no messages are qued
+     * @return array|false Returns qued messages or FALSE if no messages are qued
      */
     public function getMessages()
     {
@@ -152,7 +152,7 @@ class Zend_Wildfire_Protocol_JsonStream
      * Retrieves all formatted data ready to be sent by the channel.
      *
      * @param Zend_Wildfire_Channel_Interface $channel The instance of the channel that will be transmitting the data
-     * @return mixed Returns the data to be sent by the channel.
+     * @return array|false Returns the data to be sent by the channel.
      * @throws Zend_Wildfire_Exception
      */
     public function getPayload(Zend_Wildfire_Channel_Interface $channel)

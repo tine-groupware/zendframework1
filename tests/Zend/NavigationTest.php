@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -37,23 +42,23 @@ require_once 'Zend/Navigation.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
-class Zend_NavigationTest extends PHPUnit_Framework_TestCase
+class Zend_NavigationTest extends TestCase
 {
     /**
      * @var     Zend_Navigation
      */
     private $_navigation;
 
-    protected function setUp()
+    protected function set_up()
     {
-        parent::setUp();
+        parent::set_up();
         $this->_navigation = new Zend_Navigation();
     }
 
-    protected function tearDown()
+    protected function tear_down()
     {
         $this->_navigation = null;
-        parent::tearDown();
+        parent::tear_down();
     }
     /**
      * Runs the test methods of this class.
@@ -62,8 +67,8 @@ class Zend_NavigationTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_NavigationTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_NavigationTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -91,5 +96,4 @@ class Zend_NavigationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('page1', $pages[1]['uri']);
         $this->assertEquals('page2', $pages[2]['uri']);
     }
-
 }

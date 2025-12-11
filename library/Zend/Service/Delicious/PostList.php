@@ -174,7 +174,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
      * @return Zend_Service_Delicious_SimplePost
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return $this->_posts[$this->_iteratorKey];
     }
@@ -187,7 +187,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_iteratorKey;
     }
@@ -226,7 +226,6 @@ public function key()
     public function valid(): bool
     {
         $numItems = $this->count();
-
         if ($numItems > 0 && $this->_iteratorKey < $numItems) {
             return true;
         } else {

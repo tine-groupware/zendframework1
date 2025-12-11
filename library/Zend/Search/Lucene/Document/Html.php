@@ -137,11 +137,11 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             // title should always have only one entry, but we process all nodeset entries
             $docTitle .= $titleNode->nodeValue . ' ';
         }
-        $this->addField(Zend_Search_Lucene_Field::Text('title', $docTitle, 'UTF-8'));
+        $this->addField(Zend_Search_Lucene_Field::text('title', $docTitle, 'UTF-8'));
 
         $metaNodes = $xpath->query('/html/head/meta[@name]');
         foreach ($metaNodes as $metaNode) {
-            $this->addField(Zend_Search_Lucene_Field::Text($metaNode->getAttribute('name'),
+            $this->addField(Zend_Search_Lucene_Field::text($metaNode->getAttribute('name'),
                                                            $metaNode->getAttribute('content'),
                                                            'UTF-8'));
         }
@@ -153,9 +153,9 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             $this->_retrieveNodeText($bodyNode, $docBody);
         }
         if ($storeContent) {
-            $this->addField(Zend_Search_Lucene_Field::Text('body', $docBody, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::text('body', $docBody, 'UTF-8'));
         } else {
-            $this->addField(Zend_Search_Lucene_Field::UnStored('body', $docBody, 'UTF-8'));
+            $this->addField(Zend_Search_Lucene_Field::unStored('body', $docBody, 'UTF-8'));
         }
 
         $linkNodes = $this->_doc->getElementsByTagName('a');
@@ -279,7 +279,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      *
      * @param DOMText $node
      * @param array   $wordsToHighlight
-     * @param callback $callback   Callback method, used to transform (highlighting) text.
+     * @param callable $callback   Callback method, used to transform (highlighting) text.
      * @param array    $params     Array of additionall callback parameters (first non-optional parameter is a text to transform)
      * @throws Zend_Search_Lucene_Exception
      */
@@ -311,6 +311,10 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
 
             // Cut matched node
             $matchedWordNode = $node->splitText($token->getStartOffset());
+
+            if (!($matchedWordNode instanceof DOMText)) {
+                continue; // Skip this token if splitting failed
+            }
 
             // Retrieve HTML string representation for highlihted word
             $fullCallbackparamsList = $params;
@@ -347,7 +351,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      *
      * @param DOMNode $contextNode
      * @param array $wordsToHighlight
-     * @param callback $callback   Callback method, used to transform (highlighting) text.
+     * @param callable $callback   Callback method, used to transform (highlighting) text.
      * @param array    $params     Array of additionall callback parameters (first non-optional parameter is a text to transform)
      */
     protected function _highlightNodeRecursive(DOMNode $contextNode, $wordsToHighlight, $callback, $params)
@@ -405,7 +409,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      * Highlight text using specified View helper or callback function.
      *
      * @param string|array $words  Words to highlight. Words could be organized using the array or string.
-     * @param callback $callback   Callback method, used to transform (highlighting) text.
+     * @param callable $callback   Callback method, used to transform (highlighting) text.
      * @param array    $params     Array of additionall callback parameters passed through into it
      *                             (first non-optional parameter is an HTML fragment for highlighting)
      * @return string
@@ -478,7 +482,6 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             $outputFragments[] = $this->_doc->saveXML($bodyNodes->item($count));
         }
 
-        return implode($outputFragments);
+        return implode('', $outputFragments);
     }
 }
-

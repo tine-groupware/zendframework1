@@ -52,7 +52,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
     protected $service;
     /**
      * The container name of the object list
-     * 
+     *
      * @var string
      */
     protected $container;
@@ -60,7 +60,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      * Construct
      *
      * @param  array $list
-     * @return boolean
+     * @return void
      */
     public function __construct($service,$list,$container)
     {
@@ -123,7 +123,7 @@ class Zend_Service_Rackspace_Files_ObjectList implements Countable, Iterator, Ar
      * @return Zend_Service_Rackspace_Files_Object
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return $this->objects[$this->iteratorKey];
     }
@@ -135,7 +135,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->iteratorKey;
     }
@@ -185,7 +185,7 @@ public function key()
      * @param   int     $offset
      * @return  bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return ($offset < $this->count());
     }
@@ -198,6 +198,7 @@ public function key()
      * @throws  Zend_Service_Rackspace_Files_Exception
      * @return  Zend_Service_Rackspace_Files_Object
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         if ($this->offsetExists($offset)) {
@@ -217,7 +218,7 @@ public function key()
      * @param   string  $value
      * @throws  Zend_Service_Rackspace_Files_Exception
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         require_once 'Zend/Service/Rackspace/Files/Exception.php';
         throw new Zend_Service_Rackspace_Files_Exception('You are trying to set read-only property');
@@ -231,7 +232,7 @@ public function key()
      * @param   int     $offset
      * @throws  Zend_Service_Rackspace_Files_Exception
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         require_once 'Zend/Service/Rackspace/Files/Exception.php';
         throw new Zend_Service_Rackspace_Files_Exception('You are trying to unset read-only property');

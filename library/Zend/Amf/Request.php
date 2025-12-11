@@ -98,7 +98,7 @@ class Zend_Amf_Request
     /**
      * Takes the raw AMF input stream and converts it into valid PHP objects
      *
-     * @param  Zend_Amf_Parse_InputStream
+     * @param  Zend_Amf_Parse_InputStream $stream
      * @return Zend_Amf_Request
      */
     public function readMessage(Zend_Amf_Parse_InputStream $stream)
@@ -143,7 +143,7 @@ class Zend_Amf_Request
      */
     public function readHeader()
     {
-        $name     = $this->_inputStream->readUTF();
+        $name     = $this->_inputStream->readUtf();
         $mustRead = (bool)$this->_inputStream->readByte();
         $length   = $this->_inputStream->readLong();
 
@@ -164,8 +164,8 @@ class Zend_Amf_Request
      */
     public function readBody()
     {
-        $targetURI   = $this->_inputStream->readUTF();
-        $responseURI = $this->_inputStream->readUTF();
+        $targetURI   = $this->_inputStream->readUtf();
+        $responseURI = $this->_inputStream->readUtf();
         $length      = $this->_inputStream->readLong();
 
         try {

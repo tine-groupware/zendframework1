@@ -236,8 +236,8 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
             return $this;
         }
 
-        $ref = array_key_exists($string, $this->_referenceStrings) 
-             ? $this->_referenceStrings[$string] 
+        $ref = array_key_exists($string, $this->_referenceStrings)
+             ? $this->_referenceStrings[$string]
              : false;
         if ($ref === false){
             $this->_referenceStrings[$string] = count($this->_referenceStrings);
@@ -291,7 +291,7 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
         if(is_string($xml)) {
             //nothing to do
         } else if ($xml instanceof DOMDocument) {
-            $xml = $xml->saveXml();
+            $xml = $xml->saveXML();
         } else if ($xml instanceof SimpleXMLElement) {
             $xml = $xml->asXML();
         } else {
@@ -345,7 +345,7 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
         // have to seperate mixed from numberic keys.
         $numeric = [];
         $string  = [];
-        foreach ($array as $key => &$value) {
+        foreach ($array as $key => $value) {
             if (is_int($key)) {
                 $numeric[] = $value;
             } else {
@@ -364,6 +364,7 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
                  ->writeTypeMarker($value);
         }
         $this->writeString($this->_strEmpty);
+        unset($value);
 
         // Write the numeric array to ouput stream
         foreach($numeric as &$value) {
@@ -389,8 +390,8 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
         }
 
         $hash = spl_object_hash($object);
-        $ref = array_key_exists($hash, $this->_referenceObjects) 
-             ? $this->_referenceObjects[$hash] 
+        $ref = array_key_exists($hash, $this->_referenceObjects)
+             ? $this->_referenceObjects[$hash]
              : false;
 
         // quickly handle object references

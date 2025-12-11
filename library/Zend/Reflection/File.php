@@ -40,6 +40,11 @@ class Zend_Reflection_File implements Reflector
     /**
      * @var string
      */
+    protected $_fileName         = null;
+
+    /**
+     * @var string
+     */
     protected $_filepath        = null;
 
     /**
@@ -86,7 +91,7 @@ class Zend_Reflection_File implements Reflector
     public function __construct($file)
     {
         $fileName = $file;
-        
+
         $fileRealpath = realpath($fileName);
         if ($fileRealpath) {
             // realpath() doesn't return false if Suhosin is included
@@ -95,7 +100,7 @@ class Zend_Reflection_File implements Reflector
                 $fileRealpath = false;
             }
         }
-        
+
         if ($fileRealpath === false) {
             $fileRealpath = self::findRealpathInIncludePath($file);
         }

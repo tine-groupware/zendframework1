@@ -71,7 +71,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      * @return void
      * @throws Zend_Feed_Exception If loading the feed failed.
      */
-    public function __construct($uri = null, $string = null, Zend_Feed_Builder_Interface $builder = null)
+    public function __construct($uri = null, $string = null, ?Zend_Feed_Builder_Interface $builder = null)
     {
         if ($uri !== null) {
             // Retrieve the feed via HTTP
@@ -146,7 +146,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      */
     public function __sleep()
     {
-        $this->_element = $this->saveXML();
+        $this->_element = $this->saveXml();
 
         return ['_element'];
     }
@@ -197,7 +197,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      * @return mixed The current row, or null if no rows.
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return new $this->_entryClassName(
             null,
@@ -206,21 +206,17 @@ public function current()
 
 
     /**
-     * Required by the Iterator interface.
-     *
-     * @return mixed The current row number (starts at 0), or NULL if no rows
+     * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_entryIndex;
     }
 
 
     /**
-     * Required by the Iterator interface.
-     *
-     * @return mixed The next row, or null if no more rows.
+     * @return void
      */
     public function next(): void
     {
@@ -267,8 +263,8 @@ public function key()
      * Import a feed from a string
      *
      * Protects against XXE attack vectors.
-     * 
-     * @param  string $feed 
+     *
+     * @param  string $feed
      * @return string
      * @throws Zend_Feed_Exception on detection of an XXE vector
      */

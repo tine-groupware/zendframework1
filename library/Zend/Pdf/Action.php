@@ -41,12 +41,17 @@ require_once 'Zend/Pdf/Target.php';
 abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveIterator, Countable
 {
     /**
+     * Array of child outlines (array of Zend_Pdf_Outline objects)
+     * @var array
+     */
+    public $childOutlines = [];
+
+    /**
      * Action dictionary
      *
      * @var Zend_Pdf_Element_Dictionary|Zend_Pdf_Element_Object|Zend_Pdf_Element_Reference
      */
     protected $_actionDictionary;
-
 
     /**
      * An original list of chained actions
@@ -112,7 +117,7 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
      * @return Zend_Pdf_Action
      * @throws Zend_Pdf_Exception
      */
-    public static function load(Zend_Pdf_Element $dictionary, SplObjectStorage $processedActions = null)
+    public static function load(Zend_Pdf_Element $dictionary, ?SplObjectStorage $processedActions = null)
     {
         if ($processedActions === null) {
             $processedActions = new SplObjectStorage();
@@ -252,7 +257,7 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
      * @param SplObjectStorage $processedActions  list of already processed actions (used to prevent infinity loop caused by cyclic references)
      * @return Zend_Pdf_Element_Object|Zend_Pdf_Element_Reference   Dictionary indirect object
      */
-    public function dumpAction(Zend_Pdf_ElementFactory_Interface $factory, SplObjectStorage $processedActions = null)
+    public function dumpAction(Zend_Pdf_ElementFactory_Interface $factory, ?SplObjectStorage $processedActions = null)
     {
         if ($processedActions === null) {
             $processedActions = new SplObjectStorage();
@@ -327,7 +332,7 @@ abstract class Zend_Pdf_Action extends Zend_Pdf_Target implements RecursiveItera
      * @return Zend_Pdf_Action
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return current($this->next);
     }
@@ -338,7 +343,7 @@ public function current()
      * @return integer
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return key($this->next);
     }
@@ -346,7 +351,8 @@ public function key()
     /**
      * Go to next child
      */
-    public function next(): void
+    #[\ReturnTypeWillChange]
+    public function next()
     {
         return next($this->next);
     }
@@ -354,7 +360,8 @@ public function key()
     /**
      * Rewind children
      */
-    public function rewind(): void
+    #[\ReturnTypeWillChange]
+    public function rewind()
     {
         return reset($this->next);
     }
@@ -374,7 +381,7 @@ public function key()
      *
      * @return Zend_Pdf_Action|null
      */
-    public function getChildren(): ?RecursiveIterator
+    public function getChildren(): ?\RecursiveIterator
     {
         return current($this->next);
     }

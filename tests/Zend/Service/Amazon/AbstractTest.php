@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,37 +36,44 @@ require_once 'Zend/Service/Amazon/Abstract.php';
  * @group      Zend_Service
  * @group      Zend_Service_Amazon
  */
-class AmamzonAbstract extends PHPUnit_Framework_TestCase
+class AmamzonAbstract extends TestCase
 {
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function set_up()
     {
-        parent::setUp();
+        parent::set_up();
     }
 
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tear_down()
     {
-        parent::tearDown();
+        parent::tear_down();
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNoKeysThrowException()
     {
         try {
             $class = new TestAmamzonAbstract();
             $this->fail('Exception should be thrown when no keys are passed in.');
-        } catch(Zend_Service_Amazon_Exception $zsae) {}
+        } catch (Zend_Service_Amazon_Exception $zsae) {
+        }
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorWithKeysDoesNotThrowException()
     {
         try {
             $class = new TestAmamzonAbstract('TestAccessKey', 'TestSecretKey');
-        } catch(Zend_Service_Amazon_Exception $zsae) {
+        } catch (Zend_Service_Amazon_Exception $zsae) {
             $this->fail('Exception should be thrown when no keys are passed in.');
         }
     }
@@ -106,6 +116,4 @@ class TestAmamzonAbstract extends Zend_Service_Amazon_Abstract
     {
         return $this->_secretKey;
     }
-
 }
-

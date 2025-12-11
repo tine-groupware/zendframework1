@@ -219,8 +219,8 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
             throw $e;
         }
 
-        $barcodeWidth  = $this->_barcode->getWidth(true);
-        $barcodeHeight = $this->_barcode->getHeight(true);
+        $barcodeWidth  = (int) $this->_barcode->getWidth(true);
+        $barcodeHeight = (int) $this->_barcode->getHeight(true);
 
         if ($this->_resource !== null) {
             $foreColor       = $this->_barcode->getForeColor();
@@ -340,7 +340,7 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
     /**
      * Draw and render the barcode with correct headers
      *
-     * @return mixed
+     * @return void
      */
     public function render()
     {
@@ -379,7 +379,11 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
         );
 
         if ($filled) {
-            imagefilledpolygon($this->_resource, $newPoints, 4, $allocatedColor);
+            if (version_compare(PHP_VERSION, '8.1.0', '>=')) {
+                imagefilledpolygon($this->_resource, $newPoints, $allocatedColor);
+            } else {
+                imagefilledpolygon($this->_resource, $newPoints, 4, $allocatedColor);
+            }
         } else {
             imagepolygon($this->_resource, $newPoints, 4, $allocatedColor);
         }
@@ -438,6 +442,8 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
                 case 'right':
                     $positionX = $position[0] - ($fontWidth * strlen($text));
                     break;
+                default:
+                    $positionX = $position[0];
             }
             imagestring($this->_resource, $font, $positionX, $positionY, $text, $color);
         } else {
@@ -460,13 +466,15 @@ class Zend_Barcode_Renderer_Image extends Zend_Barcode_Renderer_RendererAbstract
                 case 'right':
                     $width = ($box[2] - $box[0]);
                     break;
+                default:
+                    $width = 0;
             }
             imagettftext(
                 $this->_resource,
                 $size,
                 $orientation,
-                $position[0] - ($width * cos(pi() * $orientation / 180)),
-                $position[1] + ($width * sin(pi() * $orientation / 180)),
+                $position[0] - (int) ($width * cos(pi() * $orientation / 180)),
+                $position[1] + (int) ($width * sin(pi() * $orientation / 180)),
                 $allocatedColor,
                 $font,
                 $text

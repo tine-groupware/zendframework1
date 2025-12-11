@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -62,12 +66,12 @@ class Zend_Queue_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Queue');
+        $suite = new TestSuite('Zend Framework - Zend_Queue');
 
         $suite->addTestSuite('Zend_Queue_FactoryTest');
 
@@ -98,6 +102,6 @@ class Zend_Queue_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Queue_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Queue_AllTests::main') {
     Zend_Queue_AllTests::main();
 }

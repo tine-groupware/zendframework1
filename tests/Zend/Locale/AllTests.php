@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -49,12 +53,12 @@ class Zend_Locale_AllTests
             setlocale(LC_ALL, TESTS_ZEND_LOCALE_FORMAT_SETLOCALE);
         }
 
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Locale');
+        $suite = new TestSuite('Zend Framework - Zend_Locale');
 
         $suite->addTestSuite('Zend_Locale_DataTest');
         $suite->addTestSuite('Zend_Locale_FormatTest');
@@ -64,6 +68,6 @@ class Zend_Locale_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Locale_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Locale_AllTests::main') {
     Zend_Locale_AllTests::main();
 }

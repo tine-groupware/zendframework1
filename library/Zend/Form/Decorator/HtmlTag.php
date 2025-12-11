@@ -92,7 +92,7 @@ class Zend_Form_Decorator_HtmlTag extends Zend_Form_Decorator_Abstract
                     $val = implode(' ', $val);
                 }
             }
-            $val    = htmlspecialchars($val, ENT_COMPAT, $enc);
+            $val    = htmlspecialchars((string) $val, ENT_COMPAT, $enc);
             $xhtml .= " $key=\"$val\"";
         }
         return $xhtml;
@@ -159,7 +159,7 @@ class Zend_Form_Decorator_HtmlTag extends Zend_Form_Decorator_Abstract
      * @param  array $attribs
      * @return string
      */
-    protected function _getOpenTag($tag, array $attribs = null)
+    protected function _getOpenTag($tag, ?array $attribs = null)
     {
         $html = '<' . $tag;
         if (null !== $attribs) {

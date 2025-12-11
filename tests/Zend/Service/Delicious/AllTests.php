@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -53,17 +57,17 @@ class Zend_Service_Delicious_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Service_Delicious');
+        $suite = new TestSuite('Zend Framework - Zend_Service_Delicious');
 
         if (defined('TESTS_ZEND_SERVICE_DELICIOUS_ENABLED') &&
             constant('TESTS_ZEND_SERVICE_DELICIOUS_ENABLED')) {
@@ -82,6 +86,6 @@ class Zend_Service_Delicious_AllTests
 }
 
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_Delicious_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Service_Delicious_AllTests::main') {
     Zend_Service_Delicious_AllTests::main();
 }

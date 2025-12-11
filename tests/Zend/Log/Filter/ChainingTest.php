@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -38,22 +43,32 @@ require_once 'Zend/Log/Writer/Stream.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Log
  */
-class Zend_Log_Filter_ChainingTest extends PHPUnit_Framework_TestCase
+class Zend_Log_Filter_ChainingTest extends TestCase
 {
+    /**
+     * @var resource|bool|mixed
+     */
+    protected $log;
+
+    /**
+     * @var \Zend_Log|mixed
+     */
+    protected $logger;
+
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         $this->log = fopen('php://memory', 'w');
         $this->logger = new Zend_Log();
         $this->logger->addWriter(new Zend_Log_Writer_Stream($this->log));
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
         fclose($this->log);
     }
@@ -64,13 +79,13 @@ class Zend_Log_Filter_ChainingTest extends PHPUnit_Framework_TestCase
         $this->logger->addFilter(Zend_Log::WARN);
 
         $this->logger->info($ignored = 'info-message-ignored');
-        $this->logger->warn($logged  = 'warn-message-logged');
+        $this->logger->warn($logged = 'warn-message-logged');
 
         rewind($this->log);
         $logdata = stream_get_contents($this->log);
 
-        $this->assertNotContains($ignored, $logdata);
-        $this->assertContains($logged, $logdata);
+        $this->assertStringNotContainsString($ignored, $logdata);
+        $this->assertStringContainsString($logged, $logdata);
     }
 
     public function testFilterOnSpecificWriter()
@@ -86,16 +101,16 @@ class Zend_Log_Filter_ChainingTest extends PHPUnit_Framework_TestCase
 
         rewind($this->log);
         $logdata = stream_get_contents($this->log);
-        $this->assertContains($warn, $logdata);
-        $this->assertContains($err, $logdata);
+        $this->assertStringContainsString($warn, $logdata);
+        $this->assertStringContainsString($err, $logdata);
 
         rewind($log2);
         $logdata = stream_get_contents($log2);
-        $this->assertContains($err, $logdata);
-        $this->assertNotContains($warn, $logdata);
+        $this->assertStringContainsString($err, $logdata);
+        $this->assertStringNotContainsString($warn, $logdata);
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Log_Filter_ChainingTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Log_Filter_ChainingTest::main') {
     Zend_Log_Filter_ChainingTest::main();
 }

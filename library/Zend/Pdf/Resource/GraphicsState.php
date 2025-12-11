@@ -50,7 +50,7 @@ class Zend_Pdf_Resource_GraphicsState extends Zend_Pdf_Resource
      * @param Zend_Pdf_Element_Object $extGStateObject
      * @throws Zend_Pdf_Exception
      */
-    public function __construct(Zend_Pdf_Element_Object $extGStateObject = null)
+    public function __construct(?Zend_Pdf_Element_Object $extGStateObject = null)
     {
         if ($extGStateObject == null) {
             // Create new Graphics State object
@@ -83,8 +83,8 @@ class Zend_Pdf_Resource_GraphicsState extends Zend_Pdf_Resource
      *
      * @param float $alpha
      * @param string $mode
+     * @return void
      * @throws Zend_Pdf_Exception
-     * @return Zend_Pdf_Canvas_Interface
      */
     public function setAlpha($alpha, $mode = 'Normal')
     {

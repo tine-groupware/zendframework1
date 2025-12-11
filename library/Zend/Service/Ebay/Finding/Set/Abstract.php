@@ -67,7 +67,7 @@ abstract class Zend_Service_Ebay_Finding_Set_Abstract implements SeekableIterato
      * @throws OutOfBoundsException When $key is not seekable
      * @return void
      */
-    public function seek($key)
+    public function seek($key): void
     {
         if ($key < 0 || $key >= $this->count()) {
             $message = "Position '{$key}' is not seekable.";
@@ -82,7 +82,7 @@ abstract class Zend_Service_Ebay_Finding_Set_Abstract implements SeekableIterato
      * @return integer
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_key;
     }

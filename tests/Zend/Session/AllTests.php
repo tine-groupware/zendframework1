@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,17 +48,17 @@ class Zend_Session_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Session');
+        $suite = new TestSuite('Zend Framework - Zend_Session');
 
         $suite->addTestSuite('Zend_SessionTest');
         $suite->addTest(Zend_Session_SaveHandler_AllTests::suite());
@@ -63,6 +67,6 @@ class Zend_Session_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Session_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Session_AllTests::main') {
     Zend_Session_AllTests::main();
 }

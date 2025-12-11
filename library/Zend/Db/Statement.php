@@ -180,7 +180,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         // get the character for value quoting
         // this should be '
         $q = $this->_adapter->quote('a');
-        $q = $q[0];        
+        $q = $q[0];
         // get the value used as an escaped quote,
         // e.g. \' or ''
         $qe = $this->_adapter->quote($q);
@@ -191,13 +191,13 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         if (!empty($q)) {
             $escapeChar = preg_quote($escapeChar);
             // this segfaults only after 65,000 characters instead of 9,000
-            $sql = preg_replace("/$q([^$q{$escapeChar}]*|($qe)*)*$q/s", '', $sql);
+            $sql = preg_replace("/$q([^$q{$escapeChar}]*|($qe)*)*$q/s", '', (string) $sql);
         }
 
         // get a version of the SQL statement with all quoted
         // values and delimited identifiers stripped out
         // remove "foo\"bar"
-        $sql = preg_replace("/\"(\\\\\"|[^\"])*\"/Us", '', $sql);
+        $sql = preg_replace("/\"(\\\\\"|[^\"])*\"/Us", '', (string) $sql);
 
         // get the character for delimited id quotes,
         // this is usually " but in MySQL is `
@@ -209,7 +209,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         $de = substr($de, 1, 2);
         $de = preg_quote($de);
         // Note: $de and $d where never used..., now they are:
-        $sql = preg_replace("/$d($de|\\\\{2}|[^$d])*$d/Us", '', $sql);
+        $sql = preg_replace("/$d($de|\\\\{2}|[^$d])*$d/Us", '', (string) $sql);
         return $sql;
     }
 
@@ -294,7 +294,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
      * @param array $params OPTIONAL Values to bind to parameter placeholders.
      * @return bool
      */
-    public function execute(array $params = null)
+    public function execute(?array $params = null)
     {
         /*
          * Simple case - no query profiler to manage.
@@ -479,7 +479,8 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
     /**
      * Gets the resource or object setup by the
      * _parse
-     * @return unknown_type
+     *
+     * @return object|resource|null
      */
     public function getDriverStatement()
     {

@@ -37,8 +37,8 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
     /**#@+
      * @const string Error constants
      */
-    const TOO_MANY = 'fileCountTooMany';
-    const TOO_FEW  = 'fileCountTooFew';
+    public const TOO_MANY = 'fileCountTooMany';
+    public const TOO_FEW  = 'fileCountTooFew';
     /**#@-*/
 
     /**
@@ -142,7 +142,7 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
      * Sets the minimum file count
      *
      * @param  integer|array $min The minimum file count
-     * @return Zend_Validate_File_Count Provides a fluent interface
+     * @return $this
      * @throws Zend_Validate_Exception When min is greater than max
      */
     public function setMin($min)
@@ -156,7 +156,7 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
             throw new Zend_Validate_Exception ('Invalid options to validator provided');
         }
 
-        $min = (integer) $min;
+        $min = (int) $min;
         if (($this->_max !== null) && ($min > $this->_max)) {
             require_once 'Zend/Validate/Exception.php';
             throw new Zend_Validate_Exception("The minimum must be less than or equal to the maximum file count, but $min >"
@@ -181,7 +181,7 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
      * Sets the maximum file count
      *
      * @param  integer|array $max The maximum file count
-     * @return Zend_Validate_StringLength Provides a fluent interface
+     * @return $this
      * @throws Zend_Validate_Exception When max is smaller than min
      */
     public function setMax($max)
@@ -195,7 +195,7 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
             throw new Zend_Validate_Exception ('Invalid options to validator provided');
         }
 
-        $max = (integer) $max;
+        $max = (int) $max;
         if (($this->_min !== null) && ($max < $this->_min)) {
             require_once 'Zend/Validate/Exception.php';
             throw new Zend_Validate_Exception("The maximum must be greater than or equal to the minimum file count, but "

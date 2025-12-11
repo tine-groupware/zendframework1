@@ -48,7 +48,12 @@ require_once 'Zend/Pdf/Resource/Font/Simple/Standard.php';
  */
 class Zend_Pdf_Resource_Font_Simple_Standard_Helvetica extends Zend_Pdf_Resource_Font_Simple_Standard
 {
-  /**** Public Interface ****/
+    /**
+     * @var bool
+     */
+    protected $_isMonospaced;
+
+    /**** Public Interface ****/
 
 
   /* Object Lifecycle */
@@ -107,7 +112,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_Helvetica extends Zend_Pdf_Resource
 
         $this->_isBold = false;
         $this->_isItalic = false;
-        $this->_isMonospace = false;
+        $this->_isMonospaced = false;
 
         $this->_underlinePosition = -100;
         $this->_underlineThickness = 50;

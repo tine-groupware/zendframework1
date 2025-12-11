@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -39,7 +44,7 @@ require_once 'Zend/Controller/Request/Simple.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
-class Zend_Controller_Request_SimpleTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Request_SimpleTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,9 +54,8 @@ class Zend_Controller_Request_SimpleTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Request_SimpleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Controller_Request_SimpleTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     public function testSimpleRequestIsOfAbstractRequestType()
@@ -74,17 +78,16 @@ class Zend_Controller_Request_SimpleTest extends PHPUnit_Framework_TestCase
      */
     public function testSettingParamToNullInSetparamsCorrectlyUnsetsValue()
     {
-        $request = new Zend_Controller_Request_Simple;
+        $request = new Zend_Controller_Request_Simple();
         $request->setParam('key', 'value');
         $request->setParams([
             'key' => null
         ]);
         $this->assertNull($request->getParam('key'));
     }
-
 }
 
 // Call Zend_Controller_Request_SimpleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Request_SimpleTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Controller_Request_SimpleTest::main") {
     Zend_Controller_Request_SimpleTest::main();
 }

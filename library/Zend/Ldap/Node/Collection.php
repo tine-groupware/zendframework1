@@ -61,7 +61,7 @@ class Zend_Ldap_Node_Collection extends Zend_Ldap_Collection
      * @return string
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_iterator->key();
     }

@@ -211,7 +211,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
     /**
      * Add options for the Dojo Container to use
      *
-     * @param array|Zend_Config Array or Zend_Config object with options to use
+     * @param array|Zend_Config $options Array or Zend_Config object with options to use
      * @return Zend_Dojo_View_Helper_Dojo_Container
      */
     public function setOptions($options)
@@ -681,7 +681,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
     /**
      * Start capturing routines to run onLoad
      *
-     * @return bool
+     * @return void
      */
     public function onLoadCaptureStart()
     {

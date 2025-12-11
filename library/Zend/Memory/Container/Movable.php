@@ -58,9 +58,9 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
     private $_value;
 
     /** Value states */
-    const LOADED   = 1;
-    const SWAPPED  = 2;
-    const LOCKED   = 4;
+    public const LOADED   = 1;
+    public const SWAPPED  = 2;
+    public const LOCKED   = 4;
 
     /**
      * Value state (LOADED/SWAPPED/LOCKED)
@@ -115,7 +115,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
     /**
      * Return true if object is locked
      *
-     * @return boolean
+     * @return int
      */
     public function isLocked()
     {
@@ -129,7 +129,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      * Swaps objects from the bottom of loaded objects list, if necessary.
      *
      * @param string $property
-     * @return string
+     * @return Zend_Memory_Value
      * @throws Zend_Memory_Exception
      */
     public function __get($property)
@@ -262,8 +262,8 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
     /**
      * Check if object is marked as swapped
      *
+     * @return int
      * @internal
-     * @return boolean
      */
     public function isSwapped()
     {

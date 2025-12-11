@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,12 +48,12 @@ class Zend_OpenId_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_OpenId');
+        $suite = new TestSuite('Zend Framework - Zend_OpenId');
 
         $suite->addTestSuite('Zend_OpenId_ConsumerTest');
         $suite->addTestSuite('Zend_OpenId_Consumer_Storage_FileTest');
@@ -63,6 +67,6 @@ class Zend_OpenId_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_OpenId_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_OpenId_AllTests::main') {
     Zend_OpenId_AllTests::main();
 }

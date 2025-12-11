@@ -64,7 +64,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
     /**
      * Create a new ServiceException.
      *
-     * @return array An array containing a collection of
+     * @return void An array containing a collection of
      *          Zend_Gdata_Gapps_Error objects.
      */
     public function __construct($errors = null) {
@@ -146,7 +146,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
      * Import an AppsForYourDomain error from XML.
      *
      * @param string $string The XML data to be imported
-     * @return Zend_Gdata_Gapps_ServiceException Provides a fluent interface.
+     * @return $this
      * @throws Zend_Gdata_App_Exception
      */
     public function importFromString($string) {
@@ -179,7 +179,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
             foreach ($rootElement->childNodes as $errorNode) {
                 if (!($errorNode instanceof DOMText)) {
                     $error = new Zend_Gdata_Gapps_Error();
-                    $error->transferFromDom($errorNode);
+                    $error->transferFromDOM($errorNode);
                     $this->addError($error);
                 }
             }

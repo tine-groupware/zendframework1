@@ -47,7 +47,7 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
      *
      * @var string
      */
-    const ROW_COUNT_COLUMN = 'zend_paginator_row_count';
+    public const ROW_COUNT_COLUMN = 'zend_paginator_row_count';
 
     /**
      * The COUNT query
@@ -86,19 +86,19 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
     public function __construct(Zend_Db_Select $select)
     {
         $this->_select = $select;
-        $this->_cacheIdentifier = md5($select->assemble());
+        $this->_cacheIdentifier = md5((string) $select->assemble());
     }
 
     /**
      * Returns the cache identifier.
-     * 
+     *
      * @return string
      */
     public function getCacheIdentifier()
     {
         return $this->_cacheIdentifier;
     }
-    
+
     /**
      * Sets the total row count, either directly or through a supplied
      * query.  Without setting this, {@link getPages()} selects the count

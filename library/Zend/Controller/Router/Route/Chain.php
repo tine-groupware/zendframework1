@@ -49,16 +49,21 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
     protected $_separators = [];
 
     /**
+     * @var Zend_Controller_Request_Abstract
+     */
+    protected $_request = null;
+
+    /**
      * Instantiates route based on passed Zend_Config structure
      *
      * @param  Zend_Config $config Configuration object
-     * @return Zend_Controller_Router_Route_Chain
+     * @return static
      */
     public static function getInstance(Zend_Config $config)
     {
         $defs = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : [];
 
-        return new self($config->route, $defs);
+        return new static($config->route, $defs);
     }
 
     /**
@@ -66,7 +71,7 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
      *
      * @param  Zend_Controller_Router_Route_Abstract $route
      * @param  string                                $separator
-     * @return Zend_Controller_Router_Route_Chain
+     * @return $this
      */
     public function chain(Zend_Controller_Router_Route_Abstract $route, $separator = self::URI_DELIMITER)
     {
@@ -178,7 +183,7 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
      * @param  Zend_Controller_Request_Abstract|null $request
      * @return void
      */
-    public function setRequest(Zend_Controller_Request_Abstract $request = null)
+    public function setRequest(?Zend_Controller_Request_Abstract $request = null)
     {
         $this->_request = $request;
 
@@ -193,7 +198,7 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
      * Return a single parameter of route's defaults
      *
      * @param  string $name Array key of the parameter
-     * @return string Previously set default
+     * @return string|null Previously set default
      */
     public function getDefault($name)
     {

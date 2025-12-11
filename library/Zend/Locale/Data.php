@@ -333,14 +333,14 @@ class Zend_Locale_Data
             $val = implode('_' , $value);
         }
 
-        $val = urlencode((string)$val);
+        $val = urlencode((string) $val);
         $id  = self::_filterCacheId('Zend_LocaleL_' . $locale . '_' . $path . '_' . $val);
         if (!self::$_cacheDisabled && ($result = self::$_cache->load($id))) {
             return unserialize($result);
         }
 
         $temp = [];
-        switch(strtolower($path)) {
+        switch(strtolower((string) $path)) {
             case 'language':
                 $temp = self::_getFile($locale, '/ldml/localeDisplayNames/languages/language', 'type');
                 break;
@@ -959,9 +959,9 @@ class Zend_Locale_Data
     /**
      * Read the LDML file, get a single path defined value
      *
-     * @param  string      $locale
-     * @param  string      $path
-     * @param  bool|string $value
+     * @param  string            $locale
+     * @param  string            $path
+     * @param  array|bool|string $value
      * @return string
      * @throws Zend_Locale_Exception
      */
@@ -978,17 +978,18 @@ class Zend_Locale_Data
                 []);
         }
 
+        $temp = null;
         $val = $value;
         if (is_array($value)) {
             $val = implode('_' , $value);
         }
-        $val = urlencode((string)$val);
+        $val = urlencode((string) $val);
         $id  = self::_filterCacheId('Zend_LocaleC_' . $locale . '_' . $path . '_' . $val);
         if (!self::$_cacheDisabled && ($result = self::$_cache->load($id))) {
             return unserialize($result);
         }
 
-        switch(strtolower($path)) {
+        switch(strtolower((string) $path)) {
             case 'language':
                 $temp = self::_getFile($locale, '/ldml/localeDisplayNames/languages/language[@type=\'' . $value . '\']', 'type');
                 break;
@@ -1575,7 +1576,7 @@ class Zend_Locale_Data
      */
     public static function disableCache($flag)
     {
-        self::$_cacheDisabled = (boolean) $flag;
+        self::$_cacheDisabled = (bool) $flag;
     }
 
     /**

@@ -27,7 +27,6 @@
  */
 class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements Serializable, ArrayAccess
 {
-
     /**
      * Offset to first element
      *
@@ -60,22 +59,32 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
     /**
      * @return string representation of the instance
      */
-    public function serialize()
+    public function serialize(): ?string
     {
-        return serialize([
+        return serialize($this->__serialize());
+    }
+
+    public function __serialize(): array
+    {
+        return [
             'it'     => $this->getInnerIterator(),
             'offset' => $this->_offset,
             'count'  => $this->_count,
             'pos'    => $this->getPosition(),
-        ]);
+        ];
     }
 
     /**
      * @param string $data representation of the instance
      */
-    public function unserialize($data)
+    public function unserialize($data): void
     {
         $dataArr = unserialize($data);
+        $this->__unserialize($dataArr);
+    }
+
+    public function __unserialize(array $dataArr): void
+    {
         $this->__construct($dataArr['it'], $dataArr['offset'], $dataArr['count']);
         $this->seek($dataArr['pos']+$dataArr['offset']);
     }
@@ -92,7 +101,7 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
         $currentOffset = $this->key();
         $this->seek($offset);
         $current = $this->current();
-        $this->seek($currentOffset);
+        $this->seek((int) $currentOffset);
         return $current;
     }
 
@@ -115,8 +124,8 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
     public function offsetExists($offset): bool
     {
         if ($offset > 0 && $offset < $this->_count) {
+            $currentOffset = $this->key();
             try {
-                $currentOffset = $this->key();
                 $this->seek($offset);
                 $current = $this->current();
                 $this->seek($currentOffset);

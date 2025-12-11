@@ -33,10 +33,9 @@ class ZendAmfAdobeIntrospectorTest
      * Foobar
      *
      * @param  string $arg
-     * @return ZendAmfAdobeIntrospectorTestType
+     * @return void
      */
     public function foo($arg)
     {
     }
 }
-

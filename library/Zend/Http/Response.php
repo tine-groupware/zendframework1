@@ -183,7 +183,7 @@ class Zend_Http_Response
         $this->body = $body;
 
         // Set the HTTP version
-        if (! preg_match('|^\d\.\d$|', $version)) {
+        if (! preg_match('|^\d(\.\d)?$|', $version)) {
             require_once 'Zend/Http/Exception.php';
             throw new Zend_Http_Exception("Invalid HTTP response version: $version");
         }
@@ -252,7 +252,7 @@ class Zend_Http_Response
         $body = '';
 
         // Decode the body if it was transfer-encoded
-        switch (strtolower((string)$this->getHeader('transfer-encoding'))) {
+        switch (strtolower((string) $this->getHeader('transfer-encoding'))) {
 
             // Handle chunked body
             case 'chunked':
@@ -267,7 +267,7 @@ class Zend_Http_Response
         }
 
         // Decode any content-encoding (gzip or deflate) if needed
-        switch (strtolower((string)$this->getHeader('content-encoding'))) {
+        switch (strtolower((string) $this->getHeader('content-encoding'))) {
 
             // Handle gzip encoding
             case 'gzip':
@@ -506,7 +506,7 @@ class Zend_Http_Response
         $last_header = null;
 
         foreach($lines as $index => $line) {
-            if ($index === 0 && preg_match('#^HTTP/\d+(?:\.\d+) [1-5]\d+#', $line)) {
+            if ($index === 0 && preg_match('#^HTTP/\d+(?:\.\d+)? [1-5]\d+#', $line)) {
                 // Status line; ignore
                 continue;
             }
@@ -591,26 +591,30 @@ class Zend_Http_Response
     public static function decodeChunkedBody($body)
     {
         $decBody = '';
+        $offset = 0;
 
         // If mbstring overloads substr and strlen functions, we have to
         // override it's internal encoding
         if (function_exists('mb_internal_encoding') &&
            ((int) ini_get('mbstring.func_overload')) & 2) {
-
             $mbIntEnc = mb_internal_encoding();
             mb_internal_encoding('ASCII');
         }
 
-        while (trim($body)) {
-            if (! preg_match("/^([\da-fA-F]+)[^\r\n]*\r\n/sm", $body, $m)) {
-                require_once 'Zend/Http/Exception.php';
-                throw new Zend_Http_Exception("Error parsing body - doesn't seem to be a chunked message");
+        while (true) {
+            if (! preg_match("/^([\da-fA-F]+)[^\r\n]*\r\n/sm", $body, $m, 0, $offset)) {
+                if (trim(substr($body, $offset))) {
+                    require_once 'Zend/Http/Exception.php';
+                    throw new Zend_Http_Exception("Error parsing body - doesn't seem to be a chunked message");
+                }
+                // Message was consumed completely
+                break;
             }
 
-            $length = hexdec(trim($m[1]));
-            $cut = strlen($m[0]);
-            $decBody .= substr($body, $cut, $length);
-            $body = substr($body, $cut + $length + 2);
+            $length   = hexdec(trim($m[1]));
+            $cut      = strlen($m[0]);
+            $decBody .= substr($body, $offset + $cut, $length);
+            $offset += $cut + $length + 2;
         }
 
         if (isset($mbIntEnc)) {

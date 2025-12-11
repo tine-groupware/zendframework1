@@ -206,7 +206,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
     /**
      * Fix barcode length (numeric or string like 'even')
      *
-     * @var $_barcodeLength integer | string
+     * @var integer|string $_barcodeLength
      */
     protected $_barcodeLength = null;
 
@@ -214,7 +214,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      * Activate automatic addition of leading zeros
      * if barcode length is fixed
      *
-     * @var $_addLeadingZeros boolean
+     * @var boolean $_addLeadingZeros
      */
     protected $_addLeadingZeros = true;
 
@@ -222,14 +222,14 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      * Activation of mandatory checksum
      * to deactivate unauthorized modification
      *
-     * @var $_mandatoryChecksum boolean
+     * @var boolean $_mandatoryChecksum
      */
     protected $_mandatoryChecksum = false;
 
     /**
      * Character used to substitute checksum character for validation
      *
-     * @var $_substituteChecksumCharacter mixed
+     * @var mixed $_substituteChecksumCharacter
      */
     protected $_substituteChecksumCharacter = 0;
 
@@ -464,7 +464,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
     public function setForeColor($value)
     {
         if (preg_match('`\#[0-9A-F]{6}`', $value)) {
-            $this->_foreColor = hexdec($value);
+            $this->_foreColor = hexdec(ltrim($value, '#'));
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
             $this->_foreColor = (int)$value;
         } else {
@@ -479,7 +479,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
     /**
      * Retrieve color of the barcode and text
      *
-     * @return unknown
+     * @return int
      */
     public function getForeColor()
     {
@@ -496,7 +496,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
     public function setBackgroundColor($value)
     {
         if (preg_match('`\#[0-9A-F]{6}`', $value)) {
-            $this->_backgroundColor = hexdec($value);
+            $this->_backgroundColor = hexdec(ltrim($value, '#'));
         } elseif (is_numeric($value) && $value >= 0 && $value <= 16777125) {
             $this->_backgroundColor = (int)$value;
         } else {
@@ -620,7 +620,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
     public function getText()
     {
         $text = $this->_text;
-        if ($this->_withChecksum) {
+        if ($this->_withChecksum && method_exists($this, 'getChecksum')) {
             $text .= $this->getChecksum($this->_text);
         }
         return $this->_addLeadingZeros($text);
@@ -644,7 +644,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
                 }
             } else {
                 if ($this->_barcodeLength == 'even') {
-                    $text = ((strlen($text) - $omitChecksum) % 2 ? '0' . $text : $text);
+                    $text = ((strlen((string) $text) - $omitChecksum) % 2 ? '0' . $text : $text);
                 }
             }
         }
@@ -991,7 +991,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
         if ($value === null) {
             $value = $this->_text;
         }
-        if (!strlen($value)) {
+        if (!strlen((string) $value)) {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
                 'A text must be provide to Barcode before drawing'

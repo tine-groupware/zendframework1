@@ -95,10 +95,10 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
      * This is an online method.
      *
      * @param  Zend_Ldap $ldap
-     * @return Zend_Ldap_Node_Abstract Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
-    public function reload(Zend_Ldap $ldap = null)
+    public function reload(?Zend_Ldap $ldap = null)
     {
         if ($ldap !== null) {
             $data = $ldap->getEntry($this->_getDn(), ['*', '+'], true);

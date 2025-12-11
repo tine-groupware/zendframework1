@@ -63,6 +63,11 @@ require_once 'Zend/Pdf/Resource/Font.php';
 class Zend_Pdf_Resource_Font_Type0 extends Zend_Pdf_Resource_Font
 {
     /**
+     * @var bool
+     */
+    protected $_isMonospaced;
+
+    /**
      * Descendant CIDFont
      *
      * @var Zend_Pdf_Resource_Font_CidFont
@@ -117,7 +122,7 @@ class Zend_Pdf_Resource_Font_Type0 extends Zend_Pdf_Resource_Font
 
         $this->_isBold       = $descendantFont->isBold();
         $this->_isItalic     = $descendantFont->isItalic();
-        $this->_isMonospace = $descendantFont->isMonospace();
+        $this->_isMonospaced = $descendantFont->isMonospace();
 
         $this->_underlinePosition  = $descendantFont->getUnderlinePosition();
         $this->_underlineThickness = $descendantFont->getUnderlineThickness();

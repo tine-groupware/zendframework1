@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -46,12 +50,12 @@ class Zend_Pdf_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Pdf');
+        $suite = new TestSuite('Zend Framework - Zend_Pdf');
 
         $suite->addTestSuite('Zend_Pdf_ActionTest');
         $suite->addTestSuite('Zend_Pdf_DestinationTest');
@@ -67,6 +71,6 @@ class Zend_Pdf_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Pdf_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Pdf_AllTests::main') {
     Zend_Pdf_AllTests::main();
 }

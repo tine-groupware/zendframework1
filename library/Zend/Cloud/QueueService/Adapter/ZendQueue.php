@@ -36,7 +36,7 @@ class Zend_Cloud_QueueService_Adapter_ZendQueue
     /**
      * Options array keys for the Zend_Queue adapter.
      */
-    const ADAPTER = 'adapter';
+    public const ADAPTER = 'adapter';
 
     /**
      * Storage client
@@ -154,7 +154,7 @@ class Zend_Cloud_QueueService_Adapter_ZendQueue
      *
      * @param string $queueId
      * @param array $options
-     * @return array
+     * @return false
      * @throws Zend_Cloud_QueueService_Exception
      */
     public function fetchQueueMetadata($queueId, $options = null)

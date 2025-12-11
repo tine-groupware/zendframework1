@@ -31,6 +31,8 @@
  */
 class Zend_Service_Yahoo_ResultSet implements SeekableIterator
 {
+    protected $_namespace;
+
     /**
      * Total number of results available
      *
@@ -122,7 +124,7 @@ class Zend_Service_Yahoo_ResultSet implements SeekableIterator
      * @return Zend_Service_Yahoo_Result
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         /**
          * @see Zend_Service_Exception
@@ -139,7 +141,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_currentIndex;
     }
@@ -174,7 +176,7 @@ public function key()
      * @return void
      * @throws OutOfBoundsException
      */
-    public function seek($index)
+    public function seek($index): void
     {
         $indexInt = (int) $index;
         if ($indexInt >= 0 && $indexInt < $this->_results->length) {

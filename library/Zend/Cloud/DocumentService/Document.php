@@ -33,7 +33,7 @@ class Zend_Cloud_DocumentService_Document
     implements ArrayAccess, IteratorAggregate, Countable
 {
     /** key in document denoting identifier */
-    const KEY_FIELD = '_id';
+    public const KEY_FIELD = '_id';
 
     /**
      * ID of this document.
@@ -242,7 +242,8 @@ class Zend_Cloud_DocumentService_Document
      *
      * @return Iterator
      */
-    public function getIterator(): Traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return new ArrayIterator($this->_fields);
     }

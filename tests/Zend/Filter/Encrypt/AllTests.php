@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,17 +48,17 @@ class Zend_Filter_Encrypt_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Filter_Encrypt');
+        $suite = new TestSuite('Zend Framework - Zend_Filter_Encrypt');
 
         $suite->addTestSuite('Zend_Filter_Encrypt_McryptTest');
         $suite->addTestSuite('Zend_Filter_Encrypt_OpensslTest');
@@ -63,6 +67,6 @@ class Zend_Filter_Encrypt_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Filter_Encrypt_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Filter_Encrypt_AllTests::main') {
     Zend_Filter_Encrypt_AllTests::main();
 }

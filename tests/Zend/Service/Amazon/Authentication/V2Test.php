@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -31,9 +34,8 @@ require_once 'Zend/Service/Amazon/Authentication/V2.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_Amazon_Authentication_V2Test extends PHPUnit_Framework_TestCase
+class Zend_Service_Amazon_Authentication_V2Test extends TestCase
 {
-
     /**
      * @var Zend_Service_Amazon_Authentication_V2
      */
@@ -42,9 +44,9 @@ class Zend_Service_Amazon_Authentication_V2Test extends PHPUnit_Framework_TestCa
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function set_up()
     {
-        parent::setUp();
+        parent::set_up();
 
         $this->Zend_Service_Amazon_Authentication_V2 = new Zend_Service_Amazon_Authentication_V2('0PN5J17HBGZHT7JJ3X82', 'uV3F3YluFJax1cknvbcGwgjvx4QpvB+leU8dUj2o', '2009-07-15');
     }
@@ -52,11 +54,11 @@ class Zend_Service_Amazon_Authentication_V2Test extends PHPUnit_Framework_TestCa
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tear_down()
     {
         $this->Zend_Service_Amazon_Authentication_V2 = null;
 
-        parent::tearDown();
+        parent::tear_down();
     }
 
     /**
@@ -91,6 +93,4 @@ class Zend_Service_Amazon_Authentication_V2Test extends PHPUnit_Framework_TestCa
         $this->assertEquals('YSw7HXDqokM/A6DhLz8kG+sd+oD5eMjqx3a02A0+GkE=', $params['Signature']);
         $this->assertEquals(file_get_contents(dirname(__FILE__) . '/_files/sqs_v2_get_return.txt'), $ret);
     }
-
 }
-

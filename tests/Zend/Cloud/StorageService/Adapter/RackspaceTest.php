@@ -56,24 +56,23 @@ class Zend_Cloud_StorageService_Adapter_RackspaceTest extends Zend_Cloud_Storage
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         if (!constant('TESTS_ZEND_SERVICE_RACKSPACE_ONLINE_ENABLED')) {
             $this->markTestSkipped('Rackspace online tests are not enabled');
         }
 
-        parent::setUp();
+        parent::set_up();
         $this->_waitPeriod = 5;
         
         // Create the container here
-        $rackspace= new Zend_Service_Rackspace_Files(
+        $rackspace = new Zend_Service_Rackspace_Files(
             $this->_config->get(Zend_Cloud_StorageService_Adapter_Rackspace::USER),
             $this->_config->get(Zend_Cloud_StorageService_Adapter_Rackspace::API_KEY)
         );
-        $rackspace->createContainer( 
+        $rackspace->createContainer(
             $this->_config->get(Zend_Cloud_StorageService_Adapter_Rackspace::REMOTE_CONTAINER)
         );
-        
     }
 
     /**
@@ -81,7 +80,7 @@ class Zend_Cloud_StorageService_Adapter_RackspaceTest extends Zend_Cloud_Storage
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
         if (!$this->_config) {
             return;
@@ -94,20 +93,20 @@ class Zend_Cloud_StorageService_Adapter_RackspaceTest extends Zend_Cloud_Storage
         );
         $files = $rackspace->getObjects(
             $this->_config->get(Zend_Cloud_StorageService_Adapter_Rackspace::REMOTE_CONTAINER)
-        );             
-        if ($files==!false) {
+        );
+        if ($files == !false) {
             foreach ($files as $file) {
                 $rackspace->deleteObject(
                     $this->_config->get(Zend_Cloud_StorageService_Adapter_Rackspace::REMOTE_CONTAINER),
-                    $file->getName()    
+                    $file->getName()
                 );
             }
-        }    
+        }
         $rackspace->deleteContainer(
-            $this->_config->get(Zend_Cloud_StorageService_Adapter_Rackspace::REMOTE_CONTAINER)   
+            $this->_config->get(Zend_Cloud_StorageService_Adapter_Rackspace::REMOTE_CONTAINER)
         );
         
-        parent::tearDown();
+        parent::tear_down();
     }
 
     protected function _getConfig()
@@ -121,9 +120,9 @@ class Zend_Cloud_StorageService_Adapter_RackspaceTest extends Zend_Cloud_Storage
         }
 
         $config = new Zend_Config([
-            Zend_Cloud_StorageService_Factory::STORAGE_ADAPTER_KEY        => 'Zend_Cloud_StorageService_Adapter_Rackspace',
-            Zend_Cloud_StorageService_Adapter_Rackspace::USER             => constant('TESTS_ZEND_SERVICE_RACKSPACE_ONLINE_USER'),
-            Zend_Cloud_StorageService_Adapter_Rackspace::API_KEY          => constant('TESTS_ZEND_SERVICE_RACKSPACE_ONLINE_KEY'),
+            Zend_Cloud_StorageService_Factory::STORAGE_ADAPTER_KEY => 'Zend_Cloud_StorageService_Adapter_Rackspace',
+            Zend_Cloud_StorageService_Adapter_Rackspace::USER => constant('TESTS_ZEND_SERVICE_RACKSPACE_ONLINE_USER'),
+            Zend_Cloud_StorageService_Adapter_Rackspace::API_KEY => constant('TESTS_ZEND_SERVICE_RACKSPACE_ONLINE_KEY'),
             Zend_Cloud_StorageService_Adapter_Rackspace::REMOTE_CONTAINER => constant('TESTS_ZEND_SERVICE_RACKSPACE_CONTAINER_NAME')
         ]);
 
@@ -131,6 +130,6 @@ class Zend_Cloud_StorageService_Adapter_RackspaceTest extends Zend_Cloud_Storage
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_StorageService_Adapter_RackspaceTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Cloud_StorageService_Adapter_RackspaceTest::main') {
     Zend_Cloud_StorageService_Adapter_RackspaceTest::main();
 }

@@ -35,7 +35,7 @@ class Zend_View_Helper_Cycle implements Iterator
      * Default name
      * @var string
      */
-    const DEFAULT_NAME = 'default';
+    public const DEFAULT_NAME = 'default';
 
     /**
      * Pointers
@@ -154,7 +154,8 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return Zend_View_Helper_Cycle
      */
-    public function next(): void
+    #[\ReturnTypeWillChange]
+    public function next()
     {
         $count = count($this->_data[$this->_name]);
         if ($this->_pointers[$this->_name] == ($count - 1))
@@ -185,7 +186,7 @@ class Zend_View_Helper_Cycle implements Iterator
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         if ($this->_pointers[$this->_name] < 0)
             return 0;
@@ -198,7 +199,8 @@ public function key()
      *
      * @return Zend_View_Helper_Cycle
      */
-    public function rewind(): void
+    #[\ReturnTypeWillChange]
+    public function rewind()
     {
         $this->_pointers[$this->_name] = -1;
         return $this;
@@ -220,7 +222,7 @@ public function key()
      * @return mixed
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return $this->_data[$this->_name][$this->key()];
     }

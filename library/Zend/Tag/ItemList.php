@@ -139,7 +139,7 @@ class Zend_Tag_ItemList implements Countable, SeekableIterator, ArrayAccess
      * @return mixed
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return current($this->_items);
     }
@@ -158,10 +158,10 @@ public function current()
     /**
      * Return the key of the current element
      *
-     * @return mixed
+     * @return int|string|null
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return key($this->_items);
     }

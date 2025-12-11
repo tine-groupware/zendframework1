@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -38,8 +43,13 @@ require_once 'Zend/Server/Method/Parameter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Server
  */
-class Zend_Server_Method_ParameterTest extends PHPUnit_Framework_TestCase
+class Zend_Server_Method_ParameterTest extends TestCase
 {
+    /**
+     * @var Zend_Server_Method_Parameter
+     */
+    protected $parameter;
+
     /**
      * Runs the test methods of this class.
      *
@@ -47,8 +57,8 @@ class Zend_Server_Method_ParameterTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Server_Method_ParameterTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Server_Method_ParameterTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -57,7 +67,7 @@ class Zend_Server_Method_ParameterTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         $this->parameter = new Zend_Server_Method_Parameter();
     }
@@ -68,7 +78,7 @@ class Zend_Server_Method_ParameterTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -164,12 +174,12 @@ class Zend_Server_Method_ParameterTest extends PHPUnit_Framework_TestCase
 
     public function testParameterShouldSerializeToArray()
     {
-        $type         = 'string';
-        $name         = 'foo';
-        $optional     = true;
+        $type = 'string';
+        $name = 'foo';
+        $optional = true;
         $defaultValue = 'bar';
-        $description  = 'Foo bar!';
-        $parameter    = compact('type', 'name', 'optional', 'defaultValue', 'description');
+        $description = 'Foo bar!';
+        $parameter = compact('type', 'name', 'optional', 'defaultValue', 'description');
         $this->parameter->setType($type)
                         ->setName($name)
                         ->setOptional($optional)
@@ -181,19 +191,19 @@ class Zend_Server_Method_ParameterTest extends PHPUnit_Framework_TestCase
 
     public function testConstructorShouldSetObjectStateFromPassedOptions()
     {
-        $type         = 'string';
-        $name         = 'foo';
-        $optional     = true;
+        $type = 'string';
+        $name = 'foo';
+        $optional = true;
         $defaultValue = 'bar';
-        $description  = 'Foo bar!';
-        $options      = compact('type', 'name', 'optional', 'defaultValue', 'description');
-        $parameter    = new Zend_Server_Method_Parameter($options);
-        $test         = $parameter->toArray();
+        $description = 'Foo bar!';
+        $options = compact('type', 'name', 'optional', 'defaultValue', 'description');
+        $parameter = new Zend_Server_Method_Parameter($options);
+        $test = $parameter->toArray();
         $this->assertEquals($options, $test);
     }
 }
 
 // Call Zend_Server_Method_ParameterTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Server_Method_ParameterTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Server_Method_ParameterTest::main") {
     Zend_Server_Method_ParameterTest::main();
 }

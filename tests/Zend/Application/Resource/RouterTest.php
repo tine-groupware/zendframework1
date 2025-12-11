@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -37,15 +42,35 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_RouterTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_RouterTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var Zend_Application_Bootstrap_Bootstrap
+     */
+    protected $bootstrap;
+
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -63,7 +88,7 @@ class Zend_Application_Resource_RouterTest extends PHPUnit_Framework_TestCase
         Zend_Controller_Front::getInstance()->resetInstance();
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();
@@ -107,13 +132,13 @@ class Zend_Application_Resource_RouterTest extends PHPUnit_Framework_TestCase
     {
         $options = ['routes' => [
             'archive' => [
-                'route'    => 'archive/:year/*',
+                'route' => 'archive/:year/*',
                 'defaults' => [
                     'controller' => 'archive',
-                    'action'     => 'show',
-                    'year'       => 2000,
+                    'action' => 'show',
+                    'year' => 2000,
                 ],
-                'reqs'     => [
+                'reqs' => [
                     'year' => '\d+',
                 ],
             ],
@@ -122,7 +147,7 @@ class Zend_Application_Resource_RouterTest extends PHPUnit_Framework_TestCase
         $resource = new Zend_Application_Resource_Router($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $router   = $resource->getRouter();
+        $router = $resource->getRouter();
         $this->assertTrue($router->hasRoute('archive'));
         $route = $router->getRoute('archive');
         $this->assertTrue($route instanceof Zend_Controller_Router_Route);
@@ -130,6 +155,6 @@ class Zend_Application_Resource_RouterTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_RouterTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Application_Resource_RouterTest::main') {
     Zend_Application_Resource_RouterTest::main();
 }

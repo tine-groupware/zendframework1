@@ -29,7 +29,7 @@
 class Zend_Tool_Framework_Client_Response
 {
     /**
-     * @var callback|null
+     * @var callable|null
      */
     protected $_callback = null;
 
@@ -56,7 +56,7 @@ class Zend_Tool_Framework_Client_Response
     /**
      * setContentCallback()
      *
-     * @param callback $callback
+     * @param callable $callback
      * @return Zend_Tool_Framework_Client_Response
      */
     public function setContentCallback($callback)
@@ -166,7 +166,7 @@ class Zend_Tool_Framework_Client_Response
      * Add Content Decorator
      *
      * @param Zend_Tool_Framework_Client_Response_ContentDecorator_Interface $contentDecorator
-     * @return unknown
+     * @return Zend_Tool_Framework_Client_Response
      */
     public function addContentDecorator(Zend_Tool_Framework_Client_Response_ContentDecorator_Interface $contentDecorator)
     {

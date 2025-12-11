@@ -53,7 +53,7 @@ class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggre
      * Magic property overloading for returning if helper is set by name
      *
      * @param string $helperName    The helper name
-     * @return Zend_Controller_Action_Helper_Abstract
+     * @return bool
      */
     public function __isset($helperName)
     {
@@ -64,7 +64,7 @@ class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggre
      * Magic property overloading for unsetting if helper is exists by name
      *
      * @param string $helperName    The helper name
-     * @return Zend_Controller_Action_Helper_Abstract
+     * @return Zend_Controller_Action_HelperBroker_PriorityStack
      */
     public function __unset($helperName)
     {
@@ -75,7 +75,7 @@ class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggre
      * push helper onto the stack
      *
      * @param Zend_Controller_Action_Helper_Abstract $helper
-     * @return Zend_Controller_Action_HelperBroker_PriorityStack
+     * @return $this
      */
     public function push(Zend_Controller_Action_Helper_Abstract $helper)
     {
@@ -86,9 +86,10 @@ class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggre
     /**
      * Return something iterable
      *
-     * @return array
+     * @return ArrayObject
      */
-    public function getIterator(): Traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return new ArrayObject($this->_helpersByPriority);
     }
@@ -97,7 +98,7 @@ class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggre
      * offsetExists()
      *
      * @param int|string $priorityOrHelperName
-     * @return Zend_Controller_Action_HelperBroker_PriorityStack
+     * @return bool
      */
     public function offsetExists($priorityOrHelperName): bool
     {

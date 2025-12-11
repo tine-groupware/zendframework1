@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,12 +48,12 @@ class Zend_Soap_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Soap');
+        $suite = new TestSuite('Zend Framework - Zend_Soap');
 
         //early exit because of segfault in this specific version
         //https://github.com/zendframework/zf1/issues/650
@@ -73,6 +77,6 @@ class Zend_Soap_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Soap_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Soap_AllTests::main') {
     Zend_Soap_AllTests::main();
 }

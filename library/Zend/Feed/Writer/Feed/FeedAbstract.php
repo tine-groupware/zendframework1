@@ -61,6 +61,11 @@ require_once 'Zend/Validate/EmailAddress.php';
 class Zend_Feed_Writer_Feed_FeedAbstract
 {
     /**
+     * @var array
+     */
+    protected $_extensions = [];
+
+    /**
      * Contains all Feed level date to append in feed output
      *
      * @var array
@@ -91,7 +96,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
      * Set a single author
      *
      * @param  int $index
-     * @return string|null
+     * @return void
      */
     public function addAuthor($name, $email = null, $uri = null)
     {
@@ -143,7 +148,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set an array with feed authors
      *
-     * @return array
+     * @return void
      */
     public function addAuthors(array $authors)
     {
@@ -155,7 +160,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the copyright entry
      *
-     * @return string|null
+     * @return void
      */
     public function setCopyright($copyright)
     {
@@ -169,7 +174,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the feed creation date
      *
-     * @param null|integer|Zend_Date
+     * @param null|integer|Zend_Date $date
      */
     public function setDateCreated($date = null)
     {
@@ -190,7 +195,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the feed modification date
      *
-     * @param null|integer|Zend_Date
+     * @param null|integer|Zend_Date $date
      */
     public function setDateModified($date = null)
     {
@@ -211,7 +216,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the feed last-build date. Ignored for Atom 1.0.
      *
-     * @param null|integer|Zend_Date
+     * @param null|integer|Zend_Date $date
      */
     public function setLastBuildDate($date = null)
     {
@@ -232,7 +237,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the feed description
      *
-     * @return string|null
+     * @return void
      */
     public function setDescription($description)
     {
@@ -246,7 +251,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the feed generator entry
      *
-     * @return string|null
+     * @return void
      */
     public function setGenerator($name, $version = null, $uri = null)
     {
@@ -388,7 +393,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the feed language
      *
-     * @return string|null
+     * @return void
      */
     public function setLanguage($language)
     {
@@ -416,7 +421,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set a link to an XML feed for any feed type/version
      *
-     * @return string|null
+     * @return void
      */
     public function setFeedLink($link, $type)
     {
@@ -434,7 +439,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
     /**
      * Set the feed title
      *
-     * @return string|null
+     * @return void
      */
     public function setTitle($title)
     {

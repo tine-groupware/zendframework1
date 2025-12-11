@@ -104,7 +104,7 @@ class Zend_Config implements Countable, Iterator
      */
     public function __construct(array $array, $allowModifications = false)
     {
-        $this->_allowModifications = (boolean) $allowModifications;
+        $this->_allowModifications = (bool) $allowModifications;
         $this->_loadedSection = null;
         $this->_index = 0;
         $this->_data = [];
@@ -256,7 +256,7 @@ class Zend_Config implements Countable, Iterator
      * @return mixed
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         $this->_skipNextIteration = false;
         return current($this->_data);
@@ -265,10 +265,10 @@ public function current()
     /**
      * Defined by Iterator interface
      *
-     * @return mixed
+     * @return int|string|null
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return key($this->_data);
     }

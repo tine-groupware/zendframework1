@@ -85,6 +85,7 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
      */
     protected function _addBranch(Zend_Config $config, SimpleXMLElement $xml, SimpleXMLElement $parent)
     {
+        $branchName = null;
         $branchType = null;
 
         foreach ($config as $key => $value) {
@@ -94,7 +95,7 @@ class Zend_Config_Writer_Xml extends Zend_Config_Writer_FileAbstract
                     $branchName = $xml->getName();
                     $xml        = $parent;
 
-                    unset($parent->{$branchName});
+//                    unset($parent->{$branchName});
                 } else {
                     $branchType = 'string';
                 }

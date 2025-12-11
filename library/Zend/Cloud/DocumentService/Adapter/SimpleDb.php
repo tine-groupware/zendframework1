@@ -38,15 +38,15 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
     /*
      * Options array keys for the SimpleDB adapter.
      */
-    const AWS_ACCESS_KEY   = 'aws_accesskey';
-    const AWS_SECRET_KEY   = 'aws_secretkey';
+    public const AWS_ACCESS_KEY   = 'aws_accesskey';
+    public const AWS_SECRET_KEY   = 'aws_secretkey';
 
-    const ITEM_NAME        = 'ItemName';
+    public const ITEM_NAME        = 'ItemName';
 
-    const MERGE_OPTION     = "merge";
-    const RETURN_DOCUMENTS = "return_documents";
+    public const MERGE_OPTION     = "merge";
+    public const RETURN_DOCUMENTS = "return_documents";
 
-    const DEFAULT_QUERY_CLASS = 'Zend_Cloud_DocumentService_Adapter_SimpleDb_Query';
+    public const DEFAULT_QUERY_CLASS = 'Zend_Cloud_DocumentService_Adapter_SimpleDb_Query';
 
 
     /**
@@ -134,7 +134,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * List collections.
      *
      * @param  array  $options
-     * @return array
+     * @return string
      */
     public function listCollections($options = null)
     {
@@ -157,7 +157,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * @param  array|null $options
      * @return Zend_Cloud_DocumentService_DocumentSet
      */
-    public function listDocuments($collectionName, array $options = null)
+    public function listDocuments($collectionName, ?array $options = null)
     {
         $query = $this->select('*')->from($collectionName);
 
@@ -185,8 +185,8 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         try {
             $this->_simpleDb->putAttributes(
                 $collectionName,
-                $document->getID(),
-                $this->_makeAttributes($document->getID(), $document->getFields())
+                $document->getId(),
+                $this->_makeAttributes($document->getId(), $document->getFields())
             );
         } catch(Zend_Service_Amazon_Exception $e) {
             throw new Zend_Cloud_DocumentService_Exception('Error on document insertion: '.$e->getMessage(), $e->getCode(), $e);
@@ -304,7 +304,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * @param  string $collectionName Collection name
      * @param  mixed $documentId Document ID, adapter-dependent
      * @param  array $options
-     * @return array|Zend_Cloud_DocumentService_Document
+     * @return array|false
      */
     public function fetchDocument($collectionName, $documentId, $options = null)
     {
@@ -328,7 +328,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
      * @param  string $collectionName Collection name
      * @param  string $query
      * @param  array $options
-     * @return array Zend_Cloud_DocumentService_DocumentSet
+     * @return Zend_Cloud_DocumentService_DocumentSet Zend_Cloud_DocumentService_DocumentSet
      */
     public function query($collectionName, $query, $options = null)
     {

@@ -33,7 +33,7 @@ class Zend_Mail_Protocol_Imap
     /**
      * Default timeout in seconds for initiating session
      */
-    const TIMEOUT_CONNECTION = 30;
+    public const TIMEOUT_CONNECTION = 30;
 
     /**
      * socket to imap server
@@ -96,7 +96,7 @@ class Zend_Mail_Protocol_Imap
      * @param  string      $host  hostname or IP address of IMAP server
      * @param  int|null    $port  of IMAP server, default is 143 (993 for ssl)
      * @param  string|bool $ssl   use 'SSL', 'TLS' or false
-     * @return string welcome message
+     * @return void welcome message
      * @throws Zend_Mail_Protocol_Exception
      */
     public function connect($host, $port = null, $ssl = false)
@@ -205,9 +205,13 @@ class Zend_Mail_Protocol_Imap
     protected function _nextTaggedLine(&$tag)
     {
         $line = $this->_nextLine();
+        $parts = explode(' ', $line, 2);
 
+        if (count($parts) < 2) {
+            throw new Zend_Mail_Protocol_Exception("Malformed response: expected tag and line, got: '$line'");
+        }
         // seperate tag from line
-        list($tag, $line) = explode(' ', $line, 2);
+        [$tag, $line] = $parts;
 
         return $line;
     }
@@ -451,7 +455,7 @@ class Zend_Mail_Protocol_Imap
      * @param  string $command   command as in sendRequest()
      * @param  array  $tokens    parameters as in sendRequest()
      * @param  bool   $dontParse if true unparsed lines are returned instead of tokens
-     * @return mixed response as in readResponse()
+     * @return array|bool|null response as in readResponse()
      * @throws Zend_Mail_Protocol_Exception
      */
     public function requestAndResponse($command, $tokens = [], $dontParse = false)

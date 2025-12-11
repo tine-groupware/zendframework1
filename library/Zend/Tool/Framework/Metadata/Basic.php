@@ -43,8 +43,8 @@ class Zend_Tool_Framework_Metadata_Basic
     /**#@+
      * Search constants
      */
-    const ATTRIBUTES_ALL        = 'attributesAll';
-    const ATTRIBUTES_NO_PARENT  = 'attributesParent';
+    public const ATTRIBUTES_ALL        = 'attributesAll';
+    public const ATTRIBUTES_NO_PARENT  = 'attributesParent';
     /**#@-*/
 
     /**#@+
@@ -116,7 +116,7 @@ class Zend_Tool_Framework_Metadata_Basic
     /**
      * getName()
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -148,7 +148,7 @@ class Zend_Tool_Framework_Metadata_Basic
     /**
      * setValue()
      *
-     * @param unknown_type $Value
+     * @param string $Value
      * @return Zend_Tool_Framework_Metadata_Basic
      */
     public function setValue($value)

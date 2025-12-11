@@ -127,7 +127,7 @@ class Zend_Db_Adapter_Sqlsrv extends Zend_Db_Adapter_Abstract
 
         $serverName = $this->_config['host'];
         if (isset($this->_config['port'])) {
-            $port        = (integer) $this->_config['port'];
+            $port        = (int) $this->_config['port'];
             $serverName .= ', ' . $port;
         }
 
@@ -438,7 +438,7 @@ class Zend_Db_Adapter_Sqlsrv extends Zend_Db_Adapter_Abstract
         $sql    = "exec sp_columns @table_name = " . $this->quoteIdentifier($tableName, true);
         $stmt   = $this->query($sql);
         $result = $stmt->fetchAll(Zend_Db::FETCH_NUM);
-        
+
         // ZF-7698
         $stmt->closeCursor();
 
@@ -615,7 +615,7 @@ class Zend_Db_Adapter_Sqlsrv extends Zend_Db_Adapter_Abstract
         }
 
         if ($offset === 0) {
-            $sql = preg_replace('/^SELECT\s/i', 'SELECT TOP ' . $count . ' ', $sql);
+            $sql = preg_replace('/^SELECT(\s+DISTINCT)?\s/i', 'SELECT$1 TOP ' . $count . ' ', $sql);
         } else {
             $orderby = stristr($sql, 'ORDER BY');
 

@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -56,17 +60,17 @@ class Zend_Service_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Service');
+        $suite = new TestSuite('Zend Framework - Zend_Service');
 
         $suite->addTestSuite('Zend_Service_AkismetTest');
         $suite->addTest(Zend_Service_Amazon_AllTests::suite());
@@ -87,6 +91,6 @@ class Zend_Service_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Service_AllTests::main') {
     Zend_Service_AllTests::main();
 }

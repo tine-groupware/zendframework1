@@ -51,7 +51,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      * If filter selectivity is less than this value, then full scan is performed
      * (since term entries fetching has some additional overhead).
      */
-    const FULL_SCAN_VS_FETCH_BOUNDARY = 5;
+    public const FULL_SCAN_VS_FETCH_BOUNDARY = 5;
 
     /**
      * Number of docs in a segment
@@ -365,7 +365,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      *
      * Returns bitset or an array depending on bitset extension availability
      *
-     * @return mixed
+     * @return array|string|null
      * @throws Zend_Search_Lucene_Exception
      */
     private function _loadPre21DelFile()
@@ -689,7 +689,8 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      *
      * @return integer
      */
-    public function count(): int
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         return $this->_docCount;
     }
@@ -787,7 +788,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
 
             // Load dictionary index data
             if (($unserializedData = @unserialize($stiFileData)) !== false) {
-                list($this->_termDictionary, $this->_termDictionaryInfos) = $unserializedData;
+                [$this->_termDictionary, $this->_termDictionaryInfos] = $unserializedData;
                 return;
             }
         }
@@ -802,7 +803,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
         require_once 'Zend/Search/Lucene/Index/DictionaryLoader.php';
 
         // Load dictionary index data
-        list($this->_termDictionary, $this->_termDictionaryInfos) =
+        [$this->_termDictionary, $this->_termDictionaryInfos] =
                     Zend_Search_Lucene_Index_DictionaryLoader::load($tiiFileData);
 
         $stiFileData = serialize([$this->_termDictionary, $this->_termDictionaryInfos]);
@@ -1070,7 +1071,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      * @param Zend_Search_Lucene_Index_Term $term
      * @param integer $shift
      * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
-     * @return Zend_Search_Lucene_Index_TermInfo
+     * @return array
      */
     public function termFreqs(Zend_Search_Lucene_Index_Term $term, $shift = 0, $docsFilter = null)
     {
@@ -1202,7 +1203,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      * @param Zend_Search_Lucene_Index_Term $term
      * @param integer $shift
      * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
-     * @return Zend_Search_Lucene_Index_TermInfo
+     * @return array
      */
     public function termPositions(Zend_Search_Lucene_Index_Term $term, $shift = 0, $docsFilter = null)
     {
@@ -1490,7 +1491,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
      * Deletes a document from the index segment.
      * $id is an internal document id
      *
-     * @param integer
+     * @param integer $id
      */
     public function delete($id)
     {
@@ -1513,7 +1514,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
     /**
      * Checks, that document is deleted
      *
-     * @param integer
+     * @param integer $id
      * @return boolean
      */
     public function isDeleted($id)
@@ -1764,9 +1765,9 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
     private $_termsScanMode;
 
     /** Scan modes */
-    const SM_TERMS_ONLY = 0;    // terms are scanned, no additional info is retrieved
-    const SM_FULL_INFO  = 1;    // terms are scanned, frequency and position info is retrieved
-    const SM_MERGE_INFO = 2;    // terms are scanned, frequency and position info is retrieved
+    public const SM_TERMS_ONLY = 0;    // terms are scanned, no additional info is retrieved
+    public const SM_FULL_INFO  = 1;    // terms are scanned, frequency and position info is retrieved
+    public const SM_MERGE_INFO = 2;    // terms are scanned, frequency and position info is retrieved
                                 // document numbers are compacted (shifted if segment contains deleted documents)
 
     /**

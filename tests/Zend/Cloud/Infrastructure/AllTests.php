@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,12 +46,12 @@ class Zend_Cloud_Infrastructure_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Cloud_Infrastructure');
+        $suite = new TestSuite('Zend Framework - Zend_Cloud_Infrastructure');
 
         $suite->addTestSuite('Zend_Cloud_Infrastructure_FactoryTest');
         $suite->addTest(Zend_Cloud_Infrastructure_Adapter_AllTests::suite());
@@ -56,6 +60,6 @@ class Zend_Cloud_Infrastructure_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_Infrastructure_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Cloud_Infrastructure_AllTests::main') {
     Zend_Cloud_Infrastructure_AllTests::main();
 }

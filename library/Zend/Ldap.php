@@ -28,14 +28,14 @@
  */
 class Zend_Ldap
 {
-    const SEARCH_SCOPE_SUB  = 1;
-    const SEARCH_SCOPE_ONE  = 2;
-    const SEARCH_SCOPE_BASE = 3;
+    public const SEARCH_SCOPE_SUB  = 1;
+    public const SEARCH_SCOPE_ONE  = 2;
+    public const SEARCH_SCOPE_BASE = 3;
 
-    const ACCTNAME_FORM_DN        = 1;
-    const ACCTNAME_FORM_USERNAME  = 2;
-    const ACCTNAME_FORM_BACKSLASH = 3;
-    const ACCTNAME_FORM_PRINCIPAL = 4;
+    public const ACCTNAME_FORM_DN        = 1;
+    public const ACCTNAME_FORM_USERNAME  = 2;
+    public const ACCTNAME_FORM_BACKSLASH = 3;
+    public const ACCTNAME_FORM_PRINCIPAL = 4;
 
     /**
      * String used with ldap_connect for error handling purposes.
@@ -103,7 +103,7 @@ class Zend_Ldap
      * @return boolean True if the DN was successfully parsed or false if the string is
      * not a valid DN.
      */
-    public static function explodeDn($dn, array &$keys = null, array &$vals = null)
+    public static function explodeDn($dn, ?array &$keys = null, ?array &$vals = null)
     {
         /**
          * @see Zend_Ldap_Dn
@@ -160,6 +160,10 @@ class Zend_Ldap
      */
     public function getLastErrorCode()
     {
+        if(!$this->isConnection($this->_resource)) {
+            return 0;
+        }
+
         $ret = @ldap_get_option($this->_resource, LDAP_OPT_ERROR_NUMBER, $err);
         if ($ret === true) {
             if ($err <= -1 && $err >= -17) {
@@ -184,7 +188,7 @@ class Zend_Ldap
      * @param  array $errorMessages
      * @return string
      */
-    public function getLastError(&$errorCode = null, array &$errorMessages = null)
+    public function getLastError(&$errorCode = null, ?array &$errorMessages = null)
     {
         $errorCode = $this->getLastErrorCode();
         $errorMessages = [];
@@ -257,7 +261,7 @@ class Zend_Ldap
      *  tryUsernameSplit
      *
      * @param  array|Zend_Config $options Options used in connecting, binding, etc.
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function setOptions($options)
@@ -557,11 +561,11 @@ class Zend_Ldap
             return true;
         }
 
-        if (strcasecmp($dname, $accountDomainName) === 0) {
+        if (strcasecmp($dname, (string)$accountDomainName) === 0) {
             return true;
         }
 
-        if (strcasecmp($dname, $accountDomainNameShort) === 0) {
+        if (strcasecmp($dname, (string)$accountDomainNameShort) === 0) {
             return true;
         }
 
@@ -645,7 +649,7 @@ class Zend_Ldap
      * @return array An array of the attributes representing the account
      * @throws Zend_Ldap_Exception
      */
-    protected function _getAccount($acctname, array $attrs = null)
+    protected function _getAccount($acctname, ?array $attrs = null)
     {
         $baseDn = $this->getBaseDn();
         if (!$baseDn) {
@@ -703,7 +707,7 @@ class Zend_Ldap
     }
 
     /**
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      */
     public function disconnect()
     {
@@ -713,6 +717,20 @@ class Zend_Ldap
         $this->_resource = null;
         $this->_boundUser = false;
         return $this;
+    }
+
+    /**
+     * @param $resource
+     *
+     * @return bool
+     */
+    public function isConnection($resource)
+    {
+        if (PHP_VERSION_ID < 80100) {
+            return is_resource($resource);
+        }
+
+        return $resource instanceof \LDAP\Connection;
     }
 
     /**
@@ -726,7 +744,7 @@ class Zend_Ldap
      * @param  int     $port        The port number of the LDAP server to connect to
      * @param  boolean $useSsl      Use SSL
      * @param  boolean $useStartTls Use STARTTLS
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function connect($host = null, $port = null, $useSsl = null, $useStartTls = null)
@@ -782,6 +800,10 @@ class Zend_Ldap
 
         $this->disconnect();
 
+        if (!$port) {
+            $port = ($useSsl) ? 636 : 389;
+        }
+
         /* Only OpenLDAP 2.2 + supports URLs so if SSL is not requested, just
          * use the old form.
          */
@@ -817,7 +839,7 @@ class Zend_Ldap
     /**
      * @param  string $username The username for authenticating the bind
      * @param  string $password The password for authenticating the bind
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function bind($username = null, $password = null)
@@ -827,7 +849,7 @@ class Zend_Ldap
         // Security check: remove null bytes in password
         // @see https://net.educause.edu/ir/library/pdf/csd4875.pdf
         if ($password !== null) {
-            $password = str_replace("\0", '', $password);
+            $password = str_replace("\0", '', (string) $password);
         }
 
         if ($username === null) {
@@ -1002,22 +1024,17 @@ class Zend_Ldap
             require_once 'Zend/Ldap/Exception.php';
             throw new Zend_Ldap_Exception($this, 'searching: ' . $filter);
         }
-        if ($sort !== null && is_string($sort)) {
-            $isSorted = @ldap_sort($this->getResource(), $search, $sort);
-            if($isSorted === false) {
-                /**
-                 * @see Zend_Ldap_Exception
-                 */
-                require_once 'Zend/Ldap/Exception.php';
-                throw new Zend_Ldap_Exception($this, 'sorting: ' . $sort);
-            }
-        }
 
         /**
          * Zend_Ldap_Collection_Iterator_Default
          */
         require_once 'Zend/Ldap/Collection/Iterator/Default.php';
         $iterator = new Zend_Ldap_Collection_Iterator_Default($this, $search);
+
+        if ($sort !== null && is_string($sort)) {
+            $iterator->sort($sort);
+        }
+
         return $this->_createCollection($iterator, $collectionClass);
     }
 
@@ -1068,6 +1085,7 @@ class Zend_Ldap
      * @return integer
      * @throws Zend_Ldap_Exception
      */
+    #[\ReturnTypeWillChange]
     public function count($filter, $basedn = null, $scope = self::SEARCH_SCOPE_SUB)
     {
         try {
@@ -1218,7 +1236,7 @@ class Zend_Ldap
      *
      * @param  string|Zend_Ldap_Dn $dn
      * @param  array               $entry
-     * @return Zend_Ldap                  Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function add($dn, array $entry)
@@ -1266,7 +1284,7 @@ class Zend_Ldap
      *
      * @param  string|Zend_Ldap_Dn $dn
      * @param  array               $entry
-     * @return Zend_Ldap                  Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function update($dn, array $entry)
@@ -1313,7 +1331,7 @@ class Zend_Ldap
      *
      * @param  string|Zend_Ldap_Dn $dn
      * @param  array               $entry
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function save($dn, array $entry)
@@ -1331,7 +1349,7 @@ class Zend_Ldap
      *
      * @param  string|Zend_Ldap_Dn $dn
      * @param  boolean             $recursively
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function delete($dn, $recursively = false)
@@ -1398,7 +1416,7 @@ class Zend_Ldap
      * @param  string|Zend_Ldap_Dn $to
      * @param  boolean             $recursively
      * @param  boolean             $alwaysEmulate
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function moveToSubtree($from, $to, $recursively = false, $alwaysEmulate = false)
@@ -1429,7 +1447,7 @@ class Zend_Ldap
      * @param  string|Zend_Ldap_Dn $to
      * @param  boolean             $recursively
      * @param  boolean             $alwaysEmulate
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function move($from, $to, $recursively = false, $alwaysEmulate = false)
@@ -1446,7 +1464,7 @@ class Zend_Ldap
      * @param  string|Zend_Ldap_Dn $to
      * @param  boolean             $recursively
      * @param  boolean             $alwaysEmulate
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function rename($from, $to, $recursively = false, $alwaysEmulate = false)
@@ -1494,7 +1512,7 @@ class Zend_Ldap
      * @param  string|Zend_Ldap_Dn $from
      * @param  string|Zend_Ldap_Dn $to
      * @param  boolean             $recursively
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function copyToSubtree($from, $to, $recursively = false)
@@ -1522,7 +1540,7 @@ class Zend_Ldap
      * @param  string|Zend_Ldap_Dn $from
      * @param  string|Zend_Ldap_Dn $to
      * @param  boolean             $recursively
-     * @return Zend_Ldap Provides a fluent interface
+     * @return $this
      * @throws Zend_Ldap_Exception
      */
     public function copy($from, $to, $recursively = false)

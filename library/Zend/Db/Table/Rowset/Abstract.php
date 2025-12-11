@@ -225,13 +225,12 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      * Similar to the reset() function for arrays in PHP.
      * Required by interface Iterator.
      *
-     * @return Zend_Db_Table_Rowset_Abstract Fluent interface.
+     * @return void
      */
     #[\ReturnTypeWillChange]
-    public function rewind()
+    public function rewind(): void
     {
         $this->_pointer = 0;
-        return $this;
     }
 
     /**
@@ -242,7 +241,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      * @return Zend_Db_Table_Row_Abstract|null current element from the collection
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         if ($this->valid() === false) {
             return null;
@@ -260,7 +259,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key(): int
     {
         return $this->_pointer;
     }
@@ -272,6 +271,7 @@ public function key()
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function next(): void
     {
         ++$this->_pointer;
@@ -284,6 +284,7 @@ public function key()
      *
      * @return bool False if there's nothing more to iterate over
      */
+    #[\ReturnTypeWillChange]
     public function valid(): bool
     {
         return $this->_pointer >= 0 && $this->_pointer < $this->_count;
@@ -296,6 +297,7 @@ public function key()
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count(): int
     {
         return $this->_count;
@@ -306,11 +308,10 @@ public function key()
      * Required by interface SeekableIterator.
      *
      * @param int $position the position to seek to
-     * @return Zend_Db_Table_Rowset_Abstract
+     * @return void
      * @throws Zend_Db_Table_Rowset_Exception
      */
-    #[\ReturnTypeWillChange]
-    public function seek(int $position)
+    public function seek($position): void
     {
         $position = (int) $position;
         if ($position < 0 || $position >= $this->_count) {
@@ -318,7 +319,6 @@ public function key()
             throw new Zend_Db_Table_Rowset_Exception("Illegal index $position");
         }
         $this->_pointer = $position;
-        return $this;
     }
 
     /**
@@ -328,6 +328,7 @@ public function key()
      * @param string $offset
      * @return boolean
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset): bool
     {
         return isset($this->_data[(int) $offset]);
@@ -360,6 +361,7 @@ public function key()
      * @param string $offset
      * @param mixed $value
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value): void
     {
     }
@@ -370,6 +372,7 @@ public function key()
      *
      * @param string $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset): void
     {
     }

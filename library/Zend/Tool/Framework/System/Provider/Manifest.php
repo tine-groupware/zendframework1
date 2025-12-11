@@ -39,6 +39,10 @@ require_once 'Zend/Tool/Framework/Provider/Interface.php';
 class Zend_Tool_Framework_System_Provider_Manifest
     implements Zend_Tool_Framework_Provider_Interface, Zend_Tool_Framework_Registry_EnabledInterface
 {
+    /**
+     * @var \Zend_Tool_Framework_Registry_Interface|mixed
+     */
+    protected $_registry;
 
     public function setRegistry(Zend_Tool_Framework_Registry_Interface $registry)
     {
@@ -69,7 +73,7 @@ class Zend_Tool_Framework_System_Provider_Manifest
             if (!$metadataAttrs) {
                 $metadataAttrs = '(None)';
             } else {
-                $metadataAttrs = urldecode(http_build_query($metadataAttrs, '', ', '));
+                $metadataAttrs = urldecode(http_build_query($metadataAttrs, null, ', '));
             }
 
             if (!array_key_exists($metadataType, $metadataTree)) {
@@ -88,7 +92,7 @@ class Zend_Tool_Framework_System_Provider_Manifest
 
             $metadataValue = $metadata->getValue();
             if (is_array($metadataValue) && count($metadataValue) > 0) {
-                $metadataValue = urldecode(http_build_query($metadataValue, '', ', '));
+                $metadataValue = urldecode(http_build_query($metadataValue, null, ', '));
             } elseif (is_array($metadataValue)) {
                 $metadataValue = '(empty array)';
             }

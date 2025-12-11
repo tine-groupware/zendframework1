@@ -37,9 +37,9 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
     /**
      * @const string Error constants
      */
-    const DOES_NOT_MATCH = 'fileSha1DoesNotMatch';
-    const NOT_DETECTED   = 'fileSha1NotDetected';
-    const NOT_FOUND      = 'fileSha1NotFound';
+    public const DOES_NOT_MATCH = 'fileSha1DoesNotMatch';
+    public const NOT_DETECTED   = 'fileSha1NotDetected';
+    public const NOT_FOUND      = 'fileSha1NotFound';
 
     /**
      * @var array Error message templates
@@ -63,8 +63,8 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * $hash is the hash we accept for the file $file
      *
      * @param  string|array $options
+     * @return void
      * @throws Zend_Validate_Exception
-     * @return Zend_Validate_File_Sha1
      */
     public function __construct($options)
     {
@@ -83,7 +83,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
     /**
      * Returns all set sha1 hashes
      *
-     * @return array
+     * @return string
      */
     public function getSha1()
     {
@@ -94,7 +94,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Sets the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function setHash($options)
     {
@@ -111,7 +111,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Sets the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function setSha1($options)
     {
@@ -123,7 +123,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Adds the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function addHash($options)
     {
@@ -140,7 +140,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Adds the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function addSha1($options)
     {

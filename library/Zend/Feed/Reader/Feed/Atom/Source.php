@@ -67,19 +67,20 @@ class Zend_Feed_Reader_Feed_Atom_Source extends Zend_Feed_Reader_Feed_Atom
     /**
      * @return void
      */
-    public function count(): int {}
+    #[\ReturnTypeWillChange]
+    public function count() {}
 
     /**
      * @return void
      */
     #[\ReturnTypeWillChange]
-public function current() {}
+    public function current() {}
 
     /**
      * @return void
      */
     #[\ReturnTypeWillChange]
-public function key() {}
+    public function key() {}
 
     /**
      * @return void
@@ -94,7 +95,8 @@ public function key() {}
     /**
      * @return void
      */
-    public function valid(): bool {}
+    #[\ReturnTypeWillChange]
+    public function valid() {}
 
     /**
      * @return void

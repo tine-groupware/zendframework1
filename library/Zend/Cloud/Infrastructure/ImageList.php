@@ -32,7 +32,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
 
     /**
      * The Image adapter (if exists)
-     * 
+     *
      * @var object
      */
     protected $adapter;
@@ -42,7 +42,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      *
      * @param  array $list
      * @param  null|object $adapter
-     * @return boolean
+     * @return void
      */
     public function __construct($images, $adapter = null)
     {
@@ -71,8 +71,8 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
     /**
      * Add an image
      *
-     * @param  Image
-     * @return ImageList
+     * @param  Image $image
+     * @return Zend_Cloud_Infrastructure_ImageList
      */
     protected function addImage(Zend_Cloud_Infrastructure_Image $image)
     {
@@ -100,7 +100,7 @@ class Zend_Cloud_Infrastructure_ImageList implements Countable, Iterator, ArrayA
      * @return Image
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return $this->images[$this->iteratorKey];
     }
@@ -113,7 +113,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->iteratorKey;
     }

@@ -124,7 +124,7 @@ class Zend_Service_Flickr_ResultSet implements SeekableIterator
      * @return Zend_Service_Flickr_Result
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return new Zend_Service_Flickr_Result($this->_results->item($this->_currentIndex), $this->_flickr);
     }
@@ -135,7 +135,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_currentIndex;
     }
@@ -167,7 +167,7 @@ public function key()
      * @throws OutOfBoundsException
      * @return void
      */
-    public function seek($index)
+    public function seek($index): void
     {
         $indexInt = (int) $index;
         if ($indexInt >= 0 && (null === $this->_results || $indexInt < $this->_results->length)) {

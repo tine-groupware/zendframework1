@@ -69,7 +69,7 @@ class Zend_Tool_Framework_Provider_Repository
      * setRegistry()
      *
      * @param Zend_Tool_Framework_Registry_Interface $registry
-     * @return unknown
+     * @return Zend_Tool_Framework_Provider_Repository
      */
     public function setRegistry(Zend_Tool_Framework_Registry_Interface $registry)
     {
@@ -80,8 +80,8 @@ class Zend_Tool_Framework_Provider_Repository
     /**
      * Set the ProcessOnAdd flag
      *
-     * @param unknown_type $processOnAdd
-     * @return unknown
+     * @param bool $processOnAdd
+     * @return Zend_Tool_Framework_Provider_Repository
      */
     public function setProcessOnAdd($processOnAdd = true)
     {
@@ -248,7 +248,8 @@ class Zend_Tool_Framework_Provider_Repository
      *
      * @return ArrayIterator
      */
-    public function getIterator(): Traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return new ArrayIterator($this->getProviders());
     }

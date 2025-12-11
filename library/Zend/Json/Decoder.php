@@ -35,18 +35,23 @@ require_once 'Zend/Json.php';
 class Zend_Json_Decoder
 {
     /**
+     * @var mixed|string|null|bool|int|float
+     */
+    protected $_tokenValue;
+
+    /**
      * Parse tokens used to decode the JSON object. These are not
      * for public consumption, they are just used internally to the
      * class.
      */
-    const EOF         = 0;
-    const DATUM        = 1;
-    const LBRACE    = 2;
-    const LBRACKET    = 3;
-    const RBRACE     = 4;
-    const RBRACKET    = 5;
-    const COMMA       = 6;
-    const COLON        = 7;
+    public const EOF         = 0;
+    public const DATUM        = 1;
+    public const LBRACE    = 2;
+    public const LBRACKET    = 3;
+    public const RBRACE     = 4;
+    public const RBRACKET    = 5;
+    public const COMMA       = 6;
+    public const COLON        = 7;
 
     /**
      * Use to maintain a "pointer" to the source being decoded
@@ -138,7 +143,7 @@ class Zend_Json_Decoder
      * @param int $objectDecodeType How objects should be decoded; should be
      * either or {@link Zend_Json::TYPE_ARRAY} or
      * {@link Zend_Json::TYPE_OBJECT}; defaults to TYPE_ARRAY
-     * @return mixed
+     * @return array|StdClass|null
      * @throws Zend_Json_Exception
      */
     public static function decode($source = null, $objectDecodeType = Zend_Json::TYPE_ARRAY)
@@ -162,7 +167,7 @@ class Zend_Json_Decoder
     /**
      * Recursive driving rountine for supported toplevel tops
      *
-     * @return mixed
+     * @return array|StdClass|null
      * @throws Zend_Json_Exception
      */
     protected function _decodeValue()
@@ -237,7 +242,7 @@ class Zend_Json_Decoder
         switch ($this->_decodeType) {
             case Zend_Json::TYPE_OBJECT:
                 // Create new StdClass and populate with $members
-                $result = new StdClass();
+                $result = new stdClass();
                 foreach ($members as $key => $value) {
                     if ($key === '') {
                         $key = '_empty_';
@@ -553,7 +558,7 @@ class Zend_Json_Decoder
     {
         // Check for mb extension otherwise do by hand.
         if( function_exists('mb_convert_encoding') ) {
-            return mb_convert_encoding($utf16, 'UTF-8', 'UTF-16');
+            return mb_convert_encoding($utf16, 'UTF-8', 'UTF-16BE');
         }
 
         $bytes = (ord($utf16[0]) << 8) | ord($utf16[1]);
@@ -582,4 +587,3 @@ class Zend_Json_Decoder
         return '';
     }
 }
-

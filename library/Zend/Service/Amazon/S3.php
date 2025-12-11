@@ -56,16 +56,16 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
      */
     protected $_endpoint;
 
-    const S3_ENDPOINT = 's3.amazonaws.com';
+    public const S3_ENDPOINT = 's3.amazonaws.com';
 
-    const S3_ACL_PRIVATE = 'private';
-    const S3_ACL_PUBLIC_READ = 'public-read';
-    const S3_ACL_PUBLIC_WRITE = 'public-read-write';
-    const S3_ACL_AUTH_READ = 'authenticated-read';
+    public const S3_ACL_PRIVATE = 'private';
+    public const S3_ACL_PUBLIC_READ = 'public-read';
+    public const S3_ACL_PUBLIC_WRITE = 'public-read-write';
+    public const S3_ACL_AUTH_READ = 'authenticated-read';
 
-    const S3_REQUESTPAY_HEADER = 'x-amz-request-payer';
-    const S3_ACL_HEADER = 'x-amz-acl';
-    const S3_CONTENT_TYPE_HEADER = 'Content-Type';
+    public const S3_REQUESTPAY_HEADER = 'x-amz-request-payer';
+    public const S3_ACL_HEADER = 'x-amz-acl';
+    public const S3_CONTENT_TYPE_HEADER = 'Content-Type';
 
     /**
      * Set S3 endpoint to use
@@ -283,7 +283,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             ];
             $objects = $this->getObjectsByBucket($bucket,$params);
         }
-        
+
         return true;
     }
 
@@ -648,7 +648,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             $pathparts = explode('?',$parts[1]);
             $endpath = $pathparts[0];
             $endpoint->setPath('/'.$endpath);
-            
+
         }
         else {
             $endpoint->setPath('/');
@@ -687,7 +687,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
                  $headers['Content-type'] = self::getMimeType($path);
              }
              $client->setRawData($data, $headers['Content-type']);
-         } 
+         }
          do {
             $retry = false;
 
@@ -782,7 +782,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             $sig_str .= '?versions';
         }
 
-        $signature = base64_encode(Zend_Crypt_Hmac::compute($this->_getSecretKey(), 'sha1', utf8_encode($sig_str), Zend_Crypt_Hmac::BINARY));
+        $signature = base64_encode(Zend_Crypt_Hmac::compute($this->_getSecretKey(), 'sha1', mb_convert_encoding($sig_str, 'UTF-8', 'ISO-8859-1'), Zend_Crypt_Hmac::BINARY));
         $headers['Authorization'] = 'AWS '.$this->_getAccessKey().':'.$signature;
 
         return $sig_str;
@@ -989,7 +989,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
      * Register this object as stream wrapper
      *
      * @param  string $name
-     * @return Zend_Service_Amazon_S3
+     * @return void
      */
     public function registerStreamWrapper($name='s3')
     {
@@ -1006,7 +1006,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
      * Unregister this object as stream wrapper
      *
      * @param  string $name
-     * @return Zend_Service_Amazon_S3
+     * @return void
      */
     public function unregisterStreamWrapper($name='s3')
     {

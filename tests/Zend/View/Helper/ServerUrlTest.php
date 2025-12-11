@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -34,7 +37,7 @@ require_once 'Zend/View/Helper/ServerUrl.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_ServerUrlTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_ServerUrlTest extends TestCase
 {
     /**
      * Back up of $_SERVER
@@ -46,16 +49,17 @@ class Zend_View_Helper_ServerUrlTest extends PHPUnit_Framework_TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function set_up()
     {
         $this->_serverBackup = $_SERVER;
         unset($_SERVER['HTTPS']);
+        unset($_SERVER['HTTP_X_FORWARDED_PROTO']);
     }
 
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tear_down()
     {
         $_SERVER = $this->_serverBackup;
     }
@@ -80,6 +84,15 @@ class Zend_View_Helper_ServerUrlTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['HTTPS'] = 'on';
+
+        $url = new Zend_View_Helper_ServerUrl();
+        $this->assertEquals('https://example.com', $url->serverUrl());
+    }
+
+    public function testConstructorWithHostAndXForwardedProtoHttps()
+    {
+        $_SERVER['HTTP_HOST'] = 'example.com';
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
 
         $url = new Zend_View_Helper_ServerUrl();
         $this->assertEquals('https://example.com', $url->serverUrl());
@@ -125,8 +138,8 @@ class Zend_View_Helper_ServerUrlTest extends PHPUnit_Framework_TestCase
 
     public function testServerUrlWithTrueParam()
     {
-        $_SERVER['HTTPS']       = 'off';
-        $_SERVER['HTTP_HOST']   = 'example.com';
+        $_SERVER['HTTPS'] = 'off';
+        $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 
         $url = new Zend_View_Helper_ServerUrl();
@@ -135,7 +148,7 @@ class Zend_View_Helper_ServerUrlTest extends PHPUnit_Framework_TestCase
 
     public function testServerUrlWithInteger()
     {
-        $_SERVER['HTTPS']     = 'off';
+        $_SERVER['HTTPS'] = 'off';
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 
@@ -145,7 +158,7 @@ class Zend_View_Helper_ServerUrlTest extends PHPUnit_Framework_TestCase
 
     public function testServerUrlWithObject()
     {
-        $_SERVER['HTTPS']     = 'off';
+        $_SERVER['HTTPS'] = 'off';
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 

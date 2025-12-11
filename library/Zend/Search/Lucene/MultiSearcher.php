@@ -25,7 +25,7 @@ require_once 'Zend/Search/Lucene/Interface.php';
 
 /**
  * Import Zend_Search_Lucene_Interface_MultiSearcher for BC (see ZF-12067)
- * @see Zend_Search_Lucene_Interface_MultiSearcher 
+ * @see Zend_Search_Lucene_Interface_MultiSearcher
  */
 require_once 'Zend/Search/Lucene/Interface/MultiSearcher.php';
 
@@ -145,7 +145,8 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      *
      * @return integer
      */
-    public function count(): int
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         $count = 0;
 
@@ -516,7 +517,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
     public function getDocument($id)
     {
         if ($id instanceof Zend_Search_Lucene_Search_QueryHit) {
-            /* @var $id Zend_Search_Lucene_Search_QueryHit */
+            /* @var Zend_Search_Lucene_Search_QueryHit $id */
             $id = $id->id;
         }
 
@@ -703,7 +704,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
     }
 
     /**
-     * Retrive similarity used by index reader
+     * Retrieve similarity used by index reader
      *
      * @return Zend_Search_Lucene_Search_Similarity
      * @throws Zend_Search_Lucene_Exception
@@ -732,7 +733,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
      *
      * @param integer $id
      * @param string $fieldName
-     * @return float
+     * @return float|null
      */
     public function norm($id, $fieldName)
     {
@@ -805,7 +806,7 @@ class Zend_Search_Lucene_MultiSearcher implements Zend_Search_Lucene_Interface
     /**
      * Set callback for choosing target index.
      *
-     * @param callback $callback
+     * @param callable $callback
      * @throws Zend_Search_Lucene_Exception
      */
     public function setDocumentDistributorCallback($callback)

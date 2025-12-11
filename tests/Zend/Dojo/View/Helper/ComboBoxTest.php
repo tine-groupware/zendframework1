@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -48,8 +53,18 @@ require_once 'Zend/Dojo/View/Helper/Dojo.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_View
  */
-class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_View_Helper_ComboBoxTest extends TestCase
 {
+    /**
+     * @var \Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var \Zend_Dojo_View_Helper_ComboBox|mixed
+     */
+    protected $helper;
+
     /**
      * Runs the test methods of this class.
      *
@@ -57,8 +72,8 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_View_Helper_ComboBoxTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Dojo_View_Helper_ComboBoxTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -67,12 +82,12 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         Zend_Registry::_unsetInstance();
         Zend_Dojo_View_Helper_Dojo::setUseDeclarative();
 
-        $this->view   = $this->getView();
+        $this->view = $this->getView();
         $this->helper = new Zend_Dojo_View_Helper_ComboBox();
         $this->helper->setView($this->view);
     }
@@ -83,7 +98,7 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -135,14 +150,96 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
     public function testShouldAllowDeclarativeDijitCreationAsSelect()
     {
         $html = $this->getElementAsSelect();
-        $this->assertRegexp('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html, $html);
+        $this->assertMatchesRegularExpression('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html, $html);
+    }
+
+    public function testShouldAllowDeclarativeDijitCreationAsSelectWithoutAutocomplete()
+    {
+        $html = $this->helper->comboBox(
+            'elementId',
+            'someCombo',
+            [
+                'autocomplete' => false,
+            ],
+            [],
+            [
+                'red' => 'Rouge',
+                'blue' => 'Bleu',
+                'white' => 'Blanc',
+                'orange' => 'Orange',
+                'black' => 'Noir',
+                'green' => 'Vert',
+            ]
+        );
+        $this->assertStringContainsString('autocomplete="false"', $html);
+    }
+
+    public function testShouldAllowProgrammaticDijitCreationAsSelectWithoutAutocomplete()
+    {
+        Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
+        $html = $this->helper->comboBox(
+            'elementId',
+            'someCombo',
+            [
+                'autocomplete' => false,
+            ],
+            [],
+            [
+                'red' => 'Rouge',
+                'blue' => 'Bleu',
+                'white' => 'Blanc',
+                'orange' => 'Orange',
+                'black' => 'Noir',
+                'green' => 'Vert',
+            ]
+        );
+        $dijit = $this->view->dojo()->getDijit('elementId');
+        $this->assertNotNull($dijit);
+        $this->assertArrayHasKey('autocomplete', $dijit);
+        $this->assertEquals('false', $dijit['autocomplete']);
+    }
+
+    public function testShouldAllowDeclarativeDijitCreationAsRemoterWithoutAutocomplete()
+    {
+        $html = $this->helper->comboBox(
+            'elementId',
+            'someCombo',
+            [
+                'store' => 'stateStore',
+                'storeType' => 'dojo.data.ItemFileReadStore',
+                'storeParams' => ['url' => 'states.txt'],
+                'searchAttr' => 'name',
+                'autocomplete' => false,
+            ]
+        );
+        $this->assertStringContainsString('autocomplete="false"', $html);
+    }
+
+    public function testShouldAllowProgrammaticDijitCreationAsRemoterWithoutAutocomplete()
+    {
+        Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
+        $html = $this->helper->comboBox(
+            'elementId',
+            'someCombo',
+            [
+                'store' => 'stateStore',
+                'storeType' => 'dojo.data.ItemFileReadStore',
+                'storeParams' => ['url' => 'states.txt'],
+                'searchAttr' => 'name',
+                'autocomplete' => false,
+            ]
+        );
+        $dijit = $this->view->dojo()->getDijit('elementId');
+        $this->assertNotNull($dijit);
+        $this->assertArrayHasKey('autocomplete', $dijit);
+        $this->assertEquals('false', $dijit['autocomplete']);
     }
 
     public function testShouldAllowProgrammaticDijitCreationAsSelect()
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $html = $this->getElementAsSelect();
-        $this->assertNotRegexp('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<select[^>]*(dojoType="dijit.form.ComboBox")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('elementId'));
     }
 
@@ -152,15 +249,15 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
         if (!preg_match('/(<input[^>]*(dojoType="dijit.form.ComboBox"))/', $html, $m)) {
             $this->fail('Did not create text input as remoter: ' . $html);
         }
-        $this->assertContains('type="text"', $m[1]);
+        $this->assertStringContainsString('type="text"', $m[1]);
     }
 
     public function testShouldAllowProgrammaticDijitCreationAsRemoter()
     {
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic();
         $html = $this->getElementAsRemoter();
-        $this->assertNotRegexp('/<input[^>]*(dojoType="dijit.form.ComboBox")/', $html);
-        $this->assertRegexp('/<input[^>]*(type="text")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<input[^>]*(dojoType="dijit.form.ComboBox")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*(type="text")/', $html);
         $this->assertNotNull($this->view->dojo()->getDijit('elementId'));
 
         $found = false;
@@ -182,20 +279,20 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
             'elementId',
             'someCombo',
             [
-                'store'       => 'stateStore',
-                'storeType'   => 'dojo.data.ItemFileReadStore',
+                'store' => 'stateStore',
+                'storeType' => 'dojo.data.ItemFileReadStore',
                 'storeParams' => ['url' => 'states.txt'],
-                'searchAttr'  => 'name',
+                'searchAttr' => 'name',
             ]
         );
         if (!preg_match('/(<input[^>]*(dojoType="dijit.form.ComboBox"))/', $html, $m)) {
             $this->fail('Did not create text input as remoter: ' . $html);
         }
-        $this->assertContains('type="text"', $m[1]);
+        $this->assertStringContainsString('type="text"', $m[1]);
         if (!preg_match('/(<div[^>]*(?:dojoType="dojo.data.ItemFileReadStore")[^>]*>)/', $html, $m)) {
             $this->fail('Did not create data store: ' . $html);
         }
-        $this->assertContains('url="states.txt"', $m[1]);
+        $this->assertStringContainsString('url="states.txt"', $m[1]);
     }
 
     /**
@@ -207,7 +304,7 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
         Zend_Dojo_View_Helper_Dojo::setUseProgrammatic(true);
         $html = $this->getElementAsRemoter();
 
-        $js   = $this->view->dojo()->getJavascript();
+        $js = $this->view->dojo()->getJavascript();
         $this->assertContains('var stateStore;', $js);
 
         $onLoad = $this->view->dojo()->_getZendLoadActions();
@@ -223,6 +320,6 @@ class Zend_Dojo_View_Helper_ComboBoxTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Dojo_View_Helper_ComboBoxTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dojo_View_Helper_ComboBoxTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Dojo_View_Helper_ComboBoxTest::main") {
     Zend_Dojo_View_Helper_ComboBoxTest::main();
 }

@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -43,8 +48,18 @@ require_once 'Zend/View/Helper/FormTextarea.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_FormTextareaTest extends TestCase
 {
+    /**
+     * @var Zend_View
+     */
+    protected $view;
+
+    /**
+     * @var Zend_View_Helper_FormTextarea
+     */
+    protected $helper;
+
     /**
      * Runs the test methods of this class.
      *
@@ -53,8 +68,8 @@ class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_FormTextareaTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormTextareaTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -63,7 +78,7 @@ class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
      *
      * @access protected
      */
-    protected function setUp()
+    protected function set_up()
     {
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormTextarea();
@@ -76,12 +91,12 @@ class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
     public function testCanDisableElement()
     {
         $html = $this->helper->formTextarea([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'attribs' => ['disable' => true]
         ]);
 
-        $this->assertRegexp('/<textarea[^>]*?(disabled="disabled")/', $html);
+        $this->assertMatchesRegularExpression('/<textarea[^>]*?(disabled="disabled")/', $html);
     }
 
     /**
@@ -90,16 +105,16 @@ class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
     public function testDisablingElementDoesNotRenderHiddenElements()
     {
         $html = $this->helper->formTextarea([
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'attribs' => ['disable' => true]
         ]);
 
-        $this->assertNotRegexp('/<textarea[^>]*?(type="hidden")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<textarea[^>]*?(type="hidden")/', $html);
     }
 }
 
 // Call Zend_View_Helper_FormTextareaTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormTextareaTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_View_Helper_FormTextareaTest::main") {
     Zend_View_Helper_FormTextareaTest::main();
 }

@@ -51,7 +51,7 @@ class Zend_Loader
      */
     public static function loadClass($class, $dirs = null)
     {
-        if (class_exists($class, false) || interface_exists($class, false)) {
+        if (self::classExists($class)) {
             return;
         }
 
@@ -82,10 +82,24 @@ class Zend_Loader
             self::loadFile($file, null, true);
         }
 
-        if (!class_exists($class, false) && !interface_exists($class, false)) {
+        if (self::classNotExists($class)) {
             require_once 'Zend/Exception.php';
             throw new Zend_Exception("File \"$file\" does not exist or class \"$class\" was not found in the file");
         }
+    }
+
+    public static function classExists(string $class): bool
+    {
+        return class_exists($class, false)
+            || interface_exists($class, false)
+            || trait_exists($class, false);
+    }
+
+    public static function classNotExists(string $class): bool
+    {
+        return !class_exists($class, false)
+            && !interface_exists($class, false)
+            && !trait_exists($class, false);
     }
 
     /**
@@ -134,10 +148,16 @@ class Zend_Loader
         // - Avoid error-logs full of PHP Warnings due to autoloads from class-exists()-checks.
         // - If a class does not exist that we really need, error will be thrown anyway.
         // - Fatal errors from the included files are still thrown anyway.
+        // Since PHP 8.0 @ doesn't mute the errors, which makes for a lot of clutter on the error log when you are using class_exists() and it doesn't
+        // Added stream_resolve_include_path to avoid it.
         if ($once) {
-            @include_once $filename;
+            if(stream_resolve_include_path($filename)) {
+                @include_once $filename;
+            }
         } else {
-            @include $filename;
+            if(stream_resolve_include_path($filename)) {
+                @include $filename;
+            }
         }
 
         /**
@@ -342,6 +362,6 @@ class Zend_Loader
             $file      = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
         $file .= str_replace('_', DIRECTORY_SEPARATOR, $fileName) . '.php';
-        return $file;    
+        return $file;
     }
 }
