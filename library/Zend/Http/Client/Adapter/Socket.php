@@ -205,7 +205,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
         if (! is_resource($this->socket) || ! $this->config['keepalive']) {
             $context = $this->getStreamContext();
             if ($secure || $this->config['sslusecontext']) {
-                foreach (array('sslcert', 'sslpassphrase', 'verify_peer', 'verify_peer_name') as $sslOption) {
+                foreach (['sslcert', 'sslpassphrase', 'verify_peer', 'verify_peer_name'] as $sslOption) {
                     if (isset($this->config[$sslOption]) && $this->config[$sslOption] !== null) {
                         switch ($sslOption) {
                             case 'sslpassphrase':

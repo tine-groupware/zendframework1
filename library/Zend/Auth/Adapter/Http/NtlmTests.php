@@ -12,19 +12,19 @@ class NtlmTests extends PHPUnit_Framework_TestCase
     
     public function setUp()
     {
-        $this->_auth = new Zend_Auth_Adapter_Http_Ntlm(array(
+        $this->_auth = new Zend_Auth_Adapter_Http_Ntlm([
             'challenge' => '0123456789abcdef',
-        ));
+        ]);
         
         // prepare response for testing (phpunit sets headers...)
         $this->_auth->getResponse()->headersSentThrowsException = FALSE;
         
-        $targetInfo = array(
+        $targetInfo = [
             'domain'        => 'DOMAIN',
             'servername'    => 'SERVER',
             'dnsdomain'     => 'domain.com',
             'fqserver'      => 'server.domain.com',
-        );
+        ];
         
         $this->_auth->setTargetInfo($targetInfo);
         

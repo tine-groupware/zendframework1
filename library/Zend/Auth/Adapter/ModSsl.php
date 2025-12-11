@@ -62,7 +62,7 @@ class Zend_Auth_Adapter_ModSsl implements Zend_Auth_Adapter_Interface
                 $callback = new Custom_Auth_ModSsl_UsernameCallback_Standard($certificate);
             }
 
-            $this->setIdentity(call_user_func(array($callback, 'getUsername')));
+            $this->setIdentity(call_user_func([$callback, 'getUsername']));
             $this->setCredential(null);
             
             if ($certificate instanceof Custom_Auth_ModSsl_Certificate_X509) {
@@ -78,7 +78,7 @@ class Zend_Auth_Adapter_ModSsl implements Zend_Auth_Adapter_Interface
 
                    return new Zend_Auth_Result(Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID, $this->_identity, $certificate->getStatusErrors());
                 }
-                $messages = array('Authentication Successfull');
+                $messages = ['Authentication Successfull'];
 
                 // If certificate is valid store it in database
                 $controller = Addressbook_Controller_Certificate::getInstance();
@@ -91,6 +91,6 @@ class Zend_Auth_Adapter_ModSsl implements Zend_Auth_Adapter_Interface
             }
         }
 
-        return new Zend_Auth_Result(Zend_Auth_Result::FAILURE, 'Unknown User', array('Unknown Authentication Error'));
+        return new Zend_Auth_Result(Zend_Auth_Result::FAILURE, 'Unknown User', ['Unknown Authentication Error']);
     }
 }

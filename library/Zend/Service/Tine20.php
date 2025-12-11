@@ -101,10 +101,10 @@ class Zend_Service_Tine20 extends Zend_Json_Client
         $this->setSkipSystemLookup(true);
 
         try {
-            $response = $this->call('Tinebase.login', array(
+            $response = $this->call('Tinebase.login', [
                 'username' => $loginname,
                 'password' => $password
-            ));
+            ]);
         } catch (Zend_Json_Exception $zje) {
             $response = [
                 'success' => false,

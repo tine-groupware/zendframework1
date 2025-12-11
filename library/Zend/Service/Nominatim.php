@@ -116,7 +116,7 @@ class Zend_Service_Nominatim
     {
         $this->_httpClient->resetParameters();
 
-        $queryParts = array();
+        $queryParts = [];
         
         if(!empty($this->_street)) {
             $queryParts[] = $this->_street;

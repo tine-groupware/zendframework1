@@ -34,15 +34,15 @@ require_once 'Zend/Translate/Adapter.php';
 class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
     // Internal variables
     private $_file        = false;
-    private $_adapterInfo = array();
-    private $_data        = array();
+    private $_adapterInfo = [];
+    private $_data        = [];
 
     /**
      * Generates the  adapter
      *
      * @param  array               $options  Options to set
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         parent::__construct($options);
     }
@@ -58,7 +58,7 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
      * @throws Zend_Translation_Exception
      * @return array
      */
-     protected function _loadTranslationData($filename, $locale, array $options = array())
+     protected function _loadTranslationData($filename, $locale, array $options = [])
     {
         if(is_array($filename))
         {
@@ -76,7 +76,7 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
             throw new Zend_Translate_Exception('unsupported file format');
         }
         
-        $this->_data = array();
+        $this->_data = [];
         $this->_file = @fopen($filename, 'rb');
         $header      = "";
         $id          = "";

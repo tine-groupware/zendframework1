@@ -52,7 +52,7 @@ class Zend_Json_Client_ServerProxy
     /**
      * @var array of Zend_Json_Client_ServerProxy
      */
-    private $_cache = array();
+    private $_cache = [];
 
 
     /**

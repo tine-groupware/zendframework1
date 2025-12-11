@@ -29,16 +29,16 @@
 class Zend_Scheduler
 {
     /** @var array Array of backend names */
-    static public $availableBackends = array('File', 'Db');
+    static public $availableBackends = ['File', 'Db'];
 
     /** @var Zend_Date Request time */
     protected $_time = null;
 
     /** @var array Tasks */
-    protected $_tasks = array();
+    protected $_tasks = [];
 
     /** @var $_removedTask */
-    protected $_removedTask = array();
+    protected $_removedTask = [];
     
     /** @var array Controller */
     protected $_controller = null;
@@ -55,7 +55,7 @@ class Zend_Scheduler
      * @param Zend_Scheduler_Backend_Abstract|string $backend Backend or name of backend ('File', etc.)
      * @param array $options Backend options
      */
-    public function __construct($backend = null, array $options = array())
+    public function __construct($backend = null, array $options = [])
     {
         $this->setTime();
         if ($backend !== null) {
@@ -85,7 +85,7 @@ class Zend_Scheduler
      * @param Zend_Scheduler_Backend_Abstract|string $backend Backend or name of backend ('File', etc.)
      * @param array $options Backend options
      */
-    public function setBackend($backend, array $options = array())
+    public function setBackend($backend, array $options = [])
     {
         if (is_string($backend)) {
             $backendName = ucfirst(strtolower($backend));
@@ -172,7 +172,7 @@ class Zend_Scheduler
                 $request    = new $class();
                 $controller = $requestData->controller;
                 $action     = isset($requestData->action) ? $requestData->action : null;
-                $parameters = isset($requestData->parameters) ? $requestData->parameters->asArray() : array();
+                $parameters = isset($requestData->parameters) ? $requestData->parameters->asArray() : [];
                 $request->setControllerName($controller)
                         ->setActionName($action)
                         ->setParams($parameters);
@@ -191,7 +191,7 @@ class Zend_Scheduler
      * @param  array $tasks Array of tasks
      * @return Zend_Scheduler This instance
      */
-    public function addTasks(array $tasks = array())
+    public function addTasks(array $tasks = [])
     {
         foreach ($tasks as $name => $task) {
             $this->addTask($name, $task);
@@ -242,8 +242,8 @@ class Zend_Scheduler
      */
     public function removeAllTasks()
     {
-        $this->_removedTask = array();
-        $this->_tasks = array();
+        $this->_removedTask = [];
+        $this->_tasks = [];
     }
 
     /**
@@ -266,7 +266,7 @@ class Zend_Scheduler
      */
     public function run()
     {
-        if ($this->_limit and $this->_backend === null) {
+        if ($this->_limit && $this->_backend === null) {
             throw new Zend_Scheduler_Exception('If a limit is set, a backend must be specified');
         }
 
@@ -277,13 +277,13 @@ class Zend_Scheduler
             return null;
         }
         
-        $responses = array();
+        $responses = [];
         $completed = 0;
 
         // Execute tasks until limit (if any) is reached
         foreach ($this->_tasks as $name => $task) {
             $task->setTime($this->_time);
-            if (($this->_limit == 0 or $completed < $this->_limit)) {
+            if (($this->_limit == 0 || $completed < $this->_limit)) {
                 if ($task->isScheduled()) {
                     $responses[$name] = $task->run();
                 }
@@ -337,7 +337,7 @@ class Zend_Scheduler
     {
         $tasks = $this->mergeTasks();
         $this->_backend->saveQueue($tasks);
-        $this->_removedTask = array();
+        $this->_removedTask = [];
         
         return true;
     }

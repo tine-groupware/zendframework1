@@ -38,7 +38,7 @@ abstract class Zend_Scheduler_Backend_Abstract
      * 
      * @param array $options Backend options
      */ 
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         $this->setOptions($options);
     }
@@ -64,7 +64,7 @@ abstract class Zend_Scheduler_Backend_Abstract
      * 
      * @param array $tasks Remaining tasks
      */ 
-    abstract public function saveQueue($tasks = array());
+    abstract public function saveQueue($tasks = []);
  
     /**
      * Gets the remaining tasks to perform.
@@ -108,20 +108,20 @@ abstract class Zend_Scheduler_Backend_Abstract
     {
         foreach ($tasks as $name => $task) {
             foreach ($task->getRequests() as $request) {
-                $requests[] = array(
+                $requests[] = [
                     'controller'    => $request->getControllerName(),
                     'action'        => $request->getActionName(),
                     'params'        => $request->getParams()
-                );
+                ];
             }
-            $__tasks[] = array(
+            $__tasks[] = [
                 'months'     =>    $task->getRule('months')->getValue(),
                 'weekdays'   =>    $task->getRule('weekdays')->getValue(),
                 'days'       =>    $task->getRule('days')->getValue(),
                 'hours'      =>    $task->getRule('hours')->getValue(),
                 'minutes'    =>    $task->getRule('minutes')->getValue(),
                 'requests'   =>    $requests
-            );
+            ];
         }
         return $__tasks;
     }

@@ -98,7 +98,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
         $this->_redis = new Redis();
     }
 
-    public function setLogDelegator(callable $delegator = null)
+    public function setLogDelegator(?callable $delegator = null)
     {
         $this->_logDelegator = $delegator;
     }

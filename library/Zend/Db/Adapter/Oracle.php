@@ -660,7 +660,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
         // Check the columns in the array against the database table
         // to identify BLOB (or CLOB) columns
         foreach (array_keys($bind) as $column) {
-            if ( in_array($columns[$column]['DATA_TYPE'], array('BLOB', 'CLOB'))) {
+            if ( in_array($columns[$column]['DATA_TYPE'], ['BLOB', 'CLOB'])) {
                 $lobs[] = $column;
             }
         }
@@ -669,8 +669,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
         if ( !isset($lobs)) {
             $i = 0;
             // extract and quote col names from the array keys
-            $cols = array();
-            $vals = array();
+            $cols = [];
+            $vals = [];
             foreach ($bind as $col => $val) {
                 $cols[] = $this->quoteIdentifier($col, true);
                 if ($val instanceof Zend_Db_Expr) {
@@ -700,14 +700,14 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
             $result = $stmt->rowCount();
         } else {
             // There are blobs in the $bind array so insert them separately
-            $ociTypes = array('BLOB' => OCI_B_BLOB, 'CLOB' => OCI_B_CLOB);
+            $ociTypes = ['BLOB' => OCI_B_BLOB, 'CLOB' => OCI_B_CLOB];
 
             // Extract and quote col names from the array keys
             $i = 0;
-            $cols = array();
-            $vals = array();
-            $lobData = array();
-            $returning = array();
+            $cols = [];
+            $vals = [];
+            $lobData = [];
+            $returning = [];
 
             foreach ($bind as $col => $val) {
                 $cols[] = $this->quoteIdentifier($col, true);
@@ -715,8 +715,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
 
                     $lobs[array_search($col, $lobs)] = $this->quoteIdentifier($col, true);
                     $vals[] = 'EMPTY_' . $columns[$col]['DATA_TYPE'] . '()';
-                    $lobData[':'.$col.$i] = array('ociType' => $ociTypes[$columns[$col]['DATA_TYPE']],
-                        'data'    => $val);
+                    $lobData[':'.$col.$i] = ['ociType' => $ociTypes[$columns[$col]['DATA_TYPE']],
+                        'data'    => $val];
                     unset($bind[$col]);
                     $lobDescriptors[':'.$col.$i] = oci_new_descriptor($this->_connection, OCI_D_LOB);
                     $returning[] = ':'.$col.$i;
@@ -786,7 +786,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
          * Build "col = ?" pairs for the statement,
          * except for Zend_Db_Expr which is treated literally.
          */
-        $set = array();
+        $set = [];
         $i = 0;
         foreach ($bind as $col => $val) {
             if ($val instanceof Zend_Db_Expr) {
@@ -925,7 +925,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      * @param  mixed  $bind An array of data to bind to the placeholders.
      * @return Zend_Db_Statement_Interface
      */
-    public function query($sql, $bind = array())
+    public function query($sql, $bind = [])
     {
         list ($sql, $bind) = $this->_positionalToNamedParameters($sql, $bind);
         return parent::query($sql, $bind);
@@ -979,7 +979,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
             }
         }
 
-        return array($sql, $bind);
+        return [$sql, $bind];
     }
 
     /**

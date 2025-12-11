@@ -9,7 +9,7 @@ class Zend_Auth_Adapter_Http_Ntlm_Identity
     protected $_domain = NULL;
     protected $_workstation = NULL;
     
-    public function __construct(array $idData = array())
+    public function __construct(array $idData = [])
     {
         if ((isset($idData['flags']) || array_key_exists('flags', $idData))) {
             $this->_flags = $idData['flags'];
@@ -17,7 +17,7 @@ class Zend_Auth_Adapter_Http_Ntlm_Identity
         
     if ((isset($idData['ntlmData']) || array_key_exists('ntlmData', $idData))) {
         
-            $which = array('domain', 'workstation');
+            $which = ['domain', 'workstation'];
             foreach( (array) $idData['ntlmData'] as $key => $value) {
                 if (in_array($key, $which)) {
                     $var = '_' . $key;

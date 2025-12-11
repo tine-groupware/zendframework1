@@ -144,7 +144,7 @@ abstract class Zend_Mail_Protocol_Abstract
      */
     public static $loggingEnabled = false;
 
-    protected $_connectionOptions = array();
+    protected $_connectionOptions = [];
 
     /**
      * Constructor.

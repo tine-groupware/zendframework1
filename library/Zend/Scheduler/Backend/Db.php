@@ -47,7 +47,7 @@ class Zend_Scheduler_Backend_Db extends Zend_Scheduler_Backend_Abstract
      * 
      * @param array $options Backend options
      */ 
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         if (is_array($options)) {
             $this->setOptions($options);
@@ -99,7 +99,7 @@ class Zend_Scheduler_Backend_Db extends Zend_Scheduler_Backend_Abstract
      * 
      * @param array $tasks Remaining tasks
      */ 
-    public function saveQueue($tasks = array())
+    public function saveQueue($tasks = [])
     {
         $db = $this->getDbAdapter();
         $transactionId = Tinebase_TransactionManager::getInstance()->startTransaction($db);
@@ -109,25 +109,25 @@ class Zend_Scheduler_Backend_Db extends Zend_Scheduler_Backend_Abstract
             
             foreach ($tasks as $name => $task) {
                 
-                $requests = array();
+                $requests = [];
                 foreach ($task->getRequests() as $request) {
-                    $requests[] = array(
+                    $requests[] = [
                         'controller'    => $request->getControllerName(),
                         'action'        => $request->getActionName(),
                         'params'        => $request->getUserParams()
-                    );
+                    ];
                 }
                 
-                $data = array(
+                $data = [
                     'months'     =>    $task->getRule('months')->getValue(),
                     'weekdays'   =>    $task->getRule('weekdays')->getValue(),
                     'days'       =>    $task->getRule('days')->getValue(),
                     'hours'      =>    $task->getRule('hours')->getValue(),
                     'minutes'    =>    $task->getRule('minutes')->getValue(),
                     'requests'   =>    $requests
-                );
+                ];
                 
-                $db->insert($this->getTableName(), array('name' => $name, 'data' => Zend_Json::encode($data)));
+                $db->insert($this->getTableName(), ['name' => $name, 'data' => Zend_Json::encode($data)]);
             }
             Tinebase_TransactionManager::getInstance()->commitTransaction($transactionId);
             
@@ -151,7 +151,7 @@ class Zend_Scheduler_Backend_Db extends Zend_Scheduler_Backend_Abstract
         $result = $stmt->fetchAll();
         
         if (empty($result)) {
-            return array();
+            return [];
         }
                 
         $class = $this->getTaskClass();
@@ -166,7 +166,7 @@ class Zend_Scheduler_Backend_Db extends Zend_Scheduler_Backend_Abstract
         }
         
         if (!is_array($tasks)) {
-            return array();
+            return [];
         }
         
         return $tasks;

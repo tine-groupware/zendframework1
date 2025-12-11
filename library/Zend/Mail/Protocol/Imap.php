@@ -54,7 +54,7 @@ class Zend_Mail_Protocol_Imap
      */
     protected $_logger = null;
 
-    protected $_connectionOptions = array();
+    protected $_connectionOptions = [];
 
     /**
      * Public constructor
@@ -65,7 +65,7 @@ class Zend_Mail_Protocol_Imap
      * @param  array    $connectionOptions
      * @throws Zend_Mail_Protocol_Exception
      */
-    public function __construct($host = '', $port = null, $ssl = false, $connectionOptions = array())
+    public function __construct($host = '', $port = null, $ssl = false, $connectionOptions = [])
     {
         $this->_connectionOptions = $connectionOptions;
 
@@ -254,7 +254,7 @@ class Zend_Mail_Protocol_Imap
             if (strlen($token) > 0) {
                 while ($token[0] == '(') {
                     array_push($stack, $tokens);
-                    $tokens = array();
+                    $tokens = [];
                     $token = substr($token, 1);
                     $line = substr($line, 1);
                     $pos--;
@@ -707,23 +707,23 @@ class Zend_Mail_Protocol_Imap
      */
     public function getNamespace()
     {
-        $this->sendRequest('NAMESPACE', array(), $tag);
+        $this->sendRequest('NAMESPACE', [], $tag);
 
-        $result = array();
+        $result = [];
         while (!$this->readLine($tokens, $tag)) {
 
             if ((is_array($tokens)) && ($tokens[0] == 'NAMESPACE')){
-                $nsNames = array('personal', 'other', 'shared');
+                $nsNames = ['personal', 'other', 'shared'];
                 $index = 0;
 
                 foreach ($tokens as $token) {
                     if (is_array($token)) {
-                        $result[$nsNames[$index]] = array(
+                        $result[$nsNames[$index]] = [
                             'name' => preg_replace('/"/', '', $token[0][0]),
                             'delimiter' => preg_replace('/"/', '', $token[0][1]),
-                        );
+                        ];
                     } else if ($token == 'NIL') {
-                        $result[$nsNames[$index]] = array('name' => 'NIL');
+                        $result[$nsNames[$index]] = ['name' => 'NIL'];
                     } else {
                         continue;
                     }
@@ -749,10 +749,10 @@ class Zend_Mail_Protocol_Imap
      */
     public function setQuota($mailbox, $resource, $limit=null)
     {
-        $tokens = array(
+        $tokens = [
             $this->escapeString($mailbox),
-            $this->escapeList($limit !== null ? array(strtoupper($resource), $limit) : array())
-        );
+            $this->escapeList($limit !== null ? [strtoupper($resource), $limit] : [])
+        ];
 
         return $this->requestAndResponse('SETQUOTA', $tokens, true);
     }
@@ -765,18 +765,18 @@ class Zend_Mail_Protocol_Imap
      */
     public function getQuotaRoot($mailbox)
     {
-        $this->sendRequest('GETQUOTAROOT', array($this->escapeString($mailbox)), $tag);
+        $this->sendRequest('GETQUOTAROOT', [$this->escapeString($mailbox)], $tag);
 
-        $result = array();
+        $result = [];
 
         while (! $this->readLine($tokens, $tag)) {
             if ($tokens[0] == 'QUOTA') {
                 if (! empty($tokens[2]) && is_array($tokens[2])) {
-                    $result[strtoupper($tokens[2][0])] = array(
+                    $result[strtoupper($tokens[2][0])] = [
                         'resource' => strtoupper($tokens[2][0]),
                         'usage'    => $tokens[2][1],
                         'limit'    => $tokens[2][2]
-                    );
+                    ];
                 }
             }
         }

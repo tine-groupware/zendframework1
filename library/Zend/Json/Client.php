@@ -119,7 +119,7 @@ class Zend_Json_Client
      * Proxy object for more convenient method calls
      * @var array of Zend_XmlRpc_Client_ServerProxy
      */
-    protected $_proxyCache = array();
+    protected $_proxyCache = [];
 
     /**
      * Flag for skipping system lookup
@@ -141,7 +141,7 @@ class Zend_Json_Client
      * @param  Zend_Http_Client  $httpClient  HTTP Client to use for requests
      * @return void
      */
-    public function __construct($server, Zend_Http_Client $httpClient = null)
+    public function __construct($server, ?Zend_Http_Client $httpClient = null)
     {
         if ($httpClient === null) {
             $this->_httpClient = new Zend_Http_Client();
@@ -278,11 +278,11 @@ class Zend_Json_Client
         $http = $this->getHttpClient();
 
         $http->setUri($this->_serverAddress);
-        $http->setHeaders(array(
+        $http->setHeaders([
             'Content-Type: application/json-rpc; charset=utf-8',
             'User-Agent: Zend_Json_Client/' . Zend_Version::VERSION,
             'Accept: application/json-rpc',
-        ));
+        ]);
 
         $json = $this->_lastRequest->__toString();
 //        echo 'c -> ' . $json . "\n";
@@ -316,7 +316,7 @@ class Zend_Json_Client
      * @return mixed
      * @throws Zend_Json_Client_FaultException
      */
-    public function call($method, $params=array())
+    public function call($method, $params=[])
     {
         if (!$this->skipSystemLookup() && !empty($method)) {
             $signature = $this->getIntrospector()->getMethodSignature($method);
