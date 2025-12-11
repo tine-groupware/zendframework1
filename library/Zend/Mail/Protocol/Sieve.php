@@ -592,7 +592,7 @@ class Zend_Mail_Protocol_Sieve
     {
         $lines = $this->requestAndResponse('GETSCRIPT', array($this->escapeString($name)));
         
-        $script = implode($lines[0]);
+        $script = implode('', $lines[0]);
         
         return $script;
     }

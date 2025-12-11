@@ -22,6 +22,7 @@
 class Zend_Auth_Adapter_ModSsl implements Zend_Auth_Adapter_Interface
 {
 
+    public $_identity;
     /**
      * Verify if client was verified by apache mod_ssl
      *
