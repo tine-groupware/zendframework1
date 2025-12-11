@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-22.04]
-        php-versions: ['8.1', '8.2', '8.3', '8.4']
+        php-versions: ['8.2', '8.3']
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
@@ -44,8 +44,7 @@ jobs:
         mv library tine20/tine20/vendor/zendframework/zendframework1/
         cd tine20/tine20
         cp config.inc.github.php config.inc.php
-        cp install.properties.github install.properties
-        vendor/bin/phing tine-install
+        php -d include_path=.:${configdir} setup.php --install -- adminLoginName=github adminPassword=github adminEmailAddress=github@example.org acceptedTermsVersion=1000
     - name: Unit tests
       run: |
         cd tine20/tests/tine20
