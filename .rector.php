@@ -50,4 +50,4 @@ return RectorConfig::configure()
     ->withSets([
         LevelSetList::UP_TO_PHP_82
     ])
-    ->withPhpVersion(PhpVersion::PHP_71);
+    ->withPhpVersion(PhpVersion::PHP_82);

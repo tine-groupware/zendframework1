@@ -3,7 +3,7 @@ includes:
     - phar://phpstan.phar/conf/bleedingEdge.neon
 parameters:
     phpVersion:
-        min: 80000
+        min: 80200
         max: 80499
     paths:
         - library
