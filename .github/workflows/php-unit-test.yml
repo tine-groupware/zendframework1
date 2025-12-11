@@ -45,6 +45,7 @@ jobs:
         cd tine20/tine20
         cp config.inc.github.php config.inc.php
         php -d include_path=.:${configdir} setup.php --install -- adminLoginName=github adminPassword=github adminEmailAddress=github@example.org acceptedTermsVersion=1000
+
     - name: Unit tests
       run: |
         cd tine20/tests/tine20
