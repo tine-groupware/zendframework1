@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -37,15 +42,35 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_DbTest extends TestCase
 {
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var Zend_Application_Bootstrap_Bootstrap
+     */
+    protected $bootstrap;
+
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -64,9 +89,9 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
         $this->bootstrap = new ZfAppBootstrap($this->application);
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
-    	Zend_Db_Table::setDefaultMetadataCache();
+        Zend_Db_Table::setDefaultMetadataCache();
 
         // Restore original autoloaders
         $loaders = spl_autoload_functions();
@@ -111,12 +136,16 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($resource->isDefaultTableAdapter());
     }
 
+    /**
+     * @requires extension pdo
+     * @requires extension pdo_sqlite
+     */
     public function testPassingDatabaseConfigurationSetsObjectState()
     {
         require_once 'Zend/Application/Resource/Db.php';
         $config = [
             'adapter' => 'Pdo_Sqlite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'isDefaultTableAdapter' => false,
@@ -127,12 +156,16 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($config['params'], $resource->getParams());
     }
 
+    /**
+     * @requires extension pdo
+     * @requires extension pdo_sqlite
+     */
     public function testInitShouldInitializeDbAdapter()
     {
         require_once 'Zend/Application/Resource/Db.php';
         $config = [
             'adapter' => 'Pdo_Sqlite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'isDefaultTableAdapter' => false,
@@ -145,6 +178,8 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-10033
+     * @requires extension pdo
+     * @requires extension pdo_sqlite
      */
     public function testSetDefaultMetadataCache()
     {
@@ -155,7 +190,7 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
 
         $config = [
             'adapter' => 'PDO_SQLite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'defaultMetadataCache' => $cache,
@@ -167,6 +202,8 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-10033
+     * @requires extension pdo
+     * @requires extension pdo_sqlite
      */
     public function testSetDefaultMetadataCacheFromCacheManager()
     {
@@ -189,7 +226,7 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
         $config = [
             'bootstrap' => $this->bootstrap,
             'adapter' => 'PDO_SQLite',
-            'params'  => [
+            'params' => [
                 'dbname' => ':memory:',
             ],
             'defaultMetadataCache' => 'database',
@@ -201,15 +238,17 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-6620
+     * @requires extension pdo
+     * @requires extension pdo_sqlite
      */
     public function testSetOptionFetchMode()
     {
         $config = [
             'bootstrap' => $this->bootstrap,
             'adapter' => 'PDO_SQLite',
-            'params'  => [
-                'dbname'    => ':memory:',
-                'options'   => [
+            'params' => [
+                'dbname' => ':memory:',
+                'options' => [
                     'fetchMode' => 'obj'
                 ]
             ],
@@ -221,20 +260,22 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
 
     /**
      * @group ZF-10543
+     * @requires extension pdo
+     * @requires extension pdo_sqlite
      */
     public function testSetDefaultMetadataCacheThroughBootstrap()
     {
         $options = [
             'resources' => [
-                'db'    => [
-                    'adapter'  => 'Pdo_Sqlite',
-                    'params'   => [
-                        'dbname'   => ':memory:'
-                     ],
-                     'defaultMetadataCache' => 'default'
+                'db' => [
+                    'adapter' => 'Pdo_Sqlite',
+                    'params' => [
+                        'dbname' => ':memory:'
+                    ],
+                    'defaultMetadataCache' => 'default'
                 ],
                 'cachemanager' => [
-                    'default'  => [
+                    'default' => [
                         'backend' => ['name' => 'black-hole']
                     ]
                 ]
@@ -248,6 +289,6 @@ class Zend_Application_Resource_DbTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_DbTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Application_Resource_DbTest::main') {
     Zend_Application_Resource_DbTest::main();
 }

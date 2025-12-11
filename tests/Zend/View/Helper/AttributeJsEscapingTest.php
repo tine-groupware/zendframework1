@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,8 +45,18 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_AttributeJsEscapingTest extends TestCase
 {
+    /**
+     * @var \Zend_View|mixed
+     */
+    protected $view;
+
+    /**
+     * @var \Zend_View_Helper_FormSubmit|mixed
+     */
+    protected $helper;
+
     /**
      * Runs the test methods of this class.
      *
@@ -49,8 +64,8 @@ class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit_Framework_TestCas
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_FormSubmitTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_View_Helper_FormSubmitTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -59,13 +74,13 @@ class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit_Framework_TestCas
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         if (Zend_Registry::isRegistered('Zend_View_Helper_Doctype')) {
             $registry = Zend_Registry::getInstance();
             unset($registry['Zend_View_Helper_Doctype']);
         }
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormSubmit();
         $this->helper->setView($this->view);
     }
@@ -76,7 +91,7 @@ class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit_Framework_TestCas
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
         unset($this->helper, $this->view);
     }
@@ -88,8 +103,8 @@ class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit_Framework_TestCas
     public function testRendersSubmitInput()
     {
         $html = $this->helper->formSubmit([
-            'name'    => 'foo',
-            'value'   => 'Submit!',
+            'name' => 'foo',
+            'value' => 'Submit!',
             'attribs' => ['onsubmit' => ['foo', '\'bar\'', 10]]
         ]);
         $this->assertEquals('<input type="submit" name="foo" id="foo" value="Submit!" onsubmit=\'["foo","&#39;bar&#39;",10]\'>', $html);
@@ -97,6 +112,6 @@ class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit_Framework_TestCas
 }
 
 // Call Zend_View_Helper_FormSubmitTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormSubmitTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_View_Helper_FormSubmitTest::main") {
     Zend_View_Helper_FormSubmitTest::main();
 }

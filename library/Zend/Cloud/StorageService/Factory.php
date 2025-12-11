@@ -30,7 +30,7 @@ require_once 'Zend/Cloud/AbstractFactory.php';
  */
 class Zend_Cloud_StorageService_Factory extends Zend_Cloud_AbstractFactory
 {
-    const STORAGE_ADAPTER_KEY = 'storage_adapter';
+    public const STORAGE_ADAPTER_KEY = 'storage_adapter';
 
     /**
      * @var string Interface which adapter must implement to be considered valid
@@ -50,7 +50,7 @@ class Zend_Cloud_StorageService_Factory extends Zend_Cloud_AbstractFactory
      * Retrieve StorageService adapter
      *
      * @param  array $options
-     * @return Zend_Cloud_StorageService_Adapter 
+     * @return Zend_Cloud_StorageService_Adapter
      */
     public static function getAdapter($options = [])
     {

@@ -44,9 +44,9 @@ require_once 'Zend/Markup/Renderer/TokenConverterInterface.php';
  */
 abstract class Zend_Markup_Renderer_RendererAbstract
 {
-    const TYPE_CALLBACK = 4;
-    const TYPE_REPLACE  = 8;
-    const TYPE_ALIAS    = 16;
+    public const TYPE_CALLBACK = 4;
+    public const TYPE_REPLACE  = 8;
+    public const TYPE_ALIAS    = 16;
 
     /**
      * Tag info
@@ -126,7 +126,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
         }
 
         if (isset($options['encoding'])) {
-            $this->setEncoding($options['encoding']);
+            static::setEncoding($options['encoding']);
         }
         if (isset($options['parser'])) {
             $this->setParser($options['parser']);
@@ -471,7 +471,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
     /**
      * Get the markup name
      *
-     * @param Zend_Markup_Token
+     * @param Zend_Markup_Token $token
      *
      * @return string
      */
@@ -547,7 +547,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
     /**
      * Get the default filter
      *
-     * @return void
+     * @return Zend_Filter
      */
     public function getDefaultFilter()
     {

@@ -68,7 +68,7 @@ class Zend_Search_Lucene_Index_Term
      * @return string
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->field . chr(0) . $this->text;
     }
@@ -115,7 +115,7 @@ public function key()
      * Get UTF-8 string length
      *
      * @param string $str
-     * @return string
+     * @return int
      */
     public static function getLength($str)
     {

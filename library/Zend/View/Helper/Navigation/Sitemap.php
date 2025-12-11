@@ -44,14 +44,14 @@ class Zend_View_Helper_Navigation_Sitemap
      *
      * @var string
      */
-    const SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+    public const SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9';
 
     /**
      * Schema URL
      *
      * @var string
      */
-    const SITEMAP_XSD = 'http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd';
+    public const SITEMAP_XSD = 'http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd';
 
     /**
      * Whether the XML declaration should be included in XML output
@@ -87,10 +87,10 @@ class Zend_View_Helper_Navigation_Sitemap
      *
      * @param  Zend_Navigation_Container $container  [optional] container to
      *                                               operate on
-     * @return Zend_View_Helper_Navigation_Sitemap   fluent interface, returns
+     * @return $this
      *                                               self
      */
-    public function sitemap(Zend_Navigation_Container $container = null)
+    public function sitemap(?Zend_Navigation_Container $container = null)
     {
         if (null !== $container) {
             $this->setContainer($container);
@@ -106,7 +106,7 @@ class Zend_View_Helper_Navigation_Sitemap
      *
      * @param  bool $useXmlDecl                     whether XML delcaration
      *                                              should be rendered
-     * @return Zend_View_Helper_Navigation_Sitemap  fluent interface, returns
+     * @return $this
      *                                              self
      */
     public function setUseXmlDeclaration($useXmlDecl)
@@ -130,7 +130,7 @@ class Zend_View_Helper_Navigation_Sitemap
      *
      * @param  bool $useSitemapValidators           whether sitemap validators
      *                                              should be used
-     * @return Zend_View_Helper_Navigation_Sitemap  fluent interface, returns
+     * @return $this
      *                                              self
      */
     public function setUseSitemapValidators($useSitemapValidators)
@@ -154,7 +154,7 @@ class Zend_View_Helper_Navigation_Sitemap
      *
      * @param  bool $schemaValidation               whether sitemap should
      *                                              validated using XSD Schema
-     * @return Zend_View_Helper_Navigation_Sitemap  fluent interface, returns
+     * @return $this
      *                                              self
      */
     public function setUseSchemaValidation($schemaValidation)
@@ -181,7 +181,7 @@ class Zend_View_Helper_Navigation_Sitemap
      * @param  string $serverUrl                    server URL to set (only
      *                                              scheme and host)
      * @throws Zend_Uri_Exception                   if invalid server URL
-     * @return Zend_View_Helper_Navigation_Sitemap  fluent interface, returns
+     * @return $this
      *                                              self
      */
     public function setServerUrl($serverUrl)
@@ -288,7 +288,7 @@ class Zend_View_Helper_Navigation_Sitemap
      *                                               validators are used and the
      *                                               loc element fails validation
      */
-    public function getDomSitemap(Zend_Navigation_Container $container = null)
+    public function getDomSitemap(?Zend_Navigation_Container $container = null)
     {
         if (null === $container) {
             $container = $this->getContainer();
@@ -431,7 +431,7 @@ class Zend_View_Helper_Navigation_Sitemap
      *                                               registered in the helper.
      * @return string                                helper output
      */
-    public function render(Zend_Navigation_Container $container = null)
+    public function render(?Zend_Navigation_Container $container = null)
     {
         $dom = $this->getDomSitemap($container);
 

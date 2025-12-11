@@ -59,9 +59,9 @@ require_once 'Zend/Gdata/Calendar/ListEntry.php';
 class Zend_Gdata_Calendar extends Zend_Gdata
 {
 
-    const CALENDAR_FEED_URI = 'https://www.google.com/calendar/feeds';
-    const CALENDAR_EVENT_FEED_URI = 'https://www.google.com/calendar/feeds/default/private/full';
-    const AUTH_SERVICE_NAME = 'cl';
+    public const CALENDAR_FEED_URI = 'https://www.google.com/calendar/feeds';
+    public const CALENDAR_EVENT_FEED_URI = 'https://www.google.com/calendar/feeds/default/private/full';
+    public const AUTH_SERVICE_NAME = 'cl';
 
     protected $_defaultPostUri = self::CALENDAR_EVENT_FEED_URI;
 
@@ -93,7 +93,7 @@ class Zend_Gdata_Calendar extends Zend_Gdata
      * Retreive feed object
      *
      * @param mixed $location The location for the feed, as a URL or Query
-     * @return Zend_Gdata_Calendar_EventFeed
+     * @return string|Zend_Gdata_App_Feed
      */
     public function getCalendarEventFeed($location = null)
     {
@@ -110,7 +110,7 @@ class Zend_Gdata_Calendar extends Zend_Gdata
     /**
      * Retreive entry object
      *
-     * @return Zend_Gdata_Calendar_EventEntry
+     * @return string|Zend_Gdata_App_Entry
      */
     public function getCalendarEventEntry($location = null)
     {
@@ -130,7 +130,7 @@ class Zend_Gdata_Calendar extends Zend_Gdata
     /**
      * Retrieve feed object
      *
-     * @return Zend_Gdata_Calendar_ListFeed
+     * @return string|Zend_Gdata_App_Feed
      */
     public function getCalendarListFeed()
     {
@@ -141,7 +141,7 @@ class Zend_Gdata_Calendar extends Zend_Gdata
     /**
      * Retreive entryobject
      *
-     * @return Zend_Gdata_Calendar_ListEntry
+     * @return string|Zend_Gdata_App_Entry
      */
     public function getCalendarListEntry($location = null)
     {

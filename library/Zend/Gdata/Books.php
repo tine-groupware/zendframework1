@@ -62,10 +62,10 @@ require_once 'Zend/Gdata/Books/VolumeFeed.php';
  */
 class Zend_Gdata_Books extends Zend_Gdata
 {
-    const VOLUME_FEED_URI = 'https://books.google.com/books/feeds/volumes';
-    const MY_LIBRARY_FEED_URI = 'https://books.google.com/books/feeds/users/me/collections/library/volumes';
-    const MY_ANNOTATION_FEED_URI = 'https://books.google.com/books/feeds/users/me/volumes';
-    const AUTH_SERVICE_NAME = 'print';
+    public const VOLUME_FEED_URI = 'https://books.google.com/books/feeds/volumes';
+    public const MY_LIBRARY_FEED_URI = 'https://books.google.com/books/feeds/users/me/collections/library/volumes';
+    public const MY_ANNOTATION_FEED_URI = 'https://books.google.com/books/feeds/users/me/volumes';
+    public const AUTH_SERVICE_NAME = 'print';
 
     /**
      * Namespaces used for Zend_Gdata_Books
@@ -98,7 +98,7 @@ class Zend_Gdata_Books extends Zend_Gdata
      * @param Zend_Gdata_Query|string|null $location (optional) The URL to
      *        query or a Zend_Gdata_Query object from which a URL can be
      *        determined.
-     * @return Zend_Gdata_Books_VolumeFeed The feed of volumes found at the
+     * @return string|Zend_Gdata_App_Feed The feed of volumes found at the
      *         specified URL.
      */
     public function getVolumeFeed($location = null)
@@ -120,7 +120,7 @@ class Zend_Gdata_Books extends Zend_Gdata
      * @param Zend_Gdata_Query|string|null $location (optional) The URL to
      *        query or a Zend_Gdata_Query object from which a URL can be
      *        determined.
-     * @return Zend_Gdata_Books_VolumeEntry The feed of volumes found at the
+     * @return string|Zend_Gdata_App_Entry The feed of volumes found at the
      *         specified URL.
      */
     public function getVolumeEntry($volumeId = null, $location = null)
@@ -140,7 +140,7 @@ class Zend_Gdata_Books extends Zend_Gdata
      *
      * @param Zend_Gdata_Query|string|null $location (optional) The URL to
      *        query.
-     * @return Zend_Gdata_Books_VolumeFeed The feed of volumes found at the
+     * @return string|Zend_Gdata_App_Feed The feed of volumes found at the
      *         specified URL.
      */
     public function getUserLibraryFeed($location = null)
@@ -158,7 +158,7 @@ class Zend_Gdata_Books extends Zend_Gdata
      *
      * @param Zend_Gdata_Query|string|null $location (optional) The URL to
      *        query.
-     * @return Zend_Gdata_Books_VolumeFeed The feed of volumes found at the
+     * @return string|Zend_Gdata_App_Feed The feed of volumes found at the
      *         specified URL.
      */
     public function getUserAnnotationFeed($location = null)
@@ -177,7 +177,7 @@ class Zend_Gdata_Books extends Zend_Gdata
      * @param Zend_Gdata_Books_VolumeEntry $entry
      * @param Zend_Gdata_Query|string|null $location (optional) The URL to
      *        query
-     * @return Zend_Gdata_Books_VolumeEntry The inserted volume entry.
+     * @return Zend_Gdata_App_Entry The inserted volume entry.
      */
     public function insertVolume($entry, $location = null)
     {

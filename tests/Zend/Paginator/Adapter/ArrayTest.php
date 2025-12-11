@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -37,7 +40,7 @@ require_once 'Zend/Paginator/Adapter/Array.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
-class Zend_Paginator_Adapter_ArrayTest extends PHPUnit_Framework_TestCase
+class Zend_Paginator_Adapter_ArrayTest extends TestCase
 {
     /**
      * @var Zend_Paginator_Adapter_Array
@@ -47,18 +50,18 @@ class Zend_Paginator_Adapter_ArrayTest extends PHPUnit_Framework_TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp ()
+    protected function set_up()
     {
-        parent::setUp();
+        parent::set_up();
         $this->_adapter = new Zend_Paginator_Adapter_Array(range(1, 101));
     }
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown ()
+    protected function tear_down()
     {
         $this->_adapter = null;
-        parent::tearDown();
+        parent::tear_down();
     }
 
     public function testGetsItemsAtOffsetZero()
@@ -84,7 +87,8 @@ class Zend_Paginator_Adapter_ArrayTest extends PHPUnit_Framework_TestCase
     /**
      * @group ZF-4151
      */
-    public function testEmptySet() {
+    public function testEmptySet()
+    {
         $this->_adapter = new Zend_Paginator_Adapter_Array([]);
         $actual = $this->_adapter->getItems(0, 10);
         $this->assertEquals([], $actual);

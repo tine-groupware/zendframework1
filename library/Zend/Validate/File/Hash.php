@@ -37,9 +37,9 @@ class Zend_Validate_File_Hash extends Zend_Validate_Abstract
     /**
      * @const string Error constants
      */
-    const DOES_NOT_MATCH = 'fileHashDoesNotMatch';
-    const NOT_DETECTED   = 'fileHashHashNotDetected';
-    const NOT_FOUND      = 'fileHashNotFound';
+    public const DOES_NOT_MATCH = 'fileHashDoesNotMatch';
+    public const NOT_DETECTED   = 'fileHashHashNotDetected';
+    public const NOT_FOUND      = 'fileHashNotFound';
 
     /**
      * @var array Error message templates
@@ -84,7 +84,7 @@ class Zend_Validate_File_Hash extends Zend_Validate_Abstract
     /**
      * Returns the set hash values as array, the hash as key and the algorithm the value
      *
-     * @return array
+     * @return string
      */
     public function getHash()
     {
@@ -95,7 +95,7 @@ class Zend_Validate_File_Hash extends Zend_Validate_Abstract
      * Sets the hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function setHash($options)
     {
@@ -110,7 +110,7 @@ class Zend_Validate_File_Hash extends Zend_Validate_Abstract
      *
      * @param  string|array $options
      * @throws Zend_Validate_Exception
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function addHash($options)
     {

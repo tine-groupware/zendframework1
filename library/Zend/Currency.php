@@ -37,15 +37,15 @@ require_once 'Zend/Locale/Format.php';
 class Zend_Currency
 {
     // Constants for defining what currency symbol should be displayed
-    const NO_SYMBOL     = 1;
-    const USE_SYMBOL    = 2;
-    const USE_SHORTNAME = 3;
-    const USE_NAME      = 4;
+    public const NO_SYMBOL     = 1;
+    public const USE_SYMBOL    = 2;
+    public const USE_SHORTNAME = 3;
+    public const USE_NAME      = 4;
 
     // Constants for defining the position of the currencysign
-    const STANDARD = 8;
-    const RIGHT    = 16;
-    const LEFT     = 32;
+    public const STANDARD = 8;
+    public const RIGHT    = 16;
+    public const LEFT     = 32;
 
     /**
      * Options array
@@ -138,8 +138,8 @@ class Zend_Currency
     /**
      * Returns a localized currency string
      *
-     * @param  integer|float $value   OPTIONAL Currency value
-     * @param  array         $options OPTIONAL options to set temporary
+     * @param  array|int|float|string $value   OPTIONAL Currency value
+     * @param  array                  $options OPTIONAL options to set temporary
      * @throws Zend_Currency_Exception When the value is not a number
      * @return string
      */
@@ -298,8 +298,8 @@ class Zend_Currency
      *
      * @param  string             $currency (Optional) Currency name
      * @param  string|Zend_Locale $locale   (Optional) Locale to display informations
+     * @return array The extracted locale representation as string
      * @throws Zend_Currency_Exception When locale contains no region
-     * @return string The extracted locale representation as string
      */
     private function _checkParams($currency = null, $locale = null)
     {
@@ -545,7 +545,7 @@ class Zend_Currency
      *
      * @param  string|Zend_Locale $locale (Optional) Locale for parsing input
      * @throws Zend_Currency_Exception When the given locale does not exist
-     * @return Zend_Currency Provides fluent interface
+     * @return $this
      */
     public function setLocale($locale = null)
     {
@@ -679,7 +679,7 @@ class Zend_Currency
      *
      * @param float|integer|Zend_Currency $value    Compares the currency with this value
      * @param string|Zend_Currency        $currency The currency to compare this value from
-     * @return Zend_Currency
+     * @return int
      */
     public function compare($value, $currency = null)
     {

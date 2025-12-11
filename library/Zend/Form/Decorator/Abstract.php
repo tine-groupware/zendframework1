@@ -36,8 +36,8 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     /**
      * Placement constants
      */
-    const APPEND  = 'APPEND';
-    const PREPEND = 'PREPEND';
+    public const APPEND  = 'APPEND';
+    public const PREPEND = 'PREPEND';
 
     /**
      * Default placement: append
@@ -143,7 +143,7 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
      * Remove single option
      *
      * @param mixed $key
-     * @return void
+     * @return bool
      */
     public function removeOption($key)
     {

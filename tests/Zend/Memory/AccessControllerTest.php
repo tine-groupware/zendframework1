@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -35,8 +40,13 @@ require_once 'Zend/Memory.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Memory
  */
-class Zend_Memory_Container_AccessControllerTest extends PHPUnit_Framework_TestCase
+class Zend_Memory_Container_AccessControllerTest extends TestCase
 {
+    /**
+     * @var string
+     */
+    protected $cacheDir;
+
     /**
      * Memory manager, used for tests
      *
@@ -46,11 +56,11 @@ class Zend_Memory_Container_AccessControllerTest extends PHPUnit_Framework_TestC
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         $tmpDir = sys_get_temp_dir() . '/zend_memory';
         $this->_removeCacheDir($tmpDir);
@@ -99,8 +109,8 @@ class Zend_Memory_Container_AccessControllerTest extends PHPUnit_Framework_TestC
      */
     public function testCreation()
     {
-        $memoryManager  = $this->_getMemoryManager();
-        $memObject      = $memoryManager->create('012345678');
+        $memoryManager = $this->_getMemoryManager();
+        $memObject = $memoryManager->create('012345678');
 
         $this->assertTrue($memObject instanceof Zend_Memory_AccessController);
     }
@@ -111,8 +121,8 @@ class Zend_Memory_Container_AccessControllerTest extends PHPUnit_Framework_TestC
      */
     public function testValueAccess()
     {
-        $memoryManager  = $this->_getMemoryManager();
-        $memObject      = $memoryManager->create('0123456789');
+        $memoryManager = $this->_getMemoryManager();
+        $memObject = $memoryManager->create('0123456789');
 
         // getRef() method
         $this->assertEquals($memObject->getRef(), '0123456789');
@@ -143,19 +153,19 @@ class Zend_Memory_Container_AccessControllerTest extends PHPUnit_Framework_TestC
      */
     public function testLock()
     {
-        $memoryManager  = $this->_getMemoryManager();
-        $memObject      = $memoryManager->create('012345678');
+        $memoryManager = $this->_getMemoryManager();
+        $memObject = $memoryManager->create('012345678');
 
-        $this->assertFalse((boolean)$memObject->isLocked());
+        $this->assertFalse((bool)$memObject->isLocked());
 
         $memObject->lock();
-        $this->assertTrue((boolean)$memObject->isLocked());
+        $this->assertTrue((bool)$memObject->isLocked());
 
         $memObject->unlock();
-        $this->assertFalse((boolean)$memObject->isLocked());
+        $this->assertFalse((bool)$memObject->isLocked());
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Memory_AccessControllerTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Memory_AccessControllerTest::main') {
     Zend_Memory_AccessControllerTest::main();
 }

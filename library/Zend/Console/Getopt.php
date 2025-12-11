@@ -132,18 +132,18 @@ class Zend_Console_Getopt
      * modeGnu is for traditional 'ab:c:' style getopt format.
      * modeZend is for a more structured format.
      */
-    const MODE_ZEND                         = 'zend';
-    const MODE_GNU                          = 'gnu';
+    public const MODE_ZEND                         = 'zend';
+    public const MODE_GNU                          = 'gnu';
 
     /**
      * Constant tokens for various symbols used in the mode_zend
      * rule format.
      */
-    const PARAM_REQUIRED                    = '=';
-    const PARAM_OPTIONAL                    = '-';
-    const TYPE_STRING                       = 's';
-    const TYPE_WORD                         = 'w';
-    const TYPE_INTEGER                      = 'i';
+    public const PARAM_REQUIRED                    = '=';
+    public const PARAM_OPTIONAL                    = '-';
+    public const TYPE_STRING                       = 's';
+    public const TYPE_WORD                         = 'w';
+    public const TYPE_INTEGER                      = 'i';
 
     /**
      * These are constants for optional behavior of this class.
@@ -153,10 +153,10 @@ class Zend_Console_Getopt
      * parseAll is true if all options on the command line should be parsed, regardless of
      * whether an argument appears before them.
      */
-    const CONFIG_RULEMODE                   = 'ruleMode';
-    const CONFIG_DASHDASH                   = 'dashDash';
-    const CONFIG_IGNORECASE                 = 'ignoreCase';
-    const CONFIG_PARSEALL                   = 'parseAll';
+    public const CONFIG_RULEMODE                   = 'ruleMode';
+    public const CONFIG_DASHDASH                   = 'dashDash';
+    public const CONFIG_IGNORECASE                 = 'ignoreCase';
+    public const CONFIG_PARSEALL                   = 'parseAll';
 
     /**
      * Defaults for getopt configuration are:
@@ -260,9 +260,8 @@ class Zend_Console_Getopt
         if (!is_array($argv)) {
             $argv = array_slice($_SERVER['argv'], 1);
         }
-        if (isset($argv)) {
-            $this->addArguments((array)$argv);
-        }
+
+        $this->addArguments((array)$argv);
     }
 
     /**
@@ -345,7 +344,7 @@ class Zend_Console_Getopt
      *
      * @param  array $argv
      * @throws Zend_Console_Getopt_Exception When not given an array as parameter
-     * @return Zend_Console_Getopt Provides a fluent interface
+     * @return $this
      */
     public function addArguments($argv)
     {
@@ -365,7 +364,7 @@ class Zend_Console_Getopt
      *
      * @param  array $argv
      * @throws Zend_Console_Getopt_Exception When not given an array as parameter
-     * @return Zend_Console_Getopt Provides a fluent interface
+     * @return $this
      */
     public function setArguments($argv)
     {
@@ -385,7 +384,7 @@ class Zend_Console_Getopt
      * the behavior of Zend_Console_Getopt.
      *
      * @param  array $getoptConfig
-     * @return Zend_Console_Getopt Provides a fluent interface
+     * @return $this
      */
     public function setOptions($getoptConfig)
     {
@@ -404,7 +403,7 @@ class Zend_Console_Getopt
      *
      * @param  string $configKey
      * @param  string $configValue
-     * @return Zend_Console_Getopt Provides a fluent interface
+     * @return $this
      */
     public function setOption($configKey, $configValue)
     {
@@ -419,7 +418,7 @@ class Zend_Console_Getopt
      * These are appended to the rules defined when the constructor was called.
      *
      * @param  array $rules
-     * @return Zend_Console_Getopt Provides a fluent interface
+     * @return $this
      */
     public function addRules($rules)
     {
@@ -518,16 +517,16 @@ class Zend_Console_Getopt
     public function toXml()
     {
         $this->parse();
-        $doc = new DomDocument('1.0', 'utf-8');
+        $doc = new DOMDocument('1.0', 'utf-8');
         $optionsNode = $doc->createElement('options');
         $doc->appendChild($optionsNode);
 
         foreach ($this->_options as $flag => $value) {
             $optionNode = $doc->createElement('option');
-            $optionNode->setAttribute('flag', utf8_encode($flag));
+            $optionNode->setAttribute('flag', mb_convert_encoding($flag, 'UTF-8', 'ISO-8859-1'));
 
             if ($value !== true) {
-                $optionNode->setAttribute('parameter', utf8_encode($value));
+                $optionNode->setAttribute('parameter', mb_convert_encoding($value, 'UTF-8', 'ISO-8859-1'));
             }
             $optionsNode->appendChild($optionNode);
         }
@@ -644,7 +643,7 @@ class Zend_Console_Getopt
      *
      * @param  array $aliasMap
      * @throws Zend_Console_Getopt_Exception
-     * @return Zend_Console_Getopt Provides a fluent interface
+     * @return $this
      */
     public function setAliases($aliasMap)
     {
@@ -677,7 +676,7 @@ class Zend_Console_Getopt
      * mapping option name (short or long) to the help string.
      *
      * @param  array $helpMap
-     * @return Zend_Console_Getopt Provides a fluent interface
+     * @return $this
      */
     public function setHelp($helpMap)
     {
@@ -699,7 +698,7 @@ class Zend_Console_Getopt
      * Also find option parameters, and remaining arguments after
      * all options have been parsed.
      *
-     * @return Zend_Console_Getopt|null Provides a fluent interface
+     * @return $this
      */
     public function parse()
     {
@@ -789,7 +788,8 @@ class Zend_Console_Getopt
     protected function _parseShortOptionCluster(&$argv)
     {
         $flagCluster = ltrim(array_shift($argv), '-');
-        foreach (str_split($flagCluster) as $flag) {
+        $listFlagChar = $flagCluster === '' ?  [''] : str_split($flagCluster);
+        foreach ($listFlagChar as $flag) {
             $this->_parseSingleOption($flag, $argv);
         }
     }
@@ -888,6 +888,9 @@ class Zend_Console_Getopt
      */
     protected function _addRulesModeGnu($rules)
     {
+        if (!$rules) {
+            return;
+        }
         $ruleArray = [];
 
         /**

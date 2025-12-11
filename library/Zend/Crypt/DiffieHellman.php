@@ -89,9 +89,9 @@ class Zend_Crypt_DiffieHellman
     /**
      * Constants
      */
-    const BINARY = 'binary';
-    const NUMBER = 'number';
-    const BTWOC  = 'btwoc';
+    public const BINARY = 'binary';
+    public const NUMBER = 'number';
+    public const BTWOC  = 'btwoc';
 
     /**
      * Constructor; if set construct the object using the parameter array to
@@ -197,8 +197,8 @@ class Zend_Crypt_DiffieHellman
      * @param string $publicKey
      * @param string $type
      * @param string $output
+     * @return string|null
      * @throws Zend_Crypt_DiffieHellman_Exception
-     * @return mixed
      */
     public function computeSecretKey($publicKey, $type = self::NUMBER, $output = self::NUMBER)
     {

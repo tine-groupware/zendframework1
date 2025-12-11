@@ -35,10 +35,10 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader37 extends PHPUnit_Framework_Co
     /**#@+
      * Assertion type constants
      */
-    const ASSERT_RESPONSE_CODE   = 'assertResponseCode';
-    const ASSERT_HEADER          = 'assertHeader';
-    const ASSERT_HEADER_CONTAINS = 'assertHeaderContains';
-    const ASSERT_HEADER_REGEX    = 'assertHeaderRegex';
+    public const ASSERT_RESPONSE_CODE   = 'assertResponseCode';
+    public const ASSERT_HEADER          = 'assertHeader';
+    public const ASSERT_HEADER_CONTAINS = 'assertHeaderContains';
+    public const ASSERT_HEADER_REGEX    = 'assertHeaderRegex';
     /**#@-*/
 
     /**
@@ -62,7 +62,7 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader37 extends PHPUnit_Framework_Co
      * @var int Response code
      */
     protected $_code              = 200;
-    
+
     /**
      * @var int Actual response code
      */
@@ -107,10 +107,10 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader37 extends PHPUnit_Framework_Co
     /**
      * Evaluate an object to see if it fits the constraints
      *
-     * @param  object       of Zend_Controller_Response_Abstract to be evaluated
-     * @param  null|string  Assertion type
-     * @param  int|string   HTTP response code to evaluate against | header string (haystack)
-     * @param  string       (optional) match (needle), may be required depending on assertion type
+     * @param  object $response of Zend_Controller_Response_Abstract to be evaluated
+     * @param  null|string $assertType Assertion type
+     * @param  int|string $variable HTTP response code to evaluate against | header string (haystack)
+     * @param  string (optional) match (needle), may be required depending on assertion type
      * @return bool
      * NOTE:
      * Drastic changes up to PHPUnit 3.5.15 this was:
@@ -190,9 +190,9 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader37 extends PHPUnit_Framework_Co
      * Report Failure
      *
      * @see    PHPUnit_Framework_Constraint for implementation details
-     * @param  mixed    CSS selector path
-     * @param  string   Failure description
-     * @param  object   Cannot be used, null
+     * @param  mixed $other CSS selector path
+     * @param  string $description Failure description
+     * @param  object $cannot_be_used Cannot be used, null
      * @return void
      * @throws PHPUnit_Framework_ExpectationFailedException
      * NOTE:
@@ -202,7 +202,7 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader37 extends PHPUnit_Framework_Co
      *     protected function fail($other, $description, PHPUnit_Framework_ComparisonFailure $comparisonFailure = NULL)
      * We use the new interface for PHP-strict checking
      */
-    public function fail($other, $description, PHPUnit_Framework_ComparisonFailure $cannot_be_used = NULL)
+    public function fail($other, $description, ?PHPUnit_Framework_ComparisonFailure $cannot_be_used = NULL)
     {
         require_once 'Zend/Test/PHPUnit/Constraint/Exception.php';
         switch ($this->_assertType) {

@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -43,12 +48,12 @@ class Zend_Auth_Adapter_Ldap_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Auth_Adapter_Ldap');
+        $suite = new TestSuite('Zend Framework - Zend_Auth_Adapter_Ldap');
 
         $suite->addTestSuite('Zend_Auth_Adapter_Ldap_OfflineTest');
 
@@ -71,9 +76,9 @@ class Zend_Auth_Adapter_Ldap_AllTests
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Auth
  */
-class Zend_Auth_Adapter_Ldap_SkipOnlineTests extends PHPUnit_Framework_TestCase
+class Zend_Auth_Adapter_Ldap_SkipOnlineTests extends TestCase
 {
-    public function setUp()
+    protected function set_up()
     {
         $this->markTestSkipped('Zend_Auth_Adapter_Ldap online tests not enabled in TestConfiguration.php');
     }

@@ -34,16 +34,16 @@ require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @method $this appendHttpEquiv($keyValue, $content, $conditionalHttpEquiv)
  * @method $this appendName($keyValue, $content, $conditionalName)
- * @method $this appendProperty($property, $content, $modifiers)
+ * @method $this appendProperty($property, $content, $modifiers = [])
  * @method $this offsetSetHttpEquiv($index, $keyValue, $content, $conditionalHttpEquiv)
  * @method $this offsetSetName($index, $keyValue, $content, $conditionalName)
- * @method $this offsetSetProperty($index, $property, $content, $modifiers)
+ * @method $this offsetSetProperty($index, $property, $content, $modifiers = [])
  * @method $this prependHttpEquiv($keyValue, $content, $conditionalHttpEquiv)
  * @method $this prependName($keyValue, $content, $conditionalName)
- * @method $this prependProperty($property, $content, $modifiers)
- * @method $this setHttpEquiv($keyValue, $content, $modifiers)
- * @method $this setName($keyValue, $content, $modifiers)
- * @method $this setProperty($property, $content, $modifiers)
+ * @method $this prependProperty($property, $content, $modifiers = [])
+ * @method $this setHttpEquiv($keyValue, $content, $modifiers = [])
+ * @method $this setName($keyValue, $content, $modifiers = [])
+ * @method $this setProperty($property, $content, $modifiers = [])
  */
 class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_Standalone
 {
@@ -186,7 +186,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
      * Not valid in a non-HTML5 doctype
      *
      * @param string $charset
-     * @return Zend_View_Helper_HeadMeta Provides a fluent interface
+     * @return $this
      */
     public function setCharset($charset)
     {
@@ -233,7 +233,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
     /**
      * Append
      *
-     * @param  string $value
+     * @param  string|stdClass $value
      * @return void
      * @throws Zend_View_Exception
      */
@@ -253,10 +253,11 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
      * OffsetSet
      *
      * @param  string|int $index
-     * @param  string $value
+     * @param  string|stdClass $value
      * @return void
      * @throws Zend_View_Exception
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($index, $value)
     {
         if (!$this->_isValid($value)) {
@@ -276,6 +277,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
      * @return void
      * @throws Zend_View_Exception
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($index)
     {
         if (!in_array($index, $this->getContainer()->getKeys())) {
@@ -291,7 +293,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
     /**
      * Prepend
      *
-     * @param  string $value
+     * @param  string|stdClass $value
      * @return void
      * @throws Zend_View_Exception
      */
@@ -310,7 +312,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
     /**
      * Set
      *
-     * @param  string $value
+     * @param  string|stdClass $value
      * @return void
      * @throws Zend_View_Exception
      */
@@ -388,7 +390,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
             $this->_escape($item->content),
             $modifiersString
         );
-        
+
         if (isset($item->modifiers['conditional'])
             && !empty($item->modifiers['conditional'])
             && is_string($item->modifiers['conditional']))
@@ -398,7 +400,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
             }
             $meta = '<!--[if ' . $this->_escape($item->modifiers['conditional']) . ']>' . $meta . '<![endif]-->';
         }
-        
+
         return $meta;
     }
 

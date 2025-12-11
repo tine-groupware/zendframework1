@@ -32,11 +32,11 @@ require_once 'Zend/Validate/Abstract.php';
  */
 class Zend_Validate_Isbn extends Zend_Validate_Abstract
 {
-    const AUTO    = 'auto';
-    const ISBN10  = '10';
-    const ISBN13  = '13';
-    const INVALID = 'isbnInvalid';
-    const NO_ISBN = 'isbnNoIsbn';
+    public const AUTO    = 'auto';
+    public const ISBN10  = '10';
+    public const ISBN13  = '13';
+    public const INVALID = 'isbnInvalid';
+    public const NO_ISBN = 'isbnNoIsbn';
 
     /**
      * Validation failure message template definitions.
@@ -217,7 +217,7 @@ class Zend_Validate_Isbn extends Zend_Validate_Abstract
      *
      * @param  string $separator
      * @throws Zend_Validate_Exception When $separator is not valid
-     * @return Zend_Validate_Isbn Provides a fluent interface
+     * @return $this
      */
     public function setSeparator($separator)
     {
@@ -249,7 +249,7 @@ class Zend_Validate_Isbn extends Zend_Validate_Abstract
      *
      * @param  string $type
      * @throws Zend_Validate_Exception When $type is not valid
-     * @return Zend_Validate_Isbn Provides a fluent interface
+     * @return $this
      */
     public function setType($type)
     {

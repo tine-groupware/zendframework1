@@ -211,7 +211,7 @@ implements Iterator, Countable
      * @return Zend_Feed_Reader_Entry_Interface
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return $this->_entries[$this->key()];
     }
@@ -219,10 +219,10 @@ public function current()
     /**
      * Return the current feed key
      *
-     * @return unknown
+     * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_entriesKey;
     }

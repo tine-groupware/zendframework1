@@ -47,7 +47,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
     /**
      * used as option to constructor to prevent additional instances to the same namespace
      */
-    const SINGLE_INSTANCE = true;
+    public const SINGLE_INSTANCE = true;
 
     /**
      * Namespace - which namespace this instance of zend-session is saving-to/getting-from
@@ -207,7 +207,8 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      *
      * @return ArrayObject - iteratable container of the namespace contents
      */
-    public function getIterator(): Traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return new ArrayObject(parent::_namespaceGetAll($this->_namespace));
     }
@@ -260,7 +261,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
     /**
      * unsetAll() - unset all variables in this namespace
      *
-     * @return true
+     * @return void
      */
     public function unsetAll()
     {
@@ -293,8 +294,8 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      *
      * @param string $name - programmatic name of a key, in a <key,value> pair in the current namespace
      * @param mixed $value - value in the <key,value> pair to assign to the $name key
+     * @return void
      * @throws Zend_Session_Exception
-     * @return true
      */
     public function __set($name, $value)
     {
@@ -399,7 +400,7 @@ class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAg
      * __unset() - unset a variable in this object's namespace.
      *
      * @param string $name - programmatic name of a key, in a <key,value> pair in the current namespace
-     * @return true
+     * @return void
      */
     public function __unset($name)
     {

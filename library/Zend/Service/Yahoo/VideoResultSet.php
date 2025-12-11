@@ -56,8 +56,8 @@ class Zend_Service_Yahoo_VideoResultSet extends Zend_Service_Yahoo_ResultSet
      *
      * @return Zend_Service_Yahoo_VideoResult
      */
-    #[\ReturnTypeWillChange]\n#[\ReturnTypeWillChange]
-public function current()
+    #[\ReturnTypeWillChange]
+    public function current()
     {
         return new Zend_Service_Yahoo_VideoResult($this->_results->item($this->_currentIndex));
     }

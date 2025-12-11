@@ -58,54 +58,54 @@ require_once 'Zend/Gdata/Photos/PhotoFeed.php';
 class Zend_Gdata_Photos extends Zend_Gdata
 {
 
-    const PICASA_BASE_URI = 'https://picasaweb.google.com/data';
-    const PICASA_BASE_FEED_URI = 'https://picasaweb.google.com/data/feed';
-    const AUTH_SERVICE_NAME = 'lh2';
+    public const PICASA_BASE_URI = 'https://picasaweb.google.com/data';
+    public const PICASA_BASE_FEED_URI = 'https://picasaweb.google.com/data/feed';
+    public const AUTH_SERVICE_NAME = 'lh2';
 
     /**
      * Default projection when interacting with the Picasa server.
      */
-    const DEFAULT_PROJECTION = 'api';
+    public const DEFAULT_PROJECTION = 'api';
 
     /**
      * The default visibility to filter events by.
      */
-    const DEFAULT_VISIBILITY = 'all';
+    public const DEFAULT_VISIBILITY = 'all';
 
     /**
      * The default user to retrieve feeds for.
      */
-    const DEFAULT_USER = 'default';
+    public const DEFAULT_USER = 'default';
 
     /**
      * Path to the user feed on the Picasa server.
      */
-    const USER_PATH = 'user';
+    public const USER_PATH = 'user';
 
     /**
      * Path to album feeds on the Picasa server.
      */
-    const ALBUM_PATH = 'albumid';
+    public const ALBUM_PATH = 'albumid';
 
     /**
      * Path to photo feeds on the Picasa server.
      */
-    const PHOTO_PATH = 'photoid';
+    public const PHOTO_PATH = 'photoid';
 
     /**
      * The path to the community search feed on the Picasa server.
      */
-    const COMMUNITY_SEARCH_PATH = 'all';
+    public const COMMUNITY_SEARCH_PATH = 'all';
 
     /**
      * The path to use for finding links to feeds within entries
      */
-    const FEED_LINK_PATH = 'http://schemas.google.com/g/2005#feed';
+    public const FEED_LINK_PATH = 'http://schemas.google.com/g/2005#feed';
 
     /**
      * The path to use for the determining type of an entry
      */
-    const KIND_PATH = 'http://schemas.google.com/g/2005#kind';
+    public const KIND_PATH = 'http://schemas.google.com/g/2005#kind';
 
     /**
      * Namespaces used for Zend_Gdata_Photos
@@ -143,7 +143,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * @param string $userName The userName of interest
      * @param mixed $location (optional) The location for the feed, as a URL
      *          or Query. If not provided, a default URL will be used instead.
-     * @return Zend_Gdata_Photos_UserFeed
+     * @return string|Zend_Gdata_App_Feed
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -180,7 +180,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * objects.
      *
      * @param mixed $location (optional) The location for the feed, as a URL or Query.
-     * @return Zend_Gdata_Photos_AlbumFeed
+     * @return string|Zend_Gdata_App_Feed
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -208,7 +208,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * @param mixed $location (optional) The location for the feed, as a URL
      *          or Query. If not specified, the community search feed will
      *          be returned instead.
-     * @return Zend_Gdata_Photos_PhotoFeed
+     * @return string|Zend_Gdata_App_Feed
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -233,7 +233,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * Retreive a single UserEntry object.
      *
      * @param mixed $location The location for the feed, as a URL or Query.
-     * @return Zend_Gdata_Photos_UserEntry
+     * @return string|Zend_Gdata_App_Entry
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -258,7 +258,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * Retreive a single AlbumEntry object.
      *
      * @param mixed $location The location for the feed, as a URL or Query.
-     * @return Zend_Gdata_Photos_AlbumEntry
+     * @return string|Zend_Gdata_App_Entry
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -283,7 +283,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * Retreive a single PhotoEntry object.
      *
      * @param mixed $location The location for the feed, as a URL or Query.
-     * @return Zend_Gdata_Photos_PhotoEntry
+     * @return string|Zend_Gdata_App_Entry
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -308,7 +308,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * Retreive a single TagEntry object.
      *
      * @param mixed $location The location for the feed, as a URL or Query.
-     * @return Zend_Gdata_Photos_TagEntry
+     * @return string|Zend_Gdata_App_Entry
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -333,7 +333,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * Retreive a single CommentEntry object.
      *
      * @param mixed $location The location for the feed, as a URL or Query.
-     * @return Zend_Gdata_Photos_CommentEntry
+     * @return string|Zend_Gdata_App_Entry
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
      */
@@ -362,7 +362,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * @param string $url (optional) The URI that the album should be
      *          uploaded to. If null, the default album creation URI for
      *          this domain will be used.
-     * @return Zend_Gdata_Photos_AlbumEntry The inserted album entry as
+     * @return Zend_Gdata_App_Entry The inserted album entry as
      *          returned by the server.
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
@@ -385,7 +385,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * @param string $url The URI that the photo should be uploaded
      *          to. Alternatively, an AlbumEntry can be provided and the
      *          photo will be added to that album.
-     * @return Zend_Gdata_Photos_PhotoEntry The inserted photo entry
+     * @return Zend_Gdata_App_Entry The inserted photo entry
      *          as returned by the server.
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
@@ -412,7 +412,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * @param string $url The URI where the tag should be
      *          uploaded to. Alternatively, a PhotoEntry can be provided and
      *          the tag will be added to that photo.
-     * @return Zend_Gdata_Photos_TagEntry The inserted tag entry as returned
+     * @return Zend_Gdata_App_Entry The inserted tag entry as returned
      *          by the server.
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException
@@ -439,7 +439,7 @@ class Zend_Gdata_Photos extends Zend_Gdata
      * @param string $url The URI where the comment should be uploaded to.
      *          Alternatively, a PhotoEntry can be provided and
      *          the comment will be added to that photo.
-     * @return Zend_Gdata_Photos_CommentEntry The inserted comment entry
+     * @return Zend_Gdata_App_Entry The inserted comment entry
      *          as returned by the server.
      * @throws Zend_Gdata_App_Exception
      * @throws Zend_Gdata_App_HttpException

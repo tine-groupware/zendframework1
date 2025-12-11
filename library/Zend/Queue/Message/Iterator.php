@@ -225,7 +225,7 @@ class Zend_Queue_Message_Iterator implements Iterator, Countable
      * @return Zend_Queue_Message current element from the collection
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return (($this->valid() === false)
             ? null
@@ -240,7 +240,7 @@ public function current()
      * @return integer
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_pointer;
     }

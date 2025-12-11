@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -39,12 +43,12 @@ class Zend_Xml_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Xml');
+        $suite = new TestSuite('Zend Framework - Zend_Xml');
 
         $suite->addTestSuite('Zend_Xml_SecurityTest');
         $suite->addTestSuite('Zend_Xml_MultibyteTest');
@@ -53,6 +57,6 @@ class Zend_Xml_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Xml_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Xml_AllTests::main') {
     Zend_Xml_AllTests::main();
 }

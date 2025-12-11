@@ -45,7 +45,7 @@ class Zend_Oauth_Http_Utility
     public function assembleParams(
         $url,
         Zend_Oauth_Config_ConfigInterface $config,
-        array $serviceProviderParams = null
+        ?array $serviceProviderParams = null
     ) {
         $params = [
             'oauth_consumer_key'     => $config->getConsumerKey(),
@@ -109,7 +109,7 @@ class Zend_Oauth_Http_Utility
      * @param  array $params
      * @param  null|string $realm
      * @param  bool $excludeCustomParams
-     * @return void
+     * @return string
      */
     public function toAuthorizationHeader(array $params, $realm = null, $excludeCustomParams = true)
     {

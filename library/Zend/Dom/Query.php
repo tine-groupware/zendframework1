@@ -48,10 +48,10 @@ class Zend_Dom_Query
     /**#@+
      * Document types
      */
-    const DOC_DOM   = 'docDom';
-    const DOC_XML   = 'docXml';
-    const DOC_HTML  = 'docHtml';
-    const DOC_XHTML = 'docXhtml';
+    public const DOC_DOM   = 'docDom';
+    public const DOC_XML   = 'docXml';
+    public const DOC_HTML  = 'docHtml';
+    public const DOC_XHTML = 'docXhtml';
     /**#@-*/
 
     /**
@@ -129,7 +129,7 @@ class Zend_Dom_Query
         if ($document instanceof DOMDocument) {
             return $this->setDocumentDom($document);
         }
-        if (0 === strlen($document)) {
+        if (0 === strlen((string) $document)) {
             return $this;
         }
         // breaking XML declaration to make syntax highlighting work
@@ -313,6 +313,10 @@ class Zend_Dom_Query
         }
 
         $nodeList = $this->_getNodeList($domDoc, $xpathQuery);
+        if(!$nodeList){
+            require_once 'Zend/Dom/Exception.php';
+            throw new Zend_Dom_Exception(sprintf('Error parsing document (type == %s)', $type));
+        }
         return new Zend_Dom_Query_Result($query, $xpathQuery, $domDoc, $nodeList);
     }
 

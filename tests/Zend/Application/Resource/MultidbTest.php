@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -44,19 +49,41 @@ require_once 'Zend/Db/Table.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
+ * @requires extension pdo
+ * @requires extension pdo_mysql
  */
-class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_MultidbTest extends TestCase
 {
-    protected $_dbOptions = ['db1' => ['adapter' => 'pdo_mysql','dbname' => 'db1','password' => 'XXXX','username' => 'webuser'],
+    /**
+     * @var array
+     */
+    protected $loaders;
+
+    /**
+     * @var Zend_Loader_Autoloader
+     */
+    protected $autoloader;
+
+    /**
+     * @var Zend_Application
+     */
+    protected $application;
+
+    /**
+     * @var Zend_Application_Bootstrap_Bootstrap
+     */
+    protected $bootstrap;
+
+    protected $_dbOptions = ['db1' => ['adapter' => 'pdo_mysql', 'dbname' => 'db1', 'password' => 'XXXX', 'username' => 'webuser'],
                                 'db2' => ['adapter' => 'pdo_pgsql', 'dbname' => 'db2', 'password' => 'notthatpublic', 'username' => 'dba']];
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -74,7 +101,7 @@ class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
         Zend_Controller_Front::getInstance()->resetInstance();
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
         Zend_Db_Table::setDefaultAdapter(null);
         Zend_Db_Table::setDefaultMetadataCache();
@@ -136,7 +163,6 @@ class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($res->isDefault($res->getDb('db2')));
         $this->assertTrue($res->isDefault('db2'));
         $this->assertTrue(Zend_Db_Table::getDefaultAdapter() instanceof Zend_Db_Adapter_Pdo_Pgsql);
-
     }
 
     public function testGetDefaultRandomWhenNoDefaultWasSetObject()
@@ -160,7 +186,7 @@ class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
         try {
             $res->getDb('foobar');
             $this->fail('An exception should have been thrown');
-        } catch(Zend_Application_Resource_Exception $e) {
+        } catch (Zend_Application_Resource_Exception $e) {
             $this->assertEquals($e->getMessage(), 'A DB adapter was tried to retrieve, but was not configured');
         }
     }
@@ -184,9 +210,9 @@ class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
             'charset' => null,
             'persistent' => false,
             'options' => [
-                'caseFolding'          => 0,
+                'caseFolding' => 0,
                 'autoQuoteIdentifiers' => true,
-                'fetchMode'            => 2],
+                'fetchMode' => 2],
             'driver_options' => []];
         $this->assertEquals($expected, $res->getDb('db2')->getConfig());
 
@@ -244,6 +270,6 @@ class Zend_Application_Resource_MultidbTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_MultidbTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Application_Resource_MultidbTest::main') {
     Zend_Application_Resource_MultidbTest::main();
 }

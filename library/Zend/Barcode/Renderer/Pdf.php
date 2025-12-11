@@ -65,7 +65,7 @@ class Zend_Barcode_Renderer_Pdf extends Zend_Barcode_Renderer_RendererAbstract
      *
      * @param Zend_Pdf $pdf
      * @param int      $page
-     * @return Zend_Barcode_Renderer
+     * @return Zend_Barcode_Renderer_Pdf
      * @throws Zend_Barcode_Renderer_Exception
      */
     public function setResource($pdf, $page = 0)
@@ -100,7 +100,8 @@ class Zend_Barcode_Renderer_Pdf extends Zend_Barcode_Renderer_RendererAbstract
 
     /**
      * Draw the barcode in the PDF, send headers and the PDF
-     * @return mixed
+     *
+     * @return void
      */
     public function render()
     {
@@ -135,6 +136,9 @@ class Zend_Barcode_Renderer_Pdf extends Zend_Barcode_Renderer_RendererAbstract
     protected function _drawPolygon($points, $color, $filled = true)
     {
         $page = $this->_resource->pages[$this->_page];
+
+        $x = [];
+        $y = [];
 
         foreach ($points as $point) {
             $x[] = $point[0] * $this->_moduleSize + $this->_leftOffset;

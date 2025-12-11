@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,8 +45,18 @@ require_once 'Zend/Form/SubForm.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Decorator_PrepareElementsTest extends TestCase
 {
+    /**
+     * @var \Zend_Form|mixed
+     */
+    protected $form;
+
+    /**
+     * @var \Zend_Form_Decorator_Abstract|bool
+     */
+    protected $decorator;
+
     /**
      * Runs the test methods of this class.
      *
@@ -49,8 +64,8 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Decorator_PrepareElementsTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Form_Decorator_PrepareElementsTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -59,7 +74,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         $this->form = new Zend_Form();
         $this->form->setDecorators(['PrepareElements']);
@@ -72,7 +87,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -150,6 +165,6 @@ class Zend_Form_Decorator_PrepareElementsTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Form_Decorator_PrepareElementsTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_PrepareElementsTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Form_Decorator_PrepareElementsTest::main") {
     Zend_Form_Decorator_PrepareElementsTest::main();
 }

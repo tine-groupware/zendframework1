@@ -45,7 +45,7 @@ class Zend_Cache_Backend_BlackHole
      *
      * @param  string $id cache id
      * @param  boolean $doNotTestCacheValidity if set to true, the cache validity won't be tested
-     * @return string|false cached datas
+     * @return false cached datas
      */
     public function load($id, $doNotTestCacheValidity = false)
     {
@@ -56,7 +56,7 @@ class Zend_Cache_Backend_BlackHole
      * Test if a cache is available or not (for the given id)
      *
      * @param  string $id cache id
-     * @return mixed false (a cache is not available) or "last modified" timestamp (int) of the available cache record
+     * @return false false (a cache is not available) or "last modified" timestamp (int) of the available cache record
      */
     public function test($id)
     {
@@ -105,7 +105,7 @@ class Zend_Cache_Backend_BlackHole
      *                     ($tags can be an array of strings or a single string)
      *
      * @param  string $mode clean mode
-     * @param  tags array $tags array of tags
+     * @param  array $tags array of tags
      * @return boolean true if no problem
      */
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = [])
@@ -192,7 +192,7 @@ class Zend_Cache_Backend_BlackHole
      * - mtime : timestamp of last modification time
      *
      * @param  string $id cache id
-     * @return array array of metadatas (false if the cache id is not found)
+     * @return false array of metadatas (false if the cache id is not found)
      */
     public function getMetadatas($id)
     {

@@ -69,11 +69,11 @@ abstract class Zend_Cache
     /**
      * Consts for clean() method
      */
-    const CLEANING_MODE_ALL              = 'all';
-    const CLEANING_MODE_OLD              = 'old';
-    const CLEANING_MODE_MATCHING_TAG     = 'matchingTag';
-    const CLEANING_MODE_NOT_MATCHING_TAG = 'notMatchingTag';
-    const CLEANING_MODE_MATCHING_ANY_TAG = 'matchingAnyTag';
+    public const CLEANING_MODE_ALL              = 'all';
+    public const CLEANING_MODE_OLD              = 'old';
+    public const CLEANING_MODE_MATCHING_TAG     = 'matchingTag';
+    public const CLEANING_MODE_NOT_MATCHING_TAG = 'notMatchingTag';
+    public const CLEANING_MODE_MATCHING_ANY_TAG = 'matchingAnyTag';
 
     /**
      * Factory
@@ -86,7 +86,7 @@ abstract class Zend_Cache
      * @param boolean $customBackendNaming if true, the backend argument is used as a complete class name ; if false, the backend argument is used as the end of "Zend_Cache_Backend_[...]" class name
      * @param boolean $autoload if true, there will no require_once for backend and frontend (useful only for custom backends/frontends)
      * @throws Zend_Cache_Exception
-     * @return Zend_Cache_Core|Zend_Cache_Frontend
+     * @return Zend_Cache_Core|Zend_Cache_Frontend_Output|Zend_Cache_Frontend_Class|Zend_Cache_Frontend_File|Zend_Cache_Frontend_Function|Zend_Cache_Frontend_Page
      */
     public static function factory($frontend, $backend, $frontendOptions = [], $backendOptions = [], $customFrontendNaming = false, $customBackendNaming = false, $autoload = false)
     {
@@ -160,7 +160,7 @@ abstract class Zend_Cache
      * @param array   $frontendOptions
      * @param boolean $customFrontendNaming
      * @param boolean $autoload
-     * @return Zend_Cache_Core|Zend_Cache_Frontend
+     * @return Zend_Cache_Core|Zend_Cache_Frontend_Output|Zend_Cache_Frontend_Class|Zend_Cache_Frontend_File|Zend_Cache_Frontend_Function|Zend_Cache_Frontend_Page
      */
     public static function _makeFrontend($frontend, $frontendOptions = [], $customFrontendNaming = false, $autoload = false)
     {
@@ -202,7 +202,7 @@ abstract class Zend_Cache
      * @param  string $msg  Message for the exception
      * @throws Zend_Cache_Exception
      */
-    public static function throwException($msg, Exception $e = null)
+    public static function throwException($msg, ?Exception $e = null)
     {
         // For perfs reasons, we use this dynamic inclusion
         require_once 'Zend/Cache/Exception.php';

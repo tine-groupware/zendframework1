@@ -37,26 +37,26 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
      *
      * @var string
      */
-    const ALL              = 'All';
-    const AMERICAN_EXPRESS = 'American_Express';
-    const UNIONPAY         = 'Unionpay';
-    const DINERS_CLUB      = 'Diners_Club';
-    const DINERS_CLUB_US   = 'Diners_Club_US';
-    const DISCOVER         = 'Discover';
-    const JCB              = 'JCB';
-    const LASER            = 'Laser';
-    const MAESTRO          = 'Maestro';
-    const MASTERCARD       = 'Mastercard';
-    const SOLO             = 'Solo';
-    const VISA             = 'Visa';
+    public const ALL              = 'All';
+    public const AMERICAN_EXPRESS = 'American_Express';
+    public const UNIONPAY         = 'Unionpay';
+    public const DINERS_CLUB      = 'Diners_Club';
+    public const DINERS_CLUB_US   = 'Diners_Club_US';
+    public const DISCOVER         = 'Discover';
+    public const JCB              = 'JCB';
+    public const LASER            = 'Laser';
+    public const MAESTRO          = 'Maestro';
+    public const MASTERCARD       = 'Mastercard';
+    public const SOLO             = 'Solo';
+    public const VISA             = 'Visa';
 
-    const CHECKSUM       = 'creditcardChecksum';
-    const CONTENT        = 'creditcardContent';
-    const INVALID        = 'creditcardInvalid';
-    const LENGTH         = 'creditcardLength';
-    const PREFIX         = 'creditcardPrefix';
-    const SERVICE        = 'creditcardService';
-    const SERVICEFAILURE = 'creditcardServiceFailure';
+    public const CHECKSUM       = 'creditcardChecksum';
+    public const CONTENT        = 'creditcardContent';
+    public const INVALID        = 'creditcardInvalid';
+    public const LENGTH         = 'creditcardLength';
+    public const PREFIX         = 'creditcardPrefix';
+    public const SERVICE        = 'creditcardService';
+    public const SERVICEFAILURE = 'creditcardServiceFailure';
 
     /**
      * Validation failure message template definitions
@@ -179,7 +179,7 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
      * Sets CCIs which are accepted by validation
      *
      * @param string|array $type Type to allow for validation
-     * @return Zend_Validate_CreditCard Provides a fluent interface
+     * @return $this
      */
     public function setType($type)
     {
@@ -191,7 +191,7 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
      * Adds a CCI to be accepted by validation
      *
      * @param string|array $type Type to allow for validation
-     * @return Zend_Validate_CreditCard Provides a fluent interface
+     * @return $this
      */
     public function addType($type)
     {

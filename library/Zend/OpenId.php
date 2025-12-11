@@ -46,18 +46,18 @@ class Zend_OpenId
     /**
      * Default Diffie-Hellman key generator (1024 bit)
      */
-    const DH_P   = 'dcf93a0b883972ec0e19989ac5a2ce310e1d37717e8d9571bb7623731866e61ef75a2e27898b057f9891c2e27a639c3f29b60814581cd3b2ca3986d2683705577d45c2e7e52dc81c7a171876e5cea74b1448bfdfaf18828efd2519f14e45e3826634af1949e5b535cc829a483b8a76223e5d490a257f05bdff16f2fb22c583ab';
+    public const DH_P   = 'dcf93a0b883972ec0e19989ac5a2ce310e1d37717e8d9571bb7623731866e61ef75a2e27898b057f9891c2e27a639c3f29b60814581cd3b2ca3986d2683705577d45c2e7e52dc81c7a171876e5cea74b1448bfdfaf18828efd2519f14e45e3826634af1949e5b535cc829a483b8a76223e5d490a257f05bdff16f2fb22c583ab';
 
     /**
      * Default Diffie-Hellman prime number (should be 2 or 5)
      */
-    const DH_G   = '02';
+    public const DH_G   = '02';
 
     /**
      * OpenID 2.0 namespace. All OpenID 2.0 messages MUST contain variable
      * openid.ns with its value.
      */
-    const NS_2_0 = 'http://specs.openid.net/auth/2.0';
+    public const NS_2_0 = 'http://specs.openid.net/auth/2.0';
 
     /**
      * Allows enable/disable stoping execution of PHP script after redirect()
@@ -75,7 +75,7 @@ class Zend_OpenId
      * selfUrl() response
      *
      * @param string $selfUrl the URL to be set
-     * @return string the old value of overriding URL
+     * @return string|null the old value of overriding URL
      */
     static public function setSelfUrl($selfUrl = null)
     {
@@ -127,11 +127,11 @@ class Zend_OpenId
         }
 
         $url .= $port;
-        if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) { 
+        if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) {
             // IIS with Microsoft Rewrite Module
             $url .= $_SERVER['HTTP_X_ORIGINAL_URL'];
         } elseif (isset($_SERVER['HTTP_X_REWRITE_URL'])) {
-            // IIS with ISAPI_Rewrite 
+            // IIS with ISAPI_Rewrite
             $url .= $_SERVER['HTTP_X_REWRITE_URL'];
         } elseif (isset($_SERVER['REQUEST_URI'])) {
             $query = strpos($_SERVER['REQUEST_URI'], '?');
@@ -414,7 +414,7 @@ class Zend_OpenId
         }
 
         // 7.2.4
-        return self::normalizeURL($id);
+        return self::normalizeUrl($id);
     }
 
     /**
@@ -428,7 +428,7 @@ class Zend_OpenId
      * @param string $method redirection method ('GET' or 'POST')
      */
     static public function redirect($url, $params = null,
-        Zend_Controller_Response_Abstract $response = null, $method = 'GET')
+        ?Zend_Controller_Response_Abstract $response = null, $method = 'GET')
     {
         $url = Zend_OpenId::absoluteUrl($url);
         $body = "";
@@ -546,7 +546,7 @@ class Zend_OpenId
      * representation.
      *
      * @param string $bin binary representation of big number
-     * @return mixed
+     * @return GMP|int|resource|string
      * @throws Zend_OpenId_Exception
      */
     static protected function binToBigNum($bin)
@@ -630,7 +630,7 @@ class Zend_OpenId
      * @param string $p prime number in binary representation
      * @param string $g generator in binary representation
      * @param string $priv_key private key in binary representation
-     * @return mixed
+     * @return array|false|OpenSSLAsymmetricKey
      */
     static public function createDhKey($p, $g, $priv_key = null)
     {

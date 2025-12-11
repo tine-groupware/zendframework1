@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,12 +46,12 @@ class Zend_Config_Writer_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Config_Writer');
+        $suite = new TestSuite('Zend Framework - Zend_Config_Writer');
 
         $suite->addTestSuite('Zend_Config_Writer_ArrayTest');
         $suite->addTestSuite('Zend_Config_Writer_IniTest');
@@ -59,6 +63,6 @@ class Zend_Config_Writer_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Config_Writer_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Config_Writer_AllTests::main') {
     Zend_Config_Writer_AllTests::main();
 }

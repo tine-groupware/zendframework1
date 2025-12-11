@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -47,9 +50,9 @@ require_once 'Zend/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_XmlRpc
  */
-class Zend_XmlRpc_BigIntegerValueTest extends PHPUnit_Framework_TestCase
+class Zend_XmlRpc_BigIntegerValueTest extends TestCase
 {
-    public function setUp()
+    protected function set_up()
     {
         try {
             $XmlRpcBigInteger = new Zend_XmlRpc_Value_BigInteger(0);
@@ -161,7 +164,7 @@ class Zend_XmlRpc_BigIntegerValueTest extends PHPUnit_Framework_TestCase
     public function testMarschalBigIntegerFromCryptObjectThrowsException()
     {
         try {
-            Zend_XmlRpc_Value::getXmlRpcValue(new Zend_Crypt_Math_BigInteger);
+            Zend_XmlRpc_Value::getXmlRpcValue(new Zend_Crypt_Math_BigInteger());
             $this->fail('expected Zend_XmlRpc_Value_Exception has not been thrown');
         } catch (Zend_XmlRpc_Value_Exception $exception) {
             if (strpos($exception->getMessage(), 'Zend_Crypt_Math_BigInteger') === false) {
@@ -179,6 +182,6 @@ class Zend_XmlRpc_BigIntegerValueTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_XmlRpc_ValueTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_XmlRpc_BigIntegerValueTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_XmlRpc_BigIntegerValueTest::main") {
     Zend_XmlRpc_ValueTest::main();
 }

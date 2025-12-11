@@ -48,7 +48,12 @@ require_once 'Zend/Pdf/Resource/Font/Simple/Standard.php';
  */
 class Zend_Pdf_Resource_Font_Simple_Standard_Symbol extends Zend_Pdf_Resource_Font_Simple_Standard
 {
-  /**** Instance Variables ****/
+    /**
+     * @var bool
+     */
+    protected $_isMonospaced;
+
+    /**** Instance Variables ****/
 
 
     /**
@@ -227,7 +232,7 @@ class Zend_Pdf_Resource_Font_Simple_Standard_Symbol extends Zend_Pdf_Resource_Fo
 
         $this->_isBold = false;
         $this->_isItalic = false;
-        $this->_isMonospace = false;
+        $this->_isMonospaced = false;
 
         $this->_underlinePosition = -100;
         $this->_underlineThickness = 50;

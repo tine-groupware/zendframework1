@@ -33,6 +33,11 @@ require_once 'Zend/Stdlib/CallbackHandler.php';
 class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
 {
     /**
+     * @var Zend_EventManager_ResponseCollection
+     */
+    protected $responses;
+
+    /**
      * @var Zend_EventManager_Filter_FilterIterator All filters
      */
     protected $filters;
@@ -41,7 +46,7 @@ class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
      * Constructor
      *
      * Initializes Zend_EventManager_Filter_FilterIterator in which filters will be aggregated
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -53,7 +58,7 @@ class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
      * Apply the filters
      *
      * Begins iteration of the filters.
-     * 
+     *
      * @param  mixed $context Object under observation
      * @param  mixed $argv Associative array of arguments
      * @return mixed
@@ -77,7 +82,7 @@ class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
     /**
      * Connect a filter to the chain
      *
-     * @param  callback $callback PHP Callback
+     * @param  callable $callback PHP Callback
      * @param  int      $priority Priority in the queue at which to execute; defaults to 1 (higher numbers == higher priority)
      * @throws Zend_Stdlib_Exception_InvalidCallbackException
      * @return Zend_Stdlib_CallbackHandler (to allow later unsubscribe)
@@ -95,8 +100,8 @@ class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
 
     /**
      * Detach a filter from the chain
-     * 
-     * @param  Zend_Stdlib_CallbackHandler $filter 
+     *
+     * @param  Zend_Stdlib_CallbackHandler $filter
      * @return bool Returns true if filter found and unsubscribed; returns false otherwise
      */
     public function detach(Zend_Stdlib_CallbackHandler $filter)
@@ -106,7 +111,7 @@ class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
 
     /**
      * Retrieve all filters
-     * 
+     *
      * @return Zend_EventManager_Filter_FilterIterator
      */
     public function getFilters()
@@ -116,7 +121,7 @@ class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
 
     /**
      * Clear all filters
-     * 
+     *
      * @return void
      */
     public function clearFilters()
@@ -127,9 +132,9 @@ class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
     /**
      * Return current responses
      *
-     * Only available while the chain is still being iterated. Returns the 
+     * Only available while the chain is still being iterated. Returns the
      * current ResponseCollection.
-     * 
+     *
      * @return null|Zend_EventManager_ResponseCollection
      */
     public function getResponses()

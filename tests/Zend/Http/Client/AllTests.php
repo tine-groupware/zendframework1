@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -47,12 +51,12 @@ class Zend_Http_Client_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Http_Client');
+        $suite = new TestSuite('Zend Framework - Zend_Http_Client');
 
         $suite->addTestSuite('Zend_Http_Client_ClientTest');
         $suite->addTestSuite('Zend_Http_Client_StaticTest');
@@ -75,6 +79,6 @@ class Zend_Http_Client_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Http_Client_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Http_Client_AllTests::main') {
     Zend_Http_Client_AllTests::main();
 }

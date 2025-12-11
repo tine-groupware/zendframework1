@@ -39,8 +39,8 @@ require_once 'CommonBackendTest.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Cache
  */
-class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest {
-
+class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest
+{
     protected $_instance;
 
     public function __construct($name = null, array $data = [], $dataName = '')
@@ -48,41 +48,56 @@ class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest {
         parent::__construct('Zend_Cache_Backend_Xcache', $data, $dataName);
     }
 
-    public function setUp($notag = true)
+    public function set_up($notag = true)
     {
         $this->_instance = new Zend_Cache_Backend_Xcache([
             'user' => TESTS_ZEND_CACHE_XCACHE_USER,
             'password' => TESTS_ZEND_CACHE_XCACHE_PASSWORD
         ]);
-        parent::setUp($notag);
+        parent::set_up($notag);
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
-        parent::tearDown();
+        parent::tear_down();
         unset($this->_instance);
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testConstructorCorrectCall()
     {
         $test = new Zend_Cache_Backend_Xcache();
     }
 
-    public function testCleanModeOld() {
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCleanModeOld()
+    {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('old');
         // do nothing, just to see if an error occured
         $this->_instance->setDirectives(['logging' => true]);
     }
 
-    public function testCleanModeMatchingTags() {
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCleanModeMatchingTags()
+    {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('matchingTag', ['tag1']);
         // do nothing, just to see if an error occured
         $this->_instance->setDirectives(['logging' => true]);
     }
 
-    public function testCleanModeNotMatchingTags() {
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCleanModeNotMatchingTags()
+    {
         $this->_instance->setDirectives(['logging' => false]);
         $this->_instance->clean('notMatchingTag', ['tag1']);
         // do nothing, just to see if an error occured
@@ -90,10 +105,31 @@ class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest {
     }
 
     // Because of limitations of this backend...
-    public function testGetWithAnExpiredCacheId() {}
-    public function testCleanModeMatchingTags2() {}
-    public function testCleanModeNotMatchingTags2() {}
-    public function testCleanModeNotMatchingTags3() {}
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testGetWithAnExpiredCacheId()
+    {
+    }
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCleanModeMatchingTags2()
+    {
+    }
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCleanModeNotMatchingTags2()
+    {
+    }
+    /**
+     * @doesNotPerformAssertions
+     */
+    public function testCleanModeNotMatchingTags3()
+    {
+    }
+
     public function testSaveCorrectCall()
     {
         $this->_instance->setDirectives(['logging' => false]);
@@ -110,12 +146,8 @@ class Zend_Cache_XcacheBackendTest extends Zend_Cache_CommonBackendTest {
 
     public function testSaveWithSpecificLifeTime()
     {
-
         $this->_instance->setDirectives(['logging' => false]);
         parent::testSaveWithSpecificLifeTime();
         $this->_instance->setDirectives(['logging' => true]);
     }
-
 }
-
-

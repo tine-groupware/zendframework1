@@ -34,9 +34,9 @@ require_once 'Zend/Validate/Abstract.php';
  */
 class Zend_Validate_Iban extends Zend_Validate_Abstract
 {
-    const NOTSUPPORTED = 'ibanNotSupported';
-    const FALSEFORMAT  = 'ibanFalseFormat';
-    const CHECKFAILED  = 'ibanCheckFailed';
+    public const NOTSUPPORTED = 'ibanNotSupported';
+    public const FALSEFORMAT  = 'ibanFalseFormat';
+    public const CHECKFAILED  = 'ibanCheckFailed';
 
     /**
      * Validation failure message template definitions
@@ -176,7 +176,7 @@ class Zend_Validate_Iban extends Zend_Validate_Abstract
      * @param  string|Zend_Locale $locale
      * @throws Zend_Locale_Exception
      * @throws Zend_Validate_Exception
-     * @return Zend_Validate_Date provides a fluent interface
+     * @return $this
      */
     public function setLocale($locale = null)
     {

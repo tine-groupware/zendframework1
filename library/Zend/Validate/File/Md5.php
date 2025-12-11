@@ -37,9 +37,9 @@ class Zend_Validate_File_Md5 extends Zend_Validate_File_Hash
     /**
      * @const string Error constants
      */
-    const DOES_NOT_MATCH = 'fileMd5DoesNotMatch';
-    const NOT_DETECTED   = 'fileMd5NotDetected';
-    const NOT_FOUND      = 'fileMd5NotFound';
+    public const DOES_NOT_MATCH = 'fileMd5DoesNotMatch';
+    public const NOT_DETECTED   = 'fileMd5NotDetected';
+    public const NOT_FOUND      = 'fileMd5NotFound';
 
     /**
      * @var array Error message templates
@@ -63,8 +63,8 @@ class Zend_Validate_File_Md5 extends Zend_Validate_File_Hash
      * $hash is the hash we accept for the file $file
      *
      * @param  string|array $options
+     * @return void
      * @throws Zend_Validate_Exception
-     * @return Zend_Validate_File_Md5
      */
     public function __construct($options)
     {
@@ -83,7 +83,7 @@ class Zend_Validate_File_Md5 extends Zend_Validate_File_Hash
     /**
      * Returns all set md5 hashes
      *
-     * @return array
+     * @return string
      */
     public function getMd5()
     {
@@ -94,7 +94,7 @@ class Zend_Validate_File_Md5 extends Zend_Validate_File_Hash
      * Sets the md5 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function setHash($options)
     {
@@ -111,7 +111,7 @@ class Zend_Validate_File_Md5 extends Zend_Validate_File_Hash
      * Sets the md5 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function setMd5($options)
     {
@@ -123,7 +123,7 @@ class Zend_Validate_File_Md5 extends Zend_Validate_File_Hash
      * Adds the md5 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function addHash($options)
     {
@@ -140,7 +140,7 @@ class Zend_Validate_File_Md5 extends Zend_Validate_File_Hash
      * Adds the md5 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function addMd5($options)
     {

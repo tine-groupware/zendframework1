@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,8 +36,13 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
  * @group      Zend_Service_Amazon
  * @group      Zend_Service_Amazon_Sqs
  */
-class Zend_Service_Amazon_Sqs_OnlineTest extends PHPUnit_Framework_TestCase
+class Zend_Service_Amazon_Sqs_OnlineTest extends TestCase
 {
+    /**
+     * @var mixed
+     */
+    protected $_queue_name;
+
     /**
      * Reference to Amazon service consumer object
      *
@@ -54,7 +62,7 @@ class Zend_Service_Amazon_Sqs_OnlineTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         $this->_amazon = new Zend_Service_Amazon_Sqs(
             constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ACCESSKEYID'),
@@ -109,16 +117,16 @@ class Zend_Service_Amazon_Sqs_OnlineTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
         unset($this->_amazon);
     }
 }
 
 
-class Zend_Service_Amazon_Sqs_OnlineTest_Skip extends PHPUnit_Framework_TestCase
+class Zend_Service_Amazon_Sqs_OnlineTest_Skip extends TestCase
 {
-    public function setUp()
+    protected function set_up()
     {
         $this->markTestSkipped(
             'Zend_Service_Amazon_Sqs online tests not enabled with an access key ID in '
@@ -126,6 +134,9 @@ class Zend_Service_Amazon_Sqs_OnlineTest_Skip extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @doesNotPerformAssertions
+     */
     public function testNothing()
     {
     }

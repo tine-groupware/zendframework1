@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -41,10 +45,9 @@ require_once 'Zend/Cloud/StorageService/Adapter/FileSystem.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Cloud_StorageService_Adapter_FileSystemTest
-    extends Zend_Cloud_StorageService_TestCase
+class Zend_Cloud_StorageService_Adapter_FileSystemTest extends Zend_Cloud_StorageService_TestCase
 {
-	/**
+    /**
      * Runs the test methods of this class.
      *
      * @access public
@@ -52,8 +55,8 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite(__CLASS__);
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -61,9 +64,9 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
-        parent::setUp();
+        parent::set_up();
         // No need to wait
         $this->_waitPeriod = 0;
         $path = $this->_config->local_directory;
@@ -77,12 +80,12 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
 
     public function testGetClient()
     {
-    	$this->assertTrue(is_string($this->_commonStorage->getClient()));
+        $this->assertTrue(is_string($this->_commonStorage->getClient()));
     }
 
     public function testNoParams()
     {
-		$this->markTestSkipped('No config params needed for FileSystem');
+        $this->markTestSkipped('No config params needed for FileSystem');
     }
 
     // TODO: Create a custom test for FileSystem that checks fetchMetadata() with file system MD.
@@ -101,21 +104,21 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
         $this->markTestSkipped('FileSystem doesn\'t support writable metadata.');
     }
 
-	/**
+    /**
      * Tears down this test case
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
         $path = $this->_config->local_directory;
 
         // If the test directory exists, remove it
-        if(file_exists($path)) {
+        if (file_exists($path)) {
             $this->_rmRecursive($path);
         }
 
-        parent::tearDown();
+        parent::tear_down();
     }
 
     protected function _rmRecursive($path)
@@ -125,7 +128,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
 
         if (!file_exists($path)) {
             return true;
-        } else if (!is_dir($path)) {
+        } elseif (!is_dir($path)) {
             return unlink($path);
         } else {
             foreach (scandir($path) as $item) {
@@ -140,7 +143,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
     protected function _getConfig()
     {
         $config = new Zend_Config([
-            Zend_Cloud_StorageService_Factory::STORAGE_ADAPTER_KEY        => 'Zend_Cloud_StorageService_Adapter_Filesystem',
+            Zend_Cloud_StorageService_Factory::STORAGE_ADAPTER_KEY => 'Zend_Cloud_StorageService_Adapter_Filesystem',
             Zend_Cloud_StorageService_Adapter_FileSystem::LOCAL_DIRECTORY => dirname(__FILE__) . '/../_files/data/FileSystemTest',
         ]);
 
@@ -148,6 +151,6 @@ class Zend_Cloud_StorageService_Adapter_FileSystemTest
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Cloud_StorageService_Adapter_FileSystemTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Cloud_StorageService_Adapter_FileSystemTest::main') {
     Zend_Cloud_StorageService_Adapter_FileSystemTest::main();
 }

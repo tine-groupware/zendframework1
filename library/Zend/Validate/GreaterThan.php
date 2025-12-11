@@ -33,7 +33,7 @@ require_once 'Zend/Validate/Abstract.php';
 class Zend_Validate_GreaterThan extends Zend_Validate_Abstract
 {
 
-    const NOT_GREATER = 'notGreaterThan';
+    public const NOT_GREATER = 'notGreaterThan';
 
     /**
      * @var array
@@ -94,7 +94,7 @@ class Zend_Validate_GreaterThan extends Zend_Validate_Abstract
      * Sets the min option
      *
      * @param  mixed $min
-     * @return Zend_Validate_GreaterThan Provides a fluent interface
+     * @return $this
      */
     public function setMin($min)
     {

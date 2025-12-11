@@ -30,6 +30,12 @@
 class Zend_Form_DisplayGroup implements Iterator,Countable
 {
     /**
+     * Element Id
+     * @var string
+     */
+    protected $id;
+
+    /**
      * Group attributes
      * @var array
      */
@@ -97,7 +103,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
     protected $_order;
 
     /**
-     * @var Zend_Translate
+     * @var Zend_Translate_Adapter
      */
     protected $_translator;
 
@@ -274,7 +280,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
     /**
      * Clear all form attributes
      *
-     * @return Zend_Form
+     * @return Zend_Form_DisplayGroup
      */
     public function clearAttribs()
     {
@@ -330,7 +336,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      */
     public function setName($name)
     {
-        $name = $this->filtername($name);
+        $name = $this->filterName($name);
         if (('0' !== $name) && empty($name)) {
             require_once 'Zend/Form/Exception.php';
             throw new Zend_Form_Exception('Invalid name provided; must contain only valid variable characters and be non-empty');
@@ -438,7 +444,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      * Set group order
      *
      * @param  int $order
-     * @return Zend_Form_Element
+     * @return Zend_Form_DisplayGroup
      */
     public function setOrder($order)
     {
@@ -636,7 +642,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      * Set flag to disable loading default decorators
      *
      * @param  bool $flag
-     * @return Zend_Form_Element
+     * @return Zend_Form_DisplayGroup
      */
     public function setDisableLoadDefaultDecorators($flag)
     {
@@ -882,7 +888,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      * @param  Zend_View_Interface $view
      * @return Zend_Form_DisplayGroup
      */
-    public function setView(Zend_View_Interface $view = null)
+    public function setView(?Zend_View_Interface $view = null)
     {
         $this->_view = $view;
         return $this;
@@ -909,7 +915,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      *
      * @return string
      */
-    public function render(Zend_View_Interface $view = null)
+    public function render(?Zend_View_Interface $view = null)
     {
         if (null !== $view) {
             $this->setView($view);
@@ -1046,7 +1052,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      * @return Zend_Form_Element
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         $this->_sort();
         current($this->_elementOrder);
@@ -1060,7 +1066,7 @@ public function current()
      * @return string
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         $this->_sort();
         return key($this->_elementOrder);

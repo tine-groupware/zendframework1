@@ -45,8 +45,8 @@ class Zend_Json
      * so that it is a boolean true value, allowing it to be used with
      * ext/json's functions.
      */
-    const TYPE_ARRAY  = 1;
-    const TYPE_OBJECT = 0;
+    public const TYPE_ARRAY  = 1;
+    public const TYPE_OBJECT = 0;
 
      /**
       * To check the allowed nesting depth of the XML tree during xml2json conversion.
@@ -189,13 +189,13 @@ class Zend_Json
      *
      * NOTE: This method is used internally by the encode method.
      *
-     * @see encode
      * @param array|object|Zend_Json_Expr $value a string - object property to be encoded
      * @param array $javascriptExpressions
      * @param null $currentKey
      *
+     * @return array|object|string|Zend_Json_Expr
      * @internal param mixed $valueToCheck
-     * @return void
+     * @see encode
      */
     protected static function _recursiveJsonExprFinder(&$value, array &$javascriptExpressions, $currentKey = null)
     {
@@ -352,7 +352,7 @@ class Zend_Json
      * @param string $xmlStringContents XML String to be converted
      * @param boolean $ignoreXmlAttributes Include or exclude XML attributes in
      * the xml2json conversion process.
-     * @return mixed - JSON formatted string on success
+     * @return string - JSON formatted string on success
      * @throws Zend_Json_Exception
      */
     public static function fromXml($xmlStringContents, $ignoreXmlAttributes=true)
@@ -377,7 +377,7 @@ class Zend_Json
         return($jsonStringOutput);
     }
 
-    
+
 
     /**
      * Pretty-print JSON string
@@ -441,9 +441,9 @@ class Zend_Json
                 $result .= $token . $lineBreak;
             } else {
                 $result .= ( $inLiteral ? '' : $prefix ) . $token;
-                
+
                 // Count # of unescaped double-quotes in token, subtract # of
-                // escaped double-quotes and if the result is odd then we are 
+                // escaped double-quotes and if the result is odd then we are
                 // inside a string literal
                 if ((substr_count($token, "\"") - substr_count($token, "\\\"")) % 2 != 0) {
                     $inLiteral = !$inLiteral;

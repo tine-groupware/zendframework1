@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -38,7 +43,7 @@ require_once 'Zend/Filter/Word/SeparatorToCamelCase.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_Word_SeparatorToCamelCaseTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_Word_SeparatorToCamelCaseTest extends TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -46,16 +51,16 @@ class Zend_Filter_Word_SeparatorToCamelCaseTest extends PHPUnit_Framework_TestCa
      * @access public
      * @static
      */
-    public static function main() {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Filter_Word_SeparatorToCamelCaseTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+    public static function main()
+    {
+        $suite = new TestSuite("Zend_Filter_Word_SeparatorToCamelCaseTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithSpacesByDefault()
     {
-        $string   = 'camel cased words';
-        $filter   = new Zend_Filter_Word_SeparatorToCamelCase();
+        $string = 'camel cased words';
+        $filter = new Zend_Filter_Word_SeparatorToCamelCase();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -64,8 +69,8 @@ class Zend_Filter_Word_SeparatorToCamelCaseTest extends PHPUnit_Framework_TestCa
 
     public function testFilterSeparatesCamelCasedWordsWithProvidedSeparator()
     {
-        $string   = 'camel:-:cased:-:Words';
-        $filter   = new Zend_Filter_Word_SeparatorToCamelCase(':-:');
+        $string = 'camel:-:cased:-:Words';
+        $filter = new Zend_Filter_Word_SeparatorToCamelCase(':-:');
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -74,6 +79,6 @@ class Zend_Filter_Word_SeparatorToCamelCaseTest extends PHPUnit_Framework_TestCa
 }
 
 // Call Zend_Filter_Word_SeparatorToCamelCaseTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Filter_Word_SeparatorToCamelCaseTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Filter_Word_SeparatorToCamelCaseTest::main") {
     Zend_Filter_Word_SeparatorToCamelCaseTest::main();
 }

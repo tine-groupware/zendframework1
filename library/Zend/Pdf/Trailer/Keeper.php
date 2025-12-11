@@ -57,7 +57,7 @@ class Zend_Pdf_Trailer_Keeper extends Zend_Pdf_Trailer
      */
     public function __construct(Zend_Pdf_Element_Dictionary $dict,
                                 Zend_Pdf_Element_Reference_Context $context,
-                                Zend_Pdf_Trailer $prev = null)
+                                ?Zend_Pdf_Trailer $prev = null)
     {
         parent::__construct($dict);
 
@@ -88,7 +88,7 @@ class Zend_Pdf_Trailer_Keeper extends Zend_Pdf_Trailer
     /**
      * Get length of source PDF
      *
-     * @return string
+     * @return int
      */
     public function getPDFLength()
     {
@@ -109,7 +109,7 @@ class Zend_Pdf_Trailer_Keeper extends Zend_Pdf_Trailer
      * Get reference table, which corresponds to the trailer.
      * Proxy to the $_context member methad call
      *
-     * @return Zend_Pdf_Element_Reference_Context
+     * @return Zend_Pdf_Element_Reference_Table
      */
     public function getRefTable()
     {

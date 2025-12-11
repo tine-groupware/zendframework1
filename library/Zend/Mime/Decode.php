@@ -218,7 +218,7 @@ class Zend_Mime_Decode
         $field, $wantedPart = null, $firstName = 0
     )
     {
-        $wantedPart = strtolower((string)$wantedPart);
+        $wantedPart = strtolower((string) $wantedPart);
         $firstName  = strtolower((string)$firstName);
 
         // special case - a bit optimized

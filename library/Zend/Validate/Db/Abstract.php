@@ -38,8 +38,8 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     /**
      * Error constants
      */
-    const ERROR_NO_RECORD_FOUND = 'noRecordFound';
-    const ERROR_RECORD_FOUND    = 'recordFound';
+    public const ERROR_NO_RECORD_FOUND = 'noRecordFound';
+    public const ERROR_RECORD_FOUND    = 'recordFound';
 
     /**
      * @var array Message templates
@@ -72,7 +72,7 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     /**
      * Database adapter to use. If null isValid() will use Zend_Db::getInstance instead
      *
-     * @var unknown_type
+     * @var Zend_Db_Adapter_Abstract
      */
     protected $_adapter = null;
 
@@ -153,8 +153,8 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     /**
      * Returns the set adapter
      *
+     * @return Zend_Db_Adapter_Abstract
      * @throws Zend_Validate_Exception
-     * @return Zend_Db_Adapter
      */
     public function getAdapter()
     {
@@ -214,7 +214,7 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     /**
      * Returns the set field
      *
-     * @return string|array
+     * @return string
      */
     public function getField()
     {

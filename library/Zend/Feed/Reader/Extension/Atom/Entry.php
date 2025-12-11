@@ -163,7 +163,7 @@ class Zend_Feed_Reader_Extension_Atom_Entry
             $content = $this->getDescription();
         }
 
-        $this->_data['content'] = trim($content);
+        $this->_data['content'] = trim((string) $content);
 
         return $this->_data['content'];
     }
@@ -596,7 +596,7 @@ class Zend_Feed_Reader_Extension_Atom_Entry
      * Get an author entry
      *
      * @param DOMElement $element
-     * @return string
+     * @return array|null
      */
     protected function _getAuthor(DOMElement $element)
     {

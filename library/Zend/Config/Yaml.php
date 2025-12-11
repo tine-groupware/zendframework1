@@ -37,7 +37,7 @@ class Zend_Config_Yaml extends Zend_Config
     /**
      * Attribute name that indicates what section a config extends from
      */
-    const EXTENDS_NAME = "_extends";
+    public const EXTENDS_NAME = "_extends";
 
     /**
      * Whether to skip extends or not
@@ -283,7 +283,7 @@ class Zend_Config_Yaml extends Zend_Config
      * @param  int $currentIndent Current indent level
      * @param  array $lines  YAML lines
      * @param int $pointer The current line being parsed
-     * @return array|string
+     * @return array
      */
     protected static function _decodeYaml($currentIndent, $lines, &$pointer = -1)
     {

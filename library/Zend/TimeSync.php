@@ -37,7 +37,7 @@ class Zend_TimeSync implements IteratorAggregate
      * Set the default timeserver protocol to "Ntp". This will be called
      * when no protocol is specified
      */
-    const DEFAULT_PROTOCOL = 'Ntp';
+    public const DEFAULT_PROTOCOL = 'Ntp';
 
     /**
      * Contains array of timeserver objects
@@ -78,7 +78,7 @@ class Zend_TimeSync implements IteratorAggregate
      *
      * @param  string|array $target - OPTIONAL single timeserver, or an array of timeservers.
      * @param  string       $alias  - OPTIONAL an alias for this timeserver
-     * @return  object
+     * @return  void
      */
     public function __construct($target = null, $alias = null)
     {
@@ -93,7 +93,8 @@ class Zend_TimeSync implements IteratorAggregate
      *
      * @return ArrayObject
      */
-    public function getIterator(): Traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return new ArrayObject($this->_timeservers);
     }

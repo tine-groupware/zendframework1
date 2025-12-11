@@ -46,17 +46,17 @@ require_once 'Zend/Validate/Ip.php';
  */
 class Zend_Validate_Hostname extends Zend_Validate_Abstract
 {
-    const CANNOT_DECODE_PUNYCODE  = 'hostnameCannotDecodePunycode';
-    const INVALID                 = 'hostnameInvalid';
-    const INVALID_DASH            = 'hostnameDashCharacter';
-    const INVALID_HOSTNAME        = 'hostnameInvalidHostname';
-    const INVALID_HOSTNAME_SCHEMA = 'hostnameInvalidHostnameSchema';
-    const INVALID_LOCAL_NAME      = 'hostnameInvalidLocalName';
-    const INVALID_URI             = 'hostnameInvalidUri';
-    const IP_ADDRESS_NOT_ALLOWED  = 'hostnameIpAddressNotAllowed';
-    const LOCAL_NAME_NOT_ALLOWED  = 'hostnameLocalNameNotAllowed';
-    const UNDECIPHERABLE_TLD      = 'hostnameUndecipherableTld';
-    const UNKNOWN_TLD             = 'hostnameUnknownTld';
+    public const CANNOT_DECODE_PUNYCODE  = 'hostnameCannotDecodePunycode';
+    public const INVALID                 = 'hostnameInvalid';
+    public const INVALID_DASH            = 'hostnameDashCharacter';
+    public const INVALID_HOSTNAME        = 'hostnameInvalidHostname';
+    public const INVALID_HOSTNAME_SCHEMA = 'hostnameInvalidHostnameSchema';
+    public const INVALID_LOCAL_NAME      = 'hostnameInvalidLocalName';
+    public const INVALID_URI             = 'hostnameInvalidUri';
+    public const IP_ADDRESS_NOT_ALLOWED  = 'hostnameIpAddressNotAllowed';
+    public const LOCAL_NAME_NOT_ALLOWED  = 'hostnameLocalNameNotAllowed';
+    public const UNDECIPHERABLE_TLD      = 'hostnameUndecipherableTld';
+    public const UNKNOWN_TLD             = 'hostnameUnknownTld';
 
     /**
      * @var array
@@ -85,27 +85,27 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
     /**
      * Allows Internet domain names (e.g., example.com)
      */
-    const ALLOW_DNS   = 1;
+    public const ALLOW_DNS   = 1;
 
     /**
      * Allows IP addresses
      */
-    const ALLOW_IP    = 2;
+    public const ALLOW_IP    = 2;
 
     /**
      * Allows local network names (e.g., localhost, www.localdomain)
      */
-    const ALLOW_LOCAL = 4;
+    public const ALLOW_LOCAL = 4;
 
     /**
      * Allows all types of hostnames
      */
-    const ALLOW_URI = 8;
+    public const ALLOW_URI = 8;
 
     /**
      * Allows all types of hostnames
      */
-    const ALLOW_ALL = 15;
+    public const ALLOW_ALL = 15;
 
     /**
      * Array of valid top-level-domains
@@ -1750,6 +1750,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      * (.ES) Spain https://www.nic.es/media/2008-05/1210147705287.pdf
      * (.FI) Finland http://www.ficora.fi/en/index/palvelut/fiverkkotunnukset/aakkostenkaytto.html
      * (.GR) Greece https://grweb.ics.forth.gr/CharacterTable1_en.jsp
+     * (.HR) Croatia https://domene.hr/en/portal/files/Odluka_1,2alfanum_dijak_en.pdf
      * (.HU) Hungary http://www.domain.hu/domain/English/szabalyzat/szabalyzat.html
      * (.INFO) International http://www.nic.info/info/idn
      * (.IO) British Indian Ocean Territory http://www.nic.io/IO-IDN-Policy.pdf
@@ -1809,6 +1810,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         'FI'  => [1 => '/^[\x{002d}0-9a-zäåö]{1,63}$/iu'],
         'GR'  => [1 => '/^[\x{002d}0-9a-zΆΈΉΊΌΎ-ΡΣ-ώἀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼῂῃῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲῳῴῶ-ῼ]{1,63}$/iu'],
         'HK'  => 'Hostname/Cn.php',
+        'HR'  => [1 => '/^[\x{002d}0-9a-zčćžšđ]{1,63}$/iu'],
         'HU'  => [1 => '/^[\x{002d}0-9a-záéíóöúüőű]{1,63}$/iu'],
         'IL'  => [1 => '/^[\x{002d}0-9\x{05D0}-\x{05EA}]{1,63}$/iu',
             2 => '/^[\x{002d}0-9a-z]{1,63}$/i'],
@@ -2020,7 +2022,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      * @param Zend_Validate_Ip $ipValidator OPTIONAL
      * @return Zend_Validate_Hostname
      */
-    public function setIpValidator(Zend_Validate_Ip $ipValidator = null)
+    public function setIpValidator(?Zend_Validate_Ip $ipValidator = null)
     {
         if ($ipValidator === null) {
             $ipValidator = new Zend_Validate_Ip();
@@ -2044,7 +2046,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      * Sets the allow option
      *
      * @param  integer $allow
-     * @return Zend_Validate_Hostname Provides a fluent interface
+     * @return $this
      */
     public function setAllow($allow)
     {
@@ -2419,6 +2421,6 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
             }
         }
 
-        return implode($decoded);
+        return implode('', $decoded);
     }
 }

@@ -1,4 +1,7 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+
 /**
  * Zend Framework
  *
@@ -33,12 +36,12 @@ require_once 'Zend/Feed.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Feed
  */
-class Zend_Feed_ArrayAccessTest extends PHPUnit_Framework_TestCase
+class Zend_Feed_ArrayAccessTest extends TestCase
 {
     protected $_feed;
     protected $_nsfeed;
 
-    public function setUp()
+    protected function set_up()
     {
         $this->_feed = Zend_Feed::importFile(dirname(__FILE__) . '/_files/TestAtomFeed.xml');
         $this->_nsfeed = Zend_Feed::importFile(dirname(__FILE__) . '/_files/TestAtomFeedNamespaced.xml');
@@ -97,5 +100,4 @@ class Zend_Feed_ArrayAccessTest extends PHPUnit_Framework_TestCase
         $entry = $feed->current();
         $this->assertEquals('http://www.h-online.com/security/Google-acquires-reCAPTCHA--/news/114266/from/rss', $entry->link('alternate'));
     }
-
 }

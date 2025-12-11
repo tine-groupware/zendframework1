@@ -50,7 +50,7 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
      * Set the target filename
      *
      * @param  string $filename
-     * @return Zend_Config_Writer_Array
+     * @return Zend_Config_Writer_FileAbstract
      */
     public function setFilename($filename)
     {
@@ -63,7 +63,7 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
      * Set wether to exclusively lock the file or not
      *
      * @param  boolean     $exclusiveLock
-     * @return Zend_Config_Writer_Array
+     * @return Zend_Config_Writer_FileAbstract
      */
     public function setExclusiveLock($exclusiveLock)
     {
@@ -80,7 +80,7 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
      * @param bool $exclusiveLock
      * @return void
      */
-    public function write($filename = null, Zend_Config $config = null, $exclusiveLock = null)
+    public function write($filename = null, ?Zend_Config $config = null, $exclusiveLock = null)
     {
         if ($filename !== null) {
             $this->setFilename($filename);

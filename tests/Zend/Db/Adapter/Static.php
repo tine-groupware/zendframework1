@@ -64,7 +64,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      */
     public function setOnQuerySleep($seconds = 0)
     {
-        $this->_onQuerySleep = (integer) $seconds;
+        $this->_onQuerySleep = (int) $seconds;
 
         return $this;
     }
@@ -89,7 +89,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
     protected function _checkRequiredOptions(array $config)
     {
         // we need at least a dbname
-        if (! array_key_exists('dbname', $config)) {
+        if (!array_key_exists('dbname', $config)) {
             require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("Configuration must have a key for 'dbname' that names the database instance");
         }
@@ -101,7 +101,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      *
      * @param  string|Zend_Db_Select $sql  The SQL statement with placeholders.
      * @param  mixed                 $bind An array of data to bind to the placeholders.
-     * @return Zend_Db_Statement (may also be PDOStatement in the case of PDO)
+     * @return Zend_Db_Statement_Static (may also be PDOStatement in the case of PDO)
      */
     public function query($sql, $bind = [])
     {
@@ -174,18 +174,18 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
     public function describeTable($tableName, $schemaName = null)
     {
         return [
-            'SCHEMA_NAME'      => $schemaName,
-            'TABLE_NAME'       => $tableName,
-            'COLUMN_NAME'      => null,
-            'COLUMN_POSITION'  => null,
-            'DATA_TYPE'        => null,
-            'DEFAULT'          => null,
-            'NULLABLE'         => null,
-            'LENGTH'           => null,
-            'SCALE'            => null,
-            'PRECISION'        => null,
-            'UNSIGNED'         => null,
-            'PRIMARY'          => null,
+            'SCHEMA_NAME' => $schemaName,
+            'TABLE_NAME' => $tableName,
+            'COLUMN_NAME' => null,
+            'COLUMN_POSITION' => null,
+            'DATA_TYPE' => null,
+            'DEFAULT' => null,
+            'NULLABLE' => null,
+            'LENGTH' => null,
+            'SCALE' => null,
+            'PRECISION' => null,
+            'UNSIGNED' => null,
+            'PRIMARY' => null,
             'PRIMARY_POSITION' => null,
         ];
     }
@@ -225,7 +225,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      * Prepare a statement and return a PDOStatement-like object.
      *
      * @param  string|Zend_Db_Select $sql SQL query
-     * @return Zend_Db_Statment_Static
+     * @return Zend_Db_Statement_Static
      */
     public function prepare($sql)
     {
@@ -244,7 +244,7 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      *
      * @param string $tableName   OPTIONAL Name of table.
      * @param string $primaryKey  OPTIONAL Name of primary key column.
-     * @return integer
+     * @return integer|null
      */
     public function lastInsertId($tableName = null, $primaryKey = 'id')
     {
@@ -315,7 +315,8 @@ class Zend_Db_Adapter_Static extends Zend_Db_Adapter_Abstract
      *
      * @return string
      */
-    public function getServerVersion() {
+    public function getServerVersion()
+    {
         return "5.6.7.8";
     }
 }

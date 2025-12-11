@@ -142,7 +142,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
     /**
      * Set authentication adapter
      *
-     * If the authentication adapter implements a "getAcl()" method, populate 
+     * If the authentication adapter implements a "getAcl()" method, populate
      * the ACL of this instance with it (if none exists already).
      *
      * @param  Zend_Amf_Auth_Abstract $auth
@@ -210,7 +210,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
     }
 
     /**
-     * @param namespace of all incoming sessions defaults to Zend_Amf
+     * @param  string $namespace namespace of all incoming sessions defaults to Zend_Amf
      * @return Zend_Amf_Server
      * @throws Zend_Session_Exception
      */
@@ -249,7 +249,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
             $class = is_object($object)?get_class($object):$object;
             if(!$this->_acl->has($class)) {
                 require_once 'Zend/Acl/Resource.php';
-                $this->_acl->add(new Zend_Acl_Resource($class));
+                $this->_acl->addResource(new Zend_Acl_Resource($class));
             }
             $call = [$object, "initAcl"];
             if(is_callable($call) && !call_user_func($call, $this->_acl)) {
@@ -509,6 +509,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
 
         // create a response object to place the output from the services.
         $response = $this->getResponse();
+        $responseType = Zend_Amf_Constants::UNKNOWN_CONTENT_LENGTH;
 
         // set response encoding
         $response->setObjectEncoding($objectEncoding);
@@ -516,7 +517,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
         // Authenticate, if we have credential headers
         $error   = false;
         $headers = $request->getAmfHeaders();
-        if (isset($headers[Zend_Amf_Constants::CREDENTIALS_HEADER]) 
+        if (isset($headers[Zend_Amf_Constants::CREDENTIALS_HEADER])
             && isset($headers[Zend_Amf_Constants::CREDENTIALS_HEADER]->userid)
             && isset($headers[Zend_Amf_Constants::CREDENTIALS_HEADER]->password)
         ) {
@@ -540,14 +541,14 @@ class Zend_Amf_Server implements Zend_Server_Interface
             } catch (Exception $e) {
                 // Error during authentication; report it
                 $error = $this->_errorMessage(
-                    $objectEncoding, 
-                    '', 
+                    $objectEncoding,
+                    '',
                     $e->getMessage(),
                     $e->getTraceAsString(),
                     $e->getCode(),
                     $e->getLine()
                 );
-                $responseType = Zend_AMF_Constants::STATUS_METHOD;
+                $responseType = Zend_Amf_Constants::STATUS_METHOD;
             }
         }
 
@@ -609,11 +610,11 @@ class Zend_Amf_Server implements Zend_Server_Interface
                         }
                         break;
                 }
-                $responseType = Zend_AMF_Constants::RESULT_METHOD;
+                $responseType = Zend_Amf_Constants::RESULT_METHOD;
             } catch (Exception $e) {
                 $return = $this->_errorMessage($objectEncoding, $message,
                     $e->getMessage(), $e->getTraceAsString(),$e->getCode(),  $e->getLine());
-                $responseType = Zend_AMF_Constants::STATUS_METHOD;
+                $responseType = Zend_Amf_Constants::STATUS_METHOD;
             }
 
             $responseURI = $body->getResponseURI() . $responseType;
@@ -745,7 +746,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
     /**
      * get a reference to the Zend_Amf_response instance
      *
-     * @return Zend_Amf_Server_Response
+     * @return Zend_Amf_Response|null
      * @throws Zend_Amf_Server_Exception
      */
     public function getResponse()
@@ -991,9 +992,9 @@ class Zend_Amf_Server implements Zend_Server_Interface
      *
      * Takes the provided parameters from the request, and attempts to cast them
      * to objects, if the prototype defines any as explicit object types
-     * 
-     * @param  Reflection $reflectionMethod 
-     * @param  array $params 
+     *
+     * @param  Reflection $reflectionMethod
+     * @param  array $params
      * @return array
      */
     protected function _castParameters($reflectionMethod, array $params)

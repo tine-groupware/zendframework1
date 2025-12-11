@@ -37,8 +37,8 @@ require_once 'Zend/Locale/Format.php';
  */
 class Zend_Validate_Int extends Zend_Validate_Abstract
 {
-    const INVALID = 'intInvalid';
-    const NOT_INT = 'notInt';
+    public const INVALID = 'intInvalid';
+    public const NOT_INT = 'notInt';
 
     /**
      * @var array
@@ -136,7 +136,7 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
 
         } else {
             try {
-                if (!Zend_Locale_Format::isInteger(strval($value), ['locale' => $this->_locale])) {
+                if (!Zend_Locale_Format::isInteger((string) $value, ['locale' => $this->_locale])) {
                     $this->_error(self::NOT_INT);
                     return false;
                 }

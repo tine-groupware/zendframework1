@@ -1,11 +1,11 @@
 <?php
 class Zend_Db_Schema_Manager
 {
-    const RESULT_OK                  = 'RESULT_OK';
-    const RESULT_AT_CURRENT_VERSION  = 'RESULT_AT_CURRENT_VERSION';
-    const RESULT_NO_MIGRATIONS_FOUND = 'RESULT_NO_MIGRATIONS_FOUND';
-    const RESULT_AT_MAXIMUM_VERSION  = 'RESULT_AT_MAXIMUM_VERSION';
-    const RESULT_AT_MINIMUM_VERSION  = 'RESULT_AT_MINIMUM_VERSION';
+    public const RESULT_OK                  = 'RESULT_OK';
+    public const RESULT_AT_CURRENT_VERSION  = 'RESULT_AT_CURRENT_VERSION';
+    public const RESULT_NO_MIGRATIONS_FOUND = 'RESULT_NO_MIGRATIONS_FOUND';
+    public const RESULT_AT_MAXIMUM_VERSION  = 'RESULT_AT_MAXIMUM_VERSION';
+    public const RESULT_AT_MINIMUM_VERSION  = 'RESULT_AT_MINIMUM_VERSION';
 
     /**
      * @var string
@@ -55,7 +55,7 @@ class Zend_Db_Schema_Manager
      * If the table does not exist, it will be created and the version will
      * be set to 0.
      *
-     * @return int
+     * @return string
      */
     public function getCurrentSchemaVersion()
     {

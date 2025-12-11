@@ -89,10 +89,10 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
     /**
      * Constructor
      *
-     * @param DomDocument The DOM object for the feed's XML
+     * @param DomDocument $domDocument The DOM object for the feed's XML
      * @param string $type Feed type
      */
-    public function __construct(DomDocument $domDocument, $type = null)
+    public function __construct(DOMDocument $domDocument, $type = null)
     {
         $this->_domDocument = $domDocument;
         $this->_xpath = new DOMXPath($this->_domDocument);
@@ -136,7 +136,8 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
      *
      * @return int
      */
-    public function count(): int
+    #[\ReturnTypeWillChange]
+    public function count()
     {
         return count($this->_entries);
     }
@@ -147,7 +148,7 @@ abstract class Zend_Feed_Reader_FeedAbstract implements Zend_Feed_Reader_FeedInt
      * @return Zend_Feed_Reader_EntryInterface
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         if (substr($this->getType(), 0, 3) == 'rss') {
             $reader = new Zend_Feed_Reader_Entry_Rss($this->_entries[$this->key()], $this->key(), $this->getType());
@@ -191,7 +192,7 @@ public function current()
      */
     public function saveXml()
     {
-          return $this->getDomDocument()->saveXml();
+          return $this->getDomDocument()->saveXML();
     }
 
     /**
@@ -227,10 +228,10 @@ public function current()
     /**
      * Return the current feed key
      *
-     * @return unknown
+     * @return int|void
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return $this->_entriesKey;
     }
@@ -258,7 +259,8 @@ public function key()
      *
      * @return boolean
      */
-    public function valid(): bool
+    #[\ReturnTypeWillChange]
+    public function valid()
     {
         return 0 <= $this->_entriesKey && $this->_entriesKey < $this->count();
     }

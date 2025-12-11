@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +47,18 @@ require_once 'Zend/Layout.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_JsonTest extends TestCase
 {
+    /**
+      * @var Zend_View_Helper_Json
+     */
+    protected $helper;
+
+    /**
+     * @var Zend_Controller_Response_Http
+     */
+    protected $response;
+
     /**
      * Runs the test methods of this class.
      *
@@ -51,9 +66,8 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_JsonTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_View_Helper_JsonTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -62,7 +76,7 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         Zend_View_Helper_JsonTest_Layout::resetMvcInstance();
 
@@ -82,7 +96,7 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -157,7 +171,7 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
             ],
             [
                  'keepLayouts' => true,
-                 'encodeData'  => false,
+                 'encodeData' => false,
             ]
         );
         $this->assertTrue($layout->isEnabled());
@@ -195,6 +209,6 @@ class Zend_View_Helper_JsonTest_Layout extends Zend_Layout
 }
 
 // Call Zend_View_Helper_JsonTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_JsonTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_View_Helper_JsonTest::main") {
     Zend_View_Helper_JsonTest::main();
 }

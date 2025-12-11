@@ -42,10 +42,10 @@ class Zend_Mobile_Push_Apns extends Zend_Mobile_Push_Abstract
     /**
      * @const int apple server uri constants
      */
-    const SERVER_SANDBOX_URI = 0;
-    const SERVER_PRODUCTION_URI = 1;
-    const SERVER_FEEDBACK_SANDBOX_URI = 2;
-    const SERVER_FEEDBACK_PRODUCTION_URI = 3;
+    public const SERVER_SANDBOX_URI = 0;
+    public const SERVER_PRODUCTION_URI = 1;
+    public const SERVER_FEEDBACK_SANDBOX_URI = 2;
+    public const SERVER_FEEDBACK_PRODUCTION_URI = 3;
 
     /**
      * Apple Server URI's
@@ -184,7 +184,7 @@ class Zend_Mobile_Push_Apns extends Zend_Mobile_Push_Abstract
 
     /**
     * Read from the Socket Server
-    * 
+    *
     * @param int $length
     * @return string
     */
@@ -198,7 +198,7 @@ class Zend_Mobile_Push_Apns extends Zend_Mobile_Push_Abstract
 
     /**
     * Write to the Socket Server
-    * 
+    *
     * @param string $payload
     * @return int
     */
@@ -313,7 +313,7 @@ class Zend_Mobile_Push_Apns extends Zend_Mobile_Push_Abstract
         foreach($message->getCustomData() as $k => $v) {
             $payload[$k] = $v;
         }
-        
+
         if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
             $payload = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         } else {

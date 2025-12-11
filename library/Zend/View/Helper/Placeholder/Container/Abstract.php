@@ -31,22 +31,28 @@
 abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObject
 {
     /**
+     * View object
+     * @var Zend_View_Interface|null
+     */
+    public $view = null;
+
+    /**
      * Whether or not to override all contents of placeholder
      * @const string
      */
-    const SET    = 'SET';
+    public const SET    = 'SET';
 
     /**
      * Whether or not to append contents to placeholder
      * @const string
      */
-    const APPEND = 'APPEND';
+    public const APPEND = 'APPEND';
 
     /**
      * Whether or not to prepend contents to placeholder
      * @const string
      */
-    const PREPEND = 'PREPEND';
+    public const PREPEND = 'PREPEND';
 
     /**
      * What text to prefix the placeholder with when rendering
@@ -93,7 +99,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
     /**
      * Constructor - This is needed so that we can attach a class member as the ArrayObject container
      *
-     * @return \Zend_View_Helper_Placeholder_Container_Abstract
+     * @return void
      */
     public function __construct()
     {
@@ -147,7 +153,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Set prefix for __toString() serialization
      *
      * @param  string $prefix
-     * @return Zend_View_Helper_Placeholder_Container
+     * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
     public function setPrefix($prefix)
     {
@@ -169,7 +175,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Set postfix for __toString() serialization
      *
      * @param  string $postfix
-     * @return Zend_View_Helper_Placeholder_Container
+     * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
     public function setPostfix($postfix)
     {
@@ -193,7 +199,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      * Used to implode elements in container
      *
      * @param  string $separator
-     * @return Zend_View_Helper_Placeholder_Container
+     * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
     public function setSeparator($separator)
     {

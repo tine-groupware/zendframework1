@@ -78,9 +78,9 @@ class Zend_Filter_NormalizedToLocalized implements Zend_Filter_Interface
      * Sets options to use
      *
      * @param  array $options (Optional) Options to use
-     * @return Zend_Filter_LocalizedToNormalized
+     * @return Zend_Filter_NormalizedToLocalized
      */
-    public function setOptions(array $options = null)
+    public function setOptions(?array $options = null)
     {
         $this->_options = $options + $this->_options;
         return $this;
@@ -92,7 +92,7 @@ class Zend_Filter_NormalizedToLocalized implements Zend_Filter_Interface
      * Normalizes the given input
      *
      * @param  string $value Value to normalized
-     * @return string|array The normalized value
+     * @return string The normalized value
      */
     public function filter($value)
     {

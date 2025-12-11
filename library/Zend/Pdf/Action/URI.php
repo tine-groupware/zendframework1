@@ -64,7 +64,7 @@ class Zend_Pdf_Action_URI extends Zend_Pdf_Action
      * Validate URI
      *
      * @param string $uri
-     * @return true
+     * @return void
      * @throws Zend_Pdf_Exception
      */
     protected static function _validateUri($uri)
@@ -107,7 +107,7 @@ class Zend_Pdf_Action_URI extends Zend_Pdf_Action
      */
     public function setUri($uri)
     {
-        $this->_validateUri($uri);
+        static::_validateUri($uri);
 
         $this->_actionDictionary->touch();
         $this->_actionDictionary->URI = new Zend_Pdf_Element_String($uri);

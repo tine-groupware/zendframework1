@@ -34,7 +34,7 @@ require_once 'Zend/Cloud/AbstractFactory.php';
  */
 class Zend_Cloud_DocumentService_Factory extends Zend_Cloud_AbstractFactory
 {
-    const DOCUMENT_ADAPTER_KEY = 'document_adapter';
+    public const DOCUMENT_ADAPTER_KEY = 'document_adapter';
 
     /**
      * @var string Interface which adapter must implement to be considered valid
@@ -55,7 +55,7 @@ class Zend_Cloud_DocumentService_Factory extends Zend_Cloud_AbstractFactory
      * Retrieve an adapter instance
      *
      * @param array $options
-     * @return void
+     * @return Zend_Cloud_DocumentService_Adapter|Zend_Cloud_QueueService_Adapter|Zend_Cloud_StorageService_Adapter
      */
     public static function getAdapter($options = [])
     {

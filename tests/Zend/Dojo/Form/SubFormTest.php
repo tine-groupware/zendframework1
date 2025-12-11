@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -42,8 +47,13 @@ require_once 'Zend/View.php';
  * @group      Zend_Dojo
  * @group      Zend_Dojo_Form
  */
-class Zend_Dojo_Form_SubFormTest extends PHPUnit_Framework_TestCase
+class Zend_Dojo_Form_SubFormTest extends TestCase
 {
+    /**
+     * @var \Zend_Dojo_Form_SubForm|mixed
+     */
+    protected $form;
+
     /**
      * Runs the test methods of this class.
      *
@@ -51,8 +61,8 @@ class Zend_Dojo_Form_SubFormTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Dojo_Form_SubFormTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Dojo_Form_SubFormTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -61,7 +71,7 @@ class Zend_Dojo_Form_SubFormTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         $this->form = new Zend_Dojo_Form_SubForm();
         $this->form->addElement('TextBox', 'foo')
@@ -75,7 +85,7 @@ class Zend_Dojo_Form_SubFormTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -115,14 +125,14 @@ class Zend_Dojo_Form_SubFormTest extends PHPUnit_Framework_TestCase
 
     public function testShouldRegisterDojoViewHelperPath()
     {
-        $view   = $this->form->getView();
+        $view = $this->form->getView();
         $loader = $view->getPluginLoader('helper');
-        $paths  = $loader->getPaths('Zend_Dojo_View_Helper');
+        $paths = $loader->getPaths('Zend_Dojo_View_Helper');
         $this->assertTrue(is_array($paths));
     }
 }
 
 // Call Zend_Dojo_Form_SubFormTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Dojo_Form_SubFormTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Dojo_Form_SubFormTest::main") {
     Zend_Dojo_Form_SubFormTest::main();
 }

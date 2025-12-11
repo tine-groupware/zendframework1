@@ -35,12 +35,12 @@ class Zend_Validate_Callback extends Zend_Validate_Abstract
     /**
      * Invalid callback
      */
-    const INVALID_CALLBACK = 'callbackInvalid';
+    public const INVALID_CALLBACK = 'callbackInvalid';
 
     /**
      * Invalid value
      */
-    const INVALID_VALUE = 'callbackValue';
+    public const INVALID_VALUE = 'callbackValue';
 
     /**
      * Validation failure message template definitions
@@ -94,7 +94,7 @@ class Zend_Validate_Callback extends Zend_Validate_Abstract
     /**
      * Returns the set callback
      *
-     * @return mixed
+     * @return array|string|null
      */
     public function getCallback()
     {
@@ -106,7 +106,7 @@ class Zend_Validate_Callback extends Zend_Validate_Abstract
      *
      * @param  string|array $callback
      * @throws Zend_Validate_Exception
-     * @return Zend_Validate_Callback Provides a fluent interface
+     * @return $this
      */
     public function setCallback($callback)
     {
@@ -132,7 +132,7 @@ class Zend_Validate_Callback extends Zend_Validate_Abstract
      * Sets options for the callback
      *
      * @param  mixed $options
-     * @return Zend_Validate_Callback Provides a fluent interface
+     * @return $this
      */
     public function setOptions($options)
     {

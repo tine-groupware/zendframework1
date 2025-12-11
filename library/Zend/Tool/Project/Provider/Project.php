@@ -102,7 +102,7 @@ class Zend_Tool_Project_Provider_Project
             $response->appendContent('Testing Note: ', ['separator' => false, 'color' => 'yellow']);
             $response->appendContent('PHPUnit was not found in your include_path, therefore no testing actions will be created.');
         }
-            
+
         foreach ($newProfile->getIterator() as $resource) {
             $resource->create();
         }
@@ -129,7 +129,7 @@ class Zend_Tool_Project_Provider_Project
         if (Zend_Tool_Project_Provider_Test::isPHPUnitAvailable()) {
             $testAction = '                    	<testApplicationActionMethod forActionName="index" />';
         }
-        
+
         $version = Zend_Version::VERSION;
 
         $data = <<<EOS
@@ -221,7 +221,7 @@ EOS;
 README
 ======
 
-This directory should be used to place project specfic documentation including
+This directory should be used to place project specific documentation including
 but not limited to project notes, generated API/phpdoc documentation, or
 manual files generated or hand written.  Ideally, this directory would remain
 in your development environment only and should not be deployed with your

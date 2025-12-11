@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -39,12 +43,12 @@ class Zend_Db_Profiler_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Db_Profiler');
+        $suite = new TestSuite('Zend Framework - Zend_Db_Profiler');
 
         $suite->addTestSuite('Zend_Db_Profiler_FirebugTest');
 
@@ -52,6 +56,6 @@ class Zend_Db_Profiler_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Db_Profiler_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Db_Profiler_AllTests::main') {
     Zend_Db_Profiler_AllTests::main();
 }

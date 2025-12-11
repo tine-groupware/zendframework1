@@ -195,7 +195,7 @@ abstract class Zend_Server_Reflection_Function_Abstract
      * @param string $returnDesc Return value description
      * @param array $params Array of arguments (each an array of types)
      * @param array $paramDesc Array of parameter descriptions
-     * @return array
+     * @return void
      */
     protected function _buildSignatures($return, $returnDesc, $paramTypes, $paramDesc)
     {
@@ -251,10 +251,10 @@ abstract class Zend_Server_Reflection_Function_Abstract
      *
      * Determines the method help/description text from the function DocBlock
      * comment. Determines method signatures using a combination of
-     * ReflectionFunction and parsing of DocBlock @param and @return values.
+     * ReflectionFunction and parsing of DocBlock param and return values.
      *
      * @param ReflectionFunction $function
-     * @return array
+     * @return void
      */
     protected function _reflect()
     {
@@ -470,7 +470,7 @@ abstract class Zend_Server_Reflection_Function_Abstract
     /**
      * Retrieve the description
      *
-     * @return void
+     * @return string
      */
     public function getDescription()
     {

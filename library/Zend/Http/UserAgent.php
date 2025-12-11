@@ -39,32 +39,32 @@ class Zend_Http_UserAgent implements Serializable
     /**
      * 'desktop' by default if the sequence return false for each item or is empty
      */
-    const DEFAULT_IDENTIFICATION_SEQUENCE = 'mobile,desktop';
+    public const DEFAULT_IDENTIFICATION_SEQUENCE = 'mobile,desktop';
 
     /**
      * Default persitent storage adapter : Session or NonPersitent
      */
-    const DEFAULT_PERSISTENT_STORAGE_ADAPTER = 'Session';
+    public const DEFAULT_PERSISTENT_STORAGE_ADAPTER = 'Session';
 
     /**
      * 'desktop' by default if the sequence return false for each item
      */
-    const DEFAULT_BROWSER_TYPE = 'desktop';
+    public const DEFAULT_BROWSER_TYPE = 'desktop';
 
     /**
      * Default User Agent chain to prevent empty value
      */
-    const DEFAULT_HTTP_USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)';
+    public const DEFAULT_HTTP_USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)';
 
     /**
      * Default Http Accept param to prevent empty value
      */
-    const DEFAULT_HTTP_ACCEPT = "application/xhtml+xml";
+    public const DEFAULT_HTTP_ACCEPT = "application/xhtml+xml";
 
     /**
      * Default markup language
      */
-    const DEFAULT_MARKUP_LANGUAGE = "xhtml";
+    public const DEFAULT_MARKUP_LANGUAGE = "xhtml";
 
     /**
      * Browser type
@@ -169,7 +169,12 @@ class Zend_Http_UserAgent implements Serializable
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): ?string
+    {
+        return serialize($this->__serialize());
+    }
+
+    public function __serialize(): array
     {
         $device = $this->getDevice();
         $spec = [
@@ -180,7 +185,7 @@ class Zend_Http_UserAgent implements Serializable
             'user_agent'   => $this->getServerValue('http_user_agent'),
             'http_accept'  => $this->getServerValue('http_accept'),
         ];
-        return serialize($spec);
+        return $spec;
     }
 
     /**
@@ -189,10 +194,13 @@ class Zend_Http_UserAgent implements Serializable
      * @param  string $serialized
      * @return void
      */
-    public function unserialize($serialized)
+    public function unserialize($serialized): void
     {
-        $spec = unserialize($serialized);
+        $this->__unserialize(unserialize($serialized));
+    }
 
+    public function __unserialize(array $spec): void
+    {
         $this->setOptions($spec);
 
         // Determine device class and ensure the class is loaded
@@ -240,7 +248,7 @@ class Zend_Http_UserAgent implements Serializable
         // Get plugin loaders sorted
         if (isset($options['plugin_loader'])) {
             $plConfig = $options['plugin_loader'];
-            if (is_array($plConfig) || $plConfig instanceof Traversable) {
+            if (is_iterable($plConfig)) {
                 foreach ($plConfig as $type => $class) {
                     $this->setPluginLoader($type, $class);
                 }
@@ -625,7 +633,7 @@ class Zend_Http_UserAgent implements Serializable
      * data that will be introspected.
      *
      * @param  array|ArrayAccess $server
-     * @return void
+     * @return Zend_Http_UserAgent
      * @throws Zend_Http_UserAgent_Exception on invalid parameter
      */
     public function setServer($server)
@@ -687,7 +695,7 @@ class Zend_Http_UserAgent implements Serializable
      *
      * @param  string|int|float $key
      * @param  mixed $value
-     * @return void
+     * @return Zend_Http_UserAgent
      */
     public function setServerValue($key, $value)
     {
@@ -799,7 +807,7 @@ class Zend_Http_UserAgent implements Serializable
      * Run the identification sequence to match the right browser type according to the
      * user agent
      *
-     * @return Zend_Http_UserAgent_Result
+     * @return string
      */
     protected function _matchUserAgent()
     {

@@ -40,31 +40,31 @@ class Zend_Service_Amazon_Ec2_Instance extends Zend_Service_Amazon_Ec2_Abstract
     /**
      * Constant for Micro Instance Type
      */
-    const MICRO = 't1.micro';
+    public const MICRO = 't1.micro';
     /**
      * Constant for Small Instance TYpe
      */
-    const SMALL = 'm1.small';
+    public const SMALL = 'm1.small';
 
     /**
      * Constant for Large Instance TYpe
      */
-    const LARGE = 'm1.large';
+    public const LARGE = 'm1.large';
 
     /**
      * Constant for X-Large Instance TYpe
      */
-    const XLARGE = 'm1.xlarge';
+    public const XLARGE = 'm1.xlarge';
 
     /**
      * Constant for High CPU Medium Instance TYpe
      */
-    const HCPU_MEDIUM = 'c1.medium';
+    public const HCPU_MEDIUM = 'c1.medium';
 
     /**
      * Constant for High CPU X-Large Instance TYpe
      */
-    const HCPU_XLARGE = 'c1.xlarge';
+    public const HCPU_XLARGE = 'c1.xlarge';
 
 
     /**
@@ -226,7 +226,7 @@ class Zend_Service_Amazon_Ec2_Instance extends Zend_Service_Amazon_Ec2_Abstract
      * This interval is usually less than one hour.
      *
      * @param string|array $instaceId       Set of instances IDs of which to get the status.
-     * @param boolean                       Ture to ignore Terminated Instances.
+     * @param boolean $ignoreTerminated     Ture to ignore Terminated Instances.
      * @return array
      */
     public function describe($instanceId = null, $ignoreTerminated = false)
@@ -303,7 +303,7 @@ class Zend_Service_Amazon_Ec2_Instance extends Zend_Service_Amazon_Ec2_Abstract
      * This interval is usually less than one hour.
      *
      * @param string $imageId               The imageId used to start the Instance.
-     * @param boolean                       Ture to ignore Terminated Instances.
+     * @param boolean $ignoreTerminated     Ture to ignore Terminated Instances.
      * @return array
      */
     public function describeByImageId($imageId, $ignoreTerminated = false)

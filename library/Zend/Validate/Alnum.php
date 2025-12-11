@@ -32,9 +32,9 @@ require_once 'Zend/Validate/Abstract.php';
  */
 class Zend_Validate_Alnum extends Zend_Validate_Abstract
 {
-    const INVALID      = 'alnumInvalid';
-    const NOT_ALNUM    = 'notAlnum';
-    const STRING_EMPTY = 'alnumStringEmpty';
+    public const INVALID      = 'alnumInvalid';
+    public const NOT_ALNUM    = 'notAlnum';
+    public const STRING_EMPTY = 'alnumStringEmpty';
 
     /**
      * Whether to allow white space characters; off by default
@@ -81,7 +81,7 @@ class Zend_Validate_Alnum extends Zend_Validate_Abstract
             }
         }
 
-        $this->allowWhiteSpace = (boolean) $allowWhiteSpace;
+        $this->allowWhiteSpace = (bool) $allowWhiteSpace;
     }
 
     /**
@@ -98,11 +98,11 @@ class Zend_Validate_Alnum extends Zend_Validate_Abstract
      * Sets the allowWhiteSpace option
      *
      * @param boolean $allowWhiteSpace
-     * @return Zend_Filter_Alnum Provides a fluent interface
+     * @return $this
      */
     public function setAllowWhiteSpace($allowWhiteSpace)
     {
-        $this->allowWhiteSpace = (boolean) $allowWhiteSpace;
+        $this->allowWhiteSpace = (bool) $allowWhiteSpace;
         return $this;
     }
 

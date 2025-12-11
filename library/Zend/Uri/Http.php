@@ -43,11 +43,11 @@ class Zend_Uri_Http extends Zend_Uri
     /**
      * Character classes for validation regular expressions
      */
-    const CHAR_ALNUM    = 'A-Za-z0-9';
-    const CHAR_MARK     = '-_.!~*\'()\[\]';
-    const CHAR_RESERVED = ';\/?:@&=+$,';
-    const CHAR_SEGMENT  = ':@&=+$,;';
-    const CHAR_UNWISE   = '{}|\\\\^`';
+    public const CHAR_ALNUM    = 'A-Za-z0-9';
+    public const CHAR_MARK     = '-_.!~*\'()\[\]';
+    public const CHAR_RESERVED = ';\/?:@&=+$,';
+    public const CHAR_SEGMENT  = ':@&=+$,;';
+    public const CHAR_UNWISE   = '{}|\\\\^`';
 
     /**
      * HTTP username
@@ -216,17 +216,17 @@ class Zend_Uri_Http extends Zend_Uri
 
         // Additional decomposition to get username, password, host, and port
         $combo   = isset($matches[3]) === true ? $matches[3] : '';
-        $pattern = '~^(([^:@]*)(:([^@]*))?@)?((?(?=[[])[[][^]]+[]]|[^:]+))(:(.*))?$~';        
+        $pattern = '~^(([^:@]*)(:([^@]*))?@)?((?(?=[[])[[][^]]+[]]|[^:]+))(:(.*))?$~';
         $status  = @preg_match($pattern, $combo, $matches);
         if ($status === false) {
             require_once 'Zend/Uri/Exception.php';
             throw new Zend_Uri_Exception('Internal error: authority decomposition failed');
         }
-        
+
         // Save remaining URI components
         $this->_username = isset($matches[2]) === true ? $matches[2] : '';
         $this->_password = isset($matches[4]) === true ? $matches[4] : '';
-        $this->_host     = isset($matches[5]) === true 
+        $this->_host     = isset($matches[5]) === true
                          ? preg_replace('~^\[([^]]+)\]$~', '\1', $matches[5])  // Strip wrapper [] from IPv6 literal
                          : '';
         $this->_port     = isset($matches[7]) === true ? $matches[7] : '';
@@ -553,7 +553,7 @@ class Zend_Uri_Http extends Zend_Uri
             throw new Zend_Uri_Exception('Internal error: path validation failed');
         }
 
-        return (boolean) $status;
+        return (bool) $status;
     }
 
     /**
@@ -739,7 +739,7 @@ class Zend_Uri_Http extends Zend_Uri
             throw new Zend_Uri_Exception('Internal error: fragment validation failed');
         }
 
-        return (boolean) $status;
+        return (bool) $status;
     }
 
     /**

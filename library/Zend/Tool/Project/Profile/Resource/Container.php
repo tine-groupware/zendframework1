@@ -35,6 +35,10 @@ require_once 'Zend/Tool/Project/Profile/Resource/SearchConstraints.php';
  */
 class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator, Countable
 {
+    /**
+     * @var \Zend_Tool_Project_Profile_Resource_Container|mixed
+     */
+    protected $_parentResource;
 
     /**
      * @var array
@@ -332,7 +336,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
      * @return Zend_Tool_Project_Profile_Resource
      */
     #[\ReturnTypeWillChange]
-public function current()
+    public function current()
     {
         return current($this->_subResources);
     }
@@ -343,7 +347,7 @@ public function current()
      * @return int
      */
     #[\ReturnTypeWillChange]
-public function key()
+    public function key()
     {
         return key($this->_subResources);
     }
@@ -393,9 +397,9 @@ public function key()
     /**
      * getChildren()
      *
-     * @return array
+     * @return Zend_Tool_Project_Profile_Resource
      */
-    public function getChildren(): ?RecursiveIterator
+    public function getChildren(): ?\RecursiveIterator
     {
         return $this->current();
     }

@@ -83,24 +83,29 @@ require_once 'Zend/Pdf/Element/String.php';
  */
 class Zend_Pdf
 {
-  /**** Class Constants ****/
+    /**
+     * @var string
+     */
+    protected $_pdfHeaderVersion;
+
+    /**** Class Constants ****/
 
     /**
      * Version number of generated PDF documents.
      */
-    const PDF_VERSION = '1.4';
+    public const PDF_VERSION = '1.4';
 
     /**
      * PDF file header.
      */
-    const PDF_HEADER  = "%PDF-1.4\n%\xE2\xE3\xCF\xD3\n";
+    public const PDF_HEADER  = "%PDF-1.4\n%\xE2\xE3\xCF\xD3\n";
 
     /**
      * Form field options
      */
-    const PDF_FORM_FIELD_READONLY = 1;
-    const PDF_FORM_FIELD_REQUIRED = 2;
-    const PDF_FORM_FIELD_NOEXPORT = 4;
+    public const PDF_FORM_FIELD_READONLY = 1;
+    public const PDF_FORM_FIELD_REQUIRED = 2;
+    public const PDF_FORM_FIELD_NOEXPORT = 4;
 
     /**
      * Pages collection
@@ -228,8 +233,6 @@ class Zend_Pdf
      */
     protected $_isNewDocument = true;
 
-    protected $_pdfHeaderVersion;
-
     /**
      * Request used memory manager
      *
@@ -317,8 +320,8 @@ class Zend_Pdf
      * @param string  $source - PDF file to load
      * @param integer $revision
      * @param bool    $load
+     * @return void
      * @throws Zend_Pdf_Exception
-     * @return Zend_Pdf
      */
     public function __construct($source = null, $revision = null, $load = false)
     {
@@ -414,7 +417,7 @@ class Zend_Pdf
     }
 
     /**
-     * Retrive number of revisions.
+     * Retrieve number of revisions.
      *
      * @return integer
      */
@@ -613,7 +616,7 @@ class Zend_Pdf
             }
         }
     }
-  
+
     /**
      * Load form fields
      *
@@ -1007,7 +1010,7 @@ class Zend_Pdf
      * @param Zend_Pdf_Target $openAction
      * @returns Zend_Pdf
      */
-    public function setOpenAction(Zend_Pdf_Target $openAction = null)
+    public function setOpenAction(?Zend_Pdf_Target $openAction = null)
     {
         $root = $this->_trailer->Root;
         $root->touch();
@@ -1387,7 +1390,7 @@ class Zend_Pdf
                     case 'Producer':
                         if (extension_loaded('mbstring') === true) {
                             $detected = mb_detect_encoding($value);
-                            if ($detected !== 'ASCII') {
+                            if ($detected !== 'ASCII' && $detected !== false) {
                                 $value = "\xfe\xff" . mb_convert_encoding($value, 'UTF-16', $detected);
                             }
                         }

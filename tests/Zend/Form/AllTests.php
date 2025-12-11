@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -43,12 +47,12 @@ class Zend_Form_AllTests
 {
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Form');
+        $suite = new TestSuite('Zend Framework - Zend_Form');
 
         $suite->addTest(Zend_Form_Decorator_AllTests::suite());
         $suite->addTestSuite('Zend_Form_DisplayGroupTest');
@@ -61,6 +65,6 @@ class Zend_Form_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Form_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Form_AllTests::main') {
     Zend_Form_AllTests::main();
 }

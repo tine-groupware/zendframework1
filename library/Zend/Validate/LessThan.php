@@ -32,7 +32,7 @@ require_once 'Zend/Validate/Abstract.php';
  */
 class Zend_Validate_LessThan extends Zend_Validate_Abstract
 {
-    const NOT_LESS = 'notLessThan';
+    public const NOT_LESS = 'notLessThan';
 
     /**
      * @var array
@@ -93,7 +93,7 @@ class Zend_Validate_LessThan extends Zend_Validate_Abstract
      * Sets the max option
      *
      * @param  mixed $max
-     * @return Zend_Validate_LessThan Provides a fluent interface
+     * @return $this
      */
     public function setMax($max)
     {

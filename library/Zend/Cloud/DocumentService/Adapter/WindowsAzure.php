@@ -38,21 +38,21 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
     /*
      * Options array keys for the Azure adapter.
      */
-    const ACCOUNT_NAME          = 'storage_accountname';
-    const ACCOUNT_KEY           = 'storage_accountkey';
-    const HOST                  = "storage_host";
-    const PROXY_HOST            = "storage_proxy_host";
-    const PROXY_PORT            = "storage_proxy_port";
-    const PROXY_CREDENTIALS     = "storage_proxy_credentials";
-    const DEFAULT_PARTITION_KEY = "default_partition_key";
+    public const ACCOUNT_NAME          = 'storage_accountname';
+    public const ACCOUNT_KEY           = 'storage_accountkey';
+    public const HOST                  = "storage_host";
+    public const PROXY_HOST            = "storage_proxy_host";
+    public const PROXY_PORT            = "storage_proxy_port";
+    public const PROXY_CREDENTIALS     = "storage_proxy_credentials";
+    public const DEFAULT_PARTITION_KEY = "default_partition_key";
 
-    const PARTITION_KEY         = 'PartitionKey';
-    const ROW_KEY               = 'RowKey';
-    const VERIFY_ETAG           = "verify_etag";
-    const TIMESTAMP_KEY         = "Timestamp";
+    public const PARTITION_KEY         = 'PartitionKey';
+    public const ROW_KEY               = 'RowKey';
+    public const VERIFY_ETAG           = "verify_etag";
+    public const TIMESTAMP_KEY         = "Timestamp";
 
-    const DEFAULT_HOST          = Zend_Service_WindowsAzure_Storage::URL_CLOUD_TABLE;
-    const DEFAULT_QUERY_CLASS   = 'Zend_Cloud_DocumentService_Adapter_WindowsAzure_Query';
+    public const DEFAULT_HOST          = Zend_Service_WindowsAzure_Storage::URL_CLOUD_TABLE;
+    public const DEFAULT_QUERY_CLASS   = 'Zend_Cloud_DocumentService_Adapter_WindowsAzure_Query';
 
     /**
      * Azure  service instance.
@@ -263,9 +263,9 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
      *
      * @param  string $collectionName
      * @param  null|array $options
-     * @return Zend_Cloud_DocumentService_DocumentSet
+     * @return array
      */
-    public function listDocuments($collectionName, array $options = null)
+    public function listDocuments($collectionName, ?array $options = null)
     {
         $select = $this->select()->from($collectionName);
         return $this->query($collectionName, $select);
@@ -276,7 +276,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
      *
      * @param  array|Zend_Cloud_DocumentService_Document $document
      * @param  array                         $options
-     * @return boolean
+     * @return void
      */
     public function insertDocument($collectionName, $document, $options = null)
     {
@@ -310,7 +310,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
      *
      * @param  Zend_Cloud_DocumentService_Document $document
      * @param  array                         $options
-     * @return boolean
+     * @return void
      */
     public function replaceDocument($collectionName, $document, $options = null)
     {
@@ -344,9 +344,9 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
      *
      * @param  string $collectionName
      * @param  mixed|Zend_Cloud_DocumentService_Document $documentId Document identifier or document contaiing updates
-     * @param  null|array|Zend_Cloud_DocumentService_Document Fields to update (or new fields))
+     * @param  null|array|Zend_Cloud_DocumentService_Document $fieldset Fields to update (or new fields))
      * @param  array $options
-     * @return boolean
+     * @return void
      */
     public function updateDocument($collectionName, $documentId, $fieldset = null, $options = null)
     {
@@ -534,7 +534,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure
      * Validate a composite key
      *
      * @param  array $key
-     * @return throws Zend_Cloud_DocumentService_Exception
+     * @return void Zend_Cloud_DocumentService_Exception
      */
     protected function _validateCompositeKey(array $key)
     {

@@ -37,7 +37,7 @@ abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
     /**
      * EOL character
      */
-    const EOL = "\n";
+    public const EOL = "\n";
 
     /**
      * The tag closing bracket
@@ -96,7 +96,7 @@ abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
         $doctype = $this->view->doctype();
         return $doctype->isStrict();
     }
-    
+
     /**
      * Converts an associative array to a string of tag attributes.
      *

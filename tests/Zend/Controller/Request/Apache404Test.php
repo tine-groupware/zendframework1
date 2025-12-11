@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -40,7 +45,7 @@ require_once 'Zend/Controller/Request/Apache404.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
-class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
+class Zend_Controller_Request_Apache404Test extends TestCase
 {
     /**
      * Copy of $_SERVER
@@ -56,17 +61,16 @@ class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Request_Apache404Test");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Controller_Request_Apache404Test");
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         $this->_server = $_SERVER;
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
         $_SERVER = $this->_server;
     }
@@ -74,7 +78,7 @@ class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
     public function testRedirectUrlSelectedOverRequestUri()
     {
         $_SERVER['REDIRECT_URL'] = '/foo/bar';
-        $_SERVER['REQUEST_URI']  = '/baz/bat';
+        $_SERVER['REQUEST_URI'] = '/baz/bat';
 
         $request = new Zend_Controller_Request_Apache404();
         $requestUri = $request->getRequestUri();
@@ -87,9 +91,9 @@ class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
      */
     public function testRedirectQueryStringShouldBeParsedIntoGetVars()
     {
-        $_SERVER['REDIRECT_URL']         = '/foo/bar';
+        $_SERVER['REDIRECT_URL'] = '/foo/bar';
         $_SERVER['REDIRECT_QUERY_STRING'] = 'baz=bat&bat=delta';
-        $_SERVER['REQUEST_URI']          = '/baz/bat';
+        $_SERVER['REQUEST_URI'] = '/baz/bat';
 
         $request = new Zend_Controller_Request_Apache404();
         $requestUri = $request->getRequestUri();
@@ -99,6 +103,6 @@ class Zend_Controller_Request_Apache404Test extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Controller_Request_Apache404Test::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Request_Apache404Test::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Controller_Request_Apache404Test::main") {
     Zend_Controller_Request_Apache404Test::main();
 }

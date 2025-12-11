@@ -37,7 +37,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
     /**
      * Unique ID prefix used for allowing comments
      */
-    const UNIQUE_ID_PREFIX = '__Zend_Filter_StripTags__';
+    public const UNIQUE_ID_PREFIX = '__Zend_Filter_StripTags__';
 
     /**
      * Whether comments are allowed
@@ -132,11 +132,11 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
      *
      * @deprecated
      * @param  boolean $commentsAllowed
-     * @return Zend_Filter_StripTags Provides a fluent interface
+     * @return $this
      */
     public function setCommentsAllowed($commentsAllowed)
     {
-       $this->commentsAllowed = (boolean) $commentsAllowed;
+       $this->commentsAllowed = (bool) $commentsAllowed;
        return $this;
     }
 
@@ -154,7 +154,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
      * Sets the tagsAllowed option
      *
      * @param  array|string $tagsAllowed
-     * @return Zend_Filter_StripTags Provides a fluent interface
+     * @return $this
      */
     public function setTagsAllowed($tagsAllowed)
     {
@@ -207,7 +207,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
      * Sets the attributesAllowed option
      *
      * @param  array|string $attributesAllowed
-     * @return Zend_Filter_StripTags Provides a fluent interface
+     * @return $this
      */
     public function setAttributesAllowed($attributesAllowed)
     {

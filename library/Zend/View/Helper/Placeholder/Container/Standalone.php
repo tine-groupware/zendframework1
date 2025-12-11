@@ -320,7 +320,8 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      *
      * @return Iterator
      */
-    public function getIterator(): Traversable
+    #[\ReturnTypeWillChange]
+    public function getIterator(): \Traversable
     {
         return $this->getContainer()->getIterator();
     }

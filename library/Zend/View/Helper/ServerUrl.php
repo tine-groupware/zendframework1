@@ -56,6 +56,7 @@ class Zend_View_Helper_ServerUrl
             case (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] === true)):
             case (isset($_SERVER['HTTP_SCHEME']) && ($_SERVER['HTTP_SCHEME'] == 'https')):
             case (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443)):
+            case (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')):
                 $scheme = 'https';
                 break;
             default:
@@ -116,7 +117,7 @@ class Zend_View_Helper_ServerUrl
      * Sets host
      *
      * @param  string $host                new host
-     * @return Zend_View_Helper_ServerUrl  fluent interface, returns self
+     * @return $this
      */
     public function setHost($host)
     {
@@ -138,7 +139,7 @@ class Zend_View_Helper_ServerUrl
      * Sets scheme (typically http or https)
      *
      * @param  string $scheme              new scheme (typically http or https)
-     * @return Zend_View_Helper_ServerUrl  fluent interface, returns self
+     * @return $this
      */
     public function setScheme($scheme)
     {

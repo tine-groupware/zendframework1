@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -38,22 +43,27 @@ require_once 'Zend/Version.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_SubFormTest extends PHPUnit_Framework_TestCase
+class Zend_Form_SubFormTest extends TestCase
 {
+    /**
+     * @var Zend_Form_SubForm
+     */
+    private $form;
+
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Form_SubFormTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite('Zend_Form_SubFormTest');
+        $result = (new resources_Runner())->run($suite);
     }
 
-    public function setUp()
+    protected function set_up()
     {
         Zend_Form::setDefaultTranslator(null);
 
         $this->form = new Zend_Form_SubForm();
     }
 
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -107,8 +117,8 @@ class Zend_Form_SubFormTest extends PHPUnit_Framework_TestCase
         $form->addSubForm($this->form, 'attributes');
         $html = $form->render(new Zend_View());
 
-        $this->assertContains('name="attributes[foo]"', $html);
-        $this->assertContains('name="attributes[bar]"', $html);
+        $this->assertStringContainsString('name="attributes[foo]"', $html);
+        $this->assertStringContainsString('name="attributes[bar]"', $html);
     }
 
     /**
@@ -124,9 +134,9 @@ class Zend_Form_SubFormTest extends PHPUnit_Framework_TestCase
         ]);
         $form = new Zend_Form();
         $form->addSubForm($subForm, 'foobar')
-             ->setView(new Zend_View);
+             ->setView(new Zend_View());
         $html = $form->render();
-        $this->assertContains('>&#160;</dt>', $html  );
+        $this->assertStringContainsString('>&#160;</dt>', $html);
     }
 
     /**
@@ -154,8 +164,8 @@ class Zend_Form_SubFormTest extends PHPUnit_Framework_TestCase
         $form->addSubForm($subForm, 0);
         $form->addSubForm($subForm, 234);
         $form2 = clone $form;
-        $this->assertEquals($form2->getSubForm(234)->getName(),234);
-        $this->assertEquals($form2->getSubForm(0)->getName(),0);
+        $this->assertEquals($form2->getSubForm(234)->getName(), 234);
+        $this->assertEquals($form2->getSubForm(0)->getName(), 0);
     }
 }
 
@@ -167,6 +177,6 @@ class Zend_Form_SubFormTest_SubForm extends Zend_Form_SubForm
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Form_SubFormTest::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Form_SubFormTest::main') {
     Zend_Form_SubFormTest::main();
 }

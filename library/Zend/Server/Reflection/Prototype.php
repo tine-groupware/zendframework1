@@ -42,9 +42,16 @@ require_once 'Zend/Server/Reflection/Parameter.php';
  */
 class Zend_Server_Reflection_Prototype
 {
-    protected $_return;
+    /**
+     * @var array | null
+     */
     protected $_params;
-    
+
+    /**
+     * @var Zend_Server_Reflection_ReturnValue
+     */
+    protected $_return;
+
     /**
      * Constructor
      *

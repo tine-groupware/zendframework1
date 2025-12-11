@@ -41,7 +41,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
      * @since LiveDocx 1.0
      */
     //const WSDL = 'https://api.livedocx.com/1.2/mailmerge.asmx?WSDL';
-    const WSDL = 'https://api.livedocx.com/2.0/mailmerge.asmx?WSDL';
+    public const WSDL = 'https://api.livedocx.com/2.0/mailmerge.asmx?WSDL';
 
     /**
      * Field values
@@ -354,8 +354,8 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
      *
      * @param string $format
      *
+     * @return false|string
      * @throws Zend_Service_LiveDocx_Exception
-     * @return binary
      * @since  LiveDocx 1.0
      */
     public function retrieveDocument($format)
@@ -393,12 +393,12 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         $ret    = [];
         $result = $this->getSoapClient()->GetMetafiles([
-            'fromPage' => (integer) $fromPage,
-            'toPage'   => (integer) $toPage,
+            'fromPage' => (int) $fromPage,
+            'toPage'   => (int) $toPage,
         ]);
 
         if (isset($result->GetMetafilesResult->string)) {
-            $pageCounter = (integer) $fromPage;
+            $pageCounter = (int) $fromPage;
             if (is_array($result->GetMetafilesResult->string)) {
                 foreach ($result->GetMetafilesResult->string as $string) {
                     $ret[$pageCounter] = base64_decode($string);
@@ -459,14 +459,14 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
         $ret = [];
 
         $result = $this->getSoapClient()->GetBitmaps([
-            'fromPage'   => (integer) $fromPage,
-            'toPage'     => (integer) $toPage,
-            'zoomFactor' => (integer) $zoomFactor,
+            'fromPage'   => (int) $fromPage,
+            'toPage'     => (int) $toPage,
+            'zoomFactor' => (int) $zoomFactor,
             'format'     => (string)  $format,
         ]);
 
         if (isset($result->GetBitmapsResult->string)) {
-            $pageCounter = (integer) $fromPage;
+            $pageCounter = (int) $fromPage;
             if (is_array($result->GetBitmapsResult->string)) {
                 foreach ($result->GetBitmapsResult->string as $string) {
                     $ret[$pageCounter] = base64_decode($string);
@@ -495,7 +495,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         $ret    = [];
         $result = $this->getSoapClient()->GetAllBitmaps([
-            'zoomFactor' => (integer) $zoomFactor,
+            'zoomFactor' => (int) $zoomFactor,
             'format'     => (string)  $format,
         ]);
 
@@ -618,7 +618,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
      * Download template file from LiveDocx service
      *
      * @param  string $filename
-     * @return binary
+     * @return false|string
      * @throws Zend_Service_LiveDocx_Exception
      * @since  LiveDocx 1.0
      */
@@ -692,7 +692,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             'filename' => basename($filename),
         ]);
 
-        return (boolean) $result->TemplateExistsResult;
+        return (bool) $result->TemplateExistsResult;
     }
 
     /**
@@ -980,7 +980,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
      * Download an image file from LiveDocx service
      *
      * @param  string $filename
-     * @return void
+     * @return false|string
      * @throws Zend_Service_LiveDocx_Exception
      * @since  LiveDocx 2.0
      */
@@ -1054,7 +1054,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             'filename' => basename($filename),
         ]);
 
-        return (boolean) $result->ImageExistsResult;
+        return (bool) $result->ImageExistsResult;
     }
 
     /**
@@ -1085,9 +1085,9 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
                    $ret[] = [
                         'filename'   => $o->string[0],
-                        'fileSize'   => (integer) $o->string[2],
-                        'createTime' => (integer) $date1->get(Zend_Date::TIMESTAMP),
-                        'modifyTime' => (integer) $date2->get(Zend_Date::TIMESTAMP),
+                        'fileSize'   => (int) $o->string[2],
+                        'createTime' => (int) $date1->get(Zend_Date::TIMESTAMP),
+                        'modifyTime' => (int) $date2->get(Zend_Date::TIMESTAMP),
                    ];
                }
            }

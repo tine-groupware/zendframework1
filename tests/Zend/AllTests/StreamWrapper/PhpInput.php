@@ -26,7 +26,7 @@
  * <code>
  * class ...
  * {
- *     public function setUp()
+ *     public function set_up()
  *     {
  *         Zend_AllTests_StreamWrapper_PhpInput::mockInput('expected string');
  *     }
@@ -37,7 +37,7 @@
  *         $this->assertSame('php://input', Zend_AllTests_StreamWrapper_PhpInput::getCurrentPath());
  *     }
  *
- *     public function tearDown()
+ *     public function tear_down()
  *     {
  *         Zend_AllTests_StreamWrapper_PhpInput::restoreDefault();
  *     }
@@ -49,6 +49,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_AllTests_StreamWrapper_PhpInput
 {
     protected static $_data;

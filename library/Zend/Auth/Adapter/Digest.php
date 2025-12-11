@@ -71,6 +71,8 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
      * @param  mixed $realm
      * @param  mixed $username
      * @param  mixed $password
+     *
+     * @phpstan-ignore-next-line (constructor.unusedParameter)
      */
     public function __construct($filename = null, $realm = null, $username = null, $password = null)
     {
@@ -97,7 +99,7 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
      * Sets the filename option value
      *
      * @param  mixed $filename
-     * @return Zend_Auth_Adapter_Digest Provides a fluent interface
+     * @return $this
      */
     public function setFilename($filename)
     {
@@ -119,7 +121,7 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
      * Sets the realm option value
      *
      * @param  mixed $realm
-     * @return Zend_Auth_Adapter_Digest Provides a fluent interface
+     * @return $this
      */
     public function setRealm($realm)
     {
@@ -141,7 +143,7 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
      * Sets the username option value
      *
      * @param  mixed $username
-     * @return Zend_Auth_Adapter_Digest Provides a fluent interface
+     * @return $this
      */
     public function setUsername($username)
     {
@@ -163,7 +165,7 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
      * Sets the password option value
      *
      * @param  mixed $password
-     * @return Zend_Auth_Adapter_Digest Provides a fluent interface
+     * @return $this
      */
     public function setPassword($password)
     {

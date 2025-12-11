@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -50,17 +54,17 @@ class Zend_Service_Amazon_Authentication_AllTests
      */
     public static function main()
     {
-        PHPUnit_TextUI_TestRunner::run(self::suite());
+        (new resources_Runner())->run(self::suite());
     }
 
     /**
      * Creates and returns this test suite
      *
-     * @return PHPUnit_Framework_TestSuite
+     * @return TestSuite
      */
     public static function suite()
     {
-        $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Service - Amazon - Authentication');
+        $suite = new TestSuite('Zend Framework - Zend_Service - Amazon - Authentication');
 
         if (defined('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ENABLED')
             && constant('TESTS_ZEND_SERVICE_AMAZON_ONLINE_ENABLED')
@@ -76,6 +80,6 @@ class Zend_Service_Amazon_Authentication_AllTests
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Service_Amazon_Authentication_AllTests::main') {
+if (PHPUnit_MAIN_METHOD === 'Zend_Service_Amazon_Authentication_AllTests::main') {
     Zend_Service_Amazon_Authentication_AllTests::main();
 }

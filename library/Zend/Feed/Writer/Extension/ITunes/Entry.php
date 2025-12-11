@@ -66,8 +66,8 @@ class Zend_Feed_Writer_Extension_ITunes_Entry
     /**
      * Set a block value of "yes" or "no". You may also set an empty string.
      *
-     * @param  string
-     * @return Zend_Feed_Writer_Extension_ITunes_Entry
+     * @param  string $value
+     * @return void
      */
     public function setItunesBlock($value)
     {

@@ -30,10 +30,10 @@ class Zend_CodeGenerator_Php_Member_Container extends ArrayObject
 {
 
     /**#@+
-     * @param const string
+     * @var const string
      */
-    const TYPE_PROPERTY = 'property';
-    const TYPE_METHOD   = 'method';
+    public const TYPE_PROPERTY = 'property';
+    public const TYPE_METHOD   = 'method';
     /**#@-*/
 
     /**

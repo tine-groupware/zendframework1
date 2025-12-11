@@ -1,4 +1,9 @@
 <?php
+
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\TestSuite;
+use PHPUnit\TextUI\TestRunner;
+
 /**
  * Zend Framework
  *
@@ -38,8 +43,13 @@ require_once 'Zend/Server/Method/Prototype.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Server
  */
-class Zend_Server_Method_PrototypeTest extends PHPUnit_Framework_TestCase
+class Zend_Server_Method_PrototypeTest extends TestCase
 {
+    /**
+     * @var Zend_Server_Method_Prototype
+     */
+    protected $prototype;
+
     /**
      * Runs the test methods of this class.
      *
@@ -47,8 +57,8 @@ class Zend_Server_Method_PrototypeTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Server_Method_PrototypeTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new TestSuite("Zend_Server_Method_PrototypeTest");
+        $result = (new resources_Runner())->run($suite);
     }
 
     /**
@@ -57,7 +67,7 @@ class Zend_Server_Method_PrototypeTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function setUp()
+    protected function set_up()
     {
         $this->prototype = new Zend_Server_Method_Prototype();
     }
@@ -68,7 +78,7 @@ class Zend_Server_Method_PrototypeTest extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    public function tearDown()
+    protected function tear_down()
     {
     }
 
@@ -197,6 +207,6 @@ class Zend_Server_Method_PrototypeTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Server_Method_PrototypeTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Server_Method_PrototypeTest::main") {
+if (PHPUnit_MAIN_METHOD === "Zend_Server_Method_PrototypeTest::main") {
     Zend_Server_Method_PrototypeTest::main();
 }

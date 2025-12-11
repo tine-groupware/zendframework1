@@ -34,12 +34,12 @@ require_once dirname(__FILE__) . '/SplAutoloader.php';
  */
 class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
 {
-    const NS_SEPARATOR     = '\\';
-    const PREFIX_SEPARATOR = '_';
-    const LOAD_NS          = 'namespaces';
-    const LOAD_PREFIX      = 'prefixes';
-    const ACT_AS_FALLBACK  = 'fallback_autoloader';
-    const AUTOREGISTER_ZF  = 'autoregister_zf';
+    public const NS_SEPARATOR     = '\\';
+    public const PREFIX_SEPARATOR = '_';
+    public const LOAD_NS          = 'namespaces';
+    public const LOAD_PREFIX      = 'prefixes';
+    public const ACT_AS_FALLBACK  = 'fallback_autoloader';
+    public const AUTOREGISTER_ZF  = 'autoregister_zf';
 
     /**
      * @var array Namespace/directory pairs to search; ZF library added by default
@@ -110,12 +110,12 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
                     }
                     break;
                 case self::LOAD_NS:
-                    if (is_array($pairs) || $pairs instanceof Traversable) {
+                    if (is_iterable($pairs)) {
                         $this->registerNamespaces($pairs);
                     }
                     break;
                 case self::LOAD_PREFIX:
-                    if (is_array($pairs) || $pairs instanceof Traversable) {
+                    if (is_iterable($pairs)) {
                         $this->registerPrefixes($pairs);
                     }
                     break;
@@ -263,9 +263,9 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
      *
      * Used by {@link loadClass} during fallback autoloading in PHP versions
      * prior to 5.3.0.
-     * 
-     * @param mixed $errno 
-     * @param mixed $errstr 
+     *
+     * @param mixed $errno
+     * @param mixed $errstr
      * @return void
      */
     public function handleError($errno, $errstr)

@@ -46,9 +46,9 @@ require_once 'Zend/Queue/Stomp/Frame.php';
  */
 class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
 {
-    const DEFAULT_SCHEME = 'tcp';
-    const DEFAULT_HOST   = '127.0.0.1';
-    const DEFAULT_PORT   = 61613;
+    public const DEFAULT_SCHEME = 'tcp';
+    public const DEFAULT_HOST   = '127.0.0.1';
+    public const DEFAULT_PORT   = 61613;
 
     /**
      * @var Zend_Queue_Adapter_Stomp_client
@@ -64,10 +64,10 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * Constructor
      *
      * @param  array|Zend_Config $config An array having configuration data
-     * @param  Zend_Queue The Zend_Queue object that created this class
+     * @param  Zend_Queue $queue The Zend_Queue object that created this class
      * @return void
      */
-    public function __construct($options, Zend_Queue $queue = null)
+    public function __construct($options, ?Zend_Queue $queue = null)
     {
         parent::__construct($options);
 
@@ -230,7 +230,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @param  Zend_Queue $queue
      * @return Zend_Queue_Message_Iterator
      */
-    public function receive($maxMessages=null, $timeout=null, Zend_Queue $queue=null)
+    public function receive($maxMessages=null, $timeout=null, ?Zend_Queue $queue=null)
     {
         if ($maxMessages === null) {
             $maxMessages = 1;
@@ -296,7 +296,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @param  Zend_Queue $queue
      * @return Zend_Queue_Message
      */
-    public function send($message, Zend_Queue $queue=null)
+    public function send($message, ?Zend_Queue $queue=null)
     {
         if ($queue === null) {
             $queue = $this->_queue;
@@ -342,7 +342,8 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @return integer
      * @throws Zend_Queue_Exception (not supported)
      */
-    public function count(Zend_Queue $queue=null)
+    #[\ReturnTypeWillChange]
+    public function count(?Zend_Queue $queue=null)
     {
         require_once 'Zend/Queue/Exception.php';
         throw new Zend_Queue_Exception('count() is not supported in this adapter');

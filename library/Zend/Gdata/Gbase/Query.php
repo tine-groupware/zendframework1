@@ -48,12 +48,12 @@ class Zend_Gdata_Gbase_Query extends Zend_Gdata_Query
     /**
      * Path to the customer items feeds on the Google Base server.
      */
-    const GBASE_ITEM_FEED_URI = 'https://www.google.com/base/feeds/items';
+    public const GBASE_ITEM_FEED_URI = 'https://www.google.com/base/feeds/items';
 
     /**
      * Path to the snippets feeds on the Google Base server.
      */
-    const GBASE_SNIPPET_FEED_URI = 'https://www.google.com/base/feeds/snippets';
+    public const GBASE_SNIPPET_FEED_URI = 'https://www.google.com/base/feeds/snippets';
 
     /**
      * Create Gdata_Query object
@@ -64,6 +64,6 @@ class Zend_Gdata_Gbase_Query extends Zend_Gdata_Query
             'Google Base API has been discontinued by Google and was removed'
             . ' from Zend Framework in 1.12.0.  For more information see: '
             . 'http://googlemerchantblog.blogspot.ca/2010/12/new-shopping-apis-and-deprecation-of.html'
-        );    
+        );
     }
 }
