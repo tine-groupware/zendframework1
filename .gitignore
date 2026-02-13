@@ -12,5 +12,11 @@ vendor/*
 composer.lock
 bin/dbunit
 bin/phpunit
+bin/phpstan*
+bin/rector
 .php_cs.cache
 .idea
+autoload.php
+composer/
+phpstan/
+rector/
