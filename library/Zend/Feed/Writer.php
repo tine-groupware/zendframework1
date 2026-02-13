@@ -260,7 +260,7 @@ class Zend_Feed_Writer
 
     public static function lcfirst($str)
     {
-        $str[0] = strtolower($str[0]);
+        $str[0] = strtolower((string) $str[0]);
         return $str;
     }
 

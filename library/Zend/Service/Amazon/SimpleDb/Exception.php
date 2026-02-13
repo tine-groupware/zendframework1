@@ -36,22 +36,16 @@ require_once 'Zend/Service/Amazon/Exception.php';
 class Zend_Service_Amazon_SimpleDb_Exception extends Zend_Service_Amazon_Exception
 {
     /**
-     * @var string
-     */
-    private $_awsErrorCode = '';
-
-    /**
      * Constructor
      *
      * @param string $message
      * @param int $code
-     * @param string $awsErrorCode
+     * @param string $_awsErrorCode
      * @return void
      */
-    public function __construct($message, $code = 0, $awsErrorCode = '')
+    public function __construct($message, $code = 0, private $_awsErrorCode = '')
     {
         parent::__construct($message, $code);
-        $this->_awsErrorCode = $awsErrorCode;
     }
 
     /**

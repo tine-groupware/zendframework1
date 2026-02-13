@@ -104,7 +104,7 @@ class Zend_Tool_Framework_System_Provider_Version
 
     protected function _splitVersion()
     {
-        list($major, $minor, $mini) = explode('.', Zend_Version::VERSION);
+        [$major, $minor, $mini] = explode('.', Zend_Version::VERSION);
         return ['major' => $major, 'minor' => $minor, 'mini' => $mini];
     }
 

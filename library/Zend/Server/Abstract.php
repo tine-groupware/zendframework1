@@ -122,8 +122,8 @@ abstract class Zend_Server_Abstract implements Zend_Server_Interface
      */
     public static function lowerCase(&$value)
     {
-        trigger_error(__CLASS__ . '::' . __METHOD__ . '() is deprecated and will be removed in a future version', E_USER_NOTICE);
-        return $value = strtolower($value);
+        trigger_error(self::class . '::' . __METHOD__ . '() is deprecated and will be removed in a future version', E_USER_NOTICE);
+        return $value = strtolower((string) $value);
     }
 
     /**

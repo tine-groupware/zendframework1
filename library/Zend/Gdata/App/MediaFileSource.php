@@ -35,7 +35,7 @@ require_once 'Zend/Gdata/App/BaseMediaSource.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Gdata_App_MediaFileSource extends Zend_Gdata_App_BaseMediaSource
+class Zend_Gdata_App_MediaFileSource extends Zend_Gdata_App_BaseMediaSource implements \Stringable
 {
     /**
      * The filename which is represented
@@ -138,7 +138,7 @@ class Zend_Gdata_App_MediaFileSource extends Zend_Gdata_App_BaseMediaSource
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getFilename();
     }

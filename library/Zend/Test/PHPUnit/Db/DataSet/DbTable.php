@@ -52,42 +52,24 @@ class Zend_Test_PHPUnit_Db_DataSet_DbTable extends PHPUnit_Extensions_Database_D
     /**
      * @var string
      */
-    protected $_where = null;
-
-    /**
-     * @var string
-     */
     protected $_orderBy = null;
-
-    /**
-     * @var string
-     */
-    protected $_count = null;
-
-    /**
-     * @var int
-     */
-    protected $_offset = null;
 
     /**
      * Construct Dataset Table from Zend_Db_Table object
      *
      * @param Zend_Db_Table_Abstract        $table
-     * @param string|Zend_Db_Select|null    $where
+     * @param string|Zend_Db_Select|null $_where
      * @param string|null                   $order
-     * @param int                           $count
-     * @param int                           $offset
+     * @param int $_count
+     * @param int $_offset
      */
-    public function __construct(Zend_Db_Table_Abstract $table, $where=null, $order=null, $count=null, $offset=null)
+    public function __construct(Zend_Db_Table_Abstract $table, protected $_where=null, $order=null, protected $_count=null, protected $_offset=null)
     {
         $this->tableName = $table->info('name');
         $this->_columns = $table->info('cols');
 
         $this->_table = $table;
-        $this->_where = $where;
         $this->_order = $order;
-        $this->_count = $count;
-        $this->_offset = $offset;
     }
 
     /**

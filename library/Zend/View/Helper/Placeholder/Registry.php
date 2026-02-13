@@ -39,6 +39,7 @@ require_once 'Zend/View/Helper/Placeholder/Container.php';
  */
 class Zend_View_Helper_Placeholder_Registry
 {
+    public $view;
     /**
      * Zend_Registry key under which placeholder registry exists
      * @const string

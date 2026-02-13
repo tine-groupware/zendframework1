@@ -38,7 +38,7 @@ require_once 'Zend/Service/ReCaptcha/Response.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-class Zend_Service_ReCaptcha extends Zend_Service_Abstract
+class Zend_Service_ReCaptcha extends Zend_Service_Abstract implements \Stringable
 {
     /**
      * URI to the regular API
@@ -160,7 +160,7 @@ class Zend_Service_ReCaptcha extends Zend_Service_Abstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             $return = $this->getHtml();
@@ -404,7 +404,7 @@ class Zend_Service_ReCaptcha extends Zend_Service_Abstract
         $errorPart = '';
 
         if (!empty($this->_params['error'])) {
-            $errorPart = '&error=' . urlencode($this->_params['error']);
+            $errorPart = '&error=' . urlencode((string) $this->_params['error']);
         }
 
         $reCaptchaOptions = '';

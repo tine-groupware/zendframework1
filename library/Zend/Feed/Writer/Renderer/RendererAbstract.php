@@ -40,11 +40,6 @@ class Zend_Feed_Writer_Renderer_RendererAbstract
     protected $_extensions = [];
 
     /**
-     * @var mixed
-     */
-    protected $_container = null;
-
-    /**
      * @var DOMDocument
      */
     protected $_dom = null;
@@ -82,13 +77,12 @@ class Zend_Feed_Writer_Renderer_RendererAbstract
     /**
      * Constructor
      *
-     * @param  mixed $container
+     * @param mixed $_container
      * @return void
      */
-    public function __construct($container)
+    public function __construct(protected $_container)
     {
-        $this->_container = $container;
-        $this->setType($container->getType());
+        $this->setType($this->_container->getType());
         $this->_loadExtensions();
     }
 
@@ -234,7 +228,7 @@ class Zend_Feed_Writer_Renderer_RendererAbstract
     {
         Zend_Feed_Writer::registerCoreExtensions();
         $all = Zend_Feed_Writer::getExtensions();
-        if (stripos(get_class($this), 'entry')) {
+        if (stripos(static::class, 'entry')) {
             $exts = $all['entryRenderer'];
         } else {
             $exts = $all['feedRenderer'];

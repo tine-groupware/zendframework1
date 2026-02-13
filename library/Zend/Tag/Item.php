@@ -107,7 +107,7 @@ class Zend_Tag_Item implements Zend_Tag_Taggable
     public function setOptions(array $options)
     {
         foreach ($options as $key => $value) {
-            if (in_array(strtolower($key), $this->_skipOptions)) {
+            if (in_array(strtolower((string) $key), $this->_skipOptions)) {
                 continue;
             }
 
@@ -212,9 +212,6 @@ class Zend_Tag_Item implements Zend_Tag_Taggable
      */
     public function getParam($name)
     {
-        if (isset($this->_params[$name])) {
-            return $this->_params[$name];
-        }
-        return null;
+        return $this->_params[$name] ?? null;
     }
 }

@@ -260,14 +260,14 @@ class Zend_Service_Amazon_Ec2_CloudWatch extends Zend_Service_Amazon_Ec2_Abstrac
         unset($options['Statistics']);
 
         if(isset($options['StartTime'])) {
-            if(!is_numeric($options['StartTime'])) $options['StartTime'] = strtotime($options['StartTime']);
+            if(!is_numeric($options['StartTime'])) $options['StartTime'] = strtotime((string) $options['StartTime']);
             $options['StartTime'] = gmdate('c', $options['StartTime']);
         } else {
             $options['StartTime'] = gmdate('c', strtotime('-1 hour'));
         }
 
         if(isset($options['EndTime'])) {
-            if(!is_numeric($options['EndTime'])) $options['EndTime'] = strtotime($options['EndTime']);
+            if(!is_numeric($options['EndTime'])) $options['EndTime'] = strtotime((string) $options['EndTime']);
             $options['EndTime'] = gmdate('c', $options['EndTime']);
         } else {
             $options['EndTime'] = gmdate('c');

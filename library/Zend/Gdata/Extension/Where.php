@@ -44,18 +44,10 @@ class Zend_Gdata_Extension_Where extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'where';
-    protected $_label = null;
-    protected $_rel = null;
-    protected $_valueString = null;
-    protected $_entryLink = null;
 
-    public function __construct($valueString = null, $label = null, $rel = null, $entryLink = null)
+    public function __construct(protected $_valueString = null, protected $_label = null, protected $_rel = null, protected $_entryLink = null)
     {
         parent::__construct();
-        $this->_valueString = $valueString;
-        $this->_label = $label;
-        $this->_rel = $rel;
-        $this->_entryLink = $entryLink;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)
@@ -114,10 +106,10 @@ class Zend_Gdata_Extension_Where extends Zend_Gdata_Extension
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->_valueString != null) {
-            return $this->_valueString;
+            return (string) $this->_valueString;
         }
         else {
             return parent::__toString();

@@ -42,15 +42,6 @@ class Zend_Service_Amazon_SimpleDb_Response
     protected $_xmlNamespace = 'http://sdb.amazonaws.com/doc/2009-04-15/';
 
     /**
-     * The original HTTP response
-     *
-     * This contains the response body and headers.
-     *
-     * @var Zend_Http_Response
-     */
-    private $_httpResponse = null;
-
-    /**
      * The response document object
      *
      * @var DOMDocument
@@ -81,12 +72,18 @@ class Zend_Service_Amazon_SimpleDb_Response
     /**
      * Creates a new high-level SimpleDB response object
      *
-     * @param  Zend_Http_Response $httpResponse the HTTP response.
+     * @param Zend_Http_Response $_httpResponse the HTTP response.
      * @return void
      */
-    public function __construct(Zend_Http_Response $httpResponse)
+    public function __construct(
+        /**
+         * The original HTTP response
+         *
+         * This contains the response body and headers.
+         */
+        private readonly Zend_Http_Response $_httpResponse
+    )
     {
-        $this->_httpResponse = $httpResponse;
     }
 
     /**
@@ -119,7 +116,7 @@ class Zend_Service_Amazon_SimpleDb_Response
     {
         try {
             $body = $this->_httpResponse->getBody();
-        } catch (Zend_Http_Exception $e) {
+        } catch (Zend_Http_Exception) {
             $body = false;
         }
 
@@ -145,7 +142,7 @@ class Zend_Service_Amazon_SimpleDb_Response
     {
         try {
             $body = $this->_httpResponse->getBody();
-        } catch (Zend_Http_Exception $e) {
+        } catch (Zend_Http_Exception) {
             $body = false;
         }
 

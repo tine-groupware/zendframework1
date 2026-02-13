@@ -31,40 +31,16 @@
 class Zend_Amf_Value_TraitsInfo
 {
     /**
-     * @var string Class name
-     */
-    protected $_className;
-
-    /**
-     * @var bool Whether or not this is a dynamic class
-     */
-    protected $_dynamic;
-
-    /**
-     * @var bool Whether or not the class is externalizable
-     */
-    protected $_externalizable;
-
-    /**
-     * @var array Class properties
-     */
-    protected $_properties;
-
-    /**
      * Used to keep track of all class traits of an AMF3 object
      *
-     * @param  string $className
-     * @param  boolean $dynamic
-     * @param  boolean $externalizable
-     * @param  boolean $properties
+     * @param string $_className
+     * @param boolean $_dynamic
+     * @param boolean $_externalizable
+     * @param boolean $_properties
      * @return void
      */
-    public function __construct($className, $dynamic=false, $externalizable=false, $properties=null)
+    public function __construct(protected $_className, protected $_dynamic=false, protected $_externalizable=false, protected $_properties=null)
     {
-        $this->_className      = $className;
-        $this->_dynamic        = $dynamic;
-        $this->_externalizable = $externalizable;
-        $this->_properties     = $properties;
     }
 
     /**

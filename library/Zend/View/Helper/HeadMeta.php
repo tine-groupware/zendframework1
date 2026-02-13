@@ -88,16 +88,10 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
         if ((null !== $content) && (null !== $keyValue)) {
             $item   = $this->createData($keyType, $keyValue, $content, $modifiers);
             $action = strtolower($placement);
-            switch ($action) {
-                case 'append':
-                case 'prepend':
-                case 'set':
-                    $this->$action($item);
-                    break;
-                default:
-                    $this->append($item);
-                    break;
-            }
+            match ($action) {
+                'append', 'prepend', 'set' => $this->$action($item),
+                default => $this->append($item),
+            };
         }
 
         return $this;

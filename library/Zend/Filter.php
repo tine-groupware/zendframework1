@@ -218,7 +218,7 @@ class Zend_Filter implements Zend_Filter_Interface
                     } else {
                         continue;
                     }
-                } catch (Zend_Exception $ze) {
+                } catch (Zend_Exception) {
                     continue;
                 }
             }

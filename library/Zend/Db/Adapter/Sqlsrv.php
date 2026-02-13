@@ -127,7 +127,7 @@ class Zend_Db_Adapter_Sqlsrv extends Zend_Db_Adapter_Abstract
 
         $serverName = $this->_config['host'];
         if (isset($this->_config['port'])) {
-            $port        = (integer) $this->_config['port'];
+            $port        = (int) $this->_config['port'];
             $serverName .= ', ' . $port;
         }
 
@@ -482,7 +482,7 @@ class Zend_Db_Adapter_Sqlsrv extends Zend_Db_Adapter_Abstract
         $p    = 1;
         foreach ($result as $key => $row) {
             $identity = false;
-            $words    = explode(' ', $row[$type_name], 2);
+            $words    = explode(' ', (string) $row[$type_name], 2);
             if (isset($words[0])) {
                 $type = $words[0];
                 if (isset($words[1])) {

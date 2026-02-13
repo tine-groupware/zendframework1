@@ -31,6 +31,10 @@
  */
 class Zend_Service_Amazon_Item
 {
+    private string $CurrencyCode;
+    private int $Amount;
+    private string $FormattedPrice;
+    private array $EditorialReviews;
     /**
      * @var string
      */

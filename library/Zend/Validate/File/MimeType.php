@@ -181,7 +181,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
                         if ($this->_magicfile !== null) {
                             break;
                         }
-                    } catch (Zend_Validate_Exception $e) {
+                    } catch (Zend_Validate_Exception) {
                         // Intentionally, catch and fall through
                     }
                 }
@@ -217,7 +217,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             throw new Zend_Validate_Exception('The given magicfile can not be read');
         } else {
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
-            set_error_handler([$this, '_errorHandler'], E_NOTICE | E_WARNING);
+            set_error_handler($this->_errorHandler(...), E_NOTICE | E_WARNING);
             $this->_finfo = finfo_open($const, $file);
             restore_error_handler();
             if (empty($this->_finfo)) {
@@ -246,7 +246,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
      */
     public function setTryCommonMagicFilesFlag($flag = true)
     {
-        $this->_tryCommonMagicFiles = (boolean) $flag;
+        $this->_tryCommonMagicFiles = (bool) $flag;
 
         return $this;
     }
@@ -281,7 +281,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
      */
     public function enableHeaderCheck($headerCheck = true)
     {
-        $this->_headerCheck = (boolean) $headerCheck;
+        $this->_headerCheck = (bool) $headerCheck;
         return $this;
     }
 
@@ -399,9 +399,9 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             return true;
         }
 
-        $types = explode('/', $this->_type);
-        $types = array_merge($types, explode('-', $this->_type));
-        $types = array_merge($types, explode(';', $this->_type));
+        $types = explode('/', (string) $this->_type);
+        $types = array_merge($types, explode('-', (string) $this->_type));
+        $types = array_merge($types, explode(';', (string) $this->_type));
         foreach($mimetype as $mime) {
             if (in_array($mime, $types)) {
                 return true;
@@ -440,13 +440,13 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
 
             if (!empty($mimefile) && empty($this->_finfo)) {
-                set_error_handler([$this, '_errorHandler'], E_NOTICE | E_WARNING);
+                set_error_handler($this->_errorHandler(...), E_NOTICE | E_WARNING);
                 $this->_finfo = finfo_open($const, $mimefile);
                 restore_error_handler();
             }
 
             if (empty($this->_finfo)) {
-                set_error_handler([$this, '_errorHandler'], E_NOTICE | E_WARNING);
+                set_error_handler($this->_errorHandler(...), E_NOTICE | E_WARNING);
                 $this->_finfo = finfo_open($const);
                 restore_error_handler();
             }

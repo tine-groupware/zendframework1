@@ -237,7 +237,7 @@ abstract class Zend_Server_Reflection_Function_Abstract
             $return = new Zend_Server_Reflection_ReturnValue(array_shift($signature), $this->_returnDesc);
             $tmp    = [];
             foreach ($signature as $key => $type) {
-                $param = new Zend_Server_Reflection_Parameter($params[$key], $type, (isset($this->_paramDesc[$key]) ? $this->_paramDesc[$key] : null));
+                $param = new Zend_Server_Reflection_Parameter($params[$key], $type, ($this->_paramDesc[$key] ?? null));
                 $param->setPosition($key);
                 $tmp[] = $param;
             }
@@ -273,8 +273,8 @@ abstract class Zend_Server_Reflection_Function_Abstract
             {
                 $helpText = $matches[1];
                 $helpText = preg_replace('/(^\s*\*\s)/m', '', $helpText);
-                $helpText = preg_replace('/\r?\n\s*\*\s*(\r?\n)*/s', "\n", $helpText);
-                $helpText = trim($helpText);
+                $helpText = preg_replace('/\r?\n\s*\*\s*(\r?\n)*/s', "\n", (string) $helpText);
+                $helpText = trim((string) $helpText);
             }
 
             // Get return type(s) and description
@@ -285,8 +285,8 @@ abstract class Zend_Server_Reflection_Function_Abstract
                 {
                     $value = $matches[1];
                     $value = preg_replace('/\s?\*\s/m', '', $value);
-                    $value = preg_replace('/\s{2,}/', ' ', $value);
-                    $returnDesc = trim($value);
+                    $value = preg_replace('/\s{2,}/', ' ', (string) $value);
+                    $returnDesc = trim((string) $value);
                 }
             }
 
@@ -298,8 +298,8 @@ abstract class Zend_Server_Reflection_Function_Abstract
                     $paramDesc = $matches[2];
                     foreach ($paramDesc as $key => $value) {
                         $value = preg_replace('/\s?\*\s/m', '', $value);
-                        $value = preg_replace('/\s{2,}/', ' ', $value);
-                        $paramDesc[$key] = trim($value);
+                        $value = preg_replace('/\s{2,}/', ' ', (string) $value);
+                        $paramDesc[$key] = trim((string) $value);
                     }
                 }
             }
@@ -399,11 +399,7 @@ abstract class Zend_Server_Reflection_Function_Abstract
      */
     public function __get($key)
     {
-        if (isset($this->_config[$key])) {
-            return $this->_config[$key];
-        }
-
-        return null;
+        return $this->_config[$key] ?? null;
     }
 
     /**

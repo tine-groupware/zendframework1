@@ -25,7 +25,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_Client_Interactive_InputRequest
+class Zend_Tool_Framework_Client_Interactive_InputRequest implements \Stringable
 {
     protected $_content = null;
 
@@ -47,8 +47,8 @@ class Zend_Tool_Framework_Client_Interactive_InputRequest
         return $this->_content;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->_content;
+        return (string) $this->_content;
     }
 }

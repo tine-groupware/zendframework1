@@ -54,16 +54,10 @@ abstract class Zend_Gdata_App_Extension_Person extends Zend_Gdata_App_Extension
 {
 
     protected $_rootElement = null;
-    protected $_name = null;
-    protected $_email = null;
-    protected $_uri = null;
 
-    public function __construct($name = null, $email = null, $uri = null)
+    public function __construct(protected $_name = null, protected $_email = null, protected $_uri = null)
     {
         parent::__construct();
-        $this->_name = $name;
-        $this->_email = $email;
-        $this->_uri = $uri;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

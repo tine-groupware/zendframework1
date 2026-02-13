@@ -139,7 +139,7 @@ class Zend_Crypt_Rsa
             $this->getHashAlgorithm()
         );
         if ($format == self::BASE64) {
-            return base64_encode($signature);
+            return base64_encode((string) $signature);
         }
         return $signature;
     }
@@ -176,7 +176,7 @@ class Zend_Crypt_Rsa
         }
         $function($data, $encrypted, $key->getOpensslKeyResource());
         if ($format == self::BASE64) {
-            return base64_encode($encrypted);
+            return base64_encode((string) $encrypted);
         }
         return $encrypted;
     }
@@ -250,7 +250,7 @@ class Zend_Crypt_Rsa
         try {
             $this->_privateKey = new Zend_Crypt_Rsa_Key_Private($this->_pemString, $this->_passPhrase);
             $this->_publicKey = $this->_privateKey->getPublicKey();
-        } catch (Zend_Crypt_Exception $e) {
+        } catch (Zend_Crypt_Exception) {
             $this->_privateKey = null;
             $this->_publicKey = new Zend_Crypt_Rsa_Key_Public($this->_pemString);
         }
@@ -276,7 +276,7 @@ class Zend_Crypt_Rsa
 
     public function setHashAlgorithm($name)
     {
-        switch (strtolower($name)) {
+        switch (strtolower((string) $name)) {
             case 'md2':
                 $this->_hashAlgorithm = OPENSSL_ALGO_MD2;
                 break;

@@ -265,7 +265,7 @@ class Zend_View_Helper_Navigation_Sitemap
         } else {
             // href is relative to current document; use url helpers
             $url = $this->getServerUrl()
-                 . rtrim($this->view->url(), '/') . '/'
+                 . rtrim((string) $this->view->url(), '/') . '/'
                  . $href;
         }
 

@@ -42,15 +42,6 @@ class Zend_Service_Amazon_Ec2_Response {
     protected $_xmlNamespace = 'http://ec2.amazonaws.com/doc/2009-04-04/';
 
     /**
-     * The original HTTP response
-     *
-     * This contains the response body and headers.
-     *
-     * @var Zend_Http_Response
-     */
-    private $_httpResponse = null;
-
-    /**
      * The response document object
      *
      * @var DOMDocument
@@ -81,11 +72,17 @@ class Zend_Service_Amazon_Ec2_Response {
     /**
      * Creates a new high-level EC2 response object
      *
-     * @param Zend_Http_Response $httpResponse the HTTP response.
+     * @param Zend_Http_Response $_httpResponse the HTTP response.
      */
-    public function __construct(Zend_Http_Response $httpResponse)
+    public function __construct(
+        /**
+         * The original HTTP response
+         *
+         * This contains the response body and headers.
+         */
+        private readonly Zend_Http_Response $_httpResponse
+    )
     {
-        $this->_httpResponse = $httpResponse;
     }
 
     /**
@@ -118,7 +115,7 @@ class Zend_Service_Amazon_Ec2_Response {
     {
         try {
             $body = $this->_httpResponse->getBody();
-        } catch (Zend_Http_Exception $e) {
+        } catch (Zend_Http_Exception) {
             $body = false;
         }
         

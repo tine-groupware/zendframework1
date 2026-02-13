@@ -223,7 +223,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
                     break;
 
                 case 'overwrite' :
-                    $files['overwrite'] = (boolean) $value;
+                    $files['overwrite'] = (bool) $value;
                     break;
 
                 default:
@@ -295,7 +295,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
         }
 
         if (is_dir($rename['target'])) {
-            $name = basename($rename['source']);
+            $name = basename((string) $rename['source']);
             $last = $rename['target'][strlen($rename['target']) - 1];
             if (($last != '/') && ($last != '\\')) {
                 $rename['target'] .= DIRECTORY_SEPARATOR;

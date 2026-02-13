@@ -104,7 +104,7 @@ class Zend_Rest_Server implements Zend_Server_Interface
      */
     public function __construct()
     {
-        set_exception_handler([$this, "fault"]);
+        set_exception_handler($this->fault(...));
         $this->_reflection = new Zend_Server_Reflection();
     }
 
@@ -189,7 +189,7 @@ class Zend_Rest_Server implements Zend_Server_Interface
                        && $this->_functions[$this->_method]->isPublic()
                 ) {
                     $requestKeys = array_keys($request);
-                    array_walk($requestKeys, [__CLASS__, "lowerCase"]);
+                    array_walk($requestKeys, self::lowerCase(...));
                     $request = array_combine($requestKeys, $request);
 
                     $funcArgs = $this->_functions[$this->_method]->getParameters();
@@ -198,8 +198,8 @@ class Zend_Rest_Server implements Zend_Server_Interface
                     $callingArgs = [];
                     $missingArgs = [];
                     foreach ($funcArgs as $i => $arg) {
-                        if (isset($request[strtolower($arg->getName())])) {
-                            $callingArgs[$i] = $request[strtolower($arg->getName())];
+                        if (isset($request[strtolower((string) $arg->getName())])) {
+                            $callingArgs[$i] = $request[strtolower((string) $arg->getName())];
                         } elseif ($arg->isOptional()) {
                             $callingArgs[$i] = $arg->getDefaultValue();
                         } else {
@@ -209,7 +209,7 @@ class Zend_Rest_Server implements Zend_Server_Interface
 
                     $anonymousArgs = [];
                     foreach ($request as $key => $value) {
-                        if (substr($key, 0, 3) == 'arg') {
+                        if (str_starts_with((string) $key, 'arg')) {
                             $key = str_replace('arg', '', $key);
                             $anonymousArgs[$key] = $value;
                             if (($index = array_search($key, $missingArgs)) !== false) {

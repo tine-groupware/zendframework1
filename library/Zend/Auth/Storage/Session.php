@@ -60,29 +60,19 @@ class Zend_Auth_Storage_Session implements Zend_Auth_Storage_Interface
     protected $_session;
 
     /**
-     * Session namespace
-     *
-     * @var mixed
-     */
-    protected $_namespace;
-
-    /**
-     * Session object member
-     *
-     * @var mixed
-     */
-    protected $_member;
-
-    /**
      * Sets session storage options and initializes session namespace object
      *
-     * @param mixed $namespace
-     * @param mixed $member
+     * @param mixed $_namespace
+     * @param mixed $_member
      */
-    public function __construct($namespace = self::NAMESPACE_DEFAULT, $member = self::MEMBER_DEFAULT)
+    public function __construct(/**
+     * Session namespace
+     */
+    protected $_namespace = self::NAMESPACE_DEFAULT, /**
+     * Session object member
+     */
+    protected $_member = self::MEMBER_DEFAULT)
     {
-        $this->_namespace = $namespace;
-        $this->_member    = $member;
         $this->_session   = new Zend_Session_Namespace($this->_namespace);
     }
 

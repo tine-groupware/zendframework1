@@ -337,7 +337,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
      */
     public function setDomainCheck($domain = true)
     {
-        $this->_options['domain'] = (boolean) $domain;
+        $this->_options['domain'] = (bool) $domain;
         return $this;
     }
 
@@ -359,12 +359,12 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
             foreach ((array)$this->_invalidIp[$octet[0]] as $subnetData) {
                 // we skip the first loop as we already know that octet matches
                 for ($i = 1; $i < 4; $i++) {
-                    if (strpos($subnetData, $octet[$i]) !== $i * 4) {
+                    if (strpos((string) $subnetData, $octet[$i]) !== $i * 4) {
                         break;
                     }
                 }
 
-                $host       = explode("/", $subnetData);
+                $host       = explode("/", (string) $subnetData);
                 $binaryHost = "";
                 $tmp        = explode(".", $host[0]);
                 for ($i = 0; $i < 4 ; $i++) {
@@ -541,7 +541,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
         $this->_setValue($value);
 
         // Split email address up and disallow '..'
-        if ((strpos($value, '..') !== false) ||
+        if ((str_contains($value, '..')) ||
             (!preg_match('/^(.+)@([^@]+)$/', $value, $matches))) {
             $this->_error(self::INVALID_FORMAT);
             return false;

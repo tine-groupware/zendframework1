@@ -169,14 +169,14 @@ class Zend_Form_Element_Captcha extends Zend_Form_Element_Xhtml
         if (!$this->loadDefaultDecoratorsIsDisabled()) {
             $decorators = $this->getDecorators();
             $decorator  = $captcha->getDecorator();
-            $key        = get_class($this->_getDecorator($decorator, null));
+            $key        = $this->_getDecorator($decorator, null)::class;
 
             if (!empty($decorator) && !array_key_exists($key, $decorators)) {
                 array_unshift($decorators, $decorator);
             }
 
             $decorator = ['Captcha', ['captcha' => $captcha]];
-            $key       = get_class($this->_getDecorator($decorator[0], $decorator[1]));
+            $key       = $this->_getDecorator($decorator[0], $decorator[1])::class;
 
             if ($captcha instanceof Zend_Captcha_Word && !array_key_exists($key, $decorators)) {
                 array_unshift($decorators, $decorator);
@@ -228,11 +228,11 @@ class Zend_Form_Element_Captcha extends Zend_Form_Element_Xhtml
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = strtoupper((string) $type);
         switch ($type) {
             case null:
                 $loader = $this->getPluginLoader(self::CAPTCHA);
-                $nsSeparator = (false !== strpos($prefix, '\\'))?'\\':'_';
+                $nsSeparator = (str_contains($prefix, '\\'))?'\\':'_';
                 $cPrefix = rtrim($prefix, $nsSeparator) . $nsSeparator . 'Captcha';
                 $cPath   = rtrim($path, '/\\') . '/Captcha';
                 $loader->addPrefixPath($cPrefix, $cPath);

@@ -45,13 +45,6 @@ class Zend_Test_PHPUnit_Db_Metadata_Generic implements PHPUnit_Extensions_Databa
     protected $_connection;
 
     /**
-     * Schemaname
-     *
-     * @var string
-     */
-    protected $_schema;
-
-    /**
      * Cached Table metadata
      *
      * @var array
@@ -63,12 +56,14 @@ class Zend_Test_PHPUnit_Db_Metadata_Generic implements PHPUnit_Extensions_Databa
      * and schema name.
      *
      * @param Zend_Db_Adapter_Abstract $db
-     * @param string $schema
+     * @param string $_schema
      */
-    public final function __construct(Zend_Db_Adapter_Abstract $db, $schema)
+    public final function __construct(Zend_Db_Adapter_Abstract $db, /**
+     * Schemaname
+     */
+    protected $_schema)
     {
         $this->_connection = $db;
-        $this->_schema     = $schema;
     }
 
     /**

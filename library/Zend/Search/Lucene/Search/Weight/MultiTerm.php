@@ -35,20 +35,6 @@ require_once 'Zend/Search/Lucene/Search/Weight.php';
 class Zend_Search_Lucene_Search_Weight_MultiTerm extends Zend_Search_Lucene_Search_Weight
 {
     /**
-     * IndexReader.
-     *
-     * @var Zend_Search_Lucene_Interface
-     */
-    private $_reader;
-
-    /**
-     * The query that this concerns.
-     *
-     * @var Zend_Search_Lucene_Search_Query
-     */
-    private $_query;
-
-    /**
      * Query terms weights
      * Array of Zend_Search_Lucene_Search_Weight_Term
      *
@@ -62,23 +48,27 @@ class Zend_Search_Lucene_Search_Weight_MultiTerm extends Zend_Search_Lucene_Sear
      * query - the query that this concerns.
      * reader - index reader
      *
-     * @param Zend_Search_Lucene_Search_Query $query
-     * @param Zend_Search_Lucene_Interface    $reader
+     * @param Zend_Search_Lucene_Search_Query $_query
+     * @param Zend_Search_Lucene_Interface $_reader
      */
-    public function __construct(Zend_Search_Lucene_Search_Query $query,
-                                Zend_Search_Lucene_Interface    $reader)
+    public function __construct(/**
+     * The query that this concerns.
+     */
+    private readonly Zend_Search_Lucene_Search_Query $_query,
+                                /**
+                                 * IndexReader.
+                                 */
+                                private readonly Zend_Search_Lucene_Interface    $_reader)
     {
-        $this->_query   = $query;
-        $this->_reader  = $reader;
         $this->_weights = [];
 
-        $signs = $query->getSigns();
+        $signs = $this->_query->getSigns();
 
-        foreach ($query->getTerms() as $id => $term) {
+        foreach ($this->_query->getTerms() as $id => $term) {
             if ($signs === null || $signs[$id] === null || $signs[$id]) {
                 require_once 'Zend/Search/Lucene/Search/Weight/Term.php';
-                $this->_weights[$id] = new Zend_Search_Lucene_Search_Weight_Term($term, $query, $reader);
-                $query->setWeight($id, $this->_weights[$id]);
+                $this->_weights[$id] = new Zend_Search_Lucene_Search_Weight_Term($term, $this->_query, $this->_reader);
+                $this->_query->setWeight($id, $this->_weights[$id]);
             }
         }
     }

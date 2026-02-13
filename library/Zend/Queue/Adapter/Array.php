@@ -178,7 +178,7 @@ class Zend_Queue_Adapter_Array extends Zend_Queue_Adapter_AdapterAbstract
 
         // create the message
         $data = [
-            'message_id' => md5(uniqid(rand(), true)),
+            'message_id' => md5(uniqid(random_int(0, mt_getrandmax()), true)),
             'body'       => $message,
             'md5'        => md5($message),
             'handle'     => null,
@@ -238,7 +238,7 @@ class Zend_Queue_Adapter_Array extends Zend_Queue_Adapter_AdapterAbstract
                 if (($msg['handle'] === null)
                     || ($msg['timeout'] + $timeout < $start_time)
                 ) {
-                    $msg['handle']  = md5(uniqid(rand(), true));
+                    $msg['handle']  = md5(uniqid(random_int(0, mt_getrandmax()), true));
                     $msg['timeout'] = microtime(true);
                     $data[] = $msg;
                     $count++;

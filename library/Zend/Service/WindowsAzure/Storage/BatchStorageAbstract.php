@@ -165,7 +165,7 @@ abstract class Zend_Service_WindowsAzure_Storage_BatchStorageAbstract
 		
 		// Execute request
         return $this->_retryPolicy->execute(
-		    [$this->_httpClientChannel, 'request'],
+		    $this->_httpClientChannel->request(...),
 		    [$httpVerb]
 		);
 	}

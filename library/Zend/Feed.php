@@ -136,9 +136,7 @@ class Zend_Feed
      */
     public static function lookupNamespace($prefix)
     {
-        return isset(self::$_namespaces[$prefix]) ?
-            self::$_namespaces[$prefix] :
-            $prefix;
+        return self::$_namespaces[$prefix] ?? $prefix;
     }
 
 
@@ -336,19 +334,19 @@ class Zend_Feed
                     // checks if we need to canonize the given uri
                     try {
                         $uri = Zend_Uri::factory((string) $attributes['href']);
-                    } catch (Zend_Uri_Exception $e) {
+                    } catch (Zend_Uri_Exception) {
                         // canonize the uri
                         $path = (string) $attributes['href'];
                         $query = $fragment = '';
-                        if (substr($path, 0, 1) != '/') {
+                        if (!str_starts_with($path, '/')) {
                             // add the current root path to this one
-                            $path = rtrim($client->getUri()->getPath(), '/') . '/' . $path;
+                            $path = rtrim((string) $client->getUri()->getPath(), '/') . '/' . $path;
                         }
-                        if (strpos($path, '?') !== false) {
-                            list($path, $query) = explode('?', $path, 2);
+                        if (str_contains($path, '?')) {
+                            [$path, $query] = explode('?', $path, 2);
                         }
-                        if (strpos($query, '#') !== false) {
-                            list($query, $fragment) = explode('#', $query, 2);
+                        if (str_contains($query, '#')) {
+                            [$query, $fragment] = explode('#', $query, 2);
                         }
                         $uri = Zend_Uri::factory($client->getUri(true));
                         $uri->setPath($path);
@@ -357,7 +355,7 @@ class Zend_Feed
                     }
 
                     $feed = self::import($uri);
-                } catch (Exception $e) {
+                } catch (Exception) {
                     continue;
                 }
                 $feeds[$uri->getUri()] = $feed;

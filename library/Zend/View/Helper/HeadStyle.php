@@ -103,18 +103,11 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
     public function headStyle($content = null, $placement = 'APPEND', $attributes = [])
     {
         if ((null !== $content) && is_string($content)) {
-            switch (strtoupper($placement)) {
-                case 'SET':
-                    $action = 'setStyle';
-                    break;
-                case 'PREPEND':
-                    $action = 'prependStyle';
-                    break;
-                case 'APPEND':
-                default:
-                    $action = 'appendStyle';
-                    break;
-            }
+            $action = match (strtoupper($placement)) {
+                'SET' => 'setStyle',
+                'PREPEND' => 'prependStyle',
+                default => 'appendStyle',
+            };
             $this->$action($content, $attributes);
         }
 
@@ -302,18 +295,11 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
         $this->_captureAttrs = null;
         $this->_captureLock  = false;
 
-        switch ($this->_captureType) {
-            case Zend_View_Helper_Placeholder_Container_Abstract::SET:
-                $this->setStyle($content, $attrs);
-                break;
-            case Zend_View_Helper_Placeholder_Container_Abstract::PREPEND:
-                $this->prependStyle($content, $attrs);
-                break;
-            case Zend_View_Helper_Placeholder_Container_Abstract::APPEND:
-            default:
-                $this->appendStyle($content, $attrs);
-                break;
-        }
+        match ($this->_captureType) {
+            Zend_View_Helper_Placeholder_Container_Abstract::SET => $this->setStyle($content, $attrs),
+            Zend_View_Helper_Placeholder_Container_Abstract::PREPEND => $this->prependStyle($content, $attrs),
+            default => $this->appendStyle($content, $attrs),
+        };
     }
 
     /**
@@ -338,12 +324,12 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
                     continue;
                 }
                 if ('media' == $key) {
-                    if(false === strpos($value, ',')) {
+                    if(!str_contains((string) $value, ',')) {
                         if (!in_array($value, $this->_mediaTypes)) {
                             continue;
                         }
                     } else {
-                        $media_types = explode(',', $value);
+                        $media_types = explode(',', (string) $value);
                         $value = '';
                         foreach($media_types as $type) {
                             $type = trim($type);
@@ -355,7 +341,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
                         $value = substr($value, 0, -1);
                     }
                 }
-                $attrString .= sprintf(' %s="%s"', $key, htmlspecialchars($value, ENT_COMPAT, $enc));
+                $attrString .= sprintf(' %s="%s"', $key, htmlspecialchars((string) $value, ENT_COMPAT, $enc));
             }
         }
 

@@ -36,20 +36,7 @@ require_once 'Zend/Search/Lucene/Search/Weight.php';
  */
 class Zend_Search_Lucene_Search_Weight_Phrase extends Zend_Search_Lucene_Search_Weight
 {
-    /**
-     * IndexReader.
-     *
-     * @var Zend_Search_Lucene_Interface
-     */
-    private $_reader;
-
-    /**
-     * The query that this concerns.
-     *
-     * @var Zend_Search_Lucene_Search_Query_Phrase
-     */
-    private $_query;
-
+    public $_queryWeight;
     /**
      * Score factor
      *
@@ -60,14 +47,20 @@ class Zend_Search_Lucene_Search_Weight_Phrase extends Zend_Search_Lucene_Search_
     /**
      * Zend_Search_Lucene_Search_Weight_Phrase constructor
      *
-     * @param Zend_Search_Lucene_Search_Query_Phrase $query
-     * @param Zend_Search_Lucene_Interface           $reader
+     * @param Zend_Search_Lucene_Search_Query_Phrase $_query
+     * @param Zend_Search_Lucene_Interface $_reader
      */
-    public function __construct(Zend_Search_Lucene_Search_Query_Phrase $query,
-                                Zend_Search_Lucene_Interface           $reader)
+    public function __construct(
+        /**
+         * The query that this concerns.
+         */
+        private readonly Zend_Search_Lucene_Search_Query_Phrase $_query,
+        /**
+         * IndexReader.
+         */
+        private readonly Zend_Search_Lucene_Interface           $_reader
+    )
     {
-        $this->_query  = $query;
-        $this->_reader = $reader;
     }
 
     /**

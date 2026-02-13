@@ -105,7 +105,7 @@ class Zend_Service_Console_Command
 	public static function bootstrap($argv)
 	{
 		// Abort bootstrapping depending on the MICROSOFT_CONSOLE_COMMAND_HOST constant.
-		if (defined('MICROSOFT_CONSOLE_COMMAND_HOST') && strtolower(MICROSOFT_CONSOLE_COMMAND_HOST) != 'console') {
+		if (defined('MICROSOFT_CONSOLE_COMMAND_HOST') && strtolower((string) MICROSOFT_CONSOLE_COMMAND_HOST) != 'console') {
 			return;
 		}
 
@@ -117,7 +117,7 @@ class Zend_Service_Console_Command
 		$model = self::_buildModel();
 
 		// Find a class that corresponds to the $argv[0] script name
-		$requiredHandlerName = str_replace('.bat', '', str_replace('.sh', '', str_replace('.php', '', strtolower(basename($argv[0])))));
+		$requiredHandlerName = str_replace('.bat', '', str_replace('.sh', '', str_replace('.php', '', strtolower(basename((string) $argv[0])))));
 		$handler = null;
 		foreach ($model as $possibleHandler) {
 			if ($possibleHandler->handler == strtolower($requiredHandlerName)) {
@@ -133,13 +133,13 @@ class Zend_Service_Console_Command
 		// Find a method that matches the command name
 		$command = null;
 		foreach ($handler->commands as $possibleCommand) {
-			if (in_array(strtolower(isset($argv[1]) ? $argv[1] : '<default>'), $possibleCommand->aliases)) {
+			if (in_array(strtolower($argv[1] ?? '<default>'), $possibleCommand->aliases)) {
 				$command = $possibleCommand;
 				break;
 			}
 		}
 		if (is_null($command)) {
-			$commandName = (isset($argv[1]) ? $argv[1] : '<default>');
+			$commandName = ($argv[1] ?? '<default>');
 			self::stderr("No method found that implements command " . $commandName . ". Create a method in class '" . $handler->class . "' that is named '" . strtolower($commandName) . "Command' or is decorated with a docblock comment '@command-name " . $commandName . "'.");
 			die();
 		}
@@ -228,7 +228,7 @@ class Zend_Service_Console_Command
         );
 
 				$handlerModel = (object)[
-					'handler'     => strtolower($handler),
+					'handler'     => strtolower((string) $handler),
 					'description' => $handlerDescription,
 					'headers'     => $handlerHeaders,
 					'footers'     => $handlerFooters,
@@ -239,13 +239,13 @@ class Zend_Service_Console_Command
 				$methods = $type->getMethods();
 			    foreach ($methods as $method) {
 			       	$commands = self::_findValueForDocComment('@command-name', $method->getDocComment());
-			    	if (substr($method->getName(), -7) == 'Command' && !in_array(substr($method->getName(), 0, -7), $commands)) {
+			    	if (str_ends_with($method->getName(), 'Command') && !in_array(substr($method->getName(), 0, -7), $commands)) {
 						// Fallback: if the method is named <commandname>Command,
 						// register it as a command.
 						$commands[] = substr($method->getName(), 0, -7);
 					}
 			       	for ($x = 0; $x < count($commands); $x++) {
-			       		$commands[$x] = strtolower($commands[$x]);
+			       		$commands[$x] = strtolower((string) $commands[$x]);
 			       	}
 			       	$commands = array_unique($commands);
 			       	$commandDescriptions = self::_findValueForDocComment('@command-description', $method->getDocComment());
@@ -253,7 +253,7 @@ class Zend_Service_Console_Command
 
 			       	if (count($commands) > 0) {
 						$command = $commands[0];
-						$commandDescription = isset($commandDescriptions[0]) ? $commandDescriptions[0] : '';
+						$commandDescription = $commandDescriptions[0] ?? '';
 
 						$commandModel = (object)[
 							'command'     => $command,
@@ -280,7 +280,7 @@ class Zend_Service_Console_Command
 
 							// Find the $parametersFor with the same name defined
 							foreach ($parametersFor as $possibleParameterFor) {
-								$possibleParameterFor = explode(' ', $possibleParameterFor, 4);
+								$possibleParameterFor = explode(' ', (string) $possibleParameterFor, 4);
 								if ($possibleParameterFor[0] == '$' . $parameter->getName()) {
 									$parameterFor = $possibleParameterFor;
 									break;
@@ -299,8 +299,8 @@ class Zend_Service_Console_Command
 								'defaultvalue'   => $parameterForDefaultValue,
 								'valueproviders' => explode('|', $parameterFor[1]),
 								'aliases'        => explode('|', $parameterFor[2]),
-								'description'    => (isset($parameterFor[3]) ? $parameterFor[3] : ''),
-								'required'       => (isset($parameterFor[3]) ? strpos(strtolower($parameterFor[3]), 'required') !== false && strpos(strtolower($parameterFor[3]), 'required if') === false : false),
+								'description'    => ($parameterFor[3] ?? ''),
+								'required'       => (isset($parameterFor[3]) ? str_contains(strtolower($parameterFor[3]), 'required') && !str_contains(strtolower($parameterFor[3]), 'required if') : false),
 							];
 
 							// Add to model
@@ -333,7 +333,7 @@ class Zend_Service_Console_Command
 
 		$commentLines = explode("\n", $docComment);
 	    foreach ($commentLines as $commentLine) {
-	        if (strpos($commentLine, $docCommentName . ' ') !== false) {
+	        if (str_contains($commentLine, $docCommentName . ' ')) {
 	            $returnValue[] = trim(substr($commentLine, strpos($commentLine, $docCommentName) + strlen($docCommentName) + 1));
 	        }
 	    }
@@ -377,7 +377,7 @@ class Zend_Service_Console_Command
 		printf($newline);
 		printf('Available commands:%s', $newline);
 		foreach ($handler->commands as $command) {
-			$description = str_split($command->description, 50);
+			$description = str_split((string) $command->description, 50);
 			printf('  %-25s %s%s', implode(', ', $command->aliases), $description[0], $newline);
 			for ($di = 1; $di < count($description); $di++) {
 				printf('  %-25s %s%s', '', $description[$di], $newline);
@@ -386,7 +386,7 @@ class Zend_Service_Console_Command
 
 			if (count($command->parameters) > 0) {
 				foreach ($command->parameters as $parameter) {
-					$description = str_split($parameter->description, 50);
+					$description = str_split((string) $parameter->description, 50);
 					printf('    %-23s %s%s', implode(', ', $parameter->aliases), $description[0], $newline);
 					for ($di = 1; $di < count($description); $di++) {
 						printf('    %-23s %s%s', '', $description[$di], $newline);

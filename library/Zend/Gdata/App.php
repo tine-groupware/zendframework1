@@ -630,8 +630,8 @@ class Zend_Gdata_App
         if (Zend_Gdata_App::getGzipEnabled()) {
             // some services require the word 'gzip' to be in the user-agent
             // header in addition to the accept-encoding header
-            if (strpos($this->_httpClient->getHeader('User-Agent'),
-                'gzip') === false) {
+            if (!str_contains($this->_httpClient->getHeader('User-Agent'),
+                'gzip')) {
                 $headers['User-Agent'] =
                     $this->_httpClient->getHeader('User-Agent') . ' (gzip)';
             }
@@ -1011,7 +1011,7 @@ class Zend_Gdata_App
         $extraHeaders = [])
     {
         if ($className === null && $data instanceof Zend_Gdata_App_Entry) {
-            $className = get_class($data);
+            $className = $data::class;
         } elseif ($className === null) {
             $className = 'Zend_Gdata_App_Entry';
         }
@@ -1061,9 +1061,9 @@ class Zend_Gdata_App
                      }
                      $foundClassName = $name . '_' . $class;
                      break;
-                 } catch (Zend_Exception $e) {
+                 } catch (Zend_Exception) {
                      // package wasn't here- continue searching
-                 } catch (ErrorException $e) {
+                 } catch (ErrorException) {
                      // package wasn't here- continue searching
                      // @see ZF-7013 and ZF-11959
                  }
@@ -1084,11 +1084,11 @@ class Zend_Gdata_App
             } else {
                 require_once 'Zend/Gdata/App/Exception.php';
                 throw new Zend_Gdata_App_Exception(
-                        "Unable to find '${class}' in registered packages");
+                        "Unable to find '{$class}' in registered packages");
             }
         } else {
             require_once 'Zend/Gdata/App/Exception.php';
-            throw new Zend_Gdata_App_Exception("No such method ${method}");
+            throw new Zend_Gdata_App_Exception("No such method {$method}");
         }
     }
 
@@ -1103,7 +1103,7 @@ class Zend_Gdata_App
      *          passed in, containing all relevent entries.
      */
     public function retrieveAllEntriesForFeed($feed) {
-        $feedClass = get_class($feed);
+        $feedClass = $feed::class;
         $reflectionObj = new ReflectionClass($feedClass);
         $result = $reflectionObj->newInstance();
         do {
@@ -1159,7 +1159,7 @@ class Zend_Gdata_App
         $nextLinkHref = $nextLink->getHref();
 
         if ($className === null) {
-            $className = get_class($feed);
+            $className = $feed::class;
         }
 
         return $this->getFeed($nextLinkHref, $className);
@@ -1186,7 +1186,7 @@ class Zend_Gdata_App
         $previousLinkHref = $previousLink->getHref();
 
         if ($className === null) {
-            $className = get_class($feed);
+            $className = $feed::class;
         }
 
         return $this->getFeed($previousLinkHref, $className);
@@ -1209,7 +1209,7 @@ class Zend_Gdata_App
                 $data instanceof Zend_Gdata_App_Entry) {
             $etag = $data->getEtag();
             if (($etag !== null) &&
-                    ($allowWeek || substr($etag, 0, 2) != 'W/')) {
+                    ($allowWeek || !str_starts_with($etag, 'W/'))) {
                 $result = $data->getEtag();
             }
         }

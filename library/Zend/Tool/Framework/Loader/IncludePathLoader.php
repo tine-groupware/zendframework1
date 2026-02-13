@@ -97,7 +97,7 @@ class Zend_Tool_Framework_Loader_IncludePathLoader extends Zend_Tool_Framework_L
                 }
 
                 // ensure that the same named file from separate include_paths is not loaded
-                $relativeItem = preg_replace('#^' . preg_quote($realIncludePath . DIRECTORY_SEPARATOR, '#') . '#', '', $item->getRealPath());
+                $relativeItem = preg_replace('#^' . preg_quote($realIncludePath . DIRECTORY_SEPARATOR, '#') . '#', '', (string) $item->getRealPath());
 
                 // no links allowed here for now
                 if ($item->isLink()) {
@@ -130,7 +130,7 @@ class Zend_Tool_Framework_Loader_IncludePathLoader extends Zend_Tool_Framework_L
         ];
 
         foreach($blacklist AS $blacklitedPattern) {
-            if(strpos($file, $blacklitedPattern) !== false) {
+            if(str_contains($file, $blacklitedPattern)) {
                 return true;
             }
         }

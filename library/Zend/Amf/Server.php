@@ -246,7 +246,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
             return true;
         }
         if($object) {
-            $class = is_object($object)?get_class($object):$object;
+            $class = is_object($object)?$object::class:$object;
             if(!$this->_acl->has($class)) {
                 require_once 'Zend/Acl/Resource.php';
                 $this->_acl->add(new Zend_Acl_Resource($class));
@@ -375,7 +375,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
             }
         } else {
             require_once 'Zend/Amf/Server/Exception.php';
-            throw new Zend_Amf_Server_Exception('Method missing implementation ' . get_class($info));
+            throw new Zend_Amf_Server_Exception('Method missing implementation ' . $info::class);
         }
 
         return $return;
@@ -403,7 +403,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
             case Zend_Amf_Value_Messaging_CommandMessage::LOGIN_OPERATION :
                 $data = explode(':', base64_decode($message->body));
                 $userid = $data[0];
-                $password = isset($data[1])?$data[1]:"";
+                $password = $data[1] ?? "";
                 if(empty($userid)) {
                     require_once 'Zend/Amf/Server/Exception.php';
                     throw new Zend_Amf_Server_Exception('Login failed: username not supplied');
@@ -569,11 +569,11 @@ class Zend_Amf_Server implements Zend_Server_Interface
                         $message = '';
 
                         // Split the target string into its values.
-                        $source = substr($targetURI, 0, strrpos($targetURI, '.'));
+                        $source = substr((string) $targetURI, 0, strrpos((string) $targetURI, '.'));
 
                         if ($source) {
                             // Break off method name from namespace into source
-                            $method = substr(strrchr($targetURI, '.'), 1);
+                            $method = substr(strrchr((string) $targetURI, '.'), 1);
                             $return = $this->_dispatch($method, $body->getData(), $source);
                         } else {
                             // Just have a method name.
@@ -596,11 +596,11 @@ class Zend_Amf_Server implements Zend_Server_Interface
                             $targetURI = $body->getTargetURI();
 
                             // Split the target string into its values.
-                            $source = substr($targetURI, 0, strrpos($targetURI, '.'));
+                            $source = substr((string) $targetURI, 0, strrpos((string) $targetURI, '.'));
 
                             if ($source) {
                                 // Break off method name from namespace into source
-                                $method = substr(strrchr($targetURI, '.'), 1);
+                                $method = substr(strrchr((string) $targetURI, '.'), 1);
                                 $return = $this->_dispatch($method, $body->getData(), $source);
                             } else {
                                 // Just have a method name.
@@ -625,8 +625,8 @@ class Zend_Amf_Server implements Zend_Server_Interface
            $currentID = session_id();
            $joint = "?";
            if(isset($_SERVER['QUERY_STRING'])) {
-               if(!strpos($_SERVER['QUERY_STRING'], $currentID) !== FALSE) {
-                   if(strrpos($_SERVER['QUERY_STRING'], "?") !== FALSE) {
+               if(!strpos((string) $_SERVER['QUERY_STRING'], (string) $currentID) !== FALSE) {
+                   if(strrpos((string) $_SERVER['QUERY_STRING'], "?") !== FALSE) {
                        $joint = "&";
                    }
                }
@@ -793,10 +793,10 @@ class Zend_Amf_Server implements Zend_Server_Interface
         // Use the class name as the name space by default.
 
         if ($namespace == '') {
-            $namespace = is_object($class) ? get_class($class) : $class;
+            $namespace = is_object($class) ? $class::class : $class;
         }
 
-        $this->_classAllowed[is_object($class) ? get_class($class) : $class] = true;
+        $this->_classAllowed[is_object($class) ? $class::class : $class] = true;
 
         $this->_methods[] = Zend_Server_Reflection::reflectClass($class, $args, $namespace);
         $this->_buildDispatchTable();
@@ -1020,7 +1020,7 @@ class Zend_Amf_Server implements Zend_Server_Interface
         foreach ($prototypes as $prototype) {
             foreach ($prototype->getParameters() as $parameter) {
                 $type = $parameter->getType();
-                if (in_array(strtolower($type), $nonObjectTypes)) {
+                if (in_array(strtolower((string) $type), $nonObjectTypes)) {
                     continue;
                 }
                 $position = $parameter->getPosition();

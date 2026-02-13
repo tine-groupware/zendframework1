@@ -486,7 +486,7 @@ class Zend_Ldap_Node extends Zend_Ldap_Node_Abstract implements Iterator, Recurs
      */
     protected function _getDn()
     {
-        return ($this->_newDn === null) ? parent::_getDn() : $this->_newDn;
+        return $this->_newDn ?? parent::_getDn();
     }
 
     /**

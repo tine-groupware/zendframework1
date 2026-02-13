@@ -233,15 +233,15 @@ class Zend_Pdf_Element_String extends Zend_Pdf_Element
                         break;
 
                     default:
-                        if (strpos('0123456789', $str[$offset]) !== false) {
+                        if (str_contains('0123456789', $str[$offset])) {
                             // Character in octal representation
                             // '\\xxx'
                             $nextCode = '0' . $str[$offset];
 
-                            if (strpos('0123456789', $str[$offset + 1]) !== false) {
+                            if (str_contains('0123456789', $str[$offset + 1])) {
                                 $nextCode .= $str[++$offset];
 
-                                if (strpos('0123456789', $str[$offset + 1]) !== false) {
+                                if (str_contains('0123456789', $str[$offset + 1])) {
                                     $nextCode .= $str[++$offset];
                                 }
                             }
@@ -257,7 +257,7 @@ class Zend_Pdf_Element_String extends Zend_Pdf_Element
             }
         }
 
-        return implode($outEntries);
+        return implode('', $outEntries);
     }
 
 }

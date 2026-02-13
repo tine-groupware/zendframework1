@@ -46,51 +46,31 @@ class Zend_Gdata_Spreadsheets_Extension_Cell extends Zend_Gdata_Extension
     protected $_rootNamespace = 'gs';
 
     /**
-     * The row attribute of this cell
-     *
-     * @var string
-     */
-    protected $_row = null;
-
-    /**
-     * The column attribute of this cell
-     *
-     * @var string
-     */
-    protected $_col = null;
-
-    /**
-     * The inputValue attribute of this cell
-     *
-     * @var string
-     */
-    protected $_inputValue = null;
-
-    /**
-     * The numericValue attribute of this cell
-     *
-     * @var string
-     */
-    protected $_numericValue = null;
-
-    /**
      * Constructs a new Zend_Gdata_Spreadsheets_Extension_Cell element.
      *
      * @param string $text (optional) Text contents of the element.
-     * @param string $row (optional) Row attribute of the element.
-     * @param string $col (optional) Column attribute of the element.
-     * @param string $inputValue (optional) Input value attribute of the element.
-     * @param string $numericValue (optional) Numeric value attribute of the element.
+     * @param string $_row (optional) Row attribute of the element.
+     * @param string $_col (optional) Column attribute of the element.
+     * @param string $_inputValue (optional) Input value attribute of the element.
+     * @param string $_numericValue (optional) Numeric value attribute of the element.
      */
-    public function __construct($text = null, $row = null, $col = null, $inputValue = null, $numericValue = null)
+    public function __construct($text = null, /**
+     * The row attribute of this cell
+     */
+    protected $_row = null, /**
+     * The column attribute of this cell
+     */
+    protected $_col = null, /**
+     * The inputValue attribute of this cell
+     */
+    protected $_inputValue = null, /**
+     * The numericValue attribute of this cell
+     */
+    protected $_numericValue = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Spreadsheets::$namespaces);
         parent::__construct();
         $this->_text = $text;
-        $this->_row = $row;
-        $this->_col = $col;
-        $this->_inputValue = $inputValue;
-        $this->_numericValue = $numericValue;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

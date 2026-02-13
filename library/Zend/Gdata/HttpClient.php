@@ -226,7 +226,7 @@ class Zend_Gdata_HttpClient extends Zend_Http_Client
                             'openssl_signing failure - returned false');
                 }
                 // encode signature
-                $encodedSignature = base64_encode($signature);
+                $encodedSignature = base64_encode((string) $signature);
 
                 // final header
                 $headers['authorization'] = 'AuthSub token="' . $this->getAuthSubToken() . '" ' .

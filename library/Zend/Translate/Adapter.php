@@ -252,7 +252,7 @@ abstract class Zend_Translate_Adapter {
             $prev = '';
             $iterator = new RecursiveIteratorIterator(
                 new RecursiveRegexIterator(
-                    new RecursiveDirectoryIterator($options['content'], RecursiveDirectoryIterator::KEY_AS_PATHNAME),
+                    new RecursiveDirectoryIterator($options['content'], RecursiveDirectoryIterator::KEY_AS_PATHNAME | \FilesystemIterator::SKIP_DOTS),
                     '/^(?!.*(\.svn|\.cvs)).*$/', RecursiveRegexIterator::MATCH
                 ),
                 RecursiveIteratorIterator::SELF_FIRST
@@ -262,18 +262,18 @@ abstract class Zend_Translate_Adapter {
                 $file = $info->getFilename();
                 if (is_array($options['ignore'])) {
                     foreach ($options['ignore'] as $key => $ignore) {
-                        if (strpos($key, 'regex') !== false) {
-                            if (preg_match($ignore, $directory)) {
+                        if (str_contains((string) $key, 'regex')) {
+                            if (preg_match($ignore, (string) $directory)) {
                                 // ignore files matching the given regex from option 'ignore' and all files below
                                 continue 2;
                             }
-                        } else if (strpos($directory, DIRECTORY_SEPARATOR . $ignore) !== false) {
+                        } else if (str_contains((string) $directory, DIRECTORY_SEPARATOR . $ignore)) {
                             // ignore files matching first characters from option 'ignore' and all files below
                             continue 2;
                         }
                     }
                 } else {
-                    if (strpos($directory, DIRECTORY_SEPARATOR . $options['ignore']) !== false) {
+                    if (str_contains((string) $directory, DIRECTORY_SEPARATOR . $options['ignore'])) {
                         // ignore files matching first characters from option 'ignore' and all files below
                         continue;
                     }
@@ -288,13 +288,13 @@ abstract class Zend_Translate_Adapter {
                 } else if ($info->isFile()) {
                     // filename as locale
                     if ($options['scan'] === self::LOCALE_FILENAME) {
-                        $filename = explode('.', $file);
+                        $filename = explode('.', (string) $file);
                         array_pop($filename);
                         $filename = implode('.', $filename);
                         if (Zend_Locale::isLocale((string) $filename, true, false)) {
                             $options['locale'] = (string) $filename;
                         } else {
-                            $parts  = explode('.', $file);
+                            $parts  = explode('.', (string) $file);
                             $parts2 = [];
                             foreach($parts as $token) {
                                 $parts2 += explode('_', $token);
@@ -321,7 +321,7 @@ abstract class Zend_Translate_Adapter {
                     try {
                         $options['content'] = $info->getPathname();
                         $this->_addTranslationData($options);
-                    } catch (Zend_Translate_Exception $e) {
+                    } catch (Zend_Translate_Exception) {
                         // ignore failed sources while scanning
                     }
                 }

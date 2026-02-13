@@ -19,7 +19,7 @@
  */
 
 // Grab SplAutoloader interface
-require_once dirname(__FILE__) . '/SplAutoloader.php';
+require_once __DIR__ . '/SplAutoloader.php';
 
 /**
  * PSR-0 compliant autoloader
@@ -98,7 +98,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
     public function setOptions($options)
     {
         if (!is_array($options) && !($options instanceof Traversable)) {
-            require_once dirname(__FILE__) . '/Exception/InvalidArgumentException.php';
+            require_once __DIR__ . '/Exception/InvalidArgumentException.php';
             throw new Zend_Loader_Exception_InvalidArgumentException('Options must be either an array or Traversable');
         }
 
@@ -106,16 +106,16 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
             switch ($type) {
                 case self::AUTOREGISTER_ZF:
                     if ($pairs) {
-                        $this->registerPrefix('Zend', dirname(dirname(__FILE__)));
+                        $this->registerPrefix('Zend', dirname(__FILE__, 2));
                     }
                     break;
                 case self::LOAD_NS:
-                    if (is_array($pairs) || $pairs instanceof Traversable) {
+                    if (is_iterable($pairs)) {
                         $this->registerNamespaces($pairs);
                     }
                     break;
                 case self::LOAD_PREFIX:
-                    if (is_array($pairs) || $pairs instanceof Traversable) {
+                    if (is_iterable($pairs)) {
                         $this->registerPrefixes($pairs);
                     }
                     break;
@@ -174,7 +174,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
     public function registerNamespaces($namespaces)
     {
         if (!is_array($namespaces) && !$namespaces instanceof Traversable) {
-            require_once dirname(__FILE__) . '/Exception/InvalidArgumentException.php';
+            require_once __DIR__ . '/Exception/InvalidArgumentException.php';
             throw new Zend_Loader_Exception_InvalidArgumentException('Namespace pairs must be either an array or Traversable');
         }
 
@@ -207,7 +207,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
     public function registerPrefixes($prefixes)
     {
         if (!is_array($prefixes) && !$prefixes instanceof Traversable) {
-            require_once dirname(__FILE__) . '/Exception/InvalidArgumentException.php';
+            require_once __DIR__ . '/Exception/InvalidArgumentException.php';
             throw new Zend_Loader_Exception_InvalidArgumentException('Prefix pairs must be either an array or Traversable');
         }
 
@@ -226,7 +226,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
     public function autoload($class)
     {
         $isFallback = $this->isFallbackAutoloader();
-        if (false !== strpos($class, self::NS_SEPARATOR)) {
+        if (str_contains($class, self::NS_SEPARATOR)) {
             if ($this->loadClass($class, self::LOAD_NS)) {
                 return $class;
             } elseif ($isFallback) {
@@ -234,7 +234,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
             }
             return false;
         }
-        if (false !== strpos($class, self::PREFIX_SEPARATOR)) {
+        if (str_contains($class, self::PREFIX_SEPARATOR)) {
             if ($this->loadClass($class, self::LOAD_PREFIX)) {
                 return $class;
             } elseif ($isFallback) {
@@ -255,7 +255,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
      */
     public function register()
     {
-        spl_autoload_register([$this, 'autoload']);
+        spl_autoload_register($this->autoload(...));
     }
 
     /**
@@ -287,8 +287,8 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
         $matches = [];
         preg_match('/(?P<namespace>.+\\\)?(?P<class>[^\\\]+$)/', $class, $matches);
 
-        $class     = (isset($matches['class'])) ? $matches['class'] : '';
-        $namespace = (isset($matches['namespace'])) ? $matches['namespace'] : '';
+        $class     = $matches['class'] ?? '';
+        $namespace = $matches['namespace'] ?? '';
 
         return $directory
              . str_replace(self::NS_SEPARATOR, '/', $namespace)
@@ -306,7 +306,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
     protected function loadClass($class, $type)
     {
         if (!in_array($type, [self::LOAD_NS, self::LOAD_PREFIX, self::ACT_AS_FALLBACK])) {
-            require_once dirname(__FILE__) . '/Exception/InvalidArgumentException.php';
+            require_once __DIR__ . '/Exception/InvalidArgumentException.php';
             throw new Zend_Loader_Exception_InvalidArgumentException();
         }
 
@@ -322,7 +322,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
                 return false;
             }
             $this->error = false;
-            set_error_handler([$this, 'handleError'], E_WARNING);
+            set_error_handler($this->handleError(...), E_WARNING);
             include $filename;
             restore_error_handler();
             if ($this->error) {
@@ -333,9 +333,9 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
 
         // Namespace and/or prefix autoloading
         foreach ($this->$type as $leader => $path) {
-            if (0 === strpos($class, $leader)) {
+            if (str_starts_with($class, (string) $leader)) {
                 // Trim off leader (namespace or prefix)
-                $trimmedClass = substr($class, strlen($leader));
+                $trimmedClass = substr($class, strlen((string) $leader));
 
                 // create filename
                 $filename = $this->transformClassNameToFilename($trimmedClass, $path);

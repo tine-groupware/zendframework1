@@ -547,7 +547,7 @@ class Zend_Mime
      */
     private static function getNextQuotedPrintableToken($str)
     {
-        if (substr($str, 0, 1) == "=") {
+        if (str_starts_with($str, "=")) {
             $token = substr($str, 0, 3);
         } else {
             $token = substr($str, 0, 1);
@@ -623,19 +623,14 @@ class Zend_Mime
      */
     public static function encode($str, $encoding, $EOL = self::LINEEND)
     {
-        switch ($encoding) {
-            case self::ENCODING_BASE64:
-                return self::encodeBase64($str, self::LINELENGTH, $EOL);
-
-            case self::ENCODING_QUOTEDPRINTABLE:
-                return self::encodeQuotedPrintable($str, self::LINELENGTH, $EOL);
-
-            default:
-                /**
-                 * @todo 7Bit and 8Bit is currently handled the same way.
-                 */
-                return $str;
-        }
+        return match ($encoding) {
+            self::ENCODING_BASE64 => self::encodeBase64($str, self::LINELENGTH, $EOL),
+            self::ENCODING_QUOTEDPRINTABLE => self::encodeQuotedPrintable($str, self::LINELENGTH, $EOL),
+            /**
+             * @todo 7Bit and 8Bit is currently handled the same way.
+             */
+            default => $str,
+        };
     }
 
     /**

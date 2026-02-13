@@ -42,21 +42,15 @@ class Zend_Gdata_Media_Extension_MediaRating extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_scheme = null;
-
-    /**
      * Constructs a new MediaRating element
      *
      * @param string $text
-     * @param string $scheme
+     * @param string $_scheme
      */
-    public function __construct($text = null, $scheme = null)
+    public function __construct($text = null, protected $_scheme = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
-        $this->_scheme = $scheme;
         $this->_text = $text;
     }
 

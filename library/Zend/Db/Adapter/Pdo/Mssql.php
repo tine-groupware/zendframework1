@@ -101,19 +101,11 @@ class Zend_Db_Adapter_Pdo_Mssql extends Zend_Db_Adapter_Pdo_Abstract
         // this driver supports multiple DSN prefixes
         // @see http://www.php.net/manual/en/ref.pdo-dblib.connection.php
         if (isset($dsn['pdoType'])) {
-            switch (strtolower($dsn['pdoType'])) {
-                case 'freetds':
-                case 'sybase':
-                    $this->_pdoType = 'sybase';
-                    break;
-                case 'mssql':
-                    $this->_pdoType = 'mssql';
-                    break;
-                case 'dblib':
-                default:
-                    $this->_pdoType = 'dblib';
-                    break;
-            }
+            $this->_pdoType = match (strtolower($dsn['pdoType'])) {
+                'freetds', 'sybase' => 'sybase',
+                'mssql' => 'mssql',
+                default => 'dblib',
+            };
             unset($dsn['pdoType']);
         }
 
@@ -221,7 +213,7 @@ class Zend_Db_Adapter_Pdo_Mssql extends Zend_Db_Adapter_Pdo_Abstract
     public function describeTable($tableName, $schemaName = null)
     {
         if ($schemaName != null) {
-            if (strpos($schemaName, '.') !== false) {
+            if (str_contains($schemaName, '.')) {
                 $result = explode('.', $schemaName);
                 $schemaName = $result[1];
             }
@@ -268,7 +260,7 @@ class Zend_Db_Adapter_Pdo_Mssql extends Zend_Db_Adapter_Pdo_Abstract
         $p = 1;
         foreach ($result as $key => $row) {
             $identity = false;
-            $words = explode(' ', $row[$type_name], 2);
+            $words = explode(' ', (string) $row[$type_name], 2);
             if (isset($words[0])) {
                 $type = $words[0];
                 if (isset($words[1])) {
@@ -337,7 +329,7 @@ class Zend_Db_Adapter_Pdo_Mssql extends Zend_Db_Adapter_Pdo_Abstract
             );
 
         if ($offset > 0) {
-            $orderby = stristr($sql, 'ORDER BY');
+            $orderby = stristr((string) $sql, 'ORDER BY');
 
             if ($orderby !== false) {
                 $orderParts = explode(',', substr($orderby, 8));
@@ -416,7 +408,7 @@ class Zend_Db_Adapter_Pdo_Mssql extends Zend_Db_Adapter_Pdo_Abstract
                 return $result[0][0];
             }
             return null;
-        } catch (PDOException $e) {
+        } catch (PDOException) {
             return null;
         }
     }

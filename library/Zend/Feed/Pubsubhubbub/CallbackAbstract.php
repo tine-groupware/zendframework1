@@ -237,8 +237,8 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
 
             $schemeAndHttpHost = $scheme . '://' . $this->_getHttpHost();
 
-            if (strpos($callbackUrl, $schemeAndHttpHost) === 0) {
-                $callbackUrl = substr($callbackUrl, strlen($schemeAndHttpHost));
+            if (str_starts_with((string) $callbackUrl, $schemeAndHttpHost)) {
+                $callbackUrl = substr((string) $callbackUrl, strlen($schemeAndHttpHost));
             }
         } elseif (isset($_SERVER['ORIG_PATH_INFO'])) {
             $callbackUrl= $_SERVER['ORIG_PATH_INFO'];
@@ -315,7 +315,7 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
             $body = $GLOBALS['HTTP_RAW_POST_DATA'];
         }
 
-        if (strlen(trim($body)) > 0) {
+        if (strlen(trim((string) $body)) > 0) {
             return $body;
         }
 

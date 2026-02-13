@@ -70,13 +70,13 @@ class Zend_Tool_Framework_Action_Repository
             throw new Zend_Tool_Framework_Action_Exception('An action name for the provided action could not be determined.');
         }
 
-        if (!$overrideExistingAction && array_key_exists(strtolower($actionName), $this->_actions)) {
+        if (!$overrideExistingAction && array_key_exists(strtolower((string) $actionName), $this->_actions)) {
             require_once 'Zend/Tool/Framework/Action/Exception.php';
             throw new Zend_Tool_Framework_Action_Exception('An action by the name ' . $actionName
                 . ' is already registered and $overrideExistingAction is set to false.');
         }
 
-        $this->_actions[strtolower($actionName)] = $action;
+        $this->_actions[strtolower((string) $actionName)] = $action;
         return $this;
     }
 

@@ -42,40 +42,16 @@ class Zend_Service_Amazon_Ec2
      */
     public static function factory($section, $key = null, $secret_key = null)
     {
-        switch(strtolower($section)) {
-            case 'keypair':
-                $class = 'Zend_Service_Amazon_Ec2_Keypair';
-                break;
-            case 'eip':
-                // break left out
-            case 'elasticip':
-                $class = 'Zend_Service_Amazon_Ec2_Elasticip';
-                break;
-            case 'ebs':
-                $class = 'Zend_Service_Amazon_Ec2_Ebs';
-                break;
-            case 'availabilityzones':
-                // break left out
-            case 'zones':
-                $class = 'Zend_Service_Amazon_Ec2_Availabilityzones';
-                break;
-            case 'ami':
-                // break left out
-            case 'image':
-                $class = 'Zend_Service_Amazon_Ec2_Image';
-                break;
-            case 'instance':
-                $class = 'Zend_Service_Amazon_Ec2_Instance';
-                break;
-            case 'security':
-                // break left out
-            case 'securitygroups':
-                $class = 'Zend_Service_Amazon_Ec2_Securitygroups';
-                break;
-            default:
-                throw new Zend_Service_Amazon_Ec2_Exception('Invalid Section: ' . $section);
-                break;
-        }
+        $class = match (strtolower($section)) {
+            'keypair' => 'Zend_Service_Amazon_Ec2_Keypair',
+            'eip', 'elasticip' => 'Zend_Service_Amazon_Ec2_Elasticip',
+            'ebs' => 'Zend_Service_Amazon_Ec2_Ebs',
+            'availabilityzones', 'zones' => 'Zend_Service_Amazon_Ec2_Availabilityzones',
+            'ami', 'image' => 'Zend_Service_Amazon_Ec2_Image',
+            'instance' => 'Zend_Service_Amazon_Ec2_Instance',
+            'security', 'securitygroups' => 'Zend_Service_Amazon_Ec2_Securitygroups',
+            default => throw new Zend_Service_Amazon_Ec2_Exception('Invalid Section: ' . $section),
+        };
 
         if (!class_exists($class)) {
             require_once 'Zend/Loader.php';

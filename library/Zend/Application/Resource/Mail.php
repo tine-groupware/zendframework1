@@ -57,7 +57,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
         if (null === $this->_transport) {
             $options = $this->getOptions();
             foreach ($options as $key => $option) {
-                $options[strtolower($key)] = $option;
+                $options[strtolower((string) $key)] = $option;
             }
             $this->setOptions($options);
 
@@ -90,7 +90,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
         if (isset($options[$key]['email'])
             && !is_numeric($options[$key]['email'])
         ) {
-            $method = ['Zend_Mail', 'setDefault' . ucfirst($type)];
+            $method = ['Zend_Mail', 'setDefault' . ucfirst((string) $type)];
             if (isset($options[$key]['name'])
                 && !is_numeric(
                     $options[$key]['name']

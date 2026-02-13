@@ -48,7 +48,7 @@ class Zend_Test_PHPUnit_Db_Operation_Truncate implements PHPUnit_Extensions_Data
     {
         if(!($connection instanceof Zend_Test_PHPUnit_Db_Connection)) {
             require_once "Zend/Test/PHPUnit/Db/Exception.php";
-            throw new Zend_Test_PHPUnit_Db_Exception("Not a valid Zend_Test_PHPUnit_Db_Connection instance, ".get_class($connection)." given!");
+            throw new Zend_Test_PHPUnit_Db_Exception("Not a valid Zend_Test_PHPUnit_Db_Connection instance, ".$connection::class." given!");
         }
 
         foreach ($dataSet->getReverseIterator() AS $table) {

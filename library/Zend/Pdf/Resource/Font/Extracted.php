@@ -119,7 +119,7 @@ class Zend_Pdf_Resource_Font_Extracted extends Zend_Pdf_Resource_Font
                 throw new Zend_Pdf_Exception(self::TYPE_NOT_SUPPORTED);
         }
 
-        $this->_fontNames[Zend_Pdf_Font::NAME_POSTSCRIPT]['en'] = iconv('UTF-8', 'UTF-16BE', $fontDictionary->BaseFont->value);
+        $this->_fontNames[Zend_Pdf_Font::NAME_POSTSCRIPT]['en'] = iconv('UTF-8', 'UTF-16BE', (string) $fontDictionary->BaseFont->value);
 
         $this->_isBold             = false; // this property is actually not used anywhere
         $this->_isItalic           = ( ($fontDescriptor->Flags->value & (1 << 6)) != 0 ); // Bit-7 is set
@@ -145,7 +145,7 @@ class Zend_Pdf_Resource_Font_Extracted extends Zend_Pdf_Resource_Font
      * @param array $characterCodes Array of Unicode character codes (code points).
      * @return array Array of glyph numbers.
      */
-    public function glyphNumbersForCharacters($characterCodes)
+    public function glyphNumbersForCharacters($characterCodes): never
     {
         require_once 'Zend/Pdf/Exception.php';
         throw new Zend_Pdf_Exception(self::OPERATION_NOT_SUPPORTED);
@@ -163,7 +163,7 @@ class Zend_Pdf_Resource_Font_Extracted extends Zend_Pdf_Resource_Font
      * @param integer $characterCode Unicode character code (code point).
      * @return integer Glyph number.
      */
-    public function glyphNumberForCharacter($characterCode)
+    public function glyphNumberForCharacter($characterCode): never
     {
         require_once 'Zend/Pdf/Exception.php';
         throw new Zend_Pdf_Exception(self::OPERATION_NOT_SUPPORTED);
@@ -187,7 +187,7 @@ class Zend_Pdf_Resource_Font_Extracted extends Zend_Pdf_Resource_Font
      *   If omitted, uses 'current locale'.
      * @return float
      */
-    public function getCoveredPercentage($string, $charEncoding = '')
+    public function getCoveredPercentage($string, $charEncoding = ''): never
     {
         require_once 'Zend/Pdf/Exception.php';
         throw new Zend_Pdf_Exception(self::OPERATION_NOT_SUPPORTED);
@@ -205,7 +205,7 @@ class Zend_Pdf_Resource_Font_Extracted extends Zend_Pdf_Resource_Font
      * @return array Array of glyph widths (integers).
      * @throws Zend_Pdf_Exception
      */
-    public function widthsForGlyphs($glyphNumbers)
+    public function widthsForGlyphs($glyphNumbers): never
     {
         require_once 'Zend/Pdf/Exception.php';
         throw new Zend_Pdf_Exception(self::OPERATION_NOT_SUPPORTED);
@@ -220,7 +220,7 @@ class Zend_Pdf_Resource_Font_Extracted extends Zend_Pdf_Resource_Font
      * @return integer
      * @throws Zend_Pdf_Exception
      */
-    public function widthForGlyph($glyphNumber)
+    public function widthForGlyph($glyphNumber): never
     {
         require_once 'Zend/Pdf/Exception.php';
         throw new Zend_Pdf_Exception(self::OPERATION_NOT_SUPPORTED);

@@ -32,30 +32,22 @@
 class Zend_Pdf_Element_Reference_Context
 {
     /**
-     * PDF parser object.
-     *
-     * @var Zend_Pdf_StringParser
-     */
-    private $_stringParser;
-
-    /**
-     * Reference table
-     *
-     * @var Zend_Pdf_Element_Reference_Table
-     */
-    private $_refTable;
-
-    /**
      * Object constructor
      *
-     * @param Zend_Pdf_StringParser $parser
-     * @param Zend_Pdf_Element_Reference_Table $refTable
+     * @param Zend_Pdf_StringParser $_stringParser
+     * @param Zend_Pdf_Element_Reference_Table $_refTable
      */
-    public function __construct(Zend_Pdf_StringParser $parser,
-                                Zend_Pdf_Element_Reference_Table $refTable)
+    public function __construct(
+        /**
+         * PDF parser object.
+         */
+        private readonly Zend_Pdf_StringParser $_stringParser,
+        /**
+         * Reference table
+         */
+        private readonly Zend_Pdf_Element_Reference_Table $_refTable
+    )
     {
-        $this->_stringParser = $parser;
-        $this->_refTable     = $refTable;
     }
 
 

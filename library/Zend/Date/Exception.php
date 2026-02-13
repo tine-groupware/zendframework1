@@ -34,11 +34,8 @@ require_once 'Zend/Exception.php';
  */
 class Zend_Date_Exception extends Zend_Exception
 {
-    protected $operand = null;
-
-    public function __construct($message, $code = 0, $e = null, $op = null)
+    public function __construct($message, $code = 0, $e = null, protected $operand = null)
     {
-        $this->operand = $op;
         parent::__construct($message, $code, $e);
     }
 

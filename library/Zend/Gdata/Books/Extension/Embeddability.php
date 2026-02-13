@@ -40,20 +40,18 @@ class Zend_Gdata_Books_Extension_Embeddability extends Zend_Gdata_Extension
 
     protected $_rootNamespace = 'gbs';
     protected $_rootElement = 'embeddability';
-    protected $_value = null;
 
     /**
      * Constructor for Zend_Gdata_Books_Extension_Embeddability which
      * Describes an embeddability.
      *
-     * @param string|null $value A programmatic value representing the book's
+     * @param string|null $_value A programmatic value representing the book's
      *        embeddability.
      */
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Books::$namespaces);
         parent::__construct();
-        $this->_value = $value;
     }
 
     /**

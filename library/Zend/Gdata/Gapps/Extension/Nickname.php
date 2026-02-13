@@ -49,22 +49,17 @@ class Zend_Gdata_Gapps_Extension_Nickname extends Zend_Gdata_Extension
     protected $_rootElement = 'nickname';
 
     /**
+     * Constructs a new Zend_Gdata_Gapps_Extension_Nickname object.
+     * @param string $_name (optional) The nickname being represented.
+     */
+    public function __construct(/**
      * The name of the nickname. This name is used as the email address
      * for this nickname.
-     *
-     * @var string
      */
-    protected $_name = null;
-
-    /**
-     * Constructs a new Zend_Gdata_Gapps_Extension_Nickname object.
-     * @param string $name (optional) The nickname being represented.
-     */
-    public function __construct($name = null)
+    protected $_name = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Gapps::$namespaces);
         parent::__construct();
-        $this->_name = $name;
     }
 
     /**
@@ -134,7 +129,7 @@ class Zend_Gdata_Gapps_Extension_Nickname extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }

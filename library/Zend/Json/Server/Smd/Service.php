@@ -32,7 +32,7 @@ require_once 'Zend/Json/Server/Smd.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Json_Server_Smd_Service
+class Zend_Json_Server_Smd_Service implements \Stringable
 {
     /**#@+
      * Service metadata
@@ -145,10 +145,10 @@ class Zend_Json_Server_Smd_Service
     {
         $methods = get_class_methods($this);
         foreach ($options as $key => $value) {
-            if ('options' == strtolower($key)) {
+            if ('options' == strtolower((string) $key)) {
                 continue;
             }
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst((string) $key);
             if (in_array($method, $methods)) {
                 $this->$method($value);
             }
@@ -439,7 +439,7 @@ class Zend_Json_Server_Smd_Service
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toJson();
     }

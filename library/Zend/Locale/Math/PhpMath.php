@@ -60,7 +60,7 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
             $scale     = Zend_Locale_Math_PhpMath::$defaultScale;
             $precision = Zend_Locale_Math_PhpMath::$defaultPrecision;
         } else {
-            $precision = pow(10, -$scale);
+            $precision = 10 ** -$scale;
         }
 
         if (empty($op1)) {
@@ -83,7 +83,7 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
             $scale     = Zend_Locale_Math_PhpMath::$defaultScale;
             $precision = Zend_Locale_Math_PhpMath::$defaultPrecision;
         } else {
-            $precision = pow(10, -$scale);
+            $precision = 10 ** -$scale;
         }
 
         if (empty($op1)) {
@@ -113,7 +113,7 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
         // Provide the same behavior
         $op2 = ($op2 > 0) ? floor($op2) : ceil($op2);
 
-        $result = pow($op1, $op2);
+        $result = $op1 ** $op2;
         if (is_infinite($result)  ||  is_nan($result)) {
             require_once 'Zend/Locale/Math/Exception.php';
             throw new Zend_Locale_Math_Exception("power overflow: $op1 ^ $op2", $op1, $op2, $result);
@@ -242,7 +242,7 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
             throw new Zend_Locale_Math_Exception("can not scale to precision $scale", $scale, null, null);
         }
         self::$defaultScale     = $scale;
-        self::$defaultPrecision = pow(10, -$scale);
+        self::$defaultPrecision = 10 ** -$scale;
         return true;
     }
 }

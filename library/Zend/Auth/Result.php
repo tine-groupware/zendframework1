@@ -66,13 +66,6 @@ class Zend_Auth_Result
     protected $_code;
 
     /**
-     * The identity used in the authentication attempt
-     *
-     * @var mixed
-     */
-    protected $_identity;
-
-    /**
      * An array of string reasons why the authentication attempt was unsuccessful
      *
      * If authentication was successful, this should be an empty array.
@@ -85,10 +78,13 @@ class Zend_Auth_Result
      * Sets the result code, identity, and failure messages
      *
      * @param int   $code
-     * @param mixed $identity
+     * @param mixed $_identity
      * @param array $messages
      */
-    public function __construct($code, $identity, array $messages = [])
+    public function __construct($code, /**
+     * The identity used in the authentication attempt
+     */
+    protected $_identity, array $messages = [])
     {
         $code = (int) $code;
 
@@ -99,7 +95,6 @@ class Zend_Auth_Result
         }
 
         $this->_code     = $code;
-        $this->_identity = $identity;
         $this->_messages = $messages;
     }
 

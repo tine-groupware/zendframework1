@@ -37,6 +37,7 @@ require_once 'Zend/Amf/Parse/Serializer.php';
  */
 class Zend_Amf_Parse_Amf0_Serializer extends Zend_Amf_Parse_Serializer
 {
+    public $_mbStringFunctionsOverloaded;
     /**
      * @var string Name of the class to be returned
      */
@@ -257,7 +258,7 @@ class Zend_Amf_Parse_Amf0_Serializer extends Zend_Amf_Parse_Serializer
             // Write the length of the numeric array
             $this->_stream->writeLong($length);
             for ($i=0; $i<$length; $i++) {
-                $value = isset($array[$i]) ? $array[$i] : null;
+                $value = $array[$i] ?? null;
                 $this->writeTypeMarker($value);
             }
         }
@@ -333,8 +334,8 @@ class Zend_Amf_Parse_Amf0_Serializer extends Zend_Amf_Parse_Serializer
         $className = '';
         switch (true) {
             // the return class mapped name back to actionscript class name.
-            case Zend_Amf_Parse_TypeLoader::getMappedClassName(get_class($object)):
-                $className = Zend_Amf_Parse_TypeLoader::getMappedClassName(get_class($object));
+            case Zend_Amf_Parse_TypeLoader::getMappedClassName($object::class):
+                $className = Zend_Amf_Parse_TypeLoader::getMappedClassName($object::class);
                 break;
                 // Check to see if the user has defined an explicit Action Script type.
             case isset($object->_explicitType):
@@ -350,7 +351,7 @@ class Zend_Amf_Parse_Amf0_Serializer extends Zend_Amf_Parse_Serializer
                 break;
         // By default, use object's class name
             default:
-        $className = get_class($object);
+        $className = $object::class;
                 break;
         }
         if(!$className == '') {

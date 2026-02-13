@@ -46,6 +46,7 @@ require_once 'Zend/Pdf/Resource/Image.php';
  */
 abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
 {
+    public $_dictionary;
     /**
      * Drawing instructions
      *
@@ -274,7 +275,7 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         if ($style->getFont() !== null) {
             $this->setFont($style->getFont(), $style->getFontSize());
         }
-        $this->_contents .= $style->instructions($this->_dictionary->Resources);
+        $this->_contents .= $style->instructions();
 
         $this->_style = $style;
 
@@ -881,17 +882,12 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
         $this->_contents .= $x1Obj->toString() . ' ' . $y1Obj->toString() . ' '
                              .  $widthObj->toString() . ' ' . $height2Obj->toString() . " re\n";
 
-        switch ($fillType) {
-            case Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE:
-                $this->_contents .= " B*\n";
-                break;
-            case Zend_Pdf_Page::SHAPE_DRAW_FILL:
-                $this->_contents .= " f*\n";
-                break;
-            case Zend_Pdf_Page::SHAPE_DRAW_STROKE:
-                $this->_contents .= " S\n";
-                break;
-        }
+        match ($fillType) {
+            Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE => $this->_contents .= " B*\n",
+            Zend_Pdf_Page::SHAPE_DRAW_FILL => $this->_contents .= " f*\n",
+            Zend_Pdf_Page::SHAPE_DRAW_STROKE => $this->_contents .= " S\n",
+            default => $this,
+        };
 
         return $this;
     }
@@ -1020,17 +1016,12 @@ abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
                               . " c\n";
         }
 
-        switch ($fillType) {
-            case Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE:
-                $this->_contents .= " B*\n";
-                break;
-            case Zend_Pdf_Page::SHAPE_DRAW_FILL:
-                $this->_contents .= " f*\n";
-                break;
-            case Zend_Pdf_Page::SHAPE_DRAW_STROKE:
-                $this->_contents .= " S\n";
-                break;
-        }
+        match ($fillType) {
+            Zend_Pdf_Page::SHAPE_DRAW_FILL_AND_STROKE => $this->_contents .= " B*\n",
+            Zend_Pdf_Page::SHAPE_DRAW_FILL => $this->_contents .= " f*\n",
+            Zend_Pdf_Page::SHAPE_DRAW_STROKE => $this->_contents .= " S\n",
+            default => $this,
+        };
 
         return $this;
     }

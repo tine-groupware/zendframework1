@@ -677,11 +677,7 @@ class Zend_Controller_Front
      */
     public function getParam($name)
     {
-        if(isset($this->_invokeParams[$name])) {
-            return $this->_invokeParams[$name];
-        }
-
-        return null;
+        return $this->_invokeParams[$name] ?? null;
     }
 
     /**

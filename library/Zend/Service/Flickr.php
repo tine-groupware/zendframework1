@@ -437,7 +437,7 @@ class Zend_Service_Flickr
 
         // validate extras, which are delivered in csv format
         if ($options['extras']) {
-            $extras = explode(',', $options['extras']);
+            $extras = explode(',', (string) $options['extras']);
             $validExtras = ['license', 'date_upload', 'date_taken', 'owner_name', 'icon_server'];
             foreach($extras as $extra) {
                 /**
@@ -495,7 +495,7 @@ class Zend_Service_Flickr
 
         // validate extras, which are delivered in csv format
         if ($options['extras']) {
-            $extras = explode(',', $options['extras']);
+            $extras = explode(',', (string) $options['extras']);
             $validExtras = ['license', 'date_upload', 'date_taken', 'owner_name', 'icon_server'];
             foreach($extras as $extra) {
                 /**

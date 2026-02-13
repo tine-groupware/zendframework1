@@ -58,7 +58,7 @@ class Zend_Dojo_Form_Decorator_DijitForm extends Zend_Dojo_Form_Decorator_DijitC
 
         // Enforce id attribute of form for dojo events
         if (!isset($attribs['name']) || !$attribs['name']) {
-            $element->setName(get_class($element) . '_' . uniqid());
+            $element->setName($element::class . '_' . uniqid());
         }
 
         return $view->form($element->getName(), $attribs, $content);

@@ -38,21 +38,15 @@ require_once 'Zend/Db/Statement/Pdo/Ibm.php';
 class Zend_Db_Adapter_Pdo_Ibm_Db2
 {
     /**
-     * @var Zend_Db_Adapter_Abstract
-     */
-    protected $_adapter = null;
-
-    /**
      * Construct the data server class.
      *
      * It will be used to generate non-generic SQL
      * for a particular data server
      *
-     * @param Zend_Db_Adapter_Abstract $adapter
+     * @param Zend_Db_Adapter_Abstract $_adapter
      */
-    public function __construct($adapter)
+    public function __construct(protected $_adapter)
     {
-        $this->_adapter = $adapter;
     }
 
     /**
@@ -120,7 +114,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
         $colseq         = 11;
 
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = [false, null, false];
+            [$primary, $primaryPosition, $identity] = [false, null, false];
             if ($row[$tabconstype] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$colseq];

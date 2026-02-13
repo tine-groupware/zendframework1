@@ -533,7 +533,7 @@ class Zend_Db_Statement_Oracle extends Zend_Db_Statement
      * @return bool
      * @throws Zend_Db_Statement_Exception
      */
-    public function nextRowset()
+    public function nextRowset(): never
     {
         /**
          * @see Zend_Db_Statement_Oracle_Exception

@@ -47,7 +47,7 @@ class Zend_Scheduler_Backend_File extends Zend_Scheduler_Backend_Abstract
      * 
      * @param array $tasks Remaining tasks
      */ 
-    public function saveQueue($tasks = array())
+    public function saveQueue($tasks = [])
     {
         if (empty($this->_filename)) {
             throw new Zend_Scheduler_Exception('Filename must be set in backend');
@@ -67,14 +67,14 @@ class Zend_Scheduler_Backend_File extends Zend_Scheduler_Backend_Abstract
     public function loadQueue()
     {
         if (!is_readable($this->_filename)) {
-            return array();
+            return [];
         }
         
-        $tasks = array();
+        $tasks = [];
         $content = Zend_Json::decode(file_get_contents($this->_filename));
         
         if (!is_array($content)) {
-            return array();
+            return [];
         }
         
         $class = $this->getTaskClass();
@@ -90,7 +90,7 @@ class Zend_Scheduler_Backend_File extends Zend_Scheduler_Backend_Abstract
         }
         
         if (!is_array($tasks)) {
-            return array();
+            return [];
         }
         
         return $tasks;

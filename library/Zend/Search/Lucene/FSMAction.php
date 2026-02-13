@@ -32,29 +32,22 @@
 class Zend_Search_Lucene_FSMAction
 {
     /**
-     * Object reference
-     *
-     * @var object
-     */
-    private $_object;
-
-    /**
-     * Method name
-     *
-     * @var string
-     */
-    private $_method;
-
-    /**
      * Object constructor
      *
-     * @param object $object
-     * @param string $method
+     * @param object $_object
+     * @param string $_method
      */
-    public function __construct($object, $method)
+    public function __construct(
+        /**
+         * Object reference
+         */
+        private $_object,
+        /**
+         * Method name
+         */
+        private $_method
+    )
     {
-        $this->_object = $object;
-        $this->_method = $method;
     }
 
     public function doAction()

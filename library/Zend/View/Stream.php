@@ -83,7 +83,7 @@ class Zend_View_Stream
          *
          */
         $this->_data = preg_replace('/\<\?\=/',          "<?php echo ",  $this->_data);
-        $this->_data = preg_replace('/<\?(?!xml|php)/s', '<?php ',       $this->_data);
+        $this->_data = preg_replace('/<\?(?!xml|php)/s', '<?php ',       (string) $this->_data);
 
         /**
          * file_get_contents() won't update PHP's stat cache, so we grab a stat

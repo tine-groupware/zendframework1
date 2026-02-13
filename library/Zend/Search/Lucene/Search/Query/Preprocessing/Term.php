@@ -39,39 +39,27 @@ require_once 'Zend/Search/Lucene/Search/Query/Preprocessing.php';
 class Zend_Search_Lucene_Search_Query_Preprocessing_Term extends Zend_Search_Lucene_Search_Query_Preprocessing
 {
     /**
-     * word (query parser lexeme) to find.
-     *
-     * @var string
-     */
-    private $_word;
-
-    /**
-     * Word encoding (field name is always provided using UTF-8 encoding since it may be retrieved from index).
-     *
-     * @var string
-     */
-    private $_encoding;
-
-
-    /**
-     * Field name.
-     *
-     * @var string
-     */
-    private $_field;
-
-    /**
      * Class constructor.  Create a new preprocessing object for prase query.
      *
-     * @param string $word       Non-tokenized word (query parser lexeme) to search.
-     * @param string $encoding   Word encoding.
-     * @param string $fieldName  Field name.
+     * @param string $_word Non-tokenized word (query parser lexeme) to search.
+     * @param string $_encoding Word encoding.
+     * @param string $_field Field name.
      */
-    public function __construct($word, $encoding, $fieldName)
+    public function __construct(
+        /**
+         * word (query parser lexeme) to find.
+         */
+        private $_word,
+        /**
+         * Word encoding (field name is always provided using UTF-8 encoding since it may be retrieved from index).
+         */
+        private $_encoding,
+        /**
+         * Field name.
+         */
+        private $_field
+    )
     {
-        $this->_word     = $word;
-        $this->_encoding = $encoding;
-        $this->_field    = $fieldName;
     }
 
     /**
@@ -321,7 +309,7 @@ class Zend_Search_Lucene_Search_Query_Preprocessing_Term extends Zend_Search_Luc
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         // It's used only for query visualisation, so we don't care about characters escaping
         if ($this->_field !== null) {

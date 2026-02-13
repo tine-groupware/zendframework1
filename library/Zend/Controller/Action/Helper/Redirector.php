@@ -209,18 +209,18 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      */
     protected function _redirect($url)
     {
-        if ($this->getUseAbsoluteUri() && !preg_match('#^(https?|ftp)://#', $url)) {
-            $host  = (isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'');
+        if ($this->getUseAbsoluteUri() && !preg_match('#^(https?|ftp)://#', (string) $url)) {
+            $host  = ($_SERVER['HTTP_HOST'] ?? '');
             $proto = (isset($_SERVER['HTTPS'])&&$_SERVER['HTTPS']!=="off") ? 'https' : 'http';
-            $port  = (isset($_SERVER['SERVER_PORT'])?$_SERVER['SERVER_PORT']:80);
+            $port  = ($_SERVER['SERVER_PORT'] ?? 80);
             $uri   = $proto . '://' . $host;
             if ((('http' == $proto) && (80 != $port)) || (('https' == $proto) && (443 != $port))) {
                 // do not append if HTTP_HOST already contains port
-                if (strrchr($host, ':') === false) {
+                if (strrchr((string) $host, ':') === false) {
                     $uri .= ':' . $port;
                 }
             }
-            $url = $uri . '/' . ltrim($url, '/');
+            $url = $uri . '/' . ltrim((string) $url, '/');
         }
         $this->_redirectUrl = $url;
         $this->getResponse()->setRedirect($url, $this->getCode());
@@ -519,13 +519,13 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     {
         $method = strtolower($method);
         if ('goto' == $method) {
-            return call_user_func_array([$this, 'gotoSimple'], $args);
+            return call_user_func_array($this->gotoSimple(...), $args);
         }
         if ('setgoto' == $method) {
-            return call_user_func_array([$this, 'setGotoSimple'], $args);
+            return call_user_func_array($this->setGotoSimple(...), $args);
         }
         if ('gotoandexit' == $method) {
-            return call_user_func_array([$this, 'gotoSimpleAndExit'], $args);
+            return call_user_func_array($this->gotoSimpleAndExit(...), $args);
         }
 
         require_once 'Zend/Controller/Action/Exception.php';

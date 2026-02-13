@@ -445,11 +445,11 @@ class Zend_Markup_Renderer_Html extends Zend_Markup_Renderer_RendererAbstract
          */
         foreach ($attributes as $attribute => $value) {
             if (isset($tokenAttributes[$attribute]) && !empty($tokenAttributes[$attribute])) {
-                $return .= ' ' . $attribute . '="' . htmlentities($tokenAttributes[$attribute],
+                $return .= ' ' . $attribute . '="' . htmlentities((string) $tokenAttributes[$attribute],
                                                                   ENT_QUOTES,
                                                                   self::getEncoding()) . '"';
             } elseif (!empty($value)) {
-                $return .= ' ' . $attribute . '="' . htmlentities($value, ENT_QUOTES, self::getEncoding()) . '"';
+                $return .= ' ' . $attribute . '="' . htmlentities((string) $value, ENT_QUOTES, self::getEncoding()) . '"';
             }
         }
 

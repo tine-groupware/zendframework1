@@ -251,9 +251,7 @@ class Zend_Queue_Stomp_Client_Connection
      */
     public function getFrameClass()
     {
-        return isset($this->_options['frameClass'])
-            ? $this->_options['frameClass']
-            : 'Zend_Queue_Stomp_Frame';
+        return $this->_options['frameClass'] ?? 'Zend_Queue_Stomp_Frame';
     }
 
     /**

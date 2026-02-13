@@ -215,7 +215,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb
         // fields not referenced in the payload, but present in the document
         $documentId = $document->getId();
         $fields     = $document->getFields();
-        $docClass   = get_class($document);
+        $docClass   = $document::class;
         $this->deleteDocument($collectionName, $document, $options);
 
         $document   = new $docClass($fields, $documentId);

@@ -36,6 +36,7 @@ require_once 'Zend/Tool/Project/Profile/Resource/SearchConstraints.php';
 class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator, Countable
 {
 
+    public $_parentResource;
     /**
      * @var array
      */
@@ -97,7 +98,7 @@ class Zend_Tool_Project_Profile_Resource_Container implements RecursiveIterator,
                 break;
             }
 
-            if (strtolower($currentResource->getName()) == strtolower($currentConstraint->name)) {
+            if (strtolower((string) $currentResource->getName()) == strtolower((string) $currentConstraint->name)) {
 
                 $paramsMatch = true;
 

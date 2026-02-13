@@ -133,11 +133,11 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
             return $prefix;
         }
 
-        $nsSeparator = (false !== strpos($prefix, '\\'))?'\\':'_';
+        $nsSeparator = (str_contains($prefix, '\\'))?'\\':'_';
         $prefix = rtrim($prefix, $nsSeparator) . $nsSeparator;
         //if $nsSeprator == "\" and the prefix ends in "_\" remove trailing \
         //https://github.com/zendframework/zf1/issues/152
-        if(($nsSeparator == "\\") && (substr($prefix,-2) == "_\\")) {
+        if(($nsSeparator == "\\") && (str_ends_with($prefix, "_\\"))) {
             $prefix = substr($prefix, 0, -1);
         }
         return $prefix;
@@ -184,18 +184,10 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
         if ((null !== $prefix) && is_string($prefix)) {
             $prefix = $this->_formatPrefix($prefix);
             if ($this->_useStaticRegistry) {
-                if (isset(self::$_staticPrefixToPaths[$this->_useStaticRegistry][$prefix])) {
-                    return self::$_staticPrefixToPaths[$this->_useStaticRegistry][$prefix];
-                }
-
-                return false;
+                return self::$_staticPrefixToPaths[$this->_useStaticRegistry][$prefix] ?? false;
             }
 
-            if (isset($this->_prefixToPaths[$prefix])) {
-                return $this->_prefixToPaths[$prefix];
-            }
-
-            return false;
+            return $this->_prefixToPaths[$prefix] ?? false;
         }
 
         if ($this->_useStaticRegistry) {
@@ -380,7 +372,7 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
 
         $registry  = array_reverse($registry, true);
         $found     = false;
-        if (false !== strpos($name, '\\')) {
+        if (str_contains($name, '\\')) {
             $classFile = str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
         } else {
             $classFile = str_replace('_', DIRECTORY_SEPARATOR, $name) . '.php';

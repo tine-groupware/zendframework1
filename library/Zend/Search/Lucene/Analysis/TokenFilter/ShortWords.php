@@ -38,18 +38,18 @@ require_once 'Zend/Search/Lucene/Analysis/TokenFilter.php';
 class Zend_Search_Lucene_Analysis_TokenFilter_ShortWords extends Zend_Search_Lucene_Analysis_TokenFilter
 {
     /**
-     * Minimum allowed term length
-     * @var integer
-     */
-    private $length;
-
-    /**
      * Constructs new instance of this filter.
      *
      * @param integer $short  minimum allowed length of term which passes this filter (default 2)
+     * @param int $length
      */
-    public function __construct($length = 2) {
-        $this->length = $length;
+    public function __construct(
+        /**
+         * Minimum allowed term length
+         */
+        private $length = 2
+    )
+    {
     }
 
     /**

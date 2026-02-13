@@ -175,7 +175,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 		// Get blob instance
 		try {
 			$this->getBlobInstance($containerName, $blobName, $snapshotId);
-		} catch (Zend_Service_WindowsAzure_Exception $e) {
+		} catch (Zend_Service_WindowsAzure_Exception) {
 			return false;
 		}
 
@@ -318,9 +318,9 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 				foreach ($entries as $entry) {
 					$returnValue[] = new Zend_Service_WindowsAzure_Storage_SignedIdentifier(
 					$entry->Id,
-					$entry->AccessPolicy ? $entry->AccessPolicy->Start ? $entry->AccessPolicy->Start : '' : '',
-					$entry->AccessPolicy ? $entry->AccessPolicy->Expiry ? $entry->AccessPolicy->Expiry : '' : '',
-					$entry->AccessPolicy ? $entry->AccessPolicy->Permission ? $entry->AccessPolicy->Permission : '' : ''
+					$entry->AccessPolicy ? $entry->AccessPolicy->Start ?: '' : '',
+					$entry->AccessPolicy ? $entry->AccessPolicy->Expiry ?: '' : '',
+					$entry->AccessPolicy ? $entry->AccessPolicy->Permission ?: '' : ''
 					);
 				}
 
@@ -623,7 +623,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Local file not found.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -663,7 +663,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -697,7 +697,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			$response->getHeader('Etag'),
 			$response->getHeader('Last-modified'),
 			$this->getBaseUrl() . '/' . $containerName . '/' . $blobName,
-			strlen($data),
+			strlen((string) $data),
 				'',
 				'',
 				'',
@@ -744,7 +744,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Local file not found.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -824,7 +824,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Block size is too big.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -875,7 +875,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Block list does not contain any elements.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -883,16 +883,16 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 		// Generate block list
 		$blocks = '';
 		foreach ($blockList as $block) {
-			$blocks .= '  <Latest>' . base64_encode($block) . '</Latest>' . "\n";
+			$blocks .= '  <Latest>' . base64_encode((string) $block) . '</Latest>' . "\n";
 		}
 
 		// Generate block list request
-		$fileContents = utf8_encode(implode("\n", [
+		$fileContents = mb_convert_encoding(implode("\n", [
 				'<?xml version="1.0" encoding="utf-8"?>',
 				'<BlockList>',
 				$blocks,
 				'</BlockList>'
-			]));
+			]), 'UTF-8', 'ISO-8859-1');
 
 			// Create metadata headers
 			$headers = [];
@@ -1030,7 +1030,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1110,7 +1110,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1127,7 +1127,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 		$size = strlen($contents);
 		if ($size >= self::MAX_BLOB_TRANSFER_SIZE) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
-			throw new Zend_Service_WindowsAzure_Exception('Page blob size must not be larger than ' + self::MAX_BLOB_TRANSFER_SIZE . ' bytes.');
+			throw new Zend_Service_WindowsAzure_Exception(0 + self::MAX_BLOB_TRANSFER_SIZE . ' bytes.');
 		}
 
 		// Create metadata headers
@@ -1183,7 +1183,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1278,11 +1278,11 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Destination blob name is not specified.');
 		}
-		if ($sourceContainerName === '$root' && strpos($sourceBlobName, '/') !== false) {
+		if ($sourceContainerName === '$root' && str_contains($sourceBlobName, '/')) {
 		require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
-		if ($destinationContainerName === '$root' && strpos($destinationBlobName, '/') !== false) {
+		if ($destinationContainerName === '$root' && str_contains($destinationBlobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1447,7 +1447,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1525,7 +1525,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1562,7 +1562,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
 
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1619,7 +1619,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
 
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1674,7 +1674,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1706,7 +1706,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1762,7 +1762,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -1810,7 +1810,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blob name is not specified.');
 		}
-		if ($containerName === '$root' && strpos($blobName, '/') !== false) {
+		if ($containerName === '$root' && str_contains($blobName, '/')) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
 			throw new Zend_Service_WindowsAzure_Exception('Blobs stored in the root container can not have a name containing a forward slash (/).');
 		}
@@ -2096,7 +2096,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			return false;
 		}
 
-		if (strpos($containerName, '--') !== false) {
+		if (str_contains($containerName, '--')) {
 			return false;
 		}
 
@@ -2108,7 +2108,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 			return false;
 		}
 
-		if (substr($containerName, -1) == '-') {
+		if (str_ends_with($containerName, '-')) {
 			return false;
 		}
 
@@ -2141,7 +2141,7 @@ class Zend_Service_WindowsAzure_Storage_Blob extends Zend_Service_WindowsAzure_S
 	protected function _generateBlockId($part = 0)
 	{
 		$returnValue = $part;
-		while (strlen($returnValue) < 64) {
+		while (strlen((string) $returnValue) < 64) {
 			$returnValue = '0' . $returnValue;
 		}
 

@@ -44,13 +44,6 @@ class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Inter
     protected $_typeMap = [];
 
     /**
-     * Default Strategy of this composite
-     *
-     * @var string|Zend_Soap_Wsdl_Strategy_Interface
-     */
-    protected $_defaultStrategy;
-
-    /**
      * Context WSDL file that this composite serves
      *
      * @var Zend_Soap_Wsdl|null
@@ -62,14 +55,16 @@ class Zend_Soap_Wsdl_Strategy_Composite implements Zend_Soap_Wsdl_Strategy_Inter
      *
      * @throws Zend_Soap_Wsdl_Exception
      * @param array $typeMap
-     * @param string|Zend_Soap_Wsdl_Strategy_Interface $defaultStrategy
+     * @param string|Zend_Soap_Wsdl_Strategy_Interface $_defaultStrategy
      */
-    public function __construct(array $typeMap=[], $defaultStrategy="Zend_Soap_Wsdl_Strategy_DefaultComplexType")
+    public function __construct(array $typeMap=[], /**
+     * Default Strategy of this composite
+     */
+    protected $_defaultStrategy="Zend_Soap_Wsdl_Strategy_DefaultComplexType")
     {
         foreach($typeMap AS $type => $strategy) {
             $this->connectTypeToStrategy($type, $strategy);
         }
-        $this->_defaultStrategy = $defaultStrategy;
     }
 
     /**

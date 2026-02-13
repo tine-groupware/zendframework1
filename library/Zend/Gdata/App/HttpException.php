@@ -45,9 +45,6 @@ require_once 'Zend/Http/Client/Exception.php';
 class Zend_Gdata_App_HttpException extends Zend_Gdata_App_Exception
 {
 
-    protected $_httpClientException = null;
-    protected $_response = null;
-
     /**
      * Create a new Zend_Gdata_App_HttpException
      *
@@ -55,10 +52,8 @@ class Zend_Gdata_App_HttpException extends Zend_Gdata_App_Exception
      * @param Zend_Http_Client_Exception Optionally pass in a Zend_Http_Client_Exception
      * @param Zend_Http_Response Optionally pass in a Zend_Http_Response
      */
-    public function __construct($message = null, $e = null, $response = null)
+    public function __construct($message = null, protected $_httpClientException = null, protected $_response = null)
     {
-        $this->_httpClientException = $e;
-        $this->_response = $response;
         parent::__construct($message);
     }
 

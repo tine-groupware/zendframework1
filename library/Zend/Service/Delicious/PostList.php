@@ -146,7 +146,7 @@ class Zend_Service_Delicious_PostList implements Countable, Iterator, ArrayAcces
         $postList = new self($this->_service);
 
         foreach ($this->_posts as $post) {
-            if (preg_match($regexp, $post->getUrl())) {
+            if (preg_match($regexp, (string) $post->getUrl())) {
                 $postList->_addPost($post);
             }
         }

@@ -30,20 +30,6 @@
 class Zend_Json_Encoder
 {
     /**
-     * Whether or not to check for possible cycling
-     *
-     * @var boolean
-     */
-    protected $_cycleCheck;
-
-    /**
-     * Additional options used during encoding
-     *
-     * @var array
-     */
-    protected $_options = [];
-
-    /**
      * Array of visited objects; used to prevent cycling.
      *
      * @var array
@@ -53,14 +39,21 @@ class Zend_Json_Encoder
     /**
      * Constructor
      *
-     * @param boolean $cycleCheck Whether or not to check for recursion when encoding
-     * @param array $options Additional options used during encoding
+     * @param boolean $_cycleCheck Whether or not to check for recursion when encoding
+     * @param array $_options Additional options used during encoding
      * @return void
      */
-    protected function __construct($cycleCheck = false, $options = [])
+    protected function __construct(
+        /**
+         * Whether or not to check for possible cycling
+         */
+        protected $_cycleCheck = false,
+        /**
+         * Additional options used during encoding
+         */
+        protected $_options = []
+    )
     {
-        $this->_cycleCheck = $cycleCheck;
-        $this->_options = $options;
     }
 
     /**
@@ -119,13 +112,13 @@ class Zend_Json_Encoder
                 if (isset($this->_options['silenceCyclicalExceptions'])
                     && $this->_options['silenceCyclicalExceptions']===true) {
 
-                    return '"* RECURSION (' . get_class($value) . ') *"';
+                    return '"* RECURSION (' . $value::class . ') *"';
 
                 } else {
                     require_once 'Zend/Json/Exception.php';
                     throw new Zend_Json_Exception(
                         'Cycles not supported in JSON encoding, cycle introduced by '
-                        . 'class "' . get_class($value) . '"'
+                        . 'class "' . $value::class . '"'
                     );
                 }
             }
@@ -135,7 +128,7 @@ class Zend_Json_Encoder
 
         $props = '';
         if (method_exists($value, 'toJson')) {
-            $props =',' . preg_replace("/^\{(.*)\}$/","\\1",$value->toJson());
+            $props =',' . preg_replace("/^\{(.*)\}$/","\\1",(string) $value->toJson());
         } else {
             if ($value instanceof IteratorAggregate) {
                 $propCollection = $value->getIterator();
@@ -154,7 +147,7 @@ class Zend_Json_Encoder
                 }
             }
         }
-        $className = get_class($value);
+        $className = $value::class;
         return '{"__className":' . $this->_encodeString($className)
                 . $props . '}';
     }
@@ -548,31 +541,24 @@ class Zend_Json_Encoder
         if( function_exists('mb_convert_encoding') ) {
             return mb_convert_encoding($utf8, 'UTF-16', 'UTF-8');
         }
-
-        switch (strlen($utf8)) {
-            case 1:
-                // this case should never be reached, because we are in ASCII range
-                // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return $utf8;
-
-            case 2:
-                // return a UTF-16 character from a 2-byte UTF-8 char
-                // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0x07 & (ord($utf8[0]) >> 2))
-                     . chr((0xC0 & (ord($utf8[0]) << 6))
-                         | (0x3F & ord($utf8[1])));
-
-            case 3:
-                // return a UTF-16 character from a 3-byte UTF-8 char
-                // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr((0xF0 & (ord($utf8[0]) << 4))
-                         | (0x0F & (ord($utf8[1]) >> 2)))
-                     . chr((0xC0 & (ord($utf8[1]) << 6))
-                         | (0x7F & ord($utf8[2])));
-        }
-
-        // ignoring UTF-32 for now, sorry
-        return '';
+        return match (strlen($utf8)) {
+            // this case should never be reached, because we are in ASCII range
+            // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+            1 => $utf8,
+            // return a UTF-16 character from a 2-byte UTF-8 char
+            // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+            2 => chr(0x07 & (ord($utf8[0]) >> 2))
+                 . chr((0xC0 & (ord($utf8[0]) << 6))
+                     | (0x3F & ord($utf8[1]))),
+            // return a UTF-16 character from a 3-byte UTF-8 char
+            // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+            3 => chr((0xF0 & (ord($utf8[0]) << 4))
+                     | (0x0F & (ord($utf8[1]) >> 2)))
+                 . chr((0xC0 & (ord($utf8[1]) << 6))
+                     | (0x7F & ord($utf8[2]))),
+            // ignoring UTF-32 for now, sorry
+            default => '',
+        };
     }
 }
 

@@ -279,8 +279,8 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
         } else {
             $requestUri = $_SERVER['SCRIPT_NAME'];
         }
-        if( ($pos = strpos($requestUri, "?")) !== false) {
-            $requestUri = substr($requestUri, 0, $pos);
+        if( ($pos = strpos((string) $requestUri, "?")) !== false) {
+            $requestUri = substr((string) $requestUri, 0, $pos);
         }
 
         return $requestUri;
@@ -352,7 +352,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
         $uri = $this->getUri();
 
         if (!($this->_wsdl instanceof Zend_Soap_Wsdl)) {
-            $parts = explode('.', basename($_SERVER['SCRIPT_NAME']));
+            $parts = explode('.', basename((string) $_SERVER['SCRIPT_NAME']));
             $name = $parts[0];
             $wsdl = new Zend_Soap_Wsdl($name, $uri, $this->_strategy);
 
@@ -471,7 +471,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
             $portOperation = $wsdl->addPortOperation($port, $function->getName(), 'tns:' . $function->getName() . 'In', false);
         }
         $desc = $function->getDescription();
-        if (strlen($desc) > 0) {
+        if (strlen((string) $desc) > 0) {
             $wsdl->addDocumentation($portOperation, $desc);
         }
 
@@ -499,7 +499,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      * @param string|int $code
      * @throws Zend_Soap_AutoDiscover_Exception
      */
-    public function fault($fault = null, $code = null)
+    public function fault($fault = null, $code = null): never
     {
         require_once "Zend/Soap/AutoDiscover/Exception.php";
         throw new Zend_Soap_AutoDiscover_Exception("Function has no use in AutoDiscover.");
@@ -573,7 +573,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      * @param unknown_type $definition
      * @throws Zend_Soap_AutoDiscover_Exception
      */
-    public function loadFunctions($definition)
+    public function loadFunctions($definition): never
     {
         require_once "Zend/Soap/AutoDiscover/Exception.php";
         throw new Zend_Soap_AutoDiscover_Exception("Function has no use in AutoDiscover.");
@@ -585,7 +585,7 @@ class Zend_Soap_AutoDiscover implements Zend_Server_Interface
      * @param int $mode
      * @throws Zend_Soap_AutoDiscover_Exception
      */
-    public function setPersistence($mode)
+    public function setPersistence($mode): never
     {
         require_once "Zend/Soap/AutoDiscover/Exception.php";
         throw new Zend_Soap_AutoDiscover_Exception("Function has no use in AutoDiscover.");

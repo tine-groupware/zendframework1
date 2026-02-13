@@ -37,20 +37,6 @@ require_once 'Zend/Memory/Value.php';
  */
 class Zend_Memory_Container_Movable extends Zend_Memory_Container {
     /**
-     * Internal object Id
-     *
-     * @var integer
-     */
-    protected $_id;
-
-    /**
-     * Memory manager reference
-     *
-     * @var Zend_Memory_Manager
-     */
-    private $_memManager;
-
-    /**
      * Value object
      *
      * @var Zend_Memory_Value
@@ -72,14 +58,18 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
     /**
      * Object constructor
      *
-     * @param Zend_Memory_Manager $memoryManager
-     * @param integer $id
+     * @param Zend_Memory_Manager $_memManager
+     * @param integer $_id
      * @param string $value
      */
-    public function __construct(Zend_Memory_Manager $memoryManager, $id, $value)
+    public function __construct(/**
+     * Memory manager reference
+     */
+    private readonly Zend_Memory_Manager $_memManager, /**
+     * Internal object Id
+     */
+    protected $_id, $value)
     {
-        $this->_memManager = $memoryManager;
-        $this->_id    = $id;
         $this->_state = self::LOADED;
         $this->_value = new Zend_Memory_Value($value, $this);
     }

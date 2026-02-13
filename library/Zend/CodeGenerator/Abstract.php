@@ -26,7 +26,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_CodeGenerator_Abstract
+abstract class Zend_CodeGenerator_Abstract implements \Stringable
 {
 
     /**
@@ -139,9 +139,9 @@ abstract class Zend_CodeGenerator_Abstract
      *
      * @return string
      */
-    final public function __toString()
+    final public function __toString(): string
     {
-        return $this->generate();
+        return (string) $this->generate();
     }
 
 }

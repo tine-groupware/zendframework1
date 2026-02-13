@@ -270,21 +270,14 @@ class Zend_Service_Amazon_S3_Stream
             return false;
         }
 
-        switch ($whence) {
-            case SEEK_CUR:
-                // Set position to current location plus $offset
-                $new_pos = $this->_position + $offset;
-                break;
-            case SEEK_END:
-                // Set position to end-of-file plus $offset
-                $new_pos = $this->_objectSize + $offset;
-                break;
-            case SEEK_SET:
-            default:
-                // Set position equal to $offset
-                $new_pos = $offset;
-                break;
-        }
+        $new_pos = match ($whence) {
+            // Set position to current location plus $offset
+            SEEK_CUR => $this->_position + $offset,
+            // Set position to end-of-file plus $offset
+            SEEK_END => $this->_objectSize + $offset,
+            // Set position equal to $offset
+            default => $offset,
+        };
         $ret = ($new_pos >= 0 && $new_pos <= $this->_objectSize);
         if ($ret) {
             $this->_position = $new_pos;

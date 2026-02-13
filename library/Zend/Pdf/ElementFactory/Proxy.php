@@ -33,21 +33,17 @@ require_once 'Zend/Pdf/ElementFactory/Interface.php';
 class Zend_Pdf_ElementFactory_Proxy implements Zend_Pdf_ElementFactory_Interface
 {
     /**
-     * Factory object
-     *
-     * @var Zend_Pdf_ElementFactory_Interface
-     */
-    private $_factory;
-
-
-    /**
      * Object constructor
      *
-     * @param Zend_Pdf_ElementFactory_Interface $factory
+     * @param Zend_Pdf_ElementFactory_Interface $_factory
      */
-    public function __construct(Zend_Pdf_ElementFactory_Interface $factory)
+    public function __construct(
+        /**
+         * Factory object
+         */
+        private Zend_Pdf_ElementFactory_Interface $_factory
+    )
     {
-        $this->_factory = $factory;
     }
 
     public function __destruct()

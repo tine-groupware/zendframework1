@@ -97,6 +97,6 @@ class Zend_Mobile_Push_Test_ApnsProxy extends Zend_Mobile_Push_Apns
     protected function _write($payload) {
         $ret = $this->_writeResponse;
         $this->_writeResponse = null;
-        return (null === $ret) ? strlen($payload) : $ret;
+        return $ret ?? strlen($payload);
     }
 }

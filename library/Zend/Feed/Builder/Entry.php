@@ -266,8 +266,8 @@ class Zend_Feed_Builder_Entry extends ArrayObject
                 require_once 'Zend/Feed/Builder/Exception.php';
                 throw new Zend_Feed_Builder_Exception("you have to supply an url for your enclosure");
             }
-            $type = isset($enclosure['type']) ? $enclosure['type'] : '';
-            $length = isset($enclosure['length']) ? $enclosure['length'] : '';
+            $type = $enclosure['type'] ?? '';
+            $length = $enclosure['length'] ?? '';
             $this->addEnclosure($enclosure['url'], $type, $length);
         }
         return $this;

@@ -231,7 +231,7 @@ class Zend_Queue_Adapter_Memcacheq extends Zend_Queue_Adapter_AdapterAbstract
      * @return integer
      * @throws Zend_Queue_Exception (not supported)
      */
-    public function count(Zend_Queue $queue=null)
+    public function count(Zend_Queue $queue=null): never
     {
         require_once 'Zend/Queue/Exception.php';
         throw new Zend_Queue_Exception('count() is not supported in this adapter');
@@ -262,7 +262,7 @@ class Zend_Queue_Adapter_Memcacheq extends Zend_Queue_Adapter_AdapterAbstract
 
         $message = (string) $message;
         $data    = [
-            'message_id' => md5(uniqid(rand(), true)),
+            'message_id' => md5(uniqid(random_int(0, mt_getrandmax()), true)),
             'handle'     => null,
             'body'       => $message,
             'md5'        => md5($message),
@@ -313,7 +313,7 @@ class Zend_Queue_Adapter_Memcacheq extends Zend_Queue_Adapter_AdapterAbstract
         if ($maxMessages > 0 ) {
             for ($i = 0; $i < $maxMessages; $i++) {
                 $data = [
-                    'handle' => md5(uniqid(rand(), true)),
+                    'handle' => md5(uniqid(random_int(0, mt_getrandmax()), true)),
                     'body'   => $this->_cache->get($queue->getName()),
                 ];
 
@@ -345,10 +345,10 @@ class Zend_Queue_Adapter_Memcacheq extends Zend_Queue_Adapter_AdapterAbstract
      * @return boolean
      * @throws Zend_Queue_Exception (unsupported)
      */
-    public function deleteMessage(Zend_Queue_Message $message)
+    public function deleteMessage(Zend_Queue_Message $message): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception('deleteMessage() is not supported in  ' . get_class($this));
+        throw new Zend_Queue_Exception('deleteMessage() is not supported in  ' . static::class);
     }
 
     /********************************************************************

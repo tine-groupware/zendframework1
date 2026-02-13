@@ -36,20 +36,15 @@ require_once 'Zend/Search/Lucene/Interface.php';
 class Zend_Search_Lucene_Proxy implements Zend_Search_Lucene_Interface
 {
     /**
-     * Index object
-     *
-     * @var Zend_Search_Lucene_Interface
-     */
-    private $_index;
-
-    /**
      * Object constructor
      *
-     * @param Zend_Search_Lucene_Interface $index
+     * @param Zend_Search_Lucene_Interface $_index
      */
-    public function __construct(Zend_Search_Lucene_Interface $index)
+    public function __construct(/**
+     * Index object
+     */
+    private Zend_Search_Lucene_Interface $_index)
     {
-        $this->_index = $index;
         $this->_index->addReference();
     }
 
@@ -343,7 +338,7 @@ class Zend_Search_Lucene_Proxy implements Zend_Search_Lucene_Interface
         $parameters = func_get_args();
 
         // invoke $this->_index->find() method with specified parameters
-        return call_user_func_array([&$this->_index, 'find'], $parameters);
+        return call_user_func_array($this->_index->find(...), $parameters);
     }
 
     /**

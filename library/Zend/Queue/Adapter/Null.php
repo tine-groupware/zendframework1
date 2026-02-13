@@ -57,10 +57,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function isExists($name)
+    public function isExists($name): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
 
@@ -69,10 +69,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function create($name, $timeout=null)
+    public function create($name, $timeout=null): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
     /**
@@ -80,10 +80,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function delete($name)
+    public function delete($name): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
     /**
@@ -91,10 +91,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function getQueues()
+    public function getQueues(): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
     /**
@@ -102,10 +102,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function count(Zend_Queue $queue=null)
+    public function count(Zend_Queue $queue=null): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
     /********************************************************************
@@ -117,10 +117,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function send($message, Zend_Queue $queue=null)
+    public function send($message, Zend_Queue $queue=null): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
     /**
@@ -128,10 +128,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function receive($maxMessages=null, $timeout=null, Zend_Queue $queue=null)
+    public function receive($maxMessages=null, $timeout=null, Zend_Queue $queue=null): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
     /**
@@ -139,10 +139,10 @@ class Zend_Queue_Adapter_Null extends Zend_Queue_Adapter_AdapterAbstract
      *
      * @throws Zend_Queue_Exception - not supported.
      */
-    public function deleteMessage(Zend_Queue_Message $message)
+    public function deleteMessage(Zend_Queue_Message $message): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . get_class($this));
+        throw new Zend_Queue_Exception(__FUNCTION__ . '() is not supported by ' . static::class);
     }
 
     /********************************************************************

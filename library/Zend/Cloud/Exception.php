@@ -34,16 +34,14 @@ require_once 'Zend/Exception.php';
 class Zend_Cloud_Exception extends Zend_Exception
 {
     /**
-     * Exception for the underlying adapter
-     *
-     * @var Exception
+     * @param \Exception $clientException
      */
-    protected $_clientException;
-
-    public function __construct($message, $code = 0, $clientException = null)
+    public function __construct($message, $code = 0, /**
+     * Exception for the underlying adapter
+     */
+    protected $_clientException = null)
     {
-        $this->_clientException = $clientException;
-        parent::__construct($message, $code, $clientException);
+        parent::__construct($message, $code, $this->_clientException);
     }
 
     public function getClientException() {

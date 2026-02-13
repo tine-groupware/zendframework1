@@ -194,7 +194,7 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
 
         foreach ($this->_buttonTypes as $type) {
             if ($element instanceof $type) {
-                if (stristr($type, 'button')) {
+                if (stristr((string) $type, 'button')) {
                     $element->content = $element->getLabel();
 
                     return $element->getValue();
@@ -256,13 +256,10 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
             $elementContent = $view->$helper($name, $value, $attribs, $element->options);
         }
 
-        switch ($this->getPlacement()) {
-            case self::APPEND:
-                return $content . $separator . $elementContent;
-            case self::PREPEND:
-                return $elementContent . $separator . $content;
-            default:
-                return $elementContent;
-        }
+        return match ($this->getPlacement()) {
+            self::APPEND => $content . $separator . $elementContent,
+            self::PREPEND => $elementContent . $separator . $content,
+            default => $elementContent,
+        };
     }
 }

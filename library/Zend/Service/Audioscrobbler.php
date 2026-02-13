@@ -192,7 +192,7 @@ class Zend_Service_Audioscrobbler
             throw new Zend_Http_Client_Exception('The web service ' . $this->_client->getUri() . ' returned the following status code: ' . $response->getStatus());
         }
 
-        set_error_handler([$this, '_errorHandler']);
+        set_error_handler($this->_errorHandler(...));
 
         if (!$simpleXmlElementResponse = Zend_Xml_Security::scan($responseBody)) {
             restore_error_handler();
@@ -672,7 +672,7 @@ class Zend_Service_Audioscrobbler
      */
     public function __call($method, $args)
     {
-        if(substr($method, 0, 3) !== "set") {
+        if(!str_starts_with($method, "set")) {
             require_once "Zend/Service/Exception.php";
             throw new Zend_Service_Exception(
                 "Method ".$method." does not exist in class Zend_Service_Audioscrobbler."

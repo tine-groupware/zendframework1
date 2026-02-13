@@ -171,7 +171,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
              * @see Zend_Auth_Adapter_Exception
              */
             require_once 'Zend/Auth/Adapter/Exception.php';
-            throw new Zend_Auth_Adapter_Exception(__CLASS__  . ' requires the \'hash\' extension');
+            throw new Zend_Auth_Adapter_Exception(self::class  . ' requires the \'hash\' extension');
         }
 
         $this->_request  = null;
@@ -187,7 +187,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             throw new Zend_Auth_Adapter_Exception('Config key \'accept_schemes\' is required');
         }
 
-        $schemes = explode(' ', $config['accept_schemes']);
+        $schemes = explode(' ', (string) $config['accept_schemes']);
         $this->_acceptSchemes = array_intersect($schemes, $this->_supportedSchemes);
         if (empty($this->_acceptSchemes)) {
             /**
@@ -201,9 +201,9 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         // Double-quotes are used to delimit the realm string in the HTTP header,
         // and colons are field delimiters in the password file.
         if (empty($config['realm']) ||
-            !ctype_print($config['realm']) ||
-            strpos($config['realm'], ':') !== false ||
-            strpos($config['realm'], '"') !== false) {
+            !ctype_print((string) $config['realm']) ||
+            str_contains((string) $config['realm'], ':') ||
+            str_contains((string) $config['realm'], '"')) {
             /**
              * @see Zend_Auth_Adapter_Exception
              */
@@ -216,8 +216,8 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
 
         if (in_array('digest', $this->_acceptSchemes)) {
             if (empty($config['digest_domains']) ||
-                !ctype_print($config['digest_domains']) ||
-                strpos($config['digest_domains'], '"') !== false) {
+                !ctype_print((string) $config['digest_domains']) ||
+                str_contains((string) $config['digest_domains'], '"')) {
                 /**
                  * @see Zend_Auth_Adapter_Exception
                  */
@@ -383,7 +383,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             return $this->_challengeClient();
         }
 
-        list($clientScheme) = explode(' ', $authHeader);
+        [$clientScheme] = explode(' ', $authHeader);
         $clientScheme = strtolower($clientScheme);
 
         // The server can issue multiple challenges, but the client should
@@ -666,7 +666,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
 
         return hash(
             'md5',
-            $timeout . ':' . $this->_request->getServer('HTTP_USER_AGENT') . ':' . __CLASS__
+            $timeout . ':' . $this->_request->getServer('HTTP_USER_AGENT') . ':' . self::class
         );
     }
 
@@ -684,7 +684,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
      */
     protected function _calcOpaque()
     {
-        return hash('md5', 'Opaque Data:' . __CLASS__);
+        return hash('md5', 'Opaque Data:' . self::class);
     }
 
     /**
@@ -704,7 +704,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         $ret = preg_match('/username="([^"]+)"/', $header, $temp);
         if (!$ret || empty($temp[1])
                   || !ctype_print($temp[1])
-                  || strpos($temp[1], ':') !== false) {
+                  || str_contains($temp[1], ':')) {
             $data['username'] = '::invalid::';
         } else {
             $data['username'] = $temp[1];
@@ -715,7 +715,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
         if (!$ret || empty($temp[1])) {
             return false;
         }
-        if (!ctype_print($temp[1]) || strpos($temp[1], ':') !== false) {
+        if (!ctype_print($temp[1]) || str_contains($temp[1], ':')) {
             return false;
         } else {
             $data['realm'] = $temp[1];
@@ -798,7 +798,7 @@ class Zend_Auth_Adapter_Http implements Zend_Auth_Adapter_Interface
             if (!$ret || empty($temp[1])) {
 
                 // Big surprise: IE isn't RFC 2617-compliant.
-                if (false !== strpos($this->_request->getHeader('User-Agent'), 'MSIE')) {
+                if (str_contains($this->_request->getHeader('User-Agent'), 'MSIE')) {
                     $temp[1] = '';
                     $this->_ieNoOpaque = true;
                 } else {

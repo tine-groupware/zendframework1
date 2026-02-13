@@ -96,11 +96,11 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
     public function setOptions($options)
     {
         if (array_key_exists('allowipv6', $options)) {
-            $this->_options['allowipv6'] = (boolean) $options['allowipv6'];
+            $this->_options['allowipv6'] = (bool) $options['allowipv6'];
         }
 
         if (array_key_exists('allowipv4', $options)) {
-            $this->_options['allowipv4'] = (boolean) $options['allowipv4'];
+            $this->_options['allowipv4'] = (bool) $options['allowipv4'];
         }
 
         if (!$this->_options['allowipv4'] && !$this->_options['allowipv6']) {
@@ -173,7 +173,7 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
             $value = substr($value, 0, $lastcolon) . ':0:0';
         }
 
-        if (strpos($value, '::') === false) {
+        if (!str_contains($value, '::')) {
             return preg_match('/\A(?:[a-f0-9]{1,4}:){7}[a-f0-9]{1,4}\z/i', $value);
         }
 

@@ -57,11 +57,11 @@ class Zend_Service_Amazon_Authentication_S3 extends Zend_Service_Amazon_Authenti
 
         // Search for the Content-type, Content-MD5 and Date headers
         foreach ($headers as $key => $val) {
-            if (strcasecmp($key, 'content-type') === 0) {
+            if (strcasecmp((string) $key, 'content-type') === 0) {
                 $type = $val;
-            } else if (strcasecmp($key, 'content-md5') === 0) {
+            } else if (strcasecmp((string) $key, 'content-md5') === 0) {
                 $md5 = $val;
-            } else if (strcasecmp($key, 'date') === 0) {
+            } else if (strcasecmp((string) $key, 'date') === 0) {
                 $date = $val;
             }
         }
@@ -77,12 +77,12 @@ class Zend_Service_Amazon_Authentication_S3 extends Zend_Service_Amazon_Authenti
         // alphabetically and remove excess spaces around values
         $amz_headers = [];
         foreach ($headers as $key => $val) {
-            $key = strtolower($key);
-            if (substr($key, 0, 6) == 'x-amz-') {
+            $key = strtolower((string) $key);
+            if (str_starts_with($key, 'x-amz-')) {
                 if (is_array($val)) {
                     $amz_headers[$key] = $val;
                 } else {
-                    $amz_headers[$key][] = preg_replace('/\s+/', ' ', $val);
+                    $amz_headers[$key][] = preg_replace('/\s+/', ' ', (string) $val);
                 }
             }
         }
@@ -94,17 +94,17 @@ class Zend_Service_Amazon_Authentication_S3 extends Zend_Service_Amazon_Authenti
         }
 
         $sig_str .= '/'.parse_url($path, PHP_URL_PATH);
-        if (strpos($path, '?location') !== false) {
+        if (str_contains($path, '?location')) {
             $sig_str .= '?location';
         } else
-            if (strpos($path, '?acl') !== false) {
+            if (str_contains($path, '?acl')) {
                 $sig_str .= '?acl';
             } else
-                if (strpos($path, '?torrent') !== false) {
+                if (str_contains($path, '?torrent')) {
                     $sig_str .= '?torrent';
                 }
 
-        $signature = base64_encode(Zend_Crypt_Hmac::compute($this->_secretKey, 'sha1', utf8_encode($sig_str), Zend_Crypt_Hmac::BINARY));
+        $signature = base64_encode(Zend_Crypt_Hmac::compute($this->_secretKey, 'sha1', mb_convert_encoding($sig_str, 'UTF-8', 'ISO-8859-1'), Zend_Crypt_Hmac::BINARY));
         $headers['Authorization'] = 'AWS ' . $this->_accessKey . ':' . $signature;
 
         return $sig_str;

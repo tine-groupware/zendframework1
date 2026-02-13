@@ -46,6 +46,7 @@ require_once 'Zend/Wildfire/Plugin/Interface.php';
  */
 class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 {
+    public $objectFilters;
     /**
      * Plain log style.
      */
@@ -402,7 +403,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
             $eTrace = $var->getTrace();
             $eTrace = array_splice($eTrace, 0, $options['maxTraceDepth']);
 
-            $var = ['Class'=>get_class($var),
+            $var = ['Class'=>$var::class,
                          'Message'=>$var->getMessage(),
                          'File'=>$var->getFile(),
                          'Line'=>$var->getLine(),
@@ -430,8 +431,8 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
                          'Type'=>$trace[0]['type'],
                          'Function'=>$trace[0]['function'],
                          'Message'=>$label,
-                         'File'=>isset($trace[0]['file'])?$trace[0]['file']:'',
-                         'Line'=>isset($trace[0]['line'])?$trace[0]['line']:'',
+                         'File'=>$trace[0]['file'] ?? '',
+                         'Line'=>$trace[0]['line'] ?? '',
                          'Args'=>isset($trace[0]['args'])?$firephp->_encodeObject($trace[0]['args']):'',
                          'Trace'=>$firephp->_encodeTrace(array_splice($trace,1))];
 
@@ -480,8 +481,8 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
                                                                   ['maxTraceDepth'=>$options['maxTraceDepth']+1]));
                 }
 
-                $meta['File'] = isset($trace[0]['file'])?$trace[0]['file']:'';
-                $meta['Line'] = isset($trace[0]['line'])?$trace[0]['line']:'';
+                $meta['File'] = $trace[0]['file'] ?? '';
+                $meta['Line'] = $trace[0]['line'] ?? '';
 
             }
         } else {
@@ -529,7 +530,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
         if (isset($options['fixZendLogOffsetIfApplicable']) && $options['fixZendLogOffsetIfApplicable']) {
             if (count($trace) >=3 &&
-                isset($trace[0]['file']) && substr($trace[0]['file'], -7, 7)=='Log.php' &&
+                isset($trace[0]['file']) && str_ends_with($trace[0]['file'], 'Log.php') &&
                 isset($trace[1]['function']) && $trace[1]['function']=='__call') {
 
                 $spliceOffset = 2;
@@ -677,12 +678,12 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
             foreach ($this->_objectStack as $refVal) {
                 if ($refVal === $object) {
-                    return '** Recursion ('.get_class($object).') **';
+                    return '** Recursion ('.$object::class.') **';
                 }
             }
             array_push($this->_objectStack, $object);
 
-            $return['__className'] = $class = get_class($object);
+            $return['__className'] = $class = $object::class;
 
             $reflectionClass = new ReflectionClass($class);
             $properties = [];
@@ -722,7 +723,6 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
                     } else {
                         if (method_exists($property,'setAccessible')) {
-                            $property->setAccessible(true);
                             $return[$name] = $this->_encodeObject($property->getValue($object), $objectDepth + 1, 1);
                         } else
                         if ($property->isPublic()) {
@@ -743,7 +743,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
                 $name = $raw_name = $just_name;
 
                 if ($name[0] == "\0") {
-                    $parts = explode("\0", $name);
+                    $parts = explode("\0", (string) $name);
                     $name = $parts[2];
                 }
                 if (!isset($properties[$name])) {
@@ -816,10 +816,7 @@ class Zend_Wildfire_Plugin_FirePhp implements Zend_Wildfire_Plugin_Interface
 
         foreach( $this->_messages as $message ) {
             if (!$message->getDestroy()) {
-                $this->send($message->getMessage(),
-                            $message->getLabel(),
-                            $message->getStyle(),
-                            $message->getOptions());
+                static::send($message->getMessage(), $message->getLabel(), $message->getStyle(), $message->getOptions());
             }
         }
 

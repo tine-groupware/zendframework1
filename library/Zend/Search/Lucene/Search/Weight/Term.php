@@ -35,27 +35,6 @@ require_once 'Zend/Search/Lucene/Search/Weight.php';
 class Zend_Search_Lucene_Search_Weight_Term extends Zend_Search_Lucene_Search_Weight
 {
     /**
-     * IndexReader.
-     *
-     * @var Zend_Search_Lucene_Interface
-     */
-    private $_reader;
-
-    /**
-     * Term
-     *
-     * @var Zend_Search_Lucene_Index_Term
-     */
-    private $_term;
-
-    /**
-     * The query that this concerns.
-     *
-     * @var Zend_Search_Lucene_Search_Query
-     */
-    private $_query;
-
-    /**
      * Score factor
      *
      * @var float
@@ -74,17 +53,25 @@ class Zend_Search_Lucene_Search_Weight_Term extends Zend_Search_Lucene_Search_We
      * Zend_Search_Lucene_Search_Weight_Term constructor
      * reader - index reader
      *
-     * @param Zend_Search_Lucene_Index_Term   $term
-     * @param Zend_Search_Lucene_Search_Query $query
-     * @param Zend_Search_Lucene_Interface    $reader
+     * @param Zend_Search_Lucene_Index_Term $_term
+     * @param Zend_Search_Lucene_Search_Query $_query
+     * @param Zend_Search_Lucene_Interface $_reader
      */
-    public function __construct(Zend_Search_Lucene_Index_Term   $term,
-                                Zend_Search_Lucene_Search_Query $query,
-                                Zend_Search_Lucene_Interface    $reader)
+    public function __construct(
+        /**
+         * Term
+         */
+        private readonly Zend_Search_Lucene_Index_Term   $_term,
+        /**
+         * The query that this concerns.
+         */
+        private readonly Zend_Search_Lucene_Search_Query $_query,
+        /**
+         * IndexReader.
+         */
+        private readonly Zend_Search_Lucene_Interface    $_reader
+    )
     {
-        $this->_term   = $term;
-        $this->_query  = $query;
-        $this->_reader = $reader;
     }
 
 

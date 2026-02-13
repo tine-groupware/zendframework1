@@ -38,7 +38,7 @@
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Pdf_FileParserDataSource
+abstract class Zend_Pdf_FileParserDataSource implements \Stringable
 {
   /**** Instance Variables ****/
 
@@ -123,9 +123,9 @@ abstract class Zend_Pdf_FileParserDataSource
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return get_class($this);
+        return static::class;
     }
 
 

@@ -87,7 +87,6 @@ class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
                           xml_error_string(xml_get_error_code($this->_file)),
                           xml_get_current_line_number($this->_file),
                           $filename);
-            xml_parser_free($this->_file);
             require_once 'Zend/Translate/Exception.php';
             throw new Zend_Translate_Exception($ex);
         }
@@ -97,7 +96,7 @@ class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
 
     private function _startElement($file, $name, $attrib)
     {
-        switch(strtolower($name)) {
+        switch(strtolower((string) $name)) {
             case 'tm:tu':
                 $this->_tag     = $attrib['id'];
                 $this->_content = null;
@@ -109,7 +108,7 @@ class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
 
     private function _endElement($file, $name)
     {
-        switch (strtolower($name)) {
+        switch (strtolower((string) $name)) {
             case 'tm:tu':
                 if (!empty($this->_tag) && !empty($this->_content) ||
                     (isset($this->_data[$this->_lang][$this->_tag]) === false)) {
@@ -134,7 +133,7 @@ class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
     private function _findEncoding($filename)
     {
         $file = file_get_contents($filename, null, null, 0, 100);
-        if (strpos($file, "encoding") !== false) {
+        if (str_contains($file, "encoding")) {
             $encoding = substr($file, strpos($file, "encoding") + 9);
             $encoding = substr($encoding, 1, strpos($encoding, $encoding[0], 1) - 1);
             return $encoding;

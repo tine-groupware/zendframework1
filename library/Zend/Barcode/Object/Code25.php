@@ -101,7 +101,7 @@ class Zend_Barcode_Object_Code25 extends Zend_Barcode_Object_ObjectAbstract
 
         $text = str_split($this->getText());
         foreach ($text as $char) {
-            $barcodeChar = str_split($this->_codingMap[$char]);
+            $barcodeChar = str_split((string) $this->_codingMap[$char]);
             foreach ($barcodeChar as $c) {
                 /* visible, width, top, length */
                 $width = $c ? $this->_barThickWidth : $this->_barThinWidth;

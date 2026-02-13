@@ -30,20 +30,6 @@
 class Zend_Service_WindowsAzure_Storage_TableEntity
 {
     /**
-     * Partition key
-     * 
-     * @var string
-     */
-    protected $_partitionKey;
-    
-    /**
-     * Row key
-     * 
-     * @var string
-     */
-    protected $_rowKey;
-    
-    /**
      * Timestamp
      * 
      * @var string
@@ -59,14 +45,21 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
     
     /**
      * Constructor
-     * 
-     * @param string  $partitionKey    Partition key
-     * @param string  $rowKey          Row key
+     *
+     * @param string $_partitionKey Partition key
+     * @param string $_rowKey Row key
      */
-    public function __construct($partitionKey = '', $rowKey = '') 
-    {	        
-        $this->_partitionKey = $partitionKey;
-        $this->_rowKey       = $rowKey;
+    public function __construct(
+        /**
+         * Partition key
+         */
+        protected $_partitionKey = '',
+        /**
+         * Row key
+         */
+        protected $_rowKey = ''
+    )
+    {
     }
     
     /**
@@ -166,7 +159,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
     public function getAzureValues()
     {
         // Get accessors
-        $accessors = self::getAzureAccessors(get_class($this));
+        $accessors = self::getAzureAccessors(static::class);
         
         // Loop accessors and retrieve values
         $returnValue = [];
@@ -178,7 +171,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
                 	'Type'  => $accessor->AzurePropertyType,
                 	'Value' => $this->$property,
                 ];
-            } else if ($accessor->EntityType == 'ReflectionMethod' && substr(strtolower($accessor->EntityAccessor), 0, 3) == 'get') {
+            } else if ($accessor->EntityType == 'ReflectionMethod' && str_starts_with(strtolower((string) $accessor->EntityAccessor), 'get')) {
                 $method = $accessor->EntityAccessor;
                 $returnValue[] = (object)[
                     'Name'  => $accessor->AzurePropertyName,
@@ -202,7 +195,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
     public function setAzureValues($values = [], $throwOnError = false)
     {
         // Get accessors
-        $accessors = self::getAzureAccessors(get_class($this));
+        $accessors = self::getAzureAccessors(static::class);
         
         // Loop accessors and set values
         $returnValue = [];
@@ -210,7 +203,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
             if (isset($values[$accessor->AzurePropertyName])) {
                 // Cast to correct type
                 if ($accessor->AzurePropertyType != '') {
-                    switch (strtolower($accessor->AzurePropertyType)) {
+                    switch (strtolower((string) $accessor->AzurePropertyType)) {
         	            case 'edm.int32':
         	            case 'edm.int64':
         	                $values[$accessor->AzurePropertyName] = (int)$values[$accessor->AzurePropertyName]; break;
@@ -231,7 +224,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
                 if ($accessor->EntityType == 'ReflectionProperty') {
                     $property = $accessor->EntityAccessor;
                     $this->$property = $values[$accessor->AzurePropertyName];
-                } else if ($accessor->EntityType == 'ReflectionMethod' && substr(strtolower($accessor->EntityAccessor), 0, 3) == 'set') {
+                } else if ($accessor->EntityType == 'ReflectionMethod' && str_starts_with(strtolower((string) $accessor->EntityAccessor), 'set')) {
                     $method = $accessor->EntityAccessor;
                     $this->$method($values[$accessor->AzurePropertyName]);
                 }
@@ -293,7 +286,7 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
         $docComment = $member->getDocComment();
         
         // Check for Azure comment
-        if (strpos($docComment, '@azure') === false)
+        if (!str_contains($docComment, '@azure'))
         {
             return null;
         }
@@ -302,9 +295,9 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
         $azureComment = '';
         $commentLines = explode("\n", $docComment);
         foreach ($commentLines as $commentLine) {
-            if (strpos($commentLine, '@azure') !== false) {
+            if (str_contains($commentLine, '@azure')) {
                 $azureComment = trim(substr($commentLine, strpos($commentLine, '@azure') + 6));
-                while (strpos($azureComment, '  ') !== false) {
+                while (str_contains($azureComment, '  ')) {
                     $azureComment = str_replace('  ', ' ', $azureComment);
                 }
                 break;
@@ -315,9 +308,9 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
         $azureProperties = explode(' ', $azureComment);
         return (object)[
             'EntityAccessor'    => $member->getName(),
-            'EntityType'        => get_class($member),
+            'EntityType'        => $member::class,
             'AzurePropertyName' => $azureProperties[0],
-        	'AzurePropertyType' => isset($azureProperties[1]) ? $azureProperties[1] : ''
+        	'AzurePropertyType' => $azureProperties[1] ?? ''
         ];
     }
     
@@ -339,12 +332,12 @@ class Zend_Service_WindowsAzure_Storage_TableEntity
     	
     	if (@strtotime($value) !== false) {
 	    	try {
-	    		if (substr($value, -1) == 'Z') {
+	    		if (str_ends_with($value, 'Z')) {
 	    			$value = substr($value, 0, strlen($value) - 1);
 	    		}
 	    		return new DateTime($value, new DateTimeZone('UTC'));
 	    	}
-	    	catch (Exception $ex) {
+	    	catch (Exception) {
 	    		return false;
 	    	}
 	    }

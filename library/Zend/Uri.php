@@ -27,7 +27,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Uri
+abstract class Zend_Uri implements \Stringable
 {
     /**
      * Scheme of this URI (http, ftp, etc.)
@@ -51,7 +51,7 @@ abstract class Zend_Uri
      * @see    getUri()
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             return $this->getUri();
@@ -73,7 +73,7 @@ abstract class Zend_Uri
     {
         try {
             $uri = self::factory($uri);
-        } catch (Exception $e) {
+        } catch (Exception) {
             return false;
         }
 

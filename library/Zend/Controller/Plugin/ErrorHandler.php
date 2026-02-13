@@ -258,7 +258,7 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
             $error            = new ArrayObject([], ArrayObject::ARRAY_AS_PROPS);
             $exceptions       = $response->getException();
             $exception        = $exceptions[0];
-            $exceptionType    = get_class($exception);
+            $exceptionType    = $exception::class;
             $error->exception = $exception;
             switch ($exceptionType) {
                 case 'Zend_Controller_Router_Exception':

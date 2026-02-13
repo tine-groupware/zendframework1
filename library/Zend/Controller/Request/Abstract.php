@@ -235,11 +235,8 @@ abstract class Zend_Controller_Request_Abstract
     public function getParam($key, $default = null)
     {
         $key = (string) $key;
-        if (isset($this->_params[$key])) {
-            return $this->_params[$key];
-        }
 
-        return $default;
+        return $this->_params[$key] ?? $default;
     }
 
     /**
@@ -261,11 +258,7 @@ abstract class Zend_Controller_Request_Abstract
      */
     public function getUserParam($key, $default = null)
     {
-        if (isset($this->_params[$key])) {
-            return $this->_params[$key];
-        }
-
-        return $default;
+        return $this->_params[$key] ?? $default;
     }
 
     /**

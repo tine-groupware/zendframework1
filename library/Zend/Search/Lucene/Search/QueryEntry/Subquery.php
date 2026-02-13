@@ -33,20 +33,17 @@ require_once 'Zend/Search/Lucene/Search/QueryEntry.php';
 class Zend_Search_Lucene_Search_QueryEntry_Subquery extends Zend_Search_Lucene_Search_QueryEntry
 {
     /**
-     * Query
-     *
-     * @var Zend_Search_Lucene_Search_Query
-     */
-    private $_query;
-
-    /**
      * Object constractor
      *
-     * @param Zend_Search_Lucene_Search_Query $query
+     * @param Zend_Search_Lucene_Search_Query $_query
      */
-    public function __construct(Zend_Search_Lucene_Search_Query $query)
+    public function __construct(
+        /**
+         * Query
+         */
+        private readonly Zend_Search_Lucene_Search_Query $_query
+    )
     {
-        $this->_query = $query;
     }
 
     /**
@@ -55,7 +52,7 @@ class Zend_Search_Lucene_Search_QueryEntry_Subquery extends Zend_Search_Lucene_S
      * @param mixed $parameter
      * @throws Zend_Search_Lucene_Search_QueryParserException
      */
-    public function processFuzzyProximityModifier($parameter = null)
+    public function processFuzzyProximityModifier($parameter = null): never
     {
         require_once 'Zend/Search/Lucene/Search/QueryParserException.php';
         throw new Zend_Search_Lucene_Search_QueryParserException('\'~\' sign must follow term or phrase');

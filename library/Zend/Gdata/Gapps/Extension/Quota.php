@@ -50,22 +50,17 @@ class Zend_Gdata_Gapps_Extension_Quota extends Zend_Gdata_Extension
     protected $_rootElement = 'quota';
 
     /**
-     * The amount of storage space available to the user in megabytes.
-     *
-     * @var integer
-     */
-    protected $_limit = null;
-
-    /**
      * Constructs a new Zend_Gdata_Gapps_Extension_Quota object.
      *
-     * @param string $limit (optional) The limit, in bytes, for this quota.
+     * @param string $_limit (optional) The limit, in bytes, for this quota.
      */
-    public function __construct($limit = null)
+    public function __construct(/**
+     * The amount of storage space available to the user in megabytes.
+     */
+    protected $_limit = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Gapps::$namespaces);
         parent::__construct();
-        $this->_limit = $limit;
     }
 
     /**
@@ -134,7 +129,7 @@ class Zend_Gdata_Gapps_Extension_Quota extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getLimit();
     }

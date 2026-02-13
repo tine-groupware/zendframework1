@@ -179,7 +179,7 @@ class Zend_View_Helper_Navigation
         } else {
             try {
                 $helper = $this->view->getHelper($proxy);
-            } catch (Zend_Loader_PluginLoader_Exception $e) {
+            } catch (Zend_Loader_PluginLoader_Exception) {
                 return null;
             }
         }
@@ -190,7 +190,7 @@ class Zend_View_Helper_Navigation
                 $e = new Zend_View_Exception(sprintf(
                         'Proxy helper "%s" is not an instance of ' .
                         'Zend_View_Helper_Navigation_Helper',
-                        get_class($helper)));
+                        $helper::class));
                 $e->setView($this->view);
                 throw $e;
             }

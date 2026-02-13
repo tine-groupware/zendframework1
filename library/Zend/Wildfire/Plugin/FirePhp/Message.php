@@ -34,22 +34,10 @@
 class Zend_Wildfire_Plugin_FirePhp_Message
 {
     /**
-     * The style of the message
-     * @var string
-     */
-    protected $_style = null;
-
-    /**
      * The label of the message
      * @var string
      */
     protected $_label = null;
-
-    /**
-     * The message value
-     * @var mixed
-     */
-    protected $_message = null;
 
     /**
      * Flag indicating if message buffering is enabled
@@ -81,14 +69,18 @@ class Zend_Wildfire_Plugin_FirePhp_Message
     /**
      * Creates a new message with the given style and message
      *
-     * @param string $style Style of the message.
-     * @param mixed $message The message
+     * @param string $_style Style of the message.
+     * @param mixed $_message The message
      * @return void
      */
-    function __construct($style, $message)
+    function __construct(/**
+     * The style of the message
+     */
+    protected $_style, /**
+     * The message value
+     */
+    protected $_message)
     {
-        $this->_style = $style;
-        $this->_message = $message;
         $this->_ruid = md5(microtime().mt_rand());
     }
 

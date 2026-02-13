@@ -12,19 +12,19 @@ class NtlmTests extends PHPUnit_Framework_TestCase
     
     public function setUp()
     {
-        $this->_auth = new Zend_Auth_Adapter_Http_Ntlm(array(
+        $this->_auth = new Zend_Auth_Adapter_Http_Ntlm([
             'challenge' => '0123456789abcdef',
-        ));
+        ]);
         
         // prepare response for testing (phpunit sets headers...)
         $this->_auth->getResponse()->headersSentThrowsException = FALSE;
         
-        $targetInfo = array(
+        $targetInfo = [
             'domain'        => 'DOMAIN',
             'servername'    => 'SERVER',
             'dnsdomain'     => 'domain.com',
             'fqserver'      => 'server.domain.com',
-        );
+        ];
         
         $this->_auth->setTargetInfo($targetInfo);
         
@@ -64,10 +64,10 @@ class NtlmTests extends PHPUnit_Framework_TestCase
     public function testMessage2Encode()
     {
         $authResult = $this->_auth->authenticate();
-        
+
         $headers = $this->_auth->getResponse()->getHeaders();
-        $hexMessage2 = bin2hex(base64_decode(substr($headers[0]['value'], 5)));
-        
+        $hexMessage2 = bin2hex(base64_decode(substr((string) $headers[0]['value'], 5)));
+
         $m2hex =    "4e544c4d53535000020000000c000c003000000001028100".
                     "0123456789abcdef0000000000000000620062003c000000".
                     "44004f004d00410049004e0002000c0044004f004d004100".
@@ -75,9 +75,9 @@ class NtlmTests extends PHPUnit_Framework_TestCase
                     "64006f006d00610069006e002e0063006f006d0003002200".
                     "7300650072007600650072002e0064006f006d0061006900".
                     "6e002e0063006f006d0000000000";
-        
+
         $this->assertEquals($m2hex, $hexMessage2);
-        
+
         /*
         echo $m2hex . "\n";
         echo bin2hex(base64_decode(substr($headers[0]['value'], 5))) . "\n";

@@ -465,14 +465,11 @@ class Zend_View_Helper_Navigation_Links
             }
         }
 
-        switch (count($found)) {
-            case 0:
-                return null;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
-        }
+        return match (count($found)) {
+            0 => null,
+            1 => $found[0],
+            default => $found,
+        };
     }
 
     /**
@@ -498,14 +495,11 @@ class Zend_View_Helper_Navigation_Links
             }
         }
 
-        switch (count($found)) {
-            case 0:
-                return null;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
-        }
+        return match (count($found)) {
+            0 => null,
+            1 => $found[0],
+            default => $found,
+        };
     }
 
     /**
@@ -537,14 +531,11 @@ class Zend_View_Helper_Navigation_Links
             }
         }
 
-        switch (count($found)) {
-            case 0:
-                return null;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
-        }
+        return match (count($found)) {
+            0 => null,
+            1 => $found[0],
+            default => $found,
+        };
     }
 
     /**
@@ -680,7 +671,7 @@ class Zend_View_Helper_Navigation_Links
                 try {
                     $page = Zend_Navigation_Page::factory($mixed);
                     return $page;
-                } catch (Exception $e) {
+                } catch (Exception) {
                 }
             }
         }

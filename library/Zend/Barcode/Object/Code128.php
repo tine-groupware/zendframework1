@@ -228,7 +228,7 @@ class Zend_Barcode_Object_Code128 extends Zend_Barcode_Object_ObjectAbstract
 
         foreach ($convertedChars as $barcodeChar) {
             $barcodePattern = $this->_codingMap[$barcodeChar];
-            foreach (str_split($barcodePattern) as $c) {
+            foreach (str_split((string) $barcodePattern) as $c) {
                 $barcodeTable[] = [$c, $this->_barThinWidth, 0, 1];
             }
         }

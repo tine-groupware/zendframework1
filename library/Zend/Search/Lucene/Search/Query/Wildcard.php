@@ -35,16 +35,6 @@ require_once 'Zend/Search/Lucene/Search/Query.php';
 class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search_Query
 {
     /**
-     * Search pattern.
-     *
-     * Field has to be fully specified or has to be null
-     * Text may contain '*' or '?' symbols
-     *
-     * @var Zend_Search_Lucene_Index_Term
-     */
-    private $_pattern;
-
-    /**
      * Matched terms.
      *
      * Matched terms list.
@@ -67,11 +57,18 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
     /**
      * Zend_Search_Lucene_Search_Query_Wildcard constructor.
      *
-     * @param Zend_Search_Lucene_Index_Term $pattern
+     * @param Zend_Search_Lucene_Index_Term $_pattern
      */
-    public function __construct(Zend_Search_Lucene_Index_Term $pattern)
+    public function __construct(
+        /**
+         * Search pattern.
+         *
+         * Field has to be fully specified or has to be null
+         * Text may contain '*' or '?' symbols
+         */
+        private readonly Zend_Search_Lucene_Index_Term $_pattern
+    )
     {
-        $this->_pattern = $pattern;
     }
 
     /**
@@ -220,7 +217,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      * @param Zend_Search_Lucene_Interface $index
      * @return Zend_Search_Lucene_Search_Query
      */
-    public function optimize(Zend_Search_Lucene_Interface $index)
+    public function optimize(Zend_Search_Lucene_Interface $index): never
     {
         require_once 'Zend/Search/Lucene/Exception.php';
         throw new Zend_Search_Lucene_Exception('Wildcard query should not be directly used for search. Use $query->rewrite($index)');
@@ -261,7 +258,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      * @return Zend_Search_Lucene_Search_Weight
      * @throws Zend_Search_Lucene_Exception
      */
-    public function createWeight(Zend_Search_Lucene_Interface $reader)
+    public function createWeight(Zend_Search_Lucene_Interface $reader): never
     {
         require_once 'Zend/Search/Lucene/Exception.php';
         throw new Zend_Search_Lucene_Exception('Wildcard query should not be directly used for search. Use $query->rewrite($index)');
@@ -276,7 +273,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      * @param Zend_Search_Lucene_Index_DocsFilter|null $docsFilter
      * @throws Zend_Search_Lucene_Exception
      */
-    public function execute(Zend_Search_Lucene_Interface $reader, $docsFilter = null)
+    public function execute(Zend_Search_Lucene_Interface $reader, $docsFilter = null): never
     {
         require_once 'Zend/Search/Lucene/Exception.php';
         throw new Zend_Search_Lucene_Exception('Wildcard query should not be directly used for search. Use $query->rewrite($index)');
@@ -290,7 +287,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      * @return array
      * @throws Zend_Search_Lucene_Exception
      */
-    public function matchedDocs()
+    public function matchedDocs(): never
     {
         require_once 'Zend/Search/Lucene/Exception.php';
         throw new Zend_Search_Lucene_Exception('Wildcard query should not be directly used for search. Use $query->rewrite($index)');
@@ -304,7 +301,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      * @return float
      * @throws Zend_Search_Lucene_Exception
      */
-    public function score($docId, Zend_Search_Lucene_Interface $reader)
+    public function score($docId, Zend_Search_Lucene_Interface $reader): never
     {
         require_once 'Zend/Search/Lucene/Exception.php';
         throw new Zend_Search_Lucene_Exception('Wildcard query should not be directly used for search. Use $query->rewrite($index)');
@@ -330,7 +327,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
         require_once 'Zend/Search/Lucene/Analysis/Analyzer.php';
         $tokens = Zend_Search_Lucene_Analysis_Analyzer::getDefault()->tokenize($docBody, 'UTF-8');
         foreach ($tokens as $token) {
-            if (preg_match($matchExpression, $token->getTermText()) === 1) {
+            if (preg_match($matchExpression, (string) $token->getTermText()) === 1) {
                 $words[] = $token->getTermText();
             }
         }
@@ -343,7 +340,7 @@ class Zend_Search_Lucene_Search_Query_Wildcard extends Zend_Search_Lucene_Search
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         // It's used only for query visualisation, so we don't care about characters escaping
         if ($this->_pattern->field !== null) {

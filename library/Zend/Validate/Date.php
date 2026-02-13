@@ -187,7 +187,7 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
                 return false;
             }
 
-            list($year, $month, $day) = sscanf($value, '%d-%d-%d');
+            [$year, $month, $day] = sscanf($value, '%d-%d-%d');
 
             if (!checkdate($month, $day, $year)) {
                 $this->_error(self::INVALID_DATE);
@@ -211,45 +211,45 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
             $parsed = Zend_Locale_Format::getDate($value, [
                                                   'date_format' => $this->_format, 'format_type' => 'iso',
                                                   'fix_date' => false]);
-            if (isset($parsed['year']) && ((strpos(strtoupper($this->_format), 'YY') !== false) &&
-                (strpos(strtoupper($this->_format), 'YYYY') === false))) {
+            if (isset($parsed['year']) && ((str_contains(strtoupper((string) $this->_format), 'YY')) &&
+                (!str_contains(strtoupper((string) $this->_format), 'YYYY')))) {
                 $parsed['year'] = Zend_Date::getFullYear($parsed['year']);
             }
-        } catch (Exception $e) {
+        } catch (Exception) {
             // Date can not be parsed
             return false;
-        } catch (Error $e) {
+        } catch (Error) {
             return false;
         }
 
-        if (((strpos($this->_format, 'Y') !== false) || (strpos($this->_format, 'y') !== false)) &&
+        if (((str_contains((string) $this->_format, 'Y')) || (str_contains((string) $this->_format, 'y'))) &&
             (!isset($parsed['year']))) {
             // Year expected but not found
             return false;
         }
 
-        if ((strpos($this->_format, 'M') !== false) && (!isset($parsed['month']))) {
+        if ((str_contains((string) $this->_format, 'M')) && (!isset($parsed['month']))) {
             // Month expected but not found
             return false;
         }
 
-        if ((strpos($this->_format, 'd') !== false) && (!isset($parsed['day']))) {
+        if ((str_contains((string) $this->_format, 'd')) && (!isset($parsed['day']))) {
             // Day expected but not found
             return false;
         }
 
-        if (((strpos($this->_format, 'H') !== false) || (strpos($this->_format, 'h') !== false)) &&
+        if (((str_contains((string) $this->_format, 'H')) || (str_contains((string) $this->_format, 'h'))) &&
             (!isset($parsed['hour']))) {
             // Hour expected but not found
             return false;
         }
 
-        if ((strpos($this->_format, 'm') !== false) && (!isset($parsed['minute']))) {
+        if ((str_contains((string) $this->_format, 'm')) && (!isset($parsed['minute']))) {
             // Minute expected but not found
             return false;
         }
 
-        if ((strpos($this->_format, 's') !== false) && (!isset($parsed['second']))) {
+        if ((str_contains((string) $this->_format, 's')) && (!isset($parsed['second']))) {
             // Second expected  but not found
             return false;
         }

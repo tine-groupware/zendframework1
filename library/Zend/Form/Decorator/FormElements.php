@@ -103,9 +103,9 @@ class Zend_Form_Decorator_FormElements extends Zend_Form_Decorator_Abstract
             } elseif (!empty($belongsTo) && ($item instanceof Zend_Form)) {
                 if ($item->isArray()) {
                     $name = $this->mergeBelongsTo($belongsTo, $item->getElementsBelongTo());
-                    $item->setElementsBelongTo($name, true);
+                    $item->setElementsBelongTo($name);
                 } else {
-                    $item->setElementsBelongTo($belongsTo, true);
+                    $item->setElementsBelongTo($belongsTo);
                 }
             } elseif (!empty($belongsTo) && ($item instanceof Zend_Form_DisplayGroup)) {
                 foreach ($item as $element) {
@@ -130,12 +130,9 @@ class Zend_Form_Decorator_FormElements extends Zend_Form_Decorator_Abstract
         }
         $elementContent = implode($separator, $items);
 
-        switch ($this->getPlacement()) {
-            case self::PREPEND:
-                return $elementContent . $separator . $content;
-            case self::APPEND:
-            default:
-                return $content . $separator . $elementContent;
-        }
+        return match ($this->getPlacement()) {
+            self::PREPEND => $elementContent . $separator . $content,
+            default => $content . $separator . $elementContent,
+        };
     }
 }

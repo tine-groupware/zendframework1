@@ -181,7 +181,7 @@ class Zend_Filter_Compress_Tar extends Zend_Filter_Compress_CompressAbstract
         if (is_dir($content)) {
             // collect all file infos
             foreach (new RecursiveIteratorIterator(
-                        new RecursiveDirectoryIterator($content, RecursiveDirectoryIterator::KEY_AS_PATHNAME),
+                        new RecursiveDirectoryIterator($content, RecursiveDirectoryIterator::KEY_AS_PATHNAME | \FilesystemIterator::SKIP_DOTS),
                         RecursiveIteratorIterator::SELF_FIRST
                     ) as $directory => $info
             ) {

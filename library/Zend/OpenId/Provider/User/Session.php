@@ -84,10 +84,7 @@ class Zend_OpenId_Provider_User_Session extends Zend_OpenId_Provider_User
      */
     public function getLoggedInUser()
     {
-        if (isset($this->_session->logged_in)) {
-            return $this->_session->logged_in;
-        }
-        return false;
+        return $this->_session->logged_in ?? false;
     }
 
     /**

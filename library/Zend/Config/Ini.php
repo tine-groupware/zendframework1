@@ -169,7 +169,7 @@ class Zend_Config_Ini extends Zend_Config
      */
     protected function _parseIniFile($filename)
     {
-        set_error_handler([$this, '_loadFileErrorHandler']);
+        set_error_handler($this->_loadFileErrorHandler(...));
         $iniArray = parse_ini_file($filename, true); // Warnings and errors are suppressed
         restore_error_handler();
 
@@ -203,7 +203,7 @@ class Zend_Config_Ini extends Zend_Config
         $iniArray = [];
         foreach ($loaded as $key => $data)
         {
-            $pieces = explode($this->_sectionSeparator, $key);
+            $pieces = explode($this->_sectionSeparator, (string) $key);
             $thisSection = trim($pieces[0]);
             switch (count($pieces)) {
                 case 1:
@@ -243,7 +243,7 @@ class Zend_Config_Ini extends Zend_Config
         $thisSection = $iniArray[$section];
 
         foreach ($thisSection as $key => $value) {
-            if (strtolower($key) == ';extends') {
+            if (strtolower((string) $key) == ';extends') {
                 if (isset($iniArray[$value])) {
                     $this->_assertValidExtend($section, $value);
 
@@ -276,7 +276,7 @@ class Zend_Config_Ini extends Zend_Config
      */
     protected function _processKey($config, $key, $value)
     {
-        if (strpos($key, $this->_nestSeparator) !== false) {
+        if (str_contains($key, $this->_nestSeparator)) {
             $pieces = explode($this->_nestSeparator, $key, 2);
             if (strlen($pieces[0]) && strlen($pieces[1])) {
                 if (!isset($config[$pieces[0]])) {

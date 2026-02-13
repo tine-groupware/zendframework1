@@ -159,7 +159,7 @@ class Zend_Wildfire_Protocol_JsonStream
     {
         if (!$channel instanceof Zend_Wildfire_Channel_HttpHeaders) {
             require_once 'Zend/Wildfire/Exception.php';
-            throw new Zend_Wildfire_Exception('The '.get_class($channel).' channel is not supported by the '.get_class($this).' protocol.');
+            throw new Zend_Wildfire_Exception('The '.$channel::class.' channel is not supported by the '.static::class.' protocol.');
         }
 
         if ($this->_plugins) {
@@ -191,14 +191,14 @@ class Zend_Wildfire_Protocol_JsonStream
 
                 foreach ($messages as $message) {
 
-                    $parts = explode("\n",chunk_split($message, 5000, "\n"));
+                    $parts = explode("\n",chunk_split((string) $message, 5000, "\n"));
 
                     for ($i = 0 ; $i < count($parts) ; $i++) {
                         $part = $parts[$i];
 
                         if ($part) {
                             if (count($parts)>2) {
-                                $msg = (($i === 0) ? strlen($message) : '')
+                                $msg = (($i === 0) ? strlen((string) $message) : '')
                                        . '|' . $part . '|'
                                        . (($i<count($parts)-2)?'\\':'');
                             } else {

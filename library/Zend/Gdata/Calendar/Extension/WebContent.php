@@ -40,23 +40,17 @@ class Zend_Gdata_Calendar_Extension_WebContent extends Zend_Gdata_App_Extension
 
     protected $_rootNamespace = 'gCal';
     protected $_rootElement = 'webContent';
-    protected $_url = null;
-    protected $_height = null;
-    protected $_width = null;
 
     /**
      * Constructs a new Zend_Gdata_Calendar_Extension_WebContent object.
-     * @param string $url (optional) The value for this element's URL attribute.
-     * @param string $height (optional) The value for this element's height attribute.
-     * @param string $width (optional) The value for this element's width attribute.
+     * @param string $_url (optional) The value for this element's URL attribute.
+     * @param string $_height (optional) The value for this element's height attribute.
+     * @param string $_width (optional) The value for this element's width attribute.
      */
-    public function __construct($url = null, $height = null, $width = null)
+    public function __construct(protected $_url = null, protected $_height = null, protected $_width = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Calendar::$namespaces);
         parent::__construct();
-        $this->_url = $url;
-        $this->_height = $height;
-        $this->_width = $width;
     }
 
     /**

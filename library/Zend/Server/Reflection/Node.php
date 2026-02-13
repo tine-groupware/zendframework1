@@ -31,12 +31,6 @@
 class Zend_Server_Reflection_Node
 {
     /**
-     * Node value
-     * @var mixed
-     */
-    protected $_value = null;
-
-    /**
      * Array of child nodes (if any)
      * @var array
      */
@@ -51,13 +45,15 @@ class Zend_Server_Reflection_Node
     /**
      * Constructor
      *
-     * @param mixed $value
+     * @param mixed $_value
      * @param Zend_Server_Reflection_Node $parent Optional
      * @return Zend_Server_Reflection_Node
      */
-    public function __construct($value, Zend_Server_Reflection_Node $parent = null)
+    public function __construct(/**
+     * Node value
+     */
+    protected $_value, Zend_Server_Reflection_Node $parent = null)
     {
-        $this->_value = $value;
         if (null !== $parent) {
             $this->setParent($parent, true);
         }

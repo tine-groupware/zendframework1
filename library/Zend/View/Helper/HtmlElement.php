@@ -113,7 +113,7 @@ abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
         foreach ((array) $attribs as $key => $val) {
             $key = $this->view->escape($key);
 
-            if (('on' == substr($key, 0, 2)) || ('constraints' == $key)) {
+            if ((str_starts_with((string) $key, 'on')) || ('constraints' == $key)) {
                 // Don't escape event attributes; _do_ substitute double quotes with singles
                 if (!is_scalar($val)) {
                     // non-scalar data should be cast to JSON first
@@ -136,7 +136,7 @@ abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
                 $val = $this->_normalizeId($val);
             }
 
-            if (strpos($val, '"') !== false) {
+            if (str_contains((string) $val, '"')) {
                 $xhtml .= " $key='$val'";
             } else {
                 $xhtml .= " $key=\"$val\"";
@@ -155,7 +155,7 @@ abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
     protected function _normalizeId($value)
     {
         if (strstr($value, '[')) {
-            if ('[]' == substr($value, -2)) {
+            if (str_ends_with($value, '[]')) {
                 $value = substr($value, 0, strlen($value) - 2);
             }
             $value = trim($value, ']');

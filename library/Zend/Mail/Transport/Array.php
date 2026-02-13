@@ -42,7 +42,7 @@ require_once 'Zend/Mail/Transport/Abstract.php';
  */
 class Zend_Mail_Transport_Array extends Zend_Mail_Transport_Abstract
 {
-    protected $_messages = array();
+    protected $_messages = [];
     
     /**
      * pushes mail into internal array
@@ -61,7 +61,7 @@ class Zend_Mail_Transport_Array extends Zend_Mail_Transport_Abstract
      */
     public function flush()
     {
-        $this->_messages = array();
+        $this->_messages = [];
     }
     
     /**

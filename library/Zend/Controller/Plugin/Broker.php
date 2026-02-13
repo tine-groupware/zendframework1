@@ -104,7 +104,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
         } elseif (is_string($plugin)) {
             // Given a plugin class, find all plugins of that class and unset them
             foreach ($this->_plugins as $key => $_plugin) {
-                $type = get_class($_plugin);
+                $type = $_plugin::class;
                 if ($plugin == $type) {
                     unset($this->_plugins[$key]);
                 }
@@ -122,7 +122,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
     public function hasPlugin($class)
     {
         foreach ($this->_plugins as $plugin) {
-            $type = get_class($plugin);
+            $type = $plugin::class;
             if ($class == $type) {
                 return true;
             }
@@ -141,20 +141,17 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
     {
         $found = [];
         foreach ($this->_plugins as $plugin) {
-            $type = get_class($plugin);
+            $type = $plugin::class;
             if ($class == $type) {
                 $found[] = $plugin;
             }
         }
 
-        switch (count($found)) {
-            case 0:
-                return false;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
-        }
+        return match (count($found)) {
+            0 => false,
+            1 => $found[0],
+            default => $found,
+        };
     }
 
     /**

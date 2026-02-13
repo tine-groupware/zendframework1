@@ -37,6 +37,10 @@ require_once 'Zend/Search/Lucene/Search/Query.php';
 class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Query
 {
     /**
+     * @var \Zend_Search_Lucene_Search_Weight_Term[]
+     */
+    public $_weights;
+    /**
      * Terms to find.
      * Array of Zend_Search_Lucene_Index_Term objects.
      *
@@ -545,7 +549,7 @@ class Zend_Search_Lucene_Search_Query_Phrase extends Zend_Search_Lucene_Search_Q
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         // It's used only for query visualisation, so we don't care about characters escaping
         if (isset($this->_terms[0]) && $this->_terms[0]->field !== null) {

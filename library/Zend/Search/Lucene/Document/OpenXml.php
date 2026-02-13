@@ -116,7 +116,7 @@ abstract class Zend_Search_Lucene_Document_OpenXml extends Zend_Search_Lucene_Do
      */
     protected function absoluteZipPath($path) {
         $path = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $path);
-        $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
+        $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), strlen(...));
         $absolutes = [];
         foreach ($parts as $part) {
             if ('.' == $part) continue;

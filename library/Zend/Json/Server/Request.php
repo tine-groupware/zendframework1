@@ -27,7 +27,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Json_Server_Request
+class Zend_Json_Server_Request implements \Stringable
 {
     /**
      * Request ID
@@ -75,7 +75,7 @@ class Zend_Json_Server_Request
     {
         $methods = get_class_methods($this);
         foreach ($options as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst((string) $key);
             if (in_array($method, $methods)) {
                 $this->$method($value);
             } elseif ($key == 'jsonrpc') {
@@ -282,7 +282,7 @@ class Zend_Json_Server_Request
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toJson();
     }

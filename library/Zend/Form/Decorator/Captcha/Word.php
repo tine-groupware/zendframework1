@@ -65,14 +65,10 @@ class Zend_Form_Decorator_Captcha_Word extends Zend_Form_Decorator_Abstract
 
         $hidden = $view->formHidden($hiddenName, $element->getValue(), $element->getAttribs());
         $text   = $view->formText($textName, '', $element->getAttribs());
-        switch ($placement) {
-            case 'PREPEND':
-                $content = $hidden . $separator . $text . $separator . $content;
-                break;
-            case 'APPEND':
-            default:
-                $content = $content . $separator . $hidden . $separator . $text;
-        }
+        $content = match ($placement) {
+            'PREPEND' => $hidden . $separator . $text . $separator . $content,
+            default => $content . $separator . $hidden . $separator . $text,
+        };
         return $content;
     }
 }

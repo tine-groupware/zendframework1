@@ -391,7 +391,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                         "unable to set html body for message; " .
                         "message = {$e->getMessage()}; " .
                         "code = {$e->getCode()}; " .
-                        "exception class = " . get_class($e),
+                        "exception class = " . $e::class,
                     E_USER_NOTICE);
             }
         }
@@ -406,7 +406,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                 "unable to send log entries via email; " .
                     "message = {$e->getMessage()}; " .
                     "code = {$e->getCode()}; " .
-                        "exception class = " . get_class($e),
+                        "exception class = " . $e::class,
                 E_USER_WARNING);
         }
     }

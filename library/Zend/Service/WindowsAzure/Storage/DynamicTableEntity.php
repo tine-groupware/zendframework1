@@ -114,7 +114,7 @@ class Zend_Service_WindowsAzure_Storage_DynamicTableEntity extends Zend_Service_
             		$value = (float)$value;
             	} else if ($type == 'Edm.Boolean') {
             		if (!is_bool($value)) {
-            			$value = strtolower($value) == 'true';
+            			$value = strtolower((string) $value) == 'true';
             		}
             	} else if ($type == 'Edm.DateTime') {
             		if (!$value instanceof DateTime) {

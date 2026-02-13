@@ -44,27 +44,6 @@ class Zend_Markup_Token
     protected $_children;
 
     /**
-     * The complete tag
-     *
-     * @var string
-     */
-    protected $_tag;
-
-    /**
-     * The tag's type
-     *
-     * @var string
-     */
-    protected $_type;
-
-    /**
-     * Tag name
-     *
-     * @var string
-     */
-    protected $_name = '';
-
-    /**
      * Tag attributes
      *
      * @var array
@@ -89,23 +68,29 @@ class Zend_Markup_Token
     /**
      * Construct the token
      *
-     * @param  string $tag
-     * @param  string $type
-     * @param  string $name
+     * @param string $_tag
+     * @param string $_type
+     * @param string $_name
      * @param  array $attributes
      * @param  Zend_Markup_Token $parent
      * @return void
      */
     public function __construct(
-        $tag,
-        $type,
-        $name = '',
+        /**
+         * The complete tag
+         */
+        protected $_tag,
+        /**
+         * The tag's type
+         */
+        protected $_type,
+        /**
+         * Tag name
+         */
+        protected $_name = '',
         array $attributes = [],
         Zend_Markup_Token $parent = null
     ) {
-        $this->_tag        = $tag;
-        $this->_type       = $type;
-        $this->_name       = $name;
         $this->_attributes = $attributes;
         $this->_parent     = $parent;
     }
@@ -174,7 +159,7 @@ class Zend_Markup_Token
      */
     public function getAttribute($name)
     {
-        return isset($this->_attributes[$name]) ? $this->_attributes[$name] : null;
+        return $this->_attributes[$name] ?? null;
     }
 
     /**

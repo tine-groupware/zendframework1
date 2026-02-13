@@ -40,20 +40,18 @@ class Zend_Gdata_Media_Extension_MediaHash extends Zend_Gdata_Extension
 
     protected $_rootElement = 'hash';
     protected $_rootNamespace = 'media';
-    protected $_algo = null;
 
     /**
      * Constructs a new MediaHash element
      *
      * @param string $text
-     * @param string $algo
+     * @param string $_algo
      */
-    public function __construct($text = null, $algo = null)
+    public function __construct($text = null, protected $_algo = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
         $this->_text = $text;
-        $this->_algo = $algo;
     }
 
     /**

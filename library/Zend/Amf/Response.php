@@ -35,7 +35,7 @@ require_once 'Zend/Amf/Parse/Amf0/Serializer.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Amf_Response
+class Zend_Amf_Response implements \Stringable
 {
     /**
      * @var int Object encoding for response
@@ -142,7 +142,7 @@ class Zend_Amf_Response
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getResponse();
     }

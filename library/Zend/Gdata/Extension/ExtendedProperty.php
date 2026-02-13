@@ -40,14 +40,10 @@ class Zend_Gdata_Extension_ExtendedProperty extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'extendedProperty';
-    protected $_name = null;
-    protected $_value = null;
 
-    public function __construct($name = null, $value = null)
+    public function __construct(protected $_name = null, protected $_value = null)
     {
         parent::__construct();
-        $this->_name = $name;
-        $this->_value = $value;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)
@@ -76,7 +72,7 @@ class Zend_Gdata_Extension_ExtendedProperty extends Zend_Gdata_Extension
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName() . '=' . $this->getValue();
     }

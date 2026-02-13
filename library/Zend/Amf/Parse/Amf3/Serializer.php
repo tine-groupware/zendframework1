@@ -40,6 +40,7 @@ require_once 'Zend/Amf/Parse/TypeLoader.php';
  */
 class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
 {
+    public $_mbStringFunctionsOverloaded;
     /**
      * A constant empty string
      * @var string
@@ -420,7 +421,7 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
         //Check to see if the object is a typed object and we need to change
         switch (true) {
              // the return class mapped name back to actionscript class name.
-            case ($className = Zend_Amf_Parse_TypeLoader::getMappedClassName(get_class($object))):
+            case ($className = Zend_Amf_Parse_TypeLoader::getMappedClassName($object::class)):
                 break;
 
             // Check to see if the user has defined an explicit Action Script type.
@@ -440,7 +441,7 @@ class Zend_Amf_Parse_Amf3_Serializer extends Zend_Amf_Parse_Serializer
 
              // By default, use object's class name
             default:
-                $className = get_class($object);
+                $className = $object::class;
                 break;
         }
 

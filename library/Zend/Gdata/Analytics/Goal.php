@@ -44,9 +44,9 @@ class Zend_Gdata_Analytics_Goal extends Zend_Gdata_Extension
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $attribs = $this->getExtensionAttributes();
-        return $attribs['name']['value'];
+        return (string) $attribs['name']['value'];
     }
 }

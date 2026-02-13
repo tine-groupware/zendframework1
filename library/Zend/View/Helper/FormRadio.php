@@ -79,11 +79,11 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
         $label_attribs = [];
         foreach ($attribs as $key => $val) {
             $tmp    = false;
-            $keyLen = strlen($key);
-            if ((6 < $keyLen) && (substr($key, 0, 6) == 'label_')) {
-                $tmp = substr($key, 6);
-            } elseif ((5 < $keyLen) && (substr($key, 0, 5) == 'label')) {
-                $tmp = substr($key, 5);
+            $keyLen = strlen((string) $key);
+            if ((6 < $keyLen) && (str_starts_with((string) $key, 'label_'))) {
+                $tmp = substr((string) $key, 6);
+            } elseif ((5 < $keyLen) && (str_starts_with((string) $key, 'label'))) {
+                $tmp = substr((string) $key, 5);
             }
 
             if ($tmp) {
@@ -99,7 +99,7 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
             switch (strtolower($key)) {
                 case 'placement':
                     unset($label_attribs[$key]);
-                    $val = strtolower($val);
+                    $val = strtolower((string) $val);
                     if (in_array($val, ['prepend', 'append'])) {
                         $labelPlacement = $val;
                     }
@@ -116,7 +116,7 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
 
         // should the name affect an array collection?
         $name = $this->view->escape($name);
-        if ($this->_isArray && ('[]' != substr($name, -2))) {
+        if ($this->_isArray && (!str_ends_with((string) $name, '[]'))) {
             $name .= '[]';
         }
 
@@ -175,7 +175,7 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
         }
         
         // XHTML or HTML for standard list separator?
-        if (!$this->_isXhtml() && false !== strpos($listsep, '<br />')) {
+        if (!$this->_isXhtml() && str_contains((string) $listsep, '<br />')) {
             $listsep = str_replace('<br />', '<br>', $listsep);
         }
 

@@ -42,44 +42,20 @@ class Zend_Gdata_Media_Extension_MediaText extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_type = null;
-
-    /**
-     * @var string
-     */
-    protected $_lang = null;
-
-    /**
-     * @var string
-     */
-    protected $_start = null;
-
-    /**
-     * @var string
-     */
-    protected $_end = null;
-
-    /**
      * Constructs a new MediaText element
      *
      * @param string $text
-     * @param string $type
-     * @param string $lang
-     * @param string $start
-     * @param string $end
+     * @param string $_type
+     * @param string $_lang
+     * @param string $_start
+     * @param string $_end
      */
-    public function __construct($text = null, $type = null, $lang = null,
-            $start = null, $end = null)
+    public function __construct($text = null, protected $_type = null, protected $_lang = null,
+            protected $_start = null, protected $_end = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
         $this->_text = $text;
-        $this->_type = $type;
-        $this->_lang = $lang;
-        $this->_start = $start;
-        $this->_end = $end;
     }
 
     /**

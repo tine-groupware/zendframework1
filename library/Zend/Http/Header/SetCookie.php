@@ -49,9 +49,10 @@ require_once "Zend/Http/Header/HeaderValue.php";
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Http_Header_SetCookie
+class Zend_Http_Header_SetCookie implements \Stringable
 {
 
+    private readonly string $type;
     /**
      * Cookie name
      *
@@ -125,7 +126,7 @@ class Zend_Http_Header_SetCookie
      */
     public static function fromString($headerLine, $bypassHeaderFieldName = false)
     {
-        list($name, $value) = explode(': ', $headerLine, 2);
+        [$name, $value] = explode(': ', (string) $headerLine, 2);
 
         // check to ensure proper header type for this factory
         if (strtolower($name) !== 'set-cookie') {
@@ -139,7 +140,7 @@ class Zend_Http_Header_SetCookie
             $keyValuePairs = preg_split('#;\s*#', $headerLine);
             foreach ($keyValuePairs as $keyValue) {
                 if (strpos($keyValue, '=')) {
-                    list($headerKey, $headerValue) = preg_split('#=\s*#', $keyValue, 2);
+                    [$headerKey, $headerValue] = preg_split('#=\s*#', $keyValue, 2);
                 } else {
                     $headerKey = $keyValue;
                     $headerValue = null;
@@ -246,7 +247,7 @@ class Zend_Http_Header_SetCookie
         }
 
         $value = $this->getValue();
-        if (strpos($value,'"')!==false) {
+        if (str_contains($value,'"')) {
             $value = '"'.urlencode(str_replace('"', '', $value)).'"';
         } else {
             $value = urlencode($value);
@@ -509,11 +510,11 @@ class Zend_Http_Header_SetCookie
 
     public function isValidForRequest($requestDomain, $path, $isSecure = false)
     {
-        if ($this->getDomain() && (strrpos($requestDomain, $this->getDomain()) !== false)) {
+        if ($this->getDomain() && (strrpos((string) $requestDomain, $this->getDomain()) !== false)) {
             return false;
         }
 
-        if ($this->getPath() && (strpos($path, $this->getPath()) !== 0)) {
+        if ($this->getPath() && (!str_starts_with((string) $path, $this->getPath()))) {
             return false;
         }
 
@@ -530,9 +531,9 @@ class Zend_Http_Header_SetCookie
         return $this->getFieldName() . ': ' . $this->getFieldValue();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->toString();
+        return (string) $this->toString();
     }
 
     public function toStringMultipleHeaders(array $headers)

@@ -87,7 +87,6 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
                           xml_error_string(xml_get_error_code($this->_file)),
                           xml_get_current_line_number($this->_file),
                           $filename);
-            xml_parser_free($this->_file);
             require_once 'Zend/Translate/Exception.php';
             throw new Zend_Translate_Exception($ex);
         }
@@ -104,7 +103,7 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
             }
             $this->_content .= ">";
         } else {
-            switch(strtolower($name)) {
+            switch(strtolower((string) $name)) {
                 case 'termentry':
                     $this->_termentry = null;
                     break;
@@ -131,7 +130,7 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
         if (($this->_term !== null) && ($name != "term")) {
             $this->_content .= "</".$name.">";
         } else {
-            switch (strtolower($name)) {
+            switch (strtolower((string) $name)) {
                 case 'langset':
                     $this->_langset = null;
                     break;
@@ -160,7 +159,7 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
     private function _findEncoding($filename)
     {
         $file = file_get_contents($filename, null, null, 0, 100);
-        if (strpos($file, "encoding") !== false) {
+        if (str_contains($file, "encoding")) {
             $encoding = substr($file, strpos($file, "encoding") + 9);
             $encoding = substr($encoding, 1, strpos($encoding, $encoding[0], 1) - 1);
             return $encoding;

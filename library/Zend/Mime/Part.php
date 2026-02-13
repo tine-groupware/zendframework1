@@ -106,13 +106,6 @@ class Zend_Mime_Part
     public $language;
 
     /**
-     * Content
-     *
-     * @var mixed
-     */
-    protected $_content;
-
-    /**
      * original content stream
      *
      * @var resource
@@ -124,21 +117,23 @@ class Zend_Mime_Part
      */
     protected $_isStream = false;
 
-    protected $_decodeFilters = array();
-    protected $_decodeFilterResources = array();
+    protected $_decodeFilters = [];
+    protected $_decodeFilterResources = [];
 
     /**
      * create a new Mime Part.
      * The (unencoded) content of the Part as passed
      * as a string or stream
      *
-     * @param mixed $content String or Stream containing the content
+     * @param mixed $_content String or Stream containing the content
      * @param boolean $preserveOriginal for more robust stream resets
      */
-    public function __construct($content, $preserveOriginal = false)
+    public function __construct(/**
+     * Content
+     */
+    protected $_content, $preserveOriginal = false)
     {
-        $this->_content = $content;
-        if (is_resource($content)) {
+        if (is_resource($this->_content)) {
             $this->_isStream = true;
             if ($preserveOriginal) {
                 $this->_originalStream = fopen("php://temp", "r+");
@@ -201,23 +196,23 @@ class Zend_Mime_Part
 
         switch ($this->encoding) {
             case Zend_Mime::ENCODING_QUOTEDPRINTABLE:
-                $this->_appendFilterToStream('convert.quoted-printable-encode', array(
+                $this->_appendFilterToStream('convert.quoted-printable-encode', [
                     'line-length'      => 76,
                     'line-break-chars' => $EOL
-                ));
+                ]);
                 break;
             case Zend_Mime::ENCODING_BASE64:
-                $this->_appendFilterToStream('convert.base64-encode', array(
+                $this->_appendFilterToStream('convert.base64-encode', [
                     'line-length'      => 76,
                     'line-break-chars' => $EOL
-                ));
+                ]);
                 break;
             default:
                 require_once 'StreamFilter/StringReplace.php';
-                $this->_appendFilterToStream('str.replace', array(
+                $this->_appendFilterToStream('str.replace', [
                     'search'    => "\x0d\x0a",
                     'replace'   => $EOL
-                ));
+                ]);
         }
         return $this->_content;
     }
@@ -260,7 +255,7 @@ class Zend_Mime_Part
      * @param array $_params
      * @throws Zend_Mime_Exception
      */
-    protected function _appendFilterToStream($_filterString, $_params = array())
+    protected function _appendFilterToStream($_filterString, $_params = [])
     {
         $filter = stream_filter_append(
             $this->_content,
@@ -307,8 +302,8 @@ class Zend_Mime_Part
             }
         }
 
-        $this->_decodeFilters = array();
-        $this->_decodeFilterResources = array();
+        $this->_decodeFilters = [];
+        $this->_decodeFilterResources = [];
 
         rewind($this->_content);
     }

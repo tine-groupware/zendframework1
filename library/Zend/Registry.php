@@ -70,7 +70,7 @@ class Zend_Registry extends ArrayObject
             throw new Zend_Exception('Registry is already initialized');
         }
 
-        self::setClassName(get_class($registry));
+        self::setClassName($registry::class);
         self::$_registry = $registry;
     }
 

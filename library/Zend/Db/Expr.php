@@ -46,7 +46,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Db_Expr
+class Zend_Db_Expr implements \Stringable
 {
     /**
      * Storage for the SQL expression.
@@ -69,7 +69,7 @@ class Zend_Db_Expr
     /**
      * @return string The string of the SQL expression stored in this object.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->_expression;
     }

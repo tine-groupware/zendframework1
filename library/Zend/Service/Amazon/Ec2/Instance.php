@@ -416,7 +416,7 @@ class Zend_Service_Amazon_Ec2_Instance extends Zend_Service_Amazon_Ec2_Abstract
 
         $return['instanceId'] = $xpath->evaluate('string(//ec2:instanceId/text())');
         $return['timestamp'] = $xpath->evaluate('string(//ec2:timestamp/text())');
-        $return['output'] = base64_decode($xpath->evaluate('string(//ec2:output/text())'));
+        $return['output'] = base64_decode((string) $xpath->evaluate('string(//ec2:output/text())'));
 
         return $return;
     }

@@ -27,7 +27,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Ldap_Dn implements ArrayAccess
+class Zend_Ldap_Dn implements ArrayAccess, \Stringable
 {
     const ATTR_CASEFOLD_NONE  = 'none';
     const ATTR_CASEFOLD_UPPER = 'upper';
@@ -375,15 +375,11 @@ class Zend_Ldap_Dn implements ArrayAccess
      */
     protected static function _caseFoldRdn(array $part, $caseFold)
     {
-        switch ($caseFold) {
-            case self::ATTR_CASEFOLD_UPPER:
-                return array_change_key_case($part, CASE_UPPER);
-            case self::ATTR_CASEFOLD_LOWER:
-                return array_change_key_case($part, CASE_LOWER);
-            case self::ATTR_CASEFOLD_NONE:
-            default:
-                return $part;
-        }
+        return match ($caseFold) {
+            self::ATTR_CASEFOLD_UPPER => array_change_key_case($part, CASE_UPPER),
+            self::ATTR_CASEFOLD_LOWER => array_change_key_case($part, CASE_LOWER),
+            default => $part,
+        };
     }
 
     /**
@@ -407,7 +403,7 @@ class Zend_Ldap_Dn implements ArrayAccess
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }
@@ -482,16 +478,10 @@ class Zend_Ldap_Dn implements ArrayAccess
      */
     protected static function _sanitizeCaseFold($caseFold, $default)
     {
-        switch ($caseFold) {
-            case self::ATTR_CASEFOLD_NONE:
-            case self::ATTR_CASEFOLD_UPPER:
-            case self::ATTR_CASEFOLD_LOWER:
-                return $caseFold;
-                break;
-            default:
-                return $default;
-                break;
-        }
+        return match ($caseFold) {
+            self::ATTR_CASEFOLD_NONE, self::ATTR_CASEFOLD_UPPER, self::ATTR_CASEFOLD_LOWER => $caseFold,
+            default => $default,
+        };
     }
 
     /**
@@ -737,7 +727,7 @@ class Zend_Ldap_Dn implements ArrayAccess
         $rdnParts = [];
         foreach ($part as $key => $value) {
             $value = self::escapeValue($value);
-            $keyId = strtolower($key);
+            $keyId = strtolower((string) $key);
             $rdnParts[$keyId] =  implode('=', [$key, $value]);
         }
         ksort($rdnParts, SORT_STRING);
@@ -794,7 +784,7 @@ class Zend_Ldap_Dn implements ArrayAccess
                 $pdn = self::explodeDn($parentDn, $keys, $vals, Zend_Ldap_Dn::ATTR_CASEFOLD_LOWER);
             }
         }
-        catch (Zend_Ldap_Exception $e) {
+        catch (Zend_Ldap_Exception) {
             return false;
         }
 

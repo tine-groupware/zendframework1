@@ -76,9 +76,9 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
     {
         $options = ['filename', 'realm', 'username', 'password'];
         foreach ($options as $option) {
-            if (null !== $$option) {
+            if (null !== ${$option}) {
                 $methodName = 'set' . ucfirst($option);
-                $this->$methodName($$option);
+                $this->$methodName(${$option});
             }
         }
     }

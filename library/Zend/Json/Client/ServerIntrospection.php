@@ -33,21 +33,15 @@
 class Zend_Json_Client_ServerIntrospection
 {
     /**
-     * @var Zend_Json_Client
-     */
-    private $_client = null;
-
-    /**
      * @var Zend_Json_Client_SMD
      */
     private $_smd = null;
     
     /**
-     * @param Zend_Json_Client $client
+     * @param Zend_Json_Client $_client
      */
-    public function __construct(Zend_Json_Client $client)
+    public function __construct(private readonly Zend_Json_Client $_client)
     {
-        $this->_client = $client;
     }
 
     /**

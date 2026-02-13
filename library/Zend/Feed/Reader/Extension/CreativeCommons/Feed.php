@@ -42,11 +42,7 @@ class Zend_Feed_Reader_Extension_CreativeCommons_Feed
     {
         $licenses = $this->getLicenses();
 
-        if (isset($licenses[$index])) {
-            return $licenses[$index];
-        }
-
-        return null;
+        return $licenses[$index] ?? null;
     }
 
     /**

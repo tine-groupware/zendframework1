@@ -375,7 +375,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             );
         }
 
-        return base64_decode($result->RetrieveDocumentResult);
+        return base64_decode((string) $result->RetrieveDocumentResult);
     }
 
     /**
@@ -393,19 +393,19 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         $ret    = [];
         $result = $this->getSoapClient()->GetMetafiles([
-            'fromPage' => (integer) $fromPage,
-            'toPage'   => (integer) $toPage,
+            'fromPage' => (int) $fromPage,
+            'toPage'   => (int) $toPage,
         ]);
 
         if (isset($result->GetMetafilesResult->string)) {
-            $pageCounter = (integer) $fromPage;
+            $pageCounter = (int) $fromPage;
             if (is_array($result->GetMetafilesResult->string)) {
                 foreach ($result->GetMetafilesResult->string as $string) {
-                    $ret[$pageCounter] = base64_decode($string);
+                    $ret[$pageCounter] = base64_decode((string) $string);
                     $pageCounter++;
                 }
             } else {
-               $ret[$pageCounter] = base64_decode($result->GetMetafilesResult->string);
+               $ret[$pageCounter] = base64_decode((string) $result->GetMetafilesResult->string);
             }
         }
 
@@ -430,11 +430,11 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             $pageCounter = 1;
             if (is_array($result->GetAllMetafilesResult->string)) {
                 foreach ($result->GetAllMetafilesResult->string as $string) {
-                    $ret[$pageCounter] = base64_decode($string);
+                    $ret[$pageCounter] = base64_decode((string) $string);
                     $pageCounter++;
                 }
             } else {
-               $ret[$pageCounter] = base64_decode($result->GetAllMetafilesResult->string);
+               $ret[$pageCounter] = base64_decode((string) $result->GetAllMetafilesResult->string);
             }
         }
 
@@ -459,21 +459,21 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
         $ret = [];
 
         $result = $this->getSoapClient()->GetBitmaps([
-            'fromPage'   => (integer) $fromPage,
-            'toPage'     => (integer) $toPage,
-            'zoomFactor' => (integer) $zoomFactor,
+            'fromPage'   => (int) $fromPage,
+            'toPage'     => (int) $toPage,
+            'zoomFactor' => (int) $zoomFactor,
             'format'     => (string)  $format,
         ]);
 
         if (isset($result->GetBitmapsResult->string)) {
-            $pageCounter = (integer) $fromPage;
+            $pageCounter = (int) $fromPage;
             if (is_array($result->GetBitmapsResult->string)) {
                 foreach ($result->GetBitmapsResult->string as $string) {
-                    $ret[$pageCounter] = base64_decode($string);
+                    $ret[$pageCounter] = base64_decode((string) $string);
                     $pageCounter++;
                 }
             } else {
-               $ret[$pageCounter] = base64_decode($result->GetBitmapsResult->string);
+               $ret[$pageCounter] = base64_decode((string) $result->GetBitmapsResult->string);
             }
         }
 
@@ -495,7 +495,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         $ret    = [];
         $result = $this->getSoapClient()->GetAllBitmaps([
-            'zoomFactor' => (integer) $zoomFactor,
+            'zoomFactor' => (int) $zoomFactor,
             'format'     => (string)  $format,
         ]);
 
@@ -503,11 +503,11 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             $pageCounter = 1;
             if (is_array($result->GetAllBitmapsResult->string)) {
                 foreach ($result->GetAllBitmapsResult->string as $string) {
-                    $ret[$pageCounter] = base64_decode($string);
+                    $ret[$pageCounter] = base64_decode((string) $string);
                     $pageCounter++;
                 }
             } else {
-               $ret[$pageCounter] = base64_decode($result->GetAllBitmapsResult->string);
+               $ret[$pageCounter] = base64_decode((string) $result->GetAllBitmapsResult->string);
             }
         }
 
@@ -637,7 +637,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             );
         }
 
-        return base64_decode($result->DownloadTemplateResult);
+        return base64_decode((string) $result->DownloadTemplateResult);
     }
 
     /**
@@ -692,7 +692,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             'filename' => basename($filename),
         ]);
 
-        return (boolean) $result->TemplateExistsResult;
+        return (bool) $result->TemplateExistsResult;
     }
 
     /**
@@ -767,7 +767,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         try {
             $result = $this->getSoapClient()->DownloadSharedDocument([
-                'filename' => basename($filename),
+                'filename' => basename((string) $filename),
             ]);
         } catch (Exception $e) {
             require_once 'Zend/Service/LiveDocx/Exception.php';
@@ -776,7 +776,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             );
         }
 
-        return base64_decode($result->DownloadSharedDocumentResult);
+        return base64_decode((string) $result->DownloadSharedDocumentResult);
     }
 
     /**
@@ -819,7 +819,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         if (isset($result->GetTemplateFormatsResult->string)) {
             $ret = $result->GetTemplateFormatsResult->string;
-            $ret = array_map('strtolower', $ret);
+            $ret = array_map(strtolower(...), $ret);
         }
 
         return $ret;
@@ -840,7 +840,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         if (isset($result->GetDocumentFormatsResult->string)) {
             $ret = $result->GetDocumentFormatsResult->string;
-            $ret = array_map('strtolower', $ret);
+            $ret = array_map(strtolower(...), $ret);
         }
 
         return $ret;
@@ -901,7 +901,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         if (isset($result->GetImageImportFormatsResult->string)) {
             $ret = $result->GetImageImportFormatsResult->string;
-            $ret = array_map('strtolower', $ret);
+            $ret = array_map(strtolower(...), $ret);
         }
 
         return $ret;
@@ -922,7 +922,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
         if (isset($result->GetImageExportFormatsResult->string)) {
             $ret = $result->GetImageExportFormatsResult->string;
-            $ret = array_map('strtolower', $ret);
+            $ret = array_map(strtolower(...), $ret);
         }
 
         return $ret;
@@ -999,7 +999,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             );
         }
 
-        return base64_decode($result->DownloadImageResult);
+        return base64_decode((string) $result->DownloadImageResult);
     }
 
     /**
@@ -1054,7 +1054,7 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
             'filename' => basename($filename),
         ]);
 
-        return (boolean) $result->ImageExistsResult;
+        return (bool) $result->ImageExistsResult;
     }
 
     /**
@@ -1085,9 +1085,9 @@ class Zend_Service_LiveDocx_MailMerge extends Zend_Service_LiveDocx
 
                    $ret[] = [
                         'filename'   => $o->string[0],
-                        'fileSize'   => (integer) $o->string[2],
-                        'createTime' => (integer) $date1->get(Zend_Date::TIMESTAMP),
-                        'modifyTime' => (integer) $date2->get(Zend_Date::TIMESTAMP),
+                        'fileSize'   => (int) $o->string[2],
+                        'createTime' => (int) $date1->get(Zend_Date::TIMESTAMP),
+                        'modifyTime' => (int) $date2->get(Zend_Date::TIMESTAMP),
                    ];
                }
            }

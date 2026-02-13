@@ -35,13 +35,6 @@ require_once 'Zend/Search/Lucene/Search/Query.php';
 class Zend_Search_Lucene_Search_Query_Term extends Zend_Search_Lucene_Search_Query
 {
     /**
-     * Term to find.
-     *
-     * @var Zend_Search_Lucene_Index_Term
-     */
-    private $_term;
-
-    /**
      * Documents vector.
      *
      * @var array
@@ -60,12 +53,16 @@ class Zend_Search_Lucene_Search_Query_Term extends Zend_Search_Lucene_Search_Que
     /**
      * Zend_Search_Lucene_Search_Query_Term constructor
      *
-     * @param Zend_Search_Lucene_Index_Term $term
+     * @param Zend_Search_Lucene_Index_Term $_term
      * @param boolean $sign
      */
-    public function __construct(Zend_Search_Lucene_Index_Term $term)
+    public function __construct(
+        /**
+         * Term to find.
+         */
+        private readonly Zend_Search_Lucene_Index_Term $_term
+    )
     {
-        $this->_term = $term;
     }
 
     /**
@@ -207,7 +204,7 @@ class Zend_Search_Lucene_Search_Query_Term extends Zend_Search_Lucene_Search_Que
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         // It's used only for query visualisation, so we don't care about characters escaping
         if ($this->_term->field !== null) {

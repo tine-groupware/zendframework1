@@ -75,9 +75,9 @@ class Zend_Form_Decorator_PrepareElements extends Zend_Form_Decorator_FormElemen
             } elseif (!empty($belongsTo) && ($item instanceof Zend_Form)) {
                 if ($item->isArray()) {
                     $name = $this->mergeBelongsTo($belongsTo, $item->getElementsBelongTo());
-                    $item->setElementsBelongTo($name, true);
+                    $item->setElementsBelongTo($name);
                 } else {
-                    $item->setElementsBelongTo($belongsTo, true);
+                    $item->setElementsBelongTo($belongsTo);
                 }
                 $this->_recursivelyPrepareForm($item);
             } elseif (!empty($belongsTo) && ($item instanceof Zend_Form_DisplayGroup)) {

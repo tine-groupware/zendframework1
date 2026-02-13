@@ -557,7 +557,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
             return false;
         }
     
-        if (strpos($queueName, '--') !== false) {
+        if (str_contains($queueName, '--')) {
             return false;
         }
     
@@ -569,7 +569,7 @@ class Zend_Service_WindowsAzure_Storage_Queue extends Zend_Service_WindowsAzure_
             return false;
         }
             
-        if (substr($queueName, -1) == '-') {
+        if (str_ends_with($queueName, '-')) {
             return false;
         }
     

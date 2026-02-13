@@ -95,7 +95,7 @@ class Zend_Oauth_Token_AuthorizedRequest extends Zend_Oauth_Token
             return;
         }
         foreach ($this->_data as $key => $value) {
-            $params[rawurldecode($key)] = rawurldecode($value);
+            $params[rawurldecode((string) $key)] = rawurldecode((string) $value);
         }
         return $params;
     }

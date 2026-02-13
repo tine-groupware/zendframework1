@@ -206,7 +206,7 @@ class Zend_Db_Table_Select extends Zend_Db_Select
 
             if ($this->_integrityCheck !== false) {
                 foreach ($fields as $columnEntry) {
-                    list($table, $column) = $columnEntry;
+                    [$table, $column] = $columnEntry;
 
                     // Check each column to ensure it only references the primary table
                     if ($column) {

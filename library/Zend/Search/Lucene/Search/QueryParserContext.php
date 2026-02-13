@@ -34,16 +34,6 @@ require_once 'Zend/Search/Lucene/Search/QueryToken.php';
 class Zend_Search_Lucene_Search_QueryParserContext
 {
     /**
-     * Default field for the context.
-     *
-     * null means, that term should be searched through all fields
-     * Zend_Search_Lucene_Search_Query::rewriteQuery($index) transletes such queries to several
-     *
-     * @var string|null
-     */
-    private $_defaultField;
-
-    /**
      * Field specified for next entry
      *
      * @var string
@@ -90,24 +80,27 @@ class Zend_Search_Lucene_Search_QueryParserContext
      */
     private $_entries = [];
 
-    /**
-     * Query string encoding
-     *
-     * @var string
-     */
-    private $_encoding;
-
 
     /**
      * Context object constructor
      *
-     * @param string $encoding
-     * @param string|null $defaultField
+     * @param string $_encoding
+     * @param string|null $_defaultField
      */
-    public function __construct($encoding, $defaultField = null)
+    public function __construct(
+        /**
+         * Query string encoding
+         */
+        private $_encoding,
+        /**
+         * Default field for the context.
+         *
+         * null means, that term should be searched through all fields
+         * Zend_Search_Lucene_Search_Query::rewriteQuery($index) transletes such queries to several
+         */
+        private $_defaultField = null
+    )
     {
-        $this->_encoding     = $encoding;
-        $this->_defaultField = $defaultField;
     }
 
 
@@ -118,7 +111,7 @@ class Zend_Search_Lucene_Search_QueryParserContext
      */
     public function getField()
     {
-        return ($this->_nextEntryField !== null)  ?  $this->_nextEntryField : $this->_defaultField;
+        return $this->_nextEntryField ?? $this->_defaultField;
     }
 
     /**
@@ -266,7 +259,7 @@ class Zend_Search_Lucene_Search_QueryParserContext
         }
 
         foreach ($this->_entries as $entryId => $entry) {
-            $sign = ($this->_signs[$entryId] !== null) ?  $this->_signs[$entryId] : $defaultSign;
+            $sign = $this->_signs[$entryId] ?? $defaultSign;
             $query->addSubquery($entry->getQuery($this->_encoding), $sign);
         }
 
@@ -302,22 +295,12 @@ class Zend_Search_Lucene_Search_QueryParserContext
                 if ($entry instanceof Zend_Search_Lucene_Search_QueryEntry) {
                     $expressionRecognizer->processLiteral($entry);
                 } else {
-                    switch ($entry) {
-                        case Zend_Search_Lucene_Search_QueryToken::TT_AND_LEXEME:
-                            $expressionRecognizer->processOperator(Zend_Search_Lucene_Search_BooleanExpressionRecognizer::IN_AND_OPERATOR);
-                            break;
-
-                        case Zend_Search_Lucene_Search_QueryToken::TT_OR_LEXEME:
-                            $expressionRecognizer->processOperator(Zend_Search_Lucene_Search_BooleanExpressionRecognizer::IN_OR_OPERATOR);
-                            break;
-
-                        case Zend_Search_Lucene_Search_QueryToken::TT_NOT_LEXEME:
-                            $expressionRecognizer->processOperator(Zend_Search_Lucene_Search_BooleanExpressionRecognizer::IN_NOT_OPERATOR);
-                            break;
-
-                        default:
-                            throw new Zend_Search_Lucene('Boolean expression error. Unknown operator type.');
-                    }
+                    match ($entry) {
+                        Zend_Search_Lucene_Search_QueryToken::TT_AND_LEXEME => $expressionRecognizer->processOperator(Zend_Search_Lucene_Search_BooleanExpressionRecognizer::IN_AND_OPERATOR),
+                        Zend_Search_Lucene_Search_QueryToken::TT_OR_LEXEME => $expressionRecognizer->processOperator(Zend_Search_Lucene_Search_BooleanExpressionRecognizer::IN_OR_OPERATOR),
+                        Zend_Search_Lucene_Search_QueryToken::TT_NOT_LEXEME => $expressionRecognizer->processOperator(Zend_Search_Lucene_Search_BooleanExpressionRecognizer::IN_NOT_OPERATOR),
+                        default => throw new Zend_Search_Lucene('Boolean expression error. Unknown operator type.'),
+                    };
                 }
             }
 

@@ -66,11 +66,7 @@ class Zend_Feed_Reader_Feed_Atom extends Zend_Feed_Reader_FeedAbstract
     {
         $authors = $this->getAuthors();
 
-        if (isset($authors[$index])) {
-            return $authors[$index];
-        }
-
-        return null;
+        return $authors[$index] ?? null;
     }
 
     /**
@@ -409,13 +405,9 @@ class Zend_Feed_Reader_Feed_Atom extends Zend_Feed_Reader_FeedAbstract
      */
     protected function _registerNamespaces()
     {
-        switch ($this->_data['type']) {
-            case Zend_Feed_Reader::TYPE_ATOM_03:
-                $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03);
-                break;
-            case Zend_Feed_Reader::TYPE_ATOM_10:
-            default:
-                $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10);
-        }
+        match ($this->_data['type']) {
+            Zend_Feed_Reader::TYPE_ATOM_03 => $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03),
+            default => $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10),
+        };
     }
 }

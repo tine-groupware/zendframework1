@@ -368,7 +368,7 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
      */
     public function getFillingPercentage()
     {
-        $dir = dirname($this->_options['cache_db_complete_path']);
+        $dir = dirname((string) $this->_options['cache_db_complete_path']);
         $free = disk_free_space($dir);
         $total = disk_total_space($dir);
 
@@ -528,7 +528,7 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
     private function _automaticVacuum()
     {
         if ($this->_options['automatic_vacuum_factor'] > 0) {
-            $rand = rand(1, $this->_options['automatic_vacuum_factor']);
+            $rand = random_int(1, $this->_options['automatic_vacuum_factor']);
 
             if ($rand === 1) {
                 $this->_query('VACUUM');

@@ -79,12 +79,7 @@ abstract class Zend_Service_Ebay_Finding_Abstract
             }
             return [];
         }
-
-        // a specific attribute
-        if (isset($this->_attributes[$tag][$attribute])) {
-            return $this->_attributes[$tag][$attribute];
-        }
-        return null;
+        return $this->_attributes[$tag][$attribute] ?? null;
     }
 
     /**

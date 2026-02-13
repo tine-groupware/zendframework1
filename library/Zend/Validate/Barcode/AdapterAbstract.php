@@ -115,7 +115,7 @@ abstract class Zend_Validate_Barcode_AdapterAbstract
                 $value = str_replace(chr($x), '', $value);
             }
         } else {
-            $chars = str_split($characters);
+            $chars = str_split((string) $characters);
             foreach ($chars as $char) {
                 $value = str_replace($char, '', $value);
             }
@@ -193,7 +193,7 @@ abstract class Zend_Validate_Barcode_AdapterAbstract
      */
     public function setCheck($check)
     {
-        $this->_hasChecksum = (boolean) $check;
+        $this->_hasChecksum = (bool) $check;
         return $this;
     }
 

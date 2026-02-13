@@ -35,29 +35,22 @@ require_once 'Zend/Service/WindowsAzure/RetryPolicy/RetryPolicyAbstract.php';
 class Zend_Service_WindowsAzure_RetryPolicy_RetryN extends Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract
 {
     /**
-     * Number of retries
-     * 
-     * @var int
-     */
-    protected $_retryCount = 1;
-    
-    /**
-     * Interval between retries (in milliseconds)
-     * 
-     * @var int
-     */
-    protected $_retryInterval = 0;
-    
-    /**
      * Constructor
-     * 
-     * @param int $count                    Number of retries
-     * @param int $intervalBetweenRetries   Interval between retries (in milliseconds)
+     *
+     * @param int $_retryCount Number of retries
+     * @param int $_retryInterval Interval between retries (in milliseconds)
      */
-    public function __construct($count = 1, $intervalBetweenRetries = 0)
+    public function __construct(
+        /**
+         * Number of retries
+         */
+        protected $_retryCount = 1,
+        /**
+         * Interval between retries (in milliseconds)
+         */
+        protected $_retryInterval = 0
+    )
     {
-        $this->_retryCount = $count;
-        $this->_retryInterval = $intervalBetweenRetries;
     }
     
     /**

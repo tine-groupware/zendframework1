@@ -45,13 +45,6 @@ class Zend_Service_WindowsAzure_Storage_Batch
     protected $_forTableStorage = false;
     
     /**
-     * Base URL
-     * 
-     * @var string
-     */
-    protected $_baseUrl;
-    
-    /**
      * Pending operations
      * 
      * @var unknown_type
@@ -67,13 +60,16 @@ class Zend_Service_WindowsAzure_Storage_Batch
     
     /**
      * Creates a new Zend_Service_WindowsAzure_Storage_Batch
-     * 
+     *
      * @param Zend_Service_WindowsAzure_Storage_BatchStorageAbstract $storageClient Storage client the batch is defined on
+     * @param string $baseUrl
      */
-    public function __construct(Zend_Service_WindowsAzure_Storage_BatchStorageAbstract $storageClient = null, $baseUrl = '')
+    public function __construct(Zend_Service_WindowsAzure_Storage_BatchStorageAbstract $storageClient = null, /**
+     * Base URL
+     */
+    protected $_baseUrl = '')
     {
         $this->_storageClient = $storageClient;
-        $this->_baseUrl       = $baseUrl;
         $this->_beginBatch();
     }
     
@@ -135,7 +131,7 @@ class Zend_Service_WindowsAzure_Storage_Batch
 	    }
 	    
 	    // Clean path
-		if (strpos($path, '/') !== 0) {
+		if (!str_starts_with($path, '/')) {
 			$path = '/' . $path;
 		}
 			

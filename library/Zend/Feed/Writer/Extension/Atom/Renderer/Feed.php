@@ -89,7 +89,7 @@ class Zend_Feed_Writer_Extension_Atom_Renderer_Feed
             return;
         }
         foreach ($flinks as $type => $href) {
-            $mime  = 'application/' . strtolower($type) . '+xml';
+            $mime  = 'application/' . strtolower((string) $type) . '+xml';
             $flink = $dom->createElement('atom:link');
             $root->appendChild($flink);
             $flink->setAttribute('rel', 'self');

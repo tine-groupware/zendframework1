@@ -34,15 +34,8 @@ require_once 'Zend/Locale/Exception.php';
  */
 class Zend_Locale_Math_Exception extends Zend_Locale_Exception
 {
-    protected $op1 = null;
-    protected $op2 = null;
-    protected $result = null;
-
-    public function __construct($message, $op1 = null, $op2 = null, $result = null)
+    public function __construct($message, protected $op1 = null, protected $op2 = null, protected $result = null)
     {
-        $this->op1 = $op1;
-        $this->op2 = $op2;
-        $this->result = $result;
         parent::__construct($message);
     }
 

@@ -31,7 +31,7 @@ require_once 'Zend/Tag/Item.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tag_Cloud
+class Zend_Tag_Cloud implements \Stringable
 {
     /**
      * Decorator for the cloud
@@ -114,11 +114,11 @@ class Zend_Tag_Cloud
         }
 
         foreach ($options as $key => $value) {
-            if (in_array(strtolower($key), $this->_skipOptions)) {
+            if (in_array(strtolower((string) $key), $this->_skipOptions)) {
                 continue;
             }
 
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst((string) $key);
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -394,7 +394,7 @@ class Zend_Tag_Cloud
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             return $this->render();

@@ -98,7 +98,7 @@ class Zend_Gdata_MediaMimeStream
         }
 
         $this->_fileHandle = fopen($filePath, 'rb', TRUE);
-        $this->_boundaryString = '=_' . md5(microtime(1) . rand(1,20));
+        $this->_boundaryString = '=_' . md5(microtime(1) . random_int(1,20));
         $entry = $this->wrapEntry($xmlString, $fileContentType);
         $closingBoundary = new Zend_Gdata_MimeBodyString("\r\n--{$this->_boundaryString}--\r\n");
         $file = new Zend_Gdata_MimeFile($this->_fileHandle);
@@ -142,9 +142,9 @@ class Zend_Gdata_MediaMimeStream
         $activePart = $this->_parts[$this->_currentPart];
         $buffer = $activePart->read($bytesRequested);
 
-        while(strlen($buffer) < $bytesRequested) {
+        while(strlen((string) $buffer) < $bytesRequested) {
           $this->_currentPart += 1;
-          $nextBuffer = $this->read($bytesRequested - strlen($buffer));
+          $nextBuffer = $this->read($bytesRequested - strlen((string) $buffer));
           if($nextBuffer === FALSE) {
             break;
           }

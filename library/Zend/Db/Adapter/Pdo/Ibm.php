@@ -102,7 +102,7 @@ class Zend_Db_Adapter_Pdo_Ibm extends Zend_Db_Adapter_Pdo_Abstract
 
         try {
             if ($this->_serverType === null) {
-                $server = substr($this->getConnection()->getAttribute(PDO::ATTR_SERVER_INFO), 0, 3);
+                $server = substr((string) $this->getConnection()->getAttribute(PDO::ATTR_SERVER_INFO), 0, 3);
 
                 switch ($server) {
                     case 'DB2':
@@ -354,14 +354,14 @@ class Zend_Db_Adapter_Pdo_Ibm extends Zend_Db_Adapter_Pdo_Abstract
             $result = $stmt->fetchAll(Zend_Db::FETCH_NUM);
             if (count($result)) {
                 $matches = null;
-                if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})/', $result[0][0], $matches)) {
+                if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})/', (string) $result[0][0], $matches)) {
                     return $matches[1];
                 } else {
                     return null;
                 }
             }
             return null;
-        } catch (PDOException $e) {
+        } catch (PDOException) {
             return null;
         }
     }

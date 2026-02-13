@@ -27,7 +27,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Locale
+class Zend_Locale implements \Stringable
 {
     /**
      * List of locales that are no longer part of CLDR along with a
@@ -1142,7 +1142,7 @@ class Zend_Locale
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }
@@ -1239,15 +1239,15 @@ class Zend_Locale
         $languagearray = [];
 
         foreach ($languages as $locale) {
-            if (strpos($locale, '=') !== false) {
+            if (str_contains($locale, '=')) {
                 $language = substr($locale, strpos($locale, '='));
                 $language = substr($language, 1);
             }
 
             if ($language !== 'C') {
-                if (strpos($language, '.') !== false) {
+                if (str_contains($language, '.')) {
                     $language = substr($language, 0, strpos($language, '.'));
-                } else if (strpos($language, '@') !== false) {
+                } else if (str_contains($language, '@')) {
                     $language = substr($language, 0, strpos($language, '@'));
                 }
 
@@ -1265,7 +1265,7 @@ class Zend_Locale
 
                 if (isset(self::$_localeData[$language]) === true) {
                     $languagearray[$language] = 1;
-                    if (strpos($language, '_') !== false) {
+                    if (str_contains($language, '_')) {
                         $languagearray[substr($language, 0, strpos($language, '_'))] = 1;
                     }
                 }
@@ -1421,7 +1421,7 @@ class Zend_Locale
                 continue;
             }
 
-            if (strpos($accept, ';') !== false) {
+            if (str_contains($accept, ';')) {
                 $quality        = (float) substr($accept, (strpos($accept, '=') + 1));
                 $pos            = substr($accept, 0, strpos($accept, ';'));
                 $charsets[$pos] = $quality;
@@ -1613,8 +1613,8 @@ class Zend_Locale
         require_once 'Zend/Locale/Data.php';
         $locale            = self::findLocale($locale);
         $quest             = Zend_Locale_Data::getList($locale, 'question');
-        $yes               = explode(':', $quest['yes']);
-        $no                = explode(':', $quest['no']);
+        $yes               = explode(':', (string) $quest['yes']);
+        $no                = explode(':', (string) $quest['no']);
         $quest['yes']      = $yes[0];
         $quest['yesarray'] = $yes;
         $quest['no']       = $no[0];
@@ -1699,7 +1699,7 @@ class Zend_Locale
 
         try {
             $locale = self::_prepareLocale($locale, $strict);
-        } catch (Zend_Locale_Exception $e) {
+        } catch (Zend_Locale_Exception) {
             return false;
         }
 
@@ -1854,7 +1854,7 @@ class Zend_Locale
     public static function clearCache($tag = null)
     {
         require_once 'Zend/Locale/Data.php';
-        Zend_Locale_Data::clearCache($tag);
+        Zend_Locale_Data::clearCache();
     }
 
     /**
@@ -1922,11 +1922,11 @@ class Zend_Locale
             throw new Zend_Locale_Exception('Autodetection of Locale has been failed!');
         }
 
-        if (strpos($locale, '-') !== false) {
+        if (str_contains((string) $locale, '-')) {
             $locale = strtr($locale, '-', '_');
         }
 
-        $parts = explode('_', $locale);
+        $parts = explode('_', (string) $locale);
         if (!isset(self::$_localeData[$parts[0]])) {
             if ((count($parts) === 1) && array_key_exists($parts[0], self::$_territoryData)) {
                 return self::$_territoryData[$parts[0]];

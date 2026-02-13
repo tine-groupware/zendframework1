@@ -54,32 +54,20 @@ class Zend_Gdata_Extension_Who extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'who';
-    protected $_email = null;
-    protected $_rel = null;
-    protected $_valueString = null;
-    protected $_attendeeStatus = null;
-    protected $_attendeeType = null;
-    protected $_entryLink = null;
 
     /**
      * Constructs a new Zend_Gdata_Extension_Who object.
-     * @param string $email (optional) Email address.
-     * @param string $rel (optional) Relationship description.
-     * @param string $valueString (optional) Simple string describing this person.
-     * @param Zend_Gdata_Extension_AttendeeStatus $attendeeStatus (optional) The status of the attendee.
-     * @param Zend_Gdata_Extension_AttendeeType $attendeeType (optional) The type of the attendee.
-     * @param string $entryLink URL pointing to an associated entry (Contact kind) describing this person.
+     * @param string $_email (optional) Email address.
+     * @param string $_rel (optional) Relationship description.
+     * @param string $_valueString (optional) Simple string describing this person.
+     * @param Zend_Gdata_Extension_AttendeeStatus $_attendeeStatus (optional) The status of the attendee.
+     * @param Zend_Gdata_Extension_AttendeeType $_attendeeType (optional) The type of the attendee.
+     * @param string $_entryLink URL pointing to an associated entry (Contact kind) describing this person.
      */
-    public function __construct($email = null, $rel = null, $valueString = null,
-        $attendeeStatus = null, $attendeeType = null, $entryLink = null)
+    public function __construct(protected $_email = null, protected $_rel = null, protected $_valueString = null,
+        protected $_attendeeStatus = null, protected $_attendeeType = null, protected $_entryLink = null)
     {
         parent::__construct();
-        $this->_email = $email;
-        $this->_rel = $rel;
-        $this->_valueString = $valueString;
-        $this->_attendeeStatus = $attendeeStatus;
-        $this->_attendeeType = $attendeeType;
-        $this->_entryLink = $entryLink;
     }
 
     /**
@@ -176,10 +164,10 @@ class Zend_Gdata_Extension_Who extends Zend_Gdata_Extension
      *
      * @return string The attribute value.
      */
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->_valueString != null) {
-            return $this->_valueString;
+            return (string) $this->_valueString;
         }
         else {
             return parent::__toString();

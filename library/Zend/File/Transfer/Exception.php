@@ -34,11 +34,8 @@ require_once 'Zend/Exception.php';
  */
 class Zend_File_Transfer_Exception extends Zend_Exception
 {
-    protected $_fileerror = null;
-
-    public function __construct($message, $fileerror = 0)
+    public function __construct($message, protected $_fileerror = 0)
     {
-        $this->_fileerror = $fileerror;
         parent::__construct($message);
     }
 

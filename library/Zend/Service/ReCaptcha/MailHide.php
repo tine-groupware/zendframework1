@@ -166,7 +166,7 @@ class Zend_Service_ReCaptcha_MailHide extends Zend_Service_ReCaptcha
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             $return = $this->getHtml();

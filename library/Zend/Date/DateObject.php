@@ -467,7 +467,7 @@ abstract class Zend_Date_DateObject {
                     break;
 
                 case 'y':  // year number, 2 digits
-                    $output .= substr($date['year'], strlen($date['year']) - 2, 2);
+                    $output .= substr((string) $date['year'], strlen((string) $date['year']) - 2, 2);
                     break;
 
 
@@ -1009,7 +1009,7 @@ abstract class Zend_Date_DateObject {
 
         return $this->mktime($hour, $min, $sec, $this->date('m', $this->_unixTimestamp),
                              $this->date('j', $this->_unixTimestamp), $this->date('Y', $this->_unixTimestamp),
-                             -1, true);
+                             -1);
     }
 
     /**

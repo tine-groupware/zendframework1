@@ -64,7 +64,7 @@ class Zend_CodeGenerator_Php_Docblock_Tag extends Zend_CodeGenerator_Php_Abstrac
         // transport any properties via accessors and mutators from reflection to codegen object
         $reflectionClass = new ReflectionClass($reflectionTag);
         foreach ($reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            if (substr($method->getName(), 0, 3) == 'get') {
+            if (str_starts_with($method->getName(), 'get')) {
                 $propertyName = substr($method->getName(), 3);
                 if (method_exists($codeGenDocblockTag, 'set' . $propertyName)) {
                     $codeGenDocblockTag->{'set' . $propertyName}($reflectionTag->{'get' . $propertyName}());
@@ -96,7 +96,7 @@ class Zend_CodeGenerator_Php_Docblock_Tag extends Zend_CodeGenerator_Php_Abstrac
         if (self::$_pluginLoader == null) {
             require_once 'Zend/Loader/PluginLoader.php';
             self::setPluginLoader(new Zend_Loader_PluginLoader([
-                'Zend_CodeGenerator_Php_Docblock_Tag' => dirname(__FILE__) . '/Tag/'])
+                'Zend_CodeGenerator_Php_Docblock_Tag' => __DIR__ . '/Tag/'])
                 );
         }
 
@@ -109,7 +109,7 @@ class Zend_CodeGenerator_Php_Docblock_Tag extends Zend_CodeGenerator_Php_Abstrac
 
         try {
             $tagClass = $pluginLoader->load($tagName);
-        } catch (Zend_Loader_Exception $exception) {
+        } catch (Zend_Loader_Exception) {
             $tagClass = 'Zend_CodeGenerator_Php_Docblock_Tag';
         }
 

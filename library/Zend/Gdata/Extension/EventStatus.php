@@ -39,12 +39,10 @@ class Zend_Gdata_Extension_EventStatus extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'eventStatus';
-    protected $_value = null;
 
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         parent::__construct();
-        $this->_value = $value;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)
@@ -93,7 +91,7 @@ class Zend_Gdata_Extension_EventStatus extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getValue();
     }

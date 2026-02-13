@@ -42,19 +42,13 @@ class Zend_Gdata_Media_Extension_MediaDescription extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_type = null;
-
-    /**
      * @param string $text
-     * @param string $type
+     * @param string $_type
      */
-    public function __construct($text = null, $type = null)
+    public function __construct($text = null, protected $_type = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
-        $this->_type = $type;
         $this->_text = $text;
     }
 

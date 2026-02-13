@@ -29,20 +29,16 @@
 class Zend_Tool_Framework_Loader_IncludePathLoader_RecursiveFilterIterator extends RecursiveFilterIterator
 {
 
-    protected $_denyDirectoryPattern = null;
-    protected $_acceptFilePattern    = null;
-
+    public $ref;
     /**
      * constructor
      *
      * @param RecursiveIterator $iterator
-     * @param string $denyDirectoryPattern
-     * @param string $acceptFilePattern
+     * @param string $_denyDirectoryPattern
+     * @param string $_acceptFilePattern
      */
-    public function __construct(RecursiveIterator $iterator, $denyDirectoryPattern = null, $acceptFilePattern = null)
+    public function __construct(RecursiveIterator $iterator, protected $_denyDirectoryPattern = null, protected $_acceptFilePattern = null)
     {
-        $this->_denyDirectoryPattern = $denyDirectoryPattern;
-        $this->_acceptFilePattern    = $acceptFilePattern;
         parent::__construct($iterator);
     }
 
@@ -58,12 +54,12 @@ class Zend_Tool_Framework_Loader_IncludePathLoader_RecursiveFilterIterator exten
 
         // if the current node is a directory AND doesn't match the denyDirectory pattern, accept
         if ($currentNode->isDir()
-            && !preg_match('#' . $this->_denyDirectoryPattern . '#', $currentNodeRealPath)) {
+            && !preg_match('#' . $this->_denyDirectoryPattern . '#', (string) $currentNodeRealPath)) {
             return true;
         }
 
         // if the file matches the accept file pattern, accept
-        return (preg_match('#' . $this->_acceptFilePattern . '#', $currentNodeRealPath)) ? true : false;
+        return (preg_match('#' . $this->_acceptFilePattern . '#', (string) $currentNodeRealPath)) ? true : false;
     }
 
     /**

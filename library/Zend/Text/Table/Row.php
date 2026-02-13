@@ -168,7 +168,7 @@ class Zend_Text_Table_Row
                                                                  $colSpan)));
 
             // Render the column and split it's lines into an array
-            $result = explode("\n", $column->render($columnWidth, $padding));
+            $result = explode("\n", (string) $column->render($columnWidth, $padding));
 
             // Store the width of the rendered column
             $this->_columnWidths[] = $columnWidth;

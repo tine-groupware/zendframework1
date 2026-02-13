@@ -365,7 +365,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
     public function getPrefixForId()
     {
         if (null === $this->_prefixForId) {
-            $prefix             = get_class($this);
+            $prefix             = static::class;
             $this->_prefixForId = strtolower(
                     trim(substr($prefix, strrpos($prefix, '_')), '_')
                 ) . '-';
@@ -626,12 +626,12 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             return $this->render();
         } catch (Exception $e) {
-            $msg = get_class($e) . ': ' . $e->getMessage();
+            $msg = $e::class . ': ' . $e->getMessage();
             trigger_error($msg, E_USER_ERROR);
             return '';
         }

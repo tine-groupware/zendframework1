@@ -127,7 +127,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
 
                 try {
                     $this->_redis->ping();
-                } catch (RedisException $re) {
+                } catch (RedisException) {
                     $this->_reconnect();
                 }
             }
@@ -169,7 +169,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
 
             case 'flushDB':
             case 'flushAll':
-                if (defined(__CLASS__ . '::OPT_SCAN')) {
+                if (defined(self::class . '::OPT_SCAN')) {
                     throw new RedisException($_name .
                         ' is forbidden, it well may be a shared redis, don\'t do it ever!');
                 }
@@ -191,7 +191,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                             try {
                                 if ($tries > 0) {
                                     // restart the multi
-                                    if (call_user_func_array([$this->_redis, 'multi'], $this->_multiArgs) !==
+                                    if (call_user_func_array($this->_redis->multi(...), $this->_multiArgs) !==
                                             $this->_redis) {
                                         throw new RedisException();
                                     }
@@ -262,7 +262,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
                     if (false === $this->_redis->ping()) {
                         $this->_reconnect();
                     }
-                } catch (RedisException $re) {
+                } catch (RedisException) {
                     $this->_reconnect();
                 }
             }
@@ -277,7 +277,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
         $this->_redis = new Redis();
         try {
             call_user_func_array([$this->_redis, $this->_connectionMethod], $this->_connectionArguments);
-        } catch (RedisException $re) {}
+        } catch (RedisException) {}
     }
 
     public function close()
@@ -286,7 +286,7 @@ class Zend_RedisProxy extends Zend_RedisProxy_C3
         $this->_connectionArguments = null;
         try {
             $this->_redis->close();
-        } catch (RedisException $re) {}
+        } catch (RedisException) {}
         $this->_redis = new Redis();
     }
 }

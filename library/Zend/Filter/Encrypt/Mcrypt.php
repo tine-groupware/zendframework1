@@ -333,8 +333,8 @@ class Zend_Filter_Encrypt_Mcrypt implements Zend_Filter_Encrypt_Interface
         if (empty($keysizes) || ($this->_encryption['salt'] == true)) {
             $this->_srand();
             $keysize = mcrypt_enc_get_key_size($cipher);
-            $key     = substr(md5($key), 0, $keysize);
-        } else if (!in_array(strlen($key), $keysizes)) {
+            $key     = substr(md5((string) $key), 0, $keysize);
+        } else if (!in_array(strlen((string) $key), $keysizes)) {
             require_once 'Zend/Filter/Exception.php';
             throw new Zend_Filter_Exception('The given key has a wrong size for the set algorithm');
         }
@@ -359,7 +359,7 @@ class Zend_Filter_Encrypt_Mcrypt implements Zend_Filter_Encrypt_Interface
             return;
         }
         if (!self::$_srandCalled) {
-            srand(Zend_Crypt_Math::randInteger(0, PHP_INT_MAX));
+            mt_srand(Zend_Crypt_Math::randInteger(0, PHP_INT_MAX));
             self::$_srandCalled = true;
         }
     }

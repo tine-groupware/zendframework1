@@ -100,7 +100,7 @@ class Zend_Config_Xml extends Zend_Config
             }
         }
 
-        set_error_handler([$this, '_loadFileErrorHandler']); // Warnings and errors are suppressed
+        set_error_handler($this->_loadFileErrorHandler(...)); // Warnings and errors are suppressed
         if (strstr($xml, '<?xml')) {
             $config = Zend_Xml_Security::scan($xml);
         } else {
@@ -184,7 +184,7 @@ class Zend_Config_Xml extends Zend_Config
         $nsAttributes = $thisSection->attributes(self::XML_NAMESPACE);
 
         if (isset($thisSection['extends']) || isset($nsAttributes['extends'])) {
-            $extendedSection = (string) (isset($nsAttributes['extends']) ? $nsAttributes['extends'] : $thisSection['extends']);
+            $extendedSection = (string) ($nsAttributes['extends'] ?? $thisSection['extends']);
             $this->_assertValidExtend($section, $extendedSection);
 
             if (!$this->_skipExtends) {

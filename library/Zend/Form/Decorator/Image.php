@@ -143,12 +143,9 @@ class Zend_Form_Decorator_Image extends Zend_Form_Decorator_Abstract
             $image = $decorator->render($image);
         }
 
-        switch ($placement) {
-            case self::PREPEND:
-                return $image . $separator . $content;
-            case self::APPEND:
-            default:
-                return $content . $separator . $image;
-        }
+        return match ($placement) {
+            self::PREPEND => $image . $separator . $content,
+            default => $content . $separator . $image,
+        };
     }
 }

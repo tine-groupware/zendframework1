@@ -44,21 +44,17 @@ require_once 'Zend/Memory/Container/Interface.php';
 class Zend_Memory_AccessController implements Zend_Memory_Container_Interface
 {
     /**
-     * Memory container object
-     *
-     * @var Zend_Memory_Container
-     */
-    private $_memContainer;
-
-
-    /**
      * Object constructor
      *
      * @param Zend_Memory_Container_Movable $memoryManager
      */
-    public function __construct(Zend_Memory_Container_Movable $memContainer)
+    public function __construct(
+        /**
+         * Memory container object
+         */
+        private readonly Zend_Memory_Container_Movable $_memContainer
+    )
     {
-        $this->_memContainer = $memContainer;
     }
 
     /**

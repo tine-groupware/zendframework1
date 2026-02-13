@@ -37,12 +37,6 @@ class Zend_Dom_Query_Result implements Iterator,Countable
     protected $_count;
 
     /**
-     * CSS Selector query
-     * @var string
-     */
-    protected $_cssQuery;
-
-    /**
      * @var DOMDocument
      */
     protected $_document;
@@ -64,23 +58,21 @@ class Zend_Dom_Query_Result implements Iterator,Countable
     protected $_xpath;
 
     /**
-     * XPath query
-     * @var string
-     */
-    protected $_xpathQuery;
-
-    /**
      * Constructor
      *
-     * @param  string $cssQuery
-     * @param  string|array $xpathQuery
+     * @param string $_cssQuery
+     * @param string|array $_xpathQuery
      * @param  DOMDocument $document
      * @param  DOMNodeList $nodeList
      */
-    public function  __construct($cssQuery, $xpathQuery, DOMDocument $document, DOMNodeList $nodeList)
+    public function  __construct(/**
+     * CSS Selector query
+     */
+    protected $_cssQuery, /**
+     * XPath query
+     */
+    protected $_xpathQuery, DOMDocument $document, DOMNodeList $nodeList)
     {
-        $this->_cssQuery   = $cssQuery;
-        $this->_xpathQuery = $xpathQuery;
         $this->_document   = $document;
         $this->_nodeList   = $nodeList;
     }

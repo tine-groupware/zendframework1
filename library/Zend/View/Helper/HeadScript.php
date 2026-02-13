@@ -124,16 +124,10 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
         if ((null !== $spec) && is_string($spec)) {
             $action    = ucfirst(strtolower($mode));
             $placement = strtolower($placement);
-            switch ($placement) {
-                case 'set':
-                case 'prepend':
-                case 'append':
-                    $action = $placement . $action;
-                    break;
-                default:
-                    $action = 'append' . $action;
-                    break;
-            }
+            $action = match ($placement) {
+                'set', 'prepend', 'append' => $placement . $action,
+                default => 'append' . $action,
+            };
             $this->$action($spec, $type, $attrs);
         }
 
@@ -177,16 +171,10 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
         $this->_captureScriptAttrs = null;
         $this->_captureLock        = false;
 
-        switch ($this->_captureType) {
-            case Zend_View_Helper_Placeholder_Container_Abstract::SET:
-            case Zend_View_Helper_Placeholder_Container_Abstract::PREPEND:
-            case Zend_View_Helper_Placeholder_Container_Abstract::APPEND:
-                $action = strtolower($this->_captureType) . 'Script';
-                break;
-            default:
-                $action = 'appendScript';
-                break;
-        }
+        $action = match ($this->_captureType) {
+            Zend_View_Helper_Placeholder_Container_Abstract::SET, Zend_View_Helper_Placeholder_Container_Abstract::PREPEND, Zend_View_Helper_Placeholder_Container_Abstract::APPEND => strtolower($this->_captureType) . 'Script',
+            default => 'appendScript',
+        };
         $this->$action($content, $type, $attrs);
     }
 

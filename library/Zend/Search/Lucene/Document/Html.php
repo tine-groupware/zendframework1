@@ -396,7 +396,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
      */
     public function highlight($words, $colour = '#66ffff')
     {
-        return $this->highlightExtended($words, [$this, 'applyColour'], [$colour]);
+        return $this->highlightExtended($words, $this->applyColour(...), [$colour]);
     }
 
 
@@ -427,7 +427,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             $wordsToHighlightList[] = $analyzer->tokenize($wordString);
         }
 
-        $wordsToHighlight = call_user_func_array('array_merge', $wordsToHighlightList);
+        $wordsToHighlight = call_user_func_array(array_merge(...), $wordsToHighlightList);
 
         if (count($wordsToHighlight) === 0) {
             return $this->_doc->saveHTML();
@@ -478,7 +478,7 @@ class Zend_Search_Lucene_Document_Html extends Zend_Search_Lucene_Document
             $outputFragments[] = $this->_doc->saveXML($bodyNodes->item($count));
         }
 
-        return implode($outputFragments);
+        return implode('', $outputFragments);
     }
 }
 

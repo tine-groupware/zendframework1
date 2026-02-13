@@ -34,6 +34,7 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
  */
 class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interface
 {
+    public $_resources;
     /**
      * @var string Base path to resource classes
      */
@@ -114,7 +115,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
      */
     public function __call($method, $args)
     {
-        if ('get' == substr($method, 0, 3)) {
+        if (str_starts_with($method, 'get')) {
             $type  = strtolower(substr($method, 3));
             if (!$this->hasResourceType($type)) {
                 require_once 'Zend/Loader/Exception.php';
@@ -219,7 +220,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
 
         $methods = get_class_methods($this);
         foreach ($options as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst((string) $key);
             if (in_array($method, $methods)) {
                 $this->$method($value);
             }

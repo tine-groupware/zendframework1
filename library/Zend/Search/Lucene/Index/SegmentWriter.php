@@ -85,13 +85,6 @@ abstract class Zend_Search_Lucene_Index_SegmentWriter
     protected $_docCount = 0;
 
     /**
-     * Segment name
-     *
-     * @var string
-     */
-    protected $_name;
-
-    /**
      * File system adapter.
      *
      * @var Zend_Search_Lucene_Storage_Directory
@@ -145,12 +138,14 @@ abstract class Zend_Search_Lucene_Index_SegmentWriter
      * Object constructor.
      *
      * @param Zend_Search_Lucene_Storage_Directory $directory
-     * @param string $name
+     * @param string $_name
      */
-    public function __construct(Zend_Search_Lucene_Storage_Directory $directory, $name)
+    public function __construct(Zend_Search_Lucene_Storage_Directory $directory, /**
+     * Segment name
+     */
+    protected $_name)
     {
         $this->_directory = $directory;
-        $this->_name      = $name;
     }
 
 
@@ -242,7 +237,7 @@ abstract class Zend_Search_Lucene_Index_SegmentWriter
                          0x00; /* 0x04 - third bit, compressed (ZLIB) */
             $this->_fdtFile->writeByte($fieldBits);
             if ($field->isBinary) {
-                $this->_fdtFile->writeVInt(strlen($field->value));
+                $this->_fdtFile->writeVInt(strlen((string) $field->value));
                 $this->_fdtFile->writeBytes($field->value);
             } else {
                 $this->_fdtFile->writeString($field->getUtf8Value());

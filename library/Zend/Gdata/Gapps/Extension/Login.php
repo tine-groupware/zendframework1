@@ -50,97 +50,58 @@ class Zend_Gdata_Gapps_Extension_Login extends Zend_Gdata_Extension
     protected $_rootElement = 'login';
 
     /**
-     * The username for this user. This is used as the user's email address
-     * and when logging in to Google Apps-hosted services.
-     *
-     * @var string
-     */
-    protected $_username = null;
-
-    /**
-     * The password for the user. May be in cleartext or as an SHA-1
-     * digest, depending on the value of _hashFunctionName.
-     *
-     * @var string
-     */
-    protected $_password = null;
-
-    /**
-     * Specifies whether the password stored in _password is in cleartext
-     * or is an SHA-1 digest of a password. If the password is cleartext,
-     * then this should be null. If the password is an SHA-1 digest, then
-     * this should be set to 'SHA-1'.
-     *
-     * At the time of writing, no other hash functions are supported
-     *
-     * @var string
-     */
-    protected $_hashFunctionName = null;
-
-    /**
-     * True if the user has administrative rights for this domain, false
-     * otherwise.
-     *
-     * @var boolean
-     */
-    protected $_admin = null;
-
-    /**
-     * True if the user has agreed to the terms of service for Google Apps,
-     * false otherwise.
-     *
-     * @var boolean.
-     */
-    protected $_agreedToTerms = null;
-
-    /**
-     * True if this user has been suspended, false otherwise.
-     *
-     * @var boolean
-     */
-    protected $_suspended = null;
-
-    /**
-     * True if the user will be required to change their password at
-     * their next login, false otherwise.
-     *
-     * @var boolean
-     */
-    protected $_changePasswordAtNextLogin = null;
-
-    /**
      * Constructs a new Zend_Gdata_Gapps_Extension_Login object.
      *
-     * @param string $username (optional) The username to be used for this
+     * @param string $_username (optional) The username to be used for this
      *          login.
-     * @param string $password (optional) The password to be used for this
+     * @param string $_password (optional) The password to be used for this
      *          login.
-     * @param string $hashFunctionName (optional) The name of the hash
+     * @param string $_hashFunctionName (optional) The name of the hash
      *          function used to protect the password, or null if no
      *          has function has been applied. As of this writing,
      *          the only valid values are 'SHA-1' or null.
-     * @param boolean $admin (optional) Whether the user is an administrator
+     * @param boolean $_admin (optional) Whether the user is an administrator
      *          or not.
-     * @param boolean $suspended (optional) Whether this login is suspended or not.
-     * @param boolean $changePasswordAtNextLogin (optional) Whether
+     * @param boolean $_suspended (optional) Whether this login is suspended or not.
+     * @param boolean $_changePasswordAtNextLogin (optional) Whether
      *          the user is required to change their password at their
      *          next login.
-     * @param boolean $agreedToTerms (optional) Whether the user has
+     * @param boolean $_agreedToTerms (optional) Whether the user has
      *          agreed to the terms of service.
      */
-    public function __construct($username = null, $password = null,
-        $hashFunctionName = null, $admin = null, $suspended = null,
-        $changePasswordAtNextLogin = null, $agreedToTerms = null)
+    public function __construct(/**
+     * The username for this user. This is used as the user's email address
+     * and when logging in to Google Apps-hosted services.
+     */
+    protected $_username = null, /**
+     * The password for the user. May be in cleartext or as an SHA-1
+     * digest, depending on the value of _hashFunctionName.
+     */
+    protected $_password = null,
+        /**
+         * Specifies whether the password stored in _password is in cleartext
+         * or is an SHA-1 digest of a password. If the password is cleartext,
+         * then this should be null. If the password is an SHA-1 digest, then
+         * this should be set to 'SHA-1'.
+         *
+         * At the time of writing, no other hash functions are supported
+         */
+        protected $_hashFunctionName = null, /**
+         * True if the user has administrative rights for this domain, false
+         * otherwise.
+         */
+        protected $_admin = null, /**
+         * True if this user has been suspended, false otherwise.
+         */
+        protected $_suspended = null,
+        /**
+         * True if the user will be required to change their password at
+         * their next login, false otherwise.
+         */
+        protected $_changePasswordAtNextLogin = null, protected $_agreedToTerms = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Gapps::$namespaces);
         parent::__construct();
-        $this->_username = $username;
-        $this->_password = $password;
-        $this->_hashFunctionName = $hashFunctionName;
-        $this->_admin = $admin;
-        $this->_agreedToTerms = $agreedToTerms;
-        $this->_suspended = $suspended;
-        $this->_changePasswordAtNextLogin = $changePasswordAtNextLogin;
     }
 
     /**
@@ -473,7 +434,7 @@ class Zend_Gdata_Gapps_Extension_Login extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return "Username: " . $this->getUsername() .
             "\nPassword: " . (($this->getPassword() === null) ? "NOT SET" : "SET") .

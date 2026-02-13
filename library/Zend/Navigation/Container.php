@@ -310,7 +310,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
                         // Use regex?
                         if (true === $useRegex) {
                             foreach ($item as $item2) {
-                                if (0 !== preg_match($value, $item2)) {
+                                if (0 !== preg_match($value, (string) $item2)) {
                                     return $page;
                                 }
                             }
@@ -322,7 +322,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
                     } else {
                         // Use regex?
                         if (true === $useRegex) {
-                            if (0 !== preg_match($value, $item)) {
+                            if (0 !== preg_match($value, (string) $item)) {
                                 return $page;
                             }
                         } else {
@@ -338,7 +338,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
             
             // Use regex?
             if (true === $useRegex) {
-                if (preg_match($value, $pageProperty)) {
+                if (preg_match($value, (string) $pageProperty)) {
                     return $page;
                 }
             } else {
@@ -381,7 +381,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
                         // Use regex?
                         if (true === $useRegex) {
                             foreach ($item as $item2) {
-                                if (0 !== preg_match($value, $item2)) {
+                                if (0 !== preg_match($value, (string) $item2)) {
                                     $found[] = $page;
                                 }
                             }
@@ -393,7 +393,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
                     } else {
                         // Use regex?
                         if (true === $useRegex) {
-                            if (0 !== preg_match($value, $item)) {
+                            if (0 !== preg_match($value, (string) $item)) {
                                 $found[] = $page;
                             }
                         } else {
@@ -409,7 +409,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
             
             // Use regex?
             if (true === $useRegex) {
-                if (0 !== preg_match($value, $pageProperty)) {
+                if (0 !== preg_match($value, (string) $pageProperty)) {
                     $found[] = $page;
                 }
             } else {
@@ -475,7 +475,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
         throw new Zend_Navigation_Exception(
             sprintf(
                 'Bad method call: Unknown method %s::%s',
-                get_class($this),
+                static::class,
                 $method
             )
         );
@@ -602,11 +602,7 @@ public function key()
     {
         $hash = key($this->_index);
 
-        if (isset($this->_pages[$hash])) {
-            return $this->_pages[$hash];
-        }
-
-        return null;
+        return $this->_pages[$hash] ?? null;
     }
 
     // Countable interface:

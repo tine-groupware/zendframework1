@@ -38,7 +38,7 @@ require_once 'Zend/Tool/Project/Context/Repository.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Profile_Resource extends Zend_Tool_Project_Profile_Resource_Container
+class Zend_Tool_Project_Profile_Resource extends Zend_Tool_Project_Profile_Resource_Container implements \Stringable
 {
 
     /**
@@ -235,9 +235,9 @@ class Zend_Tool_Project_Profile_Resource extends Zend_Tool_Project_Profile_Resou
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->_context->getName();
+        return (string) $this->_context->getName();
     }
 
     /**

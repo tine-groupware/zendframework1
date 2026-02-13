@@ -81,7 +81,7 @@ class Zend_Server_Reflection_Class
 
         foreach ($reflection->getMethods() as $method) {
             // Don't aggregate magic methods
-            if ('__' == substr($method->getName(), 0, 2)) {
+            if (str_starts_with($method->getName(), '__')) {
                 continue;
             }
 
@@ -120,11 +120,7 @@ class Zend_Server_Reflection_Class
      */
     public function __get($key)
     {
-        if (isset($this->_config[$key])) {
-            return $this->_config[$key];
-        }
-
-        return null;
+        return $this->_config[$key] ?? null;
     }
 
     /**

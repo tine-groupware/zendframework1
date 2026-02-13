@@ -122,11 +122,8 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     public function getOption($key)
     {
         $key = (string) $key;
-        if (isset($this->_options[$key])) {
-            return $this->_options[$key];
-        }
 
-        return null;
+        return $this->_options[$key] ?? null;
     }
 
     /**

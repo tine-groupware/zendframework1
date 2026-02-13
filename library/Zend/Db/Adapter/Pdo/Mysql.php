@@ -184,28 +184,28 @@ class Zend_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Abstract
         $i = 1;
         $p = 1;
         foreach ($result as $row) {
-            list($length, $scale, $precision, $unsigned, $primary, $primaryPosition, $identity)
+            [$length, $scale, $precision, $unsigned, $primary, $primaryPosition, $identity]
                 = [null, null, null, null, false, null, false];
-            if (preg_match('/unsigned/', $row[$type])) {
+            if (preg_match('/unsigned/', (string) $row[$type])) {
                 $unsigned = true;
             }
-            if (preg_match('/^((?:var)?char)\((\d+)\)/', $row[$type], $matches)) {
+            if (preg_match('/^((?:var)?char)\((\d+)\)/', (string) $row[$type], $matches)) {
                 $row[$type] = $matches[1];
                 $length = $matches[2];
-            } else if (preg_match('/^decimal\((\d+),(\d+)\)/', $row[$type], $matches)) {
+            } else if (preg_match('/^decimal\((\d+),(\d+)\)/', (string) $row[$type], $matches)) {
                 $row[$type] = 'decimal';
                 $precision = $matches[1];
                 $scale = $matches[2];
-            } else if (preg_match('/^float\((\d+),(\d+)\)/', $row[$type], $matches)) {
+            } else if (preg_match('/^float\((\d+),(\d+)\)/', (string) $row[$type], $matches)) {
                 $row[$type] = 'float';
                 $precision = $matches[1];
                 $scale = $matches[2];
-            } else if (preg_match('/^((?:big|medium|small|tiny)?int)\((\d+)\)/', $row[$type], $matches)) {
+            } else if (preg_match('/^((?:big|medium|small|tiny)?int)\((\d+)\)/', (string) $row[$type], $matches)) {
                 $row[$type] = $matches[1];
                 // The optional argument of a MySQL int type is not precision
                 // or length; it is only a hint for display width.
             }
-            if (strtoupper($row[$key]) == 'PRI') {
+            if (strtoupper((string) $row[$key]) == 'PRI') {
                 $primary = true;
                 $primaryPosition = $p;
                 if ($row[$extra] == 'auto_increment') {

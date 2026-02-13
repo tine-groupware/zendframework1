@@ -99,7 +99,7 @@ class Zend_Log_Writer_Stream extends Zend_Log_Writer_Abstract
             'mode'   => null,
         ], $config);
 
-        $streamOrUrl = isset($config['url']) ? $config['url'] : $config['stream'];
+        $streamOrUrl = $config['url'] ?? $config['stream'];
 
         return new self(
             $streamOrUrl,

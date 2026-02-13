@@ -30,6 +30,7 @@
  */
 abstract class Zend_Amf_Parse_Serializer
 {
+    private readonly bool $_mbStringFunctionsOverloaded;
     /**
      * Reference to the current output stream being constructed
      *

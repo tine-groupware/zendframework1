@@ -34,13 +34,6 @@
 class Zend_Amf_Value_MessageHeader
 {
     /**
-     * Name of the header
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
      * Flag if the data has to be parsed on return
      *
      * @var boolean
@@ -55,25 +48,23 @@ class Zend_Amf_Value_MessageHeader
     public $length;
 
     /**
-     * Data sent with the header name
-     *
-     * @var mixed
-     */
-    public $data;
-
-    /**
      * Used to create and store AMF Header data.
      *
      * @param String $name
      * @param Boolean $mustRead
      * @param misc $content
      * @param integer $length
+     * @param mixed $data
      */
-    public function __construct($name, $mustRead, $data, $length=null)
+    public function __construct(/**
+     * Name of the header
+     */
+    public $name, $mustRead, /**
+     * Data sent with the header name
+     */
+    public $data, $length=null)
     {
-        $this->name     = $name;
         $this->mustRead = (bool) $mustRead;
-        $this->data     = $data;
         if (null !== $length) {
             $this->length = (int) $length;
         }

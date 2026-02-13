@@ -149,13 +149,13 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = strtoupper((string) $type);
         if (!empty($type) && ($type != self::TRANSFER_ADAPTER)) {
             return parent::addPrefixPath($prefix, $path, $type);
         }
 
         if (empty($type)) {
-            $nsSeparator = (false !== strpos($prefix, '\\'))?'\\':'_';
+            $nsSeparator = (str_contains($prefix, '\\'))?'\\':'_';
             $pluginPrefix = rtrim($prefix, $nsSeparator) . $nsSeparator . 'Transfer' . $nsSeparator . 'Adapter';
             $pluginPath   = rtrim($path, DIRECTORY_SEPARATOR) . '/Transfer/Adapter/';
             $loader       = $this->getPluginLoader(self::TRANSFER_ADAPTER);
@@ -562,12 +562,12 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      */
     public function setMultiFile($count)
     {
-        if ((integer) $count < 2) {
+        if ((int) $count < 2) {
             $this->setIsArray(false);
             $this->_counter = 1;
         } else {
             $this->setIsArray(true);
-            $this->_counter = (integer) $count;
+            $this->_counter = (int) $count;
         }
 
         return $this;
@@ -643,7 +643,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
     {
         if (!is_numeric($setting)) {
             $type = strtoupper(substr($setting, -1));
-            $setting = (integer) substr($setting, 0, -1);
+            $setting = (int) substr($setting, 0, -1);
 
             switch ($type) {
                 case 'K' :
@@ -663,7 +663,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
             }
         }
 
-        return (integer) $setting;
+        return (int) $setting;
     }
 
     /**

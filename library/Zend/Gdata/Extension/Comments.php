@@ -44,14 +44,10 @@ class Zend_Gdata_Extension_Comments extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'comments';
-    protected $_rel = null;
-    protected $_feedLink = null;
 
-    public function __construct($rel = null, $feedLink = null)
+    public function __construct(protected $_rel = null, protected $_feedLink = null)
     {
         parent::__construct();
-        $this->_rel = $rel;
-        $this->_feedLink = $feedLink;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

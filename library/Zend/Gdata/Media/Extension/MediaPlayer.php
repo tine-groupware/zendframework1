@@ -42,34 +42,16 @@ class Zend_Gdata_Media_Extension_MediaPlayer extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_url = null;
-
-    /**
-     * @var int
-     */
-    protected $_width = null;
-
-    /**
-     * @var int
-     */
-    protected $_height = null;
-
-    /**
      * Constructs a new MediaPlayer element
      *
-     * @param string $url
-     * @param int $width
-     * @param int $height
+     * @param string $_url
+     * @param int $_width
+     * @param int $_height
      */
-    public function __construct($url = null, $width = null, $height = null)
+    public function __construct(protected $_url = null, protected $_width = null, protected $_height = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
-        $this->_url = $url;
-        $this->_width = $width;
-        $this->_height = $height;
     }
 
     /**

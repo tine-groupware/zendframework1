@@ -128,13 +128,13 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLite
 	protected function _prepareQueryStringForSigning($value)
 	{
 	    // Check for 'comp='
-	    if (strpos($value, 'comp=') === false) {
+	    if (!str_contains($value, 'comp=')) {
 	        // If not found, no query string needed
 	        return '';
 	    }
 
 	    // If found, make sure it is the only parameter being used
-        if (strlen($value) > 0 && strpos($value, '?') === 0) {
+        if (strlen($value) > 0 && str_starts_with($value, '?')) {
             $value = substr($value, 1);
         }
 
@@ -142,7 +142,7 @@ class Zend_Service_WindowsAzure_Credentials_SharedKeyLite
         $queryParts = explode('&', $value);
 
         foreach ($queryParts as $queryPart) {
-            if (strpos($queryPart, 'comp=') !== false) {
+            if (str_contains($queryPart, 'comp=')) {
                 return '?' . $queryPart;
             }
         }

@@ -29,7 +29,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_CodeGenerator_Php_Parameter_DefaultValue
+class Zend_CodeGenerator_Php_Parameter_DefaultValue implements \Stringable
 {
     /**
      * @var string
@@ -53,7 +53,7 @@ class Zend_CodeGenerator_Php_Parameter_DefaultValue
         $this->_defaultValue = $defaultValue;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->_defaultValue;
     }

@@ -109,7 +109,7 @@ class Zend_Feed_Reader_FeedSet extends ArrayObject
      */
     protected function _canonicalizePath($path)
     {
-        $parts = array_filter(explode('/', $path));
+        $parts = array_filter(explode('/', (string) $path));
         $absolutes = [];
         foreach ($parts as $part) {
             if ('.' == $part) {

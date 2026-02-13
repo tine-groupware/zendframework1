@@ -16,5 +16,9 @@
   },
   "require-dev": {
     "rector/rector": "^2.3"
+  },
+  "scripts": {
+    "rector:test": "bin/rector process --config .rector.php --dry-run",
+    "rector:fix": "bin/rector process --config .rector.php"
   }
 }

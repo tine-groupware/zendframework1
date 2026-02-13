@@ -66,7 +66,7 @@ class Zend_Auth_Adapter_Imap implements Zend_Auth_Adapter_Interface
      * @param  string $password The password of the account being authenticated
      * @return void
      */
-    public function __construct(array $options = array(), $username = null, $password = null)
+    public function __construct(array $options = [], $username = null, $password = null)
     {
         $this->setOptions($options);
         if ($username !== null) {
@@ -96,7 +96,7 @@ class Zend_Auth_Adapter_Imap implements Zend_Auth_Adapter_Interface
      */
     public function setOptions($options)
     {
-        $this->_options = is_array($options) ? $options : array();
+        $this->_options = is_array($options) ? $options : [];
         return $this;
     }
 
@@ -170,7 +170,7 @@ class Zend_Auth_Adapter_Imap implements Zend_Auth_Adapter_Interface
     {
         $this->_imap = $imap;
 //@todo check imap->getOptions()
-        $this->setOptions(array($imap->getOptions()));
+        $this->setOptions([$imap->getOptions()]);
 
         return $this;
     }
@@ -183,7 +183,7 @@ class Zend_Auth_Adapter_Imap implements Zend_Auth_Adapter_Interface
      */
     public function authenticate()
     {
-        $messages = array();
+        $messages = [];
         $messages[0] = ''; // reserved
         $messages[1] = ''; // reserved
 
@@ -216,8 +216,8 @@ class Zend_Auth_Adapter_Imap implements Zend_Auth_Adapter_Interface
         $code = Zend_Auth_Result::FAILURE;
         $messages[0] = "Authority not found: $username";
 
-        $host = isset($this->_options['host']) ? $this->_options['host'] : 'localhost';
-        $port = isset($this->_options['port']) ? $this->_options['port'] : null;
+        $host = $this->_options['host'] ?? 'localhost';
+        $port = $this->_options['port'] ?? null;
         $ssl  = isset($this->_options['ssl'])  ? strtoupper($this->_options['ssl']) : false;
 
         $imap->connect($host, $port, $ssl);

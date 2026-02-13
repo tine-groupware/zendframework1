@@ -49,18 +49,12 @@ class Zend_Feed_Reader_Extension_Syndication_Feed
             return 'daily'; //Default specified by spec
         }
 
-        switch ($period)
-        {
-            case 'hourly':
-            case 'daily':
-            case 'weekly':
-            case 'yearly':
-                return $period;
-            default:
-                throw new Zend_Feed_Exception("Feed specified invalid update period: '$period'."
-                    .  " Must be one of hourly, daily, weekly or yearly"
-                );
-        }
+        return match ($period) {
+            'hourly', 'daily', 'weekly', 'yearly' => $period,
+            default => throw new Zend_Feed_Exception("Feed specified invalid update period: '$period'."
+                .  " Must be one of hourly, daily, weekly or yearly"
+            ),
+        };
     }
 
     /**

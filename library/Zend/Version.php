@@ -81,7 +81,7 @@ final class Zend_Version
             $content = file_get_contents('https://api.github.com/repos/Shardj/zf1-future/releases/latest', false, $context);
 
             if (false !== $content) {
-                $releaseName = explode('-', json_decode($content, true)['name']);
+                $releaseName = explode('-', (string) json_decode($content, true)['name']);
 
                 self::$_latestVersion = array_pop($releaseName);
             }

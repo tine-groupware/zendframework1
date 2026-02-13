@@ -51,7 +51,7 @@ require_once 'Zend/Xml/Exception.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version $Id$
  */
-class Zend_XmlRpc_Request
+class Zend_XmlRpc_Request implements \Stringable
 {
     /**
      * Request character encoding
@@ -311,7 +311,7 @@ class Zend_XmlRpc_Request
 
         try {
             $xml = Zend_Xml_Security::scan($request);
-        } catch (Zend_Xml_Exception $e) {
+        } catch (Zend_Xml_Exception) {
             // Not valid XML
             $this->_fault = new Zend_XmlRpc_Fault(631);
             $this->_fault->setEncoding($this->getEncoding());
@@ -343,7 +343,7 @@ class Zend_XmlRpc_Request
                     $param   = Zend_XmlRpc_Value::getXmlRpcValue($param->value, Zend_XmlRpc_Value::XML_STRING);
                     $types[] = $param->getType();
                     $argv[]  = $param->getValue();
-                } catch (Exception $e) {
+                } catch (Exception) {
                     $this->_fault = new Zend_XmlRpc_Fault(636);
                     $this->_fault->setEncoding($this->getEncoding());
                     return false;
@@ -391,7 +391,7 @@ class Zend_XmlRpc_Request
         if (is_array($this->_xmlRpcParams)) {
             foreach ($this->_xmlRpcParams as $param) {
                 $value = $param['value'];
-                $type  = isset($param['type']) ? $param['type'] : Zend_XmlRpc_Value::AUTO_DETECT_TYPE;
+                $type  = $param['type'] ?? Zend_XmlRpc_Value::AUTO_DETECT_TYPE;
 
                 if (!$value instanceof Zend_XmlRpc_Value) {
                     $value = Zend_XmlRpc_Value::getXmlRpcValue($value, $type);
@@ -438,7 +438,7 @@ class Zend_XmlRpc_Request
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->saveXML();
     }

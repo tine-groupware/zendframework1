@@ -144,7 +144,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      */
     public function setIdentifiers($identifiers)
     {
-        if (is_array($identifiers) || $identifiers instanceof Traversable) {
+        if (is_iterable($identifiers)) {
             $this->identifiers = array_unique((array) $identifiers);
         } elseif ($identifiers !== null) {
             $this->identifiers = [$identifiers];
@@ -160,7 +160,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      */
     public function addIdentifiers($identifiers)
     {
-        if (is_array($identifiers) || $identifiers instanceof Traversable) {
+        if (is_iterable($identifiers)) {
             $this->identifiers = array_unique($this->identifiers + (array) $identifiers);
         } elseif ($identifiers !== null) {
             $this->identifiers = array_unique(array_merge($this->identifiers, [$identifiers]));
@@ -341,7 +341,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
             throw new Zend_EventManager_Exception_InvalidArgumentException(sprintf(
                 '%s: expected a Zend_EventManager_ListenerAggregate or Zend_Stdlib_CallbackHandler; received "%s"',
                 __METHOD__,
-                (is_object($listener) ? get_class($listener) : gettype($listener))
+                (get_debug_type($listener))
             ));
         }
 

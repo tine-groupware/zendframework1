@@ -45,6 +45,7 @@ require_once 'Zend/Db/Statement/Pdo.php';
 abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
 {
 
+    protected $_pdoType;
     /**
      * Default class name for a DB statement.
      *
@@ -368,12 +369,9 @@ abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
      */
     public function supportsParameters($type)
     {
-        switch ($type) {
-            case 'positional':
-            case 'named':
-            default:
-                return true;
-        }
+        return match ($type) {
+            default => true,
+        };
     }
 
     /**
@@ -386,19 +384,19 @@ abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
         $this->_connect();
         try {
             $version = $this->_connection->getAttribute(PDO::ATTR_SERVER_VERSION);
-        } catch (PDOException $e) {
+        } catch (PDOException) {
             // In case of the driver doesn't support getting attributes
             return null;
         }
         $matches = null;
-        if (strpos($version, '-MariaDB') !== false) {
-            if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})-MariaDB/', $version, $matches)) {
+        if (str_contains((string) $version, '-MariaDB')) {
+            if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})-MariaDB/', (string) $version, $matches)) {
                 return $matches[1];
             } else {
                 return null;
             }
         } else {
-            if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})/', $version, $matches)) {
+            if (preg_match('/((?:[0-9]{1,2}\.){1,3}[0-9]{1,2})/', (string) $version, $matches)) {
                 return $matches[1];
             } else {
                 return null;

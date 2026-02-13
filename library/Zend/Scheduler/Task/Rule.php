@@ -38,40 +38,40 @@ class Zend_Scheduler_Task_Rule
     protected $_rule = '';
 
     /** @var array Time numeric values */
-    protected $_times = array(
+    protected $_times = [
         'months'   => Zend_Date::MONTH_SHORT,
         'days'     => Zend_Date::DAY_SHORT,
         'weekdays' => Zend_Date::WEEKDAY_DIGIT,
         'hours'    => Zend_Date::HOUR_SHORT,
         'minutes'  => Zend_Date::MINUTE_SHORT
-    );
+    ];
 
     /** @var array Time ranges */
-    protected $_ranges = array(
-        'months'   => array('minimum' => 1, 'maximum' => 12),
-        'days'     => array('minimum' => 1, 'maximum' => 31),
-        'weekdays' => array('minimum' => 0, 'maximum' => 6),
-        'hours'    => array('minimum' => 0, 'maximum' => 23),
-        'minutes'  => array('minimum' => 0, 'maximum' => 59)
-    );
+    protected $_ranges = [
+        'months'   => ['minimum' => 1, 'maximum' => 12],
+        'days'     => ['minimum' => 1, 'maximum' => 31],
+        'weekdays' => ['minimum' => 0, 'maximum' => 6],
+        'hours'    => ['minimum' => 0, 'maximum' => 23],
+        'minutes'  => ['minimum' => 0, 'maximum' => 59]
+    ];
 
     /** @var array Months of the year */
-    protected $_months = array(
+    protected $_months = [
         'Jan' => 1, 'Feb' => 2,  'Mar' => 3,  'Apr' => 4,
         'May' => 5, 'Jun' => 6,  'Jul' => 7,  'Aug' => 8,
         'Sep' => 9, 'Oct' => 10, 'Nov' => 11, 'Dec' => 12
-    );
+    ];
 
     /** @var array Days of the month */
-    protected $_days = array(
+    protected $_days = [
         'last' => ''
-    );
+    ];
 
     /** @var array Days of the week */
-    protected $_weekdays = array(
+    protected $_weekdays = [
         'Sun' => 0, 'Mon' => 1, 'Tue' => 2, 'Wed' => 3, 
         'Thu' => 4, 'Fri' => 5, 'Sat' => 6
-    );
+    ];
 
     /**
      * Constructor.
@@ -165,15 +165,15 @@ class Zend_Scheduler_Task_Rule
         $rule = $this->_rule;
 
         if ($this->_type == 'months' or $this->_type == 'weekdays') {
-            if (strpos($rule, '/') !== false) {
+            if (str_contains($rule, '/')) {
                 throw new Zend_Scheduler_Exception(ucfirst($this->_type) 
                     . ' can only be specified individually or as a range');
             }
         }
 
         if (preg_match('/[A-Za-z]/', $this->_rule)) {
-            $patterns     = array();
-            $replacements = array();
+            $patterns     = [];
+            $replacements = [];
             $type         = '_' . $this->_type;
             foreach ($this->$type as $name => $value) {
                 $patterns[]     = '/' . $name . '[^,\-\/]*/i';
@@ -182,10 +182,10 @@ class Zend_Scheduler_Task_Rule
             $rule = preg_replace($patterns, $replacements, $this->_rule);
         }
 
-        $values = preg_split('/\s*,\s*/', $rule, -1, PREG_SPLIT_NO_EMPTY);
+        $values = preg_split('/\s*,\s*/', (string) $rule, -1, PREG_SPLIT_NO_EMPTY);
 
         foreach ($values as $i => $value) {
-            if (strpos($value, '-') !== false and strpos($value, '/') !== false) {
+            if (str_contains($value, '-') and str_contains($value, '/')) {
                 throw new Zend_Scheduler_Exception('Invalid ' . $this->_type . ' value');
             }
 
@@ -194,7 +194,7 @@ class Zend_Scheduler_Task_Rule
             }
             if (preg_match('/\A\d+\s*\-\s*\d+\Z/', $value)) {
                 // Parse range (e.g., 5-10)
-                list($valueFrom, $valueTo) = preg_split('/\s*\-\s*/', $value);
+                [$valueFrom, $valueTo] = preg_split('/\s*\-\s*/', $value);
                 if (!$this->_inRange($valueFrom) or !$this->_inRange($valueTo)) {
                     throw new Zend_Scheduler_Exception('Invalid ' . $this->_type . ' range');
                 }
@@ -212,7 +212,7 @@ class Zend_Scheduler_Task_Rule
                 unset($values[$i]);
             } else if (preg_match('/\A\d+\s*\/\s*\d+\Z/', $value)) {
                 // Parse incremental step (e.g., 5/10)
-                list($valueFrom, $valueStep) = preg_split('/\s*\/\s*/', $value);
+                [$valueFrom, $valueStep] = preg_split('/\s*\/\s*/', $value);
                 $j = $valueFrom;
                 while ($this->_inRange($j)) {
                     $values[] = $j;

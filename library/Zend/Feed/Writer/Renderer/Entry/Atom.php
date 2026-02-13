@@ -293,7 +293,7 @@ class Zend_Feed_Writer_Renderer_Entry_Atom
         }
         if (!Zend_Uri::check($this->getDataContainer()->getId()) &&
         !preg_match("#^urn:[a-zA-Z0-9][a-zA-Z0-9\-]{1,31}:([a-zA-Z0-9\(\)\+\,\.\:\=\@\;\$\_\!\*\-]|%[0-9a-fA-F]{2})*#",
-            $this->getDataContainer()->getId()
+            (string) $this->getDataContainer()->getId()
         ) && !$this->_validateTagUri($this->getDataContainer()->getId())) {
             require_once 'Zend/Feed/Exception.php';
             throw new Zend_Feed_Exception('Atom 1.0 IDs must be a valid URI/IRI');
@@ -399,7 +399,7 @@ class Zend_Feed_Writer_Renderer_Entry_Atom
         }
         $xhtml = preg_replace([
             "/(<[\/]?)([a-zA-Z]+)/"
-        ], '$1xhtml:$2', $xhtml);
+        ], '$1xhtml:$2', (string) $xhtml);
         $dom = new DOMDocument('1.0', $this->getEncoding());
 
         $dom = Zend_Xml_Security::scan('<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml">'

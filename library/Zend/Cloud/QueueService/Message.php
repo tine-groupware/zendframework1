@@ -28,17 +28,12 @@
  */
 class Zend_Cloud_QueueService_Message
 {
-    protected $_body;
-    protected $_clientMessage;
-
     /**
-     * @param string $body Message text
-     * @param string $message Original message
+     * @param string $_body Message text
+     * @param string $_clientMessage Original message
      */
-    function __construct($body, $message)
+    function __construct(protected $_body, protected $_clientMessage)
     {
-        $this->_body = $body;
-        $this->_clientMessage = $message;
     }
 
     /**

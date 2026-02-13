@@ -258,7 +258,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
             $this->setOptions($options);
         }
         $this->_type = strtolower(
-            substr(get_class($this), strlen($this->_barcodeNamespace) + 1)
+            substr(static::class, strlen($this->_barcodeNamespace) + 1)
         );
         if ($this->_mandatoryChecksum) {
             $this->_withChecksum = true;
@@ -1375,7 +1375,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
      */
     protected function _validateText($value, $options = [])
     {
-        $validatorName = (isset($options['validator'])) ? $options['validator'] : $this->getType();
+        $validatorName = $options['validator'] ?? $this->getType();
 
         $validator = new Zend_Validate_Barcode(
             [

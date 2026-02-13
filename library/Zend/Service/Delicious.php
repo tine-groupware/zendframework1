@@ -155,7 +155,7 @@ class Zend_Service_Delicious
             /**
              * @todo replace strtotime() with Zend_Date equivalent
              */
-            return new Zend_Date(strtotime($rootNode->getAttribute('time')));
+            return new Zend_Date(strtotime((string) $rootNode->getAttribute('time')));
         } else {
             /**
              * @see Zend_Service_Delicious_Exception

@@ -75,7 +75,7 @@ class Zend_Filter_Compress implements Zend_Filter_Interface
             if ($key == 'options') {
                 $key = 'adapterOptions';
             }
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst((string) $key);
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -98,8 +98,8 @@ class Zend_Filter_Compress implements Zend_Filter_Interface
         $options = $this->getAdapterOptions();
         if (!class_exists($adapter)) {
             require_once 'Zend/Loader.php';
-            if (Zend_Loader::isReadable('Zend/Filter/Compress/' . ucfirst($adapter) . '.php')) {
-                $adapter = 'Zend_Filter_Compress_' . ucfirst($adapter);
+            if (Zend_Loader::isReadable('Zend/Filter/Compress/' . ucfirst((string) $adapter) . '.php')) {
+                $adapter = 'Zend_Filter_Compress_' . ucfirst((string) $adapter);
             }
             Zend_Loader::loadClass($adapter);
         }

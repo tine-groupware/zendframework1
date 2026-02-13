@@ -218,7 +218,7 @@ class Zend_Session extends Zend_Session_Abstract
         // set the options the user has requested to set
         foreach ($userOptions as $userOptionName => $userOptionValue) {
 
-            $userOptionName = strtolower($userOptionName);
+            $userOptionName = strtolower((string) $userOptionName);
 
             // set the ini based values
             if (array_key_exists($userOptionName, self::$_defaultOptions)) {
@@ -247,7 +247,7 @@ class Zend_Session extends Zend_Session_Abstract
     {
         $options = [];
         foreach (ini_get_all('session') as $sysOptionName => $sysOptionValues) {
-            $options[substr($sysOptionName, 8)] = $sysOptionValues['local_value'];
+            $options[substr((string) $sysOptionName, 8)] = $sysOptionValues['local_value'];
         }
         foreach (self::$_localOptions as $localOptionName => $localOptionMemberName) {
             $options[$localOptionName] = self::${$localOptionMemberName};
@@ -279,14 +279,14 @@ class Zend_Session extends Zend_Session_Abstract
         }
 
         $result = session_set_save_handler(
-            [&$saveHandler, 'open'],
-            [&$saveHandler, 'close'],
-            [&$saveHandler, 'read'],
-            [&$saveHandler, 'write'],
-            [&$saveHandler, 'destroy'],
-            [&$saveHandler, 'gc']
+            $saveHandler->open(...),
+            $saveHandler->close(...),
+            $saveHandler->read(...),
+            $saveHandler->write(...),
+            $saveHandler->destroy(...),
+            $saveHandler->gc(...)
             );
-        register_shutdown_function('session_write_close');
+        register_shutdown_function(session_write_close(...));
 
         if (!$result) {
             throw new Zend_Session_Exception('Unable to set session handler');
@@ -318,7 +318,7 @@ class Zend_Session extends Zend_Session_Abstract
         if (!self::$_unitTestEnabled && headers_sent($filename, $linenum)) {
             /** @see Zend_Session_Exception */
             require_once 'Zend/Session/Exception.php';
-            throw new Zend_Session_Exception("You must call " . __CLASS__ . '::' . __FUNCTION__ .
+            throw new Zend_Session_Exception("You must call " . self::class . '::' . __FUNCTION__ .
                 "() before any output has been sent to the browser; output started in {$filename}/{$linenum}");
         }
 
@@ -502,7 +502,7 @@ class Zend_Session extends Zend_Session_Abstract
                 session_write_close();
                 if (self::$_throwStartupExceptions) {
                     restore_error_handler();
-                    throw new Zend_Session_Exception(__CLASS__ . '::' . __FUNCTION__ . '() - ' . Zend_Session_Exception::$sessionStartError);
+                    throw new Zend_Session_Exception(self::class . '::' . __FUNCTION__ . '() - ' . Zend_Session_Exception::$sessionStartError);
                 }
             }
         }
@@ -684,7 +684,7 @@ class Zend_Session extends Zend_Session_Abstract
         if (!self::$_unitTestEnabled && headers_sent($filename, $linenum)) {
             /** @see Zend_Session_Exception */
             require_once 'Zend/Session/Exception.php';
-            throw new Zend_Session_Exception("You must call ".__CLASS__.'::'.__FUNCTION__.
+            throw new Zend_Session_Exception("You must call ".self::class.'::'.__FUNCTION__.
                 "() before any output has been sent to the browser; output started in {$filename}/{$linenum}");
         }
 
@@ -801,10 +801,7 @@ class Zend_Session extends Zend_Session_Abstract
             setcookie(
                 session_name(),
                 false,
-                315554400, // strtotime('1980-01-01'),
-                $cookie_params['path'],
-                $cookie_params['domain'],
-                $cookie_params['secure']
+                ['expires' => 315554400, 'path' => $cookie_params['path'], 'domain' => $cookie_params['domain'], 'secure' => $cookie_params['secure']]
                 );
         }
     }
@@ -891,7 +888,7 @@ class Zend_Session extends Zend_Session_Abstract
         if (isset($_SESSION)) {
             $spaces = array_keys($_SESSION);
             foreach($spaces as $key => $space) {
-                if (!strncmp($space, '__', 2) || !is_array($_SESSION[$space])) {
+                if (!strncmp((string) $space, '__', 2) || !is_array($_SESSION[$space])) {
                     unset($spaces[$key]);
                 }
             }

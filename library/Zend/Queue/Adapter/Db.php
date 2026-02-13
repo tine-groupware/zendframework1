@@ -179,7 +179,7 @@ class Zend_Queue_Adapter_Db extends Zend_Queue_Adapter_AdapterAbstract
 
         try {
             $id = $this->getQueueId($name);
-        } catch (Zend_Queue_Exception $e) {
+        } catch (Zend_Queue_Exception) {
             return false;
         }
 
@@ -408,7 +408,7 @@ class Zend_Queue_Adapter_Db extends Zend_Queue_Adapter_AdapterAbstract
 
                 foreach ($db->fetchAll($query) as $data) {
                     // setup our changes to the message
-                    $data['handle'] = md5(uniqid(rand(), true));
+                    $data['handle'] = md5(uniqid(random_int(0, mt_getrandmax()), true));
 
                     $update = [
                         'handle'  => $data['handle'],

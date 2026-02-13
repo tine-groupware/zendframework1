@@ -47,12 +47,12 @@ class Zend_Tool_Framework_Client_Request
     /**
      * @var array
      */
-    protected $_actionParameters = array();
+    protected $_actionParameters = [];
 
     /**
      * @var array
      */
-    protected $_providerParameters = array();
+    protected $_providerParameters = [];
 
     /**
      * @var bool
@@ -171,7 +171,7 @@ class Zend_Tool_Framework_Client_Request
      */
     public function getActionParameter($parameterName)
     {
-        return (isset($this->_actionParameters[$parameterName])) ? $this->_actionParameters[$parameterName] : null;
+        return $this->_actionParameters[$parameterName] ?? null;
     }
 
     /**
@@ -205,7 +205,7 @@ class Zend_Tool_Framework_Client_Request
      */
     public function getProviderParameter($parameterName)
     {
-        return (isset($this->_providerParameters[$parameterName])) ? $this->_providerParameters[$parameterName] : null;
+        return $this->_providerParameters[$parameterName] ?? null;
     }
 
     /**

@@ -136,10 +136,10 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @return void
      * @throws Zend_Queue_Exception
      */
-    public function create($name, $timeout=null)
+    public function create($name, $timeout=null): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception('create() is not supported in ' . get_class($this));
+        throw new Zend_Queue_Exception('create() is not supported in ' . static::class);
     }
 
     /**
@@ -149,10 +149,10 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @return void
      * @throws Zend_Queue_Exception
      */
-    public function delete($name)
+    public function delete($name): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception('delete() is not supported in ' . get_class($this));
+        throw new Zend_Queue_Exception('delete() is not supported in ' . static::class);
     }
 
     /**
@@ -181,7 +181,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @return void
      * @throws Zend_Queue_Exception
      */
-    public function getQueues()
+    public function getQueues(): never
     {
         require_once 'Zend/Queue/Exception.php';
         throw new Zend_Queue_Exception('getQueues() is not supported in this adapter');
@@ -261,7 +261,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
                                 'message_id' => $response->getHeader('message-id'),
                                 'handle'     => $response->getHeader('message-id'),
                                 'body'       => $response->getBody(),
-                                'md5'        => md5($response->getBody())
+                                'md5'        => md5((string) $response->getBody())
                             ];
                             $data[] = $datum;
                             break;
@@ -342,7 +342,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @return integer
      * @throws Zend_Queue_Exception (not supported)
      */
-    public function count(Zend_Queue $queue=null)
+    public function count(Zend_Queue $queue=null): never
     {
         require_once 'Zend/Queue/Exception.php';
         throw new Zend_Queue_Exception('count() is not supported in this adapter');
@@ -355,7 +355,7 @@ class Zend_Queue_Adapter_Activemq extends Zend_Queue_Adapter_AdapterAbstract
      * @return boolean
      * @throws Zend_Queue_Exception (not supported)
      */
-    public function isExists($name)
+    public function isExists($name): never
     {
         require_once 'Zend/Queue/Exception.php';
         throw new Zend_Queue_Exception('isExists() is not supported in this adapter');

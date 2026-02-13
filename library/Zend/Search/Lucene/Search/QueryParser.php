@@ -354,7 +354,7 @@ class Zend_Search_Lucene_Search_QueryParser extends Zend_Search_Lucene_FSM
         try {
             require_once 'Zend/Search/Lucene/Search/QueryParserContext.php';
 
-            self::$_instance->_encoding     = ($encoding !== null) ? $encoding : self::$_instance->_defaultEncoding;
+            self::$_instance->_encoding     = $encoding ?? self::$_instance->_defaultEncoding;
             self::$_instance->_lastToken    = null;
             self::$_instance->_context      = new Zend_Search_Lucene_Search_QueryParserContext(self::$_instance->_encoding);
             self::$_instance->_contextStack = [];
@@ -373,7 +373,7 @@ class Zend_Search_Lucene_Search_QueryParser extends Zend_Search_Lucene_FSM
 
                     self::$_instance->_lastToken = $token;
                 } catch (Exception $e) {
-                    if (strpos($e->getMessage(), 'There is no any rule for') !== false) {
+                    if (str_contains($e->getMessage(), 'There is no any rule for')) {
                         throw new Zend_Search_Lucene_Search_QueryParserException( 'Syntax error at char position ' . $token->position . '.', 0, $e);
                     }
 

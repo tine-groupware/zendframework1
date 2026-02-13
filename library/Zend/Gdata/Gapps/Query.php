@@ -48,22 +48,17 @@ abstract class Zend_Gdata_Gapps_Query extends Zend_Gdata_Query
 {
 
     /**
-     * The domain which is being administered via the Provisioning API.
-     *
-     * @var string
-     */
-    protected $_domain = null;
-
-    /**
      * Create a new instance.
      *
-     * @param string $domain (optional) The Google Apps-hosted domain to use
+     * @param string $_domain (optional) The Google Apps-hosted domain to use
      *          when constructing query URIs.
      */
-    public function __construct($domain = null)
+    public function __construct(/**
+     * The domain which is being administered via the Provisioning API.
+     */
+    protected $_domain = null)
     {
         parent::__construct();
-        $this->_domain = $domain;
     }
 
     /**

@@ -51,13 +51,6 @@ class Zend_Test_PHPUnit_Db_Connection extends PHPUnit_Extensions_Database_DB_Def
     protected $_connection;
 
     /**
-     * Database Schema
-     *
-     * @var string $db
-     */
-    protected $_schema;
-
-    /**
      * Metadata
      *
      * @param PHPUnit_Extensions_Database_DB_IMetaData $db
@@ -68,12 +61,14 @@ class Zend_Test_PHPUnit_Db_Connection extends PHPUnit_Extensions_Database_DB_Def
      * Construct Connection based on Zend_Db_Adapter_Abstract
      *
      * @param Zend_Db_Adapter_Abstract $db
-     * @param string $schema
+     * @param string $_schema
      */
-    public function __construct(Zend_Db_Adapter_Abstract $db, $schema)
+    public function __construct(Zend_Db_Adapter_Abstract $db, /**
+     * Database Schema
+     */
+    protected $_schema)
     {
         $this->_connection = $db;
-        $this->_schema = $schema;
     }
 
     /**

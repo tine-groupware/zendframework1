@@ -113,10 +113,7 @@ class Zend_Cloud_DocumentService_Document
      */
     public function getField($name)
     {
-        if (isset($this->_fields[$name])) {
-            return $this->_fields[$name];
-        }
-        return null;
+        return $this->_fields[$name] ?? null;
     }
 
     /**

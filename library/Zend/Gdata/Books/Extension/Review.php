@@ -40,24 +40,20 @@ class Zend_Gdata_Books_Extension_Review extends Zend_Gdata_Extension
 
     protected $_rootNamespace = 'gbs';
     protected $_rootElement = 'review';
-    protected $_lang = null;
-    protected $_type = null;
 
     /**
      * Constructor for Zend_Gdata_Books_Extension_Review which
      * User-provided review
      *
-     * @param string|null $lang Review language.
-     * @param string|null $type Type of text construct (typically text, html,
+     * @param string|null $_lang Review language.
+     * @param string|null $_type Type of text construct (typically text, html,
      *        or xhtml).
      * @param string|null $value Text content of the review.
      */
-    public function __construct($lang = null, $type = null, $value = null)
+    public function __construct(protected $_lang = null, protected $_type = null, $value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Books::$namespaces);
         parent::__construct();
-        $this->_lang = $lang;
-        $this->_type = $type;
         $this->_text = $value;
     }
 

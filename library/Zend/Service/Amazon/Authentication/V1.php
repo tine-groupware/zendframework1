@@ -91,7 +91,7 @@ class Zend_Service_Amazon_Authentication_V1 extends Zend_Service_Amazon_Authenti
     {
         $data = '';
 
-        uksort($paramaters, 'strcasecmp');
+        uksort($paramaters, strcasecmp(...));
         unset($paramaters['Signature']);
 
         foreach($paramaters as $key => $value) {

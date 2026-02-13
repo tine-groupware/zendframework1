@@ -241,7 +241,7 @@ class Zend_Db_Adapter_Pdo_Oci extends Zend_Db_Adapter_Pdo_Abstract
 
         $desc = [];
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = [false, null, false];
+            [$primary, $primaryPosition, $identity] = [false, null, false];
             if ($row[$constraint_type] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$position];

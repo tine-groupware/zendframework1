@@ -89,7 +89,7 @@ class Zend_Oauth_Http_Utility
     {
         if ($customParamsOnly) {
             foreach ($params as $key=>$value) {
-                if (preg_match("/^oauth_/", $key)) {
+                if (preg_match("/^oauth_/", (string) $key)) {
                     unset($params[$key]);
                 }
             }
@@ -119,7 +119,7 @@ class Zend_Oauth_Http_Utility
 
         foreach ($params as $key => $value) {
             if ($excludeCustomParams) {
-                if (!preg_match("/^oauth_/", $key)) {
+                if (!preg_match("/^oauth_/", (string) $key)) {
                     continue;
                 }
             }
@@ -174,7 +174,7 @@ class Zend_Oauth_Http_Utility
 
         // Not remotely perfect but beats parse_str() which converts
         // periods and uses urldecode, not rawurldecode.
-        $parts = explode('&', $query);
+        $parts = explode('&', (string) $query);
         foreach ($parts as $pair) {
             $kv = explode('=', $pair);
             $params[rawurldecode($kv[0])] = rawurldecode($kv[1]);
@@ -189,7 +189,7 @@ class Zend_Oauth_Http_Utility
      */
     public function generateNonce()
     {
-        return md5(uniqid(rand(), true));
+        return md5(uniqid(random_int(0, mt_getrandmax()), true));
     }
 
     /**

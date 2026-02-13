@@ -39,21 +39,11 @@ class Zend_Gdata_Extension_Reminder extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'reminder';
-    protected $_absoluteTime = null;
-    protected $_method = null;
-    protected $_days = null;
-    protected $_hours = null;
-    protected $_minutes = null;
 
-    public function __construct($absoluteTime = null, $method = null, $days = null,
-            $hours = null, $minutes = null)
+    public function __construct(protected $_absoluteTime = null, protected $_method = null, protected $_days = null,
+            protected $_hours = null, protected $_minutes = null)
     {
         parent::__construct();
-        $this->_absoluteTime = $absoluteTime;
-        $this->_method = $method;
-        $this->_days = $days;
-        $this->_hours = $hours;
-        $this->_minutes = $minutes;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)
@@ -100,7 +90,7 @@ class Zend_Gdata_Extension_Reminder extends Zend_Gdata_Extension
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $s = '';
         if ($this->_absoluteTime)

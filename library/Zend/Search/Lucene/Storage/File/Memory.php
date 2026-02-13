@@ -33,13 +33,6 @@ require_once 'Zend/Search/Lucene/Storage/File.php';
 class Zend_Search_Lucene_Storage_File_Memory extends Zend_Search_Lucene_Storage_File
 {
     /**
-     * FileData
-     *
-     * @var string
-     */
-    private $_data;
-
-    /**
      * File Position
      *
      * @var integer
@@ -50,11 +43,15 @@ class Zend_Search_Lucene_Storage_File_Memory extends Zend_Search_Lucene_Storage_
     /**
      * Object constractor
      *
-     * @param string $data
+     * @param string $_data
      */
-    public function __construct($data)
+    public function __construct(
+        /**
+         * FileData
+         */
+        private $_data
+    )
     {
-        $this->_data = $data;
     }
 
     /**

@@ -23,23 +23,18 @@
 /**
  * Abstract XML generator adapter
  */
-abstract class Zend_XmlRpc_Generator_GeneratorAbstract
+abstract class Zend_XmlRpc_Generator_GeneratorAbstract implements \Stringable
 {
-    /**
-     * XML encoding string
-     *
-     * @var string
-     */
-    protected $_encoding;
-
     /**
      * Construct new instance of the generator
      *
-     * @param string $encoding XML encoding, default UTF-8
+     * @param string $_encoding XML encoding, default UTF-8
      */
-    public function __construct($encoding = 'UTF-8')
+    public function __construct(/**
+     * XML encoding string
+     */
+    protected $_encoding = 'UTF-8')
     {
-        $this->_encoding = $encoding;
         $this->_init();
     }
 
@@ -111,7 +106,7 @@ abstract class Zend_XmlRpc_Generator_GeneratorAbstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->stripDeclaration($this->saveXml());
     }

@@ -34,19 +34,15 @@ class Zend_Gdata_Analytics_Extension_Property extends Zend_Gdata_Extension
 {
     protected $_rootNamespace = 'ga';
     protected $_rootElement = 'property';
-    protected $_value = null;
-    protected $_name = null;
 
     /**
      * Constructs a new Zend_Gdata_Calendar_Extension_Timezone object.
-     * @param string $value (optional) The text content of the element.
+     * @param string $_value (optional) The text content of the element.
      */
-    public function __construct($value = null, $name = null)
+    public function __construct(protected $_value = null, protected $_name = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Analytics::$namespaces);
         parent::__construct();
-        $this->_value = $value;
-        $this->_name = $name;
     }
 
     /**
@@ -60,7 +56,7 @@ class Zend_Gdata_Analytics_Extension_Property extends Zend_Gdata_Extension
     {
         switch ($attribute->localName) {
             case 'name':
-                $name = explode(':', $attribute->nodeValue);
+                $name = explode(':', (string) $attribute->nodeValue);
                 $this->_name = end($name);
                 break;
             case 'value':
@@ -115,7 +111,7 @@ class Zend_Gdata_Analytics_Extension_Property extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getValue();
     }

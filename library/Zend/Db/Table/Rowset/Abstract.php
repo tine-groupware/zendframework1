@@ -106,7 +106,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
     {
         if (isset($config['table'])) {
             $this->_table      = $config['table'];
-            $this->_tableClass = get_class($this->_table);
+            $this->_tableClass = $this->_table::class;
         }
         if (isset($config['rowClass'])) {
             $this->_rowClass   = $config['rowClass'];

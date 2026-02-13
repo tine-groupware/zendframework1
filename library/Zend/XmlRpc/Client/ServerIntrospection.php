@@ -59,7 +59,7 @@ class Zend_XmlRpc_Client_ServerIntrospection
         require_once 'Zend/XmlRpc/Client/FaultException.php';
         try {
             $signatures = $this->getSignatureForEachMethodByMulticall($methods);
-        } catch (Zend_XmlRpc_Client_FaultException $e) {
+        } catch (Zend_XmlRpc_Client_FaultException) {
             // degrade to looping
         }
 

@@ -69,16 +69,16 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      *
      * @var array available options
      */
-    protected $_options = array(
-        'servers' => array(array(
+    protected $_options = [
+        'servers' => [[
             'host' => self::DEFAULT_HOST,
             'port' => self::DEFAULT_PORT,
             'persistent' => self::DEFAULT_PERSISTENT,
             #'weight'  => self::DEFAULT_WEIGHT,
             'timeout' => self::DEFAULT_TIMEOUT,
             'prefix' => self::DEFAULT_PREFIX,
-        ))
-    );
+        ]]
+    ];
 
     /**
      * Redis object
@@ -93,7 +93,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      * @param array $options associative array of options
      * @throws Zend_Cache_Exception
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         if (!extension_loaded('redis')) {
             Zend_Cache::throwException('The redis extension must be loaded for using this backend !');
@@ -105,7 +105,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
             $value= $this->_options['servers'];
             if (isset($value['host'])) {
                 // in this case, $value seems to be a simple associative array (one server only)
-                $value = array(0 => $value); // let's transform it into a classical array of associative arrays
+                $value = [0 => $value]; // let's transform it into a classical array of associative arrays
             }
             $this->setOption('servers', $value);
         }
@@ -186,7 +186,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      * @param  int    $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @return boolean True if no problem
      */
-    public function save($data, $id, $tags = array(), $specificLifetime = false)
+    public function save($data, $id, $tags = [], $specificLifetime = false)
     {
         $lifetime = $this->getLifetime($specificLifetime);
 
@@ -198,9 +198,9 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
         }
 
         if ($lifetime) {
-            $transaction->setex($id, $lifetime, array($data, time(), $lifetime, (array)$tags));
+            $transaction->setex($id, $lifetime, [$data, time(), $lifetime, (array)$tags]);
         } else {
-            $transaction->set($id, array($data, time(), $lifetime, (array)$tags));
+            $transaction->set($id, [$data, time(), $lifetime, (array)$tags]);
         }
 
         // add to tag sets
@@ -259,7 +259,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      * @throws Zend_Cache_Exception
      * @return boolean True if no problem
      */
-    public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
+    public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = [])
     {
         switch ($mode) {
             case Zend_Cache::CLEANING_MODE_ALL:
@@ -399,7 +399,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
         $lifetime = $this->getLifetime(false);
         if ($lifetime === null) {
             // #ZF-4614 : we tranform null to zero to get the maximal lifetime
-            parent::setDirectives(array('lifetime' => 0));
+            parent::setDirectives(['lifetime' => 0]);
         }
     }
 
@@ -411,7 +411,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     public function getIds()
     {
         $this->_log("Zend_Cache_Backend_Redis::getIds() : getting the list of cache ids is unsupported by Redis backend");
-        return array();
+        return [];
     }
 
     /**
@@ -434,9 +434,9 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      * @param array $tags array of tags
      * @return array array of matching cache ids (string)
      */
-    public function getIdsMatchingTags($tags = array())
+    public function getIdsMatchingTags($tags = [])
     {
-        $cacheTags = array();
+        $cacheTags = [];
 
         foreach ((array) $tags as $tag) {
             $cacheTags[] = self::TAG_PREFIX . $tag;
@@ -454,10 +454,10 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      * @param array $tags array of tags
      * @return array array of not matching cache ids (string)
      */
-    public function getIdsNotMatchingTags($tags = array())
+    public function getIdsNotMatchingTags($tags = [])
     {
         $this->_log(self::TAGS_UNSUPPORTED_BY_SAVE_OF_REDIS_BACKEND);
-        return array();
+        return [];
     }
 
     /**
@@ -468,9 +468,9 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      * @param array $tags array of tags
      * @return array array of any matching cache ids (string)
      */
-    public function getIdsMatchingAnyTags($tags = array())
+    public function getIdsMatchingAnyTags($tags = [])
     {
-        $cacheTags = array();
+        $cacheTags = [];
 
         foreach ((array) $tags as $tag) {
             $cacheTags[] = self::TAG_PREFIX . $tag;
@@ -512,11 +512,11 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
             $mtime = $tmp[1];
             $lifetime = $tmp[2];
 
-            return array(
+            return [
                 'expire' => $mtime + $lifetime,
                 'tags'   => $tmp[3],
                 'mtime'  => $mtime
-            );
+            ];
         }
 
         return false;
@@ -544,7 +544,7 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
                 return false;
             }
 
-            $result = $this->_redis->setex($id, $newLifetime, array($data, time(), $newLifetime, $tags));
+            $result = $this->_redis->setex($id, $newLifetime, [$data, time(), $newLifetime, $tags]);
 
             return $result;
         }
@@ -568,14 +568,14 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
      */
     public function getCapabilities()
     {
-        return array(
+        return [
             'automatic_cleaning' => false,
             'tags'               => true,
             'expired_read'       => false,
             'priority'           => false,
             'infinite_lifetime'  => true,
             'get_list'           => false
-        );
+        ];
     }
 
     /**
@@ -588,12 +588,12 @@ class Zend_Cache_Backend_Redis extends Zend_Cache_Backend implements Zend_Cache_
     {
         $keyPrefix = $this->_redis->getOption(Redis::OPT_PREFIX);
 
-        $pos = strlen($keyPrefix) + strlen(self::TAG_PREFIX);
+        $pos = strlen((string) $keyPrefix) + strlen(self::TAG_PREFIX);
 
-        $result = array();
+        $result = [];
 
         foreach ($keys as $key) {
-            $result[] = substr($key, $pos);
+            $result[] = substr((string) $key, $pos);
         }
 
         return $result;

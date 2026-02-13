@@ -46,12 +46,6 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
     protected $_key = null;
 
     /**
-     * Consumer secret
-     * @var string
-     */
-    protected $_consumerSecret = null;
-
-    /**
      * Token secret
      * @var string
      */
@@ -60,14 +54,16 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
     /**
      * Constructor
      *
-     * @param  string $consumerSecret
+     * @param string $_consumerSecret
      * @param  null|string $tokenSecret
      * @param  null|string $hashAlgo
      * @return void
      */
-    public function __construct($consumerSecret, $tokenSecret = null, $hashAlgo = null)
+    public function __construct(/**
+     * Consumer secret
+     */
+    protected $_consumerSecret, $tokenSecret = null, $hashAlgo = null)
     {
-        $this->_consumerSecret = $consumerSecret;
         if (isset($tokenSecret)) {
             $this->_tokenSecret = $tokenSecret;
         }
@@ -104,7 +100,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
         $uri->setQuery('');
         $uri->setFragment('');
         $uri->setHost(strtolower($uri->getHost()));
-        return $uri->getUri(true);
+        return $uri->getUri();
     }
 
     /**
@@ -167,7 +163,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
     protected function _toByteValueOrderedQueryString(array $params)
     {
         $return = [];
-        uksort($params, 'strnatcmp');
+        uksort($params, strnatcmp(...));
         foreach ($params as $key => $value) {
             if (is_array($value)) {
                 natsort($value);

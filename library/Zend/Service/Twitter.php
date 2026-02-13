@@ -464,7 +464,7 @@ class Zend_Service_Twitter
         $path   = 'direct_messages';
         $params = [];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'count':
                     $params['count'] = (int) $value;
                     break;
@@ -544,7 +544,7 @@ class Zend_Service_Twitter
         $path   = 'direct_messages/sent';
         $params = [];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'count':
                     $params['count'] = (int) $value;
                     break;
@@ -624,7 +624,7 @@ class Zend_Service_Twitter
         $path = 'favorites/list';
         $params = [];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'user_id':
                     $params['user_id'] = $this->validInteger($value);
                     break;
@@ -727,16 +727,16 @@ class Zend_Service_Twitter
 
         $params = ['q' => $query];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'geocode':
-                    if (!substr_count($value, ',') !== 2) {
+                    if (!substr_count((string) $value, ',') !== 2) {
                         require_once 'Zend/Service/Twitter/Exception.php';
                         throw new Zend_Service_Twitter_Exception(
                             '"geocode" must be of the format "latitude,longitude,radius"'
                         );
                     }
 
-                    list($latitude, $longitude, $radius) = explode(',', $value);
+                    [$latitude, $longitude, $radius] = explode(',', (string) $value);
                     $radius = trim($radius);
 
                     if (!preg_match('/^\d+(mi|km)$/', $radius)) {
@@ -750,25 +750,25 @@ class Zend_Service_Twitter
                     $params['geocode'] = $latitude . ',' . $longitude . ',' . $radius;
                     break;
                 case 'lang':
-                    if (strlen($value) > 2) {
+                    if (strlen((string) $value) > 2) {
                         require_once 'Zend/Service/Twitter/Exception.php';
                         throw new Zend_Service_Twitter_Exception(
                             'Query language must be a 2 character string'
                         );
                     }
-                    $params['lang'] = strtolower($value);
+                    $params['lang'] = strtolower((string) $value);
                     break;
                 case 'locale':
-                    if (strlen($value) > 2) {
+                    if (strlen((string) $value) > 2) {
                         require_once 'Zend/Service/Twitter/Exception.php';
                         throw new Zend_Service_Twitter_Exception(
                             'Query locale must be a 2 character string'
                         );
                     }
-                    $params['locale'] = strtolower($value);
+                    $params['locale'] = strtolower((string) $value);
                     break;
                 case 'result_type':
-                    $value = strtolower($value);
+                    $value = strtolower((string) $value);
                     if (!in_array($value, ['mixed', 'recent', 'popular'])) {
                         require_once 'Zend/Service/Twitter/Exception.php';
                         throw new Zend_Service_Twitter_Exception(
@@ -788,7 +788,7 @@ class Zend_Service_Twitter
                     $params['count'] = $value;
                     break;
                 case 'until':
-                    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $value)) {
+                    if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $value)) {
                         require_once 'Zend/Service/Twitter/Exception.php';
                         throw new Zend_Service_Twitter_Exception(
                             '"until" must be a date in the format YYYY-MM-DD'
@@ -852,7 +852,7 @@ class Zend_Service_Twitter
         $path = 'statuses/home_timeline';
         $params = [];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'count':
                     $params['count'] = (int) $value;
                     break;
@@ -909,7 +909,7 @@ class Zend_Service_Twitter
         $path   = 'statuses/mentions_timeline';
         $params = [];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'count':
                     $params['count'] = (int) $value;
                     break;
@@ -1036,7 +1036,7 @@ class Zend_Service_Twitter
         $path = 'statuses/user_timeline';
         $params = [];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'user_id':
                     $params['user_id'] = $this->validInteger($value);
                     break;
@@ -1106,7 +1106,7 @@ class Zend_Service_Twitter
 
         $params = ['q' => $query];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'count':
                     $value = (int) $value;
                     if (1 > $value || 20 < $value) {
@@ -1161,7 +1161,7 @@ class Zend_Service_Twitter
             require_once 'Zend/Service/Twitter/Exception.php';
             throw new Zend_Service_Twitter_Exception(
                 'Twitter session is unauthorised. You need to initialize '
-                . __CLASS__ . ' with an OAuth Access Token or use '
+                . self::class . ' with an OAuth Access Token or use '
                 . 'its OAuth functionality to obtain an Access Token before '
                 . 'attempting any API actions that require authorisation'
             );
@@ -1189,7 +1189,7 @@ class Zend_Service_Twitter
      */
     protected function validInteger($int)
     {
-        if (preg_match("/(\d+)/", $int)) {
+        if (preg_match("/(\d+)/", (string) $int)) {
             return $int;
         }
         return 0;

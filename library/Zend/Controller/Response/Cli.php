@@ -53,7 +53,7 @@ class Zend_Controller_Response_Cli extends Zend_Controller_Response_Abstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->isException() && $this->renderExceptions()) {
             $exceptions = '';
@@ -63,6 +63,6 @@ class Zend_Controller_Response_Cli extends Zend_Controller_Response_Abstract
             return $exceptions;
         }
 
-        return $this->_body;
+        return (string) $this->_body;
     }
 }

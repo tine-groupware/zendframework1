@@ -29,7 +29,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Controller_Response_Abstract
+abstract class Zend_Controller_Response_Abstract implements \Stringable
 {
     /**
      * Body content
@@ -216,7 +216,7 @@ abstract class Zend_Controller_Response_Abstract
     public function setRawHeader($value)
     {
         $this->canSendHeaders(true);
-        if ('Location' == substr($value, 0, 8)) {
+        if (str_starts_with($value, 'Location')) {
             $this->_isRedirect = true;
         }
         $this->_headersRaw[] = (string) $value;
@@ -787,10 +787,10 @@ abstract class Zend_Controller_Response_Abstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         ob_start();
         $this->sendResponse();
-        return ob_get_clean();
+        return (string) ob_get_clean();
     }
 }

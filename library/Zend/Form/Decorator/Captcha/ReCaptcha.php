@@ -114,14 +114,10 @@ EOJ;
 
         // Always place the hidden fields before the captcha markup, and follow 
         // with the JS from above
-        switch ($placement) {
-            case 'PREPEND':
-                $content = $hidden . $markup . $js . $separator . $content;
-                break;
-            case 'APPEND':
-            default:
-                $content = $content . $separator . $hidden . $markup . $js;
-        }
+        $content = match ($placement) {
+            'PREPEND' => $hidden . $markup . $js . $separator . $content,
+            default => $content . $separator . $hidden . $markup . $js,
+        };
         return $content;
     }
 }

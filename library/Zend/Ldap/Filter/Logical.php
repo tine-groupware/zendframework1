@@ -51,19 +51,15 @@ abstract class Zend_Ldap_Filter_Logical extends Zend_Ldap_Filter_Abstract
     private $_subfilters;
 
     /**
-     * The grouping symbol.
-     *
-     * @var string
-     */
-    private $_symbol;
-
-    /**
      * Creates a new grouping filter.
      *
      * @param array  $subfilters
-     * @param string $symbol
+     * @param string $_symbol
      */
-    protected function __construct(array $subfilters, $symbol)
+    protected function __construct(array $subfilters, /**
+     * The grouping symbol.
+     */
+    private $_symbol)
     {
         foreach ($subfilters as $key => $s) {
             if (is_string($s)) $subfilters[$key] = new Zend_Ldap_Filter_String($s);
@@ -76,7 +72,6 @@ abstract class Zend_Ldap_Filter_Logical extends Zend_Ldap_Filter_Abstract
             }
         }
         $this->_subfilters = $subfilters;
-        $this->_symbol = $symbol;
     }
 
     /**

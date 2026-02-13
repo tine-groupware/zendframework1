@@ -78,7 +78,7 @@ class Zend_Server_Method_Callback
     public function setOptions(array $options)
     {
         foreach ($options as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst((string) $key);
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -95,7 +95,7 @@ class Zend_Server_Method_Callback
     public function setClass($class)
     {
         if (is_object($class)) {
-            $class = get_class($class);
+            $class = $class::class;
         }
         $this->_class = $class;
         return $this;
@@ -167,7 +167,7 @@ class Zend_Server_Method_Callback
     {
         if (!in_array($type, $this->_types)) {
             require_once 'Zend/Server/Exception.php';
-            throw new Zend_Server_Exception('Invalid method callback type  passed to ' . __CLASS__ . '::' . __METHOD__);
+            throw new Zend_Server_Exception('Invalid method callback type  passed to ' . self::class . '::' . __METHOD__);
         }
         $this->_type = $type;
         return $this;

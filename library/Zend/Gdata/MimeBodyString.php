@@ -34,13 +34,6 @@ class Zend_Gdata_MimeBodyString
 {
 
     /**
-     * The source string.
-     *
-     * @var string
-     */
-    protected $_sourceString = '';
-
-    /**
      * The size of the MIME message.
      * @var integer
      */
@@ -49,11 +42,13 @@ class Zend_Gdata_MimeBodyString
     /**
      * Create a new MimeBodyString object.
      *
-     * @param string $sourceString The string we are wrapping.
+     * @param string $_sourceString The string we are wrapping.
      */
-    public function __construct($sourceString)
+    public function __construct(/**
+     * The source string.
+     */
+    protected $_sourceString)
     {
-        $this->_sourceString = $sourceString;
         $this->_bytesRead = 0;
     }
 

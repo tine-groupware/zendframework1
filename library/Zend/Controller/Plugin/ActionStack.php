@@ -214,7 +214,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
         }
         $action = $next->getActionName();
         if (empty($action)) {
-            return $this->popStack($stack);
+            return $this->popStack();
         }
 
         $request    = $this->getRequest();

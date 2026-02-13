@@ -196,7 +196,7 @@ class Zend_Gdata_Gapps_ServiceException extends Zend_Exception
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString(): string {
         $result = "The server encountered the following errors processing the request:";
         foreach ($this->_errors as $error) {
             $result .= "\n" . $error->__toString();

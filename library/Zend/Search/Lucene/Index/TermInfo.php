@@ -33,48 +33,36 @@
 class Zend_Search_Lucene_Index_TermInfo
 {
     /**
-     * The number of documents which contain the term.
-     *
-     * @var integer
+     * @param int $docFreq
+     * @param int $freqPointer
+     * @param int $proxPointer
+     * @param int $skipOffset
+     * @param int $indexPointer
      */
-    public $docFreq;
-
-    /**
-     * Data offset in a Frequencies file.
-     *
-     * @var integer
-     */
-    public $freqPointer;
-
-    /**
-     * Data offset in a Positions file.
-     *
-     * @var integer
-     */
-    public $proxPointer;
-
-    /**
-     * ScipData offset in a Frequencies file.
-     *
-     * @var integer
-     */
-    public $skipOffset;
-
-    /**
-     * Term offset of the _next_ term in a TermDictionary file.
-     * Used only for Term Index
-     *
-     * @var integer
-     */
-    public $indexPointer;
-
-    public function __construct($docFreq, $freqPointer, $proxPointer, $skipOffset, $indexPointer = null)
+    public function __construct(
+        /**
+         * The number of documents which contain the term.
+         */
+        public $docFreq,
+        /**
+         * Data offset in a Frequencies file.
+         */
+        public $freqPointer,
+        /**
+         * Data offset in a Positions file.
+         */
+        public $proxPointer,
+        /**
+         * ScipData offset in a Frequencies file.
+         */
+        public $skipOffset,
+        /**
+         * Term offset of the _next_ term in a TermDictionary file.
+         * Used only for Term Index
+         */
+        public $indexPointer = null
+    )
     {
-        $this->docFreq      = $docFreq;
-        $this->freqPointer  = $freqPointer;
-        $this->proxPointer  = $proxPointer;
-        $this->skipOffset   = $skipOffset;
-        $this->indexPointer = $indexPointer;
     }
 }
 

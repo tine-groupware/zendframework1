@@ -196,7 +196,7 @@ abstract class Zend_Mail_Transport_Abstract
                 $value = implode(',' . $this->EOL . ' ', $content);
                 $this->header .= $header . ': ' . $value . $this->EOL;
             } else {
-                array_walk($content, [get_class($this), '_formatHeader'], $header);
+                array_walk($content, static::_formatHeader(...), $header);
                 $this->header .= implode($this->EOL, $content) . $this->EOL;
             }
         }

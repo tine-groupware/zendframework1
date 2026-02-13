@@ -32,6 +32,7 @@ require_once 'Zend/Stdlib/CallbackHandler.php';
  */
 class Zend_EventManager_FilterChain implements Zend_EventManager_Filter
 {
+    public $responses;
     /**
      * @var Zend_EventManager_Filter_FilterIterator All filters
      */

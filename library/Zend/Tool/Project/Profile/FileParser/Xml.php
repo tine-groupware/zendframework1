@@ -153,7 +153,7 @@ class Zend_Tool_Project_Profile_FileParser_Xml implements Zend_Tool_Project_Prof
             }
 
             $resourceName = $resource->getContext()->getName();
-            $resourceName[0] = strtolower($resourceName[0]);
+            $resourceName[0] = strtolower((string) $resourceName[0]);
 
             $newNode = $xmlNode->addChild($resourceName);
 
@@ -203,7 +203,7 @@ class Zend_Tool_Project_Profile_FileParser_Xml implements Zend_Tool_Project_Prof
             }
 
             if ($resource) {
-                $resource->append($subResource, false);
+                $resource->append($subResource);
             } else {
                 $this->_profile->append($subResource);
             }

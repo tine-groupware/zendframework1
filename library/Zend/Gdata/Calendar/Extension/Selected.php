@@ -40,17 +40,15 @@ class Zend_Gdata_Calendar_Extension_Selected extends Zend_Gdata_Extension
 
     protected $_rootNamespace = 'gCal';
     protected $_rootElement = 'selected';
-    protected $_value = null;
 
     /**
      * Constructs a new Zend_Gdata_Calendar_Extension_Selected object.
-     * @param bool $value (optional) The value of the element.
+     * @param bool $_value (optional) The value of the element.
      */
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Calendar::$namespaces);
         parent::__construct();
-        $this->_value = $value;
     }
 
     /**
@@ -125,9 +123,9 @@ class Zend_Gdata_Calendar_Extension_Selected extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->_value;
+        return (string) $this->_value;
     }
 
 }

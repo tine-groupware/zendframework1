@@ -219,28 +219,28 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
         $p = 1;
         foreach ($result as $key => $row) {
             $row = array_merge($row_defaults, $row);
-            if (preg_match('/unsigned/', $row['Type'])) {
+            if (preg_match('/unsigned/', (string) $row['Type'])) {
                 $row['Unsigned'] = true;
             }
-            if (preg_match('/^((?:var)?char)\((\d+)\)/', $row['Type'], $matches)) {
+            if (preg_match('/^((?:var)?char)\((\d+)\)/', (string) $row['Type'], $matches)) {
                 $row['Type'] = $matches[1];
                 $row['Length'] = $matches[2];
-            } else if (preg_match('/^decimal\((\d+),(\d+)\)/', $row['Type'], $matches)) {
+            } else if (preg_match('/^decimal\((\d+),(\d+)\)/', (string) $row['Type'], $matches)) {
                 $row['Type'] = 'decimal';
                 $row['Precision'] = $matches[1];
                 $row['Scale'] = $matches[2];
-            } else if (preg_match('/^float\((\d+),(\d+)\)/', $row['Type'], $matches)) {
+            } else if (preg_match('/^float\((\d+),(\d+)\)/', (string) $row['Type'], $matches)) {
                 $row['Type'] = 'float';
                 $row['Precision'] = $matches[1];
                 $row['Scale'] = $matches[2];
-            } else if (preg_match('/^((?:big|medium|small|tiny)?int)\((\d+)\)/', $row['Type'], $matches)) {
+            } else if (preg_match('/^((?:big|medium|small|tiny)?int)\((\d+)\)/', (string) $row['Type'], $matches)) {
                 $row['Type'] = $matches[1];
                 /**
                  * The optional argument of a MySQL int type is not precision
                  * or length; it is only a hint for display width.
                  */
             }
-            if (strtoupper($row['Key']) == 'PRI') {
+            if (strtoupper((string) $row['Key']) == 'PRI') {
                 $row['Primary'] = true;
                 $row['PrimaryPosition'] = $p;
                 if ($row['Extra'] == 'auto_increment') {
@@ -292,7 +292,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
         }
 
         if (isset($this->_config['port'])) {
-            $port = (integer) $this->_config['port'];
+            $port = (int) $this->_config['port'];
         } else {
             $port = null;
         }
@@ -530,13 +530,10 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
      */
     public function supportsParameters($type)
     {
-        switch ($type) {
-            case 'positional':
-                return true;
-            case 'named':
-            default:
-                return false;
-        }
+        return match ($type) {
+            'positional' => true,
+            default => false,
+        };
     }
 
     /**

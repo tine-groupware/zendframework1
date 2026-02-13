@@ -351,7 +351,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
             return $default;
         }
 
-        $class = get_class($this->_actionController);
+        $class = $this->_actionController::class;
 
         if (!strstr($class, '_')) {
             return $default;
@@ -454,8 +454,8 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         }
 
         // Reset some flags every time
-        $options['noController'] = (isset($options['noController'])) ? $options['noController'] : false;
-        $options['noRender']     = (isset($options['noRender'])) ? $options['noRender'] : false;
+        $options['noController'] ??= false;
+        $options['noRender'] ??= false;
         $this->_scriptAction     = null;
         $this->_responseSegment  = null;
 
@@ -626,7 +626,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         }
         
         $replacePattern = ['/[^a-z0-9]+$/i', '/^[^a-z0-9]+/i'];
-        $vars['action'] = preg_replace($replacePattern, '', $vars['action']);
+        $vars['action'] = preg_replace($replacePattern, '', (string) $vars['action']);
 
         $inflector = $this->getInflector();
         if ($this->getNoController() || $this->getNeverController()) {
@@ -848,7 +848,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         $filter     = new Zend_Filter_Word_CamelCaseToDash();
         $controller = $filter->filter($request->getControllerName());
         $controller = $dispatcher->formatControllerName($controller);
-        if ('Controller' == substr($controller, -10)) {
+        if (str_ends_with($controller, 'Controller')) {
             $controller = substr($controller, 0, -10);
         }
 

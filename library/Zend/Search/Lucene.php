@@ -278,7 +278,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             // All passes are failed
             throw new Zend_Search_Lucene_Exception('Index is under processing now');
         } catch (Zend_Search_Lucene_Exception $e) {
-            if (strpos($e->getMessage(), 'is not readable') !== false) {
+            if (str_contains($e->getMessage(), 'is not readable')) {
                 try {
                     // Try to open old style segments file
                     $segmentsFile = $directory->getFileObject('segments', false);
@@ -286,7 +286,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
                     // It's pre-2.1 index
                     return 0;
                 } catch (Zend_Search_Lucene_Exception $e) {
-                    if (strpos($e->getMessage(), 'is not readable') !== false) {
+                    if (str_contains($e->getMessage(), 'is not readable')) {
                         return -1;
                     } else {
                         throw new Zend_Search_Lucene_Exception($e->getMessage(), $e->getCode(), $e);
@@ -327,7 +327,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             return 'segments';
         }
 
-        return 'segments_' . base_convert($generation, 10, 36);
+        return 'segments_' . base_convert((string) $generation, 10, 36);
     }
 
     /**
@@ -535,7 +535,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             } catch (Zend_Search_Lucene_Exception $e) {
                 Zend_Search_Lucene_LockManager::releaseReadLock($this->_directory);
 
-                if (strpos($e->getMessage(), 'Can\'t obtain exclusive index lock') === false) {
+                if (!str_contains($e->getMessage(), 'Can\'t obtain exclusive index lock')) {
                     throw new Zend_Search_Lucene_Exception($e->getMessage(), $e->getCode(), $e);
                 }
 
@@ -1023,7 +1023,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
                             try {
                                 $value = $hit->getDocument()->getFieldValue($fieldName);
                             } catch (Zend_Search_Lucene_Exception $e) {
-                                if (strpos($e->getMessage(), 'not found') === false) {
+                                if (!str_contains($e->getMessage(), 'not found')) {
                                     throw new Zend_Search_Lucene_Exception($e->getMessage(), $e->getCode(), $e);
                                 }
 
@@ -1071,7 +1071,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             $sortArgs[] = &$hits;
 
             // Do sort
-            call_user_func_array('array_multisort', $sortArgs);
+            call_user_func_array(array_multisort(...), $sortArgs);
         }
 
         return $hits;
@@ -1208,7 +1208,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             return reset($subResults);
         }
 
-        return call_user_func_array('array_merge', $subResults);
+        return call_user_func_array(array_merge(...), $subResults);
     }
 
     /**
@@ -1242,7 +1242,7 @@ class Zend_Search_Lucene implements Zend_Search_Lucene_Interface
             return reset($subResults);
         }
 
-        $result = call_user_func_array('array_merge', $subResults);
+        $result = call_user_func_array(array_merge(...), $subResults);
 
         return $result;
     }

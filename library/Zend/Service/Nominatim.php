@@ -116,7 +116,7 @@ class Zend_Service_Nominatim
     {
         $this->_httpClient->resetParameters();
 
-        $queryParts = array();
+        $queryParts = [];
         
         if(!empty($this->_street)) {
             $queryParts[] = $this->_street;
@@ -148,7 +148,7 @@ class Zend_Service_Nominatim
         $body = $response->getBody();
       
         # check xml validity!
-        $isxml = @simplexml_load_string($body);
+        $isxml = @simplexml_load_string((string) $body);
         if (! $isxml) {
             throw new UnexpectedValueException('String could not be parsed as XML');
         }

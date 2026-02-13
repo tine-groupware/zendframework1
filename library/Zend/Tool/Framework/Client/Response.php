@@ -26,7 +26,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Framework_Client_Response
+class Zend_Tool_Framework_Client_Response implements \Stringable
 {
     /**
      * @var callback|null
@@ -170,7 +170,7 @@ class Zend_Tool_Framework_Client_Response
      */
     public function addContentDecorator(Zend_Tool_Framework_Client_Response_ContentDecorator_Interface $contentDecorator)
     {
-        $decoratorName = strtolower($contentDecorator->getName());
+        $decoratorName = strtolower((string) $contentDecorator->getName());
         $this->_decorators[$decoratorName] = $contentDecorator;
         return $this;
     }
@@ -190,7 +190,7 @@ class Zend_Tool_Framework_Client_Response
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string) implode('', $this->_content);
     }

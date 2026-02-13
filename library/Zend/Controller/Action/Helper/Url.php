@@ -70,7 +70,7 @@ class Zend_Controller_Action_Helper_Url extends Zend_Controller_Action_Helper_Ab
         if (null !== $params) {
             $paramPairs = [];
             foreach ($params as $key => $value) {
-                $paramPairs[] = urlencode($key) . '/' . urlencode($value);
+                $paramPairs[] = urlencode((string) $key) . '/' . urlencode((string) $value);
             }
             $paramString = implode('/', $paramPairs);
             $url .= '/' . $paramString;

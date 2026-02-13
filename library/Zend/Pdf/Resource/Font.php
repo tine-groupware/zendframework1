@@ -47,7 +47,7 @@ require_once 'Zend/Pdf/Font.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Pdf_Resource_Font extends Zend_Pdf_Resource
+abstract class Zend_Pdf_Resource_Font extends Zend_Pdf_Resource implements \Stringable
 {
   /**** Instance Variables ****/
 
@@ -157,7 +157,7 @@ abstract class Zend_Pdf_Resource_Font extends Zend_Pdf_Resource
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getFontName(Zend_Pdf_Font::NAME_FULL, '', '//TRANSLIT');
     }
@@ -248,7 +248,7 @@ abstract class Zend_Pdf_Resource_Font extends Zend_Pdf_Resource
         /* Convert the character set if requested.
          */
         if (($characterSet !== null) && ($characterSet != 'UTF-16BE') && PHP_OS != 'AIX') { // AIX knows not this charset
-            $name = iconv('UTF-16BE', $characterSet, $name);
+            $name = iconv('UTF-16BE', $characterSet, (string) $name);
         }
         return $name;
     }

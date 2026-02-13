@@ -141,7 +141,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
         }
 
         foreach ($options as $key => $value) {
-            $method = 'set' . strtolower($key);
+            $method = 'set' . strtolower((string) $key);
 
             if (in_array($method, $methods)) {
                 $this->$method($value);
@@ -239,7 +239,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
 
             $this->_classResources = [];
             foreach ($methodNames as $method) {
-                if (5 < strlen($method) && '_init' === substr($method, 0, 5)) {
+                if (5 < strlen($method) && str_starts_with($method, '_init')) {
                     $this->_classResources[strtolower(substr($method, 5))] = $method;
                 }
             }
@@ -453,7 +453,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
             }
             $this->_application = $application;
         } else {
-            throw new Zend_Application_Bootstrap_Exception('Invalid application provided to bootstrap constructor (received "' . get_class($application) . '" instance)');
+            throw new Zend_Application_Bootstrap_Exception('Invalid application provided to bootstrap constructor (received "' . $application::class . '" instance)');
         }
         return $this;
     }
@@ -609,7 +609,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      */
     public function __call($method, $args)
     {
-        if (9 < strlen($method) && 'bootstrap' === substr($method, 0, 9)) {
+        if (9 < strlen($method) && str_starts_with($method, 'bootstrap')) {
             $resource = substr($method, 9);
             return $this->bootstrap($resource);
         }
@@ -730,7 +730,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
         if (isset($instance->_explicitType)) {
             $resource = $instance->_explicitType;
         }
-        $resource = strtolower($resource);
+        $resource = strtolower((string) $resource);
         $this->_pluginResources[$resource] = $instance;
 
         return $resource;
@@ -767,12 +767,12 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
         if (isset($resource->_explicitType)) {
             $pluginName = $resource->_explicitType;
         } else  {
-            $className  = get_class($resource);
+            $className  = $resource::class;
             $pluginName = $className;
             $loader     = $this->getPluginLoader();
             foreach ($loader->getPaths() as $prefix => $paths) {
-                if (0 === strpos($className, $prefix)) {
-                    $pluginName = substr($className, strlen($prefix));
+                if (str_starts_with($className, (string) $prefix)) {
+                    $pluginName = substr($className, strlen((string) $prefix));
                     $pluginName = trim($pluginName, '_');
                     break;
                 }

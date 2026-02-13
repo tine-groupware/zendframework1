@@ -116,6 +116,7 @@ require_once 'Zend/Server/Reflection/Method.php';
  */
 class Zend_XmlRpc_Server extends Zend_Server_Abstract
 {
+    public $_system;
     /**
      * Character encoding
      * @var string
@@ -360,7 +361,7 @@ class Zend_XmlRpc_Server extends Zend_Server_Abstract
     {
         if (!is_array($definition) && (!$definition instanceof Zend_Server_Definition)) {
             if (is_object($definition)) {
-                $type = get_class($definition);
+                $type = $definition::class;
             } else {
                 $type = gettype($definition);
             }
@@ -376,7 +377,7 @@ class Zend_XmlRpc_Server extends Zend_Server_Abstract
         }
 
         foreach ($definition as $key => $method) {
-            if ('system.' == substr($key, 0, 7)) {
+            if (str_starts_with((string) $key, 'system.')) {
                 continue;
             }
             $this->_table->addMethod($method, $key);
@@ -538,10 +539,7 @@ class Zend_XmlRpc_Server extends Zend_Server_Abstract
      */
     protected function _fixType($type)
     {
-        if (isset($this->_typeMap[$type])) {
-            return $this->_typeMap[$type];
-        }
-        return 'void';
+        return $this->_typeMap[$type] ?? 'void';
     }
 
     /**

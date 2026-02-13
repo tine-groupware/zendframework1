@@ -58,6 +58,7 @@ require_once 'Zend/Crypt/Hmac.php';
  */
 class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
 {
+    public $_endpoint;
     /* Notes */
     // TODO SSL is required
 
@@ -452,7 +453,7 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
         // UTF-8 encode all parameters and replace '+' characters
         foreach ($params as $name => $value) {
             unset($params[$name]);
-            $params[utf8_encode($name)] = $value;
+            $params[mb_convert_encoding($name, 'UTF-8', 'ISO-8859-1')] = $value;
         }
 
         $params = $this->_addRequiredParameters($params);
@@ -470,7 +471,7 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
             $request->setUri($this->getEndpoint());
             $request->setMethod(Zend_Http_Client::POST);
             foreach ($params as $key => $value) {
-                $params_out[] = rawurlencode($key)."=".rawurlencode($value);
+                $params_out[] = rawurlencode((string) $key)."=".rawurlencode((string) $value);
             }
             $request->setRawData(join('&', $params_out), Zend_Http_Client::ENC_URLENCODED);
             $httpResponse = $request->request();
@@ -538,19 +539,19 @@ class Zend_Service_Amazon_SimpleDb extends Zend_Service_Amazon_Abstract
         $data .= $this->getEndpoint()->getHost() . "\n";
         $data .= "/\n";
 
-        uksort($parameters, 'strcmp');
+        uksort($parameters, strcmp(...));
         unset($parameters['Signature']);
 
         $arrData = [];
 
         foreach ($parameters as $key => $value) {
-            $value = urlencode($value);
+            $value = urlencode((string) $value);
             $value = str_replace(
                 ["%7E", "+"],
                 ["~", "%20"],
                 $value);
 
-            $arrData[] = urlencode($key) . '=' . $value;
+            $arrData[] = urlencode((string) $key) . '=' . $value;
         }
 
         $data .= implode('&', $arrData);

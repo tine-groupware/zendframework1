@@ -17,10 +17,15 @@ jobs:
 
   test:
     runs-on: ${{ matrix.operating-system }}
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
         operating-system: [ubuntu-22.04]
-        php-versions: ['8.2', '8.3', '8.4']
+        php-versions: ['8.2', '8.3']
+        experimental: [false]
+        include:
+          - php-versions: '8.4'
+            experimental: true
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:

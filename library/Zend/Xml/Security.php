@@ -39,7 +39,7 @@ class Zend_Xml_Security
     protected static function heuristicScan($xml)
     {
         foreach (self::getEntityComparison($xml) as $compare) {
-            if (strpos($xml, $compare) !== false) {
+            if (str_contains($xml, $compare)) {
                 throw new Zend_Xml_Exception(self::ENTITY_DETECT);
             }
         }
@@ -180,7 +180,7 @@ class Zend_Xml_Security
             )
         );
 
-        if (substr(php_sapi_name(), 0, 3) === 'fpm' && $isVulnerableVersion) {
+        if (str_starts_with(php_sapi_name(), 'fpm') && $isVulnerableVersion) {
             return true;
         }
         return false;
@@ -196,7 +196,7 @@ class Zend_Xml_Security
     {
         $encodingMap = self::getAsciiEncodingMap();
         return array_map(
-            [__CLASS__, 'generateEntityComparison'],
+            self::generateEntityComparison(...),
             self::detectXmlEncoding($xml, self::detectStringEncoding($xml))
         );
     }
@@ -213,7 +213,7 @@ class Zend_Xml_Security
     protected static function detectStringEncoding($xml)
     {
         $encoding = self::detectBom($xml);
-        return ($encoding) ? $encoding : self::detectXmlStringEncoding($xml);
+        return $encoding ?: self::detectXmlStringEncoding($xml);
     }
 
     /**
@@ -229,7 +229,7 @@ class Zend_Xml_Security
     protected static function detectBom($string)
     {
         foreach (self::getBomMap() as $criteria) {
-            if (0 === strncmp($string, $criteria['bom'], $criteria['length'])) {
+            if (0 === strncmp($string, (string) $criteria['bom'], $criteria['length'])) {
                 return $criteria['encoding'];
             }
         }
@@ -246,7 +246,7 @@ class Zend_Xml_Security
     {
         foreach (self::getAsciiEncodingMap() as $encoding => $generator) {
             $prefix = call_user_func($generator, '<' . '?xml');
-            if (0 === strncmp($xml, $prefix, strlen($prefix))) {
+            if (str_starts_with($xml, (string) $prefix)) {
                 return $encoding;
             }
         }
@@ -277,20 +277,20 @@ class Zend_Xml_Security
         $quote       = call_user_func($generator, '"');
         $close       = call_user_func($generator, '>');
 
-        $closePos    = strpos($xml, $close);
+        $closePos    = strpos($xml, (string) $close);
         if (false === $closePos) {
             return [$fileEncoding];
         }
 
-        $encPos = strpos($xml, $encAttr);
+        $encPos = strpos($xml, (string) $encAttr);
         if (false === $encPos
             || $encPos > $closePos
         ) {
             return [$fileEncoding];
         }
 
-        $encPos   += strlen($encAttr);
-        $quotePos = strpos($xml, $quote, $encPos);
+        $encPos   += strlen((string) $encAttr);
+        $quotePos = strpos($xml, (string) $quote, $encPos);
         if (false === $quotePos) {
             return [$fileEncoding];
         }
@@ -360,14 +360,14 @@ class Zend_Xml_Security
     protected static function getAsciiEncodingMap()
     {
         return [
-            'UTF-32BE'   => [__CLASS__, 'encodeToUTF32BE'],
-            'UTF-32LE'   => [__CLASS__, 'encodeToUTF32LE'],
-            'UTF-32odd1' => [__CLASS__, 'encodeToUTF32odd1'],
-            'UTF-32odd2' => [__CLASS__, 'encodeToUTF32odd2'],
-            'UTF-16BE'   => [__CLASS__, 'encodeToUTF16BE'],
-            'UTF-16LE'   => [__CLASS__, 'encodeToUTF16LE'],
-            'UTF-8'      => [__CLASS__, 'encodeToUTF8'],
-            'GB-18030'   => [__CLASS__, 'encodeToUTF8'],
+            'UTF-32BE'   => self::encodeToUTF32BE(...),
+            'UTF-32LE'   => self::encodeToUTF32LE(...),
+            'UTF-32odd1' => self::encodeToUTF32odd1(...),
+            'UTF-32odd2' => self::encodeToUTF32odd2(...),
+            'UTF-16BE'   => self::encodeToUTF16BE(...),
+            'UTF-16LE'   => self::encodeToUTF16LE(...),
+            'UTF-8'      => self::encodeToUTF8(...),
+            'GB-18030'   => self::encodeToUTF8(...),
         ];
     }
 
@@ -404,7 +404,7 @@ class Zend_Xml_Security
     public static function generateEntityComparison($encoding)
     {
         $encodingMap = self::getAsciiEncodingMap();
-        $generator   = isset($encodingMap[$encoding]) ? $encodingMap[$encoding] : $encodingMap['UTF-8'];
+        $generator   = $encodingMap[$encoding] ?? $encodingMap['UTF-8'];
         return call_user_func($generator, '<!ENTITY');
     }
 

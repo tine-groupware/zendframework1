@@ -68,7 +68,7 @@ class Zend_Markup_Renderer_Html_Img extends Zend_Markup_Renderer_Html_HtmlAbstra
             // try to get the alternative from the URL
             $alt = rtrim($text, '/');
             $alt = strrchr($alt, '/');
-            if (false !== strpos($alt, '.')) {
+            if (str_contains($alt, '.')) {
                 $alt = substr($alt, 1, strpos($alt, '.') - 1);
             }
         }

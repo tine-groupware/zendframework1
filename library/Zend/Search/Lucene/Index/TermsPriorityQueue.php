@@ -43,7 +43,7 @@ class Zend_Search_Lucene_Index_TermsPriorityQueue extends Zend_Search_Lucene_Pri
      */
     protected function _less($termsStream1, $termsStream2)
     {
-        return strcmp($termsStream1->currentTerm()->key(), $termsStream2->currentTerm()->key()) < 0;
+        return strcmp((string) $termsStream1->currentTerm()->key(), (string) $termsStream2->currentTerm()->key()) < 0;
     }
 
 }

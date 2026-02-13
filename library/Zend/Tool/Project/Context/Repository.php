@@ -70,9 +70,9 @@ class Zend_Tool_Project_Context_Repository implements Countable
 
     public function addContextsFromDirectory($directory, $prefix)
     {
-        $prefix = trim($prefix, '_') . '_';
+        $prefix = trim((string) $prefix, '_') . '_';
         foreach (new DirectoryIterator($directory) as $directoryItem) {
-            if ($directoryItem->isDot() || (substr($directoryItem->getFilename(), -4) !== '.php')) {
+            if ($directoryItem->isDot() || (!str_ends_with($directoryItem->getFilename(), '.php'))) {
                 continue;
             }
             $class = $prefix . substr($directoryItem->getFilename(), 0, -4);
@@ -183,7 +183,7 @@ class Zend_Tool_Project_Context_Repository implements Countable
 
     protected function _normalizeName($name)
     {
-        return strtolower($name);
+        return strtolower((string) $name);
     }
 
 }

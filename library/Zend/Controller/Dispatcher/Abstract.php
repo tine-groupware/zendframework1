@@ -239,7 +239,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
         foreach ($segments as $key => $segment) {
             $segment        = str_replace($this->getWordDelimiter(), ' ', strtolower($segment));
             $segment        = preg_replace('/[^a-z0-9 ]/', '', $segment);
-            $segments[$key] = str_replace(' ', '', ucwords($segment));
+            $segments[$key] = str_replace(' ', '', ucwords((string) $segment));
         }
 
         return implode('_', $segments);
@@ -306,11 +306,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      */
     public function getParam($name)
     {
-        if(isset($this->_invokeParams[$name])) {
-            return $this->_invokeParams[$name];
-        }
-
-        return null;
+        return $this->_invokeParams[$name] ?? null;
     }
 
     /**

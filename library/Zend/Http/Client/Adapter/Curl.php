@@ -147,7 +147,7 @@ class Zend_Http_Client_Adapter_Curl implements Zend_Http_Client_Adapter_Interfac
         }
 
         foreach ($config as $k => $v) {
-            $option = strtolower($k);
+            $option = strtolower((string) $k);
             switch($option) {
                 case 'proxy_host':
                     $this->setCurlOption(CURLOPT_PROXY, $v);
@@ -314,7 +314,7 @@ class Zend_Http_Client_Adapter_Curl implements Zend_Http_Client_Adapter_Interfac
                     // Now we will probably already have Content-Length set, so that we have to delete it
                     // from $headers at this point:
                     foreach ($headers AS $k => $header) {
-                        if (preg_match('/Content-Length:\s*(\d+)/i', $header, $m)) {
+                        if (preg_match('/Content-Length:\s*(\d+)/i', (string) $header, $m)) {
                             if(is_resource($body)) {
                                 $this->_config['curloptions'][CURLOPT_INFILESIZE] = (int)$m[1];
                             }
@@ -384,7 +384,7 @@ class Zend_Http_Client_Adapter_Curl implements Zend_Http_Client_Adapter_Interfac
         if($this->out_stream) {
             // headers will be read into the response
             curl_setopt($this->_curl, CURLOPT_HEADER, false);
-            curl_setopt($this->_curl, CURLOPT_HEADERFUNCTION, [$this, "readHeader"]);
+            curl_setopt($this->_curl, CURLOPT_HEADERFUNCTION, $this->readHeader(...));
             // and data will be written into the file
             curl_setopt($this->_curl, CURLOPT_FILE, $this->out_stream);
         } else {
@@ -496,8 +496,7 @@ class Zend_Http_Client_Adapter_Curl implements Zend_Http_Client_Adapter_Interfac
      */
     public function close()
     {
-        if(is_resource($this->_curl)) {
-            curl_close($this->_curl);
+        if (is_resource($this->_curl)) {
         }
         $this->_curl         = null;
         $this->_connected_to = [null, null];

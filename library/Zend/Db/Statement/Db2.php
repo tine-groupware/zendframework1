@@ -300,7 +300,7 @@ class Zend_Db_Statement_Db2 extends Zend_Db_Statement
      * @return bool
      * @throws Zend_Db_Statement_Db2_Exception
      */
-    public function nextRowset()
+    public function nextRowset(): never
     {
         /**
          * @see Zend_Db_Statement_Db2_Exception

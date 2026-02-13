@@ -66,12 +66,12 @@ class Zend_Locale_Math
     {
         if (self::$_bcmathDisabled) {
             $op1 = round($op1, $precision);
-            if (strpos((string) $op1, 'E') === false) {
+            if (!str_contains((string) $op1, 'E')) {
                 return self::normalize(round($op1, $precision));
             }
         }
 
-        if (strpos($op1, 'E') !== false) {
+        if (str_contains((string) $op1, 'E')) {
             $op1 = self::floatalize($op1);
         }
 
@@ -144,12 +144,12 @@ class Zend_Locale_Math
     public static function floatalize($value)
     {
         $value = strtoupper($value);
-        if (strpos($value, 'E') === false) {
+        if (!str_contains($value, 'E')) {
             return $value;
         }
 
         $number = substr($value, 0, strpos($value, 'E'));
-        if (strpos($number, '.') !== false) {
+        if (str_contains($number, '.')) {
             $post   = strlen(substr($number, strpos($number, '.') + 1));
             $mantis = substr($value, strpos($value, 'E') + 1);
             if ($mantis < 0) {
@@ -180,7 +180,7 @@ class Zend_Locale_Math
             ["", "", "."],
             (string)$value);
 
-        if (!empty($convert['negative_sign']) && (strpos($value, $convert['negative_sign']))) {
+        if (!empty($convert['negative_sign']) && (strpos($value, (string) $convert['negative_sign']))) {
             $value = str_replace($convert['negative_sign'], "", $value);
             $value = "-" . $value;
         }

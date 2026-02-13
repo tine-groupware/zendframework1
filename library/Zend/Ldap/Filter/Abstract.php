@@ -29,7 +29,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Ldap_Filter_Abstract
+abstract class Zend_Ldap_Filter_Abstract implements \Stringable
 {
     /**
      * Returns a string representation of the filter.
@@ -44,7 +44,7 @@ abstract class Zend_Ldap_Filter_Abstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

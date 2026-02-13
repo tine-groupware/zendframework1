@@ -102,8 +102,8 @@ class Zend_Cloud_QueueService_Adapter_WindowsAzure
             // Parse other options
             if (! empty($options[self::PROXY_HOST])) {
                 $proxyHost = $options[self::PROXY_HOST];
-                $proxyPort = isset($options[self::PROXY_PORT]) ? $options[self::PROXY_PORT] : 8080;
-                $proxyCredentials = isset($options[self::PROXY_CREDENTIALS]) ? $options[self::PROXY_CREDENTIALS] : '';
+                $proxyPort = $options[self::PROXY_PORT] ?? 8080;
+                $proxyCredentials = $options[self::PROXY_CREDENTIALS] ?? '';
                 $this->_storageClient->setProxy(true, $proxyHost, $proxyPort, $proxyCredentials);
             }
             if (isset($options[self::HTTP_ADAPTER])) {

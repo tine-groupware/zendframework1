@@ -88,11 +88,7 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
     {
         $authors = $this->getAuthors();
 
-        if (isset($authors[$index])) {
-            return $authors[$index];
-        }
-
-        return null;
+        return $authors[$index] ?? null;
     }
 
     /**
@@ -128,7 +124,7 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
         }
         if ($list->length) {
             foreach ($list as $author) {
-                $string = trim($author->nodeValue);
+                $string = trim((string) $author->nodeValue);
                 $email = null;
                 $name = null;
                 $data = [];
@@ -226,7 +222,7 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
                 $dateModified = $this->_xpath->evaluate('string(/rss/channel/lastBuildDate)');
             }
             if ($dateModified) {
-                $dateModifiedParsed = strtotime($dateModified);
+                $dateModifiedParsed = strtotime((string) $dateModified);
                 if ($dateModifiedParsed) {
                     $date = new Zend_Date($dateModifiedParsed);
                 } else {
@@ -288,7 +284,7 @@ class Zend_Feed_Reader_Feed_Rss extends Zend_Feed_Reader_FeedAbstract
             $this->getType() !== Zend_Feed_Reader::TYPE_RSS_090) {
             $lastBuildDate = $this->_xpath->evaluate('string(/rss/channel/lastBuildDate)');
             if ($lastBuildDate) {
-                $lastBuildDateParsed = strtotime($lastBuildDate);
+                $lastBuildDateParsed = strtotime((string) $lastBuildDate);
                 if ($lastBuildDateParsed) {
                     $date = new Zend_Date($lastBuildDateParsed);
                 } else {

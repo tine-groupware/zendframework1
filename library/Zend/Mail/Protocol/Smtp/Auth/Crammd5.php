@@ -38,6 +38,8 @@ require_once 'Zend/Mail/Protocol/Smtp.php';
  */
 class Zend_Mail_Protocol_Smtp_Auth_Crammd5 extends Zend_Mail_Protocol_Smtp
 {
+    public $_username;
+    public $_password;
     /**
      * Constructor.
      *

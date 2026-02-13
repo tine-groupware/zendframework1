@@ -40,30 +40,20 @@ class Zend_Gdata_Extension_Rating extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'rating';
-    protected $_min = null;
-    protected $_max = null;
-    protected $_numRaters = null;
-    protected $_average = null;
-    protected $_value = null;
 
     /**
      * Constructs a new Zend_Gdata_Extension_Rating object.
      *
-     * @param integer $average (optional) Average rating.
-     * @param integer $min (optional) Minimum rating.
-     * @param integer $max (optional) Maximum rating.
-     * @param integer $numRaters (optional) Number of raters.
-     * @param integer $value (optional) The value of the rating.
+     * @param integer $_average (optional) Average rating.
+     * @param integer $_min (optional) Minimum rating.
+     * @param integer $_max (optional) Maximum rating.
+     * @param integer $_numRaters (optional) Number of raters.
+     * @param integer $_value (optional) The value of the rating.
      */
-    public function __construct($average = null, $min = null,
-            $max = null, $numRaters = null, $value = null)
+    public function __construct(protected $_average = null, protected $_min = null,
+            protected $_max = null, protected $_numRaters = null, protected $_value = null)
     {
         parent::__construct();
-        $this->_average = $average;
-        $this->_min = $min;
-        $this->_max = $max;
-        $this->_numRaters = $numRaters;
-        $this->_value = $value;
     }
 
     /**

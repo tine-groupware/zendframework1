@@ -115,7 +115,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
     {
         if (isset($config['table']) && $config['table'] instanceof Zend_Db_Table_Abstract) {
             $this->_table = $config['table'];
-            $this->_tableClass = get_class($this->_table);
+            $this->_tableClass = $this->_table::class;
         } elseif ($this->_tableClass !== null) {
             $this->_table = $this->_getTableFromString($this->_tableClass);
         }
@@ -342,7 +342,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
             return false;
         }
 
-        $tableClass = get_class($table);
+        $tableClass = $table::class;
         if (! $table instanceof $this->_tableClass) {
             require_once 'Zend/Db/Table/Row/Exception.php';
             throw new Zend_Db_Table_Row_Exception("The specified Table is of class $tableClass, expecting class to be instance of $this->_tableClass");
@@ -854,7 +854,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
      */
     protected function _prepareReference(Zend_Db_Table_Abstract $dependentTable, Zend_Db_Table_Abstract $parentTable, $ruleKey)
     {
-        $parentTableName = (get_class($parentTable) === 'Zend_Db_Table') ? $parentTable->getDefinitionConfigName() : get_class($parentTable);
+        $parentTableName = ($parentTable::class === 'Zend_Db_Table') ? $parentTable->getDefinitionConfigName() : $parentTable::class;
         $map = $dependentTable->getReference($parentTableName, $ruleKey);
 
         if (!isset($map[Zend_Db_Table_Abstract::REF_COLUMNS])) {
@@ -888,7 +888,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         if (!$dependentTable instanceof Zend_Db_Table_Abstract) {
             $type = gettype($dependentTable);
             if ($type == 'object') {
-                $type = get_class($dependentTable);
+                $type = $dependentTable::class;
             }
             require_once 'Zend/Db/Table/Row/Exception.php';
             throw new Zend_Db_Table_Row_Exception("Dependent table must be a Zend_Db_Table_Abstract, but it is $type");
@@ -944,7 +944,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         if (!$parentTable instanceof Zend_Db_Table_Abstract) {
             $type = gettype($parentTable);
             if ($type == 'object') {
-                $type = get_class($parentTable);
+                $type = $parentTable::class;
             }
             require_once 'Zend/Db/Table/Row/Exception.php';
             throw new Zend_Db_Table_Row_Exception("Parent table must be a Zend_Db_Table_Abstract, but it is $type");
@@ -1012,7 +1012,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         if (!$intersectionTable instanceof Zend_Db_Table_Abstract) {
             $type = gettype($intersectionTable);
             if ($type == 'object') {
-                $type = get_class($intersectionTable);
+                $type = $intersectionTable::class;
             }
             require_once 'Zend/Db/Table/Row/Exception.php';
             throw new Zend_Db_Table_Row_Exception("Intersection table must be a Zend_Db_Table_Abstract, but it is $type");
@@ -1032,7 +1032,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         if (! $matchTable instanceof Zend_Db_Table_Abstract) {
             $type = gettype($matchTable);
             if ($type == 'object') {
-                $type = get_class($matchTable);
+                $type = $matchTable::class;
             }
             require_once 'Zend/Db/Table/Row/Exception.php';
             throw new Zend_Db_Table_Row_Exception("Match table must be a Zend_Db_Table_Abstract, but it is $type");
@@ -1055,10 +1055,10 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         $interInfo = $intersectionTable->info();
         $interDb   = $intersectionTable->getAdapter();
         $interName = $interInfo['name'];
-        $interSchema = isset($interInfo['schema']) ? $interInfo['schema'] : null;
+        $interSchema = $interInfo['schema'] ?? null;
         $matchInfo = $matchTable->info();
         $matchName = $matchInfo['name'];
-        $matchSchema = isset($matchInfo['schema']) ? $matchInfo['schema'] : null;
+        $matchSchema = $matchInfo['schema'] ?? null;
 
         $matchMap = $this->_prepareReference($intersectionTable, $matchTable, $matchRefRule);
 
@@ -1136,7 +1136,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
          */
         if (preg_match('/^findParent(\w+?)(?:By(\w+))?$/', $method, $matches)) {
             $class    = $matches[1];
-            $ruleKey1 = isset($matches[2]) ? $matches[2] : null;
+            $ruleKey1 = $matches[2] ?? null;
             return $this->findParentRow($class, $ruleKey1, $select);
         }
 
@@ -1150,8 +1150,8 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         if (preg_match('/^find(\w+?)Via(\w+?)(?:By(\w+?)(?:And(\w+))?)?$/', $method, $matches)) {
             $class    = $matches[1];
             $viaClass = $matches[2];
-            $ruleKey1 = isset($matches[3]) ? $matches[3] : null;
-            $ruleKey2 = isset($matches[4]) ? $matches[4] : null;
+            $ruleKey1 = $matches[3] ?? null;
+            $ruleKey2 = $matches[4] ?? null;
             return $this->findManyToManyRowset($class, $viaClass, $ruleKey1, $ruleKey2, $select);
         }
 
@@ -1163,7 +1163,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
          */
         if (preg_match('/^find(\w+?)(?:By(\w+))?$/', $method, $matches)) {
             $class    = $matches[1];
-            $ruleKey1 = isset($matches[2]) ? $matches[2] : null;
+            $ruleKey1 = $matches[2] ?? null;
             return $this->findDependentRowset($class, $ruleKey1, $select);
         }
 

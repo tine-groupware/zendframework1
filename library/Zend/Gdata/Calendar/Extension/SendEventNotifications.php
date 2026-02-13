@@ -39,17 +39,15 @@ class Zend_Gdata_Calendar_Extension_SendEventNotifications extends Zend_Gdata_Ex
 {
     protected $_rootNamespace = 'gCal';
     protected $_rootElement = 'sendEventNotifications';
-    protected $_value = null;
 
     /**
      * Constructs a new Zend_Gdata_Extension_SendEventNotifications object.
-     * @param bool $value (optional) SendEventNotifications value as URI.
+     * @param bool $_value (optional) SendEventNotifications value as URI.
      */
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Calendar::$namespaces);
         parent::__construct();
-        $this->_value = $value;
     }
 
     /**
@@ -123,7 +121,7 @@ class Zend_Gdata_Calendar_Extension_SendEventNotifications extends Zend_Gdata_Ex
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getValue();
     }

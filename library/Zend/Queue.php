@@ -240,7 +240,7 @@ class Zend_Queue implements Countable
 
         if (!$adapter instanceof Zend_Queue_Adapter_AdapterInterface) {
             require_once 'Zend/Queue/Exception.php';
-            throw new Zend_Queue_Exception("Adapter class '" . get_class($adapterName) . "' does not implement Zend_Queue_Adapter_AdapterInterface");
+            throw new Zend_Queue_Exception("Adapter class '" . $adapterName::class . "' does not implement Zend_Queue_Adapter_AdapterInterface");
         }
 
         $this->_adapter = $adapter;
@@ -504,7 +504,7 @@ class Zend_Queue implements Countable
     public function getQueues()
     {
         if (!$this->isSupported('getQueues')) {
-            throw new Zend_Queue_Exception( __FUNCTION__ . '() is not supported by ' . get_class($this->getAdapter()));
+            throw new Zend_Queue_Exception( __FUNCTION__ . '() is not supported by ' . $this->getAdapter()::class);
         }
 
         return $this->getAdapter()->getQueues();
@@ -553,8 +553,8 @@ class Zend_Queue implements Countable
     public function debugInfo()
     {
         $info = [];
-        $info['self']                     = get_class($this);
-        $info['adapter']                  = get_class($this->getAdapter());
+        $info['self']                     = static::class;
+        $info['adapter']                  = $this->getAdapter()::class;
         foreach ($this->getAdapter()->getCapabilities() as $feature => $supported) {
             $info['adapter-' . $feature]  = ($supported) ? 'yes' : 'no';
         }

@@ -32,7 +32,7 @@ require_once 'Zend/Tool/Framework/Registry/EnabledInterface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Tool_Framework_Manifest_Repository
-    implements Zend_Tool_Framework_Registry_EnabledInterface, IteratorAggregate, Countable
+    implements Zend_Tool_Framework_Registry_EnabledInterface, IteratorAggregate, Countable, \Stringable
 {
 
     /**
@@ -104,7 +104,7 @@ class Zend_Tool_Framework_Manifest_Repository
                 if (!$provider instanceof Zend_Tool_Framework_Provider_Interface) {
                     require_once 'Zend/Tool/Framework/Manifest/Exception.php';
                     throw new Zend_Tool_Framework_Manifest_Exception(
-                        'A provider provided by the ' . get_class($manifest)
+                        'A provider provided by the ' . $manifest::class
                         . ' does not implement Zend_Tool_Framework_Provider_Interface'
                         );
                 }
@@ -187,7 +187,7 @@ class Zend_Tool_Framework_Manifest_Repository
                     if (!$metadata instanceof Zend_Tool_Framework_Metadata_Interface) {
                         require_once 'Zend/Tool/Framework/Manifest/Exception.php';
                         throw new Zend_Tool_Framework_Manifest_Exception(
-                            'A Zend_Tool_Framework_Metadata_Interface object was not found in manifest ' . get_class($manifest)
+                            'A Zend_Tool_Framework_Metadata_Interface object was not found in manifest ' . $manifest::class
                             );
                     }
 
@@ -266,7 +266,7 @@ class Zend_Tool_Framework_Manifest_Repository
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $metadatasByType = [];
 

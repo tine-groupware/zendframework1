@@ -55,14 +55,6 @@ class Zend_Gdata_Query
     protected $_defaultFeedUri = null;
 
     /**
-     * Base URL
-     * TODO: Add setters and getters
-     *
-     * @var string
-     */
-    protected $_url = null;
-
-    /**
      * Category for the query
      *
      * @var string
@@ -71,10 +63,16 @@ class Zend_Gdata_Query
 
     /**
      * Create Gdata_Query object
+     * @param string $url
      */
-    public function __construct($url = null)
+    public function __construct(
+        /**
+         * Base URL
+         * TODO: Add setters and getters
+         */
+        protected $_url = null
+    )
     {
-        $this->_url = $url;
     }
 
     /**
@@ -84,10 +82,10 @@ class Zend_Gdata_Query
     {
         $queryArray = [];
         foreach ($this->_params as $name => $value) {
-            if (substr($name, 0, 1) == '_') {
+            if (str_starts_with((string) $name, '_')) {
                 continue;
             }
-            $queryArray[] = urlencode($name) . '=' . urlencode($value);
+            $queryArray[] = urlencode((string) $name) . '=' . urlencode((string) $value);
         }
         if (count($queryArray) > 0) {
             return '?' . implode('&', $queryArray);
@@ -395,7 +393,7 @@ class Zend_Gdata_Query
 
     public function __get($name)
     {
-        $method = 'get'.ucfirst($name);
+        $method = 'get'.ucfirst((string) $name);
         if (method_exists($this, $method)) {
             return call_user_func([&$this, $method]);
         } else {
@@ -406,7 +404,7 @@ class Zend_Gdata_Query
 
     public function __set($name, $val)
     {
-        $method = 'set'.ucfirst($name);
+        $method = 'set'.ucfirst((string) $name);
         if (method_exists($this, $method)) {
             return call_user_func([&$this, $method], $val);
         } else {

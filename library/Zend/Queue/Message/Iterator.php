@@ -83,7 +83,7 @@ class Zend_Queue_Message_Iterator implements Iterator, Countable
     {
         if (isset($options['queue'])) {
             $this->_queue      = $options['queue'];
-            $this->_queueClass = get_class($this->_queue);
+            $this->_queueClass = $this->_queue::class;
             $this->_connected  = true;
         } else {
             $this->_connected = false;
