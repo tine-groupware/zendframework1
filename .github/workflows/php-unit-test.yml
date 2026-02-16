@@ -17,15 +17,10 @@ jobs:
 
   test:
     runs-on: ${{ matrix.operating-system }}
-    continue-on-error: ${{ matrix.experimental }}
     strategy:
       matrix:
-        operating-system: [ubuntu-22.04]
-        php-versions: ['8.2', '8.3']
-        experimental: [false]
-        include:
-          - php-versions: '8.4'
-            experimental: true
+        operating-system: [ubuntu-24.04]
+        php-versions: ['8.2', '8.3', '8.4']
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
@@ -42,7 +37,7 @@ jobs:
         sudo systemctl start mysql.service
         mysql -uroot -proot --host 127.0.0.1  -e 'CREATE DATABASE IF NOT EXISTS tine20;'  
     - name: Install tine20
-      run: |      
+      run: |
         git clone https://github.com/tine-groupware/tine tine20
         composer install -d tine20/tine20
         rm -rf tine20/tine20/vendor/zendframework/zendframework1/library
