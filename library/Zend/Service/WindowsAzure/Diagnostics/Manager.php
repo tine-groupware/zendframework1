@@ -47,7 +47,7 @@ class Zend_Service_WindowsAzure_Diagnostics_Manager
      * @param Zend_Service_WindowsAzure_Storage_Blob $blobStorageClient Blob storage client
      * @param string $_controlContainer Control container name
      */
-    public function __construct(Zend_Service_WindowsAzure_Storage_Blob $blobStorageClient = null, /**
+    public function __construct(?Zend_Service_WindowsAzure_Storage_Blob $blobStorageClient = null, /**
      * Control container name
      */
     protected $_controlContainer = 'wad-control-container')

@@ -113,7 +113,7 @@ class Zend_Service_SqlAzure_Management_Client
          * Management certificate passphrase
          */
         protected $_certificatePassphrase,
-		Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null
+		?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null
 	) {
 		$this->_retryPolicy = $retryPolicy;
 		if (is_null($this->_retryPolicy)) {
@@ -259,7 +259,7 @@ class Zend_Service_SqlAzure_Management_Client
 	 * @return object
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	protected function _parseResponse(Zend_Http_Response $response = null)
+	protected function _parseResponse(?Zend_Http_Response $response = null)
 	{
 		if (is_null($response)) {
 			require_once 'Zend/Service/SqlAzure/Exception.php';

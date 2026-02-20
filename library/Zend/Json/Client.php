@@ -138,7 +138,7 @@ class Zend_Json_Client
      * Full address of the JSON-RPC service
      * @example http://json.example.com/index.php
      */
-    protected $_serverAddress, Zend_Http_Client $httpClient = null)
+    protected $_serverAddress, ?Zend_Http_Client $httpClient = null)
     {
         if ($httpClient === null) {
             $this->_httpClient = new Zend_Http_Client();

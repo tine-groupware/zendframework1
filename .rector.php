@@ -17,12 +17,9 @@ use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/library',
+        __DIR__ . '/library/Zend',
     ])
     ->withRules([
-        CodeQuality\Class_\CompleteDynamicPropertiesRector::class
+        Rector\Php84\Rector\Param\ExplicitNullableParamTypeRector::class,
     ])
-    ->withSets([
-        LevelSetList::UP_TO_PHP_85
-    ])
-    ->withPhpVersion(PhpVersion::PHP_82);
+    ->withPhpVersion(PhpVersion::PHP_84);

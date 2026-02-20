@@ -99,8 +99,8 @@ class Zend_OpenId_Provider
      */
     public function __construct($loginUrl = null,
                                 $trustUrl = null,
-                                Zend_OpenId_Provider_User $user = null,
-                                Zend_OpenId_Provider_Storage $storage = null,
+                                ?Zend_OpenId_Provider_User $user = null,
+                                ?Zend_OpenId_Provider_Storage $storage = null,
                                 /**
                                  * Time to live of association session in secconds
                                  */
@@ -329,7 +329,7 @@ class Zend_OpenId_Provider
      * @return mixed
      */
     public function handle($params=null, $extensions=null,
-                           Zend_Controller_Response_Abstract $response = null)
+                           ?Zend_Controller_Response_Abstract $response = null)
     {
         if ($params === null) {
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -507,7 +507,7 @@ class Zend_OpenId_Provider
      * @return array
      */
     protected function _checkId($version, $params, $immediate, $extensions=null,
-        Zend_Controller_Response_Abstract $response = null)
+        ?Zend_Controller_Response_Abstract $response = null)
     {
         $ret = [];
 
@@ -641,7 +641,7 @@ class Zend_OpenId_Provider
      * @return bool
      */
     public function respondToConsumer($params, $extensions=null,
-                           Zend_Controller_Response_Abstract $response = null)
+                           ?Zend_Controller_Response_Abstract $response = null)
     {
         $version = 1.1;
         if (isset($params['openid_ns']) &&

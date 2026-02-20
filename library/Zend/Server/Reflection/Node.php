@@ -52,7 +52,7 @@ class Zend_Server_Reflection_Node
     public function __construct(/**
      * Node value
      */
-    protected $_value, Zend_Server_Reflection_Node $parent = null)
+    protected $_value, ?Zend_Server_Reflection_Node $parent = null)
     {
         if (null !== $parent) {
             $this->setParent($parent, true);

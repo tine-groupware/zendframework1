@@ -124,7 +124,7 @@ class Zend_XmlRpc_Client
      * Full address of the XML-RPC service
      * @example http://time.xmlrpc.com/RPC2
      */
-    protected $_serverAddress, Zend_Http_Client $httpClient = null)
+    protected $_serverAddress, ?Zend_Http_Client $httpClient = null)
     {
         if ($httpClient === null) {
             $this->_httpClient = new Zend_Http_Client();

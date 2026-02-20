@@ -89,7 +89,7 @@ class Zend_Markup_Token
          */
         protected $_name = '',
         array $attributes = [],
-        Zend_Markup_Token $parent = null
+        ?Zend_Markup_Token $parent = null
     ) {
         $this->_attributes = $attributes;
         $this->_parent     = $parent;
