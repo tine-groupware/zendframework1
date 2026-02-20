@@ -29,7 +29,6 @@
  */
 abstract class Zend_Pdf_Element
 {
-    public $value;
     const TYPE_BOOL        = 1;
     const TYPE_NUMERIC     = 2;
     const TYPE_STRING      = 3;
