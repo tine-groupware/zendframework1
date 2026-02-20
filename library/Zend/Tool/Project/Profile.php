@@ -41,9 +41,10 @@ require_once 'Zend/Tool/Project/Profile/Resource/Container.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Container
+class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Container implements \Stringable
 {
 
+    private readonly \Zend_Tool_Project_Profile_Resource_Container $_topResources;
     /**
      * @var bool
      */
@@ -129,7 +130,7 @@ class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Conta
                 return false;
             }
         } else {
-            $projectProfileFilePath = rtrim($this->_attributes['projectDirectory'], '/\\') . '/.zfproject.xml';
+            $projectProfileFilePath = rtrim((string) $this->_attributes['projectDirectory'], '/\\') . '/.zfproject.xml';
             if (!file_exists($projectProfileFilePath)) {
                 return false;
             }
@@ -162,7 +163,7 @@ class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Conta
             }
             $this->_attributes['projectDirectory'] = dirname($projectProfileFilePath);
         } else {
-            $projectProfileFilePath = rtrim($this->_attributes['projectDirectory'], '/\\') . '/.zfproject.xml';
+            $projectProfileFilePath = rtrim((string) $this->_attributes['projectDirectory'], '/\\') . '/.zfproject.xml';
             if (!file_exists($projectProfileFilePath)) {
                 require_once 'Zend/Tool/Project/Exception.php';
                 throw new Zend_Tool_Project_Exception('"projectDirectory" was supplied but no profile file file was not found at location ' . $projectProfileFilePath);
@@ -220,7 +221,7 @@ class Zend_Tool_Project_Profile extends Zend_Tool_Project_Profile_Resource_Conta
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $string = '';
         foreach ($this as $resource) {

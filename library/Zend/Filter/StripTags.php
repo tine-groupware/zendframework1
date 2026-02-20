@@ -136,7 +136,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
      */
     public function setCommentsAllowed($commentsAllowed)
     {
-       $this->commentsAllowed = (boolean) $commentsAllowed;
+       $this->commentsAllowed = (bool) $commentsAllowed;
        return $this;
     }
 
@@ -240,7 +240,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
         $value = (string) $value;
 
         // Strip HTML comments first
-        while (strpos($value, '<!--') !== false) {
+        while (str_contains($value, '<!--')) {
             $pos   = strrpos($value, '<!--');
             $start = substr($value, 0, $pos);
             $value = substr($value, $pos);
@@ -342,7 +342,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
         }
 
         // Reconstruct tags ending with "/>" as backwards-compatible XHTML tag
-        if (strpos($tagEnd, '/') !== false) {
+        if (str_contains($tagEnd, '/')) {
             $tagEnd = " $tagEnd";
         }
 

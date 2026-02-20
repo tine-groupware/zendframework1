@@ -33,21 +33,6 @@ require_once 'Zend/Search/Lucene/Search/QueryEntry.php';
 class Zend_Search_Lucene_Search_QueryEntry_Term extends Zend_Search_Lucene_Search_QueryEntry
 {
     /**
-     * Term value
-     *
-     * @var string
-     */
-    private $_term;
-
-    /**
-     * Field
-     *
-     * @var string|null
-     */
-    private $_field;
-
-
-    /**
      * Fuzzy search query
      *
      * @var boolean
@@ -65,13 +50,20 @@ class Zend_Search_Lucene_Search_QueryEntry_Term extends Zend_Search_Lucene_Searc
     /**
      * Object constractor
      *
-     * @param string $term
-     * @param string $field
+     * @param string $_term
+     * @param string $_field
      */
-    public function __construct($term, $field)
+    public function __construct(
+        /**
+         * Term value
+         */
+        private $_term,
+        /**
+         * Field
+         */
+        private $_field
+    )
     {
-        $this->_term  = $term;
-        $this->_field = $field;
     }
 
     /**

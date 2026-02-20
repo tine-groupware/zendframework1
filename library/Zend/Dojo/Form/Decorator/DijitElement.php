@@ -181,13 +181,10 @@ class Zend_Dojo_Form_Decorator_DijitElement extends Zend_Form_Decorator_ViewHelp
         }
 
         $elementContent = $view->$helper($name, $value, $dijitParams, $attribs, $options);
-        switch ($this->getPlacement()) {
-            case self::APPEND:
-                return $content . $separator . $elementContent;
-            case self::PREPEND:
-                return $elementContent . $separator . $content;
-            default:
-                return $elementContent;
-        }
+        return match ($this->getPlacement()) {
+            self::APPEND => $content . $separator . $elementContent,
+            self::PREPEND => $elementContent . $separator . $content,
+            default => $elementContent,
+        };
     }
 }

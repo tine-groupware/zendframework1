@@ -83,14 +83,14 @@ class Zend_Barcode_Object_Upca extends Zend_Barcode_Object_Ean13
         $textTable = str_split($this->getText());
 
         // First character
-        $bars = str_split($this->_codingMap['A'][$textTable[0]]);
+        $bars = str_split((string) $this->_codingMap['A'][$textTable[0]]);
         foreach ($bars as $b) {
             $barcodeTable[] = [$b , $this->_barThinWidth , 0 , $height];
         }
 
         // First part
         for ($i = 1; $i < 6; $i++) {
-            $bars = str_split($this->_codingMap['A'][$textTable[$i]]);
+            $bars = str_split((string) $this->_codingMap['A'][$textTable[$i]]);
             foreach ($bars as $b) {
                 $barcodeTable[] = [$b , $this->_barThinWidth , 0 , 1];
             }
@@ -105,14 +105,14 @@ class Zend_Barcode_Object_Upca extends Zend_Barcode_Object_Ean13
 
         // Second part
         for ($i = 6; $i < 11; $i++) {
-            $bars = str_split($this->_codingMap['C'][$textTable[$i]]);
+            $bars = str_split((string) $this->_codingMap['C'][$textTable[$i]]);
             foreach ($bars as $b) {
                 $barcodeTable[] = [$b , $this->_barThinWidth , 0 , 1];
             }
         }
 
         // Last character
-        $bars = str_split($this->_codingMap['C'][$textTable[11]]);
+        $bars = str_split((string) $this->_codingMap['C'][$textTable[11]]);
         foreach ($bars as $b) {
             $barcodeTable[] = [$b , $this->_barThinWidth , 0 , $height];
         }
@@ -155,19 +155,12 @@ class Zend_Barcode_Object_Upca extends Zend_Barcode_Object_Ean13
                     'left',
                     - $this->_orientation
                 );
-                switch ($i) {
-                    case 0:
-                        $factor = 10;
-                        break;
-                    case 5:
-                        $factor = 4;
-                        break;
-                    case 10:
-                        $factor = 11;
-                        break;
-                    default:
-                        $factor = 0;
-                }
+                $factor = match ($i) {
+                    0 => 10,
+                    5 => 4,
+                    10 => 11,
+                    default => 0,
+                };
                 $leftPosition = $leftPosition + $characterWidth + ($factor * $this->_barThinWidth * $this->_factor);
             }
         }

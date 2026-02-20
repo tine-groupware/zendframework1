@@ -130,20 +130,13 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     public function __construct(array $options = [])
     {
         foreach ($options as $name => $value) {
-            $name = strtolower($name);
-            switch ($name) {
-                case 'regexps':
-                    $this->_setRegexps($value);
-                    break;
-                case 'default_options':
-                    $this->_setDefaultOptions($value);
-                    break;
-                case 'content_type_memorization':
-                    $this->_setContentTypeMemorization($value);
-                    break;
-                default:
-                    $this->setOption($name, $value);
-            }
+            $name = strtolower((string) $name);
+            match ($name) {
+                'regexps' => $this->_setRegexps($value),
+                'default_options' => $this->_setDefaultOptions($value),
+                'content_type_memorization' => $this->_setContentTypeMemorization($value),
+                default => $this->setOption($name, $value),
+            };
         }
         if (isset($this->_specificOptions['http_conditional'])) {
             if ($this->_specificOptions['http_conditional']) {
@@ -169,7 +162,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             if (!is_string($key)) {
                 Zend_Cache::throwException("invalid option [$key] !");
             }
-            $key = strtolower($key);
+            $key = strtolower((string) $key);
             if (isset($this->_specificOptions['default_options'][$key])) {
                 $this->_specificOptions['default_options'][$key] = $value;
             }
@@ -187,7 +180,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     {
         $found = null;
         foreach ($this->_specificOptions['memorize_headers'] as $key => $value) {
-            if (strtolower($value) == 'content-type') {
+            if (strtolower((string) $value) == 'content-type') {
                 $found = $key;
             }
         }
@@ -223,7 +216,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
                 if (!is_string($key)) {
                     Zend_Cache::throwException("unknown option [$key] !");
                 }
-                $key = strtolower($key);
+                $key = strtolower((string) $key);
                 if (!in_array($key, $validKeys)) {
                     unset($regexps[$regexp][$key]);
                 }
@@ -245,7 +238,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         $lastMatchingRegexp = null;
         if (isset($_SERVER['REQUEST_URI'])) {
             foreach ($this->_specificOptions['regexps'] as $regexp => $conf) {
-                if (preg_match("`$regexp`", $_SERVER['REQUEST_URI'])) {
+                if (preg_match("`$regexp`", (string) $_SERVER['REQUEST_URI'])) {
                     $lastMatchingRegexp = $regexp;
                 }
             }
@@ -286,7 +279,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             }
             die();
         }
-        ob_start([$this, '_flush']);
+        ob_start($this->_flush(...));
         ob_implicit_flush(false);
         return false;
     }
@@ -318,7 +311,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             foreach ($headersList as $headerSent) {
                 $tmp = explode(':', $headerSent);
                 $headerSentName = trim(array_shift($tmp));
-                if (strtolower($headerName) == strtolower($headerSentName)) {
+                if (strtolower((string) $headerName) == strtolower($headerSentName)) {
                     $headerSentValue = trim(implode(':', $tmp));
                     $storedHeaders[] = [$headerSentName, $headerSentValue];
                 }
@@ -340,7 +333,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     protected function _makeId()
     {
         $tmp = $_SERVER['REQUEST_URI'];
-        $array = explode('?', $tmp, 2);
+        $array = explode('?', (string) $tmp, 2);
           $tmp = $array[0];
         foreach (['Get', 'Post', 'Session', 'Files', 'Cookie'] as $arrayName) {
             $tmp2 = $this->_makePartialId($arrayName, $this->_activeOptions['cache_with_' . strtolower($arrayName) . '_variables'], $this->_activeOptions['make_id_with_' . strtolower($arrayName) . '_variables']);

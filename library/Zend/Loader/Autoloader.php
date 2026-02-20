@@ -334,8 +334,8 @@ class Zend_Loader_Autoloader
             if ('' == $ns) {
                 continue;
             }
-            if (0 === strpos($class, $ns)) {
-                if ((false === $namespace) || (strlen($ns) > strlen($namespace))) {
+            if (str_starts_with($class, (string) $ns)) {
+                if ((false === $namespace) || (strlen((string) $ns) > strlen((string) $namespace))) {
                     $namespace = $ns;
                     $autoloaders = $this->getNamespaceAutoloaders($ns);
                 }
@@ -344,7 +344,7 @@ class Zend_Loader_Autoloader
 
         // Add internal namespaced autoloader
         foreach ($this->getRegisteredNamespaces() as $ns) {
-            if (0 === strpos($class, $ns)) {
+            if (str_starts_with($class, (string) $ns)) {
                 $namespace     = $ns;
                 $autoloaders[] = $this->_internalAutoloader;
                 break;
@@ -459,8 +459,8 @@ class Zend_Loader_Autoloader
      */
     protected function __construct()
     {
-        spl_autoload_register([__CLASS__, 'autoload']);
-        $this->_internalAutoloader = [$this, '_autoload'];
+        spl_autoload_register(self::autoload(...));
+        $this->_internalAutoloader = $this->_autoload(...);
     }
 
     /**
@@ -479,7 +479,7 @@ class Zend_Loader_Autoloader
                 call_user_func($callback, $class);
             }
             return $class;
-        } catch (Zend_Exception $e) {
+        } catch (Zend_Exception) {
             return false;
         }
     }
@@ -577,13 +577,13 @@ class Zend_Loader_Autoloader
 
             if (('latest' == $version)
                 || ((strlen($matchedVersion) >= $versionLen)
-                    && (0 === strpos($matchedVersion, $version)))
+                    && (str_starts_with($matchedVersion, $version)))
             ) {
                 $versions[$matchedVersion] = $dir . '/library';
             }
         }
 
-        uksort($versions, 'version_compare');
+        uksort($versions, version_compare(...));
         return $versions;
     }
 }

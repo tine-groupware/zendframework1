@@ -169,15 +169,10 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
      */
     public function __get($var)
     {
-        switch ($var) {
-            case 'entry':
-                // fall through to the next case
-            case 'entries':
-                return $this;
-
-            default:
-                return parent::__get($var);
-        }
+        return match ($var) {
+            'entry', 'entries' => $this,
+            default => parent::__get($var),
+        };
     }
 
     /**
@@ -209,7 +204,7 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
             $feed->appendChild($author);
         }
 
-        $updated = isset($array->lastUpdate) ? $array->lastUpdate : time();
+        $updated = $array->lastUpdate ?? time();
         $updated = $this->_element->createElement('updated', date(DATE_ATOM, $updated));
         $feed->appendChild($updated);
 
@@ -271,14 +266,14 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
         foreach ($array as $dataentry) {
             $entry = $this->_element->createElement('entry');
 
-            $id = $this->_element->createElement('id', isset($dataentry->guid) ? $dataentry->guid : $dataentry->link);
+            $id = $this->_element->createElement('id', $dataentry->guid ?? $dataentry->link);
             $entry->appendChild($id);
 
             $title = $this->_element->createElement('title');
             $title->appendChild($this->_element->createCDATASection($dataentry->title));
             $entry->appendChild($title);
 
-            $updated = isset($dataentry->lastUpdate) ? $dataentry->lastUpdate : time();
+            $updated = $dataentry->lastUpdate ?? time();
             $updated = $this->_element->createElement('updated', date(DATE_ATOM, $updated));
             $entry->appendChild($updated);
 

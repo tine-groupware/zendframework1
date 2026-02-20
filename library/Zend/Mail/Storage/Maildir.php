@@ -152,12 +152,12 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
     {
         if ($id !== null) {
             $filedata = $this->_getFileData($id);
-            return isset($filedata['size']) ? $filedata['size'] : filesize($filedata['filename']);
+            return $filedata['size'] ?? filesize($filedata['filename']);
         }
 
         $result = [];
         foreach ($this->_files as $num => $data) {
-            $result[$num + 1] = isset($data['size']) ? $data['size'] : filesize($data['filename']);
+            $result[$num + 1] = $data['size'] ?? filesize($data['filename']);
         }
 
         return $result;
@@ -356,8 +356,8 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
                 continue;
             }
 
-            @list($uniq, $info) = explode(':', $entry, 2);
-            @list(,$size) = explode(',', $uniq, 2);
+            @[$uniq, $info] = explode(':', $entry, 2);
+            @[, $size] = explode(',', $uniq, 2);
 
             if ($size && $size[0] == 'S' && $size[1] == '=') {
                 $size = substr($size, 2);
@@ -367,7 +367,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
                 $size = null;
             }
 
-            @list($version, $flags) = explode(',', $info, 2);
+            @[$version, $flags] = explode(',', $info, 2);
 
             if ($version != 2) {
                 $flags = '';
@@ -378,7 +378,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
 
             for ($i = 0; $i < $length; ++$i) {
                 $flag = $flags[$i];
-                $named_flags[$flag] = isset(self::$_knownFlags[$flag]) ? self::$_knownFlags[$flag] : $flag;
+                $named_flags[$flag] = self::$_knownFlags[$flag] ?? $flag;
             }
 
             $data = ['uniq'       => $uniq,
@@ -422,7 +422,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
-    public function removeMessage($id)
+    public function removeMessage($id): never
     {
         /**
          * @see Zend_Mail_Storage_Exception

@@ -224,7 +224,7 @@ class Zend_Cloud_StorageService_Adapter_S3
      * @param  array $options
      * @return void
      */
-    public function renameItem($path, $name, $options = null)
+    public function renameItem($path, $name, $options = null): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('Rename not implemented');
@@ -275,7 +275,7 @@ class Zend_Cloud_StorageService_Adapter_S3
      * @param  array $options
      * @return void
      */
-    public function storeMetadata($destinationPath, $metadata, $options = [])
+    public function storeMetadata($destinationPath, $metadata, $options = []): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('Storing separate metadata is not supported, use storeItem() with \'metadata\' option key');
@@ -288,7 +288,7 @@ class Zend_Cloud_StorageService_Adapter_S3
      * @param  array $options
      * @return void
      */
-    public function deleteMetadata($path)
+    public function deleteMetadata($path): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('Deleting metadata not supported');

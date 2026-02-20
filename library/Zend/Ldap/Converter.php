@@ -89,7 +89,7 @@ class Zend_Ldap_Converter
      */
     private static function _charHex32ToAsc(array $matches)
     {
-        return chr(hexdec($matches[1]));
+        return chr(hexdec((string) $matches[1]));
     }
 
     /**
@@ -248,7 +248,7 @@ class Zend_Ldap_Converter
                 }
                 try {
                     return self::fromLdapUnserialize($value);
-                } catch (UnexpectedValueException $e) { }
+                } catch (UnexpectedValueException) { }
                 break;
         }
         return $value;
@@ -362,17 +362,17 @@ class Zend_Ldap_Converter
 
         // Raw-Data is present, so lets create a DateTime-Object from it.
         $offset = $time['offdir']
-                . str_pad($time['offsethours'],2,'0',STR_PAD_LEFT)
-                . str_pad($time['offsetminutes'],2,'0',STR_PAD_LEFT);
+                . str_pad((string) $time['offsethours'],2,'0',STR_PAD_LEFT)
+                . str_pad((string) $time['offsetminutes'],2,'0',STR_PAD_LEFT);
         $timestring = $time['year'] . '-'
-                    . str_pad($time['month'], 2, '0', STR_PAD_LEFT) . '-'
-                    . str_pad($time['day'], 2, '0', STR_PAD_LEFT) . ' '
-                    . str_pad($time['hour'], 2, '0', STR_PAD_LEFT) . ':'
-                    . str_pad($time['minute'], 2, '0', STR_PAD_LEFT) . ':'
-                    . str_pad($time['second'], 2, '0', STR_PAD_LEFT)
+                    . str_pad((string) $time['month'], 2, '0', STR_PAD_LEFT) . '-'
+                    . str_pad((string) $time['day'], 2, '0', STR_PAD_LEFT) . ' '
+                    . str_pad((string) $time['hour'], 2, '0', STR_PAD_LEFT) . ':'
+                    . str_pad((string) $time['minute'], 2, '0', STR_PAD_LEFT) . ':'
+                    . str_pad((string) $time['second'], 2, '0', STR_PAD_LEFT)
                     . $time['offdir']
-                    . str_pad($time['offsethours'], 2, '0', STR_PAD_LEFT)
-                    . str_pad($time['offsetminutes'], 2, '0', STR_PAD_LEFT);
+                    . str_pad((string) $time['offsethours'], 2, '0', STR_PAD_LEFT)
+                    . str_pad((string) $time['offsetminutes'], 2, '0', STR_PAD_LEFT);
         $date = new DateTime($timestring);
         if ($asUtc) {
             $date->setTimezone(new DateTimeZone('UTC'));

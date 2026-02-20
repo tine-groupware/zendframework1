@@ -44,100 +44,30 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_url = null;
-
-    /**
-     * @var int
-     */
-    protected $_fileSize = null;
-
-    /**
-     * @var string
-     */
-    protected $_type = null;
-
-    /**
-     * @var string
-     */
-    protected $_medium = null;
-
-    /**
-     * @var string
-     */
-    protected $_isDefault = null;
-
-    /**
-     * @var string
-     */
-    protected $_expression = null;
-
-    /**
-     * @var int
-     */
-    protected $_bitrate = null;
-
-    /**
-     * @var int
-     */
-    protected $_framerate = null;
-
-    /**
-     * @var int
-     */
-    protected $_samplingrate = null;
-
-    /**
-     * @var int
-     */
-    protected $_channels = null;
-
-    /**
-     * @var int
-     */
-    protected $_duration = null;
-
-    /**
-     * @var int
-     */
-    protected $_height = null;
-
-    /**
-     * @var int
-     */
-    protected $_width = null;
-
-    /**
-     * @var string
-     */
-    protected $_lang = null;
-
-    /**
      * Creates an individual MediaContent object.
+     * @param string $url
+     * @param int $fileSize
+     * @param string $type
+     * @param string $medium
+     * @param string $isDefault
+     * @param string $expression
+     * @param int $bitrate
+     * @param int $framerate
+     * @param int $samplingrate
+     * @param int $channels
+     * @param int $duration
+     * @param int $height
+     * @param int $width
+     * @param string $lang
      */
-    public function __construct($url = null, $fileSize = null, $type = null,
-            $medium = null, $isDefault = null, $expression = null,
-            $bitrate = null, $framerate = null, $samplingrate = null,
-            $channels = null, $duration = null, $height = null, $width = null,
-            $lang = null)
+    public function __construct(protected $_url = null, protected $_fileSize = null, protected $_type = null,
+            protected $_medium = null, protected $_isDefault = null, protected $_expression = null,
+            protected $_bitrate = null, protected $_framerate = null, protected $_samplingrate = null,
+            protected $_channels = null, protected $_duration = null, protected $_height = null, protected $_width = null,
+            protected $_lang = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
-        $this->_url = $url;
-        $this->_fileSize = $fileSize;
-        $this->_type = $type;
-        $this->_medium = $medium;
-        $this->_isDefault = $isDefault;
-        $this->_expression = $expression;
-        $this->_bitrate = $bitrate;
-        $this->_framerate = $framerate;
-        $this->_samplingrate = $samplingrate;
-        $this->_channels = $channels;
-        $this->_duration = $duration;
-        $this->_height = $height;
-        $this->_width = $width;
-        $this->_lang = $lang;
     }
 
 
@@ -261,7 +191,7 @@ class Zend_Gdata_Media_Extension_MediaContent extends Zend_Gdata_Extension
      *
      * @return string   The URL representing this MediaContent object.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getUrl();
     }

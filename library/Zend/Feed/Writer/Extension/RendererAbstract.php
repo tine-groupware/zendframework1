@@ -49,11 +49,6 @@ abstract class Zend_Feed_Writer_Extension_RendererAbstract
     protected $_base = null;
 
     /**
-     * @var mixed
-     */
-    protected $_container = null;
-
-    /**
      * @var string
      */
     protected $_type = null;
@@ -73,12 +68,11 @@ abstract class Zend_Feed_Writer_Extension_RendererAbstract
     /**
      * Constructor
      *
-     * @param  mixed $container
+     * @param mixed $_container
      * @return void
      */
-    public function __construct($container)
+    public function __construct(protected $_container)
     {
-        $this->_container = $container;
     }
 
     /**

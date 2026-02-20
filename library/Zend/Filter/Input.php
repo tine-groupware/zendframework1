@@ -165,7 +165,7 @@ class Zend_Filter_Input
      * @param array $data       OPTIONAL
      * @param array $options    OPTIONAL
      */
-    public function __construct($filterRules, $validatorRules, array $data = null, array $options = null)
+    public function __construct($filterRules, $validatorRules, ?array $data = null, ?array $options = null)
     {
         if ($options) {
             $this->setOptions($options);
@@ -1070,7 +1070,7 @@ class Zend_Filter_Input
 
                 if ($emptyFieldsFound) {
                     $this->_invalidMessages[$validatorRule[self::RULE]] = $messages;
-                    $this->_invalidErrors[$validatorRule[self::RULE]]   = array_unique(call_user_func_array('array_merge', $errorsList));
+                    $this->_invalidErrors[$validatorRule[self::RULE]]   = array_unique(call_user_func_array(array_merge(...), $errorsList));
                     return;
                 }
             }
@@ -1204,7 +1204,7 @@ class Zend_Filter_Input
         }
 
         $interfaceName = 'Zend_' . ucfirst($type) . '_Interface';
-        $className = $this->getPluginLoader($type)->load(ucfirst($classBaseName));
+        $className = $this->getPluginLoader($type)->load(ucfirst((string) $classBaseName));
 
         $class = new ReflectionClass($className);
 

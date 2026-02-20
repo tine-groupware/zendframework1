@@ -39,15 +39,11 @@ class Zend_Gdata_App_Extension_Generator extends Zend_Gdata_App_Extension
 {
 
     protected $_rootElement = 'generator';
-    protected $_uri = null;
-    protected $_version = null;
 
-    public function __construct($text = null, $uri = null, $version = null)
+    public function __construct($text = null, protected $_uri = null, protected $_version = null)
     {
         parent::__construct();
         $this->_text = $text;
-        $this->_uri = $uri;
-        $this->_version = $version;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

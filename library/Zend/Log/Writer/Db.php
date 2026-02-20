@@ -41,32 +41,22 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
     protected $_db;
 
     /**
-     * Name of the log table in the database
-     *
-     * @var string
-     */
-    protected $_table;
-
-    /**
-     * Relates database columns names to log data field keys.
-     *
-     * @var null|array
-     */
-    protected $_columnMap;
-
-    /**
      * Class constructor
      *
      * @param Zend_Db_Adapter $db   Database adapter instance
-     * @param string $table         Log table in database
-     * @param array $columnMap
+     * @param string $_table Log table in database
+     * @param array $_columnMap
      * @return void
      */
-    public function __construct($db, $table, $columnMap = null)
+    public function __construct($db, /**
+     * Name of the log table in the database
+     */
+    protected $_table, /**
+     * Relates database columns names to log data field keys.
+     */
+    protected $_columnMap = null)
     {
         $this->_db    = $db;
-        $this->_table = $table;
-        $this->_columnMap = $columnMap;
     }
 
     /**
@@ -101,10 +91,10 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
      * @return void
      * @throws Zend_Log_Exception
      */
-    public function setFormatter(Zend_Log_Formatter_Interface $formatter)
+    public function setFormatter(Zend_Log_Formatter_Interface $formatter): never
     {
         require_once 'Zend/Log/Exception.php';
-        throw new Zend_Log_Exception(get_class($this) . ' does not support formatting');
+        throw new Zend_Log_Exception(static::class . ' does not support formatting');
     }
 
     /**

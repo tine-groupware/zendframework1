@@ -80,7 +80,7 @@ class Zend_Cloud_DocumentService_Adapter_SimpleDb_Query
         $order   = null;
         $limit   = null;
         foreach ($this->getClauses() as $clause) {
-            list($name, $args) = $clause;
+            [$name, $args] = $clause;
 
             switch ($name) {
                 case self::QUERY_SELECT:

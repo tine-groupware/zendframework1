@@ -282,7 +282,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     public function __isset($key)
     {
-        if ('_' != substr($key, 0, 1)) {
+        if (!str_starts_with($key, '_')) {
             return isset($this->$key);
         }
 
@@ -304,7 +304,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     public function __set($key, $val)
     {
-        if ('_' != substr($key, 0, 1)) {
+        if (!str_starts_with($key, '_')) {
             $this->$key = $val;
             return;
         }
@@ -323,7 +323,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     public function __unset($key)
     {
-        if ('_' != substr($key, 0, 1) && isset($this->$key)) {
+        if (!str_starts_with($key, '_') && isset($this->$key)) {
             unset($this->$key);
         }
     }
@@ -800,7 +800,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
         // which strategy to use?
         if (is_string($spec)) {
             // assign by name and value
-            if ('_' == substr($spec, 0, 1)) {
+            if (str_starts_with($spec, '_')) {
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception('Setting private or protected class members is not allowed');
                 $e->setView($this);
@@ -811,7 +811,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
             // assign from associative array
             $error = false;
             foreach ($spec as $key => $val) {
-                if ('_' == substr($key, 0, 1)) {
+                if (str_starts_with((string) $key, '_')) {
                     $error = true;
                     break;
                 }
@@ -845,7 +845,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     {
         $vars   = get_object_vars($this);
         foreach ($vars as $key => $value) {
-            if ('_' == substr($key, 0, 1)) {
+            if (str_starts_with($key, '_')) {
                 unset($vars[$key]);
             }
         }
@@ -865,7 +865,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     {
         $vars   = get_object_vars($this);
         foreach ($vars as $key => $value) {
-            if ('_' != substr($key, 0, 1)) {
+            if (!str_starts_with($key, '_')) {
                 unset($this->$key);
             }
         }
@@ -1031,22 +1031,16 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
         foreach ((array) $path as $dir) {
             // attempt to strip any possible separator and
             // append the system directory separator
-            $dir  = rtrim($dir, '/');
+            $dir  = rtrim((string) $dir, '/');
             $dir  = rtrim($dir, '\\');
             $dir .= '/';
 
-            switch ($type) {
-                case 'script':
-                    // add to the top of the stack.
-                    array_unshift($this->_path[$type], $dir);
-                    break;
-                case 'filter':
-                case 'helper':
-                default:
-                    // add as array with prefix and dir keys
-                    array_unshift($this->_path[$type], ['prefix' => $prefix, 'dir' => $dir]);
-                    break;
-            }
+            match ($type) {
+                // add to the top of the stack.
+                'script' => array_unshift($this->_path[$type], $dir),
+                // add as array with prefix and dir keys
+                default => array_unshift($this->_path[$type], ['prefix' => $prefix, 'dir' => $dir]),
+            };
         }
     }
 
@@ -1063,7 +1057,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
 
         switch ($type) {
             case 'script':
-                $this->_path[$type] = [dirname(__FILE__) . $dir];
+                $this->_path[$type] = [__DIR__ . $dir];
                 $this->_addPath($type, $path);
                 break;
             case 'filter':
@@ -1071,7 +1065,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
             default:
                 $this->_path[$type] = [[
                     'prefix' => 'Zend_View_' . ucfirst($type) . '_',
-                    'dir'    => dirname(__FILE__) . $dir
+                    'dir'    => __DIR__ . $dir
                 ]];
                 $this->_addPath($type, $path, $classPrefix);
                 break;
@@ -1151,7 +1145,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
         try {
             $loader->load($name);
             return $loader->getClassPath($name);
-        } catch (Zend_Loader_Exception $e) {
+        } catch (Zend_Loader_Exception) {
             return false;
         }
     }

@@ -50,7 +50,7 @@ class Zend_Text_Table_Row
      * @param  array  $options
      * @return Zend_Text_Table_Row
      */
-    public function createColumn($content, array $options = null)
+    public function createColumn($content, ?array $options = null)
     {
         $align    = null;
         $colSpan  = null;
@@ -168,7 +168,7 @@ class Zend_Text_Table_Row
                                                                  $colSpan)));
 
             // Render the column and split it's lines into an array
-            $result = explode("\n", $column->render($columnWidth, $padding));
+            $result = explode("\n", (string) $column->render($columnWidth, $padding));
 
             // Store the width of the rendered column
             $this->_columnWidths[] = $columnWidth;

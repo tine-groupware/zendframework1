@@ -45,8 +45,7 @@ class Zend_Session_Validator_IpAddress extends Zend_Session_Validator_Abstract
      */
     public function setup()
     {
-        $this->setValidData( (isset($_SERVER['REMOTE_ADDR'])
-            ? $_SERVER['REMOTE_ADDR'] : null) );
+        $this->setValidData( ($_SERVER['REMOTE_ADDR'] ?? null) );
     }
 
     /**
@@ -57,8 +56,7 @@ class Zend_Session_Validator_IpAddress extends Zend_Session_Validator_Abstract
      */
     public function validate()
     {
-        $currentIpAddress = (isset($_SERVER['REMOTE_ADDR'])
-            ? $_SERVER['REMOTE_ADDR'] : null);
+        $currentIpAddress = ($_SERVER['REMOTE_ADDR'] ?? null);
 
         return $currentIpAddress === $this->getValidData();
     }

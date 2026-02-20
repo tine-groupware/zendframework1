@@ -98,7 +98,7 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
     public function _sendMail()
     {
         if ($this->parameters === null) {
-            set_error_handler([$this, '_handleMailErrors']);
+            set_error_handler($this->_handleMailErrors(...));
             $result = mail(
                 $this->recipients,
                 $this->_mail->getSubject(),
@@ -119,7 +119,7 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
                 );
             }
 
-            set_error_handler([$this, '_handleMailErrors']);
+            set_error_handler($this->_handleMailErrors(...));
             $result = mail(
                 $this->recipients,
                 $this->_mail->getSubject(),
@@ -163,7 +163,7 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
 
         // mail() uses its $to parameter to set the To: header, and the $subject
         // parameter to set the Subject: header. We need to strip them out.
-        if (0 === strpos(PHP_OS, 'WIN')) {
+        if (str_starts_with(PHP_OS, 'WIN')) {
             // If the current recipients list is empty, throw an error
             if (empty($this->recipients)) {
                 /**
@@ -211,7 +211,7 @@ class Zend_Mail_Transport_Sendmail extends Zend_Mail_Transport_Abstract
      * @param array  $errcontext
      * @return true
      */
-    public function _handleMailErrors($errno, $errstr, $errfile = null, $errline = null, array $errcontext = null)
+    public function _handleMailErrors($errno, $errstr, $errfile = null, $errline = null, ?array $errcontext = null)
     {
         $this->_errstr = $errstr;
         return true;

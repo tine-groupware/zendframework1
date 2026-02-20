@@ -39,16 +39,14 @@ class Zend_Gdata_Extension_Visibility extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'visibility';
-    protected $_value = null;
 
     /**
      * Constructs a new Zend_Gdata_Extension_Visibility object.
-     * @param bool $value (optional) Visibility value as URI.
+     * @param bool $_value (optional) Visibility value as URI.
      */
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         parent::__construct();
-        $this->_value = $value;
     }
 
     /**
@@ -114,9 +112,9 @@ class Zend_Gdata_Extension_Visibility extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->getValue();
+        return (string) $this->getValue();
     }
 
 }

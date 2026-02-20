@@ -165,11 +165,11 @@ class Zend_Cache_Manager
             $this->_caches[$name] = Zend_Cache::factory(
                 $this->_optionTemplates[$name]['frontend']['name'],
                 $this->_optionTemplates[$name]['backend']['name'],
-                isset($this->_optionTemplates[$name]['frontend']['options']) ? $this->_optionTemplates[$name]['frontend']['options'] : [],
-                isset($this->_optionTemplates[$name]['backend']['options']) ? $this->_optionTemplates[$name]['backend']['options'] : [],
-                isset($this->_optionTemplates[$name]['frontend']['customFrontendNaming']) ? $this->_optionTemplates[$name]['frontend']['customFrontendNaming'] : false,
-                isset($this->_optionTemplates[$name]['backend']['customBackendNaming']) ? $this->_optionTemplates[$name]['backend']['customBackendNaming'] : false,
-                isset($this->_optionTemplates[$name]['frontendBackendAutoload']) ? $this->_optionTemplates[$name]['frontendBackendAutoload'] : false
+                $this->_optionTemplates[$name]['frontend']['options'] ?? [],
+                $this->_optionTemplates[$name]['backend']['options'] ?? [],
+                $this->_optionTemplates[$name]['frontend']['customFrontendNaming'] ?? false,
+                $this->_optionTemplates[$name]['backend']['customBackendNaming'] ?? false,
+                $this->_optionTemplates[$name]['frontendBackendAutoload'] ?? false
             );
 
             return $this->_caches[$name];

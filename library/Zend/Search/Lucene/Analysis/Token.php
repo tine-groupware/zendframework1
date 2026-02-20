@@ -31,27 +31,6 @@
 class Zend_Search_Lucene_Analysis_Token
 {
     /**
-     * The text of the term.
-     *
-     * @var string
-     */
-    private $_termText;
-
-    /**
-     * Start in source text.
-     *
-     * @var integer
-     */
-    private $_startOffset;
-
-    /**
-     * End in source text
-     *
-     * @var integer
-     */
-    private $_endOffset;
-
-    /**
      * The position of this token relative to the previous Token.
      *
      * The default value is one.
@@ -79,17 +58,22 @@ class Zend_Search_Lucene_Analysis_Token
     /**
      * Object constructor
      *
-     * @param string  $text
-     * @param integer $start
-     * @param integer $end
+     * @param string $_termText
+     * @param integer $_startOffset
+     * @param integer $_endOffset
      * @param string  $type
      */
-    public function __construct($text, $start, $end)
+    public function __construct(/**
+     * The text of the term.
+     */
+    private $_termText, /**
+     * Start in source text.
+     */
+    private $_startOffset, /**
+     * End in source text
+     */
+    private $_endOffset)
     {
-        $this->_termText    = $text;
-        $this->_startOffset = $start;
-        $this->_endOffset   = $end;
-
         $this->_positionIncrement = 1;
     }
 

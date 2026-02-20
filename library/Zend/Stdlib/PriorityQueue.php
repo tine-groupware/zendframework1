@@ -214,15 +214,11 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
      */
     public function toArray($flag = self::EXTR_DATA)
     {
-        switch ($flag) {
-            case self::EXTR_BOTH:
-                return $this->items;
-            case self::EXTR_PRIORITY:
-                return array_map([$this, 'returnPriority'], $this->items);
-            case self::EXTR_DATA:
-            default:
-                return array_map([$this, 'returnData'], $this->items);
-        }
+        return match ($flag) {
+            self::EXTR_BOTH => $this->items,
+            self::EXTR_PRIORITY => array_map($this->returnPriority(...), $this->items),
+            default => array_map($this->returnData(...), $this->items),
+        };
     }
 
     /**
@@ -284,7 +280,7 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
             if (!$this->queue instanceof SplPriorityQueue) {
                 throw new DomainException(sprintf(
                     'Zend_Stdlib_PriorityQueue expects an internal queue of type SplPriorityQueue; received "%s"',
-                    get_class($this->queue)
+                    $this->queue::class
                 ));
             }
         }

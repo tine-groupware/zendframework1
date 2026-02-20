@@ -214,7 +214,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
             $metadata = stat(realpath($fullPath));
         }
 
-        return isset($metadata) ? $metadata : false;
+        return $metadata ?? false;
     }
 
     /**
@@ -226,7 +226,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return void
      */
-    public function storeMetadata($destinationPath, $metadata, $options = [])
+    public function storeMetadata($destinationPath, $metadata, $options = []): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('Storing metadata not implemented');
@@ -239,7 +239,7 @@ class Zend_Cloud_StorageService_Adapter_FileSystem implements Zend_Cloud_Storage
      * @param  array $options
      * @return void
      */
-    public function deleteMetadata($path)
+    public function deleteMetadata($path): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('Deleting metadata not implemented');

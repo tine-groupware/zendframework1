@@ -389,7 +389,7 @@ class Zend_Service_SlideShare
 
         if ($sxe->getName() == "SlideShareServiceError") {
             $message = (string)$sxe->Message[0];
-            list($code, $errorStr) = explode(':', $message);
+            [$code, $errorStr] = explode(':', $message);
             require_once 'Zend/Service/SlideShare/Exception.php';
             throw new Zend_Service_SlideShare_Exception(
                 trim($errorStr),
@@ -450,7 +450,7 @@ class Zend_Service_SlideShare
 
             if ($sxe->getName() == "SlideShareServiceError") {
                 $message = (string)$sxe->Message[0];
-                list($code, $errorStr) = explode(':', $message);
+                [$code, $errorStr] = explode(':', $message);
                 require_once 'Zend/Service/SlideShare/Exception.php';
                 throw new Zend_Service_SlideShare_Exception(
                     trim($errorStr),
@@ -602,7 +602,7 @@ class Zend_Service_SlideShare
 
             if ($sxe->getName() == "SlideShareServiceError") {
                 $message = (string)$sxe->Message[0];
-                list($code, $errorStr) = explode(':', $message);
+                [$code, $errorStr] = explode(':', $message);
                 require_once 'Zend/Service/SlideShare/Exception.php';
                 throw new Zend_Service_SlideShare_Exception(
                     trim($errorStr), $code

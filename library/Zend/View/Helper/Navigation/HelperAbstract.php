@@ -165,7 +165,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
      *                                                     returns self
      */
-    public function setContainer(Zend_Navigation_Container $container = null)
+    public function setContainer(?Zend_Navigation_Container $container = null)
     {
         $this->_container = $container;
         return $this;
@@ -365,7 +365,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
     public function getPrefixForId()
     {
         if (null === $this->_prefixForId) {
-            $prefix             = get_class($this);
+            $prefix             = static::class;
             $this->_prefixForId = strtolower(
                     trim(substr($prefix, strrpos($prefix, '_')), '_')
                 ) . '-';
@@ -443,7 +443,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
      *                                                     returns self
      */
-    public function setAcl(Zend_Acl $acl = null)
+    public function setAcl(?Zend_Acl $acl = null)
     {
         $this->_acl = $acl;
         return $this;
@@ -626,12 +626,12 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             return $this->render();
         } catch (Exception $e) {
-            $msg = get_class($e) . ': ' . $e->getMessage();
+            $msg = $e::class . ': ' . $e->getMessage();
             trigger_error($msg, E_USER_ERROR);
             return '';
         }
@@ -943,7 +943,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract
      *                        sets no ACL object.
      * @return void
      */
-    public static function setDefaultAcl(Zend_Acl $acl = null)
+    public static function setDefaultAcl(?Zend_Acl $acl = null)
     {
         self::$_defaultAcl = $acl;
     }

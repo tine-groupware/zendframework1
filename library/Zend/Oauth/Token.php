@@ -28,7 +28,7 @@ require_once 'Zend/Oauth/Http/Utility.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Oauth_Token
+abstract class Zend_Oauth_Token implements \Stringable
 {
     /**@+
      * Token constants
@@ -65,8 +65,8 @@ abstract class Zend_Oauth_Token
      * @return void
      */
     public function __construct(
-        Zend_Http_Response $response = null,
-        Zend_Oauth_Http_Utility $utility = null
+        ?Zend_Http_Response $response = null,
+        ?Zend_Oauth_Http_Utility $utility = null
     ) {
         if ($response !== null) {
             $this->_response = $response;
@@ -170,10 +170,7 @@ abstract class Zend_Oauth_Token
      */
     public function getParam($key)
     {
-        if (isset($this->_params[$key])) {
-            return $this->_params[$key];
-        }
-        return null;
+        return $this->_params[$key] ?? null;
     }
 
     /**
@@ -236,7 +233,7 @@ abstract class Zend_Oauth_Token
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

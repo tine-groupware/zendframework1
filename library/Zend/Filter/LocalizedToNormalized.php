@@ -81,7 +81,7 @@ class Zend_Filter_LocalizedToNormalized implements Zend_Filter_Interface
      * @param  array $options (Optional) Options to use
      * @return Zend_Filter_LocalizedToNormalized
      */
-    public function setOptions(array $options = null)
+    public function setOptions(?array $options = null)
     {
         $this->_options = $options + $this->_options;
         return $this;
@@ -99,7 +99,7 @@ class Zend_Filter_LocalizedToNormalized implements Zend_Filter_Interface
     {
         if (Zend_Locale_Format::isNumber($value, $this->_options)) {
             return Zend_Locale_Format::getNumber($value, $this->_options);
-        } else if (($this->_options['date_format'] === null) && (strpos($value, ':') !== false)) {
+        } else if (($this->_options['date_format'] === null) && (str_contains($value, ':'))) {
             // Special case, no date format specified, detect time input
             return Zend_Locale_Format::getTime($value, $this->_options);
         } else if (Zend_Locale_Format::checkDateFormat($value, $this->_options)) {

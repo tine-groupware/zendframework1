@@ -28,7 +28,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Search_Lucene_Search_Query
+abstract class Zend_Search_Lucene_Search_Query implements \Stringable
 {
     /**
      * query boost factor
@@ -159,7 +159,7 @@ abstract class Zend_Search_Lucene_Search_Query
      *
      * @return string
      */
-    abstract public function __toString();
+    abstract public function __toString(): string;
 
     /**
      * Return query terms

@@ -177,7 +177,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
         if (empty($module) || !isset($dirs[$module])) {
             $module = $this->getFrontController()->getDispatcher()->getDefaultModule();
         }
-        $baseDir = dirname($dirs[$module]) . DIRECTORY_SEPARATOR . 'views';
+        $baseDir = dirname((string) $dirs[$module]) . DIRECTORY_SEPARATOR . 'views';
         if (!file_exists($baseDir) || !is_dir($baseDir)) {
             require_once 'Zend/Controller/Exception.php';
             throw new Zend_Controller_Exception('Missing base view directory ("' . $baseDir . '")');
@@ -371,11 +371,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      */
     public function getInvokeArg($key)
     {
-        if (isset($this->_invokeArgs[$key])) {
-            return $this->_invokeArgs[$key];
-        }
-
-        return null;
+        return $this->_invokeArgs[$key] ?? null;
     }
 
     /**
@@ -480,7 +476,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
     public function __call($methodName, $args)
     {
         require_once 'Zend/Controller/Action/Exception.php';
-        if ('Action' == substr($methodName, -6)) {
+        if (str_ends_with($methodName, 'Action')) {
             $action = substr($methodName, 0, strlen($methodName) - 6);
             throw new Zend_Controller_Action_Exception(sprintf('Action "%s" does not exist and was not trapped in __call()', $action), 404);
         }
@@ -546,7 +542,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      * object to use
      * @return Zend_Controller_Response_Abstract
      */
-    public function run(Zend_Controller_Request_Abstract $request = null, Zend_Controller_Response_Abstract $response = null)
+    public function run(?Zend_Controller_Request_Abstract $request = null, ?Zend_Controller_Response_Abstract $response = null)
     {
         if (null !== $request) {
             $this->setRequest($request);
@@ -714,7 +710,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      * @deprecated Deprecated as of Zend Framework 1.7. Use
      *             forward() instead.
      */
-    final protected function _forward($action, $controller = null, $module = null, array $params = null)
+    final protected function _forward($action, $controller = null, $module = null, ?array $params = null)
     {
         $this->forward($action, $controller, $module, $params);
     }
@@ -745,7 +741,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      * @param array $params
      * @return void
      */
-    final public function forward($action, $controller = null, $module = null, array $params = null)
+    final public function forward($action, $controller = null, $module = null, ?array $params = null)
     {
         $request = $this->getRequest();
 

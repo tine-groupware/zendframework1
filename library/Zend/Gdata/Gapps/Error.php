@@ -71,14 +71,12 @@ class Zend_Gdata_Gapps_Error extends Zend_Gdata_App_Base
 
     protected $_errorCode = null;
     protected $_reason = null;
-    protected $_invalidInput = null;
 
     public function __construct($errorCode = null, $reason = null,
-            $invalidInput = null) {
+            protected $_invalidInput = null) {
         parent::__construct("Google Apps error received: $errorCode ($reason)");
         $this->_errorCode = $errorCode;
         $this->_reason = $reason;
-        $this->_invalidInput = $invalidInput;
     }
 
     /**
@@ -225,7 +223,7 @@ class Zend_Gdata_Gapps_Error extends Zend_Gdata_App_Base
      *
      * @return string
      */
-    public function __toString() {
+    public function __toString(): string {
         return "Error " . $this->getErrorCode() . ": " . $this->getReason() .
             "\n\tInvalid Input: \"" . $this->getInvalidInput() . "\"";
     }

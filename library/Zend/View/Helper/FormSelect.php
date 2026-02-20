@@ -72,12 +72,12 @@ class Zend_View_Helper_FormSelect extends Zend_View_Helper_FormElement
 
         // force $value to array so we can compare multiple values to multiple
         // options; also ensure it's a string for comparison purposes.
-        $value = array_map('strval', (array) $value);
+        $value = array_map(strval(...), (array) $value);
 
         // check if element may have multiple values
         $multiple = '';
 
-        if (substr($name, -2) == '[]') {
+        if (str_ends_with($name, '[]')) {
             // multiple implied by the name
             $multiple = ' multiple="multiple"';
         }
@@ -89,7 +89,7 @@ class Zend_View_Helper_FormSelect extends Zend_View_Helper_FormElement
                 $multiple = ' multiple="multiple"';
 
                 // Make sure name indicates multiple values are allowed
-                if (!empty($multiple) && (substr($name, -2) != '[]')) {
+                if (!empty($multiple) && (!str_ends_with($name, '[]'))) {
                     $name .= '[]';
                 }
             } else {

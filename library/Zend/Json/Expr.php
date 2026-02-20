@@ -48,7 +48,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Json_Expr
+class Zend_Json_Expr implements \Stringable
 {
     /**
      * Storage for javascript expression.
@@ -73,7 +73,7 @@ class Zend_Json_Expr
      *
      * @return string holded javascript expression.
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->_expression;
     }

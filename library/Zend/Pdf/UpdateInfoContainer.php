@@ -30,28 +30,6 @@
 class Zend_Pdf_UpdateInfoContainer
 {
     /**
-     * Object number
-     *
-     * @var integer
-     */
-    private $_objNum;
-
-    /**
-     * Generation number
-     *
-     * @var integer
-     */
-    private $_genNum;
-
-
-    /**
-     * Flag, which signals, that object is free
-     *
-     * @var boolean
-     */
-    private $_isFree;
-
-    /**
      * String representation of the object
      *
      * @var Zend_Memory_Container|null
@@ -62,13 +40,21 @@ class Zend_Pdf_UpdateInfoContainer
      * Object constructor
      *
      * @param integer $objCount
+     * @param int $objNum
+     * @param int $genNum
+     * @param bool $isFree
      */
-    public function __construct($objNum, $genNum, $isFree, $dump = null)
+    public function __construct(/**
+     * Object number
+     */
+    private $_objNum, /**
+     * Generation number
+     */
+    private $_genNum, /**
+     * Flag, which signals, that object is free
+     */
+    private $_isFree, $dump = null)
     {
-        $this->_objNum = $objNum;
-        $this->_genNum = $genNum;
-        $this->_isFree = $isFree;
-
         if ($dump !== null) {
             if (strlen($dump) > 1024) {
                 require_once 'Zend/Pdf.php';

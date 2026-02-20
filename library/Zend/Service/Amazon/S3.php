@@ -385,7 +385,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             return $firstpart;
         }
 
-        return $firstpart.'/'.join('/', array_map('rawurlencode', $nameparts));
+        return $firstpart.'/'.join('/', array_map(rawurlencode(...), $nameparts));
     }
 
     /**
@@ -425,7 +425,7 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
     public function getObjectStream($object, $streamfile = null, $paidobject=false)
     {
         $object = $this->_fixupObjectName($object);
-        self::getHttpClient()->setStream($streamfile?$streamfile:true);
+        self::getHttpClient()->setStream($streamfile ?: true);
         if ($paidobject) {
             $response = $this->_makeRequest('GET', $object, null, [self::S3_REQUESTPAY_HEADER => 'requester']);
         }
@@ -730,13 +730,13 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
 
         // Search for the Content-type, Content-MD5 and Date headers
         foreach ($headers as $key=>$val) {
-            if (strcasecmp($key, 'content-type') === 0) {
+            if (strcasecmp((string) $key, 'content-type') === 0) {
                 $type = $val;
             }
-            else if (strcasecmp($key, 'content-md5') === 0) {
+            else if (strcasecmp((string) $key, 'content-md5') === 0) {
                 $md5 = $val;
             }
-            else if (strcasecmp($key, 'date') === 0) {
+            else if (strcasecmp((string) $key, 'date') === 0) {
                 $date = $val;
             }
         }
@@ -751,13 +751,13 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         // alphabetically and remove excess spaces around values
         $amz_headers = [];
         foreach ($headers as $key=>$val) {
-            $key = strtolower($key);
-            if (substr($key, 0, 6) == 'x-amz-') {
+            $key = strtolower((string) $key);
+            if (str_starts_with($key, 'x-amz-')) {
                 if (is_array($val)) {
                     $amz_headers[$key] = $val;
                 }
                 else {
-                    $amz_headers[$key][] = preg_replace('/\s+/', ' ', $val);
+                    $amz_headers[$key][] = preg_replace('/\s+/', ' ', (string) $val);
                 }
             }
         }
@@ -769,20 +769,20 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
         }
 
         $sig_str .= '/'.parse_url($path, PHP_URL_PATH);
-        if (strpos($path, '?location') !== false) {
+        if (str_contains($path, '?location')) {
             $sig_str .= '?location';
         }
-        else if (strpos($path, '?acl') !== false) {
+        else if (str_contains($path, '?acl')) {
             $sig_str .= '?acl';
         }
-        else if (strpos($path, '?torrent') !== false) {
+        else if (str_contains($path, '?torrent')) {
             $sig_str .= '?torrent';
         }
-        else if (strpos($path, '?versions') !== false) {
+        else if (str_contains($path, '?versions')) {
             $sig_str .= '?versions';
         }
 
-        $signature = base64_encode(Zend_Crypt_Hmac::compute($this->_getSecretKey(), 'sha1', utf8_encode($sig_str), Zend_Crypt_Hmac::BINARY));
+        $signature = base64_encode(Zend_Crypt_Hmac::compute($this->_getSecretKey(), 'sha1', mb_convert_encoding($sig_str, 'UTF-8', 'ISO-8859-1'), Zend_Crypt_Hmac::BINARY));
         $headers['Authorization'] = 'AWS '.$this->_getAccessKey().':'.$signature;
 
         return $sig_str;
@@ -803,149 +803,48 @@ class Zend_Service_Amazon_S3 extends Zend_Service_Amazon_Abstract
             return 'binary/octet-stream';
         }
 
-        switch (strtolower($ext)) {
-            case 'xls':
-                $content_type = 'application/excel';
-                break;
-            case 'hqx':
-                $content_type = 'application/macbinhex40';
-                break;
-            case 'doc':
-            case 'dot':
-            case 'wrd':
-                $content_type = 'application/msword';
-                break;
-            case 'pdf':
-                $content_type = 'application/pdf';
-                break;
-            case 'pgp':
-                $content_type = 'application/pgp';
-                break;
-            case 'ps':
-            case 'eps':
-            case 'ai':
-                $content_type = 'application/postscript';
-                break;
-            case 'ppt':
-                $content_type = 'application/powerpoint';
-                break;
-            case 'rtf':
-                $content_type = 'application/rtf';
-                break;
-            case 'tgz':
-            case 'gtar':
-                $content_type = 'application/x-gtar';
-                break;
-            case 'gz':
-                $content_type = 'application/x-gzip';
-                break;
-            case 'php':
-            case 'php3':
-            case 'php4':
-                $content_type = 'application/x-httpd-php';
-                break;
-            case 'js':
-                $content_type = 'application/x-javascript';
-                break;
-            case 'ppd':
-            case 'psd':
-                $content_type = 'application/x-photoshop';
-                break;
-            case 'swf':
-            case 'swc':
-            case 'rf':
-                $content_type = 'application/x-shockwave-flash';
-                break;
-            case 'tar':
-                $content_type = 'application/x-tar';
-                break;
-            case 'zip':
-                $content_type = 'application/zip';
-                break;
-            case 'mid':
-            case 'midi':
-            case 'kar':
-                $content_type = 'audio/midi';
-                break;
-            case 'mp2':
-            case 'mp3':
-            case 'mpga':
-                $content_type = 'audio/mpeg';
-                break;
-            case 'ra':
-                $content_type = 'audio/x-realaudio';
-                break;
-            case 'wav':
-                $content_type = 'audio/wav';
-                break;
-            case 'bmp':
-                $content_type = 'image/bitmap';
-                break;
-            case 'gif':
-                $content_type = 'image/gif';
-                break;
-            case 'iff':
-                $content_type = 'image/iff';
-                break;
-            case 'jb2':
-                $content_type = 'image/jb2';
-                break;
-            case 'jpg':
-            case 'jpe':
-            case 'jpeg':
-                $content_type = 'image/jpeg';
-                break;
-            case 'jpx':
-                $content_type = 'image/jpx';
-                break;
-            case 'png':
-                $content_type = 'image/png';
-                break;
-            case 'tif':
-            case 'tiff':
-                $content_type = 'image/tiff';
-                break;
-            case 'wbmp':
-                $content_type = 'image/vnd.wap.wbmp';
-                break;
-            case 'xbm':
-                $content_type = 'image/xbm';
-                break;
-            case 'css':
-                $content_type = 'text/css';
-                break;
-            case 'txt':
-                $content_type = 'text/plain';
-                break;
-            case 'htm':
-            case 'html':
-                $content_type = 'text/html';
-                break;
-            case 'xml':
-                $content_type = 'text/xml';
-                break;
-            case 'xsl':
-                $content_type = 'text/xsl';
-                break;
-            case 'mpg':
-            case 'mpe':
-            case 'mpeg':
-                $content_type = 'video/mpeg';
-                break;
-            case 'qt':
-            case 'mov':
-                $content_type = 'video/quicktime';
-                break;
-            case 'avi':
-                $content_type = 'video/x-ms-video';
-                break;
-            case 'eml':
-                $content_type = 'message/rfc822';
-                break;
-            default:
-                $content_type = 'binary/octet-stream';
-                break;
-        }
+        $content_type = match (strtolower($ext)) {
+            'xls' => 'application/excel',
+            'hqx' => 'application/macbinhex40',
+            'doc', 'dot', 'wrd' => 'application/msword',
+            'pdf' => 'application/pdf',
+            'pgp' => 'application/pgp',
+            'ps', 'eps', 'ai' => 'application/postscript',
+            'ppt' => 'application/powerpoint',
+            'rtf' => 'application/rtf',
+            'tgz', 'gtar' => 'application/x-gtar',
+            'gz' => 'application/x-gzip',
+            'php', 'php3', 'php4' => 'application/x-httpd-php',
+            'js' => 'application/x-javascript',
+            'ppd', 'psd' => 'application/x-photoshop',
+            'swf', 'swc', 'rf' => 'application/x-shockwave-flash',
+            'tar' => 'application/x-tar',
+            'zip' => 'application/zip',
+            'mid', 'midi', 'kar' => 'audio/midi',
+            'mp2', 'mp3', 'mpga' => 'audio/mpeg',
+            'ra' => 'audio/x-realaudio',
+            'wav' => 'audio/wav',
+            'bmp' => 'image/bitmap',
+            'gif' => 'image/gif',
+            'iff' => 'image/iff',
+            'jb2' => 'image/jb2',
+            'jpg', 'jpe', 'jpeg' => 'image/jpeg',
+            'jpx' => 'image/jpx',
+            'png' => 'image/png',
+            'tif', 'tiff' => 'image/tiff',
+            'wbmp' => 'image/vnd.wap.wbmp',
+            'xbm' => 'image/xbm',
+            'css' => 'text/css',
+            'txt' => 'text/plain',
+            'htm', 'html' => 'text/html',
+            'xml' => 'text/xml',
+            'xsl' => 'text/xsl',
+            'mpg', 'mpe', 'mpeg' => 'video/mpeg',
+            'qt', 'mov' => 'video/quicktime',
+            'avi' => 'video/x-ms-video',
+            'eml' => 'message/rfc822',
+            default => 'binary/octet-stream',
+        };
 
         return $content_type;
     }

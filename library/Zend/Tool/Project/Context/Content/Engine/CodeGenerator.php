@@ -39,20 +39,14 @@ class Zend_Tool_Project_Context_Content_Engine_CodeGenerator
     protected $_storage = null;
 
     /**
-     * @var string
-     */
-    protected $_contentPrefix = null;
-
-    /**
      * __construct()
      *
      * @param Zend_Tool_Framework_Client_Storage $storage
-     * @param string $contentPrefix
+     * @param string $_contentPrefix
      */
-    public function __construct(Zend_Tool_Framework_Client_Storage $storage, $contentPrefix)
+    public function __construct(Zend_Tool_Framework_Client_Storage $storage, protected $_contentPrefix)
     {
         $this->_storage       = $storage;
-        $this->_contentPrefix = $contentPrefix;
     }
 
     /**

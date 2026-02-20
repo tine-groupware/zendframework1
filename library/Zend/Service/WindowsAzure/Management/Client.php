@@ -111,27 +111,6 @@ class Zend_Service_WindowsAzure_Management_Client
 	protected $_apiVersion = '2011-02-25';
 	
 	/**
-	 * Subscription ID
-	 *
-	 * @var string
-	 */
-	protected $_subscriptionId = '';
-	
-	/**
-	 * Management certificate path (.PEM)
-	 *
-	 * @var string
-	 */
-	protected $_certificatePath = '';
-	
-	/**
-	 * Management certificate passphrase
-	 *
-	 * @var string
-	 */
-	protected $_certificatePassphrase = '';
-	
-	/**
 	 * Zend_Http_Client channel used for communication with REST services
 	 * 
 	 * @var Zend_Http_Client
@@ -153,23 +132,28 @@ class Zend_Service_WindowsAzure_Management_Client
 	protected $_lastRequestId = null;
 	
 	/**
-	 * Creates a new Zend_Service_WindowsAzure_Management instance
-	 * 
-	 * @param string $subscriptionId Subscription ID
-	 * @param string $certificatePath Management certificate path (.PEM)
-	 * @param string $certificatePassphrase Management certificate passphrase
+     * Creates a new Zend_Service_WindowsAzure_Management instance
+     *
+     * @param string $_subscriptionId Subscription ID
+     * @param string $_certificatePath Management certificate path (.PEM)
+     * @param string $_certificatePassphrase Management certificate passphrase
      * @param Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy Retry policy to use when making requests
-	 */
-	public function __construct(
-		$subscriptionId,
-		$certificatePath,
-		$certificatePassphrase,
-		Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null
+     */
+    public function __construct(
+		/**
+         * Subscription ID
+         */
+        protected $_subscriptionId,
+		/**
+         * Management certificate path (.PEM)
+         */
+        protected $_certificatePath,
+		/**
+         * Management certificate passphrase
+         */
+        protected $_certificatePassphrase,
+		?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null
 	) {
-		$this->_subscriptionId = $subscriptionId;
-		$this->_certificatePath = $certificatePath;
-		$this->_certificatePassphrase = $certificatePassphrase;
-		
 		$this->_retryPolicy = $retryPolicy;
 		if (is_null($this->_retryPolicy)) {
 		    $this->_retryPolicy = Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract::noRetry();
@@ -261,7 +245,7 @@ class Zend_Service_WindowsAzure_Management_Client
 		$rawData = null
 	) {
 	    // Clean path
-		if (strpos($path, '/') !== 0) {
+		if (!str_starts_with($path, '/')) {
 			$path = '/' . $path;
 		}
 			
@@ -297,7 +281,7 @@ class Zend_Service_WindowsAzure_Management_Client
 
 		// Execute request
 		$response = $this->_retryPolicy->execute(
-		    [$this->_httpClientChannel, 'request'],
+		    $this->_httpClientChannel->request(...),
 		    [$httpVerb]
 		);
 		
@@ -314,7 +298,7 @@ class Zend_Service_WindowsAzure_Management_Client
 	 * @return object
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	protected function _parseResponse(Zend_Http_Response $response = null)
+	protected function _parseResponse(?Zend_Http_Response $response = null)
 	{
 		if (is_null($response)) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -538,7 +522,7 @@ class Zend_Service_WindowsAzure_Management_Client
 	 * @param Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy Retry policy to use when making requests
 	 * @return Zend_Service_WindowsAzure_Storage_Blob
 	 */
-	public function createBlobClientForService($serviceName, Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
+	public function createBlobClientForService($serviceName, ?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
 	{
 		if ($serviceName == '' || is_null($serviceName)) {
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name should be specified.');
@@ -564,7 +548,7 @@ class Zend_Service_WindowsAzure_Management_Client
 	 * @param Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy Retry policy to use when making requests
 	 * @return Zend_Service_WindowsAzure_Storage_Table
 	 */
-	public function createTableClientForService($serviceName, Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
+	public function createTableClientForService($serviceName, ?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
 	{
 		if ($serviceName == '' || is_null($serviceName)) {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
@@ -589,7 +573,7 @@ class Zend_Service_WindowsAzure_Management_Client
 	 * @param Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy Retry policy to use when making requests
 	 * @return Zend_Service_WindowsAzure_Storage_Queue
 	 */
-	public function createQueueClientForService($serviceName, Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
+	public function createQueueClientForService($serviceName, ?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
 	{
 		if ($serviceName == '' || is_null($serviceName)) {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
@@ -1008,7 +992,7 @@ class Zend_Service_WindowsAzure_Management_Client
     	}
     	
     	if (@file_exists($configuration)) {
-    		$configuration = utf8_decode(file_get_contents($configuration));
+    		$configuration = mb_convert_encoding(file_get_contents($configuration), 'ISO-8859-1');
     	}
     	
     	// Clean up the configuration
@@ -1480,7 +1464,7 @@ class Zend_Service_WindowsAzure_Management_Client
     	}
     	
         if (@file_exists($configuration)) {
-    		$configuration = utf8_decode(file_get_contents($configuration));
+    		$configuration = mb_convert_encoding(file_get_contents($configuration), 'ISO-8859-1');
     	}
     	
     	$operationUrl = self::OP_HOSTED_SERVICES . '/' . $serviceName . '/deploymentslots/' . $deploymentSlot;
@@ -1513,7 +1497,7 @@ class Zend_Service_WindowsAzure_Management_Client
     	}
     	
         if (@file_exists($configuration)) {
-    		$configuration = utf8_decode(file_get_contents($configuration));
+    		$configuration = mb_convert_encoding(file_get_contents($configuration), 'ISO-8859-1');
     	}
     	
     	$operationUrl = self::OP_HOSTED_SERVICES . '/' . $serviceName . '/deployments/' . $deploymentId;
@@ -1591,7 +1575,7 @@ class Zend_Service_WindowsAzure_Management_Client
     	}
     	
     	if (@file_exists($configuration)) {
-    		$configuration = utf8_decode(file_get_contents($configuration));
+    		$configuration = mb_convert_encoding(file_get_contents($configuration), 'ISO-8859-1');
     	}
     	
 		$operationUrl = self::OP_HOSTED_SERVICES . '/' . $serviceName . '/deploymentslots/' . $deploymentSlot;
@@ -1643,7 +1627,7 @@ class Zend_Service_WindowsAzure_Management_Client
     	}
     	
     	if (@file_exists($configuration)) {
-    		$configuration = utf8_decode(file_get_contents($configuration));
+    		$configuration = mb_convert_encoding(file_get_contents($configuration), 'ISO-8859-1');
     	}
     	
 		$operationUrl = self::OP_HOSTED_SERVICES . '/' . $serviceName . '/deployments/' . $deploymentId;
@@ -1941,13 +1925,13 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name or certificate URL should be specified.');
     	}
-    	if (strpos($serviceName, 'https') === false && ($algorithm == '' || is_null($algorithm)) && ($thumbprint == '' || is_null($thumbprint))) {
+    	if (!str_contains($serviceName, 'https') && ($algorithm == '' || is_null($algorithm)) && ($thumbprint == '' || is_null($thumbprint))) {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Algorithm and thumbprint should be specified.');
     	}
     	
     	$operationUrl = str_replace($this->getBaseUrl(), '', $serviceName);
-    	if (strpos($serviceName, 'https') === false) {
+    	if (!str_contains($serviceName, 'https')) {
     		$operationUrl = self::OP_HOSTED_SERVICES . '/' . $serviceName . '/certificates/' . $algorithm . '-' . strtoupper($thumbprint);
     	}
     	
@@ -2026,13 +2010,13 @@ class Zend_Service_WindowsAzure_Management_Client
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Service name or certificate URL should be specified.');
     	}
-    	if (strpos($serviceName, 'https') === false && ($algorithm == '' || is_null($algorithm)) && ($thumbprint == '' || is_null($thumbprint))) {
+    	if (!str_contains($serviceName, 'https') && ($algorithm == '' || is_null($algorithm)) && ($thumbprint == '' || is_null($thumbprint))) {
 			require_once 'Zend/Service/WindowsAzure/Management/Exception.php';
     		throw new Zend_Service_WindowsAzure_Management_Exception('Algorithm and thumbprint should be specified.');
     	}
     	
     	$operationUrl = str_replace($this->getBaseUrl(), '', $serviceName);
-    	if (strpos($serviceName, 'https') === false) {
+    	if (!str_contains($serviceName, 'https')) {
     		$operationUrl = self::OP_HOSTED_SERVICES . '/' . $serviceName . '/certificates/' . $algorithm . '-' . strtoupper($thumbprint);
     	}
     	

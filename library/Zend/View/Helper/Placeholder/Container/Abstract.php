@@ -28,8 +28,9 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObject
+abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObject implements \Stringable
 {
+    public $view;
     /**
      * Whether or not to override all contents of placeholder
      * @const string
@@ -378,7 +379,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

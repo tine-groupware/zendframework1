@@ -72,27 +72,6 @@ class Zend_Service_SqlAzure_Management_Client
 	protected $_apiVersion = '1.0';
 	
 	/**
-	 * Subscription ID
-	 *
-	 * @var string
-	 */
-	protected $_subscriptionId = '';
-	
-	/**
-	 * Management certificate path (.PEM)
-	 *
-	 * @var string
-	 */
-	protected $_certificatePath = '';
-	
-	/**
-	 * Management certificate passphrase
-	 *
-	 * @var string
-	 */
-	protected $_certificatePassphrase = '';
-	
-	/**
 	 * Zend_Http_Client channel used for communication with REST services
 	 * 
 	 * @var Zend_Http_Client
@@ -114,23 +93,28 @@ class Zend_Service_SqlAzure_Management_Client
 	protected $_lastRequestId = null;
 	
 	/**
-	 * Creates a new Zend_Service_SqlAzure_Management instance
-	 * 
-	 * @param string $subscriptionId Subscription ID
-	 * @param string $certificatePath Management certificate path (.PEM)
-	 * @param string $certificatePassphrase Management certificate passphrase
+     * Creates a new Zend_Service_SqlAzure_Management instance
+     *
+     * @param string $_subscriptionId Subscription ID
+     * @param string $_certificatePath Management certificate path (.PEM)
+     * @param string $_certificatePassphrase Management certificate passphrase
      * @param Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy Retry policy to use when making requests
-	 */
-	public function __construct(
-		$subscriptionId,
-		$certificatePath,
-		$certificatePassphrase,
-		Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null
+     */
+    public function __construct(
+		/**
+         * Subscription ID
+         */
+        protected $_subscriptionId,
+		/**
+         * Management certificate path (.PEM)
+         */
+        protected $_certificatePath,
+		/**
+         * Management certificate passphrase
+         */
+        protected $_certificatePassphrase,
+		?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null
 	) {
-		$this->_subscriptionId = $subscriptionId;
-		$this->_certificatePath = $certificatePath;
-		$this->_certificatePassphrase = $certificatePassphrase;
-		
 		$this->_retryPolicy = $retryPolicy;
 		if (is_null($this->_retryPolicy)) {
 		    $this->_retryPolicy = Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract::noRetry();
@@ -222,7 +206,7 @@ class Zend_Service_SqlAzure_Management_Client
 		$rawData = null
 	) {
 	    // Clean path
-		if (strpos($path, '/') !== 0) {
+		if (!str_starts_with($path, '/')) {
 			$path = '/' . $path;
 		}
 			
@@ -258,7 +242,7 @@ class Zend_Service_SqlAzure_Management_Client
 
 		// Execute request
 		$response = $this->_retryPolicy->execute(
-		    [$this->_httpClientChannel, 'request'],
+		    $this->_httpClientChannel->request(...),
 		    [$httpVerb]
 		);
 		
@@ -275,7 +259,7 @@ class Zend_Service_SqlAzure_Management_Client
 	 * @return object
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	protected function _parseResponse(Zend_Http_Response $response = null)
+	protected function _parseResponse(?Zend_Http_Response $response = null)
 	{
 		if (is_null($response)) {
 			require_once 'Zend/Service/SqlAzure/Exception.php';

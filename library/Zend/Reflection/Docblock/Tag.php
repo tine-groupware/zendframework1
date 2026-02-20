@@ -94,7 +94,7 @@ class Zend_Reflection_Docblock_Tag implements Reflector
      * @todo   What should this do?
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return "Docblock Tag [ * @".$this->_name." ]".PHP_EOL;
     }

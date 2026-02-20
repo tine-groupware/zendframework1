@@ -40,13 +40,11 @@ abstract class Zend_Gdata_App_Extension_Text extends Zend_Gdata_App_Extension
 {
 
     protected $_rootElement = null;
-    protected $_type = 'text';
 
-    public function __construct($text = null, $type = 'text')
+    public function __construct($text = null, protected $_type = 'text')
     {
         parent::__construct();
         $this->_text = $text;
-        $this->_type = $type;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

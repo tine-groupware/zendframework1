@@ -80,7 +80,7 @@ class Zend_Mail_Part_File extends Zend_Mail_Part
             fseek($this->_fh, $params['startPos']);
         }
         $header = '';
-        $endPos = isset($params['endPos']) ? $params['endPos'] : null;
+        $endPos = $params['endPos'] ?? null;
         while (($endPos === null || ftell($this->_fh) < $endPos) && trim($line = fgets($this->_fh))) {
             $header .= $line;
         }

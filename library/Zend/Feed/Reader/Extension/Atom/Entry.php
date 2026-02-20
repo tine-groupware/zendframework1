@@ -68,11 +68,7 @@ class Zend_Feed_Reader_Extension_Atom_Entry
     {
         $authors = $this->getAuthors();
 
-        if (isset($authors[$index])) {
-            return $authors[$index];
-        }
-
-        return null;
+        return $authors[$index] ?? null;
     }
 
     /**
@@ -163,7 +159,7 @@ class Zend_Feed_Reader_Extension_Atom_Entry
             $content = $this->getDescription();
         }
 
-        $this->_data['content'] = trim($content);
+        $this->_data['content'] = trim((string) $content);
 
         return $this->_data['content'];
     }
@@ -178,7 +174,7 @@ class Zend_Feed_Reader_Extension_Atom_Entry
             "/<\?xml[^<]*>[^<]*<" . $prefix . "div[^<]*/",
             "/<\/" . $prefix . "div>\s*$/"
         ];
-        $xhtml = preg_replace($matches, '', $xhtml);
+        $xhtml = preg_replace($matches, '', (string) $xhtml);
         if (!empty($prefix)) {
             $xhtml = preg_replace("/(<[\/]?)" . $prefix . "([a-zA-Z]+)/", '$1$2', $xhtml);
         }
@@ -360,11 +356,7 @@ class Zend_Feed_Reader_Extension_Atom_Entry
             $this->getLinks();
         }
 
-        if (isset($this->_data['links'][$index])) {
-            return $this->_data['links'][$index];
-        }
-
-        return null;
+        return $this->_data['links'][$index] ?? null;
     }
 
     /**
@@ -606,15 +598,15 @@ class Zend_Feed_Reader_Extension_Atom_Entry
         $nameNode  = $element->getElementsByTagName('name');
         $uriNode   = $element->getElementsByTagName('uri');
 
-        if ($emailNode->length && strlen($emailNode->item(0)->nodeValue) > 0) {
+        if ($emailNode->length && strlen((string) $emailNode->item(0)->nodeValue) > 0) {
             $author['email'] = $emailNode->item(0)->nodeValue;
         }
 
-        if ($nameNode->length && strlen($nameNode->item(0)->nodeValue) > 0) {
+        if ($nameNode->length && strlen((string) $nameNode->item(0)->nodeValue) > 0) {
             $author['name'] = $nameNode->item(0)->nodeValue;
         }
 
-        if ($uriNode->length && strlen($uriNode->item(0)->nodeValue) > 0) {
+        if ($uriNode->length && strlen((string) $uriNode->item(0)->nodeValue) > 0) {
             $author['uri'] = $uriNode->item(0)->nodeValue;
         }
 
@@ -629,14 +621,10 @@ class Zend_Feed_Reader_Extension_Atom_Entry
      */
     protected function _registerNamespaces()
     {
-        switch ($this->_getAtomType()) {
-            case Zend_Feed_Reader::TYPE_ATOM_03:
-                $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03);
-                break;
-            default:
-                $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10);
-                break;
-        }
+        match ($this->_getAtomType()) {
+            Zend_Feed_Reader::TYPE_ATOM_03 => $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03),
+            default => $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10),
+        };
     }
 
     /**

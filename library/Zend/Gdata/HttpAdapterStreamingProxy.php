@@ -117,7 +117,7 @@ class Zend_Gdata_HttpAdapterStreamingProxy extends Zend_Http_Client_Adapter_Prox
         // Read from $body, write to socket
         $chunk = $body->read(self::CHUNK_SIZE);
         while ($chunk !== false) {
-            if (!@fwrite($this->socket, $chunk)) {
+            if (!@fwrite($this->socket, (string) $chunk)) {
                 require_once 'Zend/Http/Client/Adapter/Exception.php';
                 throw new Zend_Http_Client_Adapter_Exception(
                     'Error writing request to server'

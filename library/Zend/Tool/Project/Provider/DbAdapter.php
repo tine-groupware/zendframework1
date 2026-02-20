@@ -88,13 +88,13 @@ class Zend_Tool_Project_Provider_DbAdapter
     {
         $dsnVars = [];
 
-        if (strpos($dsn, '=') === false) {
+        if (!str_contains((string) $dsn, '=')) {
             throw new Zend_Tool_Project_Provider_Exception('At least one name value pair is expected, typcially '
                 . 'in the format of "adapter=Mysqli&username=uname&password=mypass&dbname=mydb"'
                 );
         }
 
-        parse_str($dsn, $dsnVars);
+        parse_str((string) $dsn, $dsnVars);
 
         $dbConfigValues = ['resources' => ['db' => null]];
 

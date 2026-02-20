@@ -167,7 +167,7 @@ class Zend_Cache_Backend_Test extends Zend_Cache_Backend implements Zend_Cache_B
     public function save($data, $id, $tags = [], $specificLifetime = false)
     {
         $this->_addLog('save', [$data, $id, $tags]);
-        if (substr($id,-5)=='false') {
+        if (str_ends_with($id, 'false')) {
             return false;
         }
         return true;
@@ -185,7 +185,7 @@ class Zend_Cache_Backend_Test extends Zend_Cache_Backend implements Zend_Cache_B
     public function remove($id)
     {
         $this->_addLog('remove', [$id]);
-        if (substr($id,-5)=='false') {
+        if (str_ends_with($id, 'false')) {
             return false;
         }
         return true;

@@ -28,7 +28,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Mail_Storage_Folder implements RecursiveIterator
+class Zend_Mail_Storage_Folder implements RecursiveIterator, \Stringable
 {
     /**
      * subfolders of folder array(localName => Zend_Mail_Storage_Folder folder)
@@ -37,36 +37,28 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
     protected $_folders;
 
     /**
-     * local name (name of folder in parent folder)
-     * @var string
-     */
-    protected $_localName;
-
-    /**
      * global name (absolute name of folder)
      * @var string
      */
     protected $_globalName;
 
     /**
-     * folder is selectable if folder is able to hold messages, else it's just a parent folder
-     * @var bool
-     */
-    protected $_selectable = true;
-
-    /**
      * create a new mail folder instance
      *
-     * @param string $localName  name of folder in current subdirectory
+     * @param string $_localName name of folder in current subdirectory
      * @param string $globalName absolute name of folder
-     * @param bool   $selectable if true folder holds messages, if false it's just a parent for subfolders
+     * @param bool $_selectable if true folder holds messages, if false it's just a parent for subfolders
      * @param array  $folders    init with given instances of Zend_Mail_Storage_Folder as subfolders
      */
-    public function __construct($localName, $globalName = '', $selectable = true, array $folders = [])
+    public function __construct(/**
+     * local name (name of folder in parent folder)
+     */
+    protected $_localName, $globalName = '', /**
+     * folder is selectable if folder is able to hold messages, else it's just a parent folder
+     */
+    protected $_selectable = true, array $folders = [])
     {
-        $this->_localName  = $localName;
-        $this->_globalName = $globalName ? $globalName : $localName;
-        $this->_selectable = $selectable;
+        $this->_globalName = $globalName ?: $this->_localName;
         $this->_folders    = $folders;
     }
 
@@ -191,7 +183,7 @@ public function current()
      *
      * @return string global name of folder
      */
-    public function __toString()
+    public function __toString(): string
     {
         return (string)$this->getGlobalName();
     }

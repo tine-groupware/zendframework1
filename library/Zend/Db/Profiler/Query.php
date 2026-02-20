@@ -32,20 +32,6 @@ class Zend_Db_Profiler_Query
 {
 
     /**
-     * SQL query string or user comment, set by $query argument in constructor.
-     *
-     * @var string
-     */
-    protected $_query = '';
-
-    /**
-     * One of the Zend_Db_Profiler constants for query type, set by $queryType argument in constructor.
-     *
-     * @var integer
-     */
-    protected $_queryType = 0;
-
-    /**
      * Unix timestamp with microseconds when instantiated.
      *
      * @var float
@@ -67,19 +53,22 @@ class Zend_Db_Profiler_Query
     /**
      * @var array
      */
-
     /**
      * Class constructor.  A query is about to be started, save the query text ($query) and its
      * type (one of the Zend_Db_Profiler::* constants).
      *
-     * @param  string  $query
-     * @param  integer $queryType
+     * @param string $_query
+     * @param integer $_queryType
      * @return void
      */
-    public function __construct($query, $queryType)
+    public function __construct(/**
+     * SQL query string or user comment, set by $query argument in constructor.
+     */
+    protected $_query, /**
+     * One of the Zend_Db_Profiler constants for query type, set by $queryType argument in constructor.
+     */
+    protected $_queryType)
     {
-        $this->_query = $query;
-        $this->_queryType = $queryType;
         // by default, and for backward-compatibility, start the click ticking
         $this->start();
     }

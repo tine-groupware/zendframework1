@@ -72,13 +72,10 @@ class Zend_Feed_Entry_Rss extends Zend_Feed_Entry_Abstract
      */
     public function __set($var, $value)
     {
-        switch ($var) {
-            case 'content':
-                parent::__set('content:encoded', $value);
-                break;
-            default:
-                parent::__set($var, $value);
-        }
+        match ($var) {
+            'content' => parent::__set('content:encoded', $value),
+            default => parent::__set($var, $value),
+        };
     }
 
     /**
@@ -90,13 +87,11 @@ class Zend_Feed_Entry_Rss extends Zend_Feed_Entry_Abstract
      */
     public function __isset($var)
     {
-        switch ($var) {
-            case 'content':
-                // don't use other callback to prevent invalid returned value
-                return $this->content() !== null;
-            default:
-                return parent::__isset($var);
-        }
+        return match ($var) {
+            // don't use other callback to prevent invalid returned value
+            'content' => $this->content() !== null,
+            default => parent::__isset($var),
+        };
     }
 
     /**

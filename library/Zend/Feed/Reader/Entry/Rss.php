@@ -142,11 +142,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
     {
         $authors = $this->getAuthors();
 
-        if (isset($authors[$index])) {
-            return $authors[$index];
-        }
-
-        return null;
+        return $authors[$index] ?? null;
     }
 
     /**
@@ -178,7 +174,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
         }
         if ($list->length) {
             foreach ($list as $author) {
-                $string = trim($author->nodeValue);
+                $string = trim((string) $author->nodeValue);
                 $email = null;
                 $name = null;
                 $data = [];
@@ -265,7 +261,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
         ) {
             $dateModified = $this->_xpath->evaluate('string('.$this->_xpathQueryRss.'/pubDate)');
             if ($dateModified) {
-                $dateModifiedParsed = strtotime($dateModified);
+                $dateModifiedParsed = strtotime((string) $dateModified);
                 if ($dateModifiedParsed) {
                     $date = new Zend_Date($dateModifiedParsed);
                 } else {
@@ -433,11 +429,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
             $this->getLinks();
         }
 
-        if (isset($this->_data['links'][$index])) {
-            return $this->_data['links'][$index];
-        }
-
-        return null;
+        return $this->_data['links'][$index] ?? null;
     }
 
     /**

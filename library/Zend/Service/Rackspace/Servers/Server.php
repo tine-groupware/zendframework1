@@ -231,10 +231,7 @@ class Zend_Service_Rackspace_Servers_Server
      */
     public function getPrivateIp()
     {
-        if (isset($this->addresses['private'])) {
-            return $this->addresses['private'];
-        }
-        return false;
+        return $this->addresses['private'] ?? false;
     }
     /**
      * Get the public IPs
@@ -243,10 +240,7 @@ class Zend_Service_Rackspace_Servers_Server
      */
     public function getPublicIp()
     {
-        if (isset($this->addresses['public'])) {
-            return $this->addresses['public'];
-        }
-        return false;
+        return $this->addresses['public'] ?? false;
     }
     /**
      * Get the metadata of the container

@@ -75,13 +75,6 @@ abstract class Zend_Mail_Protocol_Abstract
 
 
     /**
-     * Port number of connection
-     * @var integer
-     */
-    protected $_port;
-
-
-    /**
      * Instance of Zend_Validate to check hostnames
      * @var Zend_Validate
      */
@@ -144,18 +137,21 @@ abstract class Zend_Mail_Protocol_Abstract
      */
     public static $loggingEnabled = false;
 
-    protected $_connectionOptions = array();
+    protected $_connectionOptions = [];
 
     /**
      * Constructor.
      *
      * @param  string  $host   OPTIONAL Hostname of remote connection (default: 127.0.0.1)
-     * @param  integer $port   OPTIONAL Port number (default: null)
+     * @param integer $_port OPTIONAL Port number (default: null)
      * @param  array   $config OPTIONAL Further parameters
      * @throws Zend_Mail_Protocol_Exception
      * @return void
      */
-    public function __construct($host = '127.0.0.1', $port = null, array $config = [])
+    public function __construct($host = '127.0.0.1', /**
+     * Port number of connection
+     */
+    protected $_port = null, array $config = [])
     {
         $this->_validHost = new Zend_Validate();
         $this->_validHost->addValidator(new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL));
@@ -169,7 +165,6 @@ abstract class Zend_Mail_Protocol_Abstract
         }
 
         $this->_host = $host;
-        $this->_port = $port;
 
         if (array_key_exists('verify_peer', $config)) {
             $this->_verifyPeer = in_array(strtolower((string)$config['verify_peer']), ['true', 'yes', '1']);
@@ -320,7 +315,7 @@ abstract class Zend_Mail_Protocol_Abstract
             $remote,
             $errorNum,
             $errorStr,
-            isset($this->_connectionOptions['timeout']) ? $this->_connectionOptions['timeout'] : self::TIMEOUT_CONNECTION,
+            $this->_connectionOptions['timeout'] ?? self::TIMEOUT_CONNECTION,
             STREAM_CLIENT_CONNECT,
             $context
         );
@@ -492,7 +487,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
         do {
             $this->_response[] = $result = $this->_receive($timeout);
-            list($cmd, $more, $msg) = preg_split('/([\s-]+)/', $result, 2, PREG_SPLIT_DELIM_CAPTURE);
+            [$cmd, $more, $msg] = preg_split('/([\s-]+)/', $result, 2, PREG_SPLIT_DELIM_CAPTURE);
 
             if ($errMsg !== '') {
                 $errMsg .= ' ' . $msg;
@@ -500,7 +495,7 @@ abstract class Zend_Mail_Protocol_Abstract
                 $errMsg =  $msg;
             }
 
-        } while (strpos($more, '-') === 0); // The '-' message prefix indicates an information string instead of a response string.
+        } while (str_starts_with($more, '-')); // The '-' message prefix indicates an information string instead of a response string.
 
         if ($errMsg !== '') {
             /**

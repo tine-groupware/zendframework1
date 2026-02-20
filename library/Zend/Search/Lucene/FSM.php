@@ -232,7 +232,7 @@ abstract class Zend_Search_Lucene_FSM
     public function addRules($rules)
     {
         foreach ($rules as $rule) {
-            $this->addrule($rule[0], $rule[1], $rule[2], isset($rule[3])?$rule[3]:null);
+            $this->addrule($rule[0], $rule[1], $rule[2], $rule[3] ?? null);
         }
     }
 

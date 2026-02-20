@@ -33,7 +33,7 @@ require_once 'Zend/Service/Amazon/Exception.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Service_Amazon_SimpleDb_Page
+class Zend_Service_Amazon_SimpleDb_Page implements \Stringable
 {
     /**
      * Page data
@@ -88,7 +88,7 @@ class Zend_Service_Amazon_SimpleDb_Page
      */
     public function setToken($token)
     {
-        $this->_token = (trim($token) === '') ? null : $token;
+        $this->_token = (trim((string) $token) === '') ? null : $token;
     }
 
     /**
@@ -116,7 +116,7 @@ class Zend_Service_Amazon_SimpleDb_Page
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return "Page with token: " . $this->_token
              . "\n and data: " . $this->_data;

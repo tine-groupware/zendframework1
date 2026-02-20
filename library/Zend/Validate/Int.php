@@ -140,7 +140,7 @@ class Zend_Validate_Int extends Zend_Validate_Abstract
                     $this->_error(self::NOT_INT);
                     return false;
                 }
-            } catch (Zend_Locale_Exception $e) {
+            } catch (Zend_Locale_Exception) {
                 $this->_error(self::NOT_INT);
                 return false;
             }

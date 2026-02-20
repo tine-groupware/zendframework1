@@ -235,12 +235,12 @@ abstract class Zend_Service_Amazon_Ec2_Abstract extends Zend_Service_Amazon_Abst
         $data .= $this->_getRegion() . $this->_ec2Endpoint . "\n";
         $data .= "/\n";
 
-        uksort($paramaters, 'strcmp');
+        uksort($paramaters, strcmp(...));
         unset($paramaters['Signature']);
 
         $arrData = [];
         foreach($paramaters as $key => $value) {
-            $arrData[] = $key . '=' . str_replace("%7E", "~", rawurlencode($value));
+            $arrData[] = $key . '=' . str_replace("%7E", "~", rawurlencode((string) $value));
         }
 
         $data .= implode('&', $arrData);

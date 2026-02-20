@@ -44,19 +44,11 @@ class Zend_Gdata_Extension_EntryLink extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'entryLink';
-    protected $_href = null;
-    protected $_readOnly = null;
-    protected $_rel = null;
-    protected $_entry = null;
 
-    public function __construct($href = null, $rel = null,
-            $readOnly = null, $entry = null)
+    public function __construct(protected $_href = null, protected $_rel = null,
+            protected $_readOnly = null, protected $_entry = null)
     {
         parent::__construct();
-        $this->_href = $href;
-        $this->_readOnly = $readOnly;
-        $this->_rel = $rel;
-        $this->_entry = $entry;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

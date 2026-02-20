@@ -200,7 +200,7 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
         }
 
         foreach($type as $typ) {
-            if (defined('self::' . strtoupper($typ)) && !in_array($typ, $this->_type)) {
+            if (defined('self::' . strtoupper((string) $typ)) && !in_array($typ, $this->_type)) {
                 $this->_type[] = $typ;
             }
 
@@ -268,7 +268,7 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
         $foundl = false;
         foreach ($types as $type) {
             foreach ($this->_cardType[$type] as $prefix) {
-                if (substr($value, 0, strlen($prefix)) == $prefix) {
+                if (str_starts_with($value, (string) $prefix)) {
                     $foundp = true;
                     if (in_array($length, $this->_cardLength[$type])) {
                         $foundl = true;
@@ -311,7 +311,7 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
                     $this->_error(self::SERVICE, $value);
                     return false;
                 }
-            } catch (Zend_Exception $e) {
+            } catch (Zend_Exception) {
                 $this->_error(self::SERVICEFAILURE, $value);
                 return false;
             }

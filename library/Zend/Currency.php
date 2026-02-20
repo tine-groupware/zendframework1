@@ -34,7 +34,7 @@ require_once 'Zend/Locale/Format.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Currency
+class Zend_Currency implements \Stringable
 {
     // Constants for defining what currency symbol should be displayed
     const NO_SYMBOL     = 1;
@@ -251,7 +251,7 @@ class Zend_Currency
      */
     private function _extractPattern($pattern, $value)
     {
-        if (strpos($pattern, '|') === false) {
+        if (!str_contains($pattern, '|')) {
             return $pattern;
         }
 
@@ -260,7 +260,7 @@ class Zend_Currency
         $value    = trim(str_replace('¤', '', $value));
         krsort($patterns);
         foreach($patterns as $content) {
-            if (strpos($content, '<') !== false) {
+            if (str_contains($content, '<')) {
                 $check = iconv_substr($content, 0, iconv_strpos($content, '<'));
                 $token = iconv_substr($content, iconv_strpos($content, '<') + 1);
                 if ($check < $value) {
@@ -456,8 +456,8 @@ class Zend_Currency
     public function getCurrencyList($region = null)
     {
         if (empty($region) === true) {
-            if (strlen($this->_options['locale']) > 4) {
-                $region = substr($this->_options['locale'], (strpos($this->_options['locale'], '_') + 1));
+            if (strlen((string) $this->_options['locale']) > 4) {
+                $region = substr((string) $this->_options['locale'], (strpos((string) $this->_options['locale'], '_') + 1));
             }
         }
 
@@ -481,7 +481,7 @@ class Zend_Currency
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }
@@ -535,7 +535,7 @@ class Zend_Currency
      */
     public static function clearCache($tag = null)
     {
-        Zend_Locale_Data::clearCache($tag);
+        Zend_Locale_Data::clearCache();
     }
 
     /**
@@ -835,7 +835,7 @@ class Zend_Currency
         }
 
         foreach ($options as $name => $value) {
-            $name = strtolower($name);
+            $name = strtolower((string) $name);
             if ($name !== 'format') {
                 if (gettype($value) === 'string') {
                     $value = strtolower($value);
@@ -853,10 +853,10 @@ class Zend_Currency
 
                 case 'format':
                     if ((empty($value) === false) && (Zend_Locale::isLocale($value, null, false) === false)) {
-                        if (!is_string($value) || (strpos($value, '0') === false)) {
+                        if (!is_string($value) || (!str_contains($value, '0'))) {
                             require_once 'Zend/Currency/Exception.php';
                             throw new Zend_Currency_Exception("'" .
-                                ((gettype($value) === 'object') ? get_class($value) : $value)
+                                ((gettype($value) === 'object') ? $value::class : $value)
                                 . "' is no format token");
                         }
                     }

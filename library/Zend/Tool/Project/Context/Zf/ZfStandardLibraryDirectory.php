@@ -66,7 +66,7 @@ class Zend_Tool_Project_Context_Zf_ZfStandardLibraryDirectory extends Zend_Tool_
             $zfIterator = new RecursiveDirectoryIterator($zfPath);
             foreach ($rii = new RecursiveIteratorIterator($zfIterator, RecursiveIteratorIterator::SELF_FIRST) as $file) {
                 $relativePath = preg_replace('#^'.preg_quote(realpath($zfPath), '#').'#', '', realpath($file->getPath())) . DIRECTORY_SEPARATOR . $file->getFilename();
-                if (strpos($relativePath, DIRECTORY_SEPARATOR . '.') !== false) {
+                if (str_contains($relativePath, DIRECTORY_SEPARATOR . '.')) {
                     continue;
                 }
 
@@ -93,7 +93,7 @@ class Zend_Tool_Project_Context_Zf_ZfStandardLibraryDirectory extends Zend_Tool_
                 continue;
             }
 
-            if (realpath($checkedPath = rtrim($includePath, '\\/') . '/Zend/Loader.php') !== false && file_exists($checkedPath)) {
+            if (realpath($checkedPath = rtrim((string) $includePath, '\\/') . '/Zend/Loader.php') !== false && file_exists($checkedPath)) {
                 return dirname($checkedPath);
             }
         }

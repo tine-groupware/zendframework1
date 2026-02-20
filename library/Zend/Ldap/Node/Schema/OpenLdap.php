@@ -201,7 +201,7 @@ class Zend_Ldap_Node_Schema_OpenLdap extends Zend_Ldap_Node_Schema
 
         if (array_key_exists('syntax', $attributeType)) {
             // get max length from syntax
-            if (preg_match('/^(.+){(\d+)}$/', $attributeType['syntax'], $matches)) {
+            if (preg_match('/^(.+){(\d+)}$/', (string) $attributeType['syntax'], $matches)) {
                 $attributeType['syntax'] = $matches[1];
                 $attributeType['max-length'] = $matches[2];
             }
@@ -445,7 +445,7 @@ class Zend_Ldap_Node_Schema_OpenLdap extends Zend_Ldap_Node_Schema
         $multiValue = ['must', 'may', 'sup'];
 
         while (count($tokens) > 0) {
-            $token = strtolower(array_shift($tokens));
+            $token = strtolower((string) array_shift($tokens));
             if (in_array($token, $noValue)) {
                 $data[$token] = true; // single value token
             } else {

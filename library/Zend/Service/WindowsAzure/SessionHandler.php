@@ -110,12 +110,12 @@ class Zend_Service_WindowsAzure_SessionHandler
 	 */
 	public function register()
 	{
-        return session_set_save_handler([$this, 'open'],
-                                        [$this, 'close'],
-                                        [$this, 'read'],
-                                        [$this, 'write'],
-                                        [$this, 'destroy'],
-                                        [$this, 'gc']
+        return session_set_save_handler($this->open(...),
+                                        $this->close(...),
+                                        $this->read(...),
+                                        $this->write(...),
+                                        $this->destroy(...),
+                                        $this->gc(...)
         );
 	}
 	
@@ -165,9 +165,9 @@ class Zend_Service_WindowsAzure_SessionHandler
 	                $this->_sessionContainerPartition,
 	                $id
 	            );
-	            return unserialize(base64_decode($sessionRecord->serializedData));
+	            return unserialize(base64_decode((string) $sessionRecord->serializedData));
 	        }
-	        catch (Zend_Service_WindowsAzure_Exception $ex)
+	        catch (Zend_Service_WindowsAzure_Exception)
 	        {
 	            return '';
 	        }
@@ -179,9 +179,9 @@ class Zend_Service_WindowsAzure_SessionHandler
     				$this->_sessionContainer,
     				$this->_sessionContainerPartition . '/' . $id
     			);
-	            return unserialize(base64_decode($data));
+	            return unserialize(base64_decode((string) $data));
 	        }
-	        catch (Zend_Service_WindowsAzure_Exception $ex)
+	        catch (Zend_Service_WindowsAzure_Exception)
 	        {
 	            return false;
 	        }
@@ -216,7 +216,7 @@ class Zend_Service_WindowsAzure_SessionHandler
 	        {
 	            $this->_storage->updateEntity($this->_sessionContainer, $sessionRecord);
 	        }
-	        catch (Zend_Service_WindowsAzure_Exception $unknownRecord)
+	        catch (Zend_Service_WindowsAzure_Exception)
 	        {
 	            $this->_storage->insertEntity($this->_sessionContainer, $sessionRecord);
 	        }
@@ -253,7 +253,7 @@ class Zend_Service_WindowsAzure_SessionHandler
 	            
 	            return true;
 	        }
-	        catch (Zend_Service_WindowsAzure_Exception $ex)
+	        catch (Zend_Service_WindowsAzure_Exception)
 	        {
 	            return false;
 	        }
@@ -268,7 +268,7 @@ class Zend_Service_WindowsAzure_SessionHandler
 	            
 	            return true;
 	        }
-	        catch (Zend_Service_WindowsAzure_Exception $ex)
+	        catch (Zend_Service_WindowsAzure_Exception)
 	        {
 	            return false;
 	        }
@@ -298,7 +298,7 @@ class Zend_Service_WindowsAzure_SessionHandler
 	            }
 	            return true;
 	        }
-	        catch (Zend_Service_WindowsAzure_exception $ex)
+	        catch (Zend_Service_WindowsAzure_exception)
 	        {
 	            return false;
 	        }
@@ -315,7 +315,7 @@ class Zend_Service_WindowsAzure_SessionHandler
 	            }
 	            return true;
 	        }
-	        catch (Zend_Service_WindowsAzure_exception $ex)
+	        catch (Zend_Service_WindowsAzure_exception)
 	        {
 	            return false;
 	        }

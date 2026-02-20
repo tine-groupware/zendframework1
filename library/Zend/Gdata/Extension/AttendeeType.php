@@ -39,16 +39,14 @@ class Zend_Gdata_Extension_AttendeeType extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'attendeeType';
-    protected $_value = null;
 
     /**
      * Constructs a new Zend_Gdata_Extension_AttendeeType object.
-     * @param string $value (optional) This entry's 'value' attribute.
+     * @param string $_value (optional) This entry's 'value' attribute.
      */
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         parent::__construct();
-        $this->_value = $value;
     }
 
     /**
@@ -114,7 +112,7 @@ class Zend_Gdata_Extension_AttendeeType extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getValue();
     }

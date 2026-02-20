@@ -255,7 +255,7 @@ abstract class Zend_Dojo_View_Helper_Dijit extends Zend_View_Helper_HtmlElement
             }
         }
 
-        $dijit = (null === $dijit) ? $this->_dijit : $dijit;
+        $dijit ??= $this->_dijit;
         if ($this->_useDeclarative()) {
             $attribs = array_merge($attribs, $params);
             if (isset($attribs['required'])) {
@@ -281,7 +281,7 @@ abstract class Zend_Dojo_View_Helper_Dijit extends Zend_View_Helper_HtmlElement
     {
         $params['dojoType'] = $dijit;
 
-        array_walk_recursive($params, [$this, '_castBoolToString']);
+        array_walk_recursive($params, $this->_castBoolToString(...));
 
         $this->dojo->setDijit($id, $params);
     }

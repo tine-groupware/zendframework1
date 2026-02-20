@@ -1059,78 +1059,44 @@ abstract class Zend_Pdf_FileParser_Font_OpenType extends Zend_Pdf_FileParser_Fon
              *   http://www.microsoft.com/globaldev/reference/lcid-all.mspx
              */
             $languageID &= 0xff;
-            switch ($languageID) {
-                case 0x09:
-                    return 'en';
-                case 0x0c:
-                    return 'fr';
-                case 0x07:
-                    return 'de';
-                case 0x10:
-                    return 'it';
-                case 0x13:
-                    return 'nl';
-                case 0x1d:
-                    return 'sv';
-                case 0x0a:
-                    return 'es';
-                case 0x06:
-                    return 'da';
-                case 0x16:
-                    return 'pt';
-                case 0x14:
-                    return 'no';
-                case 0x0d:
-                    return 'he';
-                case 0x11:
-                    return 'ja';
-                case 0x01:
-                    return 'ar';
-                case 0x0b:
-                    return 'fi';
-                case 0x08:
-                    return 'el';
-
-                default:
-                    return null;
-            }
+            return match ($languageID) {
+                0x09 => 'en',
+                0x0c => 'fr',
+                0x07 => 'de',
+                0x10 => 'it',
+                0x13 => 'nl',
+                0x1d => 'sv',
+                0x0a => 'es',
+                0x06 => 'da',
+                0x16 => 'pt',
+                0x14 => 'no',
+                0x0d => 'he',
+                0x11 => 'ja',
+                0x01 => 'ar',
+                0x0b => 'fi',
+                0x08 => 'el',
+                default => null,
+            };
 
         } else if ($platformID == 1) {    // Macintosh encoding.
-            switch ($languageID) {
-                case 0:
-                    return 'en';
-                case 1:
-                    return 'fr';
-                case 2:
-                    return 'de';
-                case 3:
-                    return 'it';
-                case 4:
-                    return 'nl';
-                case 5:
-                    return 'sv';
-                case 6:
-                    return 'es';
-                case 7:
-                    return 'da';
-                case 8:
-                    return 'pt';
-                case 9:
-                    return 'no';
-                case 10:
-                    return 'he';
-                case 11:
-                    return 'ja';
-                case 12:
-                    return 'ar';
-                case 13:
-                    return 'fi';
-                case 14:
-                    return 'el';
-
-                default:
-                    return null;
-            }
+            return match ($languageID) {
+                0 => 'en',
+                1 => 'fr',
+                2 => 'de',
+                3 => 'it',
+                4 => 'nl',
+                5 => 'sv',
+                6 => 'es',
+                7 => 'da',
+                8 => 'pt',
+                9 => 'no',
+                10 => 'he',
+                11 => 'ja',
+                12 => 'ar',
+                13 => 'fi',
+                14 => 'el',
+                default => null,
+            };
 
         } else {    // Unknown encoding.
             return null;

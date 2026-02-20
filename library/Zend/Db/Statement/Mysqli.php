@@ -152,7 +152,7 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
         if (!$this->_stmt) {
             return false;
         }
-        return substr($this->_stmt->sqlstate, 0, 5);
+        return substr((string) $this->_stmt->sqlstate, 0, 5);
     }
 
     /**
@@ -167,7 +167,7 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
             return false;
         }
         return [
-            substr($this->_stmt->sqlstate, 0, 5),
+            substr((string) $this->_stmt->sqlstate, 0, 5),
             $this->_stmt->errno,
             $this->_stmt->error,
         ];
@@ -180,7 +180,7 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
      * @return bool
      * @throws Zend_Db_Statement_Mysqli_Exception
      */
-    public function _execute(array $params = null)
+    public function _execute(?array $params = null)
     {
         if (!$this->_stmt) {
             return false;
@@ -334,7 +334,7 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
      * @return bool
      * @throws Zend_Db_Statement_Mysqli_Exception
      */
-    public function nextRowset()
+    public function nextRowset(): never
     {
         /**
          * @see Zend_Db_Statement_Mysqli_Exception

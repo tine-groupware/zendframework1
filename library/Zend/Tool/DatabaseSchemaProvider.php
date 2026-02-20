@@ -94,14 +94,10 @@ class Zend_Tool_DatabaseSchemaProvider extends Zend_Tool_Project_Provider_Abstra
 
             $result = $manager->decrementVersion($versions);
 
-            switch ($result) {
-                case Zend_Db_Schema_Manager::RESULT_AT_MINIMUM_VERSION:
-                    $response->appendContent("Already at minimum version " . $manager->getCurrentSchemaVersion());
-                    break;
-
-                default:
-                    $response->appendContent('Schema updated to version ' . $manager->getCurrentSchemaVersion());
-            }
+            match ($result) {
+                Zend_Db_Schema_Manager::RESULT_AT_MINIMUM_VERSION => $response->appendContent("Already at minimum version " . $manager->getCurrentSchemaVersion()),
+                default => $response->appendContent('Schema updated to version ' . $manager->getCurrentSchemaVersion()),
+            };
 
             return true;
         } catch (Exception $e) {
@@ -132,14 +128,10 @@ class Zend_Tool_DatabaseSchemaProvider extends Zend_Tool_Project_Provider_Abstra
 
             $result = $manager->incrementVersion($versions);
 
-            switch ($result) {
-                case Zend_Db_Schema_Manager::RESULT_AT_MAXIMUM_VERSION:
-                    $response->appendContent("Already at maximum version " . $manager->getCurrentSchemaVersion());
-                    break;
-
-                default:
-                    $response->appendContent('Schema updated to version ' . $manager->getCurrentSchemaVersion());
-            }
+            match ($result) {
+                Zend_Db_Schema_Manager::RESULT_AT_MAXIMUM_VERSION => $response->appendContent("Already at maximum version " . $manager->getCurrentSchemaVersion()),
+                default => $response->appendContent('Schema updated to version ' . $manager->getCurrentSchemaVersion()),
+            };
 
             return true;
         } catch (Exception $e) {

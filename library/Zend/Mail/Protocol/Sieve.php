@@ -48,7 +48,7 @@ class Zend_Mail_Protocol_Sieve
      * 
      * @var array
      */
-    protected $_welcome = array();
+    protected $_welcome = [];
     
     /**
      * sieve implementation
@@ -172,7 +172,7 @@ class Zend_Mail_Protocol_Sieve
      * @return null
      * @throws Zend_Mail_Protocol_Exception
      */
-    public function sendRequest($command, $tokens = array())
+    public function sendRequest($command, $tokens = [])
     {
         $line = $command;
 
@@ -230,8 +230,8 @@ class Zend_Mail_Protocol_Sieve
      */
     protected function _decodeLine($line)
     {
-        $tokens = array();
-        $stack = array();
+        $tokens = [];
+        $stack = [];
 
         /*
             We start to decode the response here. The unterstood tokens are:
@@ -253,7 +253,7 @@ class Zend_Mail_Protocol_Sieve
             $token = substr($line, 0, $pos);
             while ($token[0] == '(') {
                 array_push($stack, $tokens);
-                $tokens = array();
+                $tokens = [];
                 $token = substr($token, 1);
             }
             if ($token[0] == '"') {
@@ -330,7 +330,7 @@ class Zend_Mail_Protocol_Sieve
      *                                  is true the unparsed line is returned here
      * @param  bool          $dontParse if true only the unparsed line is returned $tokens
      */
-    public function readLine(&$tokens = array(), $dontParse = false)
+    public function readLine(&$tokens = [], $dontParse = false)
     {
         $line = $this->_nextLine();
         if (!$dontParse) {
@@ -349,7 +349,7 @@ class Zend_Mail_Protocol_Sieve
      */
     public function readResponse($dontParse = false)
     {
-        $lines = array();
+        $lines = [];
         
         while (!feof($this->_socket)) {
             $this->readLine($tokens, $dontParse);
@@ -380,7 +380,7 @@ class Zend_Mail_Protocol_Sieve
      * @return mixed response as in readResponse()
      * @throws Zend_Mail_Protocol_Exception
      */
-    public function requestAndResponse($command, $tokens = array(), $dontParse = false)
+    public function requestAndResponse($command, $tokens = [], $dontParse = false)
     {
         $this->sendRequest($command, $tokens);
         $response = $this->readResponse($dontParse);
@@ -399,7 +399,7 @@ class Zend_Mail_Protocol_Sieve
         if ($this->_socket) {
             try {
                 $result = $this->requestAndResponse('LOGOUT');
-            } catch (Zend_Mail_Protocol_Exception $e) {
+            } catch (Zend_Mail_Protocol_Exception) {
                 // ignoring exception
             }
             fclose($this->_socket);
@@ -432,29 +432,22 @@ class Zend_Mail_Protocol_Sieve
     {
         $lines = $this->requestAndResponse('CAPABILITY');
         
-        $capabilities = array();
+        $capabilities = [];
         
         foreach ($lines as $line) {
             if (count($line) === 1) {
                 $name = $line[0];
                 $value = '';
             } else {
-                list($name, $value) = $line;
+                [$name, $value] = $line;
             }
             
-            $name = strtoupper($name);
+            $name = strtoupper((string) $name);
             
-            switch ($name) {
-                case 'SASL':
-                case 'SIEVE':
-                case 'NOTIFY':
-                    $capabilities[$name] = explode(' ', rtrim($value));
-                    break;
-                    
-                default:
-                    $capabilities[$name] = $value;
-                    break;
-            }
+            $capabilities[$name] = match ($name) {
+                'SASL', 'SIEVE', 'NOTIFY' => explode(' ', rtrim((string) $value)),
+                default => $value,
+            };
         }
 
         return $capabilities;
@@ -469,14 +462,14 @@ class Zend_Mail_Protocol_Sieve
     {
         $lines = $this->requestAndResponse('LISTSCRIPTS');
         
-        $scripts = array();
+        $scripts = [];
         
         foreach($lines as $scriptData) {
             #var_dump($scriptData);
-            $scripts[$scriptData[0]] = array(
+            $scripts[$scriptData[0]] = [
                 'name'      => $scriptData[0],
                 'active'    => isset($scriptData[1]) ? true : false
-            );
+            ];
         }
         
         return $scripts;
@@ -501,7 +494,7 @@ class Zend_Mail_Protocol_Sieve
      */
     public function noop($content)
     {
-        $lines = $this->requestAndResponse('NOOP', array($this->escapeString($content)));
+        $lines = $this->requestAndResponse('NOOP', [$this->escapeString($content)]);
     }
 
     /**
@@ -546,7 +539,7 @@ class Zend_Mail_Protocol_Sieve
      */
     public function deleteScript($name)
     {
-        $this->requestAndResponse('DELETESCRIPT', array($this->escapeString($name)));
+        $this->requestAndResponse('DELETESCRIPT', [$this->escapeString($name)]);
     }
     
     /**
@@ -556,7 +549,7 @@ class Zend_Mail_Protocol_Sieve
      */
     public function setActive($name)
     {
-        $this->requestAndResponse('SETACTIVE', array($this->escapeString($name)));
+        $this->requestAndResponse('SETACTIVE', [$this->escapeString($name)]);
     }
     
     /**
@@ -569,13 +562,13 @@ class Zend_Mail_Protocol_Sieve
     public function escapeString($string)
     {
         if (func_num_args() < 2) {
-            if (strpos($string, "\n") !== false) {
-                return array('{' . strlen($string) . '+}', $string);
+            if (str_contains($string, "\n")) {
+                return ['{' . strlen($string) . '+}', $string];
             } else {
-                return '"' . str_replace(array('\\', '"'), array('\\\\', '\\"'), $string) . '"';
+                return '"' . str_replace(['\\', '"'], ['\\\\', '\\"'], $string) . '"';
             }
         }
-        $result = array();
+        $result = [];
         foreach (func_get_args() as $string) {
             $result[] = $this->escapeString($string);
         }
@@ -590,9 +583,9 @@ class Zend_Mail_Protocol_Sieve
      */
     public function getScript($name)
     {
-        $lines = $this->requestAndResponse('GETSCRIPT', array($this->escapeString($name)));
+        $lines = $this->requestAndResponse('GETSCRIPT', [$this->escapeString($name)]);
         
-        $script = implode($lines[0]);
+        $script = implode('', $lines[0]);
         
         return $script;
     }

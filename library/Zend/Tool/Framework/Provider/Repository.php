@@ -130,21 +130,21 @@ class Zend_Tool_Framework_Provider_Repository
     public function hasProvider($providerOrClassName, $processedOnly = true)
     {
         if ($providerOrClassName instanceof Zend_Tool_Framework_Provider_Interface) {
-            $targetProviderClassName = get_class($providerOrClassName);
+            $targetProviderClassName = $providerOrClassName::class;
         } else {
             $targetProviderClassName = (string) $providerOrClassName;
         }
 
         if (!$processedOnly) {
             foreach ($this->_unprocessedProviders as $unprocessedProvider) {
-                if (get_class($unprocessedProvider) == $targetProviderClassName) {
+                if ($unprocessedProvider::class == $targetProviderClassName) {
                     return true;
                 }
             }
         }
 
         foreach ($this->_providers as $processedProvider) {
-            if (get_class($processedProvider) == $targetProviderClassName) {
+            if ($processedProvider::class == $targetProviderClassName) {
                 return true;
             }
         }
@@ -159,12 +159,9 @@ class Zend_Tool_Framework_Provider_Repository
     public function process()
     {
 
-        // process all providers in the unprocessedProviders array
-        //foreach ($this->_unprocessedProviders as $providerName => $provider) {
-        reset($this->_unprocessedProviders);
         while ($this->_unprocessedProviders) {
 
-            $providerName = key($this->_unprocessedProviders);
+            $providerName = array_key_first($this->_unprocessedProviders);
             $provider = array_shift($this->_unprocessedProviders);
 
             // create a signature for the provided provider
@@ -177,7 +174,7 @@ class Zend_Tool_Framework_Provider_Repository
             $providerSignature->process();
 
             // ensure the name is lowercased for easier searching
-            $providerName = strtolower($providerName);
+            $providerName = strtolower((string) $providerName);
 
             // add to the appropraite place
             $this->_providerSignatures[$providerName] = $providerSignature;
@@ -261,12 +258,12 @@ class Zend_Tool_Framework_Provider_Repository
      */
     protected function _parseName(Zend_Tool_Framework_Provider_Interface $provider)
     {
-        $className = get_class($provider);
+        $className = $provider::class;
         $providerName = $className;
-        if (strpos($providerName, '_') !== false) {
+        if (str_contains($providerName, '_')) {
             $providerName = substr($providerName, strrpos($providerName, '_')+1);
         }
-        if (substr($providerName, -8) == 'Provider') {
+        if (str_ends_with($providerName, 'Provider')) {
             $providerName = substr($providerName, 0, strlen($providerName)-8);
         }
         return $providerName;

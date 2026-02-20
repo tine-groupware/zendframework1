@@ -40,7 +40,7 @@ class Zend_Tool_Framework_Client_Storage_Directory
     public function __construct($directoryPath)
     {
         if (!file_exists($directoryPath)) {
-            throw new Zend_Tool_Framework_Client_Exception(__CLASS__ . ': the supplied directory does not exist');
+            throw new Zend_Tool_Framework_Client_Exception(self::class . ': the supplied directory does not exist');
         }
         $this->_directoryPath = $directoryPath;
     }

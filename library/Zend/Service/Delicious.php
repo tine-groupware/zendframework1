@@ -155,7 +155,7 @@ class Zend_Service_Delicious
             /**
              * @todo replace strtotime() with Zend_Date equivalent
              */
-            return new Zend_Date(strtotime($rootNode->getAttribute('time')));
+            return new Zend_Date(strtotime((string) $rootNode->getAttribute('time')));
         } else {
             /**
              * @see Zend_Service_Delicious_Exception
@@ -287,7 +287,7 @@ class Zend_Service_Delicious
      * @throws Zend_Service_Delicious_Exception
      * @return Zend_Service_Delicious_PostList
      */
-    public function getPosts($tag = null, Zend_Date $dt = null, $url = null)
+    public function getPosts($tag = null, ?Zend_Date $dt = null, $url = null)
     {
         $parms = [];
         if ($tag) {

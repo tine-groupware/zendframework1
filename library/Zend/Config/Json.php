@@ -110,7 +110,7 @@ class Zend_Config_Json extends Zend_Config
             }
         }
 
-        set_error_handler([$this, '_loadFileErrorHandler']); // Warnings and errors are suppressed
+        set_error_handler($this->_loadFileErrorHandler(...)); // Warnings and errors are suppressed
         if ($json[0] != '{') {
             $json = file_get_contents($json);
         }
@@ -219,7 +219,7 @@ class Zend_Config_Json extends Zend_Config
     protected function _replaceConstants($value)
     {
         foreach ($this->_getConstants() as $constant) {
-            if (strstr($value, $constant)) {
+            if (strstr($value, (string) $constant)) {
                 // handle backslashes that may represent windows path names for instance
                 $replacement = str_replace('\\', '\\\\', constant($constant));
                 $value = str_replace($constant, $replacement, $value);

@@ -224,7 +224,7 @@ class Zend_Db_Adapter_Pdo_Sqlsrv extends Zend_Db_Adapter_Pdo_Abstract
     public function describeTable($tableName, $schemaName = null)
     {
         if ($schemaName != null) {
-            if (strpos($schemaName, '.') !== false) {
+            if (str_contains($schemaName, '.')) {
                 $result = explode('.', $schemaName);
                 $schemaName = $result[1];
             }
@@ -271,7 +271,7 @@ class Zend_Db_Adapter_Pdo_Sqlsrv extends Zend_Db_Adapter_Pdo_Abstract
         $p = 1;
         foreach ($result as $key => $row) {
             $identity = false;
-            $words = explode(' ', $row[$type_name], 2);
+            $words = explode(' ', (string) $row[$type_name], 2);
             if (isset($words[0])) {
                 $type = $words[0];
                 if (isset($words[1])) {
@@ -337,7 +337,7 @@ class Zend_Db_Adapter_Pdo_Sqlsrv extends Zend_Db_Adapter_Pdo_Abstract
             if ($orderby !== false) {
                 $sort  = (stripos($orderby, ' desc') !== false) ? 'desc' : 'asc';
                 $order = str_ireplace('ORDER BY', '', $orderby);
-                $order = trim(preg_replace('/\bASC\b|\bDESC\b/i', '', $order));
+                $order = trim((string) preg_replace('/\bASC\b|\bDESC\b/i', '', $order));
             }
 
             $sql = preg_replace('/^SELECT\s/i', 'SELECT TOP ' . ($count+$offset) . ' ', $sql);
@@ -372,7 +372,7 @@ class Zend_Db_Adapter_Pdo_Sqlsrv extends Zend_Db_Adapter_Pdo_Abstract
                 return $result[0][0];
             }
             return null;
-        } catch (PDOException $e) {
+        } catch (PDOException) {
             return null;
         }
     }

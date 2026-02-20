@@ -37,6 +37,7 @@ require_once 'Zend/Reflection/Function.php';
  */
 class Zend_Reflection_File implements Reflector
 {
+    public $_fileName;
     /**
      * @var string
      */
@@ -292,7 +293,7 @@ class Zend_Reflection_File implements Reflector
      * @todo   What should this serialization look like?
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return '';
     }
@@ -421,7 +422,7 @@ class Zend_Reflection_File implements Reflector
                 continue;
             } elseif ($type == T_DOC_COMMENT) {
                 $this->_docComment = $value;
-                $this->_startLine  = $lineNum + substr_count($value, "\n") + 1;
+                $this->_startLine  = $lineNum + substr_count((string) $value, "\n") + 1;
                 return;
             } else {
                 // Only whitespace is allowed before file docblocks

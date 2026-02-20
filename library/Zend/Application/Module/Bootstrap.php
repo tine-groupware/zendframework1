@@ -114,7 +114,7 @@ abstract class Zend_Application_Module_Bootstrap
     public function getModuleName()
     {
         if (empty($this->_moduleName)) {
-            $class = get_class($this);
+            $class = static::class;
             if (preg_match('/^([a-z][a-z0-9]*)_/i', $class, $matches)) {
                 $prefix = $matches[1];
             } else {

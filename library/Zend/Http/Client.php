@@ -71,6 +71,7 @@ require_once 'Zend/Http/Response/Stream.php';
  */
 class Zend_Http_Client
 {
+    public $_stream_name;
     /**
      * HTTP request methods
      */
@@ -367,7 +368,7 @@ class Zend_Http_Client
         }
 
         foreach ($config as $k => $v) {
-            $this->config[strtolower($k)] = $v;
+            $this->config[strtolower((string) $k)] = $v;
         }
 
         // Pass configuration options to the adapter if it exists
@@ -446,7 +447,7 @@ class Zend_Http_Client
 
         // Check if $name needs to be split
         if ($value === null && (strpos($name, ':') > 0)) {
-            list($name, $value) = explode(':', $name, 2);
+            [$name, $value] = explode(':', $name, 2);
         }
 
         // Make sure the name is valid if we are in strict mode
@@ -719,7 +720,7 @@ class Zend_Http_Client
                 throw new Zend_Http_Client_Exception("Cookie name cannot contain these characters: =,; \t\r\n\013\014 ({$cookie})");
             }
 
-            $value = addslashes($value);
+            $value = addslashes((string) $value);
 
             if (! isset($this->headers['cookie'])) {
                 $this->headers['cookie'] = ['Cookie', ''];
@@ -991,7 +992,7 @@ class Zend_Http_Client
         $this->_stream_name = $this->config['output_stream'];
         if(!is_string($this->_stream_name)) {
             // If name is not given, create temp name
-            $this->_stream_name = tempnam(isset($this->config['stream_tmp_dir'])?$this->config['stream_tmp_dir']:sys_get_temp_dir(),
+            $this->_stream_name = tempnam($this->config['stream_tmp_dir'] ?? sys_get_temp_dir(),
                  'Zend_Http_Client');
         }
 
@@ -1144,15 +1145,15 @@ class Zend_Http_Client
                 } else {
 
                     // Split into path and query and set the query
-                    if (strpos($location, '?') !== false) {
-                        list($location, $query) = explode('?', $location, 2);
+                    if (str_contains($location, '?')) {
+                        [$location, $query] = explode('?', $location, 2);
                     } else {
                         $query = '';
                     }
                     $this->uri->setQuery($query);
 
                     // Else, if we got just an absolute path, set it
-                    if(strpos($location, '/') === 0) {
+                    if(str_starts_with($location, '/')) {
                         $this->uri->setPath($location);
 
                         // Else, assume we have a relative path
@@ -1247,7 +1248,7 @@ class Zend_Http_Client
 
         // Add all other user defined headers
         foreach ($this->headers as $header) {
-            list($name, $value) = $header;
+            [$name, $value] = $header;
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }
@@ -1398,7 +1399,7 @@ class Zend_Http_Client
 
         foreach ($parray as $name => $value) {
             if ($urlencode) {
-                $name = urlencode($name);
+                $name = urlencode((string) $name);
             }
 
             // If $value is an array, iterate over it
@@ -1406,13 +1407,13 @@ class Zend_Http_Client
                 $name .= ($urlencode ? '%5B%5D' : '[]');
                 foreach ($value as $subval) {
                     if ($urlencode) {
-                        $subval = urlencode($subval);
+                        $subval = urlencode((string) $subval);
                     }
                     $parameters[] = [$name, $subval];
                 }
             } else {
                 if ($urlencode) {
-                    $value = urlencode($value);
+                    $value = urlencode((string) $value);
                 }
                 $parameters[] = [$name, $value];
             }
@@ -1509,7 +1510,7 @@ class Zend_Http_Client
         switch ($type) {
             case self::AUTH_BASIC:
                 // In basic authentication, the user name cannot contain ":"
-                if (strpos($user, ':') !== false) {
+                if (str_contains($user, ':')) {
                     /** @see Zend_Http_Client_Exception */
                     require_once 'Zend/Http/Client/Exception.php';
                     throw new Zend_Http_Client_Exception("The user name cannot contain ':' in 'Basic' HTTP authentication");

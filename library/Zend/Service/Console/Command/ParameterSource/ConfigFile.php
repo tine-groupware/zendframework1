@@ -52,7 +52,7 @@ class Zend_Service_Console_Command_ParameterSource_ConfigFile
 
 		// Check if a path to a configuration file is specified
 		foreach ($argv as $parameterInput) {
-			$parameterInput = explode('=', $parameterInput, 2);
+			$parameterInput = explode('=', (string) $parameterInput, 2);
 
 			if (strtolower($parameterInput[0]) == '--configfile' || strtolower($parameterInput[0]) == '-f') {
 				if (!isset($parameterInput[1])) {
@@ -92,9 +92,9 @@ class Zend_Service_Console_Command_ParameterSource_ConfigFile
 			}
 		}
 
-		if (strtolower($parameterValue) == 'true') {
+		if (strtolower((string) $parameterValue) == 'true') {
 			$parameterValue = true;
-		} else if (strtolower($parameterValue) == 'false') {
+		} else if (strtolower((string) $parameterValue) == 'false') {
 			$parameterValue = false;
 		}
 

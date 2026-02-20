@@ -32,7 +32,7 @@ require_once 'Zend/Navigation/Container.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Navigation_Page extends Zend_Navigation_Container
+abstract class Zend_Navigation_Page extends Zend_Navigation_Container implements \Stringable
 {
     /**
      * Page label
@@ -607,9 +607,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     public function getRel($relation = null)
     {
         if (null !== $relation) {
-            return isset($this->_rel[$relation]) ?
-                   $this->_rel[$relation] :
-                   null;
+            return $this->_rel[$relation] ?? null;
         }
 
         return $this->_rel;
@@ -670,9 +668,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     public function getRev($relation = null)
     {
         if (null !== $relation) {
-            return isset($this->_rev[$relation]) ?
-                   $this->_rev[$relation] :
-                   null;
+            return $this->_rev[$relation] ?? null;
         }
 
         return $this->_rev;
@@ -728,11 +724,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             );
         }
 
-        if (isset($this->_customHtmlAttribs[$name])) {
-            return $this->_customHtmlAttribs[$name];
-        }
-
-        return null;
+        return $this->_customHtmlAttribs[$name] ?? null;
     }
 
     /**
@@ -1005,7 +997,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      *                                            no parent.
      * @return Zend_Navigation_Page               fluent interface, returns self
      */
-    public function setParent(Zend_Navigation_Container $parent = null)
+    public function setParent(?Zend_Navigation_Container $parent = null)
     {
         if ($parent === $this) {
             require_once 'Zend/Navigation/Exception.php';
@@ -1189,9 +1181,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      *
      * @return string  page label
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->_label;
+        return (string) $this->_label;
     }
 
     // Public methods:
@@ -1323,7 +1315,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
                 'privilege'         => $this->getPrivilege(),
                 'active'            => $this->isActive(),
                 'visible'           => $this->isVisible(),
-                'type'              => get_class($this),
+                'type'              => static::class,
                 'pages'             => parent::toArray()
             ]
         );

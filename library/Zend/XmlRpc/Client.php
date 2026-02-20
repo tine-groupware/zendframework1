@@ -77,13 +77,6 @@ require_once 'Zend/XmlRpc/Fault.php';
 class Zend_XmlRpc_Client
 {
     /**
-     * Full address of the XML-RPC service
-     * @var string
-     * @example http://time.xmlrpc.com/RPC2
-     */
-    protected $_serverAddress;
-
-    /**
      * HTTP Client to use for requests
      * @var Zend_Http_Client
      */
@@ -122,12 +115,16 @@ class Zend_XmlRpc_Client
     /**
      * Create a new XML-RPC client to a remote server
      *
-     * @param  string $server      Full address of the XML-RPC service
+     * @param string $_serverAddress Full address of the XML-RPC service
      *                             (e.g. http://time.xmlrpc.com/RPC2)
      * @param  Zend_Http_Client $httpClient HTTP Client to use for requests
      * @return void
      */
-    public function __construct($server, Zend_Http_Client $httpClient = null)
+    public function __construct(/**
+     * Full address of the XML-RPC service
+     * @example http://time.xmlrpc.com/RPC2
+     */
+    protected $_serverAddress, ?Zend_Http_Client $httpClient = null)
     {
         if ($httpClient === null) {
             $this->_httpClient = new Zend_Http_Client();
@@ -136,7 +133,6 @@ class Zend_XmlRpc_Client
         }
 
         $this->_introspector  = new Zend_XmlRpc_Client_ServerIntrospection($this);
-        $this->_serverAddress = $server;
     }
 
 
@@ -313,13 +309,13 @@ class Zend_XmlRpc_Client
      */
     public function call($method, $params=[])
     {
-        if (!$this->skipSystemLookup() && ('system.' != substr($method, 0, 7))) {
+        if (!$this->skipSystemLookup() && (!str_starts_with($method, 'system.'))) {
             // Ensure empty array/struct params are cast correctly
             // If system.* methods are not available, bypass. (ZF-2978)
             $success = true;
             try {
                 $signatures = $this->getIntrospector()->getMethodSignature($method);
-            } catch (Zend_XmlRpc_Exception $e) {
+            } catch (Zend_XmlRpc_Exception) {
                 $success = false;
             }
             if ($success) {

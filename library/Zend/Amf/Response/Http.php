@@ -56,14 +56,14 @@ class Zend_Amf_Response_Http extends Zend_Amf_Response
 
     protected function isIeOverSsl()
     {
-        $ssl = isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] : false;
+        $ssl = $_SERVER['HTTPS'] ?? false;
         if (!$ssl || ($ssl == 'off')) {
             // IIS reports "off", whereas other browsers simply don't populate
             return false;
         }
 
         $ua  = $_SERVER['HTTP_USER_AGENT'];
-        if (!preg_match('/; MSIE \d+\.\d+;/', $ua)) {
+        if (!preg_match('/; MSIE \d+\.\d+;/', (string) $ua)) {
             // Not MicroSoft Internet Explorer
             return false;
         }

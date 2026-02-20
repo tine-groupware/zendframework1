@@ -34,21 +34,18 @@ class Zend_Gdata_MimeFile
 {
 
     /**
-     * A handle to the file that is part of the message.
-     *
-     * @var resource
-     */
-    protected $_fileHandle = null;
-
-    /**
      * Create a new MimeFile object.
      *
-     * @param string $fileHandle An open file handle to the file being
+     * @param string $_fileHandle An open file handle to the file being
      *               read.
      */
-    public function __construct($fileHandle)
+    public function __construct(
+        /**
+         * A handle to the file that is part of the message.
+         */
+        protected $_fileHandle
+    )
     {
-        $this->_fileHandle = $fileHandle;
     }
 
     /**

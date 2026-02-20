@@ -31,6 +31,7 @@
 class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIterator
 {
 
+    public $ref;
     /**
      * @var array
      */
@@ -52,22 +53,16 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     protected $_denyNames   = [];
 
     /**
-     * @var array
-     */
-    protected $_rawOptions = [];
-
-    /**
      * __construct()
      *
      * @param RecursiveIterator $iterator
-     * @param array $options
+     * @param array $_rawOptions
      */
-    public function __construct(RecursiveIterator $iterator, $options = [])
+    public function __construct(RecursiveIterator $iterator, protected $_rawOptions = [])
     {
         parent::__construct($iterator);
-        $this->_rawOptions = $options;
-        if ($options) {
-            $this->setOptions($options);
+        if ($this->_rawOptions) {
+            $this->setOptions($this->_rawOptions);
         }
     }
 
@@ -79,7 +74,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     public function setOptions(Array $options)
     {
         foreach ($options as $optionName => $optionValue) {
-            if (substr($optionName, -1, 1) != 's') {
+            if (!str_ends_with((string) $optionName, 's')) {
                 $optionName .= 's';
             }
             if (method_exists($this, 'set' . $optionName)) {
@@ -133,7 +128,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
         }
 
         foreach ($acceptNames as $n => $v) {
-            $acceptNames[$n] = strtolower($v);
+            $acceptNames[$n] = strtolower((string) $v);
         }
 
         $this->_acceptNames = $acceptNames;
@@ -153,7 +148,7 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
         }
 
         foreach ($denyNames as $n => $v) {
-            $denyNames[$n] = strtolower($v);
+            $denyNames[$n] = strtolower((string) $v);
         }
 
         $this->_denyNames = $denyNames;
@@ -169,9 +164,9 @@ class Zend_Tool_Project_Profile_Iterator_ContextFilter extends RecursiveFilterIt
     {
         $currentItem = $this->current();
 
-        if (in_array(strtolower($currentItem->getName()), $this->_acceptNames)) {
+        if (in_array(strtolower((string) $currentItem->getName()), $this->_acceptNames)) {
             return true;
-        } elseif (in_array(strtolower($currentItem->getName()), $this->_denyNames)) {
+        } elseif (in_array(strtolower((string) $currentItem->getName()), $this->_denyNames)) {
             return false;
         }
 

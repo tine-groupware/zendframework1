@@ -51,7 +51,7 @@ class Zend_Config_Yaml extends Zend_Config
      *
      * @var callable
      */
-    protected $_yamlDecoder = [__CLASS__, 'decode'];
+    protected $_yamlDecoder = [self::class, 'decode'];
 
     /**
      * Whether or not to ignore constants in parsed YAML
@@ -141,7 +141,7 @@ class Zend_Config_Yaml extends Zend_Config
             $allowModifications = $options;
         } elseif (is_array($options)) {
             foreach ($options as $key => $value) {
-                switch (strtolower($key)) {
+                switch (strtolower((string) $key)) {
                     case 'allow_modifications':
                     case 'allowmodifications':
                         $allowModifications = (bool) $value;
@@ -165,7 +165,7 @@ class Zend_Config_Yaml extends Zend_Config
         }
 
         // Suppress warnings and errors while loading file
-        set_error_handler([$this, '_loadFileErrorHandler']);
+        set_error_handler($this->_loadFileErrorHandler(...));
         $yaml = file_get_contents($yaml);
         restore_error_handler();
 
@@ -292,7 +292,7 @@ class Zend_Config_Yaml extends Zend_Config
         while (++$pointer < count($lines)) {
             $lineno = $pointer + 1;
 
-            $lines[$pointer] = rtrim(preg_replace("/#.*$/", "", $lines[$pointer]));
+            $lines[$pointer] = rtrim(preg_replace("/#.*$/", "", (string) $lines[$pointer]));
             if (strlen($lines[$pointer]) === 0) {
                 continue;
             }
@@ -362,11 +362,11 @@ class Zend_Config_Yaml extends Zend_Config
         $value = trim($value);
 
         // remove quotes from string.
-        if ('"' == substr($value, 0, 1)) {
-            if ('"' == substr($value, -1)) {
+        if (str_starts_with($value, '"')) {
+            if (str_ends_with($value, '"')) {
                 $value = substr($value, 1, -1);
             }
-        } elseif ('\'' == substr($value, 0, 1) && '\'' == substr($value, -1)) {
+        } elseif (str_starts_with($value, '\'') && str_ends_with($value, '\'')) {
             $value = strtr($value, ["''" => "'", "'" => '']);
         }
 
@@ -394,7 +394,7 @@ class Zend_Config_Yaml extends Zend_Config
     protected static function _replaceConstants($value)
     {
         foreach (self::_getConstants() as $constant) {
-            if (strstr($value, $constant)) {
+            if (strstr($value, (string) $constant)) {
                 $value = str_replace($constant, constant($constant), $value);
             }
         }

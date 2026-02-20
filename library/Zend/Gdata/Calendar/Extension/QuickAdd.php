@@ -40,17 +40,15 @@ class Zend_Gdata_Calendar_Extension_QuickAdd extends Zend_Gdata_Extension
 
     protected $_rootNamespace = 'gCal';
     protected $_rootElement = 'quickadd';
-    protected $_value = null;
 
     /**
      * Constructs a new Zend_Gdata_Calendar_Extension_QuickAdd object.
-     * @param string $value (optional) The text content of the element.
+     * @param string $_value (optional) The text content of the element.
      */
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Calendar::$namespaces);
         parent::__construct();
-        $this->_value = $value;
     }
 
     /**
@@ -124,7 +122,7 @@ class Zend_Gdata_Calendar_Extension_QuickAdd extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getValue();
     }

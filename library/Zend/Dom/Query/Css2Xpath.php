@@ -54,18 +54,18 @@ class Zend_Dom_Query_Css2Xpath
 
         $paths    = ['//'];
         $path     = preg_replace('|\s+>\s+|', '>', $path);
-        $segments = preg_split('/\s+/', $path);
+        $segments = preg_split('/\s+/', (string) $path);
         foreach ($segments as $key => $segment) {
             $pathSegment = self::_tokenize($segment);
             if (0 == $key) {
-                if (0 === strpos($pathSegment, '[contains(')) {
+                if (str_starts_with($pathSegment, '[contains(')) {
                     $paths[0] .= '*' . ltrim($pathSegment, '*');
                 } else {
                     $paths[0] .= $pathSegment;
                 }
                 continue;
             }
-            if (0 === strpos($pathSegment, '[contains(')) {
+            if (str_starts_with($pathSegment, '[contains(')) {
                 foreach ($paths as $key => $xpath) {
                     $paths[$key] .= '//*' . ltrim($pathSegment, '*');
                     $paths[]      = $xpath . $pathSegment;
@@ -96,34 +96,34 @@ class Zend_Dom_Query_Css2Xpath
 
         // IDs
         $expression = preg_replace('|#([a-z][a-z0-9_-]*)|i', '[@id=\'$1\']', $expression);
-        $expression = preg_replace('|(?<![a-z0-9_-])(\[@id=)|i', '*$1', $expression);
+        $expression = preg_replace('|(?<![a-z0-9_-])(\[@id=)|i', '*$1', (string) $expression);
 
         // arbitrary attribute strict equality
         $expression = preg_replace_callback(
             '|\[([a-z0-9_-]+)=[\'"]([^\'"]+)[\'"]\]|i',
-            [__CLASS__, '_createEqualityExpression'],
-            $expression
+            self::_createEqualityExpression(...),
+            (string) $expression
         );
 
         // arbitrary attribute contains full word
         $expression = preg_replace_callback(
             '|\[([a-z0-9_-]+)~=[\'"]([^\'"]+)[\'"]\]|i',
-            [__CLASS__, '_normalizeSpaceAttribute'],
-            $expression
+            self::_normalizeSpaceAttribute(...),
+            (string) $expression
         );
 
         // arbitrary attribute contains specified content
         $expression = preg_replace_callback(
             '|\[([a-z0-9_-]+)\*=[\'"]([^\'"]+)[\'"]\]|i',
-            [__CLASS__, '_createContainsExpression'],
-            $expression
+            self::_createContainsExpression(...),
+            (string) $expression
         );
 
         // Classes
         $expression = preg_replace(
             '|\.([a-z][a-z0-9_-]*)|i',
             "[contains(concat(' ', normalize-space(@class), ' '), ' \$1 ')]",
-            $expression
+            (string) $expression
         );
 
         /** ZF-9764 -- remove double asterix */
@@ -140,7 +140,7 @@ class Zend_Dom_Query_Css2Xpath
      */
     protected static function _createEqualityExpression($matches)
     {
-        return '[@' . strtolower($matches[1]) . "='" . $matches[2] . "']";
+        return '[@' . strtolower((string) $matches[1]) . "='" . $matches[2] . "']";
     }
 
     /**
@@ -151,7 +151,7 @@ class Zend_Dom_Query_Css2Xpath
      */
     protected static function _normalizeSpaceAttribute($matches)
     {
-        return "[contains(concat(' ', normalize-space(@" . strtolower($matches[1]) . "), ' '), ' "
+        return "[contains(concat(' ', normalize-space(@" . strtolower((string) $matches[1]) . "), ' '), ' "
              . $matches[2] . " ')]";
     }
 
@@ -163,7 +163,7 @@ class Zend_Dom_Query_Css2Xpath
      */
     protected static function _createContainsExpression($matches)
     {
-        return "[contains(@" . strtolower($matches[1]) . ", '"
+        return "[contains(@" . strtolower((string) $matches[1]) . ", '"
              . $matches[2] . "')]";
     }
 }

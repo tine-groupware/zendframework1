@@ -139,7 +139,7 @@ class Zend_Barcode_Object_Code39 extends Zend_Barcode_Object_ObjectAbstract
     public function getTextToDisplay()
     {
         $text = parent::getTextToDisplay();
-        if (substr($text, 0, 1) != '*' && substr($text, -1) != '*') {
+        if (!str_starts_with($text, '*') && !str_ends_with($text, '*')) {
             return '*' . $text . '*';
         } else {
             return $text;
@@ -155,7 +155,7 @@ class Zend_Barcode_Object_Code39 extends Zend_Barcode_Object_ObjectAbstract
         $text         = str_split($this->getText());
         $barcodeTable = [];
         foreach ($text as $char) {
-            $barcodeChar = str_split($this->_codingMap[$char]);
+            $barcodeChar = str_split((string) $this->_codingMap[$char]);
             $visible     = true;
             foreach ($barcodeChar as $c) {
                 /* visible, width, top, length */

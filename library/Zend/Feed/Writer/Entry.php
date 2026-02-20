@@ -696,7 +696,7 @@ class Zend_Feed_Writer_Entry
         foreach ($this->_extensions as $extension) {
             try {
                 return call_user_func_array([$extension, $method], $args);
-            } catch (Zend_Feed_Writer_Exception_InvalidMethodException $e) {
+            } catch (Zend_Feed_Writer_Exception_InvalidMethodException) {
             }
         }
         require_once 'Zend/Feed/Exception.php';
@@ -737,10 +737,7 @@ class Zend_Feed_Writer_Entry
      */
     public function getSource()
     {
-        if (isset($this->_data['source'])) {
-            return $this->_data['source'];
-        }
-        return null;
+        return $this->_data['source'] ?? null;
     }
 
     /**

@@ -49,14 +49,14 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
         if (file_exists('/dev/urandom')) {
             $frandom = fopen('/dev/urandom', 'r');
             if ($frandom !== false) {
-                return fread($frandom, strlen($maximum) - 1);
+                return fread($frandom, strlen((string) $maximum) - 1);
             }
         }
-        if (strlen($maximum) < 4) {
+        if (strlen((string) $maximum) < 4) {
             return mt_rand($minimum, $maximum - 1);
         }
         $rand = '';
-        $i2 = strlen($maximum) - 1;
+        $i2 = strlen((string) $maximum) - 1;
         for ($i = 1; $i < $i2; $i++) {
             $rand .= mt_rand(0, 9);
         }

@@ -162,7 +162,7 @@ class Zend_Mime_Message
             $body .= $mime->mimeEnd($EOL);
         }
 
-        return trim($body);
+        return trim((string) $body);
     }
 
     /**
@@ -269,7 +269,7 @@ class Zend_Mime_Message
                 /**
                  * @todo check for characterset and filename
                  */
-                switch (strtolower($key)) {
+                switch (strtolower((string) $key)) {
                     case 'content-type':
                         $newPart->type = $value;
                         break;
@@ -277,7 +277,7 @@ class Zend_Mime_Message
                         $newPart->encoding = $value;
                         break;
                     case 'content-id':
-                        $newPart->id = trim($value, '<>');
+                        $newPart->id = trim((string) $value, '<>');
                         break;
                     case 'content-disposition':
                         $newPart->disposition = $value;

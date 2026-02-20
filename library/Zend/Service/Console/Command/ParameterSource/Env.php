@@ -52,7 +52,7 @@ class Zend_Service_Console_Command_ParameterSource_Env
 
 		// Fetch value for parameter
 		foreach ($parameter->aliases as $alias) {
-			while (strpos($alias, '-') !== false) {
+			while (str_contains($alias, '-')) {
 				$alias = substr($alias, 1);
 			}
 			$value = getenv($alias);

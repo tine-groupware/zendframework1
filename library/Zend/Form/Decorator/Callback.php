@@ -115,14 +115,11 @@ class Zend_Form_Decorator_Callback extends Zend_Form_Decorator_Abstract
 
         $response = call_user_func($callback, $content, $this->getElement(), $this->getOptions());
 
-        switch ($placement) {
-            case self::APPEND:
-                return $content . $separator . $response;
-            case self::PREPEND:
-                return $response . $separator . $content;
-            default:
-                // replace content
-                return $response;
-        }
+        return match ($placement) {
+            self::APPEND => $content . $separator . $response,
+            self::PREPEND => $response . $separator . $content,
+            // replace content
+            default => $response,
+        };
     }
 }

@@ -52,10 +52,10 @@ class Zend_Service_Console_Command_ParameterSource_Argv
 
 		// Loop parameter inputs
 		foreach ($argv as $parameterInput) {
-			$parameterInput = explode('=', $parameterInput, 2);
+			$parameterInput = explode('=', (string) $parameterInput, 2);
 
 			if (in_array($parameterInput[0], $parameter->aliases)) {
-				$parameterValue = isset($parameterInput[1]) ? $parameterInput[1] : true;
+				$parameterValue = $parameterInput[1] ?? true;
 				break;
 			}
 		}

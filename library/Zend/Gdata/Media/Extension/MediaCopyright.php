@@ -42,20 +42,14 @@ class Zend_Gdata_Media_Extension_MediaCopyright extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_url = null;
-
-    /**
      * @param string $text
-     * @param string $url
+     * @param string $_url
      */
-    public function __construct($text = null, $url = null)
+    public function __construct($text = null, protected $_url = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
         $this->_text = $text;
-        $this->_url = $url;
     }
 
     /**

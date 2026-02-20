@@ -31,6 +31,7 @@
  */
 class Zend_Service_Yahoo_ResultSet implements SeekableIterator
 {
+    private $_namespace;
     /**
      * Total number of results available
      *

@@ -232,7 +232,7 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
         $name = $options['accountDomainName'];
         if (!$name)
             $name = $options['accountDomainNameShort'];
-        return $name ? $name : '';
+        return $name ?: '';
     }
 
     /**
@@ -381,7 +381,7 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
             }
         }
 
-        $msg = isset($messages[1]) ? $messages[1] : $messages[0];
+        $msg = $messages[1] ?? $messages[0];
         $messages[] = "$username authentication failed: $msg";
 
         return new Zend_Auth_Result($code, $username, $messages);
@@ -419,10 +419,10 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
                         break;
                     case 'memberIsDn':
                         $adapterOptions[$key] = ($value === true ||
-                                $value === '1' || strcasecmp($value, 'true') === 0);
+                                $value === '1' || strcasecmp((string) $value, 'true') === 0);
                         break;
                     default:
-                        $adapterOptions[$key] = trim($value);
+                        $adapterOptions[$key] = trim((string) $value);
                         break;
                 }
             }
@@ -491,8 +491,8 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
 
         $returnObject = new stdClass();
 
-        $returnAttribs = array_map('strtolower', $returnAttribs);
-        $omitAttribs   = array_map('strtolower', $omitAttribs);
+        $returnAttribs = array_map(strtolower(...), $returnAttribs);
+        $omitAttribs   = array_map(strtolower(...), $omitAttribs);
         $returnAttribs = array_diff($returnAttribs, $omitAttribs);
 
         $entry = $this->getLdap()->getEntry($this->_authenticatedDn, $returnAttribs, true);

@@ -122,7 +122,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
         }
 
         foreach ($config as $k => $v) {
-            $this->config[strtolower($k)] = $v;
+            $this->config[strtolower((string) $k)] = $v;
         }
     }
 
@@ -205,18 +205,13 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
         if (! is_resource($this->socket) || ! $this->config['keepalive']) {
             $context = $this->getStreamContext();
             if ($secure || $this->config['sslusecontext']) {
-                foreach (array('sslcert', 'sslpassphrase', 'verify_peer', 'verify_peer_name') as $sslOption) {
+                foreach (['sslcert', 'sslpassphrase', 'verify_peer', 'verify_peer_name'] as $sslOption) {
                     if (isset($this->config[$sslOption]) && $this->config[$sslOption] !== null) {
-                        switch ($sslOption) {
-                            case 'sslpassphrase':
-                                $option = 'passphrase';
-                                break;
-                            case 'sslcert':
-                                $option = 'local_cert';
-                                break;
-                            default:
-                                $option = $sslOption;
-                        }
+                        $option = match ($sslOption) {
+                            'sslpassphrase' => 'passphrase',
+                            'sslcert' => 'local_cert',
+                            default => $sslOption,
+                        };
 
                         if (! stream_context_set_option($context, 'ssl', $option, $this->config[$sslOption])) {
                             require_once 'Zend/Http/Client/Adapter/Exception.php';
@@ -333,7 +328,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
         $gotStatus = false;
 
         while (($line = @fgets($this->socket)) !== false) {
-            $gotStatus = $gotStatus || (strpos($line, 'HTTP') !== false);
+            $gotStatus = $gotStatus || (str_contains($line, 'HTTP'));
             if ($gotStatus) {
                 $response .= $line;
                 if (rtrim($line) === '') break;

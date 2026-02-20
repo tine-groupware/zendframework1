@@ -33,21 +33,6 @@ require_once 'Zend/Search/Lucene/Search/QueryEntry.php';
 class Zend_Search_Lucene_Search_QueryEntry_Phrase extends Zend_Search_Lucene_Search_QueryEntry
 {
     /**
-     * Phrase value
-     *
-     * @var string
-     */
-    private $_phrase;
-
-    /**
-     * Field
-     *
-     * @var string|null
-     */
-    private $_field;
-
-
-    /**
      * Proximity phrase query
      *
      * @var boolean
@@ -65,13 +50,20 @@ class Zend_Search_Lucene_Search_QueryEntry_Phrase extends Zend_Search_Lucene_Sea
     /**
      * Object constractor
      *
-     * @param string $phrase
-     * @param string $field
+     * @param string $_phrase
+     * @param string $_field
      */
-    public function __construct($phrase, $field)
+    public function __construct(
+        /**
+         * Phrase value
+         */
+        private $_phrase,
+        /**
+         * Field
+         */
+        private $_field
+    )
     {
-        $this->_phrase = $phrase;
-        $this->_field  = $field;
     }
 
     /**

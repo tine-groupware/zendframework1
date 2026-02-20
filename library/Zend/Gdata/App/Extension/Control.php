@@ -45,12 +45,10 @@ class Zend_Gdata_App_Extension_Control extends Zend_Gdata_App_Extension
 
     protected $_rootNamespace = 'app';
     protected $_rootElement = 'control';
-    protected $_draft = null;
 
-    public function __construct($draft = null)
+    public function __construct(protected $_draft = null)
     {
         parent::__construct();
-        $this->_draft = $draft;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

@@ -78,12 +78,6 @@ class Zend_Test_PHPUnit_Constraint_DomQuery34 extends PHPUnit_Framework_Constrai
     protected $_negate            = false;
 
     /**
-     * CSS selector or XPath path to select against
-     * @var string
-     */
-    protected $_path              = null;
-
-    /**
      * Whether or not to use XPath when querying
      * @var bool
      */
@@ -98,12 +92,16 @@ class Zend_Test_PHPUnit_Constraint_DomQuery34 extends PHPUnit_Framework_Constrai
     /**
      * Constructor; setup constraint state
      *
-     * @param  string $path CSS selector path
+     * @param string $_path CSS selector path
      * @return void
      */
-    public function __construct($path)
+    public function __construct(
+        /**
+         * CSS selector or XPath path to select against
+         */
+        protected $_path
+    )
     {
-        $this->_path = $path;
     }
 
     /**
@@ -138,19 +136,19 @@ class Zend_Test_PHPUnit_Constraint_DomQuery34 extends PHPUnit_Framework_Constrai
      */
     public function evaluate($other, $assertType = null)
     {
-        if (strstr($assertType, 'Not')) {
+        if (strstr((string) $assertType, 'Not')) {
             $this->setNegate(true);
             $assertType = str_replace('Not', '', $assertType);
         }
 
-        if (strstr($assertType, 'Xpath')) {
+        if (strstr((string) $assertType, 'Xpath')) {
             $this->setUseXpath(true);
             $assertType = str_replace('Xpath', 'Query', $assertType);
         }
 
         if (!in_array($assertType, $this->_assertTypes)) {
             require_once 'Zend/Test/PHPUnit/Constraint/Exception.php';
-            throw new Zend_Test_PHPUnit_Constraint_Exception(sprintf('Invalid assertion type "%s" provided to %s constraint', $assertType, __CLASS__));
+            throw new Zend_Test_PHPUnit_Constraint_Exception(sprintf('Invalid assertion type "%s" provided to %s constraint', $assertType, self::class));
         }
 
         $this->_assertType = $assertType;
@@ -387,18 +385,14 @@ class Zend_Test_PHPUnit_Constraint_DomQuery34 extends PHPUnit_Framework_Constrai
     {
         $count = count($result);
 
-        switch ($type) {
-            case self::ASSERT_CONTENT_COUNT:
-                return ($this->_negate)
-                    ? ($test != $count)
-                    : ($test == $count);
-            case self::ASSERT_CONTENT_COUNT_MIN:
-                return ($count >= $test);
-            case self::ASSERT_CONTENT_COUNT_MAX:
-                return ($count <= $test);
-            default:
-                return false;
-        }
+        return match ($type) {
+            self::ASSERT_CONTENT_COUNT => ($this->_negate)
+                ? ($test != $count)
+                : ($test == $count),
+            self::ASSERT_CONTENT_COUNT_MIN => $count >= $test,
+            self::ASSERT_CONTENT_COUNT_MAX => $count <= $test,
+            default => false,
+        };
     }
 
     /**

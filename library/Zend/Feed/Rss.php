@@ -113,15 +113,10 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
      */
     public function __get($var)
     {
-        switch ($var) {
-            case 'item':
-                // fall through to the next case
-            case 'items':
-                return $this;
-
-            default:
-                return parent::__get($var);
-        }
+        return match ($var) {
+            'item', 'items' => $this,
+            default => parent::__get($var),
+        };
     }
 
     /**
@@ -141,12 +136,12 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
         $link = $this->_element->createElement('link', $array->link);
         $channel->appendChild($link);
 
-        $desc = isset($array->description) ? $array->description : '';
+        $desc = $array->description ?? '';
         $description = $this->_element->createElement('description');
         $description->appendChild($this->_element->createCDATASection($desc));
         $channel->appendChild($description);
 
-        $pubdate = isset($array->lastUpdate) ? $array->lastUpdate : time();
+        $pubdate = $array->lastUpdate ?? time();
         $pubdate = $this->_element->createElement('pubDate', date(DATE_RSS, $pubdate));
         $channel->appendChild($pubdate);
 
@@ -427,7 +422,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
                 $item->appendChild($content);
             }
 
-            $pubdate = isset($dataentry->lastUpdate) ? $dataentry->lastUpdate : time();
+            $pubdate = $dataentry->lastUpdate ?? time();
             $pubdate = $this->_element->createElement('pubDate', date(DATE_RSS, $pubdate));
             $item->appendChild($pubdate);
 

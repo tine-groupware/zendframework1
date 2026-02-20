@@ -401,7 +401,7 @@ abstract class Zend_Db_Adapter_Abstract
         if (!$profilerInstance instanceof Zend_Db_Profiler) {
             /** @see Zend_Db_Profiler_Exception */
             require_once 'Zend/Db/Profiler/Exception.php';
-            throw new Zend_Db_Profiler_Exception('Class ' . get_class($profilerInstance) . ' does not extend '
+            throw new Zend_Db_Profiler_Exception('Class ' . $profilerInstance::class . ' does not extend '
                 . 'Zend_Db_Profiler');
         }
 
@@ -557,7 +557,7 @@ abstract class Zend_Db_Adapter_Abstract
                     } else {
                         /** @see Zend_Db_Adapter_Exception */
                         require_once 'Zend/Db/Adapter/Exception.php';
-                        throw new Zend_Db_Adapter_Exception(get_class($this) ." doesn't support positional or named binding");
+                        throw new Zend_Db_Adapter_Exception(static::class ." doesn't support positional or named binding");
                     }
                 }
             }
@@ -612,7 +612,7 @@ abstract class Zend_Db_Adapter_Abstract
                     } else {
                         /** @see Zend_Db_Adapter_Exception */
                         require_once 'Zend/Db/Adapter/Exception.php';
-                        throw new Zend_Db_Adapter_Exception(get_class($this) ." doesn't support positional or named binding");
+                        throw new Zend_Db_Adapter_Exception(static::class ." doesn't support positional or named binding");
                     }
                 }
             }
@@ -1098,17 +1098,11 @@ abstract class Zend_Db_Adapter_Abstract
      */
     public function foldCase($key)
     {
-        switch ($this->_caseFolding) {
-            case Zend_Db::CASE_LOWER:
-                $value = strtolower((string) $key);
-                break;
-            case Zend_Db::CASE_UPPER:
-                $value = strtoupper((string) $key);
-                break;
-            case Zend_Db::CASE_NATURAL:
-            default:
-                $value = (string) $key;
-        }
+        $value = match ($this->_caseFolding) {
+            Zend_Db::CASE_LOWER => strtolower((string) $key),
+            Zend_Db::CASE_UPPER => strtoupper((string) $key),
+            default => (string) $key,
+        };
         return $value;
     }
 
@@ -1125,7 +1119,7 @@ abstract class Zend_Db_Adapter_Abstract
             /** @see Zend_Db_Adapter_Exception */
             require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception(
-                get_class($this) . ' is not allowed to be serialized'
+                static::class . ' is not allowed to be serialized'
             );
         }
 	// even after serialization we want to continue to use this object, why not?!?

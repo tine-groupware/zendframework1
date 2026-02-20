@@ -181,7 +181,7 @@ class Zend_Cloud_StorageService_Adapter_Rackspace
      * @param  array $options
      * @return void
      */
-    public function renameItem($path, $name, $options = null)
+    public function renameItem($path, $name, $options = null): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('Renaming not implemented');

@@ -193,7 +193,7 @@ class Zend_Log_Writer_Firebug extends Zend_Log_Writer_Abstract
 
         $message = $this->_formatter->format($event);
 
-        $label = isset($event['firebugLabel'])?$event['firebugLabel']:null;
+        $label = $event['firebugLabel'] ?? null;
 
         Zend_Wildfire_Plugin_FirePhp::getInstance()->send($message,
                                                           $label,

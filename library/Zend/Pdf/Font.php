@@ -610,18 +610,13 @@ abstract class Zend_Pdf_Font
         /* If it turns out that the file is named improperly and we guess the
          * wrong type, we'll get null instead of a font object.
          */
-        switch ($fileExtension) {
-            case 'ttf':
-                $font = Zend_Pdf_Font::_extractTrueTypeFont($dataSource, $embeddingOptions);
-                break;
-
-            default:
-                /* Unrecognized extension. Try to determine the type by actually
-                 * parsing it below.
-                 */
-                $font = null;
-                break;
-        }
+        $font = match ($fileExtension) {
+            'ttf' => Zend_Pdf_Font::_extractTrueTypeFont($dataSource, $embeddingOptions),
+            /* Unrecognized extension. Try to determine the type by actually
+             * parsing it below.
+             */
+            default => null,
+        };
 
 
         if ($font === null) {
@@ -717,15 +712,10 @@ abstract class Zend_Pdf_Font
              */
             $fontParser = null;
             require_once 'Zend/Pdf/Exception.php';
-            switch ($e->getCode()) {
-                case Zend_Pdf_Exception::WRONG_FONT_TYPE:    // break intentionally omitted
-                case Zend_Pdf_Exception::BAD_TABLE_COUNT:    // break intentionally omitted
-                case Zend_Pdf_Exception::BAD_MAGIC_NUMBER:
-                    return null;
-
-                default:
-                    throw new Zend_Pdf_Exception($e->getMessage(), $e->getCode(), $e);
-            }
+            return match ($e->getCode()) {
+                Zend_Pdf_Exception::WRONG_FONT_TYPE, Zend_Pdf_Exception::BAD_TABLE_COUNT, Zend_Pdf_Exception::BAD_MAGIC_NUMBER => null,
+                default => throw new Zend_Pdf_Exception($e->getMessage(), $e->getCode(), $e),
+            };
         }
         return $font;
     }

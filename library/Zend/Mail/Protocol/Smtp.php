@@ -242,7 +242,7 @@ class Zend_Mail_Protocol_Smtp extends Zend_Mail_Protocol_Abstract
         try {
             $this->_send('EHLO ' . $host);
             $this->_expect(250, 300); // Timeout set for 5 minutes as per RFC 2821 4.5.3.2
-        } catch (Zend_Mail_Protocol_Exception $e) {
+        } catch (Zend_Mail_Protocol_Exception) {
             $this->_send('HELO ' . $host);
             $this->_expect(250, 300); // Timeout set for 5 minutes as per RFC 2821 4.5.3.2
         } catch (Zend_Mail_Protocol_Exception $e) {
@@ -324,7 +324,7 @@ class Zend_Mail_Protocol_Smtp extends Zend_Mail_Protocol_Abstract
         $this->_expect(354, 120); // Timeout set for 2 minutes as per RFC 2821 4.5.3.2
 
         foreach (explode(Zend_Mime::LINEEND, $data) as $line) {
-            if (strpos($line, '.') === 0) {
+            if (str_starts_with($line, '.')) {
                 // Escape lines prefixed with a '.'
                 $line = '.' . $line;
             }

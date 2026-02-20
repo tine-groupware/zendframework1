@@ -39,52 +39,36 @@ require_once 'Zend/Search/Lucene/Search/Query/Preprocessing.php';
 class Zend_Search_Lucene_Search_Query_Preprocessing_Fuzzy extends Zend_Search_Lucene_Search_Query_Preprocessing
 {
     /**
-     * word (query parser lexeme) to find.
-     *
-     * @var string
-     */
-    private $_word;
-
-    /**
-     * Word encoding (field name is always provided using UTF-8 encoding since it may be retrieved from index).
-     *
-     * @var string
-     */
-    private $_encoding;
-
-
-    /**
-     * Field name.
-     *
-     * @var string
-     */
-    private $_field;
-
-    /**
-     * A value between 0 and 1 to set the required similarity
-     *  between the query term and the matching terms. For example, for a
-     *  _minimumSimilarity of 0.5 a term of the same length
-     *  as the query term is considered similar to the query term if the edit distance
-     *  between both terms is less than length(term)*0.5
-     *
-     * @var float
-     */
-    private $_minimumSimilarity;
-
-    /**
      * Class constructor.  Create a new preprocessing object for prase query.
      *
-     * @param string $word       Non-tokenized word (query parser lexeme) to search.
-     * @param string $encoding   Word encoding.
-     * @param string $fieldName  Field name.
-     * @param float  $minimumSimilarity minimum similarity
+     * @param string $_word Non-tokenized word (query parser lexeme) to search.
+     * @param string $_encoding Word encoding.
+     * @param string $_field Field name.
+     * @param float $_minimumSimilarity minimum similarity
      */
-    public function __construct($word, $encoding, $fieldName, $minimumSimilarity)
+    public function __construct(
+        /**
+         * word (query parser lexeme) to find.
+         */
+        private $_word,
+        /**
+         * Word encoding (field name is always provided using UTF-8 encoding since it may be retrieved from index).
+         */
+        private $_encoding,
+        /**
+         * Field name.
+         */
+        private $_field,
+        /**
+         * A value between 0 and 1 to set the required similarity
+         *  between the query term and the matching terms. For example, for a
+         *  _minimumSimilarity of 0.5 a term of the same length
+         *  as the query term is considered similar to the query term if the edit distance
+         *  between both terms is less than length(term)*0.5
+         */
+        private $_minimumSimilarity
+    )
     {
-        $this->_word     = $word;
-        $this->_encoding = $encoding;
-        $this->_field    = $fieldName;
-        $this->_minimumSimilarity = $minimumSimilarity;
     }
 
     /**
@@ -270,7 +254,7 @@ class Zend_Search_Lucene_Search_Query_Preprocessing_Fuzzy extends Zend_Search_Lu
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         // It's used only for query visualisation, so we don't care about characters escaping
         if ($this->_field !== null) {

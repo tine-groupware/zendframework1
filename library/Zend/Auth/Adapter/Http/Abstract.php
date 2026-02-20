@@ -32,6 +32,7 @@
  */
 class Zend_Auth_Adapter_Http_Abstract
 {
+    public $_resolver;
     /**
      * Reference to the HTTP Request object
      *
@@ -176,8 +177,8 @@ class Zend_Auth_Adapter_Http_Abstract
         $this->_response->setHeader($headerName, $this->_getAuthHeader());
         return new Zend_Auth_Result(
             Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID,
-            array(),
-            array('Invalid or absent credentials; challenging client')
+            [],
+            ['Invalid or absent credentials; challenging client']
         );
     }
 }

@@ -42,23 +42,23 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
     protected $_finalRun = '';
 
     /** @var array Array of Zend_Scheduler_Task_Rule_Abstract objects */
-    protected $_rules = array();
+    protected $_rules = [];
 
     /** @var array Array of Zend_Controller_Request_Abstract objects */
-    protected $_requests = array();
+    protected $_requests = [];
 
     /** @var bool Has the task completed execution? */
     protected $_completed = false;
 
     /** @var array Array of serialized rules */
-    protected $_serialized = array();
+    protected $_serialized = [];
 
     /**
      * Constructor.
      * 
      * @param array $options Task options.
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         $this->setOptions($options);
     }
@@ -69,7 +69,7 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
      * @param  array $options
      * @return Zend_Scheduler_Task
      */
-    public static function getTask(array $options = array())
+    public static function getTask(array $options = [])
     {
         return new Zend_Scheduler_Task($options);
     }
@@ -82,7 +82,7 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
     public function setOptions(array $options)
     {
         foreach ($options as $option => $value) {
-            $method = 'set' . ucfirst($option);
+            $method = 'set' . ucfirst((string) $option);
             if (method_exists($this, $method)) {
                 $this->{$method}($value);
             }
@@ -117,9 +117,9 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
      * @param  array $parameters Request parameters
      * @return Zend_Scheduler_Task This instance
      */
-    public function setRequest($controller, $action = 'index', array $parameters = array())
+    public function setRequest($controller, $action = 'index', array $parameters = [])
     {
-        $this->_requests = array();
+        $this->_requests = [];
         return $this->addRequest($controller, $action, $parameters);
     }
 
@@ -134,7 +134,7 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
      * @param  array $parameters Request parameters
      * @return Zend_Scheduler_Task This instance
      */
-    public function addRequest($controller, $action = 'index', array $parameters = array())
+    public function addRequest($controller, $action = 'index', array $parameters = [])
     {
         if ($controller instanceof Zend_Controller_Request_Abstract) {
             $request = $controller;
@@ -268,7 +268,7 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
         $controller = $this->getFrontController();
         
         $returnResponse = ($controller) ? $controller->returnResponse(true) : NULL;
-        $responses      = array();
+        $responses      = [];
         foreach ($this->_requests as $request) {
 //            if ($request->getControllerName()) { // Use default router
 //                $controller->setRouter(new Zend_Controller_Router_Rewrite());
@@ -307,7 +307,7 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
             $this->_serialized['requests'][] = serialize($request);
         }
 
-        return array('_serialized');
+        return ['_serialized'];
     }
 
     /**
@@ -325,7 +325,7 @@ class Zend_Scheduler_Task implements Zend_Scheduler_Task_Interface
                 $this->_requests[] = unserialize($request);
             }
         }
-        $this->_serialized = array();
+        $this->_serialized = [];
     }
 
     /**

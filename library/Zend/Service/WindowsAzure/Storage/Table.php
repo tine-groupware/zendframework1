@@ -91,7 +91,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 	 * @param boolean $usePathStyleUri Use path-style URI's
 	 * @param Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy Retry policy to use when making requests
 	 */
-	public function __construct($host = Zend_Service_WindowsAzure_Storage::URL_DEV_TABLE, $accountName = Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_ACCOUNT, $accountKey = Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_KEY, $usePathStyleUri = false, Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
+	public function __construct($host = Zend_Service_WindowsAzure_Storage::URL_DEV_TABLE, $accountName = Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_ACCOUNT, $accountKey = Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_KEY, $usePathStyleUri = false, ?Zend_Service_WindowsAzure_RetryPolicy_RetryPolicyAbstract $retryPolicy = null)
 	{
 		parent::__construct($host, $accountName, $accountKey, $usePathStyleUri, $retryPolicy);
 
@@ -298,7 +298,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 	 * @return Zend_Service_WindowsAzure_Storage_TableEntity
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function insertEntity($tableName = '', Zend_Service_WindowsAzure_Storage_TableEntity $entity = null)
+	public function insertEntity($tableName = '', ?Zend_Service_WindowsAzure_Storage_TableEntity $entity = null)
 	{
 		if ($tableName === '') {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -371,7 +371,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 	 * @param boolean                             $verifyEtag  Verify etag of the entity (used for concurrency)
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function deleteEntity($tableName = '', Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false)
+	public function deleteEntity($tableName = '', ?Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false)
 	{
 		if ($tableName === '') {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -516,7 +516,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 		    // Option 1: $tableName is a string
 		    
 		    // Append parentheses
-		    if (strpos($tableName, '()') === false) {
+		    if (!str_contains($tableName, '()')) {
 		    	$tableName .= '()';
 		    }
 		    
@@ -532,7 +532,7 @@ class Zend_Service_WindowsAzure_Storage_Table
     	    if (count($query) > 0)  {
     	        $queryString = '?' . implode('&', $query);
     	    }
-		} else if (get_class($tableName) == 'Zend_Service_WindowsAzure_Storage_TableEntityQuery') {
+		} else if ($tableName::class == 'Zend_Service_WindowsAzure_Storage_TableEntityQuery') {
 		    // Option 2: $tableName is a Zend_Service_WindowsAzure_Storage_TableEntityQuery instance
 
 		    // Build queryString
@@ -628,7 +628,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 
 			// More entities?
 		    if (!is_null($response->getHeader('x-ms-continuation-NextPartitionKey')) && !is_null($response->getHeader('x-ms-continuation-NextRowKey'))) {
-		        if (strpos($queryString, '$top') === false) {
+		        if (!str_contains($queryString, '$top')) {
 		            $returnValue = array_merge($returnValue, $this->retrieveEntities($tableName, $filter, $entityClass, $response->getHeader('x-ms-continuation-NextPartitionKey'), $response->getHeader('x-ms-continuation-NextRowKey')));
 		        }
 		    }
@@ -649,7 +649,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 	 * @param boolean                             $verifyEtag  Verify etag of the entity (used for concurrency)
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function updateEntity($tableName = '', Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false)
+	public function updateEntity($tableName = '', ?Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false)
 	{
 	    return $this->_changeEntity(Zend_Http_Client::PUT, $tableName, $entity, $verifyEtag);
 	}
@@ -663,7 +663,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 	 * @param array                               $properties  Properties to merge. All properties will be used when omitted.
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	public function mergeEntity($tableName = '', Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false, $properties = [])
+	public function mergeEntity($tableName = '', ?Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false, $properties = [])
 	{
 		$mergeEntity = null;
 		if (is_array($properties) && count($properties) > 0) {
@@ -714,7 +714,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 	 * @param boolean                             $verifyEtag  Verify etag of the entity (used for concurrency)
 	 * @throws Zend_Service_WindowsAzure_Exception
 	 */
-	protected function _changeEntity($httpVerb = Zend_Http_Client::PUT, $tableName = '', Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false)
+	protected function _changeEntity($httpVerb = Zend_Http_Client::PUT, $tableName = '', ?Zend_Service_WindowsAzure_Storage_TableEntity $entity = null, $verifyEtag = false)
 	{
 		if ($tableName === '') {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -819,7 +819,7 @@ class Zend_Service_WindowsAzure_Storage_Table
 	 * @param Zend_Service_WindowsAzure_Storage_TableEntity $entity
 	 * @return string
 	 */
-	protected function _generateAzureRepresentation(Zend_Service_WindowsAzure_Storage_TableEntity $entity = null)
+	protected function _generateAzureRepresentation(?Zend_Service_WindowsAzure_Storage_TableEntity $entity = null)
 	{
 		// Generate Azure representation from entity
 		$azureRepresentation = [];
@@ -836,9 +836,9 @@ class Zend_Service_WindowsAzure_Storage_Table
 		    $value[] = '>';
 		    
 		    if (!is_null($azureValue->Value)) {
-		        if (strtolower($azureValue->Type) == 'edm.boolean') {
+		        if (strtolower((string) $azureValue->Type) == 'edm.boolean') {
 		            $value[] = ($azureValue->Value == true ? '1' : '0');
-		        } else if (strtolower($azureValue->Type) == 'edm.datetime') {
+		        } else if (strtolower((string) $azureValue->Type) == 'edm.datetime') {
 		        	$value[] = $this->_convertToEdmDateTime($azureValue->Value);
 		        } else {
 		            $value[] = htmlspecialchars($azureValue->Value);
@@ -905,12 +905,12 @@ class Zend_Service_WindowsAzure_Storage_Table
     	}
     	
     	try {
-    		if (substr($value, -1) == 'Z') {
+    		if (str_ends_with($value, 'Z')) {
     			$value = substr($value, 0, strlen($value) - 1);
     		}
     		return new DateTime($value, new DateTimeZone('UTC'));
     	}
-    	catch (Exception $ex) {
+    	catch (Exception) {
     		return false;
     	}
     }

@@ -44,13 +44,6 @@ require_once 'Zend/Pdf/Element/String.php';
 class Zend_Pdf_StringParser
 {
     /**
-     * Source PDF
-     *
-     * @var string
-     */
-    public $data = '';
-
-    /**
      * Current position in a data
      *
      * @var integer
@@ -70,13 +63,6 @@ class Zend_Pdf_StringParser
      * @var array
      */
     private $_elements = [];
-
-    /**
-     * PDF objects factory.
-     *
-     * @var Zend_Pdf_ElementFactory_Interface
-     */
-    private $_objFactory = null;
 
 
     /**
@@ -237,7 +223,7 @@ class Zend_Pdf_StringParser
         }
 
         if ( /* self::isDelimiter( ord($this->data[$start]) ) */
-             strpos('()<>[]{}/%', $this->data[$this->offset]) !== false ) {
+             str_contains('()<>[]{}/%', $this->data[$this->offset]) ) {
 
             switch (substr($this->data, $this->offset, 2)) {
                 case '<<':
@@ -321,15 +307,15 @@ class Zend_Pdf_StringParser
                                                 $this->offset));
 
             default:
-                if (strcasecmp($nextLexeme, 'true') === 0) {
+                if (strcasecmp((string) $nextLexeme, 'true') === 0) {
                     return ($this->_elements[] = new Zend_Pdf_Element_Boolean(true));
                 }
 
-                if (strcasecmp($nextLexeme, 'false') === 0) {
+                if (strcasecmp((string) $nextLexeme, 'false') === 0) {
                     return ($this->_elements[] = new Zend_Pdf_Element_Boolean(false));
                 }
 
-                if (strcasecmp($nextLexeme, 'null') === 0) {
+                if (strcasecmp((string) $nextLexeme, 'null') === 0) {
                     return ($this->_elements[] = new Zend_Pdf_Element_Null());
                 }
 
@@ -721,11 +707,19 @@ class Zend_Pdf_StringParser
      * Thus we don't need to care about overhead
      *
      * @param string $pdfString
-     * @param Zend_Pdf_ElementFactory_Interface $factory
+     * @param Zend_Pdf_ElementFactory_Interface $_objFactory
+     * @param string $source
      */
-    public function __construct($source, Zend_Pdf_ElementFactory_Interface $factory)
+    public function __construct(
+        /**
+         * Source PDF
+         */
+        public $data,
+        /**
+         * PDF objects factory.
+         */
+        private Zend_Pdf_ElementFactory_Interface $_objFactory
+    )
     {
-        $this->data         = $source;
-        $this->_objFactory  = $factory;
     }
 }

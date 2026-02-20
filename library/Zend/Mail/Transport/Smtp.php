@@ -57,13 +57,6 @@ class Zend_Mail_Transport_Smtp extends Zend_Mail_Transport_Abstract
      */
     public $EOL = "\n";
 
-    /**
-     * Remote smtp hostname or i.p.
-     *
-     * @var string
-     */
-    protected $_host;
-
 
     /**
      * Port number
@@ -108,14 +101,17 @@ class Zend_Mail_Transport_Smtp extends Zend_Mail_Transport_Abstract
     /**
      * Constructor.
      *
-     * @param  string $host OPTIONAL (Default: 127.0.0.1)
+     * @param string $_host OPTIONAL (Default: 127.0.0.1)
      * @param  array|null $config OPTIONAL (Default: null)
      * @return void
      *
      * @todo Someone please make this compatible
      *       with the SendMail transport class.
      */
-    public function __construct($host = '127.0.0.1', Array $config = [])
+    public function __construct(/**
+     * Remote smtp hostname or i.p.
+     */
+    protected $_host = '127.0.0.1', Array $config = [])
     {
         if (isset($config['name'])) {
             $this->_name = $config['name'];
@@ -126,8 +122,6 @@ class Zend_Mail_Transport_Smtp extends Zend_Mail_Transport_Abstract
         if (isset($config['auth'])) {
             $this->_auth = $config['auth'];
         }
-
-        $this->_host = $host;
         $this->_config = $config;
     }
 
@@ -142,7 +136,7 @@ class Zend_Mail_Transport_Smtp extends Zend_Mail_Transport_Abstract
         if ($this->_connection instanceof Zend_Mail_Protocol_Smtp) {
             try {
                 $this->_connection->quit();
-            } catch (Zend_Mail_Protocol_Exception $e) {
+            } catch (Zend_Mail_Protocol_Exception) {
                 // ignore
             }
             $this->_connection->disconnect();

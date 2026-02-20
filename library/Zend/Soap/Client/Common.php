@@ -62,7 +62,9 @@ class Zend_Soap_Client_Common extends SoapClient
      * @param int    $one_way
      * @return mixed
      */
-    function __doRequest($request, $location, $action, $version, $one_way = null)
+    function __doRequest($request, $location, $action, $version, $one_way = null,
+    #[\JetBrains\PhpStorm\Internal\PhpStormStubsElementAvailable(from: '8.5')]
+    ?string $uriParserClass = \null)
     {
         if ($one_way === null) {
             return call_user_func($this->_doRequestCallback, $this, $request, $location, $action, $version);

@@ -49,7 +49,7 @@ class Zend_Search_Lucene_Storage_File_Filesystem extends Zend_Search_Lucene_Stor
     public function __construct($filename, $mode='r+b')
     {
 
-        if (strpos($mode, 'w') === false  &&  !is_readable($filename)) {
+        if (!str_contains($mode, 'w')  &&  !is_readable($filename)) {
             // opening for reading non-readable file
             require_once 'Zend/Search/Lucene/Exception.php';
             throw new Zend_Search_Lucene_Exception('File \'' . $filename . '\' is not readable.');

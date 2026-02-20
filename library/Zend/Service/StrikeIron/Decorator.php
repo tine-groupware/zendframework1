@@ -33,27 +33,22 @@
 class Zend_Service_StrikeIron_Decorator
 {
     /**
-     * Name of the decorated object
-     * @var null|string
-     */
-    protected $_name = null;
-
-    /**
-     * Object to decorate
-     * @var object
-     */
-    protected $_object = null;
-
-    /**
      * Class constructor
      *
-     * @param object       $object  Object to decorate
-     * @param null|string  $name    Name of the object
+     * @param object $_object Object to decorate
+     * @param null|string $_name Name of the object
      */
-    public function __construct($object, $name = null)
+    public function __construct(
+        /**
+         * Object to decorate
+         */
+        protected $_object,
+        /**
+         * Name of the decorated object
+         */
+        protected $_name = null
+    )
     {
-        $this->_object = $object;
-        $this->_name   = $name;
     }
 
     /**

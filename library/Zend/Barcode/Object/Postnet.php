@@ -108,7 +108,7 @@ class Zend_Barcode_Object_Postnet extends Zend_Barcode_Object_ObjectAbstract
         // Text to encode
         $textTable = str_split($this->getText());
         foreach ($textTable as $char) {
-            $bars = str_split($this->_codingMap[$char]);
+            $bars = str_split((string) $this->_codingMap[$char]);
             foreach ($bars as $b) {
                 $barcodeTable[] = [1 , $this->_barThinWidth , 0.5 - $b * 0.5 , 1];
                 $barcodeTable[] = [0 , $this->_barThinWidth , 0 , 1];

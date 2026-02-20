@@ -48,13 +48,6 @@ abstract class Zend_Service_WindowsAzure_Credentials_CredentialsAbstract
 	const PERMISSION_WRITE       = "w";
 	const PERMISSION_DELETE      = "d";
 	const PERMISSION_LIST        = "l";
-
-	/**
-	 * Account name for Windows Azure
-	 *
-	 * @var string
-	 */
-	protected $_accountName = '';
 	
 	/**
 	 * Account key for Windows Azure
@@ -64,27 +57,24 @@ abstract class Zend_Service_WindowsAzure_Credentials_CredentialsAbstract
 	protected $_accountKey = '';
 	
 	/**
-	 * Use path-style URI's
-	 *
-	 * @var boolean
-	 */
-	protected $_usePathStyleUri = false;
-	
-	/**
-	 * Creates a new Zend_Service_WindowsAzure_Credentials_CredentialsAbstract instance
-	 *
-	 * @param string $accountName Account name for Windows Azure
-	 * @param string $accountKey Account key for Windows Azure
-	 * @param boolean $usePathStyleUri Use path-style URI's
-	 */
-	public function __construct(
-		$accountName = Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_ACCOUNT,
+     * Creates a new Zend_Service_WindowsAzure_Credentials_CredentialsAbstract instance
+     *
+     * @param string $_accountName Account name for Windows Azure
+     * @param string $accountKey Account key for Windows Azure
+     * @param boolean $_usePathStyleUri Use path-style URI's
+     */
+    public function __construct(
+		/**
+         * Account name for Windows Azure
+         */
+        protected $_accountName = Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_ACCOUNT,
 		$accountKey  = Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::DEVSTORE_KEY,
-		$usePathStyleUri = false
+		/**
+         * Use path-style URI's
+         */
+        protected $_usePathStyleUri = false
 	) {
-		$this->_accountName = $accountName;
 		$this->_accountKey = base64_decode($accountKey);
-		$this->_usePathStyleUri = $usePathStyleUri;
 	}
 	
 	/**
@@ -199,7 +189,7 @@ abstract class Zend_Service_WindowsAzure_Credentials_CredentialsAbstract
 		$returnValue = [];
 		
 	    // Remove front ?     
-   		if (strlen($value) > 0 && strpos($value, '?') === 0) {
+   		if (strlen($value) > 0 && str_starts_with($value, '?')) {
     		$value = substr($value, 1);
     	}
     		
@@ -209,7 +199,7 @@ abstract class Zend_Service_WindowsAzure_Credentials_CredentialsAbstract
     		$queryPart = explode('=', $queryPart, 2);
     		
     		if ($queryPart[0] != '') {
-    			$returnValue[ $queryPart[0] ] = isset($queryPart[1]) ? $queryPart[1] : '';
+    			$returnValue[ $queryPart[0] ] = $queryPart[1] ?? '';
     		}
     	}
     	
@@ -230,6 +220,6 @@ abstract class Zend_Service_WindowsAzure_Credentials_CredentialsAbstract
 	 */
 	protected function _issetOr($array, $key, $valueIfNotSet)
 	{
-		return isset($array[$key]) ? $array[$key] : $valueIfNotSet;
+		return $array[$key] ?? $valueIfNotSet;
 	}
 }

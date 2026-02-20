@@ -188,12 +188,9 @@ class Zend_Form_Decorator_Description extends Zend_Form_Decorator_Abstract
             $description = $decorator->render($description);
         }
 
-        switch ($placement) {
-            case self::PREPEND:
-                return $description . $separator . $content;
-            case self::APPEND:
-            default:
-                return $content . $separator . $description;
-        }
+        return match ($placement) {
+            self::PREPEND => $description . $separator . $content,
+            default => $content . $separator . $description,
+        };
     }
 }

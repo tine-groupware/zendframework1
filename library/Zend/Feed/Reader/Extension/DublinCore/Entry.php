@@ -53,11 +53,7 @@ class Zend_Feed_Reader_Extension_DublinCore_Entry
     {
         $authors = $this->getAuthors();
 
-        if (isset($authors[$index])) {
-            return $authors[$index];
-        }
-
-        return null;
+        return $authors[$index] ?? null;
     }
 
     /**

@@ -8,20 +8,14 @@ abstract class Zend_Db_Schema_AbstractChange
     protected $_db;
 
     /**
-     * @var string
-     */
-    protected $_tablePrefix;
-
-    /**
      * Build and initialize the object
      *
      * @param Zend_Db_Adapter_Abstract $db          Database adabpter to use
-     * @param string                   $tablePrefix Prefix for any table names
+     * @param string $_tablePrefix Prefix for any table names
      */
-    public function __construct(Zend_Db_Adapter_Abstract $db, $tablePrefix = '')
+    public function __construct(Zend_Db_Adapter_Abstract $db, protected $_tablePrefix = '')
     {
         $this->_db = $db;
-        $this->_tablePrefix = $tablePrefix;
     }
 
     /**

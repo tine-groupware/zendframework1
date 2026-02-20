@@ -49,16 +49,10 @@ class Zend_Gdata_Extension_OriginalEvent extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'originalEvent';
-    protected $_id = null;
-    protected $_href = null;
-    protected $_when = null;
 
-    public function __construct($id = null, $href = null, $when = null)
+    public function __construct(protected $_id = null, protected $_href = null, protected $_when = null)
     {
         parent::__construct();
-        $this->_id = $id;
-        $this->_href = $href;
-        $this->_when = $when;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

@@ -37,21 +37,18 @@ require_once 'Zend/Ldap/Node.php';
 class Zend_Ldap_Node_ChildrenIterator implements Iterator, Countable, RecursiveIterator, ArrayAccess
 {
     /**
-     * An array of Zend_Ldap_Node objects
-     *
-     * @var array
-     */
-    private $_data;
-
-    /**
      * Constructor.
      *
-     * @param  array $data
+     * @param array $_data
      * @return void
      */
-    public function __construct(array $data)
+    public function __construct(
+        /**
+         * An array of Zend_Ldap_Node objects
+         */
+        private array $_data
+    )
     {
-        $this->_data = $data;
     }
 
     /**

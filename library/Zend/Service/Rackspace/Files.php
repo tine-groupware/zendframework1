@@ -198,7 +198,7 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
         $headers=[];
         if (!empty($metadata)) {
             foreach ($metadata as $key => $value) {
-                $headers[self::METADATA_CONTAINER_HEADER.rawurlencode(strtolower($key))]= rawurlencode($value);
+                $headers[self::METADATA_CONTAINER_HEADER.rawurlencode(strtolower((string) $key))]= rawurlencode((string) $value);
             }
         }
         $result= $this->httpCall($this->getStorageUrl().'/'.rawurlencode($container),'PUT',$headers);
@@ -275,8 +275,8 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
                 $headerName = ucwords(strtolower(self::METADATA_CONTAINER_HEADER)); 
                 $metadata= [];
                 foreach ($headers as $type => $value) {
-                    if (strpos($type,$headerName)!==false) {
-                        $metadata[strtolower(substr($type, $count))]= $value;
+                    if (str_contains((string) $type,$headerName)) {
+                        $metadata[strtolower(substr((string) $type, $count))]= $value;
                     }
                 }
 
@@ -522,8 +522,8 @@ class Zend_Service_Rackspace_Files extends Zend_Service_Rackspace_Abstract
                 $metadata= [];
 
                 foreach ($headers as $type => $value) {
-                    if (strpos($type,$headerName)!==false) {
-                        $metadata[strtolower(substr($type, $count))]= $value;
+                    if (str_contains((string) $type,$headerName)) {
+                        $metadata[strtolower(substr((string) $type, $count))]= $value;
                     }
                 }
 

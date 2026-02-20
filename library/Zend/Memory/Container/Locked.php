@@ -35,23 +35,19 @@ require_once 'Zend/Memory/Container.php';
 class Zend_Memory_Container_Locked extends Zend_Memory_Container
 {
     /**
-     * Value object
-     *
-     * @var string
-     */
-    public $value;
-
-
-    /**
      * Object constructor
      *
      * @param Zend_Memory_Manager $memoryManager
      * @param integer $id
      * @param string $value
      */
-    public function __construct($value)
+    public function __construct(
+        /**
+         * Value object
+         */
+        public $value
+    )
     {
-        $this->value = $value;
     }
 
     /**

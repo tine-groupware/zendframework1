@@ -80,7 +80,7 @@ class Zend_Cache_Backend
             if (!is_string($name)) {
                 Zend_Cache::throwException("Incorrect option name : $name");
             }
-            $name = strtolower($name);
+            $name = strtolower((string) $name);
             if (array_key_exists($name, $this->_directives)) {
                 $this->_directives[$name] = $value;
             }
@@ -199,7 +199,7 @@ class Zend_Cache_Backend
             }
         }
         // Attemp to detect by creating a temporary file
-        $tempFile = tempnam(md5(uniqid(rand(), TRUE)), '');
+        $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), TRUE)), '');
         if ($tempFile) {
             $dir = realpath(dirname($tempFile));
             unlink($tempFile);

@@ -44,19 +44,11 @@ class Zend_Gdata_Extension_When extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'when';
-    protected $_reminders = [];
-    protected $_startTime = null;
-    protected $_valueString = null;
-    protected $_endTime = null;
 
-    public function __construct($startTime = null, $endTime = null,
-            $valueString = null, $reminders = null)
+    public function __construct(protected $_startTime = null, protected $_endTime = null,
+            protected $_valueString = null, protected $_reminders = null)
     {
         parent::__construct();
-        $this->_startTime = $startTime;
-        $this->_endTime = $endTime;
-        $this->_valueString = $valueString;
-        $this->_reminders = $reminders;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)
@@ -112,10 +104,10 @@ class Zend_Gdata_Extension_When extends Zend_Gdata_Extension
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->_valueString)
-            return $this->_valueString;
+            return (string) $this->_valueString;
         else {
             return 'Starts: ' . $this->getStartTime() . ' ' .
                    'Ends: ' .  $this->getEndTime();

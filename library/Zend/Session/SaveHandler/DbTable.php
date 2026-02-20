@@ -268,7 +268,7 @@ class Zend_Session_SaveHandler_DbTable
      */
     public function setOverrideLifetime($overrideLifetime)
     {
-        $this->_overrideLifetime = (boolean) $overrideLifetime;
+        $this->_overrideLifetime = (bool) $overrideLifetime;
 
         return $this;
     }
@@ -318,7 +318,7 @@ class Zend_Session_SaveHandler_DbTable
     {
         $return = '';
 
-        $rows = call_user_func_array([&$this, 'find'], $this->_getPrimary($id));
+        $rows = call_user_func_array($this->find(...), $this->_getPrimary($id));
 
         if (count($rows)) {
             if ($this->_getExpirationTime($row = $rows->current()) > time()) {
@@ -343,7 +343,7 @@ class Zend_Session_SaveHandler_DbTable
         $data = [$this->_modifiedColumn => time(),
                       $this->_dataColumn     => (string) $data];
 
-        $rows = call_user_func_array([&$this, 'find'], $this->_getPrimary($id));
+        $rows = call_user_func_array($this->find(...), $this->_getPrimary($id));
 
         if (count($rows)) {
             $data[$this->_lifetimeColumn] = $this->_getLifetime($rows->current());
@@ -420,7 +420,7 @@ class Zend_Session_SaveHandler_DbTable
         }
 
         if (strpos($this->_name, '.')) {
-            list($this->_schema, $this->_name) = explode('.', $this->_name);
+            [$this->_schema, $this->_name] = explode('.', $this->_name);
         }
     }
 
@@ -519,20 +519,12 @@ class Zend_Session_SaveHandler_DbTable
         $primaryArray = [];
 
         foreach ($this->_primary as $index => $primary) {
-            switch ($this->_primaryAssignment[$index]) {
-                case self::PRIMARY_ASSIGNMENT_SESSION_SAVE_PATH:
-                    $value = $this->_sessionSavePath;
-                    break;
-                case self::PRIMARY_ASSIGNMENT_SESSION_NAME:
-                    $value = $this->_sessionName;
-                    break;
-                case self::PRIMARY_ASSIGNMENT_SESSION_ID:
-                    $value = (string) $id;
-                    break;
-                default:
-                    $value = (string) $this->_primaryAssignment[$index];
-                    break;
-            }
+            $value = match ($this->_primaryAssignment[$index]) {
+                self::PRIMARY_ASSIGNMENT_SESSION_SAVE_PATH => $this->_sessionSavePath,
+                self::PRIMARY_ASSIGNMENT_SESSION_NAME => $this->_sessionName,
+                self::PRIMARY_ASSIGNMENT_SESSION_ID => (string) $id,
+                default => (string) $this->_primaryAssignment[$index],
+            };
 
             switch ((string) $type) {
                 case self::PRIMARY_TYPE_PRIMARYNUM:

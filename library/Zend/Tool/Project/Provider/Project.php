@@ -211,7 +211,7 @@ EOS;
     {
         $projectDirResource = $caller->getResource()->getProfile()->search('projectDirectory');
         if ($projectDirResource) {
-            $name = ltrim(strrchr($projectDirResource->getPath(), DIRECTORY_SEPARATOR), DIRECTORY_SEPARATOR);
+            $name = ltrim(strrchr((string) $projectDirResource->getPath(), DIRECTORY_SEPARATOR), DIRECTORY_SEPARATOR);
             $path = $projectDirResource->getPath() . '/public';
         } else {
             $path = '/path/to/public';

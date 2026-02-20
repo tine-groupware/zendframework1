@@ -46,48 +46,6 @@ require_once 'Zend/OpenId/Consumer.php';
 class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
 {
     /**
-     * The identity value being authenticated
-     *
-     * @var string
-     */
-    private $_id = null;
-
-    /**
-     * Reference to an implementation of a storage object
-     *
-     * @var Zend_OpenId_Consumer_Storage
-     */
-    private $_storage = null;
-
-    /**
-     * The URL to redirect response from server to
-     *
-     * @var string
-     */
-    private $_returnTo = null;
-
-    /**
-     * The HTTP URL to identify consumer on server
-     *
-     * @var string
-     */
-    private $_root = null;
-
-    /**
-     * Extension object or array of extensions objects
-     *
-     * @var string
-     */
-    private $_extensions = null;
-
-    /**
-     * The response object to perform HTTP or HTML form redirection
-     *
-     * @var Zend_Controller_Response_Abstract
-     */
-    private $_response = null;
-
-    /**
      * Enables or disables interaction with user during authentication on
      * OpenID provider.
      *
@@ -105,27 +63,42 @@ class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
     /**
      * Constructor
      *
-     * @param string $id the identity value
-     * @param Zend_OpenId_Consumer_Storage $storage an optional implementation
+     * @param string $_id the identity value
+     * @param Zend_OpenId_Consumer_Storage $_storage an optional implementation
      *        of a storage object
-     * @param string $returnTo HTTP URL to redirect response from server to
-     * @param string $root HTTP URL to identify consumer on server
-     * @param mixed $extensions extension object or array of extensions objects
-     * @param Zend_Controller_Response_Abstract $response an optional response
+     * @param string $_returnTo HTTP URL to redirect response from server to
+     * @param string $_root HTTP URL to identify consumer on server
+     * @param mixed $_extensions extension object or array of extensions objects
+     * @param Zend_Controller_Response_Abstract $_response an optional response
      *        object to perform HTTP or HTML form redirection
      */
-    public function __construct($id = null,
-                                Zend_OpenId_Consumer_Storage $storage = null,
-                                $returnTo = null,
-                                $root = null,
-                                $extensions = null,
-                                Zend_Controller_Response_Abstract $response = null) {
-        $this->_id         = $id;
-        $this->_storage    = $storage;
-        $this->_returnTo   = $returnTo;
-        $this->_root       = $root;
-        $this->_extensions = $extensions;
-        $this->_response   = $response;
+    public function __construct(
+        /**
+         * The identity value being authenticated
+         */
+        private $_id = null,
+        /**
+         * Reference to an implementation of a storage object
+         */
+        private ?\Zend_OpenId_Consumer_Storage $_storage = null,
+        /**
+         * The URL to redirect response from server to
+         */
+        private $_returnTo = null,
+        /**
+         * The HTTP URL to identify consumer on server
+         */
+        private $_root = null,
+        /**
+         * Extension object or array of extensions objects
+         */
+        private $_extensions = null,
+        /**
+         * The response object to perform HTTP or HTML form redirection
+         */
+        private ?\Zend_Controller_Response_Abstract $_response = null
+    )
+    {
     }
 
     /**

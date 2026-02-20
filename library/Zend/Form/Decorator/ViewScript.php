@@ -180,13 +180,10 @@ class Zend_Form_Decorator_ViewScript extends Zend_Form_Decorator_Abstract
         // Get placement again to see if it has changed
         $placement = $this->getPlacement();
 
-        switch ($placement) {
-            case self::PREPEND:
-                return $renderedContent . $separator . $content;
-            case self::APPEND:
-                return $content . $separator . $renderedContent;
-            default:
-                return $renderedContent;
-        }
+        return match ($placement) {
+            self::PREPEND => $renderedContent . $separator . $content,
+            self::APPEND => $content . $separator . $renderedContent,
+            default => $renderedContent,
+        };
     }
 }

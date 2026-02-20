@@ -147,7 +147,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         }
         if (isset($options['hashed_directory_perm']) && is_string($options['hashed_directory_perm'])) {
             // See #ZF-4422
-            $this->_options['hashed_directory_perm'] = octdec($this->_options['hashed_directory_perm']);
+            $this->_options['hashed_directory_perm'] = octdec((string) $this->_options['hashed_directory_perm']);
         }
 
         if (isset($options['cache_file_umask'])) {
@@ -159,7 +159,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         }
         if (isset($options['cache_file_perm']) && is_string($options['cache_file_perm'])) {
             // See #ZF-4422
-            $this->_options['cache_file_perm'] = octdec($this->_options['cache_file_perm']);
+            $this->_options['cache_file_perm'] = octdec((string) $this->_options['cache_file_perm']);
         }
     }
 
@@ -616,7 +616,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     protected function _isMetadatasFile($fileName)
     {
         $id = $this->_fileNameToId($fileName);
-        if (substr($id, 0, 21) == 'internal-metadatas---') {
+        if (str_starts_with($id, 'internal-metadatas---')) {
             return true;
         } else {
             return false;

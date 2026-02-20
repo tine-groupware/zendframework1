@@ -43,7 +43,7 @@ require_once 'Zend/Locale/Format.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Measure_Abstract
+abstract class Zend_Measure_Abstract implements \Stringable
 {
     /**
      * Plain value in standard unit
@@ -287,7 +287,7 @@ abstract class Zend_Measure_Abstract
                 $value = call_user_func(Zend_Locale_Math::$div, $value, $this->_units[$type][0], 25);
             }
 
-            $slength = strlen($value);
+            $slength = strlen((string) $value);
             $length  = 0;
             for($i = 1; $i <= $slength; ++$i) {
                 if ($value[$slength - $i] != '0') {
@@ -338,7 +338,7 @@ abstract class Zend_Measure_Abstract
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

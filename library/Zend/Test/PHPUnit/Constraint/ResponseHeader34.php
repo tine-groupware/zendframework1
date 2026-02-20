@@ -118,14 +118,14 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader34 extends PHPUnit_Framework_Co
             throw new Zend_Test_PHPUnit_Constraint_Exception('Header constraint assertions require a response object');
         }
 
-        if (strstr($assertType, 'Not')) {
+        if (strstr((string) $assertType, 'Not')) {
             $this->setNegate(true);
             $assertType = str_replace('Not', '', $assertType);
         }
 
         if (!in_array($assertType, $this->_assertTypes)) {
             require_once 'Zend/Test/PHPUnit/Constraint/Exception.php';
-            throw new Zend_Test_PHPUnit_Constraint_Exception(sprintf('Invalid assertion type "%s" provided to %s constraint', $assertType, __CLASS__));
+            throw new Zend_Test_PHPUnit_Constraint_Exception(sprintf('Invalid assertion type "%s" provided to %s constraint', $assertType, self::class));
         }
 
         $this->_assertType = $assertType;
@@ -322,7 +322,7 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader34 extends PHPUnit_Framework_Co
     {
         $headers = $response->sendHeaders();
         $header  = strtolower($header);
-        if (array_key_exists($header, $headers)) {
+        if (property_exists($headers, $header)) {
             return $headers[$header];
         }
         return null;
@@ -344,7 +344,7 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader34 extends PHPUnit_Framework_Co
 
         $contents = str_replace($header . ': ', '', $fullHeader);
 
-        return (strstr($contents, $match) !== false);
+        return (str_contains($contents, $match));
     }
 
     /**
@@ -363,7 +363,7 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader34 extends PHPUnit_Framework_Co
 
         $contents = str_replace($header . ': ', '', $fullHeader);
 
-        return (strstr($contents, $match) === false);
+        return (!str_contains($contents, $match));
     }
 
     /**

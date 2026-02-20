@@ -101,11 +101,7 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
      */
     public function getParam($name)
     {
-        if (isset($this->_invokeParams[$name])) {
-            return $this->_invokeParams[$name];
-        }
-
-        return null;
+        return $this->_invokeParams[$name] ?? null;
     }
 
     /**

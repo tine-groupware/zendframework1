@@ -108,8 +108,8 @@ class Zend_Service_WindowsAzure_Credentials_SharedKey
 				}
 
 				$headers[$header] = $value;
-				if (substr($header, 0, strlen(Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::PREFIX_STORAGE_HEADER)) == Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::PREFIX_STORAGE_HEADER) {
-				    $canonicalizedHeaders[] = strtolower($header) . ':' . $value;
+				if (str_starts_with((string) $header, Zend_Service_WindowsAzure_Credentials_CredentialsAbstract::PREFIX_STORAGE_HEADER)) {
+				    $canonicalizedHeaders[] = strtolower((string) $header) . ':' . $value;
 				}
 			}
 		}
@@ -124,7 +124,7 @@ class Zend_Service_WindowsAzure_Credentials_SharedKey
 		if ($queryString !== '') {
 		    $queryStringItems = $this->_makeArrayOfQueryString($queryString);
 		    foreach ($queryStringItems as $key => $value) {
-		    	$canonicalizedResource .= "\n" . strtolower($key) . ':' . urldecode($value);
+		    	$canonicalizedResource .= "\n" . strtolower((string) $key) . ':' . urldecode((string) $value);
 		    }
 		}
 		

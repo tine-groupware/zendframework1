@@ -104,7 +104,7 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
             $this->setOptions($options);
         }
         $this->_type = strtolower(substr(
-            get_class($this),
+            static::class,
             strlen($this->_rendererNamespace) + 1
         ));
     }
@@ -395,37 +395,23 @@ abstract class Zend_Barcode_Renderer_RendererAbstract
         $barcodeHeight = $this->_barcode->getHeight(true) * $this->_moduleSize;
 
         if ($barcodeHeight != $supportHeight && $this->_topOffset == 0) {
-            switch ($this->_verticalPosition) {
-                case 'middle':
-                    $this->_topOffset = floor(
-                            ($supportHeight - $barcodeHeight) / 2);
-                    break;
-                case 'bottom':
-                    $this->_topOffset = $supportHeight - $barcodeHeight;
-                    break;
-                case 'top':
-                default:
-                    $this->_topOffset = 0;
-                    break;
-            }
+            $this->_topOffset = match ($this->_verticalPosition) {
+                'middle' => floor(
+                        ($supportHeight - $barcodeHeight) / 2),
+                'bottom' => $supportHeight - $barcodeHeight,
+                default => 0,
+            };
         }
 
         $barcodeWidth = $this->_barcode->getWidth(true) * $this->_moduleSize;
 
         if ($barcodeWidth != $supportWidth && $this->_leftOffset == 0) {
-            switch ($this->_horizontalPosition) {
-                case 'center':
-                    $this->_leftOffset = floor(
-                            ($supportWidth - $barcodeWidth) / 2);
-                    break;
-                case 'right':
-                    $this->_leftOffset = $supportWidth - $barcodeWidth;
-                    break;
-                case 'left':
-                default:
-                    $this->_leftOffset = 0;
-                    break;
-            }
+            $this->_leftOffset = match ($this->_horizontalPosition) {
+                'center' => floor(
+                        ($supportWidth - $barcodeWidth) / 2),
+                'right' => $supportWidth - $barcodeWidth,
+                default => 0,
+            };
         }
     }
 

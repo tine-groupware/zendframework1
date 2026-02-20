@@ -57,7 +57,7 @@ class Zend_Memory
         // (that allows to specify it in any case)
         $backendIsFound = false;
         foreach (Zend_Cache::$standardBackends as $zendCacheBackend) {
-            if (strcasecmp($backend, $zendCacheBackend) === 0) {
+            if (strcasecmp($backend, (string) $zendCacheBackend) === 0) {
                 $backend = $zendCacheBackend;
                 $backendIsFound = true;
                 break;

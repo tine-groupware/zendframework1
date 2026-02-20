@@ -38,34 +38,6 @@
 class Zend_Search_Lucene_Field
 {
     /**
-     * Field name
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
-     * Field value
-     *
-     * @var boolean
-     */
-    public $value;
-
-    /**
-     * Field is to be stored in the index for return with search hits.
-     *
-     * @var boolean
-     */
-    public $isStored    = false;
-
-    /**
-     * Field is to be indexed, so that it may be searched on.
-     *
-     * @var boolean
-     */
-    public $isIndexed   = true;
-
-    /**
      * Field should be tokenized as text prior to indexing.
      *
      * @var boolean
@@ -111,11 +83,20 @@ class Zend_Search_Lucene_Field
      * @param boolean $isTokenized
      * @param boolean $isBinary
      */
-    public function __construct($name, $value, $encoding, $isStored, $isIndexed, $isTokenized, $isBinary = false)
+    public function __construct(/**
+     * Field name
+     */
+    public $name, /**
+     * Field value
+     */
+    public $value, $encoding, /**
+     * Field is to be stored in the index for return with search hits.
+     */
+    public $isStored, /**
+     * Field is to be indexed, so that it may be searched on.
+     */
+    public $isIndexed, $isTokenized, $isBinary = false)
     {
-        $this->name  = $name;
-        $this->value = $value;
-
         if (!$isBinary) {
             $this->encoding    = $encoding;
             $this->isTokenized = $isTokenized;
@@ -123,9 +104,6 @@ class Zend_Search_Lucene_Field
             $this->encoding    = '';
             $this->isTokenized = false;
         }
-
-        $this->isStored  = $isStored;
-        $this->isIndexed = $isIndexed;
         $this->isBinary  = $isBinary;
 
         $this->storeTermVector = false;

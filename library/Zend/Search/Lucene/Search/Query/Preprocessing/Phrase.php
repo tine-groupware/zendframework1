@@ -38,28 +38,6 @@ require_once 'Zend/Search/Lucene/Search/Query/Preprocessing.php';
 class Zend_Search_Lucene_Search_Query_Preprocessing_Phrase extends Zend_Search_Lucene_Search_Query_Preprocessing
 {
     /**
-     * Phrase to find.
-     *
-     * @var string
-     */
-    private $_phrase;
-
-    /**
-     * Phrase encoding (field name is always provided using UTF-8 encoding since it may be retrieved from index).
-     *
-     * @var string
-     */
-    private $_phraseEncoding;
-
-
-    /**
-     * Field name.
-     *
-     * @var string
-     */
-    private $_field;
-
-    /**
      * Sets the number of other words permitted between words in query phrase.
      * If zero, then this is an exact phrase search.  For larger values this works
      * like a WITHIN or NEAR operator.
@@ -81,15 +59,25 @@ class Zend_Search_Lucene_Search_Query_Preprocessing_Phrase extends Zend_Search_L
     /**
      * Class constructor.  Create a new preprocessing object for prase query.
      *
-     * @param string $phrase          Phrase to search.
-     * @param string $phraseEncoding  Phrase encoding.
-     * @param string $fieldName       Field name.
+     * @param string $_phrase Phrase to search.
+     * @param string $_phraseEncoding Phrase encoding.
+     * @param string $_field Field name.
      */
-    public function __construct($phrase, $phraseEncoding, $fieldName)
+    public function __construct(
+        /**
+         * Phrase to find.
+         */
+        private $_phrase,
+        /**
+         * Phrase encoding (field name is always provided using UTF-8 encoding since it may be retrieved from index).
+         */
+        private $_phraseEncoding,
+        /**
+         * Field name.
+         */
+        private $_field
+    )
     {
-        $this->_phrase         = $phrase;
-        $this->_phraseEncoding = $phraseEncoding;
-        $this->_field          = $fieldName;
     }
 
     /**
@@ -246,7 +234,7 @@ class Zend_Search_Lucene_Search_Query_Preprocessing_Phrase extends Zend_Search_L
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         // It's used only for query visualisation, so we don't care about characters escaping
         if ($this->_field !== null) {

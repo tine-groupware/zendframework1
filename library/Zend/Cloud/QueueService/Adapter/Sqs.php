@@ -169,7 +169,7 @@ class Zend_Cloud_QueueService_Adapter_Sqs
      * @param  array  $options
      * @return void
      */
-    public function storeQueueMetadata($queueId, $metadata, $options = null)
+    public function storeQueueMetadata($queueId, $metadata, $options = null): never
     {
         // TODO Add support for SetQueueAttributes to client library
         require_once 'Zend/Cloud/OperationNotAvailableException.php';

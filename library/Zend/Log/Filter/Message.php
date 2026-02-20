@@ -80,6 +80,6 @@ class Zend_Log_Filter_Message extends Zend_Log_Filter_Abstract
      */
     public function accept($event)
     {
-        return preg_match($this->_regexp, $event['message']) > 0;
+        return preg_match($this->_regexp, (string) $event['message']) > 0;
     }
 }

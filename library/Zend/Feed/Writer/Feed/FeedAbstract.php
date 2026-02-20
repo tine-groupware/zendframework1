@@ -60,6 +60,7 @@ require_once 'Zend/Validate/EmailAddress.php';
  */
 class Zend_Feed_Writer_Feed_FeedAbstract
 {
+    public $_extensions;
     /**
      * Contains all Feed level date to append in feed output
      *
@@ -424,11 +425,11 @@ class Zend_Feed_Writer_Feed_FeedAbstract
             require_once 'Zend/Feed/Exception.php';
             throw new Zend_Feed_Exception('Invalid parameter: "link"" must be a non-empty string and valid URI/IRI');
         }
-        if (!in_array(strtolower($type), ['rss', 'rdf', 'atom'])) {
+        if (!in_array(strtolower((string) $type), ['rss', 'rdf', 'atom'])) {
             require_once 'Zend/Feed/Exception.php';
             throw new Zend_Feed_Exception('Invalid parameter: "type"; You must declare the type of feed the link points to, i.e. RSS, RDF or Atom');
         }
-        $this->_data['feedLinks'][strtolower($type)] = $link;
+        $this->_data['feedLinks'][strtolower((string) $type)] = $link;
     }
 
     /**
@@ -851,7 +852,7 @@ class Zend_Feed_Writer_Feed_FeedAbstract
         foreach ($this->_extensions as $extension) {
             try {
                 return call_user_func_array([$extension, $method], $args);
-            } catch (Zend_Feed_Writer_Exception_InvalidMethodException $e) {
+            } catch (Zend_Feed_Writer_Exception_InvalidMethodException) {
             }
         }
         require_once 'Zend/Feed/Exception.php';

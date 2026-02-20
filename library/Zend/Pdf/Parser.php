@@ -37,6 +37,7 @@ require_once 'Zend/Pdf/StringParser.php';
  */
 class Zend_Pdf_Parser
 {
+    public $_refTable;
     /**
      * String parser
      *
@@ -141,7 +142,7 @@ class Zend_Pdf_Parser
                     $objectOffset = substr($objectOffset, $numStart);
                     $this->_stringParser->offset += 10;
 
-                    if (strpos("\x00\t\n\f\r ", $this->_stringParser->data[$this->_stringParser->offset]) === false) {
+                    if (!str_contains("\x00\t\n\f\r ", $this->_stringParser->data[$this->_stringParser->offset])) {
                         require_once 'Zend/Pdf/Exception.php';
                         throw new Zend_Pdf_Exception(sprintf('PDF file cross-reference table syntax error. Offset - 0x%X. Value separator must be white space.', $this->_stringParser->offset));
                     }
@@ -161,7 +162,7 @@ class Zend_Pdf_Parser
                     $genNumber = substr($genNumber, $numStart);
                     $this->_stringParser->offset += 5;
 
-                    if (strpos("\x00\t\n\f\r ", $this->_stringParser->data[$this->_stringParser->offset]) === false) {
+                    if (!str_contains("\x00\t\n\f\r ", $this->_stringParser->data[$this->_stringParser->offset])) {
                         require_once 'Zend/Pdf/Exception.php';
                         throw new Zend_Pdf_Exception(sprintf('PDF file cross-reference table syntax error. Offset - 0x%X. Value separator must be white space.', $this->_stringParser->offset));
                     }
@@ -393,7 +394,7 @@ class Zend_Pdf_Parser
         }
 
         $pdfVersionComment = $this->_stringParser->readComment();
-        if (substr($pdfVersionComment, 0, 5) != '%PDF-') {
+        if (!str_starts_with($pdfVersionComment, '%PDF-')) {
             require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('File is not a PDF.');
         }

@@ -74,10 +74,10 @@ abstract class Zend_Mail_Storage_Abstract implements Countable, ArrayAccess, See
      */
     public function __get($var)
     {
-        if (strpos($var, 'has') === 0) {
+        if (str_starts_with($var, 'has')) {
             $var = strtolower(substr($var, 3));
 
-            return isset($this->_has[$var]) ? $this->_has[$var] : null;
+            return $this->_has[$var] ?? null;
         }
 
         /**
@@ -234,7 +234,7 @@ abstract class Zend_Mail_Storage_Abstract implements Countable, ArrayAccess, See
             if ($this->getMessage($id)) {
                 return true;
             }
-        } catch(Zend_Mail_Storage_Exception $e) {}
+        } catch(Zend_Mail_Storage_Exception) {}
 
         return false;
      }

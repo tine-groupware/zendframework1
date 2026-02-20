@@ -31,6 +31,11 @@
  */
 class Zend_Service_Yahoo_Result
 {
+    private $_namespace;
+    /**
+     * @var \Zend_Service_Yahoo_Image|null
+     */
+    public $Thumbnail;
     /**
      * The title of the search entry
      *

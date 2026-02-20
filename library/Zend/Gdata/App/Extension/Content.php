@@ -39,12 +39,10 @@ class Zend_Gdata_App_Extension_Content extends Zend_Gdata_App_Extension_Text
 {
 
     protected $_rootElement = 'content';
-    protected $_src = null;
 
-    public function __construct($text = null, $type = 'text', $src = null)
+    public function __construct($text = null, $type = 'text', protected $_src = null)
     {
         parent::__construct($text, $type);
-        $this->_src = $src;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

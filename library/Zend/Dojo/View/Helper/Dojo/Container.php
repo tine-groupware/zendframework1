@@ -32,7 +32,7 @@ require_once 'Zend/Dojo.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Dojo_View_Helper_Dojo_Container
+class Zend_Dojo_View_Helper_Dojo_Container implements \Stringable
 {
     /**
      * @var Zend_View_Interface
@@ -221,7 +221,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
         }
 
         foreach($options as $key => $value) {
-            $key = strtolower($key);
+            $key = strtolower((string) $key);
             switch($key) {
                 case 'requiremodules':
                     $this->requireModule($value);
@@ -295,7 +295,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
         $modules = (array) $modules;
 
         foreach ($modules as $mod) {
-            if (!preg_match('/^[a-z][a-z0-9._-]+$/i', $mod)) {
+            if (!preg_match('/^[a-z][a-z0-9._-]+$/i', (string) $mod)) {
                 require_once 'Zend/Dojo/View/Exception.php';
                 throw new Zend_Dojo_View_Exception(sprintf('Module name specified, "%s", contains invalid characters', (string) $mod));
             }
@@ -430,7 +430,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
     public function setCdnVersion($version = null)
     {
         $this->enable();
-        if (preg_match('/^[1-9]\.[0-9]{1,2}(\.[0-9]{1,2})?$/', $version)) {
+        if (preg_match('/^[1-9]\.[0-9]{1,2}(\.[0-9]{1,2})?$/', (string) $version)) {
             $this->_cdnVersion = $version;
         }
         return $this;
@@ -952,7 +952,7 @@ EOJ;
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (!$this->isEnabled()) {
             return '';
@@ -1008,7 +1008,7 @@ EOJ;
 
         $registeredStylesheets = $this->getStylesheetModules();
         foreach ($registeredStylesheets as $stylesheet) {
-            $themeName     = substr($stylesheet, strrpos($stylesheet, '.') + 1);
+            $themeName     = substr((string) $stylesheet, strrpos((string) $stylesheet, '.') + 1);
             $stylesheet    = str_replace('.', '/', $stylesheet);
             $stylesheets[] = $base . '/' . $stylesheet . '/' . $themeName . '.css';
         }
@@ -1103,7 +1103,7 @@ EOJ;
         foreach ($layers as $path) {
             $html[] = sprintf(
                 '<script type="text/javascript" src="%s"></script>',
-                htmlspecialchars($path, ENT_QUOTES, $enc)
+                htmlspecialchars((string) $path, ENT_QUOTES, $enc)
             );
         }
 

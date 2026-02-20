@@ -35,6 +35,10 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
 {
 
     /**
+     * @var \Zend_Controller_Request_Abstract|null
+     */
+    public $_request;
+    /**
      * Routes
      *
      * @var array
@@ -98,7 +102,7 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
                 && $subPath !== ''
                 && $subPath !== false
             ) {
-                $separator = substr($subPath, 0, strlen($this->_separators[$key]));
+                $separator = substr($subPath, 0, strlen((string) $this->_separators[$key]));
 
                 if ($separator !== $this->_separators[$key]) {
                     $request->setPathInfo($rawPath);
@@ -178,7 +182,7 @@ class Zend_Controller_Router_Route_Chain extends Zend_Controller_Router_Route_Ab
      * @param  Zend_Controller_Request_Abstract|null $request
      * @return void
      */
-    public function setRequest(Zend_Controller_Request_Abstract $request = null)
+    public function setRequest(?Zend_Controller_Request_Abstract $request = null)
     {
         $this->_request = $request;
 

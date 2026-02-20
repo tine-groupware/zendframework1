@@ -25,12 +25,6 @@ class Zend_Db_Schema_Manager
     protected $_db;
 
     /**
-     * Table prefix string for use by change classes
-     * @var string
-     */
-    protected $_tablePrefix;
-
-    /**
      * Constructor
      *
      * Available $options keys:
@@ -40,13 +34,15 @@ class Zend_Db_Schema_Manager
      *
      * @param string                   $dir         Directory where migrations files are stored
      * @param Zend_Db_Adapter_Abstract $db          Database adapter
-     * @param string                   $tablePrefix Table prefix to be used by change files
+     * @param string $_tablePrefix Table prefix to be used by change files
      */
-    public function __construct($dir, Zend_Db_Adapter_Abstract $db, $tablePrefix='')
+    public function __construct($dir, Zend_Db_Adapter_Abstract $db, /**
+     * Table prefix string for use by change classes
+     */
+    protected $_tablePrefix='')
     {
         $this->_dir = realpath($dir);
         $this->_db = $db;
-        $this->_tablePrefix = $tablePrefix;
     }
 
     /**
@@ -68,7 +64,7 @@ class Zend_Db_Schema_Manager
         $sql = "SELECT version FROM " . $schemaVersionTableName;
         try {
             $version = $this->_db->fetchOne($sql);
-        } catch (Zend_Db_Exception $e) {
+        } catch (Zend_Db_Exception) {
             // exception means that the schema version table doesn't exist, so create it
             $createSql = "CREATE TABLE $schemaVersionTableName (
                 version bigint NOT NULL,

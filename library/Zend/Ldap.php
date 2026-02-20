@@ -103,7 +103,7 @@ class Zend_Ldap
      * @return boolean True if the DN was successfully parsed or false if the string is
      * not a valid DN.
      */
-    public static function explodeDn($dn, array &$keys = null, array &$vals = null)
+    public static function explodeDn($dn, ?array &$keys = null, ?array &$vals = null)
     {
         /**
          * @see Zend_Ldap_Dn
@@ -147,7 +147,7 @@ class Zend_Ldap
      */
     public function getResource()
     {
-        if (!$this->_legacy_is_resource($this->_resource, 'LDAP\Connection') || $this->_boundUser === false) {
+        if (!$this->_legacy_is_resource($this->_resource, \LDAP\Connection::class) || $this->_boundUser === false) {
             $this->bind();
         }
         return $this->_resource;
@@ -184,7 +184,7 @@ class Zend_Ldap
      * @param  array $errorMessages
      * @return string
      */
-    public function getLastError(&$errorCode = null, array &$errorMessages = null)
+    public function getLastError(&$errorCode = null, ?array &$errorMessages = null)
     {
         $errorCode = $this->getLastErrorCode();
         $errorMessages = [];
@@ -291,24 +291,12 @@ class Zend_Ldap
                 /* Enforce typing. This eliminates issues like Zend_Config_Ini
                  * returning '1' as a string (ZF-3163).
                  */
-                switch ($key) {
-                    case 'port':
-                    case 'accountCanonicalForm':
-                        $permittedOptions[$key] = (int)$val;
-                        break;
-                    case 'useSsl':
-                    case 'bindRequiresDn':
-                    case 'allowEmptyPassword':
-                    case 'useStartTls':
-                    case 'optReferrals':
-                    case 'tryUsernameSplit':
-                        $permittedOptions[$key] = ($val === true ||
-                                $val === '1' || strcasecmp($val, 'true') === 0);
-                        break;
-                    default:
-                        $permittedOptions[$key] = trim($val);
-                        break;
-                }
+                $permittedOptions[$key] = match ($key) {
+                    'port', 'accountCanonicalForm' => (int)$val,
+                    'useSsl', 'bindRequiresDn', 'allowEmptyPassword', 'useStartTls', 'optReferrals', 'tryUsernameSplit' => $val === true ||
+                            $val === '1' || strcasecmp((string) $val, 'true') === 0,
+                    default => trim((string) $val),
+                };
             }
         }
         if (count($options) > 0) {
@@ -645,7 +633,7 @@ class Zend_Ldap
      * @return array An array of the attributes representing the account
      * @throws Zend_Ldap_Exception
      */
-    protected function _getAccount($acctname, array $attrs = null)
+    protected function _getAccount($acctname, ?array $attrs = null)
     {
         $baseDn = $this->getBaseDn();
         if (!$baseDn) {
@@ -665,7 +653,7 @@ class Zend_Ldap
             throw new Zend_Ldap_Exception(null, 'Invalid account filter');
         }
 
-        if (!$this->_legacy_is_resource($this->getResource(), 'LDAP\Connection')) {
+        if (!$this->_legacy_is_resource($this->getResource(), \LDAP\Connection::class)) {
             $this->bind();
         }
 
@@ -707,7 +695,7 @@ class Zend_Ldap
      */
     public function disconnect()
     {
-        if ($this->_legacy_is_resource($this->_resource, 'LDAP\Connection')) {
+        if ($this->_legacy_is_resource($this->_resource, \LDAP\Connection::class)) {
             @ldap_unbind($this->_resource);
         }
         $this->_resource = null;
@@ -787,7 +775,7 @@ class Zend_Ldap
          */
         $resource = ($useUri) ? @ldap_connect($this->_connectString) : @ldap_connect($host, $port);
 
-        if ($this->_legacy_is_resource($resource, 'LDAP\Connection') === true) {
+        if ($this->_legacy_is_resource($resource, \LDAP\Connection::class) === true) {
             $this->_resource = $resource;
             $this->_boundUser = false;
 
@@ -882,7 +870,7 @@ class Zend_Ldap
             }
         }
 
-        if (!$this->_legacy_is_resource($this->_resource, 'LDAP\Connection')) {
+        if (!$this->_legacy_is_resource($this->_resource, \LDAP\Connection::class)) {
             $this->connect();
         }
 
@@ -899,7 +887,7 @@ class Zend_Ldap
                 return $this;
             }
 
-            $message = ($username === null) ? $this->_connectString : $username;
+            $message = $username ?? $this->_connectString;
             /**
              * @see Zend_Ldap_Exception
              */
@@ -954,7 +942,7 @@ class Zend_Ldap
                     case 'basedn':
                     case 'scope':
                     case 'sort':
-                        $$key = $value;
+                        ${$key} = $value;
                         break;
                     case 'attributes':
                         if (is_array($value)) {
@@ -966,7 +954,7 @@ class Zend_Ldap
                         break;
                     case 'sizelimit':
                     case 'timelimit':
-                        $$key = (int)$value;
+                        ${$key} = (int)$value;
                 }
             }
         }
@@ -982,18 +970,11 @@ class Zend_Ldap
             $filter = $filter->toString();
         }
 
-        switch ($scope) {
-            case self::SEARCH_SCOPE_ONE:
-                $search = @ldap_list($this->getResource(), $basedn, $filter, $attributes, 0, $sizelimit, $timelimit);
-                break;
-            case self::SEARCH_SCOPE_BASE:
-                $search = @ldap_read($this->getResource(), $basedn, $filter, $attributes, 0, $sizelimit, $timelimit);
-                break;
-            case self::SEARCH_SCOPE_SUB:
-            default:
-                $search = @ldap_search($this->getResource(), $basedn, $filter, $attributes, 0, $sizelimit, $timelimit);
-                break;
-        }
+        $search = match ($scope) {
+            self::SEARCH_SCOPE_ONE => @ldap_list($this->getResource(), $basedn, $filter, $attributes, 0, $sizelimit, $timelimit),
+            self::SEARCH_SCOPE_BASE => @ldap_read($this->getResource(), $basedn, $filter, $attributes, 0, $sizelimit, $timelimit),
+            default => @ldap_search($this->getResource(), $basedn, $filter, $attributes, 0, $sizelimit, $timelimit),
+        };
 
         if($search === false) {
             /**
@@ -1572,7 +1553,7 @@ class Zend_Ldap
      */
     public function getBaseNode()
     {
-        return $this->getNode($this->getBaseDn(), $this);
+        return $this->getNode($this->getBaseDn());
     }
 
     /**

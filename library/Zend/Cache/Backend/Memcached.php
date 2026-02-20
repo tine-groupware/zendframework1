@@ -398,7 +398,7 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
              * Couchbase 1.x uses 'mem_used' instead of 'bytes'
              * @see https://www.couchbase.com/issues/browse/MB-3466
              */
-            $eachUsed = isset($mem['bytes']) ? $mem['bytes'] : $mem['mem_used'];
+            $eachUsed = $mem['bytes'] ?? $mem['mem_used'];
             if ($eachUsed > $eachSize) {
                 $eachUsed = $eachSize;
             }

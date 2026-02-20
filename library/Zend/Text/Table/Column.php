@@ -127,7 +127,7 @@ class Zend_Text_Table_Column
         if ($inputCharset !== $outputCharset) {
             if (PHP_OS !== 'AIX') {
                 // AIX does not understand these character sets
-                $content = iconv($inputCharset, $outputCharset, $content);
+                $content = iconv((string) $inputCharset, (string) $outputCharset, $content);
             }
 
         }

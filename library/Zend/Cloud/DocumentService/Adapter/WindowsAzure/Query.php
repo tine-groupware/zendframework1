@@ -141,7 +141,7 @@ class Zend_Cloud_DocumentService_Adapter_WindowsAzure_Query
      * @return Zend_Cloud_DocumentService_Adapter_WindowsAzure_Query
      * @throws Zend_Cloud_OperationNotAvailableException
      */
-    public function order($sort, $direction = 'asc')
+    public function order($sort, $direction = 'asc'): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('No support for sorting for Azure yet');

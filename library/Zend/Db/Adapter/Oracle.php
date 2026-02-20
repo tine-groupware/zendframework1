@@ -443,7 +443,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
 
         $desc = [];
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = [false, null, false];
+            [$primary, $primaryPosition, $identity] = [false, null, false];
             if ($row[$constraint_type] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$position];
@@ -660,7 +660,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
         // Check the columns in the array against the database table
         // to identify BLOB (or CLOB) columns
         foreach (array_keys($bind) as $column) {
-            if ( in_array($columns[$column]['DATA_TYPE'], array('BLOB', 'CLOB'))) {
+            if ( in_array($columns[$column]['DATA_TYPE'], ['BLOB', 'CLOB'])) {
                 $lobs[] = $column;
             }
         }
@@ -669,8 +669,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
         if ( !isset($lobs)) {
             $i = 0;
             // extract and quote col names from the array keys
-            $cols = array();
-            $vals = array();
+            $cols = [];
+            $vals = [];
             foreach ($bind as $col => $val) {
                 $cols[] = $this->quoteIdentifier($col, true);
                 if ($val instanceof Zend_Db_Expr) {
@@ -678,7 +678,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                     unset($bind[$col]);
                 } else {
                     // MOD: add to_date for date column
-                    if ($val === date('Y-m-d H:i:s', strtotime($val))) {
+                    if ($val === date('Y-m-d H:i:s', strtotime((string) $val))) {
                         $vals[] = "TO_DATE(".':'.$col.$i.",'YYYY-MM-DD hh24:mi:ss')";
                     } else {
                         $vals[] = ':'.$col.$i;
@@ -700,14 +700,14 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
             $result = $stmt->rowCount();
         } else {
             // There are blobs in the $bind array so insert them separately
-            $ociTypes = array('BLOB' => OCI_B_BLOB, 'CLOB' => OCI_B_CLOB);
+            $ociTypes = ['BLOB' => OCI_B_BLOB, 'CLOB' => OCI_B_CLOB];
 
             // Extract and quote col names from the array keys
             $i = 0;
-            $cols = array();
-            $vals = array();
-            $lobData = array();
-            $returning = array();
+            $cols = [];
+            $vals = [];
+            $lobData = [];
+            $returning = [];
 
             foreach ($bind as $col => $val) {
                 $cols[] = $this->quoteIdentifier($col, true);
@@ -715,8 +715,8 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
 
                     $lobs[array_search($col, $lobs)] = $this->quoteIdentifier($col, true);
                     $vals[] = 'EMPTY_' . $columns[$col]['DATA_TYPE'] . '()';
-                    $lobData[':'.$col.$i] = array('ociType' => $ociTypes[$columns[$col]['DATA_TYPE']],
-                        'data'    => $val);
+                    $lobData[':'.$col.$i] = ['ociType' => $ociTypes[$columns[$col]['DATA_TYPE']],
+                        'data'    => $val];
                     unset($bind[$col]);
                     $lobDescriptors[':'.$col.$i] = oci_new_descriptor($this->_connection, OCI_D_LOB);
                     $returning[] = ':'.$col.$i;
@@ -786,7 +786,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
          * Build "col = ?" pairs for the statement,
          * except for Zend_Db_Expr which is treated literally.
          */
-        $set = array();
+        $set = [];
         $i = 0;
         foreach ($bind as $col => $val) {
             if ($val instanceof Zend_Db_Expr) {
@@ -795,7 +795,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
             } else {
                 if ($this->supportsParameters('positional')) {
                     // MOD: add to_date for date column
-                    if ($val == date('Y-m-d H:i:s',strtotime($val))) {
+                    if ($val == date('Y-m-d H:i:s',strtotime((string) $val))) {
                         $val = "TO_DATE(".'?'.",'YYYY-MM-DD hh24:mi:ss')";
                     } else {
                         $val = '?';
@@ -805,7 +805,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                         unset($bind[$col]);
                         $bind[':'.$col.$i] = $val;
                         // MOD: add to_date for date column
-                        if ($val == date('Y-m-d H:i:s',strtotime($val))) {
+                        if ($val == date('Y-m-d H:i:s',strtotime((string) $val))) {
                             $val = "TO_DATE(".':'.$col.$i.",'YYYY-MM-DD hh24:mi:ss')";
                         } else {
                             $val = ':'.$col.$i;
@@ -814,7 +814,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                     } else {
                         /** @see Zend_Db_Adapter_Exception */
                         require_once 'Zend/Db/Adapter/Exception.php';
-                        throw new Zend_Db_Adapter_Exception(get_class($this) ." doesn't support positional or named binding");
+                        throw new Zend_Db_Adapter_Exception(static::class ." doesn't support positional or named binding");
                     }
                 }
             }
@@ -851,13 +851,10 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      */
     public function supportsParameters($type)
     {
-        switch ($type) {
-            case 'named':
-                return true;
-            case 'positional':
-            default:
-                return false;
-        }
+        return match ($type) {
+            'named' => true,
+            default => false,
+        };
     }
 
     /**
@@ -925,9 +922,9 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      * @param  mixed  $bind An array of data to bind to the placeholders.
      * @return Zend_Db_Statement_Interface
      */
-    public function query($sql, $bind = array())
+    public function query($sql, $bind = [])
     {
-        list ($sql, $bind) = $this->_positionalToNamedParameters($sql, $bind);
+        [$sql, $bind] = $this->_positionalToNamedParameters($sql, $bind);
         return parent::query($sql, $bind);
     }
 
@@ -966,7 +963,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
                 $bind[$this->_namedParamPrefix . $keyCounter] = $value;
 
                 $position = 0;
-                while (false !== ($position = strpos($sql, '?', $quotedQuestionMarksCounter))) {
+                while (false !== ($position = strpos((string) $sql, '?', $quotedQuestionMarksCounter))) {
                     if ($this->_isQuoted($sql, $position)) {
                         $quotedQuestionMarksCounter++;
                     } else {
@@ -979,7 +976,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
             }
         }
 
-        return array($sql, $bind);
+        return [$sql, $bind];
     }
 
     /**
@@ -998,7 +995,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
         $subString = substr($string, 0, $position);
 
         $unescapedQuoteCharsCount = 0;
-        while (false !== ($position = strpos($subString, $quoteChar))) {
+        while (false !== ($position = strpos($subString, (string) $quoteChar))) {
             //test if quotation mark is escaped
             $escapeCharsCount = 0;
             while ($subString[$position-1-$escapeCharsCount] == $escapeChar) {

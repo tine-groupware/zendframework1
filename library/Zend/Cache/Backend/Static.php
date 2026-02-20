@@ -224,7 +224,7 @@ class Zend_Cache_Backend_Static
         $extension = null;
         if ($this->_isSerialized($data)) {
             $data = unserialize($data);
-            $extension = '.' . ltrim($data[1], '.');
+            $extension = '.' . ltrim((string) $data[1], '.');
             $data = $data[0];
         }
 
@@ -301,7 +301,7 @@ class Zend_Cache_Backend_Static
      */
     protected function _isSerialized($data)
     {
-        return preg_match("/a:2:\{i:0;s:\d+:\"/", $data);
+        return preg_match("/a:2:\{i:0;s:\d+:\"/", (string) $data);
     }
 
     /**
@@ -511,7 +511,7 @@ class Zend_Cache_Backend_Static
     {
         $path = realpath($path);
         $base = realpath($this->_options['public_dir']);
-        return strncmp($path, $base, strlen($base)) !== 0;
+        return !str_starts_with($path, $base);
     }
 
     /**
@@ -541,7 +541,7 @@ class Zend_Cache_Backend_Static
         }
 
         // Internal only checked in Frontend - not here!
-        if (substr($string, 0, 9) == 'internal-') {
+        if (str_starts_with($string, 'internal-')) {
             return;
         }
 

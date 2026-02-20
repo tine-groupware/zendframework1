@@ -429,15 +429,10 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
 
         $client = self::getHttpClient();
 
-        switch ($action) {
-            case 'ListQueues':
-            case 'CreateQueue':
-                $client->setUri('http://'.$this->_sqsEndpoint);
-                break;
-            default:
-                $client->setUri($queue_url);
-                break;
-        }
+        match ($action) {
+            'ListQueues', 'CreateQueue' => $client->setUri('http://'.$this->_sqsEndpoint),
+            default => $client->setUri($queue_url),
+        };
 
         $retry_count = 0;
 
@@ -527,12 +522,12 @@ class Zend_Service_Amazon_Sqs extends Zend_Service_Amazon_Abstract
         }
         $data .= "\n";
 
-        uksort($paramaters, 'strcmp');
+        uksort($paramaters, strcmp(...));
         unset($paramaters['Signature']);
 
         $arrData = [];
         foreach($paramaters as $key => $value) {
-            $arrData[] = $key . '=' . str_replace('%7E', '~', urlencode($value));
+            $arrData[] = $key . '=' . str_replace('%7E', '~', urlencode((string) $value));
         }
 
         $data .= implode('&', $arrData);

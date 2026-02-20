@@ -44,21 +44,17 @@ class Zend_Search_Lucene_Index_Term
      */
     public $field;
 
-    /**
-     * Term value
-     *
-     * @var string
-     */
-    public $text;
-
 
     /**
      * Object constructor
+     * @param string $text
      */
-    public function __construct($text, $field = null)
+    public function __construct(/**
+     * Term value
+     */
+    public $text, $field = null)
     {
-        $this->field = ($field === null)?  Zend_Search_Lucene::getDefaultSearchField() : $field;
-        $this->text  = $text;
+        $this->field = $field ?? Zend_Search_Lucene::getDefaultSearchField();
     }
 
 

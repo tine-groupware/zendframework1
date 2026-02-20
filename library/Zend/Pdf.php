@@ -381,7 +381,7 @@ class Zend_Pdf
             /**
              * Document id
              */
-            $docId = md5(uniqid(rand(), true));   // 32 byte (128 bit) identifier
+            $docId = md5(uniqid(random_int(0, mt_getrandmax()), true));   // 32 byte (128 bit) identifier
             $docIdLow  = substr($docId,  0, 16);  // first 16 bytes
             $docIdHigh = substr($docId, 16, 16);  // second 16 bytes
 
@@ -574,8 +574,8 @@ class Zend_Pdf
 
         $outlineDictionary = $root->Outlines->First;
         $processedDictionaries = new SplObjectStorage();
-        while ($outlineDictionary !== null  &&  !$processedDictionaries->contains($outlineDictionary)) {
-            $processedDictionaries->attach($outlineDictionary);
+        while ($outlineDictionary !== null  &&  !$processedDictionaries->offsetExists($outlineDictionary)) {
+            $processedDictionaries->offsetSet($outlineDictionary);
 
             require_once 'Zend/Pdf/Outline/Loaded.php';
             $this->outlines[] = new Zend_Pdf_Outline_Loaded($outlineDictionary);
@@ -761,7 +761,7 @@ class Zend_Pdf
                 }
             } else {
                 require_once 'Zend/Pdf/Exception.php';
-                throw new Zend_Pdf_Exception('Wrong type of named targed (\'' . get_class($namedTarget) . '\').');
+                throw new Zend_Pdf_Exception('Wrong type of named targed (\'' . $namedTarget::class . '\').');
             }
         }
 
@@ -1007,7 +1007,7 @@ class Zend_Pdf
      * @param Zend_Pdf_Target $openAction
      * @returns Zend_Pdf
      */
-    public function setOpenAction(Zend_Pdf_Target $openAction = null)
+    public function setOpenAction(?Zend_Pdf_Target $openAction = null)
     {
         $root = $this->_trailer->Root;
         $root->touch();
@@ -1386,7 +1386,7 @@ class Zend_Pdf
                         // break intentionally omitted
                     case 'Producer':
                         if (extension_loaded('mbstring') === true) {
-                            $detected = mb_detect_encoding($value);
+                            $detected = mb_detect_encoding((string) $value);
                             if ($detected !== 'ASCII') {
                                 $value = "\xfe\xff" . mb_convert_encoding($value, 'UTF-16', $detected);
                             }
@@ -1479,13 +1479,13 @@ class Zend_Pdf
                 $xrefSection[]  = sprintf("%010d %05d n \n", $offset, $updateInfo->getGenNum());
 
                 $pdfBlock = $updateInfo->getObjectDump();
-                $offset += strlen($pdfBlock);
+                $offset += strlen((string) $pdfBlock);
 
                 if ($outputStream === null) {
                     $pdfSegmentBlocks[] = $pdfBlock;
                 } else {
-                    while ( strlen($pdfBlock) > 0 && ($byteCount = fwrite($outputStream, $pdfBlock)) != false ) {
-                        $pdfBlock = substr($pdfBlock, $byteCount);
+                    while ( strlen((string) $pdfBlock) > 0 && ($byteCount = fwrite($outputStream, (string) $pdfBlock)) != false ) {
+                        $pdfBlock = substr((string) $pdfBlock, $byteCount);
                     }
                 }
             }

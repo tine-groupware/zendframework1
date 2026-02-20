@@ -48,23 +48,19 @@ require_once 'Zend/Gdata/MediaMimeStream.php';
 class Zend_Gdata_App_MediaEntry extends Zend_Gdata_App_Entry
 {
     /**
-     * The attached MediaSource/file
-     *
-     * @var Zend_Gdata_App_MediaSource
-     */
-    protected $_mediaSource = null;
-
-    /**
      * Constructs a new MediaEntry, representing XML data and optional
      * file to upload
      *
      * @param DOMElement $element (optional) DOMElement from which this
      *          object should be constructed.
+     * @param \Zend_Gdata_App_MediaSource $mediaSource
      */
-    public function __construct($element = null, $mediaSource = null)
+    public function __construct($element = null, /**
+     * The attached MediaSource/file
+     */
+    protected $_mediaSource = null)
     {
         parent::__construct($element);
-        $this->_mediaSource = $mediaSource;
     }
 
     /**

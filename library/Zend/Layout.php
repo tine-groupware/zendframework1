@@ -237,7 +237,7 @@ class Zend_Layout
         }
 
         foreach ($options as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set' . ucfirst((string) $key);
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -317,7 +317,7 @@ class Zend_Layout
     {
         if (null === $this->_container) {
             require_once 'Zend/View/Helper/Placeholder/Registry.php';
-            $this->_container = Zend_View_Helper_Placeholder_Registry::getRegistry()->getContainer(__CLASS__);
+            $this->_container = Zend_View_Helper_Placeholder_Registry::getRegistry()->getContainer(self::class);
         }
 
         return $this->_container;
@@ -700,11 +700,7 @@ class Zend_Layout
      */
     public function __get($key)
     {
-        if (isset($this->_container[$key])) {
-            return $this->_container[$key];
-        }
-
-        return null;
+        return $this->_container[$key] ?? null;
     }
 
     /**

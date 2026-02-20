@@ -24,6 +24,7 @@ require_once 'Zend/Service/Rackspace/Files.php';
 
 class Zend_Service_Rackspace_Files_Container
 {
+    public $service;
     const ERROR_PARAM_FILE_CONSTRUCT = 'The Zend_Service_Rackspace_Files passed in construction is not valid';
 
     const ERROR_PARAM_ARRAY_CONSTRUCT = 'The array passed in construction is not valid';
@@ -85,11 +86,8 @@ class Zend_Service_Rackspace_Files_Container
     public function getSize()
     {
         $data = $this->getInfo();
-        if (isset($data['bytes'])) {
-            return $data['bytes'];
-        }
 
-        return false;
+        return $data['bytes'] ?? false;
     }
 
     /**
@@ -100,11 +98,8 @@ class Zend_Service_Rackspace_Files_Container
     public function getObjectCount()
     {
         $data = $this->getInfo();
-        if (isset($data['count'])) {
-            return $data['count'];
-        }
 
-        return false;
+        return $data['count'] ?? false;
     }
 
     /**
@@ -115,11 +110,8 @@ class Zend_Service_Rackspace_Files_Container
     public function isCdnEnabled()
     {
         $data = $this->getCdnInfo();
-        if (isset($data['cdn_enabled'])) {
-            return $data['cdn_enabled'];
-        }
 
-        return false;
+        return $data['cdn_enabled'] ?? false;
     }
 
     /**
@@ -130,11 +122,8 @@ class Zend_Service_Rackspace_Files_Container
     public function getCdnTtl()
     {
         $data = $this->getCdnInfo();
-        if (isset($data['ttl'])) {
-            return $data['ttl'];
-        }
 
-        return false;
+        return $data['ttl'] ?? false;
     }
 
     /**
@@ -145,11 +134,8 @@ class Zend_Service_Rackspace_Files_Container
     public function isCdnLogEnabled()
     {
         $data = $this->getCdnInfo();
-        if (isset($data['log_retention'])) {
-            return $data['log_retention'];
-        }
 
-        return false;
+        return $data['log_retention'] ?? false;
     }
 
     /**
@@ -160,11 +146,8 @@ class Zend_Service_Rackspace_Files_Container
     public function getCdnUri()
     {
         $data = $this->getCdnInfo();
-        if (isset($data['cdn_uri'])) {
-            return $data['cdn_uri'];
-        }
 
-        return false;
+        return $data['cdn_uri'] ?? false;
     }
 
     /**
@@ -175,11 +158,8 @@ class Zend_Service_Rackspace_Files_Container
     public function getCdnUriSsl()
     {
         $data = $this->getCdnInfo();
-        if (isset($data['cdn_uri_ssl'])) {
-            return $data['cdn_uri_ssl'];
-        }
 
-        return false;
+        return $data['cdn_uri_ssl'] ?? false;
     }
 
     /**

@@ -119,7 +119,7 @@ class Zend_Auth_Adapter_Http_Resolver_File implements Zend_Auth_Adapter_Http_Res
             throw new Zend_Auth_Adapter_Http_Resolver_Exception('Username is required');
         }
 
-        if (!ctype_print($username) || strpos($username, ':') !== false) {
+        if (!ctype_print($username) || str_contains($username, ':')) {
             /**
              * @see Zend_Auth_Adapter_Http_Resolver_Exception
              */
@@ -136,7 +136,7 @@ class Zend_Auth_Adapter_Http_Resolver_File implements Zend_Auth_Adapter_Http_Res
             throw new Zend_Auth_Adapter_Http_Resolver_Exception('Realm is required');
         }
 
-        if (!ctype_print($realm) || strpos($realm, ':') !== false) {
+        if (!ctype_print($realm) || str_contains($realm, ':')) {
             /**
              * @see Zend_Auth_Adapter_Http_Resolver_Exception
              */

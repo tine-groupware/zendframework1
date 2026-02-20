@@ -39,32 +39,19 @@
 class Zend_Json_Client_ServerProxy
 {
     /**
-     * @var Zend_Json_Client
-     */
-    private $_client = null;
-
-    /**
-     * @var string
-     */
-    private $_namespace = '';
-
-
-    /**
      * @var array of Zend_Json_Client_ServerProxy
      */
-    private $_cache = array();
+    private $_cache = [];
 
 
     /**
      * Class constructor
      *
-     * @param string             $namespace
-     * @param Zend_Json_Client $client
+     * @param string $_namespace
+     * @param Zend_Json_Client $_client
      */
-    public function __construct($client, $namespace = '')
+    public function __construct(private $_client, private $_namespace = '')
     {
-        $this->_namespace = $namespace;
-        $this->_client    = $client;
     }
 
 

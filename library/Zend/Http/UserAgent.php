@@ -175,7 +175,7 @@ class Zend_Http_UserAgent implements Serializable
         $spec = [
             'browser_type' => $this->_browserType,
             'config'       => $this->_config,
-            'device_class' => get_class($device),
+            'device_class' => $device::class,
             'device'       => $device->serialize(),
             'user_agent'   => $this->getServerValue('http_user_agent'),
             'http_accept'  => $this->getServerValue('http_accept'),
@@ -227,7 +227,7 @@ class Zend_Http_UserAgent implements Serializable
             require_once 'Zend/Http/UserAgent/Exception.php';
             throw new Zend_Http_UserAgent_Exception(sprintf(
                 'Invalid argument; expected array, Zend_Config object, or object implementing ArrayAccess and Traversable; received %s',
-                (is_object($options) ? get_class($options) : gettype($options))
+                (get_debug_type($options))
             ));
         }
 
@@ -240,7 +240,7 @@ class Zend_Http_UserAgent implements Serializable
         // Get plugin loaders sorted
         if (isset($options['plugin_loader'])) {
             $plConfig = $options['plugin_loader'];
-            if (is_array($plConfig) || $plConfig instanceof Traversable) {
+            if (is_iterable($plConfig)) {
                 foreach ($plConfig as $type => $class) {
                     $this->setPluginLoader($type, $class);
                 }
@@ -251,7 +251,7 @@ class Zend_Http_UserAgent implements Serializable
         // And then loop through the remaining options
         $config = [];
         foreach ($options as $key => $value) {
-            switch (strtolower($key)) {
+            switch (strtolower((string) $key)) {
                 case 'browser_type':
                     $this->setBrowserType($value);
                     break;
@@ -333,7 +333,7 @@ class Zend_Http_UserAgent implements Serializable
             } elseif (is_array($deviceConfig) && isset($deviceConfig['path'])) {
                 $loader = $this->getPluginLoader('device');
                 $path   = $deviceConfig['path'];
-                $prefix = isset($deviceConfig['prefix']) ? $deviceConfig['prefix'] : 'Zend_Http_UserAgent';
+                $prefix = $deviceConfig['prefix'] ?? 'Zend_Http_UserAgent';
                 $loader->addPrefixPath($prefix, $path);
 
                 $device = $loader->load($browserType);
@@ -511,7 +511,7 @@ class Zend_Http_UserAgent implements Serializable
             require_once 'Zend/Http/UserAgent/Exception.php';
             throw new Zend_Http_UserAgent_Exception(sprintf(
                 'Config parameters must be in an array or a Traversable object; received "%s"',
-                (is_object($config) ? get_class($config) : gettype($config))
+                (get_debug_type($config))
             ));
         }
 
@@ -641,7 +641,7 @@ class Zend_Http_UserAgent implements Serializable
             require_once 'Zend/Http/UserAgent/Exception.php';
             throw new Zend_Http_UserAgent_Exception(sprintf(
                 'Expected an array or object implementing Traversable; received %s',
-                (is_object($server) ? get_class($server) : gettype($server))
+                (get_debug_type($server))
             ));
         }
 
@@ -732,7 +732,7 @@ class Zend_Http_UserAgent implements Serializable
             require_once 'Zend/Http/UserAgent/Exception.php';
             throw new Zend_Http_UserAgent_Exception(sprintf(
                 'Expected an object extending Zend_Loader_PluginLoader; received %s',
-                get_class($loader)
+                $loader::class
             ));
         }
 
@@ -811,7 +811,7 @@ class Zend_Http_UserAgent implements Serializable
         }
 
         // Get sequence against which to match
-        $sequence = explode(',', $this->_config['identification_sequence']);
+        $sequence = explode(',', (string) $this->_config['identification_sequence']);
 
         // If a browser type is already configured, push that to the front of the list
         if (null !== ($browserType = $this->getBrowserType())) {

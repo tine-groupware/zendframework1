@@ -34,7 +34,7 @@ require_once 'Zend/View/Helper/Abstract.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_View_Helper_Abstract implements IteratorAggregate, Countable, ArrayAccess
+abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_View_Helper_Abstract implements IteratorAggregate, Countable, ArrayAccess, \Stringable
 {
     /**
      * @var Zend_View_Helper_Placeholder_Container_Abstract
@@ -176,11 +176,8 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     public function __get($key)
     {
         $container = $this->getContainer();
-        if (isset($container[$key])) {
-            return $container[$key];
-        }
 
-        return null;
+        return $container[$key] ?? null;
     }
 
     /**
@@ -251,7 +248,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

@@ -42,42 +42,18 @@ class Zend_Gdata_Media_Extension_MediaThumbnail extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_url = null;
-
-    /**
-     * @var int
-     */
-    protected $_width = null;
-
-    /**
-     * @var int
-     */
-    protected $_height = null;
-
-    /**
-     * @var string
-     */
-    protected $_time = null;
-
-    /**
      * Constructs a new MediaThumbnail element
      *
-     * @param string $url
-     * @param int $width
-     * @param int $height
-     * @param string $time
+     * @param string $_url
+     * @param int $_width
+     * @param int $_height
+     * @param string $_time
      */
-    public function __construct($url = null, $width = null, $height = null,
-            $time = null)
+    public function __construct(protected $_url = null, protected $_width = null, protected $_height = null,
+            protected $_time = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
-        $this->_url = $url;
-        $this->_width = $width;
-        $this->_height = $height;
-        $this->_time = $time ;
     }
 
     /**

@@ -54,21 +54,17 @@ class Zend_Mail_Protocol_Imap
      */
     protected $_logger = null;
 
-    protected $_connectionOptions = array();
-
     /**
      * Public constructor
      *
      * @param  string   $host  hostname or IP address of IMAP server, if given connect() is called
      * @param  int|null $port  port of IMAP server, null for default (143 or 993 for ssl)
      * @param  bool     $ssl   use ssl? 'SSL', 'TLS' or false
-     * @param  array    $connectionOptions
+     * @param array $_connectionOptions
      * @throws Zend_Mail_Protocol_Exception
      */
-    public function __construct($host = '', $port = null, $ssl = false, $connectionOptions = array())
+    public function __construct($host = '', $port = null, $ssl = false, protected $_connectionOptions = [])
     {
-        $this->_connectionOptions = $connectionOptions;
-
         if ($host) {
             $this->connect($host, $port, $ssl);
         }
@@ -118,7 +114,7 @@ class Zend_Mail_Protocol_Imap
             "$host:$port",
             $errno,
             $errstr,
-            isset($this->_connectionOptions['timeout']) ? $this->_connectionOptions['timeout'] : self::TIMEOUT_CONNECTION,
+            $this->_connectionOptions['timeout'] ?? self::TIMEOUT_CONNECTION,
             STREAM_CLIENT_CONNECT,
             $context
         );
@@ -192,7 +188,7 @@ class Zend_Mail_Protocol_Imap
     {
         $line = $this->_nextLine();
 
-        return strpos($line, $start) === 0;
+        return str_starts_with($line, $start);
     }
 
     /**
@@ -207,7 +203,7 @@ class Zend_Mail_Protocol_Imap
         $line = $this->_nextLine();
 
         // seperate tag from line
-        list($tag, $line) = explode(' ', $line, 2);
+        [$tag, $line] = explode(' ', $line, 2);
 
         return $line;
     }
@@ -250,7 +246,7 @@ class Zend_Mail_Protocol_Imap
             if (strlen($token) > 0) {
                 while ($token[0] == '(') {
                     array_push($stack, $tokens);
-                    $tokens = array();
+                    $tokens = [];
                     $token = substr($token, 1);
                     $line = substr($line, 1);
                     $pos--;
@@ -368,7 +364,7 @@ class Zend_Mail_Protocol_Imap
 
         // last line has response code
         if ($tokens[0] == 'OK') {
-            return $lines ? $lines : true;
+            return $lines ?: true;
         } else if ($tokens[0] == 'NO'){
             return false;
         }
@@ -388,7 +384,7 @@ class Zend_Mail_Protocol_Imap
 
         try {
             $this->_logger->debug($logMessage);
-        } catch (Zend_Log_Exception $zle) {
+        } catch (Zend_Log_Exception) {
             // the logger stream might have been closed already
         }
     }
@@ -471,7 +467,7 @@ class Zend_Mail_Protocol_Imap
     public function escapeString($string)
     {
         if (func_num_args() < 2) {
-            if (strpos($string, "\n") !== false) {
+            if (str_contains($string, "\n")) {
                 return ['{' . strlen($string) . '}', $string];
             } else {
                 return '"' . str_replace(['\\', '"'], ['\\\\', '\\"'], $string) . '"';
@@ -528,7 +524,7 @@ class Zend_Mail_Protocol_Imap
         if ($this->_socket) {
             try {
                 $result = $this->requestAndResponse('LOGOUT', [], true);
-            } catch (Zend_Mail_Protocol_Exception $e) {
+            } catch (Zend_Mail_Protocol_Exception) {
                 // ignoring exception
             }
             fclose($this->_socket);
@@ -583,7 +579,7 @@ class Zend_Mail_Protocol_Imap
             switch ($tokens[1]) {
                 case 'EXISTS':
                 case 'RECENT':
-                    $result[strtolower($tokens[1])] = $tokens[0];
+                    $result[strtolower((string) $tokens[1])] = $tokens[0];
                     break;
                 case '[UIDVALIDITY':
                     $result['uidvalidity'] = (int)$tokens[2];
@@ -656,8 +652,8 @@ class Zend_Mail_Protocol_Imap
 
         // BODY.PEEK gets returned as BODY
         foreach ($items as &$item) {
-            if (substr($item, 0, 9) == 'BODY.PEEK') {
-                $item = 'BODY' . substr($item, 9);
+            if (str_starts_with((string) $item, 'BODY.PEEK')) {
+                $item = 'BODY' . substr((string) $item, 9);
             }
         }
 
@@ -703,23 +699,23 @@ class Zend_Mail_Protocol_Imap
      */
     public function getNamespace()
     {
-        $this->sendRequest('NAMESPACE', array(), $tag);
+        $this->sendRequest('NAMESPACE', [], $tag);
 
-        $result = array();
+        $result = [];
         while (!$this->readLine($tokens, $tag)) {
 
             if ((is_array($tokens)) && ($tokens[0] == 'NAMESPACE')){
-                $nsNames = array('personal', 'other', 'shared');
+                $nsNames = ['personal', 'other', 'shared'];
                 $index = 0;
 
                 foreach ($tokens as $token) {
                     if (is_array($token)) {
-                        $result[$nsNames[$index]] = array(
-                            'name' => preg_replace('/"/', '', $token[0][0]),
-                            'delimiter' => preg_replace('/"/', '', $token[0][1]),
-                        );
+                        $result[$nsNames[$index]] = [
+                            'name' => preg_replace('/"/', '', (string) $token[0][0]),
+                            'delimiter' => preg_replace('/"/', '', (string) $token[0][1]),
+                        ];
                     } else if ($token == 'NIL') {
-                        $result[$nsNames[$index]] = array('name' => 'NIL');
+                        $result[$nsNames[$index]] = ['name' => 'NIL'];
                     } else {
                         continue;
                     }
@@ -745,10 +741,10 @@ class Zend_Mail_Protocol_Imap
      */
     public function setQuota($mailbox, $resource, $limit=null)
     {
-        $tokens = array(
+        $tokens = [
             $this->escapeString($mailbox),
-            $this->escapeList($limit !== null ? array(strtoupper($resource), $limit) : array())
-        );
+            $this->escapeList($limit !== null ? [strtoupper($resource), $limit] : [])
+        ];
 
         return $this->requestAndResponse('SETQUOTA', $tokens, true);
     }
@@ -761,18 +757,18 @@ class Zend_Mail_Protocol_Imap
      */
     public function getQuotaRoot($mailbox)
     {
-        $this->sendRequest('GETQUOTAROOT', array($this->escapeString($mailbox)), $tag);
+        $this->sendRequest('GETQUOTAROOT', [$this->escapeString($mailbox)], $tag);
 
-        $result = array();
+        $result = [];
 
         while (! $this->readLine($tokens, $tag)) {
             if ($tokens[0] == 'QUOTA') {
                 if (! empty($tokens[2]) && is_array($tokens[2])) {
-                    $result[strtoupper($tokens[2][0])] = array(
-                        'resource' => strtoupper($tokens[2][0]),
+                    $result[strtoupper((string) $tokens[2][0])] = [
+                        'resource' => strtoupper((string) $tokens[2][0]),
                         'usage'    => $tokens[2][1],
                         'limit'    => $tokens[2][2]
-                    );
+                    ];
                 }
             }
         }

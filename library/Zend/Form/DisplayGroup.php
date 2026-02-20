@@ -27,8 +27,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-class Zend_Form_DisplayGroup implements Iterator,Countable
+class Zend_Form_DisplayGroup implements Iterator,Countable, \Stringable
 {
+    public $id;
     /**
      * Group attributes
      * @var array
@@ -160,7 +161,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
             'Translator', 'Attrib'
         ];
         foreach ($options as $key => $value) {
-            $normalized = ucfirst($key);
+            $normalized = ucfirst((string) $key);
 
             if (in_array($normalized, $forbidden)) {
                 continue;
@@ -381,7 +382,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
         }
 
         // Strip array notation
-        if ('[]' == substr($id, -2)) {
+        if (str_ends_with($id, '[]')) {
             $id = substr($id, 0, strlen($id) - 2);
         }
         $id = str_replace('][', '-', $id);
@@ -517,11 +518,8 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
     public function getElement($name)
     {
         $name = (string) $name;
-        if (isset($this->_elements[$name])) {
-            return $this->_elements[$name];
-        }
 
-        return null;
+        return $this->_elements[$name] ?? null;
     }
 
     /**
@@ -704,7 +702,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
     public function addDecorator($decorator, $options = null)
     {
         if ($decorator instanceof Zend_Form_Decorator_Interface) {
-            $name = get_class($decorator);
+            $name = $decorator::class;
         } elseif (is_string($decorator)) {
             $name      = $decorator;
             $decorator = [
@@ -807,11 +805,11 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
         if (!isset($this->_decorators[$name])) {
             $len = strlen($name);
             foreach ($this->_decorators as $localName => $decorator) {
-                if ($len > strlen($localName)) {
+                if ($len > strlen((string) $localName)) {
                     continue;
                 }
 
-                if (0 === substr_compare($localName, $name, -$len, $len, true)) {
+                if (0 === substr_compare((string) $localName, $name, -$len, $len, true)) {
                     if (is_array($decorator)) {
                         return $this->_loadDecorator($decorator, $localName);
                     }
@@ -856,7 +854,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
             if (array_key_exists($name, $this->_decorators)) {
                 unset($this->_decorators[$name]);
             } else {
-                $class = get_class($decorator);
+                $class = $decorator::class;
                 unset($this->_decorators[$class]);
             }
             return true;
@@ -882,7 +880,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      * @param  Zend_View_Interface $view
      * @return Zend_Form_DisplayGroup
      */
-    public function setView(Zend_View_Interface $view = null)
+    public function setView(?Zend_View_Interface $view = null)
     {
         $this->_view = $view;
         return $this;
@@ -909,7 +907,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      *
      * @return string
      */
-    public function render(Zend_View_Interface $view = null)
+    public function render(?Zend_View_Interface $view = null)
     {
         if (null !== $view) {
             $this->setView($view);
@@ -927,7 +925,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             return $this->render();
@@ -1019,7 +1017,7 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      */
     public function __call($method, $args)
     {
-        if ('render' == substr($method, 0, 6)) {
+        if (str_starts_with($method, 'render')) {
             $decoratorName = substr($method, 6);
             if (false !== ($decorator = $this->getDecorator($decoratorName))) {
                 $decorator->setElement($this);
@@ -1159,7 +1157,7 @@ public function key()
 
         $instance = $this->_getDecorator($decorator['decorator'], $decorator['options']);
         if ($sameName) {
-            $newName            = get_class($instance);
+            $newName            = $instance::class;
             $decoratorNames     = array_keys($this->_decorators);
             $order              = array_flip($decoratorNames);
             $order[$newName]    = $order[$name];

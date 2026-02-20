@@ -35,20 +35,6 @@ require_once 'Zend/Search/Lucene/Search/Weight.php';
 class Zend_Search_Lucene_Search_Weight_Boolean extends Zend_Search_Lucene_Search_Weight
 {
     /**
-     * IndexReader.
-     *
-     * @var Zend_Search_Lucene_Interface
-     */
-    private $_reader;
-
-    /**
-     * The query that this concerns.
-     *
-     * @var Zend_Search_Lucene_Search_Query
-     */
-    private $_query;
-
-    /**
      * Queries weights
      * Array of Zend_Search_Lucene_Search_Weight
      *
@@ -62,21 +48,25 @@ class Zend_Search_Lucene_Search_Weight_Boolean extends Zend_Search_Lucene_Search
      * query - the query that this concerns.
      * reader - index reader
      *
-     * @param Zend_Search_Lucene_Search_Query $query
-     * @param Zend_Search_Lucene_Interface    $reader
+     * @param Zend_Search_Lucene_Search_Query $_query
+     * @param Zend_Search_Lucene_Interface $_reader
      */
-    public function __construct(Zend_Search_Lucene_Search_Query $query,
-                                Zend_Search_Lucene_Interface    $reader)
+    public function __construct(/**
+     * The query that this concerns.
+     */
+    private readonly Zend_Search_Lucene_Search_Query $_query,
+                                /**
+                                 * IndexReader.
+                                 */
+                                private readonly Zend_Search_Lucene_Interface    $_reader)
     {
-        $this->_query   = $query;
-        $this->_reader  = $reader;
         $this->_weights = [];
 
-        $signs = $query->getSigns();
+        $signs = $this->_query->getSigns();
 
-        foreach ($query->getSubqueries() as $num => $subquery) {
+        foreach ($this->_query->getSubqueries() as $num => $subquery) {
             if ($signs === null || $signs[$num] === null || $signs[$num]) {
-                $this->_weights[$num] = $subquery->createWeight($reader);
+                $this->_weights[$num] = $subquery->createWeight($this->_reader);
             }
         }
     }

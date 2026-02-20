@@ -32,7 +32,7 @@ require_once 'Zend/View/Helper/HtmlElement.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @link http://pl.gravatar.com/site/implement/url
  */
-class Zend_View_Helper_Gravatar extends Zend_View_Helper_HtmlElement
+class Zend_View_Helper_Gravatar extends Zend_View_Helper_HtmlElement implements \Stringable
 {
 
     /**
@@ -353,7 +353,7 @@ class Zend_View_Helper_Gravatar extends Zend_View_Helper_HtmlElement
      *
      * @return string
      */
-    public function  __toString()
+    public function  __toString(): string
     {
         return $this->getImgTag();
 

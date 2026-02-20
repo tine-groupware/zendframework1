@@ -103,7 +103,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
      * @return void
      * @throws Zend_File_Transfer_Exception Not implemented
      */
-    public function send($options = null)
+    public function send($options = null): never
     {
         require_once 'Zend/File/Transfer/Exception.php';
         throw new Zend_File_Transfer_Exception('Method not implemented');
@@ -177,11 +177,11 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
                         $filename = $tmp;
                     }
 
-                    if (dirname($filename) == '.') {
+                    if (dirname((string) $filename) == '.') {
                         $filename = $directory . $filename;
                     }
 
-                    $key = array_search(get_class($rename), $this->_files[$file]['filters']);
+                    $key = array_search($rename::class, $this->_files[$file]['filters']);
                     unset($this->_files[$file]['filters'][$key]);
                 }
 
@@ -198,8 +198,8 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
                 }
 
                 if ($rename !== null) {
-                    $this->_files[$file]['destination'] = dirname($filename);
-                    $this->_files[$file]['name']        = basename($filename);
+                    $this->_files[$file]['destination'] = dirname((string) $filename);
+                    $this->_files[$file]['name']        = basename((string) $filename);
                 }
 
                 $this->_files[$file]['tmp_name'] = $filename;
@@ -226,7 +226,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
      * @return bool
      * @throws Zend_File_Transfer_Exception Not implemented
      */
-    public function isSent($files = null)
+    public function isSent($files = null): never
     {
         require_once 'Zend/File/Transfer/Exception.php';
         throw new Zend_File_Transfer_Exception('Method not implemented');

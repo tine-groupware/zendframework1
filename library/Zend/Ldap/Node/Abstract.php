@@ -38,7 +38,7 @@ require_once 'Zend/Ldap/Dn.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
+abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable, \Stringable
 {
     protected static $_systemAttributes=['createtimestamp', 'creatorsname',
         'entrycsn', 'entrydn', 'entryuuid', 'hassubordinates', 'modifiersname',
@@ -98,7 +98,7 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
      * @return Zend_Ldap_Node_Abstract Provides a fluent interface
      * @throws Zend_Ldap_Exception
      */
-    public function reload(Zend_Ldap $ldap = null)
+    public function reload(?Zend_Ldap $ldap = null)
     {
         if ($ldap !== null) {
             $data = $ldap->getEntry($this->_getDn(), ['*', '+'], true);
@@ -228,7 +228,7 @@ abstract class Zend_Ldap_Node_Abstract implements ArrayAccess, Countable
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toString();
     }

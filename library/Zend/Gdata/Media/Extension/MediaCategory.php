@@ -42,25 +42,17 @@ class Zend_Gdata_Media_Extension_MediaCategory extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_scheme = null;
-    protected $_label = null;
-
-    /**
      * Creates an individual MediaCategory object.
      *
      * @param string $text      Indication of the type and content of the media
-     * @param string $scheme    URI that identifies the categorization scheme
-     * @param string $label     Human-readable label to be displayed in applications
+     * @param string $_scheme URI that identifies the categorization scheme
+     * @param string $_label Human-readable label to be displayed in applications
      */
-    public function __construct($text = null, $scheme = null, $label = null)
+    public function __construct($text = null, protected $_scheme = null, protected $_label = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
         $this->_text = $text;
-        $this->_scheme = $scheme;
-        $this->_label = $label;
     }
 
     /**

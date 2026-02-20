@@ -90,22 +90,15 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      *
      * @return Zend_View_Helper_HeadLink
      */
-    public function headLink(array $attributes = null, $placement = Zend_View_Helper_Placeholder_Container_Abstract::APPEND)
+    public function headLink(?array $attributes = null, $placement = Zend_View_Helper_Placeholder_Container_Abstract::APPEND)
     {
         if (null !== $attributes) {
             $item = $this->createData($attributes);
-            switch ($placement) {
-                case Zend_View_Helper_Placeholder_Container_Abstract::SET:
-                    $this->set($item);
-                    break;
-                case Zend_View_Helper_Placeholder_Container_Abstract::PREPEND:
-                    $this->prepend($item);
-                    break;
-                case Zend_View_Helper_Placeholder_Container_Abstract::APPEND:
-                default:
-                    $this->append($item);
-                    break;
-            }
+            match ($placement) {
+                Zend_View_Helper_Placeholder_Container_Abstract::SET => $this->set($item),
+                Zend_View_Helper_Placeholder_Container_Abstract::PREPEND => $this->prepend($item),
+                default => $this->append($item),
+            };
         }
         return $this;
     }
@@ -147,7 +140,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
      */
     public function __call($method, $args)
     {
-        if (preg_match('/^(?P<action>set|(ap|pre)pend|offsetSet)(?P<type>Stylesheet|Alternate)$/', $method, $matches)) {
+        if (preg_match('/^(?P<action>set|(ap|pre)pend|offsetSet)(?P<type>Stylesheet|Alternate)$/', (string) $method, $matches)) {
             $argc   = count($args);
             $action = $matches['action'];
             $type   = $matches['type'];

@@ -68,11 +68,11 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
 
         $modules = $front->getControllerDirectory();
         $default = $front->getDefaultModule();
-        $curBootstrapClass = get_class($bootstrap);
+        $curBootstrapClass = $bootstrap !== null ? $bootstrap::class : self::class;
         foreach ($modules as $module => $moduleDirectory) {
             $bootstrapClass = $this->_formatModuleName($module) . '_Bootstrap';
             if (!class_exists($bootstrapClass, false)) {
-                $bootstrapPath = dirname($moduleDirectory) . '/Bootstrap.php';
+                $bootstrapPath = dirname((string) $moduleDirectory) . '/Bootstrap.php';
                 if (file_exists($bootstrapPath)) {
                     $eMsgTpl = 'Bootstrap file found for module "%s" but bootstrap class "%s" not found';
                     include_once $bootstrapPath;

@@ -188,11 +188,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
      */
     public function getActionableMethod($methodName)
     {
-        if (isset($this->_actionableMethods[$methodName])) {
-            return $this->_actionableMethods[$methodName];
-        }
-
-        return false;
+        return $this->_actionableMethods[$methodName] ?? false;
     }
 
     /**
@@ -238,7 +234,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
         }
 
         if ($this->_name == null) {
-            $className = get_class($this->_provider);
+            $className = $this->_provider::class;
             $name = $className;
             if (strpos($name, '_')) {
                 $name = substr($name, strrpos($name, '_')+1);
@@ -261,16 +257,16 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
             if (!is_array($specialties)) {
                 require_once 'Zend/Tool/Framework/Provider/Exception.php';
                 throw new Zend_Tool_Framework_Provider_Exception(
-                    'Provider ' . get_class($this->_provider) . ' must return an array for method getSpecialties().'
+                    'Provider ' . $this->_provider::class . ' must return an array for method getSpecialties().'
                     );
             }
         } else {
             $defaultProperties = $this->_providerReflection->getDefaultProperties();
-            $specialties = (isset($defaultProperties['_specialties'])) ? $defaultProperties['_specialties'] : [];
+            $specialties = $defaultProperties['_specialties'] ?? [];
             if (!is_array($specialties)) {
                 require_once 'Zend/Tool/Framework/Provider/Exception.php';
                 throw new Zend_Tool_Framework_Provider_Exception(
-                    'Provider ' . get_class($this->_provider) . '\'s property $_specialties must be an array.'
+                    'Provider ' . $this->_provider::class . '\'s property $_specialties must be an array.'
                     );
             }
         }
@@ -314,15 +310,15 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
              * check to see if the method was a required method by a Zend_Tool_* interface
              */
             foreach ($method->getDeclaringClass()->getInterfaces() as $methodDeclaringClassInterface) {
-                if (strpos($methodDeclaringClassInterface->getName(), 'Zend_Tool_') === 0
+                if (str_starts_with((string) $methodDeclaringClassInterface->getName(), 'Zend_Tool_')
                     && $methodDeclaringClassInterface->hasMethod($methodName)) {
                     continue 2;
                 }
             }
 
-            $actionableName = ucfirst($methodName);
+            $actionableName = ucfirst((string) $methodName);
 
-            if (substr($actionableName, -6) == 'Action') {
+            if (str_ends_with($actionableName, 'Action')) {
                 $actionableName = substr($actionableName, 0, -6);
             }
 
@@ -363,7 +359,7 @@ class Zend_Tool_Framework_Provider_Signature implements Zend_Tool_Framework_Regi
 
             $matches = null;
             if (($docComment = $method->getDocComment()) != '' &&
-                (preg_match_all('/@param\s+(\w+)+\s+(\$\S+)\s+(.*?)(?=(?:\*\s*@)|(?:\*\/))/s', $docComment, $matches)))
+                (preg_match_all('/@param\s+(\w+)+\s+(\$\S+)\s+(.*?)(?=(?:\*\s*@)|(?:\*\/))/s', (string) $docComment, $matches)))
             {
                 for ($i=0; $i <= count($matches[0])-1; $i++) {
                     $currentParam = ltrim($matches[2][$i], '$');

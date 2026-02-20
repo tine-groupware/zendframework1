@@ -166,11 +166,11 @@ class Zend_Service_WindowsAzure_Log_Writer_WindowsAzure
      */
     public function setFormatter(
         Zend_Service_Log_Formatter_Interface $formatter
-    )
+    ): never
     {
         require_once 'Zend/Service/Log/Exception.php';
         throw new Zend_Service_Log_Exception(
-            get_class($this) . ' does not support formatting');
+            static::class . ' does not support formatting');
     }
 
     /**

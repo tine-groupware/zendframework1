@@ -153,7 +153,7 @@ class Zend_Crypt_DiffieHellman
         if ($type == self::BINARY) {
             $number = $this->_math->fromBinary($number);
         }
-        if (!preg_match("/^\d+$/", $number)) {
+        if (!preg_match("/^\d+$/", (string) $number)) {
             require_once('Zend/Crypt/DiffieHellman/Exception.php');
             throw new Zend_Crypt_DiffieHellman_Exception('invalid parameter; not a positive natural number');
         }
@@ -205,7 +205,7 @@ class Zend_Crypt_DiffieHellman
         if ($type == self::BINARY) {
             $publicKey = $this->_math->fromBinary($publicKey);
         }
-        if (!preg_match("/^\d+$/", $publicKey)) {
+        if (!preg_match("/^\d+$/", (string) $publicKey)) {
             require_once('Zend/Crypt/DiffieHellman/Exception.php');
             throw new Zend_Crypt_DiffieHellman_Exception('invalid parameter; not a positive natural number');
         }
@@ -315,7 +315,7 @@ class Zend_Crypt_DiffieHellman
         if ($type == self::BINARY) {
             $number = $this->_math->fromBinary($number);
         }
-        if (!preg_match("/^\d+$/", $number)) {
+        if (!preg_match("/^\d+$/", (string) $number)) {
             require_once('Zend/Crypt/DiffieHellman/Exception.php');
             throw new Zend_Crypt_DiffieHellman_Exception('invalid parameter; not a positive natural number');
         }

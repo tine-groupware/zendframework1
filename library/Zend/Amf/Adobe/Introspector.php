@@ -38,6 +38,7 @@ require_once 'Zend/Server/Reflection.php';
  */
 class Zend_Amf_Adobe_Introspector
 {
+    public $_ops;
     /**
      * Options used:
      * - server: instance of Zend_Amf_Server to use
@@ -166,7 +167,7 @@ class Zend_Amf_Adobe_Introspector
         foreach ($refclass->getMethods() as $method) {
             if (!$method->isPublic()
                 || $method->isConstructor()
-                || ('__' == substr($method->name, 0, 2))
+                || (str_starts_with((string) $method->name, '__'))
             ) {
                 continue;
             }
@@ -237,11 +238,7 @@ class Zend_Amf_Adobe_Introspector
             return $this->_options['server']->getDirectory();
         }
 
-        if (isset($this->_options['directories'])) {
-            return $this->_options['directories'];
-        }
-
-        return [];
+        return $this->_options['directories'] ?? [];
     }
 
     /**

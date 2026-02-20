@@ -44,21 +44,11 @@ class Zend_Gdata_Extension_FeedLink extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'feedLink';
-    protected $_countHint = null;
-    protected $_href = null;
-    protected $_readOnly = null;
-    protected $_rel = null;
-    protected $_feed = null;
 
-    public function __construct($href = null, $rel = null,
-            $countHint = null, $readOnly = null, $feed = null)
+    public function __construct(protected $_href = null, protected $_rel = null,
+            protected $_countHint = null, protected $_readOnly = null, protected $_feed = null)
     {
         parent::__construct();
-        $this->_countHint = $countHint;
-        $this->_href = $href;
-        $this->_readOnly = $readOnly;
-        $this->_rel = $rel;
-        $this->_feed = $feed;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

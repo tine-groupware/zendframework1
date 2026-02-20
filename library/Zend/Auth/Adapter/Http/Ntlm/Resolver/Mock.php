@@ -41,14 +41,10 @@ class Zend_Auth_Adapter_Http_Ntlm_Resolver_Mock implements Zend_Auth_Adapter_Htt
      */
     public function resolve($username)
     {
-        switch ($username) {
-            case 'user':
-                $ntPassword = hash('md4', Zend_Auth_Adapter_Http_Ntlm::toUTF16LE('SecREt01'), TRUE);
-                break;
-            default:
-                $ntPassword = NULL;
-                break;
-        }
+        $ntPassword = match ($username) {
+            'user' => hash('md4', Zend_Auth_Adapter_Http_Ntlm::toUTF16LE('SecREt01'), TRUE),
+            default => NULL,
+        };
         
         return $ntPassword;
     }

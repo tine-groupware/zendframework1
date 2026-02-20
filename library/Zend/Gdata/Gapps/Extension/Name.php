@@ -49,33 +49,23 @@ class Zend_Gdata_Gapps_Extension_Name extends Zend_Gdata_Extension
     protected $_rootElement = 'name';
 
     /**
-     * The associated user's family name.
-     *
-     * @var string
-     */
-    protected $_familyName = null;
-
-    /**
-     * The associated user's given name.
-     *
-     * @var string
-     */
-    protected $_givenName = null;
-
-    /**
      * Constructs a new Zend_Gdata_Gapps_Extension_Name object.
      *
-     * @param string $familyName (optional) The familyName to be set for this
+     * @param string $_familyName (optional) The familyName to be set for this
      *          object.
-     * @param string $givenName (optional) The givenName to be set for this
+     * @param string $_givenName (optional) The givenName to be set for this
      *          object.
      */
-    public function __construct($familyName = null, $givenName = null)
+    public function __construct(/**
+     * The associated user's family name.
+     */
+    protected $_familyName = null, /**
+     * The associated user's given name.
+     */
+    protected $_givenName = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Gapps::$namespaces);
         parent::__construct();
-        $this->_familyName = $familyName;
-        $this->_givenName = $givenName;
     }
 
     /**
@@ -173,7 +163,7 @@ class Zend_Gdata_Gapps_Extension_Name extends Zend_Gdata_Extension
      * Magic toString method allows using this directly via echo
      * Works best in PHP >= 4.2.0
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getGivenName() . ' ' . $this->getFamilyName();
     }

@@ -167,7 +167,7 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
 
         $flags = [];
         foreach ($data['FLAGS'] as $flag) {
-            $flags[] = isset(self::$_knownFlags[$flag]) ? self::$_knownFlags[$flag] : $flag;
+            $flags[] = self::$_knownFlags[$flag] ?? $flag;
         }
 
         return new $this->_messageClass(['handler' => $this, 'id' => $id, 'headers' => $header, 'flags' => $flags]);
@@ -266,10 +266,10 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
             throw new Zend_Mail_Storage_Exception('need at least user in params');
         }
 
-        $host     = isset($params->host)     ? $params->host     : 'localhost';
-        $password = isset($params->password) ? $params->password : '';
-        $port     = isset($params->port)     ? $params->port     : null;
-        $ssl      = isset($params->ssl)      ? $params->ssl      : false;
+        $host     = $params->host ?? 'localhost';
+        $password = $params->password ?? '';
+        $port     = $params->port ?? null;
+        $ssl      = $params->ssl ?? false;
 
         $this->_protocol = new Zend_Mail_Protocol_Imap();
         $this->_protocol->connect($host, $port, $ssl);
@@ -280,7 +280,7 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
             require_once 'Zend/Mail/Storage/Exception.php';
             throw new Zend_Mail_Storage_Exception('cannot login, user or password wrong');
         }
-        $this->selectFolder(isset($params->folder) ? $params->folder : 'INBOX');
+        $this->selectFolder($params->folder ?? 'INBOX');
     }
 
     /**
@@ -414,13 +414,13 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
 
         foreach ($folders as $globalName => $data) {
             do {
-                if (!$parent || strpos($globalName, $parent) === 0) {
-                    $pos = strrpos($globalName, $data['delim']);
+                if (!$parent || str_starts_with((string) $globalName, $parent)) {
+                    $pos = strrpos((string) $globalName, (string) $data['delim']);
 
                     if ($pos === false) {
                         $localName = $globalName;
                     } else {
-                        $localName = substr($globalName, $pos + 1);
+                        $localName = substr((string) $globalName, $pos + 1);
                     }
 
                     $selectable = !$data['flags'] || !in_array('\\Noselect', $data['flags']);

@@ -42,13 +42,6 @@ class Zend_Service_Tine20 extends Zend_Json_Client
     protected $_jsonKey;
     
     /**
-     * the url of the Tine 2.0 installation
-     * 
-     * @var string (for example http://demo.tine20.org/index.php)
-     */
-    protected $_url;
-    
-    /**
      * @var array stores information about the account logged in
      */
     protected $_account;
@@ -60,14 +53,15 @@ class Zend_Service_Tine20 extends Zend_Json_Client
     
     /**
      * constructor for Zend_Service_Tine20
-     * @param string           $url         the url of the Tine 2.0 installation
+     * @param string $_url the url of the Tine 2.0 installation
      * @param Zend_Http_Client $httpClient
      * @return void
      */
-    public function __construct($url, $httpClient = null)
+    public function __construct(/**
+     * the url of the Tine 2.0 installation
+     */
+    protected $_url, $httpClient = null)
     {
-        $this->_url = $url;
-        
         if(!$httpClient instanceof Zend_Http_Client) {
             $httpClient = new Zend_Http_Client();
         }
@@ -76,7 +70,7 @@ class Zend_Service_Tine20 extends Zend_Json_Client
             $httpClient->setCookieJar();
         }
         
-        parent::__construct($url, $httpClient);
+        parent::__construct($this->_url, $httpClient);
 
         $this->getHttpClient()->setHeaders('X-TINE20-REQUEST-TYPE', 'JSON');
     }    
@@ -101,10 +95,10 @@ class Zend_Service_Tine20 extends Zend_Json_Client
         $this->setSkipSystemLookup(true);
 
         try {
-            $response = $this->call('Tinebase.login', array(
+            $response = $this->call('Tinebase.login', [
                 'username' => $loginname,
                 'password' => $password
-            ));
+            ]);
         } catch (Zend_Json_Exception $zje) {
             $response = [
                 'success' => false,

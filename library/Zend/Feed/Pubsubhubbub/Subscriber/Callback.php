@@ -89,7 +89,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
      * @param  bool $sendResponseNow Whether to send response now or when asked
      * @return void
      */
-    public function handle(array $httpGetData = null, $sendResponseNow = false)
+    public function handle(?array $httpGetData = null, $sendResponseNow = false)
     {
         if ($httpGetData === null) {
             $httpGetData = $_GET;
@@ -103,7 +103,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
          * to avoid holding up responses to the Hub.
          */
         $contentType = $this->_getHeader('Content-Type');
-        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'
+        if (strtolower((string) $_SERVER['REQUEST_METHOD']) == 'post'
             && $this->_hasValidVerifyToken(null, false)
             && (stripos($contentType, 'application/atom+xml') === 0
                 || stripos($contentType, 'application/rss+xml') === 0
@@ -151,7 +151,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
          * always send a hub.verify_token parameter to be echoed back
          * by the Hub Server. Therefore, its absence is considered invalid.
          */
-        if (strtolower($_SERVER['REQUEST_METHOD']) !== 'get') {
+        if (strtolower((string) $_SERVER['REQUEST_METHOD']) !== 'get') {
             return false;
         }
         $required = [
@@ -234,7 +234,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
      * @param  bool $checkValue
      * @return bool
      */
-    protected function _hasValidVerifyToken(array $httpGetData = null, $checkValue = true)
+    protected function _hasValidVerifyToken(?array $httpGetData = null, $checkValue = true)
     {
         $verifyTokenKey = $this->_detectVerifyTokenKey($httpGetData);
         if (empty($verifyTokenKey)) {
@@ -247,7 +247,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
         if ($checkValue) {
             $data = $this->getStorage()->getSubscription($verifyTokenKey);
             $verifyToken = $data['verify_token'];
-            if ($verifyToken !== hash('sha256', $httpGetData['hub_verify_token'])) {
+            if ($verifyToken !== hash('sha256', (string) $httpGetData['hub_verify_token'])) {
                 return false;
             }
             $this->_currentSubscriptionData = $data;
@@ -264,7 +264,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
      * @param  null|array $httpGetData
      * @return false|string
      */
-    protected function _detectVerifyTokenKey(array $httpGetData = null)
+    protected function _detectVerifyTokenKey(?array $httpGetData = null)
     {
         /**
          * Available when sub keys encoding in Callback URL path
@@ -310,7 +310,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
         if (empty($queryString)) {
             return [];
         }
-        $parts = explode('&', $queryString);
+        $parts = explode('&', (string) $queryString);
         foreach ($parts as $kvpair) {
             $pair  = explode('=', $kvpair);
             $key   = rawurldecode($pair[0]);

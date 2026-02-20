@@ -121,7 +121,7 @@ class Zend_Pdf_FileParserDataSource_String extends Zend_Pdf_FileParserDataSource
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return "String ($this->_size bytes)";
     }

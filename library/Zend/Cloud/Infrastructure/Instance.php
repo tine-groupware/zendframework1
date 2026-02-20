@@ -106,7 +106,7 @@ class Zend_Cloud_Infrastructure_Instance
                 throw new Zend_Cloud_Infrastructure_Exception(sprintf(
                     'The param "%s" is a required param for %s', 
                     $key,
-                    __CLASS__
+                    self::class
                 ));
             }
         }

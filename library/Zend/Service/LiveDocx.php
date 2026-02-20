@@ -344,11 +344,7 @@ class Zend_Service_LiveDocx
      */
     public function getUsername()
     {
-        if (isset($this->_credentials['username'])) {
-            return $this->_credentials['username'];
-        }
-
-        return null;
+        return $this->_credentials['username'] ?? null;
     }
 
     /**
@@ -359,11 +355,7 @@ class Zend_Service_LiveDocx
      */
     public function getPassword()
     {
-        if (isset($this->_credentials['password'])) {
-            return $this->_credentials['password'];
-        }
-
-        return null;
+        return $this->_credentials['password'] ?? null;
     }
 
     /**

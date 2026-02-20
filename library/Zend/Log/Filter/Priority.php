@@ -60,7 +60,7 @@ class Zend_Log_Filter_Priority extends Zend_Log_Filter_Abstract
         }
 
         $this->_priority = $priority;
-        $this->_operator = $operator === null ? '<=' : $operator;
+        $this->_operator = $operator ?? '<=';
     }
 
     /**

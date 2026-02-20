@@ -37,20 +37,17 @@ require_once 'Zend/Ldap/Filter/Abstract.php';
 class Zend_Ldap_Filter_Not extends Zend_Ldap_Filter_Abstract
 {
     /**
-     * The underlying filter.
-     *
-     * @var Zend_Ldap_Filter_Abstract
-     */
-    private $_filter;
-
-    /**
      * Creates a Zend_Ldap_Filter_Not.
      *
-     * @param Zend_Ldap_Filter_Abstract $filter
+     * @param Zend_Ldap_Filter_Abstract $_filter
      */
-    public function __construct(Zend_Ldap_Filter_Abstract $filter)
+    public function __construct(
+        /**
+         * The underlying filter.
+         */
+        private readonly Zend_Ldap_Filter_Abstract $_filter
+    )
     {
-        $this->_filter = $filter;
     }
 
     /**

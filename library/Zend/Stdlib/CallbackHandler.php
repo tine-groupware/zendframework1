@@ -92,7 +92,7 @@ class Zend_Stdlib_CallbackHandler
      */
     protected function registerCallback($callback)
     {
-        set_error_handler([$this, 'errorHandler'], E_STRICT);
+        set_error_handler($this->errorHandler(...), E_STRICT);
         $callable = is_callable($callback);
         restore_error_handler();
         if (!$callable || $this->error) {
@@ -101,7 +101,7 @@ class Zend_Stdlib_CallbackHandler
         }
 
         // If pecl/weakref is not installed, simply store the callback and return
-        set_error_handler([$this, 'errorHandler'], E_WARNING);
+        set_error_handler($this->errorHandler(...), E_WARNING);
         $callable = class_exists('WeakRef');
         restore_error_handler();
         if (!$callable || $this->error) {
@@ -124,7 +124,7 @@ class Zend_Stdlib_CallbackHandler
             return;
         }
 
-        list($target, $method) = $callback;
+        [$target, $method] = $callback;
 
         // If we have an array callback, and the first argument is not an 
         // object, register as-is
@@ -165,7 +165,7 @@ class Zend_Stdlib_CallbackHandler
 
         // Array callback with WeakRef object -- retrieve the object first, and 
         // then return
-        list($target, $method) = $callback;
+        [$target, $method] = $callback;
         if ($target instanceof WeakRef) {
             return [$target->get(), $method];
         }
@@ -272,7 +272,7 @@ class Zend_Stdlib_CallbackHandler
             return true;
         }
 
-        list($class, $method) = explode('::', $callback, 2);
+        [$class, $method] = explode('::', $callback, 2);
 
         if (!class_exists($class)) {
             require_once 'Zend/Stdlib/Exception/InvalidCallbackException.php';

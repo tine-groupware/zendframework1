@@ -37,7 +37,7 @@ require_once 'Zend/Tool/Framework/Metadata/Attributable.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Tool_Framework_Metadata_Basic
-    implements Zend_Tool_Framework_Metadata_Interface, Zend_Tool_Framework_Metadata_Attributable
+    implements Zend_Tool_Framework_Metadata_Interface, Zend_Tool_Framework_Metadata_Attributable, \Stringable
 {
 
     /**#@+
@@ -220,7 +220,7 @@ class Zend_Tool_Framework_Metadata_Basic
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return 'Type: ' . $this->_type . ', Name: ' . $this->_name . ', Value: ' . (is_array($this->_value) ? http_build_query($this->_value) : (string) $this->_value);
     }

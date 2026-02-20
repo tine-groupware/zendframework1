@@ -48,11 +48,6 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
     protected $_stmt = null;
 
     /**
-     * @var Zend_Db_Adapter_Abstract
-     */
-    protected $_adapter = null;
-
-    /**
      * The current fetch mode.
      *
      * @var integer
@@ -102,12 +97,11 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
     /**
      * Constructor for a statement.
      *
-     * @param Zend_Db_Adapter_Abstract $adapter
+     * @param Zend_Db_Adapter_Abstract $_adapter
      * @param mixed $sql Either a string or Zend_Db_Select.
      */
-    public function __construct($adapter, $sql)
+    public function __construct(protected $_adapter, $sql)
     {
-        $this->_adapter = $adapter;
         if ($sql instanceof Zend_Db_Select) {
             $sql = $sql->assemble();
         }
@@ -184,7 +178,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         // get the value used as an escaped quote,
         // e.g. \' or ''
         $qe = $this->_adapter->quote($q);
-        $qe = substr($qe, 1, 2);
+        $qe = substr((string) $qe, 1, 2);
         $qe = preg_quote($qe);
         $escapeChar = substr($qe,0,1);
         // remove 'foo\'bar'
@@ -197,7 +191,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         // get a version of the SQL statement with all quoted
         // values and delimited identifiers stripped out
         // remove "foo\"bar"
-        $sql = preg_replace("/\"(\\\\\"|[^\"])*\"/Us", '', $sql);
+        $sql = preg_replace("/\"(\\\\\"|[^\"])*\"/Us", '', (string) $sql);
 
         // get the character for delimited id quotes,
         // this is usually " but in MySQL is `
@@ -209,7 +203,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         $de = substr($de, 1, 2);
         $de = preg_quote($de);
         // Note: $de and $d where never used..., now they are:
-        $sql = preg_replace("/$d($de|\\\\{2}|[^$d])*$d/Us", '', $sql);
+        $sql = preg_replace("/$d($de|\\\\{2}|[^$d])*$d/Us", '', (string) $sql);
         return $sql;
     }
 
@@ -294,7 +288,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
      * @param array $params OPTIONAL Values to bind to parameter placeholders.
      * @return bool
      */
-    public function execute(array $params = null)
+    public function execute(?array $params = null)
     {
         /*
          * Simple case - no query profiler to manage.
@@ -318,7 +312,7 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         } else {
             $qp->bindParams($this->_bindParam);
         }
-        $qp->start($this->_queryId);
+        $qp->start();
 
         $retval = $this->_execute($params);
 

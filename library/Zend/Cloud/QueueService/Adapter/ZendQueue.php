@@ -103,7 +103,7 @@ class Zend_Cloud_QueueService_Adapter_ZendQueue
     public function createQueue($name, $options = null)
     {
         try {
-            $this->_queues[$name] = $this->_queue->createQueue($name, isset($options[Zend_Queue::TIMEOUT])?$options[Zend_Queue::TIMEOUT]:null);
+            $this->_queues[$name] = $this->_queue->createQueue($name, $options[Zend_Queue::TIMEOUT] ?? null);
             return $name;
         } catch (Zend_Queue_Exception $e) {
             throw new Zend_Cloud_QueueService_Exception('Error on queue creation: '.$e->getMessage(), $e->getCode(), $e);
@@ -229,7 +229,7 @@ class Zend_Cloud_QueueService_Adapter_ZendQueue
             throw new Zend_Cloud_QueueService_Exception("No such queue: $queueId");
         }
         try {
-            $res = $this->_queues[$queueId]->receive($max, isset($options[Zend_Queue::TIMEOUT])?$options[Zend_Queue::TIMEOUT]:null);
+            $res = $this->_queues[$queueId]->receive($max, $options[Zend_Queue::TIMEOUT] ?? null);
             if ($res instanceof Iterator) {
                 return $this->_makeMessages($res);
             } else {
@@ -295,7 +295,7 @@ class Zend_Cloud_QueueService_Adapter_ZendQueue
      * @return Zend_Cloud_QueueService_Message[]
      * @throws Zend_Cloud_OperationNotAvailableException
      */
-    public function peekMessages($queueId, $num = 1, $options = null)
+    public function peekMessages($queueId, $num = 1, $options = null): never
     {
         require_once 'Zend/Cloud/OperationNotAvailableException.php';
         throw new Zend_Cloud_OperationNotAvailableException('ZendQueue doesn\'t currently support message peeking');

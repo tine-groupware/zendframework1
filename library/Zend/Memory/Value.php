@@ -32,20 +32,13 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @todo       also implement Countable for PHP 5.1 but not yet to stay 5.0 compatible
  */
-class Zend_Memory_Value implements ArrayAccess {
+class Zend_Memory_Value implements ArrayAccess, \Stringable {
     /**
      * Value
      *
      * @var string
      */
     private $_value;
-
-    /**
-     * Container
-     *
-     * @var Zend_Memory_Container_Interface
-     */
-    private $_container;
 
     /**
      * Boolean flag which signals to trace value modifications
@@ -59,12 +52,13 @@ class Zend_Memory_Value implements ArrayAccess {
      * Object constructor
      *
      * @param string $value
-     * @param Zend_Memory_Container_Movable $container
+     * @param Zend_Memory_Container_Movable $_container
      */
-    public function __construct($value, Zend_Memory_Container_Movable $container)
+    public function __construct($value, /**
+     * Container
+     */
+    private readonly Zend_Memory_Container_Movable $_container)
     {
-        $this->_container = $container;
-
         $this->_value = (string)$value;
 
         /**
@@ -143,7 +137,7 @@ class Zend_Memory_Value implements ArrayAccess {
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->_value;
     }

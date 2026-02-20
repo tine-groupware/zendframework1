@@ -66,13 +66,6 @@ class Zend_Service_Flickr_ResultSet implements SeekableIterator
     protected $_results = null;
 
     /**
-     * Reference to Zend_Service_Flickr object with which the request was made
-     *
-     * @var Zend_Service_Flickr
-     */
-    private $_flickr;
-
-    /**
      * Current index for the Iterator
      *
      * @var int
@@ -83,13 +76,14 @@ class Zend_Service_Flickr_ResultSet implements SeekableIterator
      * Parse the Flickr Result Set
      *
      * @param  DOMDocument         $dom
-     * @param  Zend_Service_Flickr $flickr
+     * @param Zend_Service_Flickr $_flickr
      * @return void
      */
-    public function __construct(DOMDocument $dom, Zend_Service_Flickr $flickr)
+    public function __construct(DOMDocument $dom, /**
+     * Reference to Zend_Service_Flickr object with which the request was made
+     */
+    private readonly Zend_Service_Flickr $_flickr)
     {
-        $this->_flickr = $flickr;
-
         $xpath = new DOMXPath($dom);
 
         $photos = $xpath->query('//photos')->item(0);

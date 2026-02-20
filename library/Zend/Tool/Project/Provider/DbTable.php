@@ -95,12 +95,12 @@ class Zend_Tool_Project_Provider_DbTable
         $this->_loadProfile(self::NO_PROFILE_THROW_EXCEPTION);
 
         // Check that there is not a dash or underscore, return if doesnt match regex
-        if (preg_match('#[_-]#', $name)) {
+        if (preg_match('#[_-]#', (string) $name)) {
             throw new Zend_Tool_Project_Provider_Exception('DbTable names should be camel cased.');
         }
 
         $originalName = $name;
-        $name = ucfirst($name);
+        $name = ucfirst((string) $name);
 
         if ($actualTableName == '') {
             throw new Zend_Tool_Project_Provider_Exception('You must provide both the DbTable name as well as the actual db table\'s name.');
@@ -160,7 +160,7 @@ class Zend_Tool_Project_Provider_DbTable
 
         try {
             $zendApp->bootstrap('db');
-        } catch (Zend_Application_Exception $e) {
+        } catch (Zend_Application_Exception) {
             throw new Zend_Tool_Project_Provider_Exception('Db resource not available, you might need to configure a DbAdapter.');
             return;
         }

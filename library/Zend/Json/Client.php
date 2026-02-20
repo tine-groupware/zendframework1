@@ -85,13 +85,6 @@ require_once 'Zend/Version.php';
 class Zend_Json_Client
 {
     /**
-     * Full address of the JSON-RPC service
-     * @var string
-     * @example http://json.example.com/index.php
-     */
-    protected $_serverAddress;
-
-    /**
      * HTTP Client to use for requests
      * @var Zend_Http_Client
      */
@@ -119,7 +112,7 @@ class Zend_Json_Client
      * Proxy object for more convenient method calls
      * @var array of Zend_XmlRpc_Client_ServerProxy
      */
-    protected $_proxyCache = array();
+    protected $_proxyCache = [];
 
     /**
      * Flag for skipping system lookup
@@ -136,12 +129,16 @@ class Zend_Json_Client
     /**
      * Create a new XML-RPC client to a remote server
      *
-     * @param  string            $server      Full address of the XML-RPC service
+     * @param string $_serverAddress Full address of the XML-RPC service
      *                                        (e.g. http://json.example.com/index.php)
      * @param  Zend_Http_Client  $httpClient  HTTP Client to use for requests
      * @return void
      */
-    public function __construct($server, Zend_Http_Client $httpClient = null)
+    public function __construct(/**
+     * Full address of the JSON-RPC service
+     * @example http://json.example.com/index.php
+     */
+    protected $_serverAddress, ?Zend_Http_Client $httpClient = null)
     {
         if ($httpClient === null) {
             $this->_httpClient = new Zend_Http_Client();
@@ -150,7 +147,6 @@ class Zend_Json_Client
         }
 
         $this->_introspector  = new Zend_Json_Client_ServerIntrospection($this);
-        $this->_serverAddress = $server;
     }
 
 
@@ -278,11 +274,11 @@ class Zend_Json_Client
         $http = $this->getHttpClient();
 
         $http->setUri($this->_serverAddress);
-        $http->setHeaders(array(
+        $http->setHeaders([
             'Content-Type: application/json-rpc; charset=utf-8',
             'User-Agent: Zend_Json_Client/' . Zend_Version::VERSION,
             'Accept: application/json-rpc',
-        ));
+        ]);
 
         $json = $this->_lastRequest->__toString();
 //        echo 'c -> ' . $json . "\n";
@@ -316,7 +312,7 @@ class Zend_Json_Client
      * @return mixed
      * @throws Zend_Json_Client_FaultException
      */
-    public function call($method, $params=array())
+    public function call($method, $params=[])
     {
         if (!$this->skipSystemLookup() && !empty($method)) {
             $signature = $this->getIntrospector()->getMethodSignature($method);

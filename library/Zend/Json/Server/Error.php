@@ -25,7 +25,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Json_Server_Error
+class Zend_Json_Server_Error implements \Stringable
 {
     const ERROR_PARSE           = -32768;
     const ERROR_INVALID_REQUEST = -32600;
@@ -190,7 +190,7 @@ class Zend_Json_Server_Error
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toJson();
     }

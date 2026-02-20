@@ -40,20 +40,18 @@ class Zend_Gdata_Books_Extension_Viewability extends Zend_Gdata_Extension
 
     protected $_rootNamespace = 'gbs';
     protected $_rootElement = 'viewability';
-    protected $_value = null;
 
     /**
      * Constructor for Zend_Gdata_Books_Extension_Viewability which
      * Describes a viewability
      *
-     * @param string|null $value A programmatic value representing the book's
+     * @param string|null $_value A programmatic value representing the book's
      *        viewability mode.
      */
-    public function __construct($value = null)
+    public function __construct(protected $_value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Books::$namespaces);
         parent::__construct();
-        $this->_value = $value;
     }
 
     /**

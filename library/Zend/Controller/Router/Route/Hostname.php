@@ -87,13 +87,6 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
     protected $_requirements = [];
 
     /**
-     * Default scheme
-     *
-     * @var string
-     */
-    protected $_scheme = null;
-
-    /**
      * Associative array filled on match() that holds matched path values
      * for given variable names.
      *
@@ -121,7 +114,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
      *
      * @param  Zend_Controller_Request_Abstract|null $request
      */
-    public function setRequest(Zend_Controller_Request_Abstract $request = null)
+    public function setRequest(?Zend_Controller_Request_Abstract $request = null)
     {
         $this->_request = $request;
     }
@@ -151,7 +144,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
     {
         $reqs   = ($config->reqs instanceof Zend_Config) ? $config->reqs->toArray() : [];
         $defs   = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : [];
-        $scheme = (isset($config->scheme)) ? $config->scheme : null;
+        $scheme = $config->scheme ?? null;
 
         return new self($config->route, $defs, $reqs, $scheme);
     }
@@ -164,20 +157,22 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
      * @param string $route    Map used to match with later submitted hostname
      * @param array  $defaults Defaults for map variables with keys as variable names
      * @param array  $reqs     Regular expression requirements for variables (keys as variable names)
-     * @param string $scheme
+     * @param string $_scheme
      */
-    public function __construct($route, $defaults = [], $reqs = [], $scheme = null)
+    public function __construct($route, $defaults = [], $reqs = [], /**
+     * Default scheme
+     */
+    protected $_scheme = null)
     {
         $route               = trim($route, '.');
         $this->_defaults     = (array) $defaults;
         $this->_requirements = (array) $reqs;
-        $this->_scheme       = $scheme;
 
         if ($route != '') {
             foreach (explode('.', $route) as $pos => $part) {
                 if (substr($part, 0, 1) == $this->_hostVariable) {
                     $name                   = substr($part, 1);
-                    $this->_parts[$pos]     = (isset($reqs[$name]) ? $reqs[$name] : $this->_defaultRegex);
+                    $this->_parts[$pos]     = ($reqs[$name] ?? $this->_defaultRegex);
                     $this->_variables[$pos] = $name;
                 } else {
                     $this->_parts[$pos] = $part;
@@ -225,7 +220,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
                     return false;
                 }
 
-                $name     = isset($this->_variables[$pos]) ? $this->_variables[$pos] : null;
+                $name     = $this->_variables[$pos] ?? null;
                 $hostPart = urldecode($hostPart);
 
                 // If it's a static part, match directly
@@ -287,7 +282,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
         $flag = false;
 
         foreach ($this->_parts as $key => $part) {
-            $name = isset($this->_variables[$key]) ? $this->_variables[$key] : null;
+            $name = $this->_variables[$key] ?? null;
 
             $useDefault = false;
             if (isset($name) && array_key_exists($name, $data) && $data[$name] === null) {
@@ -318,7 +313,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
                 || $partial
             ) {
                 if ($encode) {
-                    $value = urlencode($value);
+                    $value = urlencode((string) $value);
                 }
                 $return = '.' . $value . $return;
                 $flag   = true;
@@ -351,11 +346,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
      */
     public function getDefault($name)
     {
-        if (isset($this->_defaults[$name])) {
-            return $this->_defaults[$name];
-        }
-
-        return null;
+        return $this->_defaults[$name] ?? null;
     }
 
     /**

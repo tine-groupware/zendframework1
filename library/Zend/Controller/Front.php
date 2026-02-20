@@ -677,11 +677,7 @@ class Zend_Controller_Front
      */
     public function getParam($name)
     {
-        if(isset($this->_invokeParams[$name])) {
-            return $this->_invokeParams[$name];
-        }
-
-        return null;
+        return $this->_invokeParams[$name] ?? null;
     }
 
     /**
@@ -832,7 +828,7 @@ class Zend_Controller_Front
      * @param Zend_Controller_Response_Abstract|null $response
      * @return void|Zend_Controller_Response_Abstract Returns response object if returnResponse() is true
      */
-    public function dispatch(Zend_Controller_Request_Abstract $request = null, Zend_Controller_Response_Abstract $response = null)
+    public function dispatch(?Zend_Controller_Request_Abstract $request = null, ?Zend_Controller_Response_Abstract $response = null)
     {
         if (!$this->getParam('noErrorHandler') && !$this->_plugins->hasPlugin('Zend_Controller_Plugin_ErrorHandler')) {
             // Register with stack index of 100

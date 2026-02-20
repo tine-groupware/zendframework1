@@ -47,7 +47,7 @@ abstract class Zend_Session_Validator_Abstract implements Zend_Session_Validator
      */
     protected function setValidData($data)
     {
-        $validatorName = get_class($this);
+        $validatorName = static::class;
 
         $_SESSION['__ZF']['VALID'][$validatorName] = $data;
     }
@@ -61,11 +61,8 @@ abstract class Zend_Session_Validator_Abstract implements Zend_Session_Validator
      */
     protected function getValidData()
     {
-        $validatorName = get_class($this);
-        if (isset($_SESSION['__ZF']['VALID'][$validatorName])) {
-            return $_SESSION['__ZF']['VALID'][$validatorName];
-        }
-        return null;
+        $validatorName = static::class;
+        return $_SESSION['__ZF']['VALID'][$validatorName] ?? null;
     }
 
 }

@@ -103,7 +103,7 @@ class Zend_Tool_Project_Context_Zf_TestApplicationControllerFile extends Zend_To
         /* @var $controllerDirectoryResource Zend_Tool_Project_Profile_Resource */
         $controllerDirectoryResource = $this->_resource->getParentResource();
         if ($controllerDirectoryResource->getParentResource()->getName() == 'TestApplicationModuleDirectory') {
-            $className = $filter->filter(ucfirst($controllerDirectoryResource->getParentResource()->getForModuleName()))
+            $className = $filter->filter(ucfirst((string) $controllerDirectoryResource->getParentResource()->getForModuleName()))
                 . '_' . $className;
         }        
         

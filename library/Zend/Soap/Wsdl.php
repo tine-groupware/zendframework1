@@ -541,34 +541,20 @@ class Zend_Soap_Wsdl
      */
     public function getType($type)
     {
-        switch (strtolower($type)) {
-            case 'string':
-            case 'str':
-                return 'xsd:string';
-            case 'long':
-                return 'xsd:long';
-            case 'int':
-            case 'integer':
-                return 'xsd:int';
-            case 'float':
-                return 'xsd:float';
-            case 'double':
-                return 'xsd:double';
-            case 'boolean':
-            case 'bool':
-                return 'xsd:boolean';
-            case 'array':
-                return 'soap-enc:Array';
-            case 'object':
-                return 'xsd:struct';
-            case 'mixed':
-                return 'xsd:anyType';
-            case 'void':
-                return '';
-            default:
-                // delegate retrieval of complex type to current strategy
-                return $this->addComplexType($type);
-            }
+        return match (strtolower($type)) {
+            'string', 'str' => 'xsd:string',
+            'long' => 'xsd:long',
+            'int', 'integer' => 'xsd:int',
+            'float' => 'xsd:float',
+            'double' => 'xsd:double',
+            'boolean', 'bool' => 'xsd:boolean',
+            'array' => 'soap-enc:Array',
+            'object' => 'xsd:struct',
+            'mixed' => 'xsd:anyType',
+            'void' => '',
+            // delegate retrieval of complex type to current strategy
+            default => $this->addComplexType($type),
+        };
     }
 
     /**

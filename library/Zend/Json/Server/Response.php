@@ -27,8 +27,9 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Json_Server_Response
+class Zend_Json_Server_Response implements \Stringable
 {
+    public $_args;
     /**
      * Response error
      * @var null|Zend_Json_Server_Error
@@ -241,7 +242,7 @@ class Zend_Json_Server_Response
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->toJson();
     }

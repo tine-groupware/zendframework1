@@ -56,7 +56,7 @@ class Zend_Service_WindowsAzure_Management_AffinityGroupInstance
     {	        
         $this->_data = [
             'name'              => $name,
-            'label'             => base64_decode($label),
+            'label'             => base64_decode((string) $label),
             'description'       => $description,
             'location'          => $location,
             'hostedservices'    => $hostedServices,

@@ -48,7 +48,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @param  Zend_Queue|null $queue
      * @return void
      */
-    public function __construct($options, Zend_Queue $queue = null)
+    public function __construct($options, ?Zend_Queue $queue = null)
     {
         parent::__construct($options, $queue);
 
@@ -100,7 +100,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @return boolean
      * @throws Zend_Queue_Exception (not supported)
      */
-    public function isExists($name)
+    public function isExists($name): never
     {
         require_once 'Zend/Queue/Exception.php';
         throw new Zend_Queue_Exception('isExists() is not supported in this adapter');
@@ -114,10 +114,10 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @return void
      * @throws Zend_Queue_Exception
      */
-    public function create($name, $timeout=null)
+    public function create($name, $timeout=null): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception('create() is not supported in ' . get_class($this));
+        throw new Zend_Queue_Exception('create() is not supported in ' . static::class);
     }
 
     /**
@@ -127,10 +127,10 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @return void
      * @throws Zend_Queue_Exception
      */
-    public function delete($name)
+    public function delete($name): never
     {
         require_once 'Zend/Queue/Exception.php';
-        throw new Zend_Queue_Exception('delete() is not supported in ' . get_class($this));
+        throw new Zend_Queue_Exception('delete() is not supported in ' . static::class);
     }
 
     /**
@@ -139,7 +139,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @return void
      * @throws Zend_Queue_Exception
      */
-    public function getQueues()
+    public function getQueues(): never
     {
         require_once 'Zend/Queue/Exception.php';
         throw new Zend_Queue_Exception('getQueues() is not supported in this adapter');
@@ -151,7 +151,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @param  Zend_Queue|null $queue
      * @return integer
      */
-    public function count(Zend_Queue $queue = null)
+    public function count(?Zend_Queue $queue = null)
     {
         if ($queue !== null) {
             require_once 'Zend/Queue/Exception.php';
@@ -173,7 +173,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @return Zend_Queue_Message
      * @throws Zend_Queue_Exception
      */
-    public function send($message, Zend_Queue $queue = null)
+    public function send($message, ?Zend_Queue $queue = null)
     {
         if ($queue !== null) {
             require_once 'Zend/Queue/Exception.php';
@@ -217,7 +217,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      * @throws Zend_Queue_Exception
      * @return ArrayIterator
      */
-    public function receive($maxMessages = null, $timeout = null, Zend_Queue $queue = null)
+    public function receive($maxMessages = null, $timeout = null, ?Zend_Queue $queue = null)
     {
         if ($maxMessages === null) {
             $maxMessages = 1;
@@ -263,7 +263,7 @@ class Zend_Queue_Adapter_PlatformJobQueue extends Zend_Queue_Adapter_AdapterAbst
      */
     public function deleteMessage(Zend_Queue_Message $message)
     {
-        if (get_class($message) != $this->_queue->getMessageClass()) {
+        if ($message::class != $this->_queue->getMessageClass()) {
             require_once 'Zend/Queue/Exception.php';
             throw new Zend_Queue_Exception(
                 'Failed to remove job from the queue; only messages of type '

@@ -169,7 +169,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
      * @param array $options
      * @return void
      */
-    public function __construct($wsdl = null, array $options = null)
+    public function __construct($wsdl = null, ?array $options = null)
     {
         if (!extension_loaded('soap')) {
             require_once 'Zend/Soap/Server/Exception.php';
@@ -674,7 +674,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
      * @return void
      * @throws Zend_Soap_Server_Exception Unimplemented
      */
-    public function loadFunctions($definition)
+    public function loadFunctions($definition): never
     {
         require_once 'Zend/Soap/Server/Exception.php';
         throw new Zend_Soap_Server_Exception('Unimplemented');
@@ -824,7 +824,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
                 require_once 'Zend/Soap/Server/Proxy.php';
                 array_unshift($args, 'Zend_Soap_Server_Proxy');
             } 
-            call_user_func_array([$server, 'setClass'], $args);
+            call_user_func_array($server->setClass(...), $args);
         }
 
         if (!empty($this->_object)) {
@@ -919,7 +919,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
     {
         $displayErrorsOriginalState = ini_get('display_errors');
         ini_set('display_errors', false);
-        set_error_handler([$this, 'handlePhpErrors'], E_USER_ERROR);
+        set_error_handler($this->handlePhpErrors(...), E_USER_ERROR);
         return $displayErrorsOriginalState;
     }
 
@@ -979,7 +979,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
     public function fault($fault = null, $code = "Receiver")
     {
         if ($fault instanceof Exception) {
-            $class = get_class($fault);
+            $class = $fault::class;
             if (in_array($class, $this->_faultExceptions)) {
                 $message = $fault->getMessage();
                 $eCode   = $fault->getCode();
@@ -1015,7 +1015,7 @@ class Zend_Soap_Server implements Zend_Server_Interface
      * @return void
      * @throws SoapFault
      */
-    public function handlePhpErrors($errno, $errstr, $errfile = null, $errline = null, array $errcontext = null)
+    public function handlePhpErrors($errno, $errstr, $errfile = null, $errline = null, ?array $errcontext = null): never
     {
         throw $this->fault($errstr, "Receiver");
     }

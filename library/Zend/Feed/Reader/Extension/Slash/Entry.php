@@ -75,7 +75,7 @@ class Zend_Feed_Reader_Extension_Slash_Entry
         $hitParade    = [];
 
         if (!empty($stringParade)) {
-            $stringParade = explode(',', $stringParade);
+            $stringParade = explode(',', (string) $stringParade);
 
             foreach ($stringParade as $hit)
                 $hitParade[] = $hit + 0; //cast to integer

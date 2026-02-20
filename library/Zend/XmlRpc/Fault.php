@@ -39,7 +39,7 @@ require_once 'Zend/XmlRpc/Value.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_XmlRpc_Fault
+class Zend_XmlRpc_Fault implements \Stringable
 {
     /**
      * Fault code
@@ -264,7 +264,7 @@ class Zend_XmlRpc_Fault
         require_once 'Zend/XmlRpc/Exception.php';
         try {
             $isFault = $fault->loadXml($xml);
-        } catch (Zend_XmlRpc_Exception $e) {
+        } catch (Zend_XmlRpc_Exception) {
             $isFault = false;
         }
 
@@ -300,7 +300,7 @@ class Zend_XmlRpc_Fault
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->saveXML();
     }

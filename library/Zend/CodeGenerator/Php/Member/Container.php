@@ -34,21 +34,14 @@ class Zend_CodeGenerator_Php_Member_Container extends ArrayObject
      */
     const TYPE_PROPERTY = 'property';
     const TYPE_METHOD   = 'method';
-    /**#@-*/
-
-    /**
-     * @var const|string
-     */
-    protected $_type = self::TYPE_PROPERTY;
 
     /**
      * __construct()
      *
-     * @param const|string $type
+     * @param const|string $_type
      */
-    public function __construct($type = self::TYPE_PROPERTY)
+    public function __construct(protected $_type = self::TYPE_PROPERTY)
     {
-        $this->_type = $type;
         parent::__construct([], self::ARRAY_AS_PROPS);
     }
 

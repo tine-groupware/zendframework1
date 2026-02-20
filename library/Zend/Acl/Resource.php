@@ -32,7 +32,7 @@ require_once 'Zend/Acl/Resource/Interface.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Acl_Resource implements Zend_Acl_Resource_Interface
+class Zend_Acl_Resource implements Zend_Acl_Resource_Interface, \Stringable
 {
     /**
      * Unique id of Resource
@@ -67,7 +67,7 @@ class Zend_Acl_Resource implements Zend_Acl_Resource_Interface
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getResourceId();
     }

@@ -32,7 +32,7 @@ require_once 'Zend/Acl/Role/Interface.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Acl_Role implements Zend_Acl_Role_Interface
+class Zend_Acl_Role implements Zend_Acl_Role_Interface, \Stringable
 {
     /**
      * Unique id of Role
@@ -67,7 +67,7 @@ class Zend_Acl_Role implements Zend_Acl_Role_Interface
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getRoleId();
     }

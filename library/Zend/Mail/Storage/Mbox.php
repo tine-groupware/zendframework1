@@ -262,7 +262,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
 
         $line = fgets($file);
 
-        if (strpos($line, 'From ') === 0) {
+        if (str_starts_with($line, 'From ')) {
             $result = true;
         }
 
@@ -309,7 +309,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
         $messagePos = ['start' => ftell($this->_fh), 'separator' => 0, 'end' => 0];
 
         while (($line = fgets($this->_fh)) !== false) {
-            if (strpos($line, 'From ') === 0) {
+            if (str_starts_with($line, 'From ')) {
                 $messagePos['end'] = ftell($this->_fh) - strlen($line) - 2; // + newline
                 if (!$messagePos['separator']) {
                     $messagePos['separator'] = $messagePos['end'];
@@ -362,7 +362,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
-    public function removeMessage($id)
+    public function removeMessage($id): never
     {
         /**
          * @see Zend_Mail_Storage_Exception

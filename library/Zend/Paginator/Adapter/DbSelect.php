@@ -86,7 +86,7 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
     public function __construct(Zend_Db_Select $select)
     {
         $this->_select = $select;
-        $this->_cacheIdentifier = md5($select->assemble());
+        $this->_cacheIdentifier = md5((string) $select->assemble());
     }
 
     /**
@@ -130,7 +130,7 @@ class Zend_Paginator_Adapter_DbSelect implements Zend_Paginator_Adapter_Interfac
             $rowCountColumn = $this->_select->getAdapter()->foldCase(self::ROW_COUNT_COLUMN);
 
             // The select query can contain only one column, which should be the row count column
-            if (false === strpos($countColumnPart, $rowCountColumn)) {
+            if (!str_contains((string) $countColumnPart, $rowCountColumn)) {
                 /**
                  * @see Zend_Paginator_Exception
                  */

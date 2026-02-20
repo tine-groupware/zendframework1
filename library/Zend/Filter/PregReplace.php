@@ -165,10 +165,10 @@ class Zend_Filter_PregReplace implements Zend_Filter_Interface
     {
         if ($this->_matchPattern == null) {
             require_once 'Zend/Filter/Exception.php';
-            throw new Zend_Filter_Exception(get_class($this) . ' does not have a valid MatchPattern set.');
+            throw new Zend_Filter_Exception(static::class . ' does not have a valid MatchPattern set.');
         }
 
-        return preg_replace($this->_matchPattern, $this->_replacement, is_array($value) ? $value : (string)$value);
+        return preg_replace($this->_matchPattern, (string) $this->_replacement, is_array($value) ? $value : (string)$value);
     }
 
 }

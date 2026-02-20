@@ -117,7 +117,7 @@ class Zend_Log
      *
      * @param Zend_Log_Writer_Abstract|null  $writer  default writer
      */
-    public function __construct(Zend_Log_Writer_Abstract $writer = null)
+    public function __construct(?Zend_Log_Writer_Abstract $writer = null)
     {
         $r = new ReflectionClass($this);
         $this->_priorities = array_flip($r->getConstants());
@@ -151,7 +151,7 @@ class Zend_Log
             $class = $config['className'];
             unset($config['className']);
         } else {
-            $class = __CLASS__;
+            $class = self::class;
         }
 
         $log = new $class;
@@ -194,7 +194,7 @@ class Zend_Log
 
         if (!$writer instanceof Zend_Log_Writer_Abstract) {
             $writerName = is_object($writer)
-                        ? get_class($writer)
+                        ? $writer::class
                         : 'The specified writer';
             /** @see Zend_Log_Exception */
             require_once 'Zend/Log/Exception.php';
@@ -227,7 +227,7 @@ class Zend_Log
 
         if (!$filter instanceof Zend_Log_Filter_Interface) {
              $filterName = is_object($filter)
-                         ? get_class($filter)
+                         ? $filter::class
                          : 'The specified filter';
             /** @see Zend_Log_Exception */
             require_once 'Zend/Log/Exception.php';
@@ -250,7 +250,7 @@ class Zend_Log
 
         if (!$formatter instanceof Zend_Log_Formatter_Interface) {
              $formatterName = is_object($formatter)
-                         ? get_class($formatter)
+                         ? $formatter::class
                          : 'The specified formatter';
             /** @see Zend_Log_Exception */
             require_once 'Zend/Log/Exception.php';
@@ -282,7 +282,7 @@ class Zend_Log
             );
         }
 
-        $params    = isset($config[ $type .'Params' ]) ? $config[ $type .'Params' ] : [];
+        $params    = $config[ $type .'Params' ] ?? [];
         $className = $this->getClassName($config, $type, $namespace);
         if (!class_exists($className)) {
             require_once 'Zend/Loader.php';
@@ -324,12 +324,12 @@ class Zend_Log
         }
 
         // PHP >= 5.3.0 namespace given?
-        if (substr($namespace, -1) == '\\') {
+        if (str_ends_with((string) $namespace, '\\')) {
             return $namespace . $className;
         }
 
         // empty namespace given?
-        if (strlen($namespace) === 0) {
+        if (strlen((string) $namespace) === 0) {
             return $className;
         }
 
@@ -581,7 +581,7 @@ class Zend_Log
             return $this;
         }
 
-        $this->_origErrorHandler = set_error_handler([$this, 'errorHandler']);
+        $this->_origErrorHandler = set_error_handler($this->errorHandler(...));
 
         // Contruct a default map of phpErrors to Zend_Log priorities.
         // Some of the errors are uncatchable, but are included for completeness

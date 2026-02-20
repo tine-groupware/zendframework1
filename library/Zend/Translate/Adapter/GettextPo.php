@@ -34,15 +34,15 @@ require_once 'Zend/Translate/Adapter.php';
 class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
     // Internal variables
     private $_file        = false;
-    private $_adapterInfo = array();
-    private $_data        = array();
+    private $_adapterInfo = [];
+    private $_data        = [];
 
     /**
      * Generates the  adapter
      *
      * @param  array               $options  Options to set
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         parent::__construct($options);
     }
@@ -58,7 +58,7 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
      * @throws Zend_Translation_Exception
      * @return array
      */
-     protected function _loadTranslationData($filename, $locale, array $options = array())
+     protected function _loadTranslationData($filename, $locale, array $options = [])
     {
         if(is_array($filename))
         {
@@ -76,7 +76,7 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
             throw new Zend_Translate_Exception('unsupported file format');
         }
         
-        $this->_data = array();
+        $this->_data = [];
         $this->_file = @fopen($filename, 'rb');
         $header      = "";
         $id          = "";
@@ -92,7 +92,7 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
             if ($line == "\n" || $line == "\r\n") {
                 break;
              }
-            if (strpos($line, '"')=== 0){
+            if (str_starts_with($line, '"')){
                 $header = $header . "\n" . substr($line, 1, -4);
             }
         }
@@ -105,31 +105,31 @@ class Zend_Translate_Adapter_GettextPo extends Zend_Translate_Adapter {
         while ($line = fgets($this->_file)) {
             // fix for wrong calculate lenght only for windows format (CRLF)
             $line = str_replace("\r\n", "\n", $line);
-            if (strpos($line, 'msgid ')!== FALSE) {
+            if (str_contains($line, 'msgid ')) {
                 $id = substr($line, 7, -2);
                 $line = fgets($this->_file);
-                while (strpos($line, '"')=== 0){
+                while (str_starts_with($line, '"')){
                     $id = $id . substr($line, 1, -2);
                     $line = fgets($this->_file);
                 }
                 $this->_data[$locale][$id] = "";
             }
-            if(strpos($line, 'msgstr "')!== FALSE){
+            if(str_contains($line, 'msgstr "')){
                 $line = str_replace("\r\n", "\n", $line);
 		$line = str_replace("\n", "", $line);
                 $str = substr($line, 8, -1);
                 $line = fgets($this->_file);
-                while (strpos($line, '"')=== 0){
+                while (str_starts_with($line, '"')){
                     $str = $str . substr($line, 1, -2);
                     $line = fgets($this->_file);
                 }
                 $this->_data[$locale][$id] = $str;
             }
-            if(strpos($line, 'msgstr[')!== FALSE){
+            if(str_contains($line, 'msgstr[')){
                 $line = str_replace("\r\n", "\n", $line);
                 $str = substr($line, 11, -2);
                 $line = fgets($this->_file);
-                while (strpos($line, '"')=== 0){
+                while (str_starts_with($line, '"')){
                     $str = $str . substr($line, 1, -2);
                     $line = fgets($this->_file);
                 }

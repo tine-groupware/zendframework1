@@ -151,7 +151,7 @@ class Zend_Locale_Data
         // load locale file if not already in cache
         // needed for alias tag when referring to other locale
         if (empty(self::$_ldml[(string) $locale])) {
-            $filename = dirname(__FILE__) . '/Data/' . $locale . '.xml';
+            $filename = __DIR__ . '/Data/' . $locale . '.xml';
             if (!file_exists($filename)) {
                 require_once 'Zend/Locale/Exception.php';
                 throw new Zend_Locale_Exception("Missing locale file '$filename' for '$locale' locale.");
@@ -168,7 +168,7 @@ class Zend_Locale_Data
         if (!empty(self::$_ldml[(string) $locale])) {
             while ($tok !== false) {
                 $search .=  '/' . $tok;
-                if (strpos($search, '[@') !== false) {
+                if (str_contains($search, '[@')) {
                     while (strrpos($search, '[@') > strrpos($search, ']')) {
                         $tok = strtok('/');
                         if (empty($tok)) {
@@ -189,8 +189,8 @@ class Zend_Locale_Data
                     if ($newpath != '//ldml') {
                         // other path - parse to make real path
 
-                        while (substr($newpath,0,3) == '../') {
-                            $newpath = substr($newpath, 3);
+                        while (str_starts_with((string) $newpath, '../')) {
+                            $newpath = substr((string) $newpath, 3);
                             $search = substr($search, 0, strrpos($search, '/'));
                         }
 
@@ -242,7 +242,7 @@ class Zend_Locale_Data
         // 4. -> root
         if (($locale != 'root') && ($result)) {
             // Search for parent locale
-            if (false !== strpos($locale, '_')) {
+            if (str_contains($locale, '_')) {
                 $parentLocale = self::getContent($locale, 'parentlocale');
                 if ($parentLocale) {
                     $temp = self::_getFile($parentLocale, $path, $attribute, $value, $temp);
@@ -270,10 +270,10 @@ class Zend_Locale_Data
     {
         $ret = "001";
         foreach ($list as $key => $value) {
-            if (strpos($locale, '_') !== false) {
+            if (str_contains($locale, '_')) {
                 $locale = substr($locale, strpos($locale, '_') + 1);
             }
-            if (strpos($key, $locale) !== false) {
+            if (str_contains((string) $key, $locale)) {
                 $ret = $key;
                 break;
             }
@@ -722,7 +722,7 @@ class Zend_Locale_Data
                     $_temp += self::_getFile('supplementalData', '/supplementalData/territoryContainment/group[@type=\'' . $key . '\']', 'contains', $key);
                 }
                 foreach($_temp as $key => $found) {
-                    $_temp3 = explode(" ", $found);
+                    $_temp3 = explode(" ", (string) $found);
                     foreach($_temp3 as $found3) {
                         if (!isset($temp[$found3])) {
                             $temp[$found3] = (string) $key;
@@ -750,7 +750,7 @@ class Zend_Locale_Data
                     $_temp += self::_getFile('supplementalData', '/supplementalData/languageData/language[@type=\'' . $key . '\']', 'scripts', $key);
                 }
                 foreach($_temp as $key => $found) {
-                    $_temp3 = explode(" ", $found);
+                    $_temp3 = explode(" ", (string) $found);
                     foreach($_temp3 as $found3) {
                         if (empty($found3)) {
                             continue;
@@ -781,7 +781,7 @@ class Zend_Locale_Data
                     $_temp += self::_getFile('supplementalData', '/supplementalData/languageData/language[@type=\'' . $key . '\']', 'territories', $key);
                 }
                 foreach($_temp as $key => $found) {
-                    $_temp3 = explode(" ", $found);
+                    $_temp3 = explode(" ", (string) $found);
                     foreach($_temp3 as $found3) {
                         if (empty($found3)) {
                             continue;
@@ -1016,7 +1016,7 @@ class Zend_Locale_Data
                 unset($givenLocale);
                 $temp = self::_getFile('supplementalData', '/supplementalData/calendarPreferenceData/calendarPreference[contains(@territories,\'' . $territory . '\')]', 'ordering', 'ordering');
                 if (isset($temp['ordering'])) {
-                    list($temp) = explode(' ', $temp['ordering']);
+                    [$temp] = explode(' ', $temp['ordering']);
                 } else {
                     $temp = 'gregorian';
                 }
@@ -1307,7 +1307,7 @@ class Zend_Locale_Data
                 }
                 $temp = [];
                 foreach($_temp as $key => $found) {
-                    $_temp3 = explode(" ", $found);
+                    $_temp3 = explode(" ", (string) $found);
                     foreach($_temp3 as $found3) {
                         if ($found3 !== $value) {
                             continue;
@@ -1333,7 +1333,7 @@ class Zend_Locale_Data
                 }
                 $temp = [];
                 foreach($_temp as $key => $found) {
-                    $_temp3 = explode(" ", $found);
+                    $_temp3 = explode(" ", (string) $found);
                     foreach($_temp3 as $found3) {
                         if ($found3 !== $value) {
                             continue;
@@ -1359,7 +1359,7 @@ class Zend_Locale_Data
                 }
                 $temp = [];
                 foreach($_temp as $key => $found) {
-                    $_temp3 = explode(" ", $found);
+                    $_temp3 = explode(" ", (string) $found);
                     foreach($_temp3 as $found3) {
                         if ($found3 !== $value) {
                             continue;
@@ -1419,7 +1419,7 @@ class Zend_Locale_Data
                 }
                 $temp = [];
                 foreach($_temp as $key => $found) {
-                    $_temp3 = explode(" ", $found);
+                    $_temp3 = explode(" ", (string) $found);
                     foreach($_temp3 as $found3) {
                         if ($found3 !== $value) {
                             continue;
@@ -1575,7 +1575,7 @@ class Zend_Locale_Data
      */
     public static function disableCache($flag)
     {
-        self::$_cacheDisabled = (boolean) $flag;
+        self::$_cacheDisabled = (bool) $flag;
     }
 
     /**

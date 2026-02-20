@@ -59,7 +59,7 @@ class Zend_Validate_Barcode_Issn extends Zend_Validate_Barcode_AdapterAbstract
     public function checkChars($value)
     {
         if (strlen($value) !== 8) {
-            if (strpos($value, 'X') !== false) {
+            if (str_contains($value, 'X')) {
                 return false;
             }
         }

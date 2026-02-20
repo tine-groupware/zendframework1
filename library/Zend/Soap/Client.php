@@ -1030,9 +1030,9 @@ class Zend_Soap_Client
     {
         // Perform request as is
         if ($one_way == null) {
-            return call_user_func([$client,'SoapClient::__doRequest'], $request, $location, $action, $version);
+            return call_user_func($client->SoapClient::__doRequest(...), $request, $location, $action, $version);
         } else {
-            return call_user_func([$client,'SoapClient::__doRequest'], $request, $location, $action, $version, $one_way);
+            return call_user_func($client->SoapClient::__doRequest(...), $request, $location, $action, $version, $one_way);
         }
     }
 
@@ -1067,7 +1067,7 @@ class Zend_Soap_Client
         }
         unset($options['wsdl']);
 
-        $this->_soapClient = new Zend_Soap_Client_Common([$this, '_doRequest'], $wsdl, $options);
+        $this->_soapClient = new Zend_Soap_Client_Common($this->_doRequest(...), $wsdl, $options);
     }
 
 

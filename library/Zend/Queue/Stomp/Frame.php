@@ -181,9 +181,7 @@ class Zend_Queue_Stomp_Frame
             throw new Zend_Queue_Exception('$header is not a string');
         }
 
-        return isset($this->_headers[$header])
-            ? $this->_headers[$header]
-            : false;
+        return $this->_headers[$header] ?? false;
     }
 
     /**
@@ -195,9 +193,7 @@ class Zend_Queue_Stomp_Frame
      */
     public function getBody()
     {
-        return $this->_body === null
-            ? false
-            : $this->_body;
+        return $this->_body ?? false;
     }
 
     /**
@@ -229,9 +225,7 @@ class Zend_Queue_Stomp_Frame
      */
     public function getCommand()
     {
-        return $this->_command === null
-            ? false
-            : $this->_command;
+        return $this->_command ?? false;
     }
 
     /**
@@ -300,11 +294,11 @@ class Zend_Queue_Stomp_Frame
      * @see toFrame()
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         try {
             $return = $this->toFrame();
-        } catch (Zend_Queue_Exception $e) {
+        } catch (Zend_Queue_Exception) {
             $return = '';
         }
         return $return;
@@ -331,7 +325,7 @@ class Zend_Queue_Stomp_Frame
         // separate the headers and the body
         $match = self::EOL . self::EOL;
         if (preg_match('/' . $match . '/', $frame)) {
-            list ($header, $body) = explode($match, $frame, 2);
+            [$header, $body] = explode($match, $frame, 2);
         } else {
             $header = $frame;
         }
@@ -346,7 +340,7 @@ class Zend_Queue_Stomp_Frame
         // set each of the headers.
         foreach ($headers as $header) {
             if (strpos($header, ':') > 0) {
-                list($name, $value) = explode(':', $header, 2);
+                [$name, $value] = explode(':', $header, 2);
                 $this->setHeader($name, $value);
             }
         }
@@ -354,7 +348,7 @@ class Zend_Queue_Stomp_Frame
         // crop the body if content-length is present
         if ($this->getHeader(self::CONTENT_LENGTH) !== false ) {
             $length = (int) $this->getHeader(self::CONTENT_LENGTH);
-            $body   = substr($body, 0, $length);
+            $body   = substr((string) $body, 0, $length);
         }
 
         $this->setBody($body);

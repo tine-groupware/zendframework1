@@ -101,13 +101,6 @@ class Zend_Search_Lucene_Search_QueryToken
     public $type;
 
     /**
-     * Token text.
-     *
-     * @var integer
-     */
-    public $text;
-
-    /**
      * Token position within query.
      *
      * @var integer
@@ -121,21 +114,24 @@ class Zend_Search_Lucene_Search_QueryToken
      * @param integer $tokenCategory
      * @param string  $tokText
      * @param integer $position
+     * @param int $tokenText
      */
-    public function __construct($tokenCategory, $tokenText, $position)
+    public function __construct($tokenCategory, /**
+     * Token text.
+     */
+    public $text, $position)
     {
-        $this->text     = $tokenText;
         $this->position = $position + 1; // Start from 1
 
         switch ($tokenCategory) {
             case self::TC_WORD:
-                if (  strtolower($tokenText) == 'and') {
+                if (  strtolower($this->text) == 'and') {
                     $this->type = self::TT_AND_LEXEME;
-                } else if (strtolower($tokenText) == 'or') {
+                } else if (strtolower($this->text) == 'or') {
                     $this->type = self::TT_OR_LEXEME;
-                } else if (strtolower($tokenText) == 'not') {
+                } else if (strtolower($this->text) == 'not') {
                     $this->type = self::TT_NOT_LEXEME;
-                } else if (strtolower($tokenText) == 'to') {
+                } else if (strtolower($this->text) == 'to') {
                     $this->type = self::TT_TO_LEXEME;
                 } else {
                     $this->type = self::TT_WORD;
@@ -151,7 +147,7 @@ class Zend_Search_Lucene_Search_QueryToken
                 break;
 
             case self::TC_SYNTAX_ELEMENT:
-                switch ($tokenText) {
+                switch ($this->text) {
                     case ':':
                         $this->type = self::TT_FIELD_INDICATOR;
                         break;
@@ -210,7 +206,7 @@ class Zend_Search_Lucene_Search_QueryToken
 
                     default:
                         require_once 'Zend/Search/Lucene/Exception.php';
-                        throw new Zend_Search_Lucene_Exception('Unrecognized query syntax lexeme: \'' . $tokenText . '\'');
+                        throw new Zend_Search_Lucene_Exception('Unrecognized query syntax lexeme: \'' . $this->text . '\'');
                 }
                 break;
 

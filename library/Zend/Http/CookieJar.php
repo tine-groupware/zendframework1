@@ -259,7 +259,7 @@ class Zend_Http_CookieJar implements Countable, IteratorAggregate
                     break;
 
                 case self::COOKIE_STRING_CONCAT_STRICT:
-                    return rtrim(trim($cookie->__toString()), ';');
+                    return rtrim(trim((string) $cookie->__toString()), ';');
                     break;
 
                 case self::COOKIE_STRING_ARRAY:
@@ -300,23 +300,11 @@ class Zend_Http_CookieJar implements Countable, IteratorAggregate
             }
             return $ret;
         } elseif ($ptr instanceof Zend_Http_Cookie) {
-            switch ($ret_as) {
-                case self::COOKIE_STRING_ARRAY:
-                    return [$ptr->__toString()];
-                    break;
-
-                case self::COOKIE_STRING_CONCAT_STRICT:
-                    // break intentionally omitted
-
-                case self::COOKIE_STRING_CONCAT:
-                    return $ptr->__toString();
-                    break;
-
-                case self::COOKIE_OBJECT:
-                default:
-                    return [$ptr];
-                    break;
-            }
+            return match ($ret_as) {
+                self::COOKIE_STRING_ARRAY => [$ptr->__toString()],
+                self::COOKIE_STRING_CONCAT_STRICT, self::COOKIE_STRING_CONCAT => $ptr->__toString(),
+                default => [$ptr],
+            };
         }
 
         return null;

@@ -65,8 +65,8 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
 
             //encode into 5 bytes
             for ($j = 4; $j >= 0; $j--) {
-                $foo = (int) (($b / pow(85,$j)) + 33);
-                $b %= pow(85,$j);
+                $foo = (int) (($b / 85 ** $j) + 33);
+                $b %= 85 ** $j;
                 $output .= chr($foo);
             }
         }
@@ -86,8 +86,8 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
 
             //encode just $n + 1
             for ($j = 4; $j >= (4 - $n); $j--) {
-                $foo = (int) (($b / pow(85,$j)) + 33);
-                $b %= pow(85,$j);
+                $foo = (int) (($b / 85 ** $j) + 33);
+                $b %= 85 ** $j;
                 $output .= chr($foo);
             }
         }
@@ -119,7 +119,7 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
         $whiteSpace = ["\x00", "\x09", "\x0A", "\x0C", "\x0D", "\x20"];
         $data = str_replace($whiteSpace, '', $data);
 
-        if (substr($data, -2) != '~>') {
+        if (!str_ends_with($data, '~>')) {
             require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Invalid EOF marker');
             return '';
@@ -148,7 +148,7 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
             $value = 0;
 
             for ($j = 1; $j <= 5; $j++) {
-                $value += (($c[$j] - 33) * pow(85, (5 - $j)));
+                $value += (($c[$j] - 33) * 85 ** (5 - $j));
             }
 
             $output .= pack("N", $value);
@@ -169,7 +169,7 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
             $c = unpack('C5', $chunk);
 
             for ($j = 1; $j <= 5; $j++) {
-                $value += (($c[$j] - 33) * pow(85, (5 - $j)));
+                $value += (($c[$j] - 33) * 85 ** (5 - $j));
             }
 
             $foo = pack("N", $value);

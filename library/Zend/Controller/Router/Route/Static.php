@@ -96,7 +96,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     {
         if ($partial) {
             if ((empty($path) && empty($this->_route))
-                || (substr($path, 0, strlen($this->_route)) === $this->_route)
+                || (str_starts_with($path, (string) $this->_route))
             ) {
                 $this->setMatchedPath($this->_route);
 
@@ -130,11 +130,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      */
     public function getDefault($name)
     {
-        if (isset($this->_defaults[$name])) {
-            return $this->_defaults[$name];
-        }
-
-        return null;
+        return $this->_defaults[$name] ?? null;
     }
 
     /**

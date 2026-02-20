@@ -32,6 +32,7 @@ require_once 'Zend/Auth/Adapter/Http/Abstract.php';
  */
 class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
 {
+    public $_challenge;
     /**
      * Indicates that Unicode strings are supported for use in security buffer data.
      */
@@ -171,36 +172,36 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
      * 
      * @var array $messageNumber => array $buffer => location in hex string
      */
-    protected $_securityBufferMap = array(
-        1 => array(
+    protected $_securityBufferMap = [
+        1 => [
             self::BUFFER_DOMAIN       => 32,
             self::BUFFER_WORKSTATION  => 48
-        ),
-        2 => array(
+        ],
+        2 => [
             self::BUFFER_TARGETNAME   => 24,
             self::BUFFER_TARGETINFO   => 80
-        ),
-        3 => array(
+        ],
+        3 => [
             self::BUFFER_LMRESPONSE   =>  24,
             self::BUFFER_NTLMRESPONSE =>  40,
             self::BUFFER_TARGETNAME   =>  56,
             self::BUFFER_USERNAME     =>  72,
             self::BUFFER_WORKSTATION  =>  88,
             self::BUFFER_SESSIONKEY   => 104,
-        )
-    );
+        ]
+    ];
     
     /**
      * indicators in targetdata
      *  
      * @var array
      */
-    protected $_targetInfoBufferTypMap = array(
+    protected $_targetInfoBufferTypMap = [
         self::TARGETINFO_DOMAIN     => 2,
         self::TARGETINFO_SERVER     => 1,
         self::TARGETINFO_DNSDOMAIN  => 4,
         self::TARGETINFO_FQSERVER   => 3,
-    );
+    ];
     
     /**
      * @var Zend_Log
@@ -230,7 +231,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
     /**
      * @var array auth target info
      */
-    protected $_targetInfo = array();
+    protected $_targetInfo = [];
     
     /**
      * the constructor
@@ -238,7 +239,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
      * @param  array $config
      * @return void
      */
-    public function __construct(array $config = array())
+    public function __construct(array $config = [])
     {
         if ((isset($config['log']) || array_key_exists('log', $config)) && $config['log'] instanceof Zend_Log) {
             $this->_log = $config['log'];
@@ -290,7 +291,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
             return $this->_challengeClient();
         }
         
-        if (substr($authHeader, 0, 5) !== 'NTLM ') {
+        if (!str_starts_with($authHeader, 'NTLM ')) {
             /**
              * @see Zend_Auth_Adapter_Exception
              */
@@ -299,7 +300,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
         }
         
         $authMessage = base64_decode(substr($authHeader, 5));
-        if (substr($authMessage, 0, 7) != "NTLMSSP") {
+        if (!str_starts_with($authMessage, "NTLMSSP")) {
             /**
              * @see Zend_Auth_Adapter_Exception
              */
@@ -328,7 +329,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
         $offset = $this->_getMessageNumber() == 1 ? 24 : 120;
         $leFlags = substr($this->_ntlmMessage, $offset, 8);
         
-        $flags = $this->leHex2hex($leFlags);
+        $flags = static::leHex2hex($leFlags);
         
         return hexdec($flags);
     }
@@ -343,7 +344,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
             return $this->_clientInfo;
         } else {
             $clientFlags = $this->getClientFlags();
-            $this->_clientInfo = array();
+            $this->_clientInfo = [];
         }
         
         
@@ -360,11 +361,11 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
         
         // message 3 info
         if ($this->_getMessageNumber() == 3) {
-            $this->_clientInfo = array(
+            $this->_clientInfo = [
                 self::BUFFER_USERNAME => $this->_getBufferData(self::BUFFER_USERNAME),
                 self::BUFFER_WORKSTATION => $this->_getBufferData(self::BUFFER_WORKSTATION),
                 self::BUFFER_TARGETNAME => $this->_getBufferData(self::BUFFER_TARGETNAME),
-            );
+            ];
         }
         
         
@@ -441,7 +442,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
             throw new Zend_Auth_Adapter_Exception('Could not resolve shared secret');
         }
         
-        $NTLMv2hash = hash_hmac('md5', $this->toUTF16LE(strtoupper($userName) . $authTarget), $md4hash, TRUE);
+        $NTLMv2hash = hash_hmac('md5', static::toUTF16LE(strtoupper($userName) . $authTarget), $md4hash, TRUE);
         $blobHash = hash_hmac('md5', pack('H*', $this->_getChallenge()) . $clientBlob, $NTLMv2hash, TRUE);
         
         // destroy challenge
@@ -449,9 +450,9 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
             unset($this->getSession()->ntlmchallenge);
         }
         
-        $identity = new Zend_Auth_Adapter_Http_Ntlm_Identity(array(
+        $identity = new Zend_Auth_Adapter_Http_Ntlm_Identity([
             'ntlmData' => $this->_clientInfo
-        ));
+        ]);
         
         if ($clientBlobHash == $blobHash) {
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $identity);
@@ -471,10 +472,10 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
         // include identity from message 1
         return new Zend_Auth_Result(
             $result->getCode(),
-            new Zend_Auth_Adapter_Http_Ntlm_Identity(array(
+            new Zend_Auth_Adapter_Http_Ntlm_Identity([
                 'flags' => $this->getClientFlags(),
                 'ntlmData' => $this->getClientInfo()
-            )),
+            ]),
             $result->getMessages()
         );
     }
@@ -510,7 +511,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
         $targetInfoBuffer = $this->_getTargetInfoBuffer($this->_targetInfo);
         
         // todo: decide by serverFlags
-        $targetNameBuffer = bin2hex($this->toUTF16LE($this->_targetInfo[self::TARGETINFO_DOMAIN]));
+        $targetNameBuffer = bin2hex(static::toUTF16LE($this->_targetInfo[self::TARGETINFO_DOMAIN]));
         
         // base offset to first buffer
         $offset = 48;
@@ -561,7 +562,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
         }
         
         if (empty($session->ntlmchallenge)) {
-            $session->ntlmchallenge = $this->generateChallenge();
+            $session->ntlmchallenge = static::generateChallenge();
         }
         
         $this->_log->DEBUG("server challenge : {$session->ntlmchallenge}");
@@ -620,7 +621,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
      */
     protected function _getTargetInfoSubBuffer($type, $data)
     {
-        $utf16le = $this->toUTF16LE($data);
+        $utf16le = static::toUTF16LE($data);
         return bin2hex(pack('vv', $this->_targetInfoBufferTypMap[$type], strlen($utf16le)).$utf16le);
     }
     
@@ -667,7 +668,7 @@ class Zend_Auth_Adapter_Http_Ntlm extends Zend_Auth_Adapter_Http_Abstract
         
         $challenge = "";
         for ($i = 0; $i < $length*2; $i++) {
-            $challenge .= $hexVals[rand(0, 15)];
+            $challenge .= $hexVals[random_int(0, 15)];
         }
         
         return $challenge;

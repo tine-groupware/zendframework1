@@ -49,23 +49,18 @@ class Zend_Gdata_Gapps_Extension_EmailList extends Zend_Gdata_Extension
     protected $_rootElement = 'emailList';
 
     /**
-     * The name of the email list. This name is used as the email address
-     * for this list.
-     *
-     * @var string
-     */
-    protected $_name = null;
-
-    /**
      * Constructs a new Zend_Gdata_Gapps_Extension_EmailList object.
      *
-     * @param string $name (optional) The name to be used for this email list.
+     * @param string $_name (optional) The name to be used for this email list.
      */
-    public function __construct($name = null)
+    public function __construct(/**
+     * The name of the email list. This name is used as the email address
+     * for this list.
+     */
+    protected $_name = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Gapps::$namespaces);
         parent::__construct();
-        $this->_name = $name;
     }
 
     /**
@@ -136,7 +131,7 @@ class Zend_Gdata_Gapps_Extension_EmailList extends Zend_Gdata_Extension
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getName();
     }

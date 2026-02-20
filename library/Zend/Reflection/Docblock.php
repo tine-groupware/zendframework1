@@ -90,7 +90,7 @@ class Zend_Reflection_Docblock implements Reflector
      * @todo   What should this return?
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $str = "Docblock [ /* Docblock */ ] {".PHP_EOL.PHP_EOL;
         $str .= "  - Tags [".count($this->_tags)."] {".PHP_EOL;
@@ -120,7 +120,7 @@ class Zend_Reflection_Docblock implements Reflector
             }
             $docComment = $commentOrReflector->getDocComment();
 
-            $lineCount = substr_count($docComment, "\n");
+            $lineCount = substr_count((string) $docComment, "\n");
 
             $this->_startLine = $this->_reflector->getStartLine() - $lineCount - 1;
             $this->_endLine   = $this->_reflector->getStartLine() - 1;
@@ -129,7 +129,7 @@ class Zend_Reflection_Docblock implements Reflector
             $docComment = $commentOrReflector;
         } else {
             require_once 'Zend/Reflection/Exception.php';
-            throw new Zend_Reflection_Exception(get_class($this) . ' must have a (string) DocComment or a Reflector in the constructor');
+            throw new Zend_Reflection_Exception(static::class . ' must have a (string) DocComment or a Reflector in the constructor');
         }
 
         if ($docComment == '') {
@@ -256,7 +256,7 @@ class Zend_Reflection_Docblock implements Reflector
 
         // First remove doc block line starters
         $docComment = preg_replace('#[ \t]*(?:\/\*\*|\*\/|\*)?[ ]{0,1}(.*)?#', '$1', $docComment);
-        $docComment = ltrim($docComment, "\r\n"); // @todo should be changed to remove first and last empty line
+        $docComment = ltrim((string) $docComment, "\r\n"); // @todo should be changed to remove first and last empty line
 
         $this->_cleanDocComment = $docComment;
 
@@ -269,7 +269,7 @@ class Zend_Reflection_Docblock implements Reflector
 
             $matches = [];
 
-            if ((strpos($line, '@') === 0)
+            if ((str_starts_with($line, '@'))
                 && (preg_match('#^(@\w+.*?)(\n)(?:@|\r?\n|$)#s', $parsedDocComment, $matches))
             ) {
                 $this->_tags[] = Zend_Reflection_Docblock_Tag::factory($matches[1]);

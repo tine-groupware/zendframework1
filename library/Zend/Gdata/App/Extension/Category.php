@@ -39,16 +39,10 @@ class Zend_Gdata_App_Extension_Category extends Zend_Gdata_App_Extension
 {
 
     protected $_rootElement = 'category';
-    protected $_term = null;
-    protected $_scheme = null;
-    protected $_label = null;
 
-    public function __construct($term = null, $scheme = null, $label=null)
+    public function __construct(protected $_term = null, protected $_scheme = null, protected $_label=null)
     {
         parent::__construct();
-        $this->_term = $term;
-        $this->_scheme = $scheme;
-        $this->_label = $label;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

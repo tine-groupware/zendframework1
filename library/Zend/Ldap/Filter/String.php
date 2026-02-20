@@ -37,20 +37,17 @@ require_once 'Zend/Ldap/Filter/Abstract.php';
 class Zend_Ldap_Filter_String extends Zend_Ldap_Filter_Abstract
 {
     /**
-     * The filter.
-     *
-     * @var string
-     */
-    protected $_filter;
-
-    /**
      * Creates a Zend_Ldap_Filter_String.
      *
-     * @param string $filter
+     * @param string $_filter
      */
-    public function __construct($filter)
+    public function __construct(
+        /**
+         * The filter.
+         */
+        protected $_filter
+    )
     {
-        $this->_filter = $filter;
     }
 
     /**

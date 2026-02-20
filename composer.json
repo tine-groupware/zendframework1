@@ -4,7 +4,7 @@
   "type": "project",
   "license" : ["New BSD License"],
   "require": {
-    "php": ">=8.0"
+    "php": ">=8.2"
   },
   "autoload": {
     "psr-0": {
@@ -13,5 +13,12 @@
   },
   "config": {
     "vendor-dir": "."
+  },
+  "require-dev": {
+    "rector/rector": "^2.3"
+  },
+  "scripts": {
+    "rector:test": "bin/rector process --config .rector.php --dry-run",
+    "rector:fix": "bin/rector process --config .rector.php"
   }
 }

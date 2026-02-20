@@ -49,23 +49,17 @@ class Zend_Gdata_Extension_RecurrenceException extends Zend_Gdata_Extension
 {
 
     protected $_rootElement = 'recurrenceException';
-    protected $_specialized = null;
-    protected $_entryLink = null;
-    protected $_originalEvent = null;
 
     /**
      * Constructs a new Zend_Gdata_Extension_RecurrenceException object.
-     * @param bool $specialized (optional) Whether this is a specialized exception or not.
+     * @param bool $_specialized (optional) Whether this is a specialized exception or not.
      * @param Zend_Gdata_EntryLink (optional) An Event entry with details about the exception.
      * @param Zend_Gdata_OriginalEvent (optional) The origianl recurrent event this is an exeption to.
      */
-    public function __construct($specialized = null, $entryLink = null,
-            $originalEvent = null)
+    public function __construct(protected $_specialized = null, protected $_entryLink = null,
+            protected $_originalEvent = null)
     {
         parent::__construct();
-        $this->_specialized = $specialized;
-        $this->_entryLink = $entryLink;
-        $this->_originalEvent = $originalEvent;
     }
 
     /**

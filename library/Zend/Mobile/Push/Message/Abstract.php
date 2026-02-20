@@ -114,7 +114,7 @@ abstract class Zend_Mobile_Push_Message_Abstract implements Zend_Mobile_Push_Mes
     public function setOptions(array $options)
     {
         foreach ($options as $k => $v) {
-            $method = 'set' . ucwords($k);
+            $method = 'set' . ucwords((string) $k);
             if (!method_exists($this, $method)) {
                 throw new Zend_Mobile_Push_Message_Exception('The method "' . $method . "' does not exist.");
             }

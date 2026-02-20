@@ -347,7 +347,7 @@ class Zend_Controller_Action_HelperBroker
      */
     protected static function _normalizeHelperName($name)
     {
-        if (strpos($name, '_') !== false) {
+        if (str_contains($name, '_')) {
             $name = str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
         }
 

@@ -87,7 +87,7 @@ class Zend_Service_StrikeIron_Base
     public function __call($method, $params)
     {
         // prepare method name and parameters for soap call
-        list($method, $params) = $this->_transformCall($method, $params);
+        [$method, $params] = $this->_transformCall($method, $params);
         $params = isset($params[0]) ? [$params[0]] : [];
 
         // make soap call, capturing the result and output headers
@@ -98,7 +98,7 @@ class Zend_Service_StrikeIron_Base
                                                             $this->_options['headers'],
                                                             $this->_outputHeaders);
         } catch (Exception $e) {
-            $message = get_class($e) . ': ' . $e->getMessage();
+            $message = $e::class . ': ' . $e->getMessage();
             /**
              * @see Zend_Service_StrikeIron_Exception
              */

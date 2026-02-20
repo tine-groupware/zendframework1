@@ -181,7 +181,7 @@ class Zend_Oauth_Http_AccessToken extends Zend_Oauth_Http
     protected function _cleanParamsOfIllegalCustomParameters(array $params)
     {
         foreach ($params as $key=>$value) {
-            if (!preg_match("/^oauth_/", $key)) {
+            if (!preg_match("/^oauth_/", (string) $key)) {
                 unset($params[$key]);
             }
         }

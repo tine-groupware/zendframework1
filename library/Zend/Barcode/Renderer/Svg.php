@@ -362,17 +362,11 @@ class Zend_Barcode_Renderer_Svg extends Zend_Barcode_Renderer_RendererAbstract
         //$attributes['font-family'] = $font;
         $attributes['color'] = $color;
         $attributes['font-size'] = $size * 1.2;
-        switch ($alignment) {
-            case 'left':
-                $textAnchor = 'start';
-                break;
-            case 'right':
-                $textAnchor = 'end';
-                break;
-            case 'center':
-            default:
-                $textAnchor = 'middle';
-        }
+        $textAnchor = match ($alignment) {
+            'left' => 'start',
+            'right' => 'end',
+            default => 'middle',
+        };
         $attributes['style'] = 'text-anchor: ' . $textAnchor;
         $attributes['transform'] = 'rotate('
                                  . (- $orientation)

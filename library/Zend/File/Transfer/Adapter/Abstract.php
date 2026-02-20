@@ -255,7 +255,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
-        $type = strtoupper($type);
+        $type = strtoupper((string) $type);
         switch ($type) {
             case self::FILTER:
             case self::VALIDATE:
@@ -333,7 +333,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
     public function addValidator($validator, $breakChainOnFailure = false, $options = null, $files = null)
     {
         if ($validator instanceof Zend_Validate_Interface) {
-            $name = get_class($validator);
+            $name = $validator::class;
         } elseif (is_string($validator)) {
             $name      = $this->getPluginLoader(self::VALIDATE)->load($validator);
             $validator = new $name($options);
@@ -575,7 +575,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                         case 'ignoreNoFile' :
                         case 'useByteString' :
                         case 'detectInfos' :
-                            $this->_files[$key]['options'][$name] = (boolean) $value;
+                            $this->_files[$key]['options'][$name] = (bool) $value;
                             break;
 
                         default:
@@ -637,7 +637,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                 if (array_key_exists('destination', $content)) {
                     $checkit = $content['destination'];
                 } else {
-                    $checkit = dirname($content['tmp_name']);
+                    $checkit = dirname((string) $content['tmp_name']);
                 }
 
                 $checkit .= DIRECTORY_SEPARATOR . $content['name'];
@@ -750,7 +750,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
     public function addFilter($filter, $options = null, $files = null)
     {
         if ($filter instanceof Zend_Filter_Interface) {
-            $class = get_class($filter);
+            $class = $filter::class;
         } elseif (is_string($filter)) {
             $class  = $this->getPluginLoader(self::FILTER)->load($filter);
             $filter = new $class($options);
@@ -1356,8 +1356,8 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                     try {
                         $result = $filter->filter($this->getFileName($name));
 
-                        $this->_files[$name]['destination'] = dirname($result);
-                        $this->_files[$name]['name']        = basename($result);
+                        $this->_files[$name]['destination'] = dirname((string) $result);
+                        $this->_files[$name]['name']        = basename((string) $result);
                     } catch (Zend_Filter_Exception $e) {
                         $this->_messages += [$e->getMessage()];
                     }
@@ -1411,7 +1411,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
 
             if (empty($this->_tmpDir)) {
                 // Attemp to detect by creating a temporary file
-                $tempFile = tempnam(md5(uniqid(rand(), TRUE)), '');
+                $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), TRUE)), '');
                 if ($tempFile) {
                     $this->_tmpDir = realpath(dirname($tempFile));
                     unlink($tempFile);
@@ -1540,7 +1540,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
         }
 
         foreach (array_keys($this->_validators) as $test) {
-            if (preg_match('/' . preg_quote($name) . '$/i', $test)) {
+            if (preg_match('/' . preg_quote($name) . '$/i', (string) $test)) {
                 return $test;
             }
         }
@@ -1561,7 +1561,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
         }
 
         foreach (array_keys($this->_filters) as $test) {
-            if (preg_match('/' . preg_quote($name) . '$/i', $test)) {
+            if (preg_match('/' . preg_quote($name) . '$/i', (string) $test)) {
                 return $test;
             }
         }

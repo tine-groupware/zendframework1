@@ -28,6 +28,10 @@ require_once 'Zend/Cloud/Infrastructure/Adapter/AbstractAdapter.php';
 class Zend_Cloud_Infrastructure_Adapter_Ec2 extends Zend_Cloud_Infrastructure_Adapter_AbstractAdapter
 {
     /**
+     * @var bool
+     */
+    public $error;
+    /**
      * AWS constants
      */
     const AWS_ACCESS_KEY     = 'aws_accesskey';
@@ -296,7 +300,7 @@ class Zend_Cloud_Infrastructure_Adapter_Ec2 extends Zend_Cloud_Infrastructure_Ad
      * @param  string $id
      * @return boolean
      */ 
-    public function stopInstance($id)
+    public function stopInstance($id): never
     {
         require_once 'Zend/Cloud/Infrastructure/Exception.php';
         throw new Zend_Cloud_Infrastructure_Exception('The stopInstance method is not implemented in the adapter');
@@ -308,7 +312,7 @@ class Zend_Cloud_Infrastructure_Adapter_Ec2 extends Zend_Cloud_Infrastructure_Ad
      * @param  string $id
      * @return boolean
      */ 
-    public function startInstance($id)
+    public function startInstance($id): never
     {
         require_once 'Zend/Cloud/Infrastructure/Exception.php';
         throw new Zend_Cloud_Infrastructure_Exception('The startInstance method is not implemented in the adapter');
@@ -342,14 +346,10 @@ class Zend_Cloud_Infrastructure_Adapter_Ec2 extends Zend_Cloud_Infrastructure_Ad
         $images = [];
 
         foreach ($this->adapterResult as $result) {
-            switch (strtolower($result['platform'])) {
-                case 'windows' :
-                    $platform = Zend_Cloud_Infrastructure_Image::IMAGE_WINDOWS;
-                    break;
-                default:
-                    $platform = Zend_Cloud_Infrastructure_Image::IMAGE_LINUX;
-                    break;
-            }
+            $platform = match (strtolower((string) $result['platform'])) {
+                'windows' => Zend_Cloud_Infrastructure_Image::IMAGE_WINDOWS,
+                default => Zend_Cloud_Infrastructure_Image::IMAGE_LINUX,
+            };
 
             $images[]= [
                 Zend_Cloud_Infrastructure_Image::IMAGE_ID           => $result['imageId'],
@@ -377,7 +377,7 @@ class Zend_Cloud_Infrastructure_Adapter_Ec2 extends Zend_Cloud_Infrastructure_Ad
 
         $zones = [];
         foreach ($this->adapterResult as $zone) {
-            if (strtolower($zone['zoneState']) === 'available') {
+            if (strtolower((string) $zone['zoneState']) === 'available') {
                 $zones[] = [
                     Zend_Cloud_Infrastructure_Instance::INSTANCE_ZONE => $zone['zoneName'],
                 ];

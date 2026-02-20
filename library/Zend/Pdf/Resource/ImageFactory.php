@@ -37,7 +37,7 @@ class Zend_Pdf_Resource_ImageFactory
             require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception("Cannot create image resource. File not found.");
         }
-        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        $extension = pathinfo((string) $filename, PATHINFO_EXTENSION);
         /*
          * There are plans to use Zend_Mime and not file extension. In the mean time, if you need to
          * use an alternate file extension just spin up the right processor directly.

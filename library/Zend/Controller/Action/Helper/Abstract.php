@@ -52,7 +52,7 @@ abstract class Zend_Controller_Action_Helper_Abstract
      * @param  Zend_Controller_Action $actionController
      * @return Zend_Controller_ActionHelper_Abstract Provides a fluent interface
      */
-    public function setActionController(Zend_Controller_Action $actionController = null)
+    public function setActionController(?Zend_Controller_Action $actionController = null)
     {
         $this->_actionController = $actionController;
         return $this;
@@ -142,11 +142,11 @@ abstract class Zend_Controller_Action_Helper_Abstract
      */
     public function getName()
     {
-        $fullClassName = get_class($this);
-        if (strpos($fullClassName, '_') !== false) {
+        $fullClassName = static::class;
+        if (str_contains($fullClassName, '_')) {
             $helperName = strrchr($fullClassName, '_');
             return ltrim($helperName, '_');
-        } elseif (strpos($fullClassName, '\\') !== false) {
+        } elseif (str_contains($fullClassName, '\\')) {
             $helperName = strrchr($fullClassName, '\\');
             return ltrim($helperName, '\\');
         } else {

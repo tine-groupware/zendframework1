@@ -44,7 +44,7 @@ require_once 'Zend/Uri/Http.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Http_Cookie
+class Zend_Http_Cookie implements \Stringable
 {
     /**
      * Cookie name
@@ -82,13 +82,6 @@ class Zend_Http_Cookie
     protected $path;
 
     /**
-     * Whether the cookie is secure or not
-     *
-     * @var boolean
-     */
-    protected $secure;
-
-    /**
      * Whether the cookie value has been encoded/decoded
      *
      * @var boolean
@@ -107,7 +100,10 @@ class Zend_Http_Cookie
      * @param string $path
      * @param bool $secure
      */
-    public function __construct($name, $value, $domain, $expires = null, $path = null, $secure = false)
+    public function __construct($name, $value, $domain, $expires = null, $path = null, /**
+     * Whether the cookie is secure or not
+     */
+    protected $secure = false)
     {
         if (preg_match("/[=,; \t\r\n\013\014]/", $name)) {
             require_once 'Zend/Http/Exception.php';
@@ -126,8 +122,7 @@ class Zend_Http_Cookie
 
         $this->value = (string) $value;
         $this->expires = ($expires === null ? null : (int) $expires);
-        $this->path = ($path ? $path : '/');
-        $this->secure = $secure;
+        $this->path = ($path ?: '/');
     }
 
     /**
@@ -263,7 +258,7 @@ class Zend_Http_Cookie
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if ($this->encodeValue) {
             // bugfix to make Asterisk happy
@@ -301,10 +296,10 @@ class Zend_Http_Cookie
         $parts   = explode(';', $cookieStr);
 
         // If first part does not include '=', fail
-        if (strpos($parts[0], '=') === false) return false;
+        if (!str_contains($parts[0], '=')) return false;
 
         // Get the name and value of the cookie
-        list($name, $value) = explode('=', trim(array_shift($parts)), 2);
+        [$name, $value] = explode('=', trim(array_shift($parts)), 2);
         $name  = trim($name);
         if ($encodeValue) {
             $value = urldecode(trim($value));
@@ -328,7 +323,7 @@ class Zend_Http_Cookie
             $keyValue = explode('=', $part, 2);
 
             if (count($keyValue) === 2) {
-                list($k, $v) = $keyValue;
+                [$k, $v] = $keyValue;
                 switch (strtolower($k))    {
                     case 'expires':
                         if(($expires = strtotime($v)) === false) {
@@ -424,6 +419,6 @@ class Zend_Http_Cookie
             throw new Zend_Http_Exception("\$path is expected to be a host name");
         }
 
-        return (strpos($path, $cookiePath) === 0);
+        return (str_starts_with($path, $cookiePath));
     }
 }

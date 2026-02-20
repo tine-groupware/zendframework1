@@ -48,11 +48,6 @@ class Zend_Service_Amazon
     /**
      * @var string
      */
-    protected $_secretKey = null;
-
-    /**
-     * @var string
-     */
     protected $_baseUri = null;
 
     /**
@@ -82,11 +77,11 @@ class Zend_Service_Amazon
      * @param  string $countryCode Country code for Amazon service; may be US, UK, DE, JP, FR, CA
      * @throws Zend_Service_Exception
      * @return Zend_Service_Amazon
+     * @param string $secretKey
      */
-    public function __construct($appId, $countryCode = 'US', $secretKey = null)
+    public function __construct($appId, $countryCode = 'US', protected $_secretKey = null)
     {
         $this->appId = (string) $appId;
-        $this->_secretKey = $secretKey;
 
         $countryCode = (string) $countryCode;
         if (!isset($this->_baseUriList[$countryCode])) {
@@ -285,7 +280,7 @@ class Zend_Service_Amazon
         ksort($options);
         $params = [];
         foreach($options AS $k => $v) {
-            $params[] = $k."=".rawurlencode($v);
+            $params[] = $k."=".rawurlencode((string) $v);
         }
 
         return sprintf("GET\n%s\n/onca/xml\n%s",

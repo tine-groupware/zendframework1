@@ -105,8 +105,8 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
         // Parse other options
         if (!empty($options[self::PROXY_HOST])) {
             $proxyHost = $options[self::PROXY_HOST];
-            $proxyPort = isset($options[self::PROXY_PORT]) ? $options[self::PROXY_PORT] : 8080;
-            $proxyCredentials = isset($options[self::PROXY_CREDENTIALS]) ? $options[self::PROXY_CREDENTIALS] : '';
+            $proxyPort = $options[self::PROXY_PORT] ?? 8080;
+            $proxyCredentials = $options[self::PROXY_CREDENTIALS] ?? '';
 
             $this->_storageClient->setProxy(true, $proxyHost, $proxyPort, $proxyCredentials);
         }
@@ -161,7 +161,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
                 $returnPath
             );
         } catch (Zend_Service_WindowsAzure_Exception $e) {
-            if (strpos($e->getMessage(), "does not exist") !== false) {
+            if (str_contains($e->getMessage(), "does not exist")) {
                 return false;
             }
             throw new Zend_Cloud_StorageService_Exception('Error on fetch: '.$e->getMessage(), $e->getCode(), $e);
@@ -373,7 +373,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
                 $path
             );
         } catch (Zend_Service_WindowsAzure_Exception $e) {
-            if (strpos($e->getMessage(), "could not be accessed") !== false) {
+            if (str_contains($e->getMessage(), "could not be accessed")) {
                 return false;
             }
             throw new Zend_Cloud_StorageService_Exception('Error on fetch: '.$e->getMessage(), $e->getCode(), $e);
@@ -394,7 +394,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
         try    {
             $this->_storageClient->setBlobMetadata($this->_container, $destinationPath, $metadata);
         } catch (Zend_Service_WindowsAzure_Exception $e) {
-            if (strpos($e->getMessage(), "could not be accessed") === false) {
+            if (!str_contains($e->getMessage(), "could not be accessed")) {
                 throw new Zend_Cloud_StorageService_Exception('Error on store metadata: '.$e->getMessage(), $e->getCode(), $e);
             }
         }
@@ -412,7 +412,7 @@ class Zend_Cloud_StorageService_Adapter_WindowsAzure
         try {
             $this->_storageClient->setBlobMetadata($this->_container, $destinationPath, []);
         } catch (Zend_Service_WindowsAzure_Exception $e) {
-            if (strpos($e->getMessage(), "could not be accessed") === false) {
+            if (!str_contains($e->getMessage(), "could not be accessed")) {
                 throw new Zend_Cloud_StorageService_Exception('Error on delete metadata: '.$e->getMessage(), $e->getCode(), $e);
             }
         }

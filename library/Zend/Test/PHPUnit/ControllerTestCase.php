@@ -103,16 +103,12 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
      */
     public function __get($name)
     {
-        switch ($name) {
-            case 'request':
-                return $this->getRequest();
-            case 'response':
-                return $this->getResponse();
-            case 'frontController':
-                return $this->getFrontController();
-        }
-
-        return null;
+        return match ($name) {
+            'request' => $this->getRequest(),
+            'response' => $this->getResponse(),
+            'frontController' => $this->getFrontController(),
+            default => null,
+        };
     }
 
     /**
@@ -225,7 +221,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
         $registry = Zend_Registry::getInstance();
         $remove   = [];
         foreach ($registry as $key => $value) {
-            if (strstr($key, '_View_')) {
+            if (strstr((string) $key, '_View_')) {
                 $remove[] = $key;
             }
         }

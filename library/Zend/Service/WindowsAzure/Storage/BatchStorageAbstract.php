@@ -48,7 +48,7 @@ abstract class Zend_Service_WindowsAzure_Storage_BatchStorageAbstract
      * @param Zend_Service_WindowsAzure_Storage_Batch $batch Current batch
      * @throws Zend_Service_WindowsAzure_Exception
      */
-    public function setCurrentBatch(Zend_Service_WindowsAzure_Storage_Batch $batch = null)
+    public function setCurrentBatch(?Zend_Service_WindowsAzure_Storage_Batch $batch = null)
     {
         if (!is_null($batch) && $this->isInBatch()) {
 			require_once 'Zend/Service/WindowsAzure/Exception.php';
@@ -165,7 +165,7 @@ abstract class Zend_Service_WindowsAzure_Storage_BatchStorageAbstract
 		
 		// Execute request
         return $this->_retryPolicy->execute(
-		    [$this->_httpClientChannel, 'request'],
+		    $this->_httpClientChannel->request(...),
 		    [$httpVerb]
 		);
 	}

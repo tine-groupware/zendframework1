@@ -56,7 +56,7 @@ class Zend_Ldap_Attribute
     {
         $attribName = strtolower($attribName);
         $valArray = [];
-        if (is_array($value) || ($value instanceof Traversable))
+        if (is_iterable($value))
         {
             foreach ($value as $v)
             {
@@ -209,7 +209,7 @@ class Zend_Ldap_Attribute
             } else {
                 return $return;
             }
-        } catch (InvalidArgumentException $e) {
+        } catch (InvalidArgumentException) {
             return $value;
         }
     }
@@ -350,7 +350,7 @@ class Zend_Ldap_Attribute
         $append = false)
     {
         $convertedValues = [];
-        if (is_array($value) || ($value instanceof Traversable))
+        if (is_iterable($value))
         {
             foreach ($value as $v) {
                 $v = self::_valueToLdapDateTime($v, $utc);
@@ -412,7 +412,7 @@ class Zend_Ldap_Attribute
         } else if (is_string($value)) {
             try {
                 return Zend_Ldap_Converter::fromLdapDateTime($value, false)->format('U');
-            } catch (InvalidArgumentException $e) {
+            } catch (InvalidArgumentException) {
                 return null;
             }
         } else return null;

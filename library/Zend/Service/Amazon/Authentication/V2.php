@@ -114,16 +114,16 @@ class Zend_Service_Amazon_Authentication_V2 extends Zend_Service_Amazon_Authenti
     protected function _signParameters($url, array &$paramaters)
     {
         $data = $this->_httpMethod . "\n";
-        $data .= parse_url($url, PHP_URL_HOST) . "\n";
-        $data .= ('' == $path = parse_url($url, PHP_URL_PATH)) ? '/' : $path;
+        $data .= parse_url((string) $url, PHP_URL_HOST) . "\n";
+        $data .= ('' == $path = parse_url((string) $url, PHP_URL_PATH)) ? '/' : $path;
         $data .= "\n";
 
-        uksort($paramaters, 'strcmp');
+        uksort($paramaters, strcmp(...));
         unset($paramaters['Signature']);
 
         $arrData = [];
         foreach($paramaters as $key => $value) {
-            $arrData[] = $key . '=' . str_replace('%7E', '~', rawurlencode($value));
+            $arrData[] = $key . '=' . str_replace('%7E', '~', rawurlencode((string) $value));
         }
 
         $data .= implode('&', $arrData);

@@ -39,23 +39,11 @@ class Zend_Gdata_App_Extension_Link extends Zend_Gdata_App_Extension
 {
 
     protected $_rootElement = 'link';
-    protected $_href = null;
-    protected $_rel = null;
-    protected $_type = null;
-    protected $_hrefLang = null;
-    protected $_title = null;
-    protected $_length = null;
 
-    public function __construct($href = null, $rel = null, $type = null,
-            $hrefLang = null, $title = null, $length = null)
+    public function __construct(protected $_href = null, protected $_rel = null, protected $_type = null,
+            protected $_hrefLang = null, protected $_title = null, protected $_length = null)
     {
         parent::__construct();
-        $this->_href = $href;
-        $this->_rel = $rel;
-        $this->_type = $type;
-        $this->_hrefLang = $hrefLang;
-        $this->_title = $title;
-        $this->_length = $length;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

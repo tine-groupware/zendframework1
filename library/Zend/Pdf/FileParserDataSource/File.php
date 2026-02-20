@@ -159,7 +159,7 @@ class Zend_Pdf_FileParserDataSource_File extends Zend_Pdf_FileParserDataSource
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->_filePath;
     }

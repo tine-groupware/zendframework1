@@ -132,12 +132,9 @@ class Zend_Form_Decorator_File
 
         $markup = implode($separator, $markup);
 
-        switch ($placement) {
-            case self::PREPEND:
-                return $markup . $separator . $content;
-            case self::APPEND:
-            default:
-                return $content . $separator . $markup;
-        }
+        return match ($placement) {
+            self::PREPEND => $markup . $separator . $content,
+            default => $content . $separator . $markup,
+        };
     }
 }

@@ -45,7 +45,7 @@ require_once 'Zend/Xml/Exception.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version $Id$
  */
-class Zend_XmlRpc_Response
+class Zend_XmlRpc_Response implements \Stringable
 {
     /**
      * Return value
@@ -213,7 +213,7 @@ class Zend_XmlRpc_Response
             }
             $valueXml = $xml->params->param->value->asXML();
             $value = Zend_XmlRpc_Value::getXmlRpcValue($valueXml, Zend_XmlRpc_Value::XML_STRING);
-        } catch (Zend_XmlRpc_Value_Exception $e) {
+        } catch (Zend_XmlRpc_Value_Exception) {
             $this->_fault = new Zend_XmlRpc_Fault(653);
             $this->_fault->setEncoding($this->getEncoding());
             return false;
@@ -248,7 +248,7 @@ class Zend_XmlRpc_Response
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->saveXML();
     }

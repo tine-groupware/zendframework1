@@ -42,21 +42,19 @@ require_once 'Zend/Gdata/Extension.php';
  */
 class Zend_Gdata_Spreadsheets_Extension_Custom extends Zend_Gdata_Extension
 {
-    // custom elements have custom names.
-    protected $_rootElement = null; // The name of the column
+    // The name of the column
     protected $_rootNamespace = 'gsx';
 
     /**
      * Constructs a new Zend_Gdata_Spreadsheets_Extension_Custom object.
-     * @param string $column (optional) The column/tag name of the element.
+     * @param string $_rootElement (optional) The column/tag name of the element.
      * @param string $value (optional) The text content of the element.
      */
-    public function __construct($column = null, $value = null)
+    public function __construct(protected $_rootElement = null, $value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Spreadsheets::$namespaces);
         parent::__construct();
         $this->_text = $value;
-        $this->_rootElement = $column;
     }
 
     public function getDOM($doc = null, $majorVersion = 1, $minorVersion = null)

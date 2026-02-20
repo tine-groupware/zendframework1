@@ -144,7 +144,7 @@ class Zend_Service_Flickr
      * @return Zend_Service_Flickr_ResultSet
      * @throws Zend_Service_Exception
      */
-    public function userSearch($query, array $options = null)
+    public function userSearch($query, ?array $options = null)
     {
         static $method = 'flickr.people.getPublicPhotos';
         static $defaultOptions = ['per_page' => 10,
@@ -437,7 +437,7 @@ class Zend_Service_Flickr
 
         // validate extras, which are delivered in csv format
         if ($options['extras']) {
-            $extras = explode(',', $options['extras']);
+            $extras = explode(',', (string) $options['extras']);
             $validExtras = ['license', 'date_upload', 'date_taken', 'owner_name', 'icon_server'];
             foreach($extras as $extra) {
                 /**
@@ -495,7 +495,7 @@ class Zend_Service_Flickr
 
         // validate extras, which are delivered in csv format
         if ($options['extras']) {
-            $extras = explode(',', $options['extras']);
+            $extras = explode(',', (string) $options['extras']);
             $validExtras = ['license', 'date_upload', 'date_taken', 'owner_name', 'icon_server'];
             foreach($extras as $extra) {
                 /**

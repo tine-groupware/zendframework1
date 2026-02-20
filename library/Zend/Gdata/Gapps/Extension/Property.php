@@ -47,30 +47,21 @@ class Zend_Gdata_Gapps_Extension_Property extends Zend_Gdata_Extension
     protected $_rootElement = 'property';
 
     /**
-     * The name of the property
-     *
-     * @var string
-     */
-    protected $_name = null;
-
-    /**
-     * The value of the property
-     * @var string
-     */
-    protected $_value = null;
-
-    /**
      * Constructs a new Zend_Gdata_Gapps_Extension_Property object.
      *
-     * @param string $name The name of the property
-     * @param string $value The value of the property
+     * @param string $_name The name of the property
+     * @param string $_value The value of the property
      */
-    public function __construct($name = null, $value = null)
+    public function __construct(/**
+     * The name of the property
+     */
+    protected $_name = null, /**
+     * The value of the property
+     */
+    protected $_value = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Gapps::$namespaces);
         parent::__construct();
-        $this->_name = $name;
-        $this->_value = $value;
 
     }
 
@@ -171,7 +162,7 @@ class Zend_Gdata_Gapps_Extension_Property extends Zend_Gdata_Extension
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return "Property Name: " . $this->getName() .
                "\nProperty Value: " . $this->getValue();

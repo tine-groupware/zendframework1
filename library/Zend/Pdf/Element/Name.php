@@ -51,7 +51,7 @@ class Zend_Pdf_Element_Name extends Zend_Pdf_Element
     public function __construct($val)
     {
         settype($val, 'string');
-        if (strpos($val,"\x00") !== false) {
+        if (str_contains($val,"\x00")) {
             require_once 'Zend/Pdf/Exception.php';
             throw new Zend_Pdf_Exception('Null character is not allowed in PDF Names');
         }

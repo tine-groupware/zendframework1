@@ -111,13 +111,6 @@ class Zend_Gdata_Gapps extends Zend_Gdata
     const APPS_EMAIL_LIST_RECIPIENT_POSTFIX = '/recipient';
 
     /**
-     * The domain which is being administered via the Provisioning API.
-     *
-     * @var string
-     */
-    protected $_domain = null;
-
-    /**
      * Namespaces used for Zend_Gdata_Gapps
      *
      * @var array
@@ -131,17 +124,19 @@ class Zend_Gdata_Gapps extends Zend_Gdata
      *
      * @param Zend_Http_Client $client (optional) The HTTP client to use when
      *          when communicating with the Google Apps servers.
-     * @param string $domain (optional) The Google Apps domain which is to be
+     * @param string $_domain (optional) The Google Apps domain which is to be
      *          accessed.
      * @param string $applicationId The identity of the app in the form of Company-AppName-Version
      */
-    public function __construct($client = null, $domain = null, $applicationId = 'MyCompany-MyApp-1.0')
+    public function __construct($client = null, /**
+     * The domain which is being administered via the Provisioning API.
+     */
+    protected $_domain = null, $applicationId = 'MyCompany-MyApp-1.0')
     {
         $this->registerPackage('Zend_Gdata_Gapps');
         $this->registerPackage('Zend_Gdata_Gapps_Extension');
         parent::__construct($client, $applicationId);
         $this->_httpClient->setParameterPost('service', self::AUTH_SERVICE_NAME);
-        $this->_domain = $domain;
     }
 
     /**
@@ -171,7 +166,7 @@ class Zend_Gdata_Gapps extends Zend_Gdata
             $error = new Zend_Gdata_Gapps_ServiceException();
             $error->importFromString($response->getBody());
             throw $error;
-        } catch (Zend_Gdata_App_Exception $e2) {
+        } catch (Zend_Gdata_App_Exception) {
             // Unable to convert the response to a ServiceException,
             // most likely because the server didn't return an
             // AppsForYourDomainErrors document. Throw the original
@@ -869,7 +864,7 @@ class Zend_Gdata_Gapps extends Zend_Gdata
                      }
                      $foundClassName = $name . '_' . $class;
                      break;
-                 } catch (Zend_Exception $e) {
+                 } catch (Zend_Exception) {
                      // package wasn't here- continue searching
                  }
             }
@@ -881,7 +876,7 @@ class Zend_Gdata_Gapps extends Zend_Gdata
             } else {
                 require_once 'Zend/Gdata/App/Exception.php';
                 throw new Zend_Gdata_App_Exception(
-                        "Unable to find '${class}' in registered packages");
+                        "Unable to find '{$class}' in registered packages");
             }
         } else {
             return parent::__call($method, $args);
@@ -1276,7 +1271,7 @@ class Zend_Gdata_Gapps extends Zend_Gdata
         //if the enitiy is not a member, an exception is thrown
         try {
             $results = $this->get($uri);
-        } catch (Exception $e) {
+        } catch (Exception) {
             $results = false;
         }
 
@@ -1390,7 +1385,7 @@ class Zend_Gdata_Gapps extends Zend_Gdata
         //if the enitiy is not an owner of the group, an exception is thrown
         try {
             $results = $this->get($uri);
-        } catch (Exception $e) {
+        } catch (Exception) {
             $results = false;
         }
 

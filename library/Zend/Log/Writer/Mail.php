@@ -123,7 +123,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      * @param  Zend_Layout $layout Layout instance; optional
      * @return void
      */
-    public function __construct(Zend_Mail $mail, Zend_Layout $layout = null)
+    public function __construct(Zend_Mail $mail, ?Zend_Layout $layout = null)
     {
         $this->_mail = $mail;
         if (null !== $layout) {
@@ -391,7 +391,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                         "unable to set html body for message; " .
                         "message = {$e->getMessage()}; " .
                         "code = {$e->getCode()}; " .
-                        "exception class = " . get_class($e),
+                        "exception class = " . $e::class,
                     E_USER_NOTICE);
             }
         }
@@ -406,7 +406,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                 "unable to send log entries via email; " .
                     "message = {$e->getMessage()}; " .
                     "code = {$e->getCode()}; " .
-                        "exception class = " . get_class($e),
+                        "exception class = " . $e::class,
                 E_USER_WARNING);
         }
     }

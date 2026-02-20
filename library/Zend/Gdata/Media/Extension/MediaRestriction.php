@@ -42,29 +42,17 @@ class Zend_Gdata_Media_Extension_MediaRestriction extends Zend_Gdata_Extension
     protected $_rootNamespace = 'media';
 
     /**
-     * @var string
-     */
-    protected $_relationship = null;
-
-    /**
-     * @var string
-     */
-    protected $_type = null;
-
-    /**
      * Constructs a new MediaRestriction element
      *
      * @param string $text
-     * @param string $relationship
-     * @param string $type
+     * @param string $_relationship
+     * @param string $_type
      */
-    public function __construct($text = null, $relationship = null,  $type = null)
+    public function __construct($text = null, protected $_relationship = null,  protected $_type = null)
     {
         $this->registerAllNamespaces(Zend_Gdata_Media::$namespaces);
         parent::__construct();
         $this->_text = $text;
-        $this->_relationship = $relationship;
-        $this->_type = $type;
     }
 
     /**

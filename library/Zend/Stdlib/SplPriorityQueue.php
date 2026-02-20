@@ -141,15 +141,11 @@ if (!is_array($this->preparedQueue)) {
             unset($return['priorityKey']);
             unset($this->queue[$priorityKey][$key]);
 
-            switch ($this->extractFlags) {
-                case self::EXTR_DATA:
-                    return $return['data'];
-                case self::EXTR_PRIORITY:
-                    return $return['priority'];
-                case self::EXTR_BOTH:
-                default:
-                    return $return;
-            };
+            return match ($this->extractFlags) {
+                self::EXTR_DATA => $return['data'],
+                self::EXTR_PRIORITY => $return['priority'],
+                default => $return,
+            };;
         }
 
         /**
@@ -182,15 +178,11 @@ if (!is_array($this->preparedQueue)) {
             unset($this->queue[$priorityKey][$key]);
             $this->count--;
 
-            switch ($this->extractFlags) {
-                case self::EXTR_DATA:
-                    return $return['data'];
-                case self::EXTR_PRIORITY:
-                    return $return['priority'];
-                case self::EXTR_BOTH:
-                default:
-                    return $return;
-            };
+            return match ($this->extractFlags) {
+                self::EXTR_DATA => $return['data'],
+                self::EXTR_PRIORITY => $return['priority'],
+                default => $return,
+            };;
         }
 
         /**
@@ -307,7 +299,7 @@ public function key()
             $this->sort();
             $keys = array_keys($this->queue);
             $key  = array_shift($keys);
-            if (preg_match('/^(a|O):/', $key)) {
+            if (preg_match('/^(a|O):/', (string) $key)) {
                 $key = unserialize($key);
             }
 
@@ -357,7 +349,7 @@ public function key()
             $queue = [];
             foreach ($this->queue as $priority => $values) {
                 $priorityKey = $priority;
-                if (preg_match('/^(a|O):/', $priority)) {
+                if (preg_match('/^(a|O):/', (string) $priority)) {
                     $priority = unserialize($priority);
                 }
                 foreach ($values as $key => $value) {

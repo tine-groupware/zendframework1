@@ -72,11 +72,11 @@ class Zend_Queue_Message
         if (isset($options['queue'])) {
             if ($options['queue'] instanceof Zend_Queue) {
                 $this->_queue      = $options['queue'];
-                $this->_queueClass = get_class($this->_queue);
+                $this->_queueClass = $this->_queue::class;
             } else {
                 $result = gettype($options['queue']);
                 if ($result === 'object') {
-                    $result = get_class($options['queue']);
+                    $result = $options['queue']::class;
                 }
 
                 require_once 'Zend/Queue/Exception.php';
@@ -185,7 +185,7 @@ class Zend_Queue_Message
      */
     public function setQueue(Zend_Queue $queue)
     {
-        $queueClass        = get_class($queue);
+        $queueClass        = $queue::class;
         $this->_queue      = $queue;
         $this->_queueClass = $queueClass;
         $this->_connected  = true;

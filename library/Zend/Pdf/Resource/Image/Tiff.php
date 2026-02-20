@@ -193,43 +193,23 @@ class Zend_Pdf_Resource_Image_Tiff extends Zend_Pdf_Resource_Image
                 $fieldType   = $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_SHORT, fread($imageFile, 2));
                 $valueCount  = $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_LONG, fread($imageFile, 4));
 
-                switch($fieldType) {
-                    case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_BYTE:
-                        $fieldLength = $valueCount;
-                        break;
-                    case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_ASCII:
-                        $fieldLength = $valueCount;
-                        break;
-                    case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_SHORT:
-                        $fieldLength = $valueCount * 2;
-                        break;
-                    case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_LONG:
-                        $fieldLength = $valueCount * 4;
-                        break;
-                    case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_RATIONAL:
-                        $fieldLength = $valueCount * 8;
-                        break;
-                    default:
-                        $fieldLength = $valueCount;
-                }
+                $fieldLength = match ($fieldType) {
+                    Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_BYTE => $valueCount,
+                    Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_ASCII => $valueCount,
+                    Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_SHORT => $valueCount * 2,
+                    Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_LONG => $valueCount * 4,
+                    Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_RATIONAL => $valueCount * 8,
+                    default => $valueCount,
+                };
 
                 $offsetBytes = fread($imageFile, 4);
 
                 if($fieldLength <= 4) {
-                    switch($fieldType) {
-                        case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_BYTE:
-                            $value = $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_BYTE, $offsetBytes);
-                            break;
-                        case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_ASCII:
-                            //Fall through to next case
-                        case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_LONG:
-                            $value = $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_LONG, $offsetBytes);
-                            break;
-                        case Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_SHORT:
-                            //Fall through to next case
-                        default:
-                            $value = $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_SHORT, $offsetBytes);
-                    }
+                    $value = match ($fieldType) {
+                        Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_BYTE => $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_BYTE, $offsetBytes),
+                        Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_ASCII, Zend_Pdf_Resource_Image_Tiff::TIFF_FIELD_TYPE_LONG => $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_LONG, $offsetBytes),
+                        default => $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_SHORT, $offsetBytes),
+                    };
                 } else {
                     $refOffset = $this->unpackBytes(Zend_Pdf_Resource_Image_Tiff::UNPACK_TYPE_LONG, $offsetBytes);
                 }

@@ -84,9 +84,9 @@ class Zend_Ldap_Ldif_Encoder
         foreach (explode("\n", $string) as $line) {
             $line = rtrim($line, "\x09\x0A\x0D\x00\x0B");
             $matches = [];
-            if (substr($line, 0, 1) === ' ' && $last !== null) {
+            if (str_starts_with($line, ' ') && $last !== null) {
                 $last[2] .= substr($line, 1);
-            } else if (substr($line, 0, 1) === '#') {
+            } else if (str_starts_with($line, '#')) {
                 continue;
             } else if (preg_match('/^([a-z0-9;-]+)(:[:<]?\s*)([^:<]*)$/i', $line, $matches)) {
                 $name = strtolower($matches[1]);
@@ -126,7 +126,7 @@ class Zend_Ldap_Ldif_Encoder
         $type = $attribute[1];
         $value = $attribute[2];
         if ($type === '::') {
-            $value = base64_decode($value);
+            $value = base64_decode((string) $value);
         }
         if ($name === 'dn') {
             $entry[$name] = $value;
@@ -220,7 +220,7 @@ class Zend_Ldap_Ldif_Encoder
             }
         }
         // Test for ending space
-        if (substr($string, -1) == ' ') {
+        if (str_ends_with($string, ' ')) {
             $base64 = true;
         }
 
