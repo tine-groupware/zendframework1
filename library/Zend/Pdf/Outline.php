@@ -33,11 +33,11 @@
  */
 abstract class Zend_Pdf_Outline implements RecursiveIterator, Countable
 {
-    public $_title;
-    public $_color;
-    public $_italic;
-    public $_bold;
-    public $_target;
+    protected $_title;
+    protected $_color;
+    protected $_italic;
+    protected $_bold;
+    protected $_target;
     /**
      * True if outline is open.
      *

@@ -46,7 +46,7 @@ require_once 'Zend/Pdf/Resource/Image.php';
  */
 abstract class Zend_Pdf_Canvas_Abstract implements Zend_Pdf_Canvas_Interface
 {
-    public $_dictionary;
+    protected $_dictionary;
     /**
      * Drawing instructions
      *

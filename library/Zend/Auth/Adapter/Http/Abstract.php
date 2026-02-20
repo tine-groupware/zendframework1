@@ -32,7 +32,7 @@
  */
 class Zend_Auth_Adapter_Http_Abstract
 {
-    public $_resolver;
+    protected $_resolver;
     /**
      * Reference to the HTTP Request object
      *

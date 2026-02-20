@@ -29,7 +29,7 @@
  */
 abstract class Zend_TimeSync_Protocol
 {
-    public $_port;
+    protected $_port;
     /**
      * Holds the current socket connection
      *

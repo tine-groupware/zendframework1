@@ -34,7 +34,7 @@ require_once 'Zend/Filter/Compress/CompressInterface.php';
  */
 abstract class Zend_Filter_Compress_CompressAbstract implements Zend_Filter_Compress_CompressInterface
 {
-    public $_options;
+    protected $_options;
     /**
      * Class constructor
      *

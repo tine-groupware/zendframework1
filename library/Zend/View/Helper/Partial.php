@@ -33,8 +33,8 @@ require_once 'Zend/View/Helper/Abstract.php';
  */
 class Zend_View_Helper_Partial extends Zend_View_Helper_Abstract
 {
-    public $partialCounter;
-    public $partialTotalCount;
+    protected $partialCounter;
+    protected $partialTotalCount;
     /**
      * Variable to which object will be assigned
      * @var string
