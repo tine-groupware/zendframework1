@@ -91,7 +91,7 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
      * @return void
      * @throws Zend_Log_Exception
      */
-    public function setFormatter(Zend_Log_Formatter_Interface $formatter): never
+    public function setFormatter(Zend_Log_Formatter_Interface $formatter)
     {
         require_once 'Zend/Log/Exception.php';
         throw new Zend_Log_Exception(static::class . ' does not support formatting');
