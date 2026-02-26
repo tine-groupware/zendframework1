@@ -79,9 +79,9 @@ class Zend_TimeSync_Ntp extends Zend_TimeSync_Protocol
         $secbd = ($sec & 0x000000ff);
 
         // Flags
-        $nul       = chr(0x00);
+        $nul       = save_chr(0x00);
         $nulbyte   = $nul . $nul . $nul . $nul;
-        $ntppacket = chr(0xd9) . $nul . chr(0x0a) . chr(0xfa);
+        $ntppacket = save_chr(0xd9) . $nul . save_chr(0x0a) . save_chr(0xfa);
 
         /*
          * Root delay
@@ -89,7 +89,7 @@ class Zend_TimeSync_Ntp extends Zend_TimeSync_Protocol
          * Indicates the total roundtrip delay to the primary reference
          * source at the root of the synchronization subnet, in seconds
          */
-        $ntppacket .= $nul . $nul . chr(0x1c) . chr(0x9b);
+        $ntppacket .= $nul . $nul . save_chr(0x1c) . save_chr(0x9b);
 
         /*
          * Clock Dispersion
@@ -97,7 +97,7 @@ class Zend_TimeSync_Ntp extends Zend_TimeSync_Protocol
          * Indicates the maximum error relative to the primary reference source at the
          * root of the synchronization subnet, in seconds
          */
-        $ntppacket .= $nul . chr(0x08) . chr(0xd7) . chr(0xff);
+        $ntppacket .= $nul . save_chr(0x08) . save_chr(0xd7) . save_chr(0xff);
 
         /*
          * ReferenceClockID
@@ -110,8 +110,8 @@ class Zend_TimeSync_Ntp extends Zend_TimeSync_Protocol
          * The local time, in timestamp format, at the peer when its latest NTP message
          * was sent. Contanis an integer and a fractional part
          */
-        $ntppacket .= chr($secba)  . chr($secbb)  . chr($secbc)  . chr($secbd);
-        $ntppacket .= chr($fracba) . chr($fracbb) . chr($fracbc) . chr($fracbd);
+        $ntppacket .= save_chr($secba)  . save_chr($secbb)  . save_chr($secbc)  . save_chr($secbd);
+        $ntppacket .= save_chr($fracba) . save_chr($fracbb) . save_chr($fracbc) . save_chr($fracbd);
 
         /*
          * The local time, in timestamp format, at the peer. Contains an integer
@@ -132,8 +132,8 @@ class Zend_TimeSync_Ntp extends Zend_TimeSync_Protocol
          * NTP message departed the sender. Contanis an integer
          * and a fractional part.
          */
-        $ntppacket .= chr($secba)  . chr($secbb)  . chr($secbc)  . chr($secbd);
-        $ntppacket .= chr($fracba) . chr($fracbb) . chr($fracbc) . chr($fracbd);
+        $ntppacket .= save_chr($secba)  . save_chr($secbb)  . save_chr($secbc)  . save_chr($secbd);
+        $ntppacket .= save_chr($fracba) . save_chr($fracbb) . save_chr($fracbc) . save_chr($fracbd);
 
         return $ntppacket;
     }

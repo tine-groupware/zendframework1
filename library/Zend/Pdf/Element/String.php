@@ -246,7 +246,7 @@ class Zend_Pdf_Element_String extends Zend_Pdf_Element
                                 }
                             }
 
-                            $outEntries[] = chr(octdec($nextCode));
+                            $outEntries[] = save_chr(octdec($nextCode));
                         } else {
                             $outEntries[] = $str[$offset];
                         }

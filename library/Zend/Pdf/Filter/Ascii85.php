@@ -67,7 +67,7 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
             for ($j = 4; $j >= 0; $j--) {
                 $foo = (int) (($b / 85 ** $j) + 33);
                 $b %= 85 ** $j;
-                $output .= chr($foo);
+                $output .= save_chr($foo);
             }
         }
 
@@ -88,7 +88,7 @@ class Zend_Pdf_Filter_Ascii85 implements Zend_Pdf_Filter_Interface
             for ($j = 4; $j >= (4 - $n); $j--) {
                 $foo = (int) (($b / 85 ** $j) + 33);
                 $b %= 85 ** $j;
-                $output .= chr($foo);
+                $output .= save_chr($foo);
             }
         }
 

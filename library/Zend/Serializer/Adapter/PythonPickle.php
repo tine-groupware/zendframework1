@@ -285,7 +285,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if ($this->_binary) {
             if ($id <= 0xff) {
                 // BINGET + chr(i)
-                $this->_pickle .= self::OP_BINGET . chr($id);
+                $this->_pickle .= self::OP_BINGET . save_chr($id);
             } else {
                 // LONG_BINGET + pack("<i", i)
                 $bin = pack('l', $id);
@@ -310,7 +310,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if ($this->_binary) {
             if ($id <= 0xff) {
                 // BINPUT + chr(i)
-                $this->_pickle .= self::OP_BINPUT . chr($id);
+                $this->_pickle .= self::OP_BINPUT . save_chr($id);
             } else {
                 // LONG_BINPUT + pack("<i", i)
                 $bin = pack('l', $id);
@@ -374,7 +374,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
             if ($value >= 0) {
                 if ($value <= 0xff) {
                     // self.write(BININT1 + chr(obj))
-                    $this->_pickle .= self::OP_BININT1 . chr($value);
+                    $this->_pickle .= self::OP_BININT1 . save_chr($value);
                 } elseif ($value <= 0xffff) {
                     // self.write("%c%c%c" % (BININT2, obj&0xff, obj>>8))
                     $this->_pickle .= self::OP_BININT2 . pack('v', $value);
@@ -437,7 +437,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
             $n = strlen($value);
             if ($n <= 0xff) {
                 // self.write(SHORT_BINSTRING + chr(n) + obj)
-                $this->_pickle .= self::OP_SHORT_BINSTRING . chr($n) . $value;
+                $this->_pickle .= self::OP_SHORT_BINSTRING . save_chr($n) . $value;
             } else {
                 // self.write(BINSTRING + pack("<i", n) + obj)
                 $binLen = pack('l', $n);
@@ -1121,22 +1121,22 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         $uniCode = hexdec((string) $hex);
 
         if ($uniCode < 0x80) { // 1Byte
-            $utf8Char = chr($uniCode);
+            $utf8Char = save_chr($uniCode);
 
         } elseif ($uniCode < 0x800) { // 2Byte
-            $utf8Char = chr(0xC0 | $uniCode >> 6)
-                      . chr(0x80 | $uniCode & 0x3F);
+            $utf8Char = save_chr(0xC0 | $uniCode >> 6)
+                      . save_chr(0x80 | $uniCode & 0x3F);
 
         } elseif ($uniCode < 0x10000) { // 3Byte
-            $utf8Char = chr(0xE0 | $uniCode >> 12)
-                      . chr(0x80 | $uniCode >> 6 & 0x3F)
-                      . chr(0x80 | $uniCode & 0x3F);
+            $utf8Char = save_chr(0xE0 | $uniCode >> 12)
+                      . save_chr(0x80 | $uniCode >> 6 & 0x3F)
+                      . save_chr(0x80 | $uniCode & 0x3F);
 
         } elseif ($uniCode < 0x110000) { // 4Byte
-            $utf8Char  = chr(0xF0 | $uniCode >> 18)
-                       . chr(0x80 | $uniCode >> 12 & 0x3F)
-                       . chr(0x80 | $uniCode >> 6 & 0x3F)
-                       . chr(0x80 | $uniCode & 0x3F);
+            $utf8Char  = save_chr(0xF0 | $uniCode >> 18)
+                       . save_chr(0x80 | $uniCode >> 12 & 0x3F)
+                       . save_chr(0x80 | $uniCode >> 6 & 0x3F)
+                       . save_chr(0x80 | $uniCode & 0x3F);
         } else {
             require_once 'Zend/Serializer/Exception.php';
             throw new Zend_Serializer_Exception('Unsupported unicode character found "' . dechex($uniCode) . '"');

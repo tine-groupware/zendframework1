@@ -288,7 +288,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
                                                                             $fieldBits & 0x20 /* payloads are stored */);
             if ($fieldBits & 0x10) {
                 // norms are omitted for the indexed field
-                $this->_norms[$count] = str_repeat(chr(Zend_Search_Lucene_Search_Similarity::encodeNorm(1.0)), $this->_docCount);
+                $this->_norms[$count] = str_repeat(save_chr(Zend_Search_Lucene_Search_Similarity::encodeNorm(1.0)), $this->_docCount);
             }
 
             $fieldNums[$count]  = $count;
@@ -1414,7 +1414,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
         if ($fieldNum == -1  ||  !($this->_fields[$fieldNum]->isIndexed)) {
             $similarity = Zend_Search_Lucene_Search_Similarity::getDefault();
 
-            return str_repeat(chr($similarity->encodeNorm( $similarity->lengthNorm($fieldName, 0) )),
+            return str_repeat(save_chr($similarity->encodeNorm( $similarity->lengthNorm($fieldName, 0) )),
                               $this->_docCount);
         }
 
@@ -1584,7 +1584,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
             $bitCount = count(bitset_to_array($delBytes));
         } else {
             $byteCount = floor($this->_docCount/8)+1;
-            $delBytes = str_repeat(chr(0), $byteCount);
+            $delBytes = str_repeat(save_chr(0), $byteCount);
             for ($count = 0; $count < $byteCount; $count++) {
                 $byte = 0;
                 for ($bit = 0; $bit < 8; $bit++) {
@@ -1592,7 +1592,7 @@ class Zend_Search_Lucene_Index_SegmentInfo implements Zend_Search_Lucene_Index_T
                         $byte |= (1<<$bit);
                     }
                 }
-                $delBytes[$count] = chr($byte);
+                $delBytes[$count] = save_chr($byte);
             }
             $bitCount = count($this->_deleted);
         }

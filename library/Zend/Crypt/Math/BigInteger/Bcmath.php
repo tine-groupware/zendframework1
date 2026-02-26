@@ -193,7 +193,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
         }
 
         while (bccomp($operand, 0) > 0) {
-            $return = chr(bcmod($operand, 256)) . $return;
+            $return = save_chr(bcmod($operand, 256)) . $return;
             $operand = bcdiv($operand, 256);
         }
         if (ord($return[0]) > 127) {

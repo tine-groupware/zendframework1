@@ -66,7 +66,7 @@ class Zend_Search_Lucene_Index_Term
     #[\ReturnTypeWillChange]
 public function key()
     {
-        return $this->field . chr(0) . $this->text;
+        return $this->field . save_chr(0) . $this->text;
     }
 
     /**

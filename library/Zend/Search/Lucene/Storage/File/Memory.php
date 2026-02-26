@@ -197,7 +197,7 @@ class Zend_Search_Lucene_Storage_File_Memory extends Zend_Search_Lucene_Storage_
         // We do not need to check if file position points to the end of "file".
         // Only append operation is supported now
 
-        $this->_data .= chr($byte);
+        $this->_data .= save_chr($byte);
         $this->_position = strlen($this->_data);
 
         return 1;
@@ -269,10 +269,10 @@ class Zend_Search_Lucene_Storage_File_Memory extends Zend_Search_Lucene_Storage_
         // Only append operation is supported now
 
         settype($value, 'integer');
-        $this->_data .= chr($value>>24 & 0xFF) .
-                        chr($value>>16 & 0xFF) .
-                        chr($value>>8  & 0xFF) .
-                        chr($value     & 0xFF);
+        $this->_data .= save_chr($value>>24 & 0xFF) .
+                        save_chr($value>>16 & 0xFF) .
+                        save_chr($value>>8  & 0xFF) .
+                        save_chr($value     & 0xFF);
 
         $this->_position = strlen($this->_data);
     }
@@ -325,14 +325,14 @@ class Zend_Search_Lucene_Storage_File_Memory extends Zend_Search_Lucene_Storage_
          */
         if (PHP_INT_SIZE > 4) {
             settype($value, 'integer');
-            $this->_data .= chr($value>>56 & 0xFF) .
-                            chr($value>>48 & 0xFF) .
-                            chr($value>>40 & 0xFF) .
-                            chr($value>>32 & 0xFF) .
-                            chr($value>>24 & 0xFF) .
-                            chr($value>>16 & 0xFF) .
-                            chr($value>>8  & 0xFF) .
-                            chr($value     & 0xFF);
+            $this->_data .= save_chr($value>>56 & 0xFF) .
+                            save_chr($value>>48 & 0xFF) .
+                            save_chr($value>>40 & 0xFF) .
+                            save_chr($value>>32 & 0xFF) .
+                            save_chr($value>>24 & 0xFF) .
+                            save_chr($value>>16 & 0xFF) .
+                            save_chr($value>>8  & 0xFF) .
+                            save_chr($value     & 0xFF);
         } else {
             $this->writeLong32Bit($value);
         }
@@ -440,10 +440,10 @@ class Zend_Search_Lucene_Storage_File_Memory extends Zend_Search_Lucene_Storage_
 
         settype($value, 'integer');
         while ($value > 0x7F) {
-            $this->_data .= chr( ($value & 0x7F)|0x80 );
+            $this->_data .= save_chr( ($value & 0x7F)|0x80 );
             $value >>= 7;
         }
-        $this->_data .= chr($value);
+        $this->_data .= save_chr($value);
 
         $this->_position = strlen($this->_data);
     }

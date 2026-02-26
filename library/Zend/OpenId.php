@@ -256,7 +256,7 @@ class Zend_OpenId
                     return false;
                 }
                 ++$i;
-                $ch = chr($c);
+                $ch = save_chr($c);
                 if (($ch >= 'A' && $ch <= 'Z') ||
                     ($ch >= 'a' && $ch <= 'z') ||
                     $ch == '-' ||
@@ -267,15 +267,15 @@ class Zend_OpenId
                 } else {
                     $res .= '%';
                     if (($c >> 4) < 10) {
-                        $res .= chr(($c >> 4) + ord('0'));
+                        $res .= save_chr(($c >> 4) + ord('0'));
                     } else {
-                        $res .= chr(($c >> 4) - 10 + ord('A'));
+                        $res .= save_chr(($c >> 4) - 10 + ord('A'));
                     }
                     $c = $c & 0xf;
                     if ($c < 10) {
-                        $res .= chr($c + ord('0'));
+                        $res .= save_chr($c + ord('0'));
                     } else {
-                        $res .= chr($c - 10 + ord('A'));
+                        $res .= save_chr($c - 10 + ord('A'));
                     }
                 }
             } else {
@@ -533,9 +533,9 @@ class Zend_OpenId
             if (Zend_OpenId::strlen($secret) > 64) {
                 $secret = self::digest($macFunc, $secret);
             }
-            $secret = str_pad($secret, 64, chr(0x00));
-            $ipad = str_repeat(chr(0x36), 64);
-            $opad = str_repeat(chr(0x5c), 64);
+            $secret = str_pad($secret, 64, save_chr(0x00));
+            $ipad = str_repeat(save_chr(0x36), 64);
+            $opad = str_repeat(save_chr(0x5c), 64);
             $hash1 = self::digest($macFunc, ($secret ^ $ipad) . $data);
             return self::digest($macFunc, ($secret ^ $opad) . $hash1);
         }
@@ -605,7 +605,7 @@ class Zend_OpenId
 
             $bin = "";
             while (bccomp((string) $bn, 0) > 0) {
-                $bin = chr(bcmod((string) $bn, 256)) . $bin;
+                $bin = save_chr(bcmod((string) $bn, 256)) . $bin;
                 $bn = bcdiv((string) $bn, 256);
             }
             if (ord($bin[0]) > 127) {

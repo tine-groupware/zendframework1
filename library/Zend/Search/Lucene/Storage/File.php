@@ -115,7 +115,7 @@ abstract class Zend_Search_Lucene_Storage_File
      */
     public function writeByte($byte)
     {
-        return $this->_fwrite(chr($byte), 1);
+        return $this->_fwrite(save_chr($byte), 1);
     }
 
     /**
@@ -168,10 +168,10 @@ abstract class Zend_Search_Lucene_Storage_File
     public function writeInt($value)
     {
         settype($value, 'integer');
-        $this->_fwrite( chr($value>>24 & 0xFF) .
-                        chr($value>>16 & 0xFF) .
-                        chr($value>>8  & 0xFF) .
-                        chr($value     & 0xFF),   4  );
+        $this->_fwrite( save_chr($value>>24 & 0xFF) .
+                        save_chr($value>>16 & 0xFF) .
+                        save_chr($value>>8  & 0xFF) .
+                        save_chr($value     & 0xFF),   4  );
     }
 
 
@@ -218,14 +218,14 @@ abstract class Zend_Search_Lucene_Storage_File
          */
         if (PHP_INT_SIZE > 4) {
             settype($value, 'integer');
-            $this->_fwrite( chr($value>>56 & 0xFF) .
-                            chr($value>>48 & 0xFF) .
-                            chr($value>>40 & 0xFF) .
-                            chr($value>>32 & 0xFF) .
-                            chr($value>>24 & 0xFF) .
-                            chr($value>>16 & 0xFF) .
-                            chr($value>>8  & 0xFF) .
-                            chr($value     & 0xFF),   8  );
+            $this->_fwrite( save_chr($value>>56 & 0xFF) .
+                            save_chr($value>>48 & 0xFF) .
+                            save_chr($value>>40 & 0xFF) .
+                            save_chr($value>>32 & 0xFF) .
+                            save_chr($value>>24 & 0xFF) .
+                            save_chr($value>>16 & 0xFF) .
+                            save_chr($value>>8  & 0xFF) .
+                            save_chr($value     & 0xFF),   8  );
         } else {
             $this->writeLong32Bit($value);
         }
@@ -329,10 +329,10 @@ abstract class Zend_Search_Lucene_Storage_File
     {
         settype($value, 'integer');
         while ($value > 0x7F) {
-            $this->_fwrite(chr( ($value & 0x7F)|0x80 ));
+            $this->_fwrite(save_chr( ($value & 0x7F)|0x80 ));
             $value >>= 7;
         }
-        $this->_fwrite(chr($value));
+        $this->_fwrite(save_chr($value));
     }
 
 

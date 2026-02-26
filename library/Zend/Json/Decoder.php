@@ -492,8 +492,8 @@ class Zend_Json_Decoder
             switch (true) {
                 case preg_match('/\\\u[0-9A-F]{4}/i', substr($chrs, $i, 6)):
                     // single, escaped unicode character
-                    $utf16 = chr(hexdec(substr($chrs, ($i + 2), 2)))
-                           . chr(hexdec(substr($chrs, ($i + 4), 2)));
+                    $utf16 = save_chr(hexdec(substr($chrs, ($i + 2), 2)))
+                           . save_chr(hexdec(substr($chrs, ($i + 4), 2)));
                     $utf8 .= self::_utf162utf8($utf16);
                     $i += 5;
                     break;
@@ -562,20 +562,20 @@ class Zend_Json_Decoder
             case ((0x7F & $bytes) == $bytes):
                 // this case should never be reached, because we are in ASCII range
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0x7F & $bytes);
+                return save_chr(0x7F & $bytes);
 
             case (0x07FF & $bytes) == $bytes:
                 // return a 2-byte UTF-8 character
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0xC0 | (($bytes >> 6) & 0x1F))
-                     . chr(0x80 | ($bytes & 0x3F));
+                return save_chr(0xC0 | (($bytes >> 6) & 0x1F))
+                     . save_chr(0x80 | ($bytes & 0x3F));
 
             case (0xFFFF & $bytes) == $bytes:
                 // return a 3-byte UTF-8 character
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0xE0 | (($bytes >> 12) & 0x0F))
-                     . chr(0x80 | (($bytes >> 6) & 0x3F))
-                     . chr(0x80 | ($bytes & 0x3F));
+                return save_chr(0xE0 | (($bytes >> 12) & 0x0F))
+                     . save_chr(0x80 | (($bytes >> 6) & 0x3F))
+                     . save_chr(0x80 | ($bytes & 0x3F));
         }
 
         // ignoring UTF-32 for now, sorry

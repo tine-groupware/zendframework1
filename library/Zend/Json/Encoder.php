@@ -256,7 +256,7 @@ class Zend_Json_Encoder
         // Escape certain ASCII characters:
         // 0x08 => \b
         // 0x0c => \f
-        $string = str_replace([chr(0x08), chr(0x0C)], ['\b', '\f'], $string);
+        $string = str_replace([save_chr(0x08), save_chr(0x0C)], ['\b', '\f'], $string);
         $string = self::encodeUnicodeString($string);
 
         return '"' . $string . '"';
@@ -547,14 +547,14 @@ class Zend_Json_Encoder
             1 => $utf8,
             // return a UTF-16 character from a 2-byte UTF-8 char
             // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-            2 => chr(0x07 & (ord($utf8[0]) >> 2))
-                 . chr((0xC0 & (ord($utf8[0]) << 6))
+            2 => save_chr(0x07 & (ord($utf8[0]) >> 2))
+                 . save_chr((0xC0 & (ord($utf8[0]) << 6))
                      | (0x3F & ord($utf8[1]))),
             // return a UTF-16 character from a 3-byte UTF-8 char
             // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-            3 => chr((0xF0 & (ord($utf8[0]) << 4))
+            3 => save_chr((0xF0 & (ord($utf8[0]) << 4))
                      | (0x0F & (ord($utf8[1]) >> 2)))
-                 . chr((0xC0 & (ord($utf8[1]) << 6))
+                 . save_chr((0xC0 & (ord($utf8[1]) << 6))
                      | (0x7F & ord($utf8[2]))),
             // ignoring UTF-32 for now, sorry
             default => '',

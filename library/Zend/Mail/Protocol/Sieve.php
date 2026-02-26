@@ -602,7 +602,7 @@ class Zend_Mail_Protocol_Sieve
      */
     public function authenticate($username, $password)
     {
-        $token = base64_encode(chr(0) . $username . chr(0) . $password);
+        $token = base64_encode(save_chr(0) . $username . save_chr(0) . $password);
         $result = $this->requestAndResponse('AUTHENTICATE',  $this->escapeString('PLAIN', $token));
     }
 }
