@@ -123,7 +123,7 @@ class Zend_Search_Lucene_Index_SegmentWriter_DocumentWriter extends Zend_Search_
                         $field = clone($field);
                         $field->isIndexed = $field->isTokenized = false;
                     } else {
-                        $docNorms[$field->name] = chr($similarity->encodeNorm( $similarity->lengthNorm($field->name,
+                        $docNorms[$field->name] = save_chr($similarity->encodeNorm( $similarity->lengthNorm($field->name,
                                                                                                        $tokenCounter)*
                                                                                $document->boost*
                                                                                $field->boost ));
@@ -147,7 +147,7 @@ class Zend_Search_Lucene_Index_SegmentWriter_DocumentWriter extends Zend_Search_
                     }
                     $this->_termDocs[$termKey][$this->_docCount][] = 0; // position
 
-                    $docNorms[$field->name] = chr($similarity->encodeNorm( $similarity->lengthNorm($field->name, 1)*
+                    $docNorms[$field->name] = save_chr($similarity->encodeNorm( $similarity->lengthNorm($field->name, 1)*
                                                                            $document->boost*
                                                                            $field->boost ));
                 }
@@ -166,14 +166,14 @@ class Zend_Search_Lucene_Index_SegmentWriter_DocumentWriter extends Zend_Search_
             }
 
             if (!isset($this->_norms[$fieldName])) {
-                $this->_norms[$fieldName] = str_repeat(chr($similarity->encodeNorm( $similarity->lengthNorm($fieldName, 0) )),
+                $this->_norms[$fieldName] = str_repeat(save_chr($similarity->encodeNorm( $similarity->lengthNorm($fieldName, 0) )),
                                                        $this->_docCount);
             }
 
             if (isset($docNorms[$fieldName])){
                 $this->_norms[$fieldName] .= $docNorms[$fieldName];
             } else {
-                $this->_norms[$fieldName] .= chr($similarity->encodeNorm( $similarity->lengthNorm($fieldName, 0) ));
+                $this->_norms[$fieldName] .= save_chr($similarity->encodeNorm( $similarity->lengthNorm($fieldName, 0) ));
             }
         }
 

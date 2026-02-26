@@ -112,7 +112,7 @@ abstract class Zend_Validate_Barcode_AdapterAbstract
         $characters = $this->getCharacters();
         if ($characters == 128) {
             for ($x = 0; $x < 128; ++$x) {
-                $value = str_replace(chr($x), '', $value);
+                $value = str_replace(save_chr($x), '', $value);
             }
         } else {
             $chars = str_split((string) $characters);

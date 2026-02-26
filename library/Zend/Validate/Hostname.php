@@ -2400,19 +2400,19 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         // convert decoded ucs4 to utf8 string
         foreach ($decoded as $key => $value) {
             if ($value < 128) {
-                $decoded[$key] = chr($value);
+                $decoded[$key] = save_chr($value);
             } elseif ($value < (1 << 11)) {
-                $decoded[$key]  = chr(192 + ($value >> 6));
-                $decoded[$key] .= chr(128 + ($value & 63));
+                $decoded[$key]  = save_chr(192 + ($value >> 6));
+                $decoded[$key] .= save_chr(128 + ($value & 63));
             } elseif ($value < (1 << 16)) {
-                $decoded[$key]  = chr(224 + ($value >> 12));
-                $decoded[$key] .= chr(128 + (($value >> 6) & 63));
-                $decoded[$key] .= chr(128 + ($value & 63));
+                $decoded[$key]  = save_chr(224 + ($value >> 12));
+                $decoded[$key] .= save_chr(128 + (($value >> 6) & 63));
+                $decoded[$key] .= save_chr(128 + ($value & 63));
             } elseif ($value < (1 << 21)) {
-                $decoded[$key]  = chr(240 + ($value >> 18));
-                $decoded[$key] .= chr(128 + (($value >> 12) & 63));
-                $decoded[$key] .= chr(128 + (($value >> 6) & 63));
-                $decoded[$key] .= chr(128 + ($value & 63));
+                $decoded[$key]  = save_chr(240 + ($value >> 18));
+                $decoded[$key] .= save_chr(128 + (($value >> 12) & 63));
+                $decoded[$key] .= save_chr(128 + (($value >> 6) & 63));
+                $decoded[$key] .= save_chr(128 + ($value & 63));
             } else {
                 $this->_error(self::CANNOT_DECODE_PUNYCODE);
                 return false;

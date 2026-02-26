@@ -76,8 +76,8 @@ class Zend_Pdf_Resource_Font_CidFont_TrueType extends Zend_Pdf_Resource_Font_Cid
         // Fill the index
         $charGlyphs = $this->_cmap->getCoveredCharactersGlyphs();
         foreach ($charGlyphs as $charCode => $glyph) {
-            $cidToGidMapData[$charCode*2    ] = chr($glyph >> 8);
-            $cidToGidMapData[$charCode*2 + 1] = chr($glyph & 0xFF);
+            $cidToGidMapData[$charCode*2    ] = save_chr($glyph >> 8);
+            $cidToGidMapData[$charCode*2 + 1] = save_chr($glyph & 0xFF);
         }
         // Store CIDToGIDMap within compressed stream object
         $cidToGidMap = $this->_objectFactory->newStreamObject($cidToGidMapData);

@@ -9,7 +9,8 @@
   "autoload": {
     "psr-0": {
       "Zend_": ["library/"]
-    }
+    },
+    "files": ["library/bootstrap.php"]
   },
   "config": {
     "vendor-dir": "."

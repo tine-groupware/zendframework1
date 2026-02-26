@@ -101,7 +101,7 @@ class Zend_Crypt_Math extends Zend_Crypt_Math_BigInteger
         }
         $rand = '';
         for ($i = 0; $i < $length; $i++) {
-            $rand .= chr(mt_rand(0, 255));
+            $rand .= save_chr(mt_rand(0, 255));
         }
         return $rand;
     }

@@ -140,7 +140,7 @@ class Zend_Pdf_Element_Name extends Zend_Pdf_Element
                 $outStr .= $inStr[$count];
             } else {
                 // Escape sequence
-                $outStr .= chr(base_convert(substr($inStr, $count+1, 2), 16, 10 ));
+                $outStr .= save_chr(base_convert(substr($inStr, $count+1, 2), 16, 10 ));
                 $count +=2;
             }
         }

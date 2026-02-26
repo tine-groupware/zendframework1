@@ -99,8 +99,8 @@ class Zend_Mail_Protocol_Smtp_Auth_Crammd5 extends Zend_Mail_Protocol_Smtp
             $key = str_pad($key, $block, "\0");
         }
 
-        $k_ipad = substr($key, 0, 64) ^ str_repeat(chr(0x36), 64);
-        $k_opad = substr($key, 0, 64) ^ str_repeat(chr(0x5C), 64);
+        $k_ipad = substr($key, 0, 64) ^ str_repeat(save_chr(0x36), 64);
+        $k_opad = substr($key, 0, 64) ^ str_repeat(save_chr(0x5C), 64);
 
         $inner = pack('H32', md5($k_ipad . $data));
 

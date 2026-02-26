@@ -89,7 +89,7 @@ class Zend_Ldap_Converter
      */
     private static function _charHex32ToAsc(array $matches)
     {
-        return chr(hexdec((string) $matches[1]));
+        return save_chr(hexdec((string) $matches[1]));
     }
 
     /**

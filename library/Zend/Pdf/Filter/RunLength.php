@@ -53,11 +53,11 @@ class Zend_Pdf_Filter_RunLength implements Zend_Pdf_Filter_Interface
             if (($repeatedCharChainLength = strspn($data, $data[$offset], $offset + 1, 127) + 1)  >  2) {
                 if ($chainStartOffset != $offset) {
                     // Drop down previouse (non-repeatable chars) run
-                    $output .= chr($offset - $chainStartOffset - 1)
+                    $output .= save_chr($offset - $chainStartOffset - 1)
                              . substr($data, $chainStartOffset, $offset - $chainStartOffset);
                 }
 
-                $output .= chr(257 - $repeatedCharChainLength) . $data[$offset];
+                $output .= save_chr(257 - $repeatedCharChainLength) . $data[$offset];
 
                 $offset += $repeatedCharChainLength;
                 $chainStartOffset = $offset;
@@ -76,7 +76,7 @@ class Zend_Pdf_Filter_RunLength implements Zend_Pdf_Filter_Interface
 
         if ($chainStartOffset != $offset) {
             // Drop down non-repeatable chars run
-            $output .= chr($offset - $chainStartOffset - 1) . substr($data, $chainStartOffset, $offset - $chainStartOffset);
+            $output .= save_chr($offset - $chainStartOffset - 1) . substr($data, $chainStartOffset, $offset - $chainStartOffset);
         }
 
         $output .= "\x80";

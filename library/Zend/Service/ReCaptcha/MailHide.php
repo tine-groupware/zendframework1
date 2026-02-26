@@ -338,7 +338,7 @@ class Zend_Service_ReCaptcha_MailHide extends Zend_Service_ReCaptcha
         $numPad = self::ENCRYPTION_BLOCK_SIZE - (strlen($this->_email) % self::ENCRYPTION_BLOCK_SIZE);
 
         /* Pad the email */
-        $emailPadded = str_pad($this->_email, strlen($this->_email) + $numPad, chr($numPad));
+        $emailPadded = str_pad($this->_email, strlen($this->_email) + $numPad, save_chr($numPad));
 
         /* Encrypt the email */
         $emailEncrypted = mcrypt_encrypt(self::ENCRYPTION_CIPHER, $this->_privateKeyPacked, $emailPadded, self::ENCRYPTION_MODE, self::ENCRYPTION_IV);
