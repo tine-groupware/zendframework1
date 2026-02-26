@@ -574,7 +574,7 @@ class Zend_Mail extends Zend_Mime_Message
     public function addTo($email, $name='')
     {
         if (!is_array($email)) {
-            $email = [$name => $email];
+            $email = [($name ?? '') => $email];
         }
 
         foreach ($email as $n => $recipient) {
@@ -596,7 +596,7 @@ class Zend_Mail extends Zend_Mime_Message
     public function addCc($email, $name='')
     {
         if (!is_array($email)) {
-            $email = [$name => $email];
+            $email = [($name ?? '') => $email];
         }
 
         foreach ($email as $n => $recipient) {
@@ -643,7 +643,7 @@ class Zend_Mail extends Zend_Mime_Message
      */
     public function clearHeader($headerName)
     {
-        if (isset($this->_headers[$headerName])){
+        if (isset($this->_headers[$headerName])) {
             unset($this->_headers[$headerName]);
         }
         return $this;
