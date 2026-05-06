@@ -356,6 +356,8 @@ class Zend_Cache_Core
             $id = $this->_id($id);
         }
         $this->_validateIdOrTag($id);
+
+        $tags = $this->_tags($tags);
         $this->_validateTagsArray($tags);
         if ($this->_options['automatic_serialization']) {
             // we need to serialize datas before storing them
@@ -461,6 +463,7 @@ class Zend_Cache_Core
                                    Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG])) {
             Zend_Cache::throwException('Invalid cleaning mode');
         }
+        $tags = $this->_tags($tags);
         $this->_validateTagsArray($tags);
 
         return $this->_backend->clean($mode, $tags);
@@ -483,6 +486,7 @@ class Zend_Cache_Core
             Zend_Cache::throwException(self::BACKEND_NOT_SUPPORTS_TAG);
         }
 
+        $tags = $this->_tags($tags);
         $ids = $this->_backend->getIdsMatchingTags($tags);
 
         // we need to remove cache_id_prefix from ids (see #ZF-6178, #ZF-7600)
@@ -516,6 +520,7 @@ class Zend_Cache_Core
             Zend_Cache::throwException(self::BACKEND_NOT_SUPPORTS_TAG);
         }
 
+        $tags = $this->_tags($tags);
         $ids = $this->_backend->getIdsNotMatchingTags($tags);
 
         // we need to remove cache_id_prefix from ids (see #ZF-6178, #ZF-7600)
@@ -549,6 +554,7 @@ class Zend_Cache_Core
             Zend_Cache::throwException(self::BACKEND_NOT_SUPPORTS_TAG);
         }
 
+        $tags = $this->_tags($tags);
         $ids = $this->_backend->getIdsMatchingAnyTags($tags);
 
         // we need to remove cache_id_prefix from ids (see #ZF-6178, #ZF-7600)
@@ -762,5 +768,24 @@ class Zend_Cache_Core
         }
         return $id; // no prefix, just return the $id passed
     }
-
+    
+    /**
+     * Make and return cache tags
+     *
+     * Checks 'cache_id_prefix' and returns new tags with prefix or simply the tags if null
+     *
+     * @param array $tags
+     * @return array Cache tags (with or without prefix)
+     */
+    protected function _tags(array $tags = [])
+    {
+        if (count($tags) > 0) {
+            foreach ($tags as &$tag) {
+                if (($tag !== null) && isset($this->_options['cache_id_prefix'])) {
+                    $tag = $this->_options['cache_id_prefix'] . $tag; // return with prefix
+                }
+            }
+        }
+        return $tags;
+    }
 }
