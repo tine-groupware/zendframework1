@@ -34,7 +34,7 @@ class Zend_Server_Method_Parameter
     /**
      * @var mixed Default parameter value
      */
-    protected $_defaultValue;
+    protected $d;
 
     /**
      * @var string Parameter description
@@ -44,17 +44,17 @@ class Zend_Server_Method_Parameter
     /**
      * @var string Parameter variable name
      */
-    protected $_name;
+    protected $n;
 
     /**
      * @var bool Is parameter optional?
      */
-    protected $_optional = false;
+    protected $o = false;
 
     /**
      * @var string Parameter type
      */
-    protected $_type = 'mixed';
+    protected $t = 'mixed';
 
     /**
      * Constructor
@@ -94,7 +94,7 @@ class Zend_Server_Method_Parameter
      */
     public function setDefaultValue($defaultValue)
     {
-        $this->_defaultValue = $defaultValue;
+        $this->d = $defaultValue;
         return $this;
     }
 
@@ -105,7 +105,7 @@ class Zend_Server_Method_Parameter
      */
     public function getDefaultValue()
     {
-        return $this->_defaultValue;
+        return $this->d;
     }
 
     /**
@@ -138,7 +138,7 @@ class Zend_Server_Method_Parameter
      */
     public function setName($name)
     {
-        $this->_name = (string) $name;
+        $this->n = (string) $name;
         return $this;
     }
 
@@ -149,7 +149,7 @@ class Zend_Server_Method_Parameter
      */
     public function getName()
     {
-        return $this->_name;
+        return $this->n;
     }
 
     /**
@@ -160,7 +160,7 @@ class Zend_Server_Method_Parameter
      */
     public function setOptional($flag)
     {
-        $this->_optional = (bool) $flag;
+        $this->o = (bool) $flag;
         return $this;
     }
 
@@ -171,7 +171,7 @@ class Zend_Server_Method_Parameter
      */
     public function isOptional()
     {
-        return $this->_optional;
+        return $this->o;
     }
 
     /**
@@ -182,7 +182,7 @@ class Zend_Server_Method_Parameter
      */
     public function setType($type)
     {
-        $this->_type = (string) $type;
+        $this->t = (string) $type;
         return $this;
     }
 
@@ -193,7 +193,7 @@ class Zend_Server_Method_Parameter
      */
     public function getType()
     {
-        return $this->_type;
+        return $this->t;
     }
 
     /**
@@ -210,5 +210,22 @@ class Zend_Server_Method_Parameter
             'defaultValue' => $this->getDefaultValue(),
             'description'  => $this->getDescription(),
         ];
+    }
+
+    public function __sleep(): array
+    {
+        $toSerialize = [
+            'n',
+        ];
+        if (null !== $this->d) {
+            $toSerialize[] = 'd';
+        }
+        if (false !== $this->o) {
+            $toSerialize[] = 'o';
+        }
+        if ('mixed' !== $this->t) {
+            $toSerialize[] = 't';
+        }
+        return $toSerialize;
     }
 }

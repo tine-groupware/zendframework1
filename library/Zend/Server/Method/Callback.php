@@ -34,22 +34,22 @@ class Zend_Server_Method_Callback
     /**
      * @var string Class name for class method callback
      */
-    protected $_class;
+    protected $c;
 
     /**
      * @var string Function name for function callback
      */
-    protected $_function;
+    protected $f;
 
     /**
      * @var string Method name for class method callback
      */
-    protected $_method;
+    protected $m;
 
     /**
      * @var string Callback type
      */
-    protected $_type;
+    protected $t;
 
     /**
      * @var array Valid callback types
@@ -97,7 +97,7 @@ class Zend_Server_Method_Callback
         if (is_object($class)) {
             $class = $class::class;
         }
-        $this->_class = $class;
+        $this->c = $class;
         return $this;
     }
 
@@ -108,7 +108,7 @@ class Zend_Server_Method_Callback
      */
     public function getClass()
     {
-        return $this->_class;
+        return $this->c;
     }
 
     /**
@@ -119,7 +119,7 @@ class Zend_Server_Method_Callback
      */
     public function setFunction($function)
     {
-        $this->_function = (string) $function;
+        $this->f = (string) $function;
         $this->setType('function');
         return $this;
     }
@@ -131,7 +131,7 @@ class Zend_Server_Method_Callback
      */
     public function getFunction()
     {
-        return $this->_function;
+        return $this->f;
     }
 
     /**
@@ -142,7 +142,7 @@ class Zend_Server_Method_Callback
      */
     public function setMethod($method)
     {
-        $this->_method = $method;
+        $this->m = $method;
         return $this;
     }
 
@@ -153,7 +153,7 @@ class Zend_Server_Method_Callback
      */
     public function getMethod()
     {
-        return $this->_method;
+        return $this->m;
     }
 
     /**
@@ -169,7 +169,7 @@ class Zend_Server_Method_Callback
             require_once 'Zend/Server/Exception.php';
             throw new Zend_Server_Exception('Invalid method callback type  passed to ' . self::class . '::' . __METHOD__);
         }
-        $this->_type = $type;
+        $this->t = $type;
         return $this;
     }
 
@@ -180,7 +180,7 @@ class Zend_Server_Method_Callback
      */
     public function getType()
     {
-        return $this->_type;
+        return $this->t;
     }
 
     /**
@@ -201,5 +201,19 @@ class Zend_Server_Method_Callback
             $array['method'] = $this->getMethod();
         }
         return $array;
+    }
+
+    public function __sleep(): array
+    {
+        $toSerialize = [
+            't',
+        ];
+        if (null === $this->f) {
+            $toSerialize[] = 'c';
+            $toSerialize[] = 'm';
+        } else {
+            $toSerialize[] = 'f';
+        }
+        return $toSerialize;
     }
 }
